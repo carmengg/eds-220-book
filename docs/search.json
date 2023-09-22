@@ -1,0 +1,177 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EDS 220 - Working with Environmental Datasets",
+    "section": "",
+    "text": "Welcome!"
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#objectives",
+    "href": "sections/lesson-1-python-intro-I.html#objectives",
+    "title": "1  Python Intro I",
+    "section": "1.1 Objectives",
+    "text": "1.1 Objectives\nIntroduce the following terms: variable, object, type/class, integer, string, function, argument/parameter, default argument,"
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#variables",
+    "href": "sections/lesson-1-python-intro-I.html#variables",
+    "title": "1  Python Intro I",
+    "section": "1.2 Variables",
+    "text": "1.2 Variables\nWe can think of a variable as a name we assign to a particular object in Python. For example:\n\n# assign the integer number 1 to variable a\na = 1  \n\nWhen we run the cell, we store the variables and their value. We can view a variable’s value in two ways:\n\nrunning a cell with the variable name\nusing the print function to print the value\n\n\n# show the value\na\n\n1\n\n\n\n# print the value \nprint(a)\n\n1\n\n\n\n\n\n\n\n\nR and Python\n\n\n\nIn Python we use the equal sign = to assign values to variables in the same way the left-arrow &lt;- is used in R.\n\n\n\n1.2.1 Naming Variables\nLowercase and uppercase letters are not the same in a variable’s name. The underscore character _ also alters a variable’s name. For example, each of the following defines a different variable:\n\nmilesRun = 1\nMilesRun = 2\nmiles_run = 3\nmilesrun = 4\nMILESrun = 5\n_miles_run_ = 6\nMiLeSrUn = 7\nmilesrun__ = 8\n\n# notice I can print multiple variables by separating them with a comma\nprint(milesRun, MilesRun, miles_run, milesrun, MILESrun, _miles_run_, MiLeSrUn, milesrun__)\n\n1 2 3 4 5 6 7 8\n\n\nThere are many ways of constructing multi-word variable names as we can see in the previous example. Some are easier to read than others. The first three are commonly used and widely accepted ways of writing variable names (the last three are just chaos).\nIn this course we will name variables using snake_case, where words are all in small caps and separated by underscores (ex: miles_run). This is the naming convention suggested by the Style Guide for Python Code.\n\n\n1.2.2 Variables and Objects\nYou will often encounter the word object in Python documentation and tutorials. Informally speaking, an object is a bundle of properties and actions about something specific. For example, an object could represent a data frame with properties such as number of rows, names of columns, and date created, and actions suchs as selecting a specific row or adding a new column.\nA variable is the name we give a specific object, and the same object can be referenced by different variables. An analogy for this is the following: the Sun (object) is called “sol” in Spanish and “soleil” in French, so two different names (variables) represent the same object. You can read more technical details about the difference between objects and variables in Python here.\nIn practice, we can often use the word variable and object interchangeably. I want to bring up what objects are so you’re not caught off-guard with vocabulary you’ll often encounter in the documentation, StackExchange, etc. We’ll often use the word object too (for example, in the next subsection!)."
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#types",
+    "href": "sections/lesson-1-python-intro-I.html#types",
+    "title": "1  Python Intro I",
+    "section": "1.3 Types",
+    "text": "1.3 Types\nEvery object in Python has a type, the type tells us what kind of object it is. We can also call the type of an object, the class of an object (so class and type both mean what kind of object we have).\nWe can see the type/class of a variable/object by using the type function:\n\nprint(type(a))\n\n&lt;class 'int'&gt;\n\n\n\n1.3.1 int\nint is one of the basic data types in Python, it represents an integer number (remember a=1).\n\n\n1.3.2 str\nAnother basic Python data type is the string, represent by str in code. Strings are sequences of characters(text). We create a string by writing text between single or double quotes:\n\n'this is a string!'\n\n'this is a string!'\n\n\n\n\"this also is a string!\"\n\n'this also is a string!'\n\n\nWe can, of course, assign strings to variables and check their type:\n\nb = 'my first string variable'\nprint('the class of my variable is', type(b))\n\nthe class of my variable is &lt;class 'str'&gt;\n\n\n\n\n1.3.3 bool\nThe final data type we will see today is the boolean type. It only has two values: True and False. These two words can never be used as variable names because they represent built-in data types in Python. We generally encounter booleans as results from comparisons, when they indicate if a statement is true or false. For example:\n\nprint(8 &gt; 9)\nprint(8 == 9)  # the double equal == means we are comparing if the values are the same\nprint(8 != 8)  # the != means we are comparing if the values are different\n\nFalse\nFalse\nFalse\n\n\nIntegers, strings, and booleans are three of the core classes in Python. Since “everything in Python is an object” and every object has a class, we will interact with SO MANY classes in this course. Often, knowing the type of an object is the first step to finding information to code what you want!"
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#functions",
+    "href": "sections/lesson-1-python-intro-I.html#functions",
+    "title": "1  Python Intro I",
+    "section": "1.4 Functions",
+    "text": "1.4 Functions\nprint was our first example of a Python function. Functions take in a set of arguments, separated by commas, and use those arguments to create some output. There are several built-in funcions in python, most of them are for interacting with the basic Python data types. You can see a list of them here.\nNOTE: we can interchangeably say arguments or parameters. You will see argument more often in the documentation.\nWe can ask for information about a function by executing ? followed by the function name:\n\n?print\n\n\nThe first line is always the function showing all of its arguments in parenthesis. Then there is a short description of what the function does. And finally a list of the arguments and a brief explanation about each of them.\nYou can see there are different types of arguments inside the parenthesis. Roughly speaking, a function has two types of arguments:\n\nnon-default arguments: arguments you need to specify for the function to do something, and\ndefault arguments: arguments that are pre-filled in by the function, but you can override them. Default arguments appear inside the parenthesis () in the form default_argument = default_value.\n\nExample:\nend is an argument in print with the default value a new line. We can change this argument so that finishes the line with ^_^ instead:\n\n# notice we had always used print withough specifying any value for the `end` argument\nprint('I am changing the default end argument of the print function', end=' ^_^')\n\nI am changing the default end argument of the print function ^_^"
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#exercise",
+    "href": "sections/lesson-1-python-intro-I.html#exercise",
+    "title": "1  Python Intro I",
+    "section": "1.5 Exercise",
+    "text": "1.5 Exercise\n\n\n\n\n\n\nExercise\n\n\n\n\nRead the print function help. What is the type of the argument sep? Is this a default or non-default argument? Why?\nCreate two new variables, one with the integer value 77 and another one with the string 99.\nUse your variables to print 77%99%77 by changing the value of one of the default arguments in print."
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#attributes-methods",
+    "href": "sections/lesson-1-python-intro-I.html#attributes-methods",
+    "title": "1  Python Intro I",
+    "section": "1.6 Attributes & Methods",
+    "text": "1.6 Attributes & Methods\nAn object in Python has attributes and methods. An attribute is a property of the object, some piece of information about it. A method is is a procedure associated with an object, so it is an action where the main ingredient is the object.\nFor example, these could be some attributes and methods a class cat:\n\nMore formally, a method is a function that acts on the object it is part of.\nTo get along with Python it is very important to understand methods and attributes as parts of an object. This is a major difference between R and Python.\nWe can access a variable’s attributes and methods by adding a period . at the end of the variable’s name. So we would write variable.variable_method() or variable.variable_attribute. Let’s see a concrete example:\n\n# define a string \nvar = 'Hello, world!'\n\n# strings have many methods associated to them\n# one of them is the upper method, which returns the same string in all caps\nvar.upper()\n\n'HELLO, WORLD!'\n\n\nThe string HELLO, WORLD! is the output of the function var.upper. We can store it in another variable if we want to. Notice that the upper method did not change the variable var, it has the same ‘Hello, world!’ in it\n\noutput = var.upper()\nprint(output)\nprint(var)\n\nHELLO, WORLD!\nHello, world!\n\n\nAnd, as we discussed var.upper is a method of the variable var, so it is a function. We can check this!\n\ntype(var.upper)\n\nbuiltin_function_or_method\n\n\nThe basic data types we have seen so far don’t have any attributes. But we’ll soon enough encounter other classes that do.\n\n\n\n\n\n\nR and Python\n\n\n\nIn R we don’t use methods within an object. Rather, functions are extrinsic (outside) the objects they are acting on. In R, there would be two separate items: the variable var and a separate function upper that gets var as a parameter:\n# this is R code\nvar &lt;- 'Hello, world!' \nupper(var)\nUsing the R pipe operator % is closer to the dot . in Python:\n# this is R code\nvar &lt;- 'Hello, world!' \nvar % upper()\nWhat happens here is that the pipe % is passing var to the upper() function as its first argument. This is essentially what happens in Python when a function is a method of a class:\n# this is Python code\nvar = 'Hello, world!' \nvar.upper()\nHowever, remember that methods are functions that are part of an object and a method uses the object it is part of to produce some information."
+  },
+  {
+    "objectID": "sections/lesson-1-python-intro-I.html#exercise-2",
+    "href": "sections/lesson-1-python-intro-I.html#exercise-2",
+    "title": "1  Python Intro I",
+    "section": "1.7 Exercise",
+    "text": "1.7 Exercise\n\n\n\n\n\n\nExercise\n\n\n\n\nSuppose we have a class tree, make a diagram similar to the cat class diagram showing 3 attributes for the class and 3 methods.\nCreate a a string variable with the year you were born. Use the string method isnumeric to check if your variable is a number. What type of output did you get?\nIn the following code, explain what are my_variable, count, '2', and x.\n\n\n\n\nmy_variable = 'EDS 220'\nx = my_variable.count('2')\nx\n\n2"
+  },
+  {
+    "objectID": "sections/lesson-2-python-intro-II.html#objectives",
+    "href": "sections/lesson-2-python-intro-II.html#objectives",
+    "title": "2  Python Intro II",
+    "section": "2.1 Objectives",
+    "text": "2.1 Objectives\nIntroduce the following data types: lists, tuples, and dictionaries."
+  },
+  {
+    "objectID": "sections/lesson-2-python-intro-II.html#lists",
+    "href": "sections/lesson-2-python-intro-II.html#lists",
+    "title": "2  Python Intro II",
+    "section": "2.2 Lists",
+    "text": "2.2 Lists\nLists are one of the core Python classes. They are, well…, ordered lists of Python objects. We declare one by listing its elements between square brackets [].\nLists are mutable, which means we can modify their contents in place (without creating a new object). We interact with them by using the lists methods. For example:\n\n# create a list\nmy_list = [2,3, 6, \"9\"]\nprint(my_list)\nprint(type(my_list))\nprint(id(my_list), '\\n')\n\n# add a new item to the list\nmy_list.append(10)\nprint(my_list)\nprint(id(my_list), '\\n')\n\n# remove the last item in the list\nmy_list.pop()\nprint(my_list)\nprint(id(my_list))\n\n[2, 3, 6, '9']\n&lt;class 'list'&gt;\n140391192189632 \n\n[2, 3, 6, '9', 10]\n140391192189632 \n\n[2, 3, 6, '9']\n140391192189632\n\n\n\n2.2.1 Indexing\nWe can access items within the list by indexing. Remember that indexing in Python starts at 0.\n# Return first element in the list\nprint(my_list[0])\n\n# When we try to access the \"fifth\" element \n# of the list we get an Index error\nprint(my_list[5])\n\n\n\n\n\n\n\nR and Python\n\n\n\nIndexing in Python can get a bit of getting used to, particularly if you’re already familar with R, where we start indexing at 1. In case it is helpful, here’s some rationale about the 0-indexing:\nThe index in Python tells you the number of steps you’ve moved from the beginning of the list. So, when you are at the start of a list you have moved 0 places from the beginning.\n\n\n\n\n2.2.2 Slicing\nWe can also slice a list, which means selecting a subsection of the list. The notation to do this is my_list[start:stop]. The element at the start index is included, but the one at the stop index is not included.\n\n# define a list\nseq = [0,1,2,3,4,5,6,7,8]\n# select elements with index 3,4, and 5\n# NOTICE 6 (the stop index) is not included in the slice\nseq[3:6]\n\n[3, 4, 5]\n\n\nWhen slicing, we can also omit the start or stop index. Omiting start will start the slice from the start of the list, while omiting stop will end the slice at the end of the list\n\n# our original list\nprint(seq)\n\n# slice from index 0 to index 3 (4 elements)\nprint(seq[:4])\n\n# slice from index 6 to last index\nprint(seq[6:])\n\n[0, 1, 2, 3, 4, 5, 6, 7, 8]\n[0, 1, 2, 3]\n[6, 7, 8]\n\n\nWe can check if an element is within a list by using the in operator:\n\nprint(my_list)\nprint(9 in my_list)\nprint(\"9\" in my_list)\n\n[2, 3, 6, '9']\nFalse\nTrue\n\n\nin is one of the so-called reserved words in Python. These are words that we can never use as names of variables because they are built-in in Python and represent a specific action or object. We can get the full list of reserved words by typing help(keywords).\n\nhelp(\"keywords\")\n\n\nHere is a list of the Python keywords.  Enter any keyword to get more help.\n\nFalse               class               from                or\nNone                continue            global              pass\nTrue                def                 if                  raise\nand                 del                 import              return\nas                  elif                in                  try\nassert              else                is                  while\nasync               except              lambda              with\nawait               finally             nonlocal            yield\nbreak               for                 not                 \n\n\n\nWe will use lists often and will discover new methods as we go forward. This is a good place to read more about lists."
+  },
+  {
+    "objectID": "sections/lesson-2-python-intro-II.html#tuples",
+    "href": "sections/lesson-2-python-intro-II.html#tuples",
+    "title": "2  Python Intro II",
+    "section": "2.3 Tuples",
+    "text": "2.3 Tuples\nA tuple is a fixed-length, immutable sequence of Python objects. Tuples are immutable, which means once we create one, we cannot modify their contents like we did for lists.\nWe create a tuple by listing its items inside parentehsis ().\n\ntup = (1,2,4,8)\nprint(type(tup))\ntup\n\n&lt;class 'tuple'&gt;\n\n\n(1, 2, 4, 8)\n\n\nIndexing for tuples works the same as it does for lists.\n\nprint(tup)\nprint(tup[0])\nprint(tup[1:3])\nprint(tup[-1])\n\n(1, 2, 4, 8)\n1\n(2, 4)\n8\n\n\n\n# checking for membership works the same in tuples\n8 in tup\n\nTrue\n\n\nSince tuples are immutable they don’t have a lot of mehtods. Actually, they only have two! Here is one of them:\n\n# can you guess what this method is returning?\nprint(tup)\ntup.index(4)   \n\n(1, 2, 4, 8)\n\n\n2"
+  },
+  {
+    "objectID": "sections/lesson-2-python-intro-II.html#dictionaries",
+    "href": "sections/lesson-2-python-intro-II.html#dictionaries",
+    "title": "2  Python Intro II",
+    "section": "2.4 Dictionaries",
+    "text": "2.4 Dictionaries\nA dictionary stores a collectio nof key-value pairs, where both the key and the value are Python objects. Each key is associated with a value, so we can access the value by knowing the key. The syntax to create a dictonary is\n{ key_1 : value_1,\n  key_2 : value_2, \n  key_3 : value_3\n  }\nFor example, the following is dictionary where the keys are Goleta, Carpinteria, and Ventura, and the values are 91245019, 5623561, and 2551572 (a made-up code associated to each city).\n\nD = { 'Goleta': 100,\n      'Carpinteria' : 200,\n      'Ventura' : 300}\nprint(type(D))\nD\n\n&lt;class 'dict'&gt;\n\n\n{'Goleta': 100, 'Carpinteria': 200, 'Ventura': 300}\n\n\nWe can access the value at a specific key by using the key name as index:\n\n# return the value associated to an existing key\nD['Goleta']\n\n100\n\n\n# we get an error if try to access an unexisting key\nD['Santa_Barbara']\n\nFortunately, it is both easy to add a key and to chek if an object is in the dictionary’s keys.\n\n# Add the key-value pair Santa_Barbara-3254678 to the dictionary\nD['Santa_Barbara'] = 400\nD\n\n{'Goleta': 100, 'Carpinteria': 200, 'Ventura': 300, 'Santa_Barbara': 400}\n\n\nUsing the in operator with a dictionary is equivalent to asking “is this element in the dictionary’s keys”? It doesn’t check the values.\n\n# check if we have some keys in the dictionary\nprint( 'Santa_Barbara' in D)\nprint( 'Jalama' in D)\n\n# notice this is false although 100 is in D's values\nprint(100 in D)\n\nTrue\nFalse\nFalse"
+  },
+  {
+    "objectID": "sections/lesson-2-python-intro-II.html#exercise",
+    "href": "sections/lesson-2-python-intro-II.html#exercise",
+    "title": "2  Python Intro II",
+    "section": "2.5 Exercise",
+    "text": "2.5 Exercise\n\n\n\n\n\n\nExercise\n\n\n\nThis exercise is adapted from the Basic Python assignment in the Earth and Environmental Science e-book.\nLists\n\nCreatea list of the names of every planet in the solar system in order from distance to the Sun. Recall Pluto is not a Planet anymore.\nHave Python tell you how many planets there are in your list.\nUse indexing to access Neptune\nUse slicing to display the first four planets (the rocky ones).\nUse slicing to display the gas giants Jupiter and Saturn\nAdd Pluto to the list, because we don’t want it to feel left out.\n\nTuples\n\nDiscuss with your team when it could be useful to use a tuple instead of a list.\n\nDictionaries\n\nCreate a dictionary that maps the first four plantes its number of moons. You can use values from the NASA fact sheet.\nUse your dictionary to look up how many moons does Earth have. (I know you know the answer. :))\nYour dictionary has a method that returns its values. Find that method (you can look it up online).\nCheck if there is a planet with 92 moons using your answer to exercise 10.\nAdd the a new key-value pair to your dictionary with the information for Saturn."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#to-do",
+    "href": "sections/lab-1-command-line-git.html#to-do",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.1 TO DO:",
+    "text": "3.1 TO DO:\n\nUpdate terminal output from output at the server?\nCheck with Kat and Brad whether we need to set up credentials expiration\nRun the code in server"
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#about",
+    "href": "sections/lab-1-command-line-git.html#about",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.2 About",
+    "text": "3.2 About\nThis is a tutorial about basic Git usage from the terminal for the Bren EDS 220 course."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#what-is-the-terminal",
+    "href": "sections/lab-1-command-line-git.html#what-is-the-terminal",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.3 What is the terminal?",
+    "text": "3.3 What is the terminal?\nThe terminal (also known as command prompt, command shell, or command line) is a way to interact directly with your computer using text instead of clicking around windows.\nIt can be a bit daunting to start using the terminal. But with practice we’ll see that it can be very efficient for many tasks. In this course, we will use the terminal to interact with the version control system Git."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#basic-terminal-commands",
+    "href": "sections/lab-1-command-line-git.html#basic-terminal-commands",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.4 Basic terminal commands",
+    "text": "3.4 Basic terminal commands\n\n3.4.1 Navigating files\nOne of the core uses of the terminal is file navigation. We will often use the following commands.\n\n3.4.1.1 pwd\npwd stands for “print working directory”. This command prints the directory we are currently at in our computer.\n(base) high-castle:eds_220_preparation galaz-garcia$ pwd\n\n/Users/galaz-garcia/Documents/eds_220_preparation\nWe can see I am currently in the folder where I keep the documents for preparing the EDS course. :)\n\n\n3.4.1.2 ls\nls is short for list. This command prints the contents of the directory you’re in. For example:\n(base) high-castle:eds_220_preparation galaz-garcia$ ls\n\nLab_1_command_line_git.html     Lesson_1_Python_Intro.ipynb\nLab_1_command_line_git.qmd      Lesson_2_Python_Intro.ipynb\nLab_1_command_line_git_files    cat_class.png\nIn the output we can see I have a bunch of files and also a directory Lab_1_command_line_git_files. We know that’s a directory because it doesn’t have a dot indicating the file type after the name.\nCommands often have options you can add after them. For example, typing ls -a will print all the files in the directory, including hidden files. Here -a is an option for the ls command.\n(base) high-castle:eds_220_preparation galaz-garcia$ ls -a\n\n.                               Lab_1_command_line_git.qmd\n..                              Lab_1_command_line_git_files\n.git                            Lesson_1_Python_Intro.ipynb\n.gitignore                      Lesson_2_Python_Intro.ipynb\nLab_1_command_line_git.html     cat_class.png\nls -a lists the visible and hidden files in the directory. Hidden files are those that beging with a period, like our .gitignore file.\n\n\n3.4.1.3 cd\ncd stands for “change directory” and we use to… change directories!\nThere are three main uses of cd:\n1st Use: Move to a directory inside the directory where I’m in. We do this by typing the name of the directory after cd.\n(base) high-castle:eds_220_preparation galaz-garcia$ cd Lab_1_command_line_git_files/\n\n(base) high-castle:Lab_1_command_line_git_files galaz-garcia$ \n\n(base) high-castle:Lab_1_command_line_git_files galaz-garcia$ pwd\n/Users/galaz-garcia/Documents/eds_220_preparation/Lab_1_command_line_git_files\nI ran pwd after running cd Lab_1_command_line_git_files/ to show you I changed directory.\n2nd Use: Move to the parent directory of the directory I’m in. We do this with cd ... For example, here I return to my previous directory:\n(base) high-castle:Lab_1_command_line_git_files galaz-garcia$ cd ..\n\n(base) high-castle:eds_220_preparation galaz-garcia$ pwd\n/Users/galaz-garcia/Documents/eds_220_preparation\n3rd Use: Return to home directory. When we run cd by itself it takes us straight to the home directory.\n(base) high-castle:eds_220_preparation galaz-garcia$ cd\n\n(base) high-castle:~ galaz-garcia$ \n\n(base) high-castle:~ galaz-garcia$ pwd\n/Users/galaz-garcia\n\n\n\n3.4.2 Resets\n\n3.4.2.1 Clean the terminal: Ctrl + L\nSometimes the terminal becomes a mess with too many commands and outputs:\nThe default interactive shell is now zsh.\nTo update your account to use zsh, please run `chsh -s /bin/zsh`.\nFor more details, please visit https://support.apple.com/kb/HT208050.\n(base) high-castle:eds_220_preparation galaz-garcia$ pwd\n/Users/galaz-garcia/Documents/eds_220_preparation\n(base) high-castle:eds_220_preparation galaz-garcia$ ls\nLab_1_command_line_git.html     Lesson_1_Python_Intro.ipynb\nLab_1_command_line_git.qmd      Lesson_2_Python_Intro.ipynb\nLab_1_command_line_git_files    cat_class.png\n(base) high-castle:eds_220_preparation galaz-garcia$ ls -a\n.                               Lab_1_command_line_git.qmd\n..                              Lab_1_command_line_git_files\n.git                            Lesson_1_Python_Intro.ipynb\n.gitignore                      Lesson_2_Python_Intro.ipynb\nLab_1_command_line_git.html     cat_class.png\n(base) high-castle:eds_220_preparation galaz-garcia$ cs\nbash: cs: command not found\n(base) high-castle:eds_220_preparation galaz-garcia$ cd\n(base) high-castle:~ galaz-garcia$ ls\nApplications            Documents               Library                 Music                   Public                  Zotero                  netcdf_temp_data.csv\nDesktop                 Downloads               Movies                  Pictures                Sites                   iCloud Drive (Archive)  opt\n(base) high-castle:~ galaz-garcia$ cd Documents/\n(base) high-castle:Documents galaz-garcia$ ls\n2018_Book_MachineLearningForEcologyAndSu.pdf\nPressing Ctr+L or Command + L will clear the screen:\nAfter Ctr+L:\n\n(base) high-castle:~ galaz-garcia$ \nMuch better 😌.\n\n\n3.4.2.2 Abort! Ctrl + C\nPressing Ctrl+C will stop whatever command is running. When there’s nothing running we can use it to get a new line.\n\n\n\n\n\n\nBefore continuing\n\n\n\nNavigate to your eds-2020 directory."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#why-git-through-the-terminal",
+    "href": "sections/lab-1-command-line-git.html#why-git-through-the-terminal",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.5 Why git through the terminal?",
+    "text": "3.5 Why git through the terminal?\nYou have had some practice using git for version control in RStudio. RStudio has a GUI (Graphical User Interface) that lets you interact with git. The Jupyter Lab environment does not have such an interface. Instead, we need to use the terminal to interact with git. That’s ok! Once you get the hang of it you’ll see it is quite practical. The rest of this tutorial will guide you through the basics of using git through the command line."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#setup",
+    "href": "sections/lab-1-command-line-git.html#setup",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.6 Setup",
+    "text": "3.6 Setup\n\n3.6.1 Confirm git is installed\nFirst things first: check that git is installed by running git --version. If it is installed you will get as an output git version X.Y.Z.\n(base) high-castle:eds_220_preparation galaz-garcia$ git --version\ngit version 2.33.1\n\n\n3.6.2 Setting up git crendentials\nTo start using git we need to tell the computer who we are. To do this we must set our username and email.\nFirst, type the following command with your exact GitHub username:\ngit config --global user.name \"your_username\"\nNext, use the following command with the email address you used to create your GitHub account:\ngit config --global user.email \"my_email@bren.ucsb.edu\"\nThere will be no output in the terminal if these commands ran successfully. To check it worked we can run\ngit config --global --list\nYour output should look something like this:\n(base) parks-and-recs:eds_220_preparation galaz-garcia$ git config --global --list\nuser.name=carmengg\nuser.email=galaz-garcia@nceas.ucsb.edu\nThese credentials will keep track of autorship and also connect us to GitHub.\n\n\n3.6.3 Changing main branch name\nWe will change one more global option. By running the following command we change the default branch name to main for any new repositories.\ngit config --global init.defaultBranch main\nPreviously, the default branch name in git was master which has racist associations. Around 2020 GitHub pushed for renaming the defualt branch to main."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#cloning-a-repository",
+    "href": "sections/lab-1-command-line-git.html#cloning-a-repository",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.7 Cloning a repository",
+    "text": "3.7 Cloning a repository\n\n3.7.1 1. Create a GitHub repository\nFollow these steps to make a GitHub repository:\n\n\n\n\n\n\nHow to create a new GitHub repository\n\n\n\n\nLog into [GitHub]{http://github.com}\nClick the green “New repository” button\nName your new repository {FIRSTNAME}_test\nAdd a short description\nSet your repository to Public\nCheck the box to add a README.md file\nAdd a .gitignore file using the Python template\n\n\n\nYour form should look similar to this one: \nThen click on “Create repository” to make the repo! This will take us to our repo’s main page. We can see it has a README.md file and a .gitignore file.\n\n\n\n3.7.2 2. Clone the new repo\nWe’ll use your GitHub repository’s URL to clone the repository onto the server.\n\n\n\n\n\n\nNote\n\n\n\nThere’s nothign particular about the server and we would follow these steps to clone the repository to any computer where git is installed.\n\n\nTo get the repo’s URL click on the green “&lt;&gt; Code” button, then copy the URL.\n\nNow back at the terminal, first make sure your working directory is the eds-220 folder. Then go to the terminal and run the git clone command followed by the repo’s URL. For me this looks like:\ngit clone https://github.com/carmengg/carmen_test.git\nGit will automatically create a directory with the repository name and will donwload the files there. Let’s finish by navigating into our new repository and listing the files:\ncd carmen_test\nls"
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#git-pull",
+    "href": "sections/lab-1-command-line-git.html#git-pull",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.8 git pull",
+    "text": "3.8 git pull\nTo fetch changes from the remote repository (our repository’s copy in GitHub) we run git pull. This command will automatically try to merge the current branch with the upstream. We just cloned the repo and there are no changes to pull now, but it’s a good habit to pull before making any local changes."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#git-status",
+    "href": "sections/lab-1-command-line-git.html#git-status",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.9 git status",
+    "text": "3.9 git status\ngit status is a fundamental git command. We use it to display the information about the git status of each of the files in the current working directory. It will show us which files have been modified, which are staged, and which are not tracket by git. You can think of git status as the equivalent of taking a look at the git tab in RStudio.\nRun git status on your new repository, the output should be similar to this:\n\nBasically, it is telling us there have been no changes to any files (nothing to commig) and there are no updates in the origin repository (your branch is up to date)."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#add-commit-and-push",
+    "href": "sections/lab-1-command-line-git.html#add-commit-and-push",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.10 Add, commit, and push",
+    "text": "3.10 Add, commit, and push\nLet’s open the README.md file and make a small change. After we make a change and save the document we can run git status again, this will show us the file has been modified:\n\n\n3.10.1 git add\nNow we need to add the file to the staging area. We do this by writing git add [FILENAME]. If it works there will be no output in the terminal. We can see this file is now in the staging area by running git status:\n\n\n\n3.10.2 git commit\nWe will always commit with a message. To do this we use git commit -m \"A COMMIT MESSAGE\". The commit message must be between quotes.\n\nIf we run git status we will see there’s a record of our commit where it says “branch ahead of origin/main by 1 commit”:\n\n\n\n3.10.3 git push\nWhen we are ready to push our changes to the origin repository (the copy of our repository in GitHub) we simply use the git push command:\n\nIf we run git status again we will see we are back to no changes seen by git:\n\nBack in GitHub we can see the changes we made to the README file and also that we have a second commit:"
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#exercise",
+    "href": "sections/lab-1-command-line-git.html#exercise",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.11 Exercise",
+    "text": "3.11 Exercise\n\n\n\n\n\n\nExercise\n\n\n\nCreate a new jupyter notebook in your trial repository and use the command line to push it to your remote repo."
+  },
+  {
+    "objectID": "sections/lab-1-command-line-git.html#resources",
+    "href": "sections/lab-1-command-line-git.html#resources",
+    "title": "3  Lab I: Command Line Git",
+    "section": "3.12 Resources",
+    "text": "3.12 Resources\nGitLab’s Git Cheat Sheet\nGitLab’s Command Line Git Tutorial\nNCEAS Learning Hub’s Intro to Git and GitHub in R"
+  }
+]
