@@ -11,8 +11,6 @@ book:
     - sections/lesson-2-python-intro-II.qmd
     - sections/lab-1-command-line-git.qmd
 
-bibliography: references.bib
-
 format:
   html:
     theme: cosmo
