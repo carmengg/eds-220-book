@@ -1,0 +1,18 @@
+project:
+  type: book
+
+book:
+  title: "EDS 220 - Working with Environmental Datasets"
+  author: "Carmen Galaz García"
+  date: "9/21/2023"
+  chapters:
+    - index.qmd
+    - sections/lesson-1-python-intro-I.qmd
+    - sections/lesson-2-python-intro-II.qmd
+    - sections/lab-1-command-line-git.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
