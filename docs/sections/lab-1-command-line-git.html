@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab-1-command-line-git</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="lab-i-command-line-git" class="level1">
+<h1>Lab I: Command Line Git</h1>
+<section id="to-do" class="level2">
+<h2 class="anchored" data-anchor-id="to-do">TO DO:</h2>
+<ul>
+<li>Update terminal output from output at the server?</li>
+<li>Check with Kat and Brad whether we need to set up credentials expiration</li>
+<li>Run the code in server</li>
+</ul>
+</section>
+<section id="about" class="level2">
+<h2 class="anchored" data-anchor-id="about">About</h2>
+<p>This is a tutorial about basic Git usage from the terminal for the Bren EDS 220 course.</p>
+</section>
+<section id="what-is-the-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-terminal">What is the terminal?</h2>
+<p>The terminal (also known as command prompt, command shell, or command line) is a way to interact directly with your computer using text instead of clicking around windows.</p>
+<p>It can be a bit daunting to start using the terminal. But with practice we’ll see that it can be very efficient for many tasks. In this course, we will use the terminal to interact with the version control system Git.</p>
+</section>
+<section id="basic-terminal-commands" class="level2">
+<h2 class="anchored" data-anchor-id="basic-terminal-commands">Basic terminal commands</h2>
+<section id="navigating-files" class="level3">
+<h3 class="anchored" data-anchor-id="navigating-files">Navigating files</h3>
+<p>One of the core uses of the terminal is file navigation. We will often use the following commands.</p>
+<section id="pwd" class="level4">
+<h4 class="anchored" data-anchor-id="pwd"><code>pwd</code></h4>
+<p><code>pwd</code> stands for “print working directory”. This command prints the directory we are currently at in our computer.</p>
+<pre><code>(base) high-castle:eds_220_preparation galaz-garcia$ pwd
+
+/Users/galaz-garcia/Documents/eds_220_preparation</code></pre>
+<p>We can see I am currently in the folder where I keep the documents for preparing the EDS course. :)</p>
+</section>
+<section id="ls" class="level4">
+<h4 class="anchored" data-anchor-id="ls"><code>ls</code></h4>
+<p><code>ls</code> is short for list. This command prints the contents of the directory you’re in. For example:</p>
+<pre><code>(base) high-castle:eds_220_preparation galaz-garcia$ ls
+
+Lab_1_command_line_git.html     Lesson_1_Python_Intro.ipynb
+Lab_1_command_line_git.qmd      Lesson_2_Python_Intro.ipynb
+Lab_1_command_line_git_files    cat_class.png</code></pre>
+<p>In the output we can see I have a bunch of files and also a directory <code>Lab_1_command_line_git_files</code>. We know that’s a directory because it doesn’t have a dot indicating the file type after the name.</p>
+<p>Commands often have options you can add after them. For example, typing <code>ls -a</code> will print all the files in the directory, including hidden files. Here <code>-a</code> is an option for the <code>ls</code> command.</p>
+<pre><code>(base) high-castle:eds_220_preparation galaz-garcia$ ls -a
+
+.                               Lab_1_command_line_git.qmd
+..                              Lab_1_command_line_git_files
+.git                            Lesson_1_Python_Intro.ipynb
+.gitignore                      Lesson_2_Python_Intro.ipynb
+Lab_1_command_line_git.html     cat_class.png</code></pre>
+<p><code>ls -a</code> lists the visible and hidden files in the directory. Hidden files are those that beging with a period, like our .gitignore file.</p>
+</section>
+<section id="cd" class="level4">
+<h4 class="anchored" data-anchor-id="cd"><code>cd</code></h4>
+<p><code>cd</code> stands for “change directory” and we use to… change directories!</p>
+<p>There are three main uses of <code>cd</code>:</p>
+<p><strong>1st Use:</strong> Move to a directory inside the directory where I’m in. We do this by typing the name of the directory after <code>cd</code>.</p>
+<pre><code>(base) high-castle:eds_220_preparation galaz-garcia$ cd Lab_1_command_line_git_files/
+
+(base) high-castle:Lab_1_command_line_git_files galaz-garcia$ 
+
+(base) high-castle:Lab_1_command_line_git_files galaz-garcia$ pwd
+/Users/galaz-garcia/Documents/eds_220_preparation/Lab_1_command_line_git_files</code></pre>
+<p>I ran <code>pwd</code> after running <code>cd Lab_1_command_line_git_files/</code> to show you I changed directory.</p>
+<p><strong>2nd Use:</strong> Move to the parent directory of the directory I’m in. We do this with <code>cd ..</code>. For example, here I return to my previous directory:</p>
+<pre><code>(base) high-castle:Lab_1_command_line_git_files galaz-garcia$ cd ..
+
+(base) high-castle:eds_220_preparation galaz-garcia$ pwd
+/Users/galaz-garcia/Documents/eds_220_preparation</code></pre>
+<p><strong>3rd Use:</strong> Return to home directory. When we run <code>cd</code> by itself it takes us straight to the home directory.</p>
+<pre><code>(base) high-castle:eds_220_preparation galaz-garcia$ cd
+
+(base) high-castle:~ galaz-garcia$ 
+
+(base) high-castle:~ galaz-garcia$ pwd
+/Users/galaz-garcia</code></pre>
+</section>
+</section>
+<section id="resets" class="level3">
+<h3 class="anchored" data-anchor-id="resets">Resets</h3>
+<section id="clean-the-terminal-ctrl-l" class="level4">
+<h4 class="anchored" data-anchor-id="clean-the-terminal-ctrl-l">Clean the terminal: <code>Ctrl + L</code></h4>
+<p>Sometimes the terminal becomes a mess with too many commands and outputs:</p>
+<pre><code>The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+(base) high-castle:eds_220_preparation galaz-garcia$ pwd
+/Users/galaz-garcia/Documents/eds_220_preparation
+(base) high-castle:eds_220_preparation galaz-garcia$ ls
+Lab_1_command_line_git.html     Lesson_1_Python_Intro.ipynb
+Lab_1_command_line_git.qmd      Lesson_2_Python_Intro.ipynb
+Lab_1_command_line_git_files    cat_class.png
+(base) high-castle:eds_220_preparation galaz-garcia$ ls -a
+.                               Lab_1_command_line_git.qmd
+..                              Lab_1_command_line_git_files
+.git                            Lesson_1_Python_Intro.ipynb
+.gitignore                      Lesson_2_Python_Intro.ipynb
+Lab_1_command_line_git.html     cat_class.png
+(base) high-castle:eds_220_preparation galaz-garcia$ cs
+bash: cs: command not found
+(base) high-castle:eds_220_preparation galaz-garcia$ cd
+(base) high-castle:~ galaz-garcia$ ls
+Applications            Documents               Library                 Music                   Public                  Zotero                  netcdf_temp_data.csv
+Desktop                 Downloads               Movies                  Pictures                Sites                   iCloud Drive (Archive)  opt
+(base) high-castle:~ galaz-garcia$ cd Documents/
+(base) high-castle:Documents galaz-garcia$ ls
+2018_Book_MachineLearningForEcologyAndSu.pdf</code></pre>
+<p>Pressing <code>Ctr+L</code> or <code>Command + L</code> will clear the screen:</p>
+<pre><code>After Ctr+L:
+
+(base) high-castle:~ galaz-garcia$ </code></pre>
+<p>Much better 😌.</p>
+</section>
+<section id="abort-ctrl-c" class="level4">
+<h4 class="anchored" data-anchor-id="abort-ctrl-c">Abort! <code>Ctrl + C</code></h4>
+<p>Pressing <code>Ctrl+C</code> will stop whatever command is running. When there’s nothing running we can use it to get a new line.</p>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Before continuing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Navigate to your eds-2020 directory.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="why-git-through-the-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="why-git-through-the-terminal">Why git through the terminal?</h2>
+<p>You have had some practice using git for version control in RStudio. RStudio has a GUI (Graphical User Interface) that lets you interact with git. The Jupyter Lab environment does not have such an interface. Instead, we need to use the terminal to interact with git. That’s ok! Once you get the hang of it you’ll see it is quite practical. The rest of this tutorial will guide you through the basics of using git through the command line.</p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<section id="confirm-git-is-installed" class="level3">
+<h3 class="anchored" data-anchor-id="confirm-git-is-installed">Confirm git is installed</h3>
+<p>First things first: check that git is installed by running <code>git --version</code>. If it is installed you will get as an output <code>git version X.Y.Z</code>.</p>
+<pre><code>(base) high-castle:eds_220_preparation galaz-garcia$ git --version
+git version 2.33.1</code></pre>
+</section>
+<section id="setting-up-git-crendentials" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-git-crendentials">Setting up git crendentials</h3>
+<p>To start using git we need to tell the computer who we are. To do this we must set our username and email.</p>
+<p>First, type the following command with your <strong>exact</strong> GitHub username:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"your_username"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, use the following command with the email address you used to create your <a href="https://github.com/">GitHub</a> account:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"my_email@bren.ucsb.edu"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There will be no output in the terminal if these commands ran successfully. To check it worked we can run</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your output should look something like this:</p>
+<pre><code>(base) parks-and-recs:eds_220_preparation galaz-garcia$ git config --global --list
+user.name=carmengg
+user.email=galaz-garcia@nceas.ucsb.edu</code></pre>
+<p>These credentials will keep track of autorship and also connect us to GitHub.</p>
+</section>
+<section id="changing-main-branch-name" class="level3">
+<h3 class="anchored" data-anchor-id="changing-main-branch-name">Changing main branch name</h3>
+<p>We will change one more global option. By running the following command we change the default branch name to <code>main</code> for any new repositories.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Previously, the default branch name in git was <code>master</code> which has racist associations. Around 2020 GitHub pushed for renaming the defualt branch to <code>main</code>.</p>
+</section>
+</section>
+<section id="cloning-a-repository" class="level2">
+<h2 class="anchored" data-anchor-id="cloning-a-repository">Cloning a repository</h2>
+<section id="create-a-github-repository" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-github-repository">1. Create a GitHub repository</h3>
+<p>Follow these steps to make a GitHub repository:</p>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How to create a new GitHub repository
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Log into [GitHub]{http://github.com}</li>
+<li>Click the green “New repository” button</li>
+<li>Name your new repository <code>{FIRSTNAME}_test</code></li>
+<li>Add a short description</li>
+<li>Set your repository to Public</li>
+<li>Check the box to add a README.md file</li>
+<li>Add a .gitignore file using the Python template</li>
+</ol>
+</div>
+</div>
+<p>Your form should look similar to this one: <img src="../images/lab-1/new_repo.png" class="img-fluid"></p>
+<p>Then click on “Create repository” to make the repo! This will take us to our repo’s main page. We can see it has a <code>README.md</code> file and a <code>.gitignore</code> file.</p>
+<p><img src="../images/lab-1/new_repo2.png" class="img-fluid"></p>
+</section>
+<section id="clone-the-new-repo" class="level3">
+<h3 class="anchored" data-anchor-id="clone-the-new-repo">2. Clone the new repo</h3>
+<p>We’ll use your GitHub repository’s URL to clone the repository onto the server.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There’s nothign particular about the server and we would follow these steps to clone the repository to any computer where git is installed.</p>
+</div>
+</div>
+<p>To get the repo’s URL click on the green “&lt;&gt; Code” button, then copy the URL.</p>
+<p><img src="../images/lab-1/repo_url.png" class="img-fluid"></p>
+<p>Now back at the terminal, first make sure your working directory is the eds-220 folder. Then go to the terminal and run the <code>git clone</code> command followed by the repo’s URL. For me this looks like:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/carmengg/carmen_test.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Git will automatically create a directory with the repository name and will donwload the files there. Let’s finish by navigating into our new repository and listing the files:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> carmen_test</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="git-pull" class="level2">
+<h2 class="anchored" data-anchor-id="git-pull"><code>git pull</code></h2>
+<p>To fetch changes from the remote repository (our repository’s copy in GitHub) we run <code>git pull</code>. This command will automatically try to merge the current branch with the upstream. We just cloned the repo and there are no changes to pull now, but it’s a good habit to pull before making any local changes.</p>
+</section>
+<section id="git-status" class="level2">
+<h2 class="anchored" data-anchor-id="git-status"><code>git status</code></h2>
+<p><code>git status</code> is a fundamental git command. We use it to display the information about the git status of each of the files in the current working directory. It will show us which files have been modified, which are staged, and which are not tracket by git. You can think of <code>git status</code> as the equivalent of taking a look at the git tab in RStudio.</p>
+<p>Run <code>git status</code> on your new repository, the output should be similar to this:</p>
+<p><img src="../images/lab-1/git_initial.png" class="img-fluid"></p>
+<p>Basically, it is telling us there have been no changes to any files (nothing to commig) and there are no updates in the origin repository (your branch is up to date).</p>
+</section>
+<section id="add-commit-and-push" class="level2">
+<h2 class="anchored" data-anchor-id="add-commit-and-push">Add, commit, and push</h2>
+<p>Let’s open the README.md file and make a small change. After we make a change and save the document we can run <code>git status</code> again, this will show us the file has been modified:</p>
+<p><img src="../images/lab-1/git_change.png" class="img-fluid"></p>
+<section id="git-add" class="level3">
+<h3 class="anchored" data-anchor-id="git-add"><code>git add</code></h3>
+<p>Now we need to add the file to the staging area. We do this by writing <code>git add [FILENAME]</code>. If it works there will be no output in the terminal. We can see this file is now in the staging area by running <code>git status</code>:</p>
+<p><img src="../images/lab-1/git_add.png" class="img-fluid"></p>
+</section>
+<section id="git-commit" class="level3">
+<h3 class="anchored" data-anchor-id="git-commit"><code>git commit</code></h3>
+<p>We will always commit with a message. To do this we use <code>git commit -m "A COMMIT MESSAGE"</code>. The commit message must be between quotes.</p>
+<p><img src="../images/lab-1/git_commit.png" class="img-fluid"></p>
+<p>If we run <code>git status</code> we will see there’s a record of our commit where it says “branch ahead of origin/main by 1 commit”:</p>
+<p><img src="../images/lab-1/git_commit_status.png" class="img-fluid"></p>
+</section>
+<section id="git-push" class="level3">
+<h3 class="anchored" data-anchor-id="git-push"><code>git push</code></h3>
+<p>When we are ready to push our changes to the origin repository (the copy of our repository in GitHub) we simply use the <code>git push</code> command:</p>
+<p><img src="../images/lab-1/git_push.png" class="img-fluid"></p>
+<p>If we run <code>git status</code> again we will see we are back to no changes seen by git:</p>
+<p><img src="../images/lab-1/git_initial.png" class="img-fluid"></p>
+<p>Back in GitHub we can see the changes we made to the README file and also that we have a second commit:</p>
+<p><img src="../images/lab-1/changed_repo.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create a new jupyter notebook in your trial repository and use the command line to push it to your remote repo.</p>
+</div>
+</div>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p><a href="https://about.gitlab.com/images/press/git-cheat-sheet.pdf">GitLab’s Git Cheat Sheet</a></p>
+<p><a href="https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html">GitLab’s Command Line Git Tutorial</a></p>
+<p><a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_07.html">NCEAS Learning Hub’s Intro to Git and GitHub in R</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
