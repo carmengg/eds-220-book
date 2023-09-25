@@ -110,9 +110,9 @@ And finally a list of the arguments and a brief explanation about each of them.
 
 You can see there are different types of arguments inside the parenthesis. Roughly speaking, a function has two types of arguments:
 
-- **non-default arguments**: arguments *you* need to specify for the function to do something, and
+- **non-optional arguments**: arguments *you* need to specify for the function to do something, and
 
-- **default arguments**: arguments that are pre-filled in by the function, but you can override them. Default arguments appear inside the parenthesis () in the form `default_argument = default_value`. 
+- **optional arguments**: arguments that are pre-filled with a default value by the function, but you can override them. Optional arguments appear inside the parenthesis () in the form `optional_argument = default_value`. 
 
 **Example:**
 
@@ -232,12 +232,7 @@ var.min()
 When working in Python, remember that *methods are functions that are part of an object* and a method uses the object it is part of to produce some information.
 :::
 
-## Exercise
-
-
-```{python}
-var.nonzero()
-```
+## Exercises
 
 :::{.callout-tip}
 ## Exercise 1
@@ -246,17 +241,38 @@ Suppose we have a class `tree`, make a diagram similar to the `cat` class diagra
 
 ::: {.callout-tip}
 ## Exercise 2
-In the following code, explain what are `my_variable`, `count`, `'2'`, and `x`.
+Consider the following code:
+
+```python
+import numpy as np
+
+?np.ones
+```
+![](/images/lesson-1/np-ones-docstring.png)
 
 ```{python}
-my_variable = 'EDS 220'
-x = my_variable.count('2')
-x
+abc = np.ones([3,2], dtype=np.int8)
+print(abc)
+
+x = abc.mean()
+print(x)
 ```
+
+Complete the following paragraph using the given words:
+
+| . | . | .| .|
+|---|---|---|---|
+| class | function | object |method |
+| variable | non-default |data-type |default |
+|package | attribute | outout | parameter(s) | optional|
+
+`abc` is a ________ assigned to the NumPy ________ `np.ones([3,2])`. We construct `np.ones([3,2])` by calling a ________ from the NumPy ________. `[3,2]` and `np.int8` are ________ we pass to the `np.ones` ________. `np.int8` is a ________ parameter of `np.ones`. `abc.mean` is an ________ of `abc` and `x` is its ________. 
+
+
 :::
 
 ::: {.callout-tip}
-## Exercise 1
+## Exercise 3
 1. Read the `print` function help. What is the type of the argument `sep`? Is this a default or non-default argument? Why?
 
 2. Create two new variables, one with the integer value 77 and another one with the string 99.
@@ -264,4 +280,10 @@ x
 3. Use your variables to print `77%99%77` by changing the value of one of the default arguments in `print`.
 :::
 
+
+
+```{python}
+var = np.array([2,3,5,7,11,13]).reshape([2,3])
+var
+```
 
