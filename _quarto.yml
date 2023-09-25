@@ -8,9 +8,7 @@ book:
   date: "9/21/2023"
   chapters:
     - index.qmd
-    - sections/lesson-1-python-intro-I.qmd
-    - sections/lesson-2-python-intro-II.qmd
-    - sections/lab-1-command-line-git.qmd
+    - sections/lesson-1-python-review.qmd
 
 format:
   html:
