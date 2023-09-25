@@ -1,0 +1,240 @@
+# Python Review
+
+## About
+This is a short reveiw about some core concepts in Python exemplified by objects i the `numpy` library. 
+
+## Variables
+We can think of a **variable** as a name we assign to a particular object in Python. For example:
+
+```{python}
+# assign the integer number 1 to variable a
+a = 1  
+```
+
+When we run the cell, we store the variables and their value. We can view a variable's value in two ways:
+
+1. running a cell with the variable name
+
+2. using the `print` function to print the value
+
+```{python}
+# show the value
+a
+```
+
+```{python}
+# print the value 
+print(a)
+```
+
+
+:::{.callout-note}
+## R and Python
+
+In Python we use the equal sign `=` to assign values to variables in the same way the left-arrow `<-` is used in R.
+:::
+
+### Naming Variables
+
+Lowercase and uppercase letters are not the same in a variable's name. The underscore character `_` also alters a variable's name. For example, each of the following defines a different variable:
+
+```{python}
+milesRun = 1
+MilesRun = 2
+miles_run = 3
+milesrun = 4
+MILESrun = 5
+_miles_run_ = 6
+MiLeSrUn = 7
+milesrun__ = 8
+
+# notice I can print multiple variables by separating them with a comma
+print(milesRun, MilesRun, miles_run, milesrun, MILESrun, _miles_run_, MiLeSrUn, milesrun__)
+```
+
+There are many ways of constructing multi-word variable names as we can see in the previous example. Some are easier to read than others. The first three are commonly used and widely accepted ways of writing variable names (the last three are just chaos). 
+
+In this course we will name variables using **snake_case**, where words are all in small caps and separated by underscores (ex: `miles_run`). This is the naming convention suggested by the [Style Guide for Python Code](https://peps.python.org/pep-0008/).
+
+### Variables and Objects
+You will often encounter the word **object** in Python documentation and tutorials. Informally speaking, an object is a bundle of *properties* and *actions* about something specific. For example, an object could represent a data frame with properties such as number of rows, names of columns, and date created, and actions suchs as selecting a specific row or adding a new column. 
+
+A variable is the name we give a specific object, and the same object can be referenced by different variables. An analogy for this is the following: the Sun (object) is called "sol" in Spanish and "soleil" in French, so two different names (variables) represent the same object. You can read more technical details about the [difference between objects and variables in Python here](https://realpython.com/python-variables/#object-references).
+
+In practice, we can often use the word variable and object interchangeably. I want to bring up what objects are so you're not caught off-guard with vocabulary you'll often encounter in the documentation, StackExchange, etc. We'll often use the word object too (for example, in the next subsection!).
+
+## Types
+
+ Every object in Python has a **type**, the type tells us what kind of object it is. We can also call the type of an object, the **class** of an object (so class and type both mean what kind of object we have). 
+ 
+ We can see the type/class of a variable/object by using the `type` function:
+
+```{python}
+print(type(a))
+```
+
+### `int`
+
+ `int` is one of the basic data types in Python, it represents an **integer** number (remember `a=1`).
+
+### `str`
+Another basic Python data type is the **string**, represent by `str` in code. Strings are sequences of characters(text). We create a string by writing text between single or double quotes:
+
+```{python}
+'this is a string!'
+```
+
+```{python}
+"this also is a string!"
+```
+
+We can, of course, assign strings to variables and check their type:
+
+```{python}
+b = 'my first string variable'
+print('the class of my variable is', type(b))
+```
+
+### `bool`
+
+The final data type we will see today is the **boolean type**. It only has two values: `True` and `False`. These two words can never be used as variable names because they represent built-in data types in Python. We generally encounter booleans as results from comparisons, when they indicate if a statement is true or false. For example:
+
+```{python}
+print(8 > 9)
+print(8 == 9)  # the double equal == means we are comparing if the values are the same
+print(8 != 8)  # the != means we are comparing if the values are different
+```
+
+Integers, strings, and booleans are three of the core classes in Python. Since "everything in Python is an object" and every object has a class, we will interact with SO MANY classes in this course. Often, knowing the type of an object is the first step to finding information to code what you want!
+
+## Functions
+
+`print` was our first example of a Python **function**. Functions take in a set of **arguments**, separated by commas, and use those arguments to create some **output**. There are several built-in funcions in python, most of them are for interacting with the basic Python data types. You can see a [list of them here](https://realpython.com/python-data-types/#built-in-functions).
+
+*NOTE: we can interchangeably say arguments or parameters. You will see argument more often in the documentation.*
+
+We can ask for information about a function by executing `?` followed by the function name:
+
+```{python}
+?print
+```
+
+![](/images/lesson-1/print_docstring.png)
+
+The first line is always the function showing all of its arguments in parenthesis. 
+Then there is a short description of what the function does.
+And finally a list of the arguments and a brief explanation about each of them.
+
+You can see there are different types of arguments inside the parenthesis. Roughly speaking, a function has two types of arguments:
+
+- **non-default arguments**: arguments *you* need to specify for the function to do something, and
+
+- **default arguments**: arguments that are pre-filled in by the function, but you can override them. Default arguments appear inside the parenthesis () in the form `default_argument = default_value`. 
+
+**Example:**
+
+`end` is an argument in `print` with the default value a new line. We can change this argument so that finishes the line with ` ^_^` instead:
+
+```{python}
+# notice we had always used print withough specifying any value for the `end` argument
+print('I am changing the default end argument of the print function', end=' ^_^')
+```
+
+## Exercise
+
+::: {.callout-tip}
+## Exercise
+1. Read the `print` function help. What is the type of the argument `sep`? Is this a default or non-default argument? Why?
+2. Create two new variables, one with the integer value 77 and another one with the string 99.
+3. Use your variables to print `77%99%77` by changing the value of one of the default arguments in `print`.
+:::
+
+## Attributes & Methods
+
+An object in Python has attributes and methods. An **attribute** is a property of the object, some piece of information about it. A **method** is is a procedure associated with an object, so it is an action where the main ingredient is the object. 
+
+For example, these could be some attributes and methods a class `cat`:
+
+<img src = /images/lesson-1/cat_class.png width=45% height=45% class="center">
+
+More formally, **a method is a function** that acts on the object it is part of.
+
+
+To get along with Python it is *very important* to understand methods and attributes as **parts of an object**. This is a major difference between R and Python.
+
+We can access a variable's attributes and methods by adding a period `.` at the end of the variable's name. So we would write `variable.variable_method()` or `variable.variable_attribute`. Let's see a concrete example:
+
+```{python}
+# define a string 
+var = 'Hello, world!'
+
+# strings have many methods associated to them
+# one of them is the upper method, which returns the same string in all caps
+var.upper()
+```
+
+The string `HELLO, WORLD!` is the **output** of the function `var.upper`. We can store it in another variable if we want to. Notice that the `upper` method did not change the variable `var`, it has the same 'Hello, world!' in it
+```{python}
+output = var.upper()
+print(output)
+print(var)
+```
+
+
+And, as we discussed `var.upper` is a method of the variable `var`, so it is a function. We can check this!
+
+```{python}
+type(var.upper)
+```
+
+
+The basic data types we have seen so far don't have any attributes. But we'll soon enough encounter other classes that do.
+
+
+:::{.callout-note}
+## R and Python
+
+In R we don't use methods within an object. Rather, functions are extrinsic (outside) the objects they are acting on. In R, there would be two separate items: the variable `var` and a separate function `upper` that gets `var` as a parameter:
+
+``` R
+# this is R code
+var <- 'Hello, world!' 
+upper(var)
+```
+
+Using the R pipe operator `%` is closer to the dot `.` in Python:
+
+``` R
+# this is R code
+var <- 'Hello, world!' 
+var % upper()
+```
+
+What happens here is that the pipe `%` is passing `var` to the `upper()` function as its first argument. This is essentially what happens in Python when a function is a method of a class:
+
+``` python
+# this is Python code
+var = 'Hello, world!' 
+var.upper()
+```
+
+However, remember that *methods are functions that are part of an object* and a method uses the object it is part of to produce some information.
+:::
+
+## Exercise
+
+::: {.callout-tip}
+## Exercise
+
+1. Suppose we have a class `tree`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
+
+2. Create a a string variable with the year you were born. Use the string method `isnumeric` to check if your variable is a number. What type of output did you get?
+
+3. In the following code, explain what are `my_variable`, `count`, `'2'`, and `x`.
+:::
+
+```{python}
+my_variable = 'EDS 220'
+x = my_variable.count('2')
+x
+```
