@@ -1,9 +1,8 @@
-# Lab I: Command Line Git
+# Command Line Git
 
 ## TO DO:
-- Update terminal output from output at the server?
-- Check with Kat and Brad whether we need to set up credentials expiration
-- Run the code in server
+- Update terminal output from output at the server.
+- Link Bren Taylor information and git setup
 
 ## About
 This is a tutorial about basic Git usage from the terminal for the Bren EDS 220 course.

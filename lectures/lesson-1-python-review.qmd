@@ -21,7 +21,7 @@ We can think of a **variable** as a name we assign to a particular object in Pyt
 
 ```{python}
 # assign a small array to variable a
-a = np.array([[1,2,3],[4,5,6]])
+a = np.array([[1,1,2],[3,5,8]])
 ```
 
 When we run the cell, we store the variables and their value. We can view a variable's value in two ways:
@@ -79,7 +79,7 @@ type(a[0,0])
 ```
 
 ::: {.callout-tip}
-## Check In
+## Check-in
 How would you access the value 4 in the array `a`? **Remember indexing in Python starts from 0!**
 :::
 
@@ -179,7 +179,7 @@ var.min(axis=0)
 ```
 
 ::: {.callout-tip}
-## Check In
+## Check-in
 
 We can also call the `min` method without any parameters:
 
@@ -239,21 +239,29 @@ When working in Python, remember that *methods are functions that are part of an
 var.nonzero()
 ```
 
-::: {.callout-tip}
-## Exercise
-1. Read the `print` function help. What is the type of the argument `sep`? Is this a default or non-default argument? Why?
-2. Create two new variables, one with the integer value 77 and another one with the string 99.
-3. Use your variables to print `77%99%77` by changing the value of one of the default arguments in `print`.
-
-1. Suppose we have a class `tree`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
-
-2. Create a a string variable with the year you were born. Use the string method `isnumeric` to check if your variable is a number. What type of output did you get?
-
-3. In the following code, explain what are `my_variable`, `count`, `'2'`, and `x`.
+:::{.callout-tip}
+## Exercise 1
+Suppose we have a class `tree`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
 :::
+
+::: {.callout-tip}
+## Exercise 2
+In the following code, explain what are `my_variable`, `count`, `'2'`, and `x`.
 
 ```{python}
 my_variable = 'EDS 220'
 x = my_variable.count('2')
 x
 ```
+:::
+
+::: {.callout-tip}
+## Exercise 1
+1. Read the `print` function help. What is the type of the argument `sep`? Is this a default or non-default argument? Why?
+
+2. Create two new variables, one with the integer value 77 and another one with the string 99.
+
+3. Use your variables to print `77%99%77` by changing the value of one of the default arguments in `print`.
+:::
+
+
