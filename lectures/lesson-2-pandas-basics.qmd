@@ -1,0 +1,85 @@
+# Pandas Fundamentals
+
+## About
+In this lesson we will cover the two core objects in the pandas library the series and the data frame. We will also learn methods to subset, select, and add data to our data frames, as well as some basic plotting with matplotlib.
+
+There is so much about pandas. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for tabular data analysis and give you a solid basis on which you can explore further. 
+
+## `pandas`
+
+`pandas` is a Python package to wrangle and analyze tabular data. It is built on top of NumPy and has become the core tool for doing data analysis in Python. 
+
+The convention to import it is:
+
+```{python}
+import pandas as pd
+
+# we will also import numpy 
+import numpy as np
+```
+
+## Series
+
+The first core data structure of pandas is the **series**. 
+A series is *one-dimensional* array of *indexed* data. A `pandas.Series` having an **index** is the main difference between a `pandas.Series` and a numpy array. 
+
+**Example 1**
+```{python}
+# a numpy array
+arr = np.random.randn(5) #np.random.randn returns values from the std normal distribution
+print(type(arr))
+print(arr, "\n")
+
+# a pandas series
+s = pd.Series(arr)
+print(type(s))
+print(s)
+```
+
+### How to create a `pandas.Series`
+
+The basic method to create a `pandas.Series` is to call
+
+``` python
+s = pd.Series(data, index=index)
+```
+
+The `data` parameter can be:
+
+- a [numpy array](https://numpy.org/doc/stable/reference/arrays.ndarray.html) or [a list](https://realpython.com/python-list/)
+- a [Python dictionary](https://realpython.com/lessons/dictionary-python/)
+- [a number](https://commons.wikimedia.org/wiki/File:Number-three.JPG)
+
+The `index` parameter is a list of index labels.
+
+#### From a numpy array or list
+
+To use this method we need to pass a numpy array (or any list of objects) as `data` and a list of indices of the same length as data. 
+
+```{python}
+# a Series from a numpy array 
+pd.Series(np.arange(3), index=['a','b','c'])
+```
+
+
+ The `index` parameter is optional. If we don't include it the default is to make the index be `[0,...,len(data)-1]` (see Example 1).
+
+```{python}
+# a Series from a list of strings with default index
+pd.Series(['EDS 220', 'EDS 222', 'EDS 223', 'EDS 242'])
+```
+
+
+#### From a dictionary
+
+## Data Frames
+
+## Selecting data
+
+## Basic Matplotlib
+
+## Resources
+
+[Pandas documentation - User Guide](https://pandas.pydata.org/docs/user_guide/index.html)
+
+[Python for Data Analysis, 3E - Getting started with pandas](https://wesmckinney.com/book/pandas-basics)
