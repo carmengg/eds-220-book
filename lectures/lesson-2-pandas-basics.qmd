@@ -36,6 +36,7 @@ print(type(s))
 print(s)
 ```
 
+
 ### How to create a `pandas.Series`
 
 The basic method to create a `pandas.Series` is to call
@@ -71,6 +72,61 @@ pd.Series(['EDS 220', 'EDS 222', 'EDS 223', 'EDS 242'])
 
 
 #### From a dictionary
+
+Remember a dictionary is a set of key-value pairs. If we create a `pandas.Series` via a dictionary the keys will become the index and the values the corresponding data.
+
+```{python}
+# construct dictionary
+d = {'a':0, 'b':1, 'c':2}
+
+# initialize a sries using a dictionary
+pd.Series(d)
+```
+
+#### From a number
+If we only provide a number as the data for the series, we need to provide an index. The number will be repeated to math the length of the index.
+
+```{python}
+pd.Series(3.0, index = ['A', 'B', 'C'])
+```
+
+### Indexing
+
+We can **acess specific values by label** just in the same way af we do in a dictionary: `series['index_label']`
+
+```{python}
+# initalize series
+s = pd.Series(np.arange(3), index=['a','b','c'])
+print(s, '\n')
+
+# access element corresponding to label 'b'
+s['b']
+```
+
+
+
+Or we can **access a value by position** using the `iloc` method. `iloc` stands for *integer-location* based indexing. This is the kind of indexing we do in 1-dimensional numpy arrays or lists, where we use integers to access elements in the array and the index starts from 0.
+
+
+```{python}
+# initialize series
+s = pd.Series(np.arange(10,13), index=['a','b','c'])
+print(s, '\n')
+
+# access element at index 2 (third element in series)
+s.iloc[2]
+```
+
+::: {.callout-caution}
+## integer-location indexing
+If we try to use `iloc` with a label from our index we will get an error. Notice the TypeError: *Cannot index by location with a non-integer key*. 
+:::
+
+![iloc type error](/images/lesson-2/iloc_error.png)
+
+###  
+
+There's much more to say about `pandas.Series`, but this is enought to get us going. Mainly, we want to know about `pandas.Series` because they will be the columns of our `pandas.DataFrame`.
 
 ## Data Frames
 
