@@ -5,7 +5,7 @@ project:
 book:
   title: "EDS 220 - Working with Environmental Datasets"
   author: "Carmen Galaz García"
-  date: "October 2023"
+  #date: "October 2023"
   chapters:
     - index.qmd
     - part: "Lectures"

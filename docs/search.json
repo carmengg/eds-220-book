@@ -4,7 +4,42 @@
     "href": "index.html",
     "title": "EDS 220 - Working with Environmental Datasets",
     "section": "",
-    "text": "Welcome!"
+    "text": "Welcome!\nWelcome to the course materials for EDS 220 - Working with Environmental Datasets! This course is part of the UCSB Masters in Environmental Data Science.\nIn this website you will find the materials covered during lectures and discussion sections for the Fall 2023 term. This site will be under construction throughout the course."
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "EDS 220 - Working with Environmental Datasets",
+    "section": "About",
+    "text": "About\nThis hands-on course explores widely used environmental data formats and Python libraries for analyzing diverse environmental data. Students will gain experience working with popular open data repositories and cloud platforms to source and analyze real-world environmental datasets. The course will also serve as an introduction to Python programming and provide opportunities to practice effective communication of the strengths and weaknesses of students’ data products and analyses."
+  },
+  {
+    "objectID": "index.html#instruction-team",
+    "href": "index.html#instruction-team",
+    "title": "EDS 220 - Working with Environmental Datasets",
+    "section": "Instruction Team",
+    "text": "Instruction Team\n\nInstructor\nCarmen Galaz García (she/her/hers)\nE-mail: galaz-garcia@nceas.ucsb.edu\nOffice hour: Wednesday 3:30-4:30 pm, NCEAS classroom\nBest way to contact me: e-mail\n\n\nTA\nYutian Fang (she/her/hers)\nE-mail: yutianfang@bren.ucsb.edu\nOffice Hours: Thursday, 3-4 pm, Marine Science Institute office 1208.\nBest way to contact me: email"
+  },
+  {
+    "objectID": "index.html#syllabus",
+    "href": "index.html#syllabus",
+    "title": "EDS 220 - Working with Environmental Datasets",
+    "section": "Syllabus",
+    "text": "Syllabus\nClick here to access the syllabus."
+  },
+  {
+    "objectID": "index.html#calendar",
+    "href": "index.html#calendar",
+    "title": "EDS 220 - Working with Environmental Datasets",
+    "section": "Calendar",
+    "text": "Calendar\nThe following is our ideal calendar, the course content and calendar may be subject to change as the course progresses."
+  },
+  {
+    "objectID": "index.html#about-this-website",
+    "href": "index.html#about-this-website",
+    "title": "EDS 220 - Working with Environmental Datasets",
+    "section": "About this website",
+    "text": "About this website\nThis website is created with Quarto and is published through GitHub pages. Click here to go to the website’s GitHub repository."
   },
   {
     "objectID": "lectures/lesson-1-python-review.html#about",
@@ -25,7 +60,7 @@
     "href": "lectures/lesson-1-python-review.html#variables",
     "title": "1  Python Review",
     "section": "1.3 Variables",
-    "text": "1.3 Variables\nWe can think of a variable as a name we assign to a particular object in Python. For example:\n\n# assign a small array to variable a\na = np.array([[1,1,2],[3,5,8]])\n\nWhen we run the cell, we store the variables and their value. We can view a variable’s value in two ways:\n\nrunning a cell with the variable name\nusing the print function to print the value\n\n\n# show the value\na\n\narray([[1, 1, 2],\n       [3, 5, 8]])\n\n\n\n# print the value \nprint(a)\n\n[[1 1 2]\n [3 5 8]]\n\n\n\n\n\n\n\n\nR and Python\n\n\n\nIn Python we use the equal sign = to assign values to variables in the same way the left-arrow <- is used in R.\n\n\n\n\n\n\n\n\nNaming Variables\n\n\n\nThere are many ways of constructing multi-word variable names as we can see in the previous example. In this course we will name variables using snake_case, where words are all in small caps and separated by underscores (ex: miles_run). This is the naming convention suggested by the Style Guide for Python Code."
+    "text": "1.3 Variables\nWe can think of a variable as a name we assign to a particular object in Python. For example:\n\n# assign a small array to variable a\na = np.array([[1,1,2],[3,5,8]])\n\nWhen we run the cell, we store the variables and their value. We can view a variable’s value in two ways:\n\nrunning a cell with the variable name\nusing the print function to print the value\n\n\n# show the value\na\n\narray([[1, 1, 2],\n       [3, 5, 8]])\n\n\n\n# print the value \nprint(a)\n\n[[1 1 2]\n [3 5 8]]\n\n\n\n\n\n\n\n\nR and Python\n\n\n\nIn Python we use the equal sign = to assign values to variables in the same way the left-arrow &lt;- is used in R.\n\n\n\n\n\n\n\n\nNaming Variables\n\n\n\nThere are many ways of constructing multi-word variable names as we can see in the previous example. In this course we will name variables using snake_case, where words are all in small caps and separated by underscores (ex: miles_run). This is the naming convention suggested by the Style Guide for Python Code."
   },
   {
     "objectID": "lectures/lesson-1-python-review.html#variables-and-objects",
@@ -53,7 +88,7 @@
     "href": "lectures/lesson-1-python-review.html#attributes-methods",
     "title": "1  Python Review",
     "section": "1.7 Attributes & Methods",
-    "text": "1.7 Attributes & Methods\nAn object in Python has attributes and methods. An attribute is a property of the object, some piece of information about it. A method is is a procedure associated with an object, so it is an action where the main ingredient is the object.\nFor example, these could be some attributes and methods a class cat:\n\n\n\n.\n\n\nMore formally, a method is a function that acts on the object it is part of.\nWe can access a variable’s attributes and methods by adding a period . at the end of the variable’s name. So we would write variable.variable_method() or variable.variable_attribute.\nExample\nNumPy arrays have many methods and attributes. Let’s see some concrete examples.\n\n# define a 3x3 array\nvar = np.array([[1,2,3],[4,5,6],[7,8,9]])\nvar\n\narray([[1, 2, 3],\n       [4, 5, 6],\n       [7, 8, 9]])\n\n\n\n# T is an example of attribute, it returns the transpose of var\nprint(var.T)\nprint(type(var.T))\n\n[[1 4 7]\n [2 5 8]\n [3 6 9]]\n<class 'numpy.ndarray'>\n\n\n\n# shape, another attribute, tells us the array dimensions\nprint(var.shape)\nprint(type(var.shape))\n\n(3, 3)\n<class 'tuple'>\n\n\n\n# ndim is an attribute hilding the number of array dimensions.\nprint(var.ndim)\nprint(type(var.ndim))\n\n2\n<class 'int'>\n\n\nNotice these attributes can have many different data types. Here we saw tuples and int, two of the core Python classes, and also a numpy array as attributes of var.\nNow some examples of methods:\n\n# the tolist method returns the array as a nested list of scalars\nvar.tolist()\n\n[[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\n\n\n# the min method returns the minimum value in the array along an axis\nvar.min(axis=0)\n\narray([1, 2, 3])\n\n\n\n\n\n\n\n\nCheck-in\n\n\n\nWe can also call the min method without any parameters:\n\nvar.min()\n\n1\n\n\nWhat kind of parameter is axis in our previous call of the var method?\n\n\nRemember, methods are functions associated to an object. We can check this!\n\ntype(var.tolist)\n\nbuiltin_function_or_method\n\n\n\ntype(var.min)\n\nbuiltin_function_or_method\n\n\nYou can see a complete list of NumPy array’s methods and attributes in the documentation.\n\n\n\n\n\n\nR and Python\n\n\n\nIn R we don’t use methods within an object. Rather, functions are extrinsic to (outside) the objects they are acting on. In R, for example, there would be two separate items: the variable var and a separate function min that gets var as a parameter:\n# this is R code\nvar <- array(c(1,4,7,2,5,8,3,6,9), dim =c(3,3))\nmin(var)\nUsing the pipe operator % in R’s tidyverse is closer to the dot . in Python:\n# this is R code\nvar <- array(c(1,4,7,2,5,8,3,6,9), dim =c(3,3))\nvar % min()\nWhat happens here is that the pipe % is passing var to the min() function as its first argument. This is essentially what happens in Python when a function is a method of a class:\n# this is Python code\nvar = np.array([[1,2,3],[4,5,6],[7,8,9]])\nvar.min()\nWhen working in Python, remember that methods are functions that are part of an object and a method uses the object it is part of to produce some information."
+    "text": "1.7 Attributes & Methods\nAn object in Python has attributes and methods. An attribute is a property of the object, some piece of information about it. A method is is a procedure associated with an object, so it is an action where the main ingredient is the object.\nFor example, these could be some attributes and methods a class cat:\n\n\n\n.\n\n\nMore formally, a method is a function that acts on the object it is part of.\nWe can access a variable’s attributes and methods by adding a period . at the end of the variable’s name. So we would write variable.variable_method() or variable.variable_attribute.\nExample\nNumPy arrays have many methods and attributes. Let’s see some concrete examples.\n\n# define a 3x3 array\nvar = np.array([[1,2,3],[4,5,6],[7,8,9]])\nvar\n\narray([[1, 2, 3],\n       [4, 5, 6],\n       [7, 8, 9]])\n\n\n\n# T is an example of attribute, it returns the transpose of var\nprint(var.T)\nprint(type(var.T))\n\n[[1 4 7]\n [2 5 8]\n [3 6 9]]\n&lt;class 'numpy.ndarray'&gt;\n\n\n\n# shape, another attribute, tells us the array dimensions\nprint(var.shape)\nprint(type(var.shape))\n\n(3, 3)\n&lt;class 'tuple'&gt;\n\n\n\n# ndim is an attribute hilding the number of array dimensions.\nprint(var.ndim)\nprint(type(var.ndim))\n\n2\n&lt;class 'int'&gt;\n\n\nNotice these attributes can have many different data types. Here we saw tuples and int, two of the core Python classes, and also a numpy array as attributes of var.\nNow some examples of methods:\n\n# the tolist method returns the array as a nested list of scalars\nvar.tolist()\n\n[[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\n\n\n# the min method returns the minimum value in the array along an axis\nvar.min(axis=0)\n\narray([1, 2, 3])\n\n\n\n\n\n\n\n\nCheck-in\n\n\n\nWe can also call the min method without any parameters:\n\nvar.min()\n\n1\n\n\nWhat kind of parameter is axis in our previous call of the var method?\n\n\nRemember, methods are functions associated to an object. We can check this!\n\ntype(var.tolist)\n\nbuiltin_function_or_method\n\n\n\ntype(var.min)\n\nbuiltin_function_or_method\n\n\nYou can see a complete list of NumPy array’s methods and attributes in the documentation.\n\n\n\n\n\n\nR and Python\n\n\n\nIn R we don’t use methods within an object. Rather, functions are extrinsic to (outside) the objects they are acting on. In R, for example, there would be two separate items: the variable var and a separate function min that gets var as a parameter:\n# this is R code\nvar &lt;- array(c(1,4,7,2,5,8,3,6,9), dim =c(3,3))\nmin(var)\nUsing the pipe operator % in R’s tidyverse is closer to the dot . in Python:\n# this is R code\nvar &lt;- array(c(1,4,7,2,5,8,3,6,9), dim =c(3,3))\nvar % min()\nWhat happens here is that the pipe % is passing var to the min() function as its first argument. This is essentially what happens in Python when a function is a method of a class:\n# this is Python code\nvar = np.array([[1,2,3],[4,5,6],[7,8,9]])\nvar.min()\nWhen working in Python, remember that methods are functions that are part of an object and a method uses the object it is part of to produce some information."
   },
   {
     "objectID": "lectures/lesson-1-python-review.html#exercises",

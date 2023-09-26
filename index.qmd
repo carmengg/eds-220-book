@@ -1,3 +1,41 @@
 # Welcome! {.unnumbered}
 
+Welcome to the course materials for EDS 220 - Working with Environmental Datasets! This course is part of the [UCSB Masters in Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science). 
+
+In this website you will find the materials covered during lectures and discussion sections for the Fall 2023 term. *This site will be under construction throughout the course.* 
+
+## About
+This hands-on course explores widely used environmental data formats and Python libraries for analyzing diverse environmental data. Students will gain experience working with popular open data repositories and cloud platforms to source and analyze real-world environmental datasets. The course will also serve as an introduction to Python programming and provide opportunities to practice effective communication of the strengths and weaknesses of students' data products and analyses.
+
+## Instruction Team 
+### Instructor
+**Carmen Galaz García** (she/her/hers)
+
+E-mail: galaz-garcia@nceas.ucsb.edu
+
+Office hour: Wednesday 3:30-4:30 pm, NCEAS classroom
+
+Best way to contact me: e-mail
+
+### TA
+**Yutian Fang** (she/her/hers)
+
+E-mail: yutianfang@bren.ucsb.edu
+
+Office Hours: Thursday, 3-4 pm, Marine Science Institute office 1208. 
+
+Best way to contact me: email
+
+## Syllabus
+
+[Click here to access the syllabus.](https://docs.google.com/document/d/1XQdwoDJz2G1UVOjMqPj_1Yez1Ix4bgSuWXUyw7b1U60/edit?usp=sharing)
+
+## Calendar
+The following is our ideal calendar, the course content and calendar may be subject to change as the course progresses. 
+
+![](/images/index/calendar.png)
+
+
+## About this website
+This website is created with [Quarto](https://quarto.org) and is published  through [GitHub pages](https://quarto.org/docs/publishing/github-pages.html). [Click here to go to the website's GitHub repository](https://github.com/carmengg/eds-220-book).
 
