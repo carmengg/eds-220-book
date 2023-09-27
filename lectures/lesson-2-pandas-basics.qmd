@@ -218,7 +218,93 @@ If you want to dive deeper, this is a great discussion about the difference betw
 
 ## Data Frames
 
-## Selecting data
+The Data Frame is the most used `pandas` object. It represents tabular data and we can think of it as a spreadhseet. Each column of a `pandas.DataFrame` is a `pandas.Series`. 
+
+### Creating a `pandas.DataFrame`
+There are [many ways of creating a `pandas.DataFrame`](https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe). Although we likely won't be creating data frames from scratch often, I'd like to go over creating a `pandas.DataFrame` from a `dict` of `pandas.Series` as this will help us understand the syntax for other Data Frame methods. 
+
+We already mentioned each column of a `pandas.DataFrame` is a `pandas.Series`. In fact, the `pandas.DataFrame` is a dictionary of `pandas.Series`, with each column name being the key and the column values being the key's value. Thus, we can create a `pandas.DataFrame` in this way:
+
+```{python}
+# initialize dictionary with columns' data 
+d = {'col_name_1' : pd.Series(np.arange(3)),
+     'col_name_2' : pd.Series([1, 2, 3]),
+     }
+
+# create data frame
+df = pd.DataFrame(d)
+d
+``` 
+
+We can change the index and column names by changing the `index` and `columns` attributes in the data frame. 
+
+```{python}
+# print original index
+print(d.index)
+
+# change the index
+d.index = ['a','b','c']
+d
+```
+
+```{python}
+# print original column names
+print(d.columns)
+
+# change column names 
+d.columns = ['C1','C2']
+d
+```
+
+## Subsetting a `pandas.DataFrame`
+
+Like it's often the case when working with `pandas`, there are *many* ways in which we can subset a data frame. We will review the core methods to do this. 
+
+There are two ways to subset data in a Data Frame: by position and by label. 
+
+* **Subsetting by label** means we want to select data from our data frame using the *names* of the columns or the index.
+
+* **Subsetting by position** means we want to select data from our data frame based on the data's *order* in the data frame.
+
+Let's dive into some methods for subsetting which will clarify these options. For all examples we will use simplified data (glacial_loss.csv) from the National Snow and Ice Data Center (Dataset DOI:!​[](​http://dx.doi.org/10.7265/N52N506F)). The column descriptions are:
+
+- **year**: ​calendar year
+- **europe - antarctica**: ​change in glacial volume (km3​ ​) in each region that year
+- **global_glacial_volume_change**: ​cumulative​ global glacial volume change (km3),
+starting in 1961
+- **annual_sea_level_rise**: ​annual rise in sea level (mm)
+- **cumulative_sea_level_rise**:​ cumulative rise in sea level (mm) since 1961
+
+```{python}
+# read in file
+df = pd.read_csv('/data/glacial_loss.csv')
+```
+
+First, we can get some baisc information about this data frame:
+
+```{python}
+# print columns
+print(df.columns)
+
+# print shape
+print(df.shape)
+
+# see the first five rows
+df.head()
+```
+
+### Selecting a single column...
+
+#### ...by label
+This is the simplest case for selecting data. Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary:
+
+```{python}
+df[]
+```
+
+
+
+This is not an exhaustive list of methods to select data, [it can get quite fancy](https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label!
 
 ## Basic Matplotlib
 
