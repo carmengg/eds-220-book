@@ -11,6 +11,7 @@ book:
     - part: "Lectures"
       chapters:
         - lectures/lesson-1-python-review.qmd
+        - lectures/lesson-2-pandas-basics.qmd
 
 format:
   html:
