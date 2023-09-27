@@ -1,6 +1,9 @@
 project:
   type: book
   output-dir: docs
+  # set working directory of all files to the main project directory
+  # https://quarto.org/docs/projects/code-execution.html
+  execute-dir: project
 
 book:
   title: "EDS 220 - Working with Environmental Datasets"
@@ -12,6 +15,8 @@ book:
       chapters:
         - lectures/lesson-1-python-review.qmd
         - lectures/lesson-2-pandas-basics.qmd
+
+
 
 format:
   html:
