@@ -1,9 +1,9 @@
 # Pandas Fundamentals
 
 ## About
-In this lesson we will cover the two core objects in the pandas library the series and the data frame. We will also learn methods to subset, select, and add data to our data frames, as well as some basic plotting with matplotlib.
+In this lesson we cover the two core objects in the `pandas` library the series and the data frame. We will also learn methods to subset, select, and add data to our data frames, as well as some basic plotting with matplotlib.
 
-There is so much about pandas. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for tabular data analysis and give you a solid basis on which you can explore further. 
+There is so much to learn about `pandas`. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for data wrangling and give you a solid basis on which you can explore further. 
 
 ## `pandas`
 
@@ -21,16 +21,16 @@ import numpy as np
 ## Series
 
 The first core data structure of pandas is the **series**. 
-A series is *one-dimensional* array of *indexed* data. A `pandas.Series` having an **index** is the main difference between a `pandas.Series` and a numpy array. 
+A series is a *one-dimensional* array of *indexed* data. A `pandas.Series` having an **index** is the main difference between a `pandas.Series` and a numpy array. See the difference:
 
-**Example 1**
 ```{python}
 # a numpy array
-arr = np.random.randn(5) #np.random.randn returns values from the std normal distribution
+# np.random.randn returns values from the std normal distribution
+arr = np.random.randn(4) 
 print(type(arr))
 print(arr, "\n")
 
-# a pandas series
+# a pandas series made from the previous array
 s = pd.Series(arr)
 print(type(s))
 print(s)
@@ -55,7 +55,7 @@ The `index` parameter is a list of index labels.
 
 #### From a numpy array or list
 
-To use this method we need to pass a numpy array (or any list of objects) as `data` and a list of indices of the same length as data. 
+To use this method we need to pass a numpy array (or a list of objects that can be converted to NumPy types) as `data` and a list of indices of the same length as data. 
 
 ```{python}
 # a Series from a numpy array 
@@ -63,7 +63,7 @@ pd.Series(np.arange(3), index=['a','b','c'])
 ```
 
 
- The `index` parameter is optional. If we don't include it the default is to make the index be `[0,...,len(data)-1]` (see Example 1).
+ The `index` parameter is optional. If we don't include it, the default is to make the index equal to `[0,...,len(data)-1]`. For example:
 
 ```{python}
 # a Series from a list of strings with default index
@@ -84,7 +84,7 @@ pd.Series(d)
 ```
 
 #### From a number
-If we only provide a number as the data for the series, we need to provide an index. The number will be repeated to math the length of the index.
+If we only provide a number as the data for the series, we need to provide an index. The number will be repeated to match the length of the index.
 
 ```{python}
 pd.Series(3.0, index = ['A', 'B', 'C'])
@@ -105,12 +105,19 @@ print(s /10, '\n')
 # take the exponential of each element in series
 print(np.exp(s), '\n')
 
-# notice this doesn't change the values of our object
+# notice this doesn't change the values of our series
 print(s)
 
 ```
 
 There's much more to say about `pandas.Series`, but this is enought to get us going. Mainly, we want to know about `pandas.Series` because they will be the columns of our `pandas.DataFrame`.
+
+### Attributes & Methods
+`pandas.Series` have *many* attributes and methods, you can see a [full list in the `pandas` documentation](https://pandas.pydata.org/docs/reference/api/pandas.Series.html). For now we will cover two examples that have to do with identifying missing values.
+
+`pandas` represents a missing or NA value with `NaN`, which stands for not a number. Sometime
+
+
 
 ### Indexing
 
@@ -220,3 +227,12 @@ If you want to dive deeper, this is a great discussion about the difference betw
 📖 [Pandas documentation - User Guide](https://pandas.pydata.org/docs/user_guide/index.html)
 
 📖 [Python for Data Analysis, 3E - Getting started with pandas](https://wesmckinney.com/book/pandas-basics)
+
+
+
+CONTINUE:
+https://pandas.pydata.org/docs/user_guide/dsintro.html
+https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html
+https://wesmckinney.com/book/pandas-basics
+https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label
+https://earth-env-data-science.github.io/lectures/pandas/basic_pandas.html
