@@ -91,7 +91,7 @@ pd.Series(3.0, index = ['A', 'B', 'C'])
 ```
 
 
-### Arithmetic Operations
+### Arithmetic operations
 
 Arithmetic operations work on series and also most NumPy functions. For example:
 
@@ -118,46 +118,7 @@ There's much more to say about `pandas.Series`, but this is enought to get us go
 `pandas` represents a missing or NA value with `NaN`, which stands for not a number. Sometime
 
 
-### Indexing
-
-#### By label...
-
-Indexing by label means we want to select data from our series using the label names in the series' index. There are two ways of indexing by label:
-
-##### ... with `[]`
-
-We can use `[]` to acess specific values by label in the same way as we do in a dictionary: `series['index_label']`
-
-```{python}
-# initalize series
-s = pd.Series(np.arange(5), index=['a','b','c','d','e'])
-print(s, '\n')
-
-# access element corresponding to label 'b'
-s['b']
-```
-
-##### ... with `loc`
-This will be our preferred method in the course. We can do a many things with it:
-
-```{python}
-# access a specific element by label
-s.loc['b']
-```
-```{python}
-# access a few elements by label
-s.loc[['a','c','e']]
-```
-
-```{python}
-# select based on True/False values
-s.loc[s>3]
-```
-
-```{python}
-# slice the series using the labels
-s.loc['b':'d']
-```
+<!--
 ::: {.callout-caution}
 ## slicing with `loc`
 Notice that when use slicing with `loc` we get both the start *and the end* of the indices we indicated. This is different to slicing in numpy arrays or lists where we do not get the element at the end of the slice. Compare the following:
@@ -187,33 +148,13 @@ y[2:5]
  z.loc[2:5]
 ```
 ::: 
+-->
 
-#### By position
-Indexing by position means we want to select data from our series based on where it is within the series. 
 
+<!--
 We can access a value by position using the `iloc` method. `iloc` stands for *integer-location based indexing*. This is the same kind of indexing we do in 1-dimensional numpy arrays or lists, where we use integers to access elements in the array and the index starts from 0.
+-->
 
-
-```{python}
-# initialize series
-s = pd.Series(np.arange(10,13), index=['a','b','c'])
-print(s, '\n')
-
-# access element at index 2 (third element in series)
-s.iloc[2]
-```
-
-
-If we try to use `iloc` with a label from our index we will get an error. Notice the TypeError: *Cannot index by location with a non-integer key*. 
-
-![. ](/images/lesson-2/iloc_error.png)
-
-::: {.callout-caution}
-## `iloc` vs. `loc`
-At the beginning the difference between `iloc` and `loc` can be confusing. Remember the `i` in `iloc` stands for integer-location, so this function only uses integers to retrieve information from the series. Moreover, remember `iloc` indexing works in the same way as indexing for Python lists.
-
-If you want to dive deeper, this is a great discussion about the difference between `iloc` and `loc`: [Stackoverflow - How are iloc and loc different?](https://stackoverflow.com/questions/31593201/how-are-iloc-and-loc-different/31593712#31593712)
-:::
 
 ## Data Frames
 
@@ -258,14 +199,15 @@ df
 ## Subsetting a `pandas.DataFrame`
 
 Like it's often the case when working with `pandas`, there are *many* ways in which we can subset a data frame. We will review the core methods to do this. 
-
+<!--
 There are two ways to subset data in a Data Frame: by position and by label. 
 
 * **Subsetting by label** means we want to select data from our data frame using the *names* of the columns or the index.
 
 * **Subsetting by position** means we want to select data from our data frame based on the data's *order* in the data frame.
+-->
 
-Let's dive into some methods for subsetting which will clarify these options. For all examples we will use simplified data (glacial_loss.csv) from the National Snow and Ice Data Center (Dataset DOI:!​[](​http://dx.doi.org/10.7265/N52N506F)). The column descriptions are:
+For all examples we will use simplified data (glacial_loss.csv) from the National Snow and Ice Data Center ([Original dataset](​http://dx.doi.org/10.7265/N52N506F)). The column descriptions are:
 
 - **year**: ​calendar year
 - **europe - antarctica**: ​change in glacial volume (km3​ ​) in each region that year
@@ -274,6 +216,7 @@ starting in 1961
 - **annual_sea_level_rise**: ​annual rise in sea level (mm)
 - **cumulative_sea_level_rise**:​ cumulative rise in sea level (mm) since 1961
 
+First, we read-in the file and get some baisc information about this data frame:
 ```{python}
 # read in file
 df = pd.read_csv('data/lesson-1/glacial_loss.csv')
@@ -282,22 +225,19 @@ df = pd.read_csv('data/lesson-1/glacial_loss.csv')
 df.head()
 ```
 
-First, we can get some baisc information about this data frame:
-
 ```{python}
-# print column names
-print(df.columns)
-
-# print shape: output is a tupe (# rows, # columns)
-print(df.shape)
+# get column names
+df.columns
+```
+```{python}
+# data frame's shape: output is a tuple (# rows, # columns)
+df.shape
 ```
 
 ### Selecting a single column...
 
 #### ...by label
-This is the simplest case for selecting data. Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary:
-
-I'm interested in the annual sea level rise. 
+This is the simplest case for selecting data. Suppose we are interested in the annual sea level rise. Then we can access that single column in this way:
 ```{python}
 # seelect a single column by using square brackets []
 annual_rise = df['annual_sea_level_rise']
@@ -310,6 +250,15 @@ annual_rise.head()
 
 Since we only selected a single column the output is a `pandas.Series`. 
 
+:::{.callout-note}
+## `pd.DataFrame` = dictionary of columns
+Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary. That is the syntaxi we just used: `df['column_name']`.
+:::
+
+In general, **selecting by label** means we want to select data from our data frame using the *names* of the columns, *not their position*.
+
+#### ... with attribute syntax
+
 We can also access a single column by using attribute syntax:
 
 ```{python}
@@ -317,8 +266,67 @@ annual_rise_2 = df.annual_sea_level_rise
 annual_rise_2.head()
 ```
 
-##### ...by position
-Suppose we want to access the 10th column in the data frame - then we want to select a column by position. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the `iloc` method*:
+
+### Selecting multiple columns...
+
+#### ... using a list of column names
+This is another example of selecting by labels. We just need to pass a list with the column names to the square brackets `[]`. For example, say we want to look at the change in glacial volume in Europe and Asia, then we can select those columns like this:
+
+```{python}
+# select columns with names "europe" and "asia"
+europe_asia = df[['europe','asia']]
+```
+
+Notice there are double square brackets. This is because we are passing the list of names `['europe','asia']` to the selection brakcets `[]`. 
+
+```{python}
+# check the type of the resulting selection
+print(type(europe_asia))
+
+# check the shape of the selection
+print((europe_asia.shape))
+```
+
+#### ... using a slice
+Yet another example of label selection! In this case we will use the `loc` function. This is a powerful function! The general syntax is 
+
+```python
+df.loc[ row-selection , column-selection]
+```
+where `row-selection` and `column-selection` are the rows and columns we want to subset from the data frame. 
+
+Let's start by a simple example, where we want to select a slice of columns, say the change in glacial volume per year in all regions. This corresponds to all columns between `arctic` and `antarctica`.
+
+```{python}
+# select all columns between 'arctic' and 'antarctica'
+all_regions = df.loc[:,'arctic':'antarctica']
+all_regions.head()
+```
+
+Notice two things:
+
+- we used the colon `:` as the `row-selection` parameters, this means "select all the rows"
+- the slice of the data frame we got includes both endpoints of the slice `'arctic':'antarctica'`. In other words we get the `arctic` column *and* the `antarctica` column. This is different from how slicing works in base Python and NumPy, where the end point is not included.
+
+### Selecting rows...
+
+#### ... using a condition
+
+#### ... by position
+
+
+
+::: {.callout-caution}
+## `iloc` vs. `loc`
+At the beginning, the difference between `iloc` and `loc` can be confusing. Remember the `i` in `iloc` stands for integer-location, so this function only uses integer indexing to retrieve information from the data frames. Moreover, remember `iloc` indexing works in the same way as indexing for Python lists.
+
+If you want to dive deeper, this is a great discussion about the difference between `iloc` and `loc`: [Stackoverflow - How are iloc and loc different?](https://stackoverflow.com/questions/31593201/how-are-iloc-and-loc-different/31593712#31593712)
+:::
+
+:::{.callout-warning collapse="true"}
+## Selecting a column with `iloc`? Avoid it!
+
+Suppose we want to access the 10th column in the data frame - then we want to select a column *by position*. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the `iloc` method*:
 
 ```{python}
 # select column by position using iloc
@@ -328,8 +336,6 @@ annual_rise_3 = df.iloc[:,9]
 annual_rise_3.head()
 ```
 
-:::{.callout-warning}
-## Do not do that!
 Unless you are really looking for information about *the 10th column*, do not access a column by position. This is bound to break in many ways:
 
 - it relies on a person correctly counting the position of a column. Even with a small dataset this can be prone to error.
@@ -340,28 +346,10 @@ Unless you are really looking for information about *the 10th column*, do not ac
 
 :::
 
-### Selecting multiple columns...
 
-#### ... using a list of column names
+This is not an exhaustive list of methods to select data, there are *so many* ways to subset the same data and [it can get quite fancy.](https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label) For a simple take on some of these concepts, the `pandas` [Getting started tutorials - How do I select a subset of a
+DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html) is a good reference. 
 
-#### ... using a slice
-
-#### ... using a condition
-
-
-### Selecting rows
-
-#### ... by label
-
-#### ... by position
-
-#### ... using a condition
-
-
-
-<!--
-This is not an exhaustive list of methods to select data, [it can get quite fancy.](https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label)
--->
 
 
 ## Basic Matplotlib

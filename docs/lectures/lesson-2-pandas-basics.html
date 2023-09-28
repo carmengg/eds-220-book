@@ -197,9 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series"><span class="toc-section-number">2.3</span>  Series</a>
   <ul class="collapse">
   <li><a href="#how-to-create-a-pandas.series" id="toc-how-to-create-a-pandas.series" class="nav-link" data-scroll-target="#how-to-create-a-pandas.series"><span class="toc-section-number">2.3.1</span>  How to create a <code>pandas.Series</code></a></li>
-  <li><a href="#arithmetic-operations" id="toc-arithmetic-operations" class="nav-link" data-scroll-target="#arithmetic-operations"><span class="toc-section-number">2.3.2</span>  Arithmetic Operations</a></li>
+  <li><a href="#arithmetic-operations" id="toc-arithmetic-operations" class="nav-link" data-scroll-target="#arithmetic-operations"><span class="toc-section-number">2.3.2</span>  Arithmetic operations</a></li>
   <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="toc-section-number">2.3.3</span>  Attributes &amp; Methods</a></li>
-  <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="toc-section-number">2.3.4</span>  Indexing</a></li>
   </ul></li>
   <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="toc-section-number">2.4</span>  Data Frames</a>
   <ul class="collapse">
@@ -209,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#selecting-a-single-column" id="toc-selecting-a-single-column" class="nav-link" data-scroll-target="#selecting-a-single-column"><span class="toc-section-number">2.5.1</span>  Selecting a single column…</a></li>
   <li><a href="#selecting-multiple-columns" id="toc-selecting-multiple-columns" class="nav-link" data-scroll-target="#selecting-multiple-columns"><span class="toc-section-number">2.5.2</span>  Selecting multiple columns…</a></li>
-  <li><a href="#selecting-rows" id="toc-selecting-rows" class="nav-link" data-scroll-target="#selecting-rows"><span class="toc-section-number">2.5.3</span>  Selecting rows</a></li>
+  <li><a href="#selecting-rows" id="toc-selecting-rows" class="nav-link" data-scroll-target="#selecting-rows"><span class="toc-section-number">2.5.3</span>  Selecting rows…</a></li>
   </ul></li>
   <li><a href="#basic-matplotlib" id="toc-basic-matplotlib" class="nav-link" data-scroll-target="#basic-matplotlib"><span class="toc-section-number">2.6</span>  Basic Matplotlib</a></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">2.7</span>  Resources</a></li>
@@ -268,13 +267,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'numpy.ndarray'&gt;
-[-0.38948851  0.03689932 -0.97996969  1.35277789] 
+[ 0.26255995 -0.43578912  2.45025948  1.46437431] 
 
 &lt;class 'pandas.core.series.Series'&gt;
-0   -0.389489
-1    0.036899
-2   -0.979970
-3    1.352778
+0    0.262560
+1   -0.435789
+2    2.450259
+3    1.464374
 dtype: float64</code></pre>
 </div>
 </div>
@@ -295,7 +294,7 @@ dtype: float64</code></pre>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a Series from a numpy array </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pd.Series(np.arange(<span class="dv">3</span>), index<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>a    0
 b    1
 c    2
@@ -306,7 +305,7 @@ dtype: int64</code></pre>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a Series from a list of strings with default index</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pd.Series([<span class="st">'EDS 220'</span>, <span class="st">'EDS 222'</span>, <span class="st">'EDS 223'</span>, <span class="st">'EDS 242'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>0    EDS 220
 1    EDS 222
 2    EDS 223
@@ -324,7 +323,7 @@ dtype: object</code></pre>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize a sries using a dictionary</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>pd.Series(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>a    0
 b    1
 c    2
@@ -337,7 +336,7 @@ dtype: int64</code></pre>
 <p>If we only provide a number as the data for the series, we need to provide an index. The number will be repeated to match the length of the index.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.Series(<span class="fl">3.0</span>, index <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>A    3.0
 B    3.0
 C    3.0
@@ -347,7 +346,7 @@ dtype: float64</code></pre>
 </section>
 </section>
 <section id="arithmetic-operations" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">2.3.2</span> Arithmetic Operations</h3>
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">2.3.2</span> Arithmetic operations</h3>
 <p>Arithmetic operations work on series and also most NumPy functions. For example:</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a series</span></span>
@@ -384,120 +383,70 @@ dtype: int64</code></pre>
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="attributes-methods"><span class="header-section-number">2.3.3</span> Attributes &amp; Methods</h3>
 <p><code>pandas.Series</code> have <em>many</em> attributes and methods, you can see a <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">full list in the <code>pandas</code> documentation</a>. For now we will cover two examples that have to do with identifying missing values.</p>
 <p><code>pandas</code> represents a missing or NA value with <code>NaN</code>, which stands for not a number. Sometime</p>
-</section>
-<section id="indexing" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="indexing"><span class="header-section-number">2.3.4</span> Indexing</h3>
-<section id="by-label" class="level4" data-number="2.3.4.1">
-<h4 data-number="2.3.4.1" class="anchored" data-anchor-id="by-label"><span class="header-section-number">2.3.4.1</span> By label…</h4>
-<p>Indexing by label means we want to select data from our series using the label names in the series’ index. There are two ways of indexing by label:</p>
-<section id="with" class="level5" data-number="2.3.4.1.1">
-<h5 data-number="2.3.4.1.1" class="anchored" data-anchor-id="with"><span class="header-section-number">2.3.4.1.1</span> … with <code>[]</code></h5>
-<p>We can use <code>[]</code> to acess specific values by label in the same way as we do in a dictionary: <code>series['index_label']</code></p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initalize series</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.arange(<span class="dv">5</span>), index<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'d'</span>,<span class="st">'e'</span>])</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access element corresponding to label 'b'</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>s[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>a    0
-b    1
-c    2
-d    3
-e    4
-dtype: int64 
-</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="32">
-<pre><code>1</code></pre>
-</div>
-</div>
-</section>
-<section id="with-loc" class="level5" data-number="2.3.4.1.2">
-<h5 data-number="2.3.4.1.2" class="anchored" data-anchor-id="with-loc"><span class="header-section-number">2.3.4.1.2</span> … with <code>loc</code></h5>
-<p>This will be our preferred method in the course. We can do a many things with it:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access a specific element by label</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>s.loc[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>1</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access a few elements by label</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>s.loc[[<span class="st">'a'</span>,<span class="st">'c'</span>,<span class="st">'e'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>a    0
-c    2
-e    4
-dtype: int64</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select based on True/False values</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>s.loc[s<span class="op">&gt;</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>e    4
-dtype: int64</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># slice the series using the labels</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>s.loc[<span class="st">'b'</span>:<span class="st">'d'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
-<pre><code>b    1
-c    2
-d    3
-dtype: int64</code></pre>
-</div>
-</div>
-<div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-slicing with <code>loc</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Notice that when use slicing with <code>loc</code> we get both the start <em>and the end</em> of the indices we indicated. This is different to slicing in numpy arrays or lists where we do not get the element at the end of the slice. Compare the following:</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># slicing will return elements at indices 2 trhough 4 (inclusive)</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="37">
-<pre><code>[2, 3, 4]</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a np array with integers from 0 to 9</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># slicing will return elements at indices 2 trhough 4 (inclusive)</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[0 1 2 3 4 5 6 7 8 9]</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="38">
-<pre><code>array([2, 3, 4])</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a> z <span class="op">=</span> pd.Series(y)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(z)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># slicing will return elements with index labels 2 through 5 (inclusive)</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a> z.loc[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0    0
+<!--
+::: {.callout-caution}
+## slicing with `loc`
+Notice that when use slicing with `loc` we get both the start *and the end* of the indices we indicated. This is different to slicing in numpy arrays or lists where we do not get the element at the end of the slice. Compare the following:
+
+::: {.cell execution_count=8}
+``` {.python .cell-code}
+x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(x)
+
+# slicing will return elements at indices 2 trhough 4 (inclusive)
+x[2:5]
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+:::
+
+::: {.cell-output .cell-output-display execution_count=30}
+```
+[2, 3, 4]
+```
+:::
+:::
+
+
+::: {.cell execution_count=9}
+``` {.python .cell-code}
+# define a np array with integers from 0 to 9
+y = np.arange(10)
+print(y)
+
+# slicing will return elements at indices 2 trhough 4 (inclusive)
+y[2:5]
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[0 1 2 3 4 5 6 7 8 9]
+```
+:::
+
+::: {.cell-output .cell-output-display execution_count=31}
+```
+array([2, 3, 4])
+```
+:::
+:::
+
+
+::: {.cell execution_count=10}
+``` {.python .cell-code}
+ z = pd.Series(y)
+ print(z)
+
+# slicing will return elements with index labels 2 through 5 (inclusive)
+ z.loc[2:5]
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+0    0
 1    1
 2    2
 3    3
@@ -507,64 +456,27 @@ slicing with <code>loc</code>
 7    7
 8    8
 9    9
-dtype: int64</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="39">
-<pre><code>2    2
+dtype: int64
+```
+:::
+
+::: {.cell-output .cell-output-display execution_count=32}
+```
+2    2
 3    3
 4    4
 5    5
-dtype: int64</code></pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="by-position" class="level4" data-number="2.3.4.2">
-<h4 data-number="2.3.4.2" class="anchored" data-anchor-id="by-position"><span class="header-section-number">2.3.4.2</span> By position</h4>
-<p>Indexing by position means we want to select data from our series based on where it is within the series.</p>
-<p>We can access a value by position using the <code>iloc</code> method. <code>iloc</code> stands for <em>integer-location based indexing</em>. This is the same kind of indexing we do in 1-dimensional numpy arrays or lists, where we use integers to access elements in the array and the index starts from 0.</p>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize series</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.arange(<span class="dv">10</span>,<span class="dv">13</span>), index<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>])</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access element at index 2 (third element in series)</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>s.iloc[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>a    10
-b    11
-c    12
-dtype: int64 
-</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="40">
-<pre><code>12</code></pre>
-</div>
-</div>
-<p>If we try to use <code>iloc</code> with a label from our index we will get an error. Notice the TypeError: <em>Cannot index by location with a non-integer key</em>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/lesson-2/iloc_error.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">.</figcaption><p></p>
-</figure>
-</div>
-<div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-<code>iloc</code> vs.&nbsp;<code>loc</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>At the beginning the difference between <code>iloc</code> and <code>loc</code> can be confusing. Remember the <code>i</code> in <code>iloc</code> stands for integer-location, so this function only uses integers to retrieve information from the series. Moreover, remember <code>iloc</code> indexing works in the same way as indexing for Python lists.</p>
-<p>If you want to dive deeper, this is a great discussion about the difference between <code>iloc</code> and <code>loc</code>: <a href="https://stackoverflow.com/questions/31593201/how-are-iloc-and-loc-different/31593712#31593712">Stackoverflow - How are iloc and loc different?</a></p>
-</div>
-</div>
-</section>
+dtype: int64
+```
+:::
+:::
+
+
+::: 
+-->
+<!--
+We can access a value by position using the `iloc` method. `iloc` stands for *integer-location based indexing*. This is the same kind of indexing we do in 1-dimensional numpy arrays or lists, where we use integers to access elements in the array and the index starts from 0.
+-->
 </section>
 </section>
 <section id="data-frames" class="level2" data-number="2.4">
@@ -574,16 +486,16 @@ dtype: int64
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="creating-a-pandas.dataframe"><span class="header-section-number">2.4.1</span> Creating a <code>pandas.DataFrame</code></h3>
 <p>There are <a href="https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe">many ways of creating a <code>pandas.DataFrame</code></a>. Although we likely won’t be creating data frames from scratch often, I’d like to go over creating a <code>pandas.DataFrame</code> from a <code>dict</code> of <code>pandas.Series</code> as this will help us understand the syntax for other Data Frame methods.</p>
 <p>We already mentioned each column of a <code>pandas.DataFrame</code> is a <code>pandas.Series</code>. In fact, the <code>pandas.DataFrame</code> is a dictionary of <code>pandas.Series</code>, with each column name being the key and the column values being the key’s value. Thus, we can create a <code>pandas.DataFrame</code> in this way:</p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize dictionary with columns' data </span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'col_name_1'</span> : pd.Series(np.arange(<span class="dv">3</span>)),</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'col_name_2'</span> : pd.Series([<span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>]),</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     }</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(d)</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize dictionary with columns' data </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'col_name_1'</span> : pd.Series(np.arange(<span class="dv">3</span>)),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'col_name_2'</span> : pd.Series([<span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>]),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(d)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
 
@@ -617,17 +529,17 @@ dtype: int64
 </div>
 </div>
 <p>We can change the index and column names by changing the <code>index</code> and <code>columns</code> attributes in the data frame.</p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print original index</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.index)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change the index</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>]</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print original index</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.index)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change the index</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RangeIndex(start=0, stop=3, step=1)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="34">
 
 <div>
 
@@ -660,17 +572,17 @@ dtype: int64
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print original column names</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names </span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> [<span class="st">'C1'</span>,<span class="st">'C2'</span>]</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print original column names</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> [<span class="st">'C1'</span>,<span class="st">'C2'</span>]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index(['col_name_1', 'col_name_2'], dtype='object')</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="35">
 
 <div>
 
@@ -707,13 +619,14 @@ dtype: int64
 </section>
 <section id="subsetting-a-pandas.dataframe" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="subsetting-a-pandas.dataframe"><span class="header-section-number">2.5</span> Subsetting a <code>pandas.DataFrame</code></h2>
-<p>Like it’s often the case when working with <code>pandas</code>, there are <em>many</em> ways in which we can subset a data frame. We will review the core methods to do this.</p>
-<p>There are two ways to subset data in a Data Frame: by position and by label.</p>
-<ul>
-<li><p><strong>Subsetting by label</strong> means we want to select data from our data frame using the <em>names</em> of the columns or the index.</p></li>
-<li><p><strong>Subsetting by position</strong> means we want to select data from our data frame based on the data’s <em>order</em> in the data frame.</p></li>
-</ul>
-<p>Let’s dive into some methods for subsetting which will clarify these options. For all examples we will use simplified data (glacial_loss.csv) from the National Snow and Ice Data Center (Dataset DOI:!​<a href="​http://dx.doi.org/10.7265/N52N506F"></a>). The column descriptions are:</p>
+<p>Like it’s often the case when working with <code>pandas</code>, there are <em>many</em> ways in which we can subset a data frame. We will review the core methods to do this. <!--
+There are two ways to subset data in a Data Frame: by position and by label. 
+
+* **Subsetting by label** means we want to select data from our data frame using the *names* of the columns or the index.
+
+* **Subsetting by position** means we want to select data from our data frame based on the data's *order* in the data frame.
+--></p>
+<p>For all examples we will use simplified data (glacial_loss.csv) from the National Snow and Ice Data Center (<a href="​http://dx.doi.org/10.7265/N52N506F">Original dataset</a>). The column descriptions are:</p>
 <ul>
 <li><strong>year</strong>: ​calendar year</li>
 <li><strong>europe - antarctica</strong>: ​change in glacial volume (km3​ ​) in each region that year</li>
@@ -721,13 +634,14 @@ dtype: int64
 <li><strong>annual_sea_level_rise</strong>: ​annual rise in sea level (mm)</li>
 <li><strong>cumulative_sea_level_rise</strong>:​ cumulative rise in sea level (mm) since 1961</li>
 </ul>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in file</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/lesson-1/glacial_loss.csv'</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># see the first five rows</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<p>First, we read-in the file and get some baisc information about this data frame:</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in file</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/lesson-1/glacial_loss.csv'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># see the first five rows</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
 
@@ -824,39 +738,40 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>First, we can get some baisc information about this data frame:</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print column names</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print shape: output is a tupe (# rows, # columns)</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get column names</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>Index(['year', 'europe', 'arctic', 'alaska', 'asia', 'north_america',
        'south_america', 'antarctica', 'global_glacial_volume_change',
        'annual_sea_level_rise', 'cumulative_sea_level_rise'],
-      dtype='object')
-(43, 11)</code></pre>
+      dtype='object')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame's shape: output is a tuple (# rows, # columns)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>(43, 11)</code></pre>
 </div>
 </div>
 <section id="selecting-a-single-column" class="level3" data-number="2.5.1">
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="selecting-a-single-column"><span class="header-section-number">2.5.1</span> Selecting a single column…</h3>
-<section id="by-label-1" class="level4" data-number="2.5.1.1">
-<h4 data-number="2.5.1.1" class="anchored" data-anchor-id="by-label-1"><span class="header-section-number">2.5.1.1</span> …by label</h4>
-<p>This is the simplest case for selecting data. Remember we can think of a <code>pandas.DataFrame</code> as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary:</p>
-<p>I’m interested in the annual sea level rise.</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seelect a single column by using square brackets []</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>annual_rise <span class="op">=</span> df[<span class="st">'annual_sea_level_rise'</span>]</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the type of the ouput</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(annual_rise))</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>annual_rise.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="by-label" class="level4" data-number="2.5.1.1">
+<h4 data-number="2.5.1.1" class="anchored" data-anchor-id="by-label"><span class="header-section-number">2.5.1.1</span> …by label</h4>
+<p>This is the simplest case for selecting data. Suppose we are interested in the annual sea level rise. Then we can access that single column in this way:</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seelect a single column by using square brackets []</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>annual_rise <span class="op">=</span> df[<span class="st">'annual_sea_level_rise'</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the type of the ouput</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(annual_rise))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>annual_rise.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>0    0.610010
 1    0.810625
 2    0.100292
@@ -866,47 +781,193 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </div>
 </div>
 <p>Since we only selected a single column the output is a <code>pandas.Series</code>.</p>
-<p>We can also access a single column by using attribute syntax:</p>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>annual_rise_2 <span class="op">=</span> df.annual_sea_level_rise</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>annual_rise_2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
-<pre><code>0    0.610010
-1    0.810625
-2    0.100292
-3   -0.085596
-4   -0.128392
-Name: annual_sea_level_rise, dtype: float64</code></pre>
-</div>
-</div>
-<section id="by-position-1" class="level5" data-number="2.5.1.1.1">
-<h5 data-number="2.5.1.1.1" class="anchored" data-anchor-id="by-position-1"><span class="header-section-number">2.5.1.1.1</span> …by position</h5>
-<p>Suppose we want to access the 10th column in the data frame - then we want to select a column by position. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the <code>iloc</code> method*:</p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select column by position using iloc</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the syntax is iloc[rows,columns]</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [:,9] means "select all rows from the 10th column"</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>annual_rise_3 <span class="op">=</span> df.iloc[:,<span class="dv">9</span>]</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>annual_rise_3.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
-<pre><code>0    0.610010
-1    0.810625
-2    0.100292
-3   -0.085596
-4   -0.128392
-Name: annual_sea_level_rise, dtype: float64</code></pre>
-</div>
-</div>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Do not do that!
+<code>pd.DataFrame</code> = dictionary of columns
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Remember we can think of a <code>pandas.DataFrame</code> as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary. That is the syntaxi we just used: <code>df['column_name']</code>.</p>
+</div>
+</div>
+<p>In general, <strong>selecting by label</strong> means we want to select data from our data frame using the <em>names</em> of the columns, <em>not their position</em>.</p>
+</section>
+<section id="with-attribute-syntax" class="level4" data-number="2.5.1.2">
+<h4 data-number="2.5.1.2" class="anchored" data-anchor-id="with-attribute-syntax"><span class="header-section-number">2.5.1.2</span> … with attribute syntax</h4>
+<p>We can also access a single column by using attribute syntax:</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>annual_rise_2 <span class="op">=</span> df.annual_sea_level_rise</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>annual_rise_2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>0    0.610010
+1    0.810625
+2    0.100292
+3   -0.085596
+4   -0.128392
+Name: annual_sea_level_rise, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="selecting-multiple-columns" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="selecting-multiple-columns"><span class="header-section-number">2.5.2</span> Selecting multiple columns…</h3>
+<section id="using-a-list-of-column-names" class="level4" data-number="2.5.2.1">
+<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="using-a-list-of-column-names"><span class="header-section-number">2.5.2.1</span> … using a list of column names</h4>
+<p>This is another example of selecting by labels. We just need to pass a list with the column names to the square brackets <code>[]</code>. For example, say we want to look at the change in glacial volume in Europe and Asia, then we can select those columns like this:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns with names "europe" and "asia"</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>europe_asia <span class="op">=</span> df[[<span class="st">'europe'</span>,<span class="st">'asia'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice there are double square brackets. This is because we are passing the list of names <code>['europe','asia']</code> to the selection brakcets <code>[]</code>.</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the type of the resulting selection</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(europe_asia))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the shape of the selection</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((europe_asia.shape))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+(43, 2)</code></pre>
+</div>
+</div>
+</section>
+<section id="using-a-slice" class="level4" data-number="2.5.2.2">
+<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="using-a-slice"><span class="header-section-number">2.5.2.2</span> … using a slice</h4>
+<p>Yet another example of label selection! In this case we will use the <code>loc</code> function. This is a powerful function! The general syntax is</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.loc[ row<span class="op">-</span>selection , column<span class="op">-</span>selection]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>row-selection</code> and <code>column-selection</code> are the rows and columns we want to subset from the data frame.</p>
+<p>Let’s start by a simple example, where we want to select a slice of columns, say the change in glacial volume per year in all regions. This corresponds to all columns between <code>arctic</code> and <code>antarctica</code>.</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select all columns between 'arctic' and 'antarctica'</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>all_regions <span class="op">=</span> df.loc[:,<span class="st">'arctic'</span>:<span class="st">'antarctica'</span>]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>all_regions.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-108.382987</td>
+      <td>-18.721190</td>
+      <td>-32.350759</td>
+      <td>-14.359007</td>
+      <td>-4.739367</td>
+      <td>-35.116389</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-173.252450</td>
+      <td>-24.324790</td>
+      <td>-4.675440</td>
+      <td>-2.161842</td>
+      <td>-13.694367</td>
+      <td>-78.222887</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.423751</td>
+      <td>-2.047567</td>
+      <td>-3.027298</td>
+      <td>-27.535881</td>
+      <td>3.419633</td>
+      <td>3.765109</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20.070148</td>
+      <td>0.477800</td>
+      <td>-18.675385</td>
+      <td>-2.248286</td>
+      <td>20.732633</td>
+      <td>14.853096</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>43.695389</td>
+      <td>-0.115332</td>
+      <td>-18.414602</td>
+      <td>-19.398765</td>
+      <td>6.862102</td>
+      <td>22.793484</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Notice two things:</p>
+<ul>
+<li>we used the colon <code>:</code> as the <code>row-selection</code> parameters, this means “select all the rows”</li>
+<li>the slice of the data frame we got includes both endpoints of the slice <code>'arctic':'antarctica'</code>. In other words we get the <code>arctic</code> column <em>and</em> the <code>antarctica</code> column. This is different from how slicing works in base Python and NumPy, where the end point is not included.</li>
+</ul>
+</section>
+</section>
+<section id="selecting-rows" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="selecting-rows"><span class="header-section-number">2.5.3</span> Selecting rows…</h3>
+<section id="using-a-condition" class="level4" data-number="2.5.3.1">
+<h4 data-number="2.5.3.1" class="anchored" data-anchor-id="using-a-condition"><span class="header-section-number">2.5.3.1</span> … using a condition</h4>
+</section>
+<section id="by-position" class="level4" data-number="2.5.3.2">
+<h4 data-number="2.5.3.2" class="anchored" data-anchor-id="by-position"><span class="header-section-number">2.5.3.2</span> … by position</h4>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>iloc</code> vs.&nbsp;<code>loc</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At the beginning, the difference between <code>iloc</code> and <code>loc</code> can be confusing. Remember the <code>i</code> in <code>iloc</code> stands for integer-location, so this function only uses integer indexing to retrieve information from the data frames. Moreover, remember <code>iloc</code> indexing works in the same way as indexing for Python lists.</p>
+<p>If you want to dive deeper, this is a great discussion about the difference between <code>iloc</code> and <code>loc</code>: <a href="https://stackoverflow.com/questions/31593201/how-are-iloc-and-loc-different/31593712#31593712">Stackoverflow - How are iloc and loc different?</a></p>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Selecting a column with <code>iloc</code>? Avoid it!
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Suppose we want to access the 10th column in the data frame - then we want to select a column <em>by position</em>. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the <code>iloc</code> method*:</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select column by position using iloc</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the syntax is iloc[rows,columns]</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [:,9] means "select all rows from the 10th column"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>annual_rise_3 <span class="op">=</span> df.iloc[:,<span class="dv">9</span>]</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>annual_rise_3.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>0    0.610010
+1    0.810625
+2    0.100292
+3   -0.085596
+4   -0.128392
+Name: annual_sea_level_rise, dtype: float64</code></pre>
+</div>
+</div>
 <p>Unless you are really looking for information about <em>the 10th column</em>, do not access a column by position. This is bound to break in many ways:</p>
 <ul>
 <li><p>it relies on a person correctly counting the position of a column. Even with a small dataset this can be prone to error.</p></li>
@@ -915,34 +976,8 @@ Do not do that!
 </ul>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="selecting-multiple-columns" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="selecting-multiple-columns"><span class="header-section-number">2.5.2</span> Selecting multiple columns…</h3>
-<section id="using-a-list-of-column-names" class="level4" data-number="2.5.2.1">
-<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="using-a-list-of-column-names"><span class="header-section-number">2.5.2.1</span> … using a list of column names</h4>
-</section>
-<section id="using-a-slice" class="level4" data-number="2.5.2.2">
-<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="using-a-slice"><span class="header-section-number">2.5.2.2</span> … using a slice</h4>
-</section>
-<section id="using-a-condition" class="level4" data-number="2.5.2.3">
-<h4 data-number="2.5.2.3" class="anchored" data-anchor-id="using-a-condition"><span class="header-section-number">2.5.2.3</span> … using a condition</h4>
-</section>
-</section>
-<section id="selecting-rows" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="selecting-rows"><span class="header-section-number">2.5.3</span> Selecting rows</h3>
-<section id="by-label-2" class="level4" data-number="2.5.3.1">
-<h4 data-number="2.5.3.1" class="anchored" data-anchor-id="by-label-2"><span class="header-section-number">2.5.3.1</span> … by label</h4>
-</section>
-<section id="by-position-2" class="level4" data-number="2.5.3.2">
-<h4 data-number="2.5.3.2" class="anchored" data-anchor-id="by-position-2"><span class="header-section-number">2.5.3.2</span> … by position</h4>
-</section>
-<section id="using-a-condition-1" class="level4" data-number="2.5.3.3">
-<h4 data-number="2.5.3.3" class="anchored" data-anchor-id="using-a-condition-1"><span class="header-section-number">2.5.3.3</span> … using a condition</h4>
-<!--
-This is not an exhaustive list of methods to select data, [it can get quite fancy.](https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label)
--->
+</div>
+<p>This is not an exhaustive list of methods to select data, there are <em>so many</em> ways to subset the same data and <a href="https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label">it can get quite fancy.</a> For a simple take on some of these concepts, the <code>pandas</code> <a href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html">Getting started tutorials - How do I select a subset of a DataFrame</a> is a good reference.</p>
 </section>
 </section>
 </section>
