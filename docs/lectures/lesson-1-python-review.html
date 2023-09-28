@@ -197,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types"><span class="toc-section-number">1.5</span>  Types</a></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">1.6</span>  Functions</a></li>
   <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="toc-section-number">1.7</span>  Attributes &amp; Methods</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">1.8</span>  Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -249,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the value</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>array([[1, 1, 2],
        [3, 5, 8]])</code></pre>
 </div>
@@ -306,7 +305,7 @@ Naming Variables
 <pre><code>[[1 1 2]
  [3 5 8]]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>numpy.ndarray</code></pre>
 </div>
 </div>
@@ -317,7 +316,7 @@ Naming Variables
 <div class="cell-output cell-output-stdout">
 <pre><code>1</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>numpy.int64</code></pre>
 </div>
 </div>
@@ -392,7 +391,7 @@ Argument or Parameter?
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a 3x3 array</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([[1, 2, 3],
        [4, 5, 6],
        [7, 8, 9]])</code></pre>
@@ -432,14 +431,14 @@ Argument or Parameter?
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the tolist method returns the array as a nested list of scalars</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>var.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the min method returns the minimum value in the array along an axis</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>var.<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>array([1, 2, 3])</code></pre>
 </div>
 </div>
@@ -456,7 +455,7 @@ Check-in
 <p>We can also call the <code>min</code> method without any parameters:</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>var.<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>1</code></pre>
 </div>
 </div>
@@ -466,13 +465,13 @@ Check-in
 <p>Remember, methods are functions associated to an object. We can check this!</p>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(var.tolist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>builtin_function_or_method</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(var.<span class="bu">min</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>builtin_function_or_method</code></pre>
 </div>
 </div>
@@ -502,109 +501,85 @@ R and Python
 <p>When working in Python, remember that <em>methods are functions that are part of an object</em> and a method uses the object it is part of to produce some information.</p>
 </div>
 </div>
-</section>
-<section id="exercises" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.8</span> Exercises</h2>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Exercise 1
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Suppose we have a class <code>tree</code>, make a diagram similar to the <code>cat</code> class diagram showing 3 attributes for the class and 3 methods.</p>
-</div>
-</div>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Exercise 2
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Consider the following code:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>?np.ones</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="../images/lesson-1/np-ones-docstring.png" class="img-fluid"></p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>abc <span class="op">=</span> np.ones([<span class="dv">3</span>,<span class="dv">2</span>], dtype<span class="op">=</span>np.int8)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(abc)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> abc.mean()</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1 1]
+<!--
+## Exercises
+
+:::{.callout-tip}
+## Exercise 1
+Suppose we have a class `tree`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
+:::
+
+::: {.callout-tip}
+## Exercise 2
+Consider the following code:
+
+```python
+import numpy as np
+
+?np.ones
+```
+![](/images/lesson-1/np-ones-docstring.png)
+
+::: {.cell execution_count=18}
+``` {.python .cell-code}
+abc = np.ones([3,2], dtype=np.int8)
+print(abc)
+
+x = abc.mean()
+print(x)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[[1 1]
  [1 1]
  [1 1]]
-1.0</code></pre>
-</div>
-</div>
-<p>Complete the following paragraph using the given words:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>.</th>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>class</td>
-<td>function</td>
-<td>object</td>
-<td>method</td>
-</tr>
-<tr class="even">
-<td>variable</td>
-<td>non-default</td>
-<td>data-type</td>
-<td>default</td>
-</tr>
-<tr class="odd">
-<td>package</td>
-<td>attribute</td>
-<td>outout</td>
-<td>parameter(s)</td>
-</tr>
-</tbody>
-</table>
-<p><code>abc</code> is a ________ assigned to the NumPy ________ <code>np.ones([3,2])</code>. We construct <code>np.ones([3,2])</code> by calling a ________ from the NumPy ________. <code>[3,2]</code> and <code>np.int8</code> are ________ we pass to the <code>np.ones</code> ________. <code>np.int8</code> is a ________ parameter of <code>np.ones</code>. <code>abc.mean</code> is an ________ of <code>abc</code> and <code>x</code> is its ________.</p>
-</div>
-</div>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Exercise 3
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Read the <code>print</code> function help. What is the type of the argument <code>sep</code>? Is this a default or non-default argument? Why?</p></li>
-<li><p>Create two new variables, one with the integer value 77 and another one with the string 99.</p></li>
-<li><p>Use your variables to print <code>77%99%77</code> by changing the value of one of the default arguments in <code>print</code>.</p></li>
-</ol>
-</div>
-</div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">13</span>]).reshape([<span class="dv">2</span>,<span class="dv">3</span>])</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
-<pre><code>array([[ 2,  3,  5],
-       [ 7, 11, 13]])</code></pre>
-</div>
-</div>
+1.0
+```
+:::
+:::
+
+
+Complete the following paragraph using the given words:
+
+| . | . | .| .|
+|---|---|---|---|
+| class | function | object |method |
+| variable | non-default |data-type |default |
+|package | attribute | outout | parameter(s) | optional|
+
+`abc` is a ________ assigned to the NumPy ________ `np.ones([3,2])`. We construct `np.ones([3,2])` by calling a ________ from the NumPy ________. `[3,2]` and `np.int8` are ________ we pass to the `np.ones` ________. `np.int8` is a ________ parameter of `np.ones`. `abc.mean` is an ________ of `abc` and `x` is its ________. 
+
+
+:::
+
+::: {.callout-tip}
+## Exercise 3
+1. Read the `print` function help. What is the type of the argument `sep`? Is this a default or non-default argument? Why?
+
+2. Create two new variables, one with the integer value 77 and another one with the string 99.
+
+3. Use your variables to print `77%99%77` by changing the value of one of the default arguments in `print`.
+:::
+
+TO DO: add an exercise about coding numpy 
+
+::: {.cell execution_count=19}
+``` {.python .cell-code}
+var = np.array([2,3,5,7,11,13]).reshape([2,3])
+var
+```
+
+::: {.cell-output .cell-output-display execution_count=19}
+```
+array([[ 2,  3,  5],
+       [ 7, 11, 13]])
+```
+:::
+:::
+
+
+-->
 
 
 </section>

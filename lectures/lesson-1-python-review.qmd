@@ -232,6 +232,7 @@ var.min()
 When working in Python, remember that *methods are functions that are part of an object* and a method uses the object it is part of to produce some information.
 :::
 
+<!--
 ## Exercises
 
 :::{.callout-tip}
@@ -280,10 +281,11 @@ Complete the following paragraph using the given words:
 3. Use your variables to print `77%99%77` by changing the value of one of the default arguments in `print`.
 :::
 
-
+TO DO: add an exercise about coding numpy 
 
 ```{python}
 var = np.array([2,3,5,7,11,13]).reshape([2,3])
 var
 ```
 
+-->
