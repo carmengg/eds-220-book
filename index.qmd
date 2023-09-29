@@ -39,3 +39,6 @@ The following is our ideal calendar, the course content and calendar may be subj
 ## About this website
 This website is created with [Quarto](https://quarto.org) and is published  through [GitHub pages](https://quarto.org/docs/publishing/github-pages.html). [Click here to go to the website's GitHub repository](https://github.com/carmengg/eds-220-book).
 
+## Contribute
+If you have suggestions on how to correct, improve, or expand this book, please feel free to email galaz-garcia@nceas.ucsb.edu or [file a GitHub issue](https://github.com/carmengg/eds-220-book/issues). 
+
