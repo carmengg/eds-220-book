@@ -110,6 +110,10 @@ print(s)
 
 ```
 
+
+<!-- TO DO: ADD COMPARING VALUES OF A SERIES -->
+
+
 There's much more to say about `pandas.Series`, but this is enought to get us going. Mainly, we want to know about `pandas.Series` because they will be the columns of our `pandas.DataFrame`.
 
 ### Attributes & Methods
@@ -229,6 +233,12 @@ df.head()
 # get column names
 df.columns
 ```
+
+```{python}
+# check the data types of each column
+df.dtypes
+```
+
 ```{python}
 # data frame's shape: output is a tuple (# rows, # columns)
 df.shape
@@ -252,7 +262,7 @@ Since we only selected a single column the output is a `pandas.Series`.
 
 :::{.callout-note}
 ## `pd.DataFrame` = dictionary of columns
-Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary. That is the syntaxi we just used: `df['column_name']`.
+Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary. That is the  we just used: `df['column_name']`.
 :::
 
 In general, **selecting by label** means we want to select data from our data frame using the *names* of the columns, *not their position*.
@@ -309,10 +319,73 @@ Notice two things:
 - the slice of the data frame we got includes both endpoints of the slice `'arctic':'antarctica'`. In other words we get the `arctic` column *and* the `antarctica` column. This is different from how slicing works in base Python and NumPy, where the end point is not included.
 
 ### Selecting rows...
+Now that we are familiar with some methods for selecting columns, let's move on to selecting rows. 
 
 #### ... using a condition
+Selecting which rows satisfy a particular condition is, in my experience, the most usual kind of row subsetting. The general syntax for this type of selection is `df[condition_on_rows]`. For example, suppose we are intersted in all data after 1996. We can select those rows in this way:
+
+```{python}
+# select all rows with year > 1996
+after_96 = df[df['year']>1996]
+after_96
+```
+
+Let's break down what is happening here. In this case the condition for our rows is `df['year']>1996`, this checks which rows have a value greater than 1996 in the year column. Let's see this explicitely:
+
+```{python}
+# check the type of df['year']>1996
+print(type(df['year']>1996))
+
+df['year']>1996
+```
+
+The output is a `pandas.Series` with boolean values (`True` or `False`) indicating which rows satisfy the condition year>1996. When we pass such a series of boolean values to the selection brackets `[]` we keep only those rows with a `True` value. 
+
+Here's another example of using a condition. Suppose we want to look at data from years 1970 to 1979. One of doing this is to use the `in` operator in our condition:
+
+```{python}
+seventies = df[df['year'].isin(range(1970,1980))]
+seventies
+```
+
+Let's break it down: 
+
+- `df['year']` is the column with the year values, a `pandas.Series`,
+
+- in `df['year'].isin()`, we have that [`isin` is a method for the `pandas.Series`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html) and we are calling it using the dot `.`. 
+
+- `range(1970,1980)` constructs consecutive integers from 1970 to 1979 - remember the right endopoint (1980) is not included!
+
+- `df['year'].isin(range(1970,1980))` is then a `pandas.Series` of boolean values indicating which rows have year equal to 1970, ..., 1979. 
+
+- when we put `df['year'].isin(range(1970,1980))` inside the selection brackets `[]` we obtain the rows of the data frame with year equal to 1970, ..., 1979.
+
+#### ... using multiple conditions
+We can combine multipe conditions by surrounding each one in parenthesis `()` and using the or operator `|` and the and operator `and`.
+
+***or* example**:
+
+```{python}
+# select rows with 
+# annual_sea_level_rise<0.5 mm OR annual_sea_level_rise>1 mm
+
+df[ (df['annual_sea_level_rise']<0.5) | (df['annual_sea_level_rise']>0.8)]
+df.head()
+```
+
+***and* example**
+
+```{python}
+# select rows with cumulative_sea_level_rise>10 AND  global_glacial_volume_change<-300
+df[ (df['cumulative_sea_level_rise']>10) & (df['global_glacial_volume_change']<-300)]
+```
+
+
+
 
 #### ... by position
+
+### Selecting rows and columns
 
 
 
@@ -352,7 +425,7 @@ DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_sub
 
 
 
-## Basic Matplotlib
+## Basic Ploting
 
 ## Resources
 
