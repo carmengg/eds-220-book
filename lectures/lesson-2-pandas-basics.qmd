@@ -1,9 +1,7 @@
 # Pandas Fundamentals
 
 ## About
-In this lesson we cover the two core objects in the `pandas` library the series and the data frame. We will also learn methods to subset, select, and add data to our data frames, as well as some basic plotting with matplotlib.
-
-There is so much to learn about `pandas`. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for data wrangling and give you a solid basis on which you can explore further. 
+In this lesson we cover the two core objects in the `pandas` library, the `pandas.Series` and the `pandas.DataFrame`. We will also learn methods to select data from our datasets.
 
 ## `pandas`
 
@@ -17,6 +15,9 @@ import pandas as pd
 # we will also import numpy 
 import numpy as np
 ```
+
+
+There is so much to learn about `pandas`. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for data wrangling and give you a solid basis on which you can explore further. 
 
 ## Series
 
@@ -360,6 +361,30 @@ Let's break it down:
 
 - when we put `df['year'].isin(range(1970,1980))` inside the selection brackets `[]` we obtain the rows of the data frame with year equal to 1970, ..., 1979.
 
+:::{.callout-note}
+## `loc` for row selection
+It is equivalent to write
+
+```python
+# select rows with year<1965
+df[df['year'] < 1965]
+```
+and
+```python
+# select rows with year<1965 using love
+df.loc[ df['year'] <1965 , :]
+```
+In the second one:
+
+- we are using the `df.loc[ row-selection , column-selection]` syntax
+
+- the `row-selection` parameter is the condition `df['year']<1965`
+
+- the `column-selection` parameter is a colon `:`, which indicates we want all columns for the rows we are selecting.
+
+We prefer the first syntax when we are selecting rows and not columns since it is simpler.
+:::
+
 #### ... using multiple conditions
 We can combine multipe conditions by surrounding each one in parenthesis `()` and using the or operator `|` and the and operator `and`.
 
@@ -383,7 +408,7 @@ df[ (df['cumulative_sea_level_rise']>10) & (df['global_glacial_volume_change']<-
 
 #### ... by position
 
-All the selections we have done so far have been using labels or using a condition. Sometimes we might want to select certain rows depending on their *actual position* in the data frame. In this case we use the `iloc` method. `iloc` stands for integer-location based indexing. Let's see some examples:
+All the selections we have done so far have been using labels or using a condition. Sometimes we might want to select certain rows depending on their *actual position* in the data frame. In this case we use the `iloc` method with the syntax `df.iloc[row-indices]`. `iloc` stands for integer-location based indexing. Let's see some examples:
 
 ```{python}
 # select the fifht row = index 4
@@ -397,9 +422,52 @@ df.iloc[23:31]
 
 Notice since we are back to indexing by position the right endpoint of the slice (6) is not included in the ouput. 
 
-### Selecting rows and columns simultaneously
+### Selecting rows and columns simultaneously...
 
-Selecting rows and columns 
+Selecting rows and columns simultaneously can be done using `loc` (labels or conditions) or `iloc` (integer position).
+
+# ...by labels or conditions
+When we want to select rows and columns simultaneously by labels or conditions we can use the method `loc` with the syntax 
+
+```python
+df.loc[ row-selection , column-selection]
+```
+
+specifying both paratmers: `row-selection` and `column-selection`. These parameters can be a condition (which generates a boolean array) or a subset of labels from the index or the column names. Let's see an examples:
+
+```{python}
+# select change in glacial volume in Europe per year after 2000
+df.loc[df['year']>2000,['year','europe']]
+```
+Let's break it down:
+
+- we are using the `df.loc[ row-selection , column-selection]` syntax
+
+- the `row-selection` parameter is the condition `df['year']>1990`, which is a boolean array saying which years are greater than 1990
+
+- the `column-selection` parameter is `['year','europe']` which is a list with the names of the two columns we are intersted in. 
+
+# ... by position
+
+When we want to select rows and columns simultaneously by position we use the `iloc` method with the syntax:
+```python
+df.iloc[ row-indices , column-indices]
+```
+
+For example, 
+
+```{python}
+# select rows 3-7 (including 7) and columns 3 and 4
+df.iloc[ 3:8, [3,4] ]
+```
+
+Let's break it down:
+
+- we are using the `df.iloc[ row-indices , column-indices]` syntax
+
+- the `row-indices` parameter is the slice *of integer indices* 3:8. Remember the right endpoint (8) won't be included.
+
+- the `column-indices` parameter is the list of integer indices 3 and 4. This means we are selecting the fourth and fifth column.
 
 
 ### Notes about `loc` and `iloc`
@@ -414,8 +482,9 @@ And, as always, the documentation will provide you with more information:
 [`pandas.DataFrame.loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) and [`pandas.DataFrame.iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html).
 :::
 
+
 :::{.callout-warning}
-## Selecting a column with `iloc`? Avoid it!
+## `iloc` for column selection? Avoid it!
 We can also access columns by position using `iloc` - but it is best not to if possible.
 
 Suppose we want to access the 10th column in the data frame - then we want to select a column *by position*. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the `iloc` method*:
@@ -432,9 +501,9 @@ Unless you are *really* looking for information about *the 10th column*, do not 
 
 - it relies on a person correctly counting the position of a column. Even with a small dataset this can be prone to error.
 
-- it is not explicit: if we wnat information about sea level rise `df.annual_sea_level_rise` or `df['annual_sea_level_rise']` are explicitely telling us we are accessing that information. `df.iloc[:,9]` is obscure and uninformative.
+- it is not explicit: if we want information about sea level rise `df.annual_sea_level_rise` or `df['annual_sea_level_rise']` are explicitely telling us we are accessing that information. `df.iloc[:,9]` is obscure and uninformative.
 
-- datastets can get updated. Maybe a new column was added before `annual_sea_level_rise`, this would change the position of the column, which would make any code depnding on `df.iloc[:,9]` invalid. Accessing by label helps reproducibility!
+- datastets can get updated. Maybe a new column was added before `annual_sea_level_rise`, this would change the position of the column, which would make any code depending on `df.iloc[:,9]` invalid. Accessing by label helps reproducibility!
 
 :::
 
@@ -449,11 +518,6 @@ DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_sub
 
 📖 [Python for Data Analysis, 3E - Getting started with pandas](https://wesmckinney.com/book/pandas-basics)
 
+## Acknowledgements
 
-
-CONTINUE:
-https://pandas.pydata.org/docs/user_guide/dsintro.html
-https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html
-https://wesmckinney.com/book/pandas-basics
-https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label
-https://earth-env-data-science.github.io/lectures/pandas/basic_pandas.html
+The simplified glacial_loss.csv dataset was created by [Dr. Allison Horst](https://allisonhorst.github.io) as part of her course materials on environmental data science. 
