@@ -38,7 +38,7 @@ print(s)
 ```
 
 
-### How to create a `pandas.Series`
+### Creating a `pandas.Series`
 
 The basic method to create a `pandas.Series` is to call
 
@@ -54,15 +54,12 @@ The `data` parameter can be:
 
 The `index` parameter is a list of index labels.
 
-#### From a numpy array or list
-
-To use this method we need to pass a numpy array (or a list of objects that can be converted to NumPy types) as `data` and a list of indices of the same length as data. 
+For now, we will create a `pandas.Series` from a numpy array or list. To use this method we need to pass a numpy array (or a list of objects that can be converted to NumPy types) as `data` and a list of indices of the same length as data. 
 
 ```{python}
 # a Series from a numpy array 
 pd.Series(np.arange(3), index=['a','b','c'])
 ```
-
 
  The `index` parameter is optional. If we don't include it, the default is to make the index equal to `[0,...,len(data)-1]`. For example:
 
@@ -71,7 +68,7 @@ pd.Series(np.arange(3), index=['a','b','c'])
 pd.Series(['EDS 220', 'EDS 222', 'EDS 223', 'EDS 242'])
 ```
 
-
+<!--
 #### From a dictionary
 
 Remember a dictionary is a set of key-value pairs. If we create a `pandas.Series` via a dictionary the keys will become the index and the values the corresponding data.
@@ -91,8 +88,10 @@ If we only provide a number as the data for the series, we need to provide an in
 pd.Series(3.0, index = ['A', 'B', 'C'])
 ```
 
+-->
 
-### Arithmetic operations
+
+### Simple operations
 
 Arithmetic operations work on series and also most NumPy functions. For example:
 
@@ -111,17 +110,45 @@ print(s)
 
 ```
 
+We can also produce new `pandas.Series` with `True`/`False` values indicating whether the elements in a series satisfy a condition or not:
+
+```{python}
+s > 10
+```
+
+This kind of simple conditions on `pandas.Series` will be key when we are selecting data from data frames.
 
 <!-- TO DO: ADD COMPARING VALUES OF A SERIES -->
-
-
-There's much more to say about `pandas.Series`, but this is enought to get us going. Mainly, we want to know about `pandas.Series` because they will be the columns of our `pandas.DataFrame`.
 
 ### Attributes & Methods
 `pandas.Series` have *many* attributes and methods, you can see a [full list in the `pandas` documentation](https://pandas.pydata.org/docs/reference/api/pandas.Series.html). For now we will cover two examples that have to do with identifying missing values.
 
-`pandas` represents a missing or NA value with `NaN`, which stands for not a number. Sometime
+`pandas` represents a missing or NA value with `NaN`, which stands for not a number. Let's construct a small series with some NA values:
 
+```{python}
+# series with NAs in it
+s = pd.Series([1, 2, np.NaN, 4, np.NaN])
+```
+
+A `pandas.Series` has an *attribute* called `hasnans` that returns `True` if there are any NaNs:
+
+```{python}
+# check if series has NAs
+s.hasnans
+```
+
+Then we might be intersted in knowing which elements in the series are NAs. We can do this using the [`isna` method](https://pandas.pydata.org/docs/reference/api/pandas.Series.isna.html):
+
+```{python}
+s.isna()
+```
+
+We can see the ouput is a `pd.Series` of boolean values indicating if an element in the row at the given index is NA (`True` = is NA) or not (`False` = not NA).
+
+:::{.callout-note}
+## moving on
+There's much more to say about `pandas.Series`, but this is enought to get us going. At this point, we mainly want to know about `pandas.Series` because `pandas.Series` are the columns of `pandas.DataFrame`s.
+:::
 
 <!--
 ::: {.callout-caution}
@@ -155,18 +182,16 @@ y[2:5]
 ::: 
 -->
 
-
-<!--
-We can access a value by position using the `iloc` method. `iloc` stands for *integer-location based indexing*. This is the same kind of indexing we do in 1-dimensional numpy arrays or lists, where we use integers to access elements in the array and the index starts from 0.
--->
-
-
 ## Data Frames
 
 The Data Frame is the most used `pandas` object. It represents tabular data and we can think of it as a spreadhseet. Each column of a `pandas.DataFrame` is a `pandas.Series`. 
 
 ### Creating a `pandas.DataFrame`
-There are [many ways of creating a `pandas.DataFrame`](https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe). Although we likely won't be creating data frames from scratch often, I'd like to go over creating a `pandas.DataFrame` from a `dict` of `pandas.Series` as this will help us understand the syntax for other Data Frame methods. 
+There are [many ways of creating a `pandas.DataFrame`](https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe). 
+
+<!--
+Although we likely won't be creating data frames from scratch often, I'd like to go over creating a `pandas.DataFrame` from a `dict` of `pandas.Series` as this will help us understand the syntax for other Data Frame methods. 
+-->
 
 We already mentioned each column of a `pandas.DataFrame` is a `pandas.Series`. In fact, the `pandas.DataFrame` is a dictionary of `pandas.Series`, with each column name being the key and the column values being the key's value. Thus, we can create a `pandas.DataFrame` in this way:
 
@@ -426,7 +451,7 @@ Notice since we are back to indexing by position the right endpoint of the slice
 
 Selecting rows and columns simultaneously can be done using `loc` (labels or conditions) or `iloc` (integer position).
 
-# ...by labels or conditions
+#### ...by labels or conditions
 When we want to select rows and columns simultaneously by labels or conditions we can use the method `loc` with the syntax 
 
 ```python
@@ -447,7 +472,7 @@ Let's break it down:
 
 - the `column-selection` parameter is `['year','europe']` which is a list with the names of the two columns we are intersted in. 
 
-# ... by position
+#### ... by position
 
 When we want to select rows and columns simultaneously by position we use the `iloc` method with the syntax:
 ```python
@@ -507,14 +532,14 @@ Unless you are *really* looking for information about *the 10th column*, do not 
 
 :::
 
-
-What is presented in this section is not an exhaustive list of methods to select data, there are *so many* ways to subset the same data and [it can get quite fancy.](https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label) For a simple take on some of these concepts, the `pandas` [Getting started tutorials - How do I select a subset of a
-DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html) is a good reference. 
-
-
 ## Resources
 
-📖 [Pandas documentation - User Guide](https://pandas.pydata.org/docs/user_guide/index.html)
+What is presented in this section is a comprehensive, but not an exhaustive list of methods to select data in `pandas.DataFrames`. There are *so many* ways to subset data to get the same result. Some of the content from this lesson is adapted from the following resources and I encourage you to read them to learn more! 
+
+📖 [Pandas getting started tutorials - How to I select a subset of a
+DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html) 
+
+📖 [Pandas documentation - User Guide - Indexing and Selecting Data](https://pandas.pydata.org/docs/user_guide/indexing.html#indexing-slicing-with-labels)
 
 📖 [Python for Data Analysis, 3E - Getting started with pandas](https://wesmckinney.com/book/pandas-basics)
 
