@@ -1,0 +1,11 @@
+Some ideas for discussion section:
+
+Fork and clone a repository for this lab.
+
+Add 1 or 2 exercises from class/numpy revision.
+
+Work on some subsetting
+
+Fix some broken code with subsetting
+
+Do the iloc vs loc difference
