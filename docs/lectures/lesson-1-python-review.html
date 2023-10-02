@@ -284,7 +284,7 @@ Naming Variables
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There are many ways of constructing multi-word variable names as we can see in the previous example. In this course we will name variables using <strong>snake_case</strong>, where words are all in small caps and separated by underscores (ex: <code>miles_run</code>). This is the naming convention suggested by the <a href="https://peps.python.org/pep-0008/">Style Guide for Python Code</a>.</p>
+<p>There are many ways of constructing multi-word variable names. In this course we will name variables using <strong>snake_case</strong>, where words are all in small caps and separated by underscores (ex: <code>my_variable</code>). This is the naming convention suggested by the <a href="https://peps.python.org/pep-0008/">Style Guide for Python Code</a>.</p>
 </div>
 </div>
 </section>
@@ -330,7 +330,7 @@ Check-in
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>How would you access the value 4 in the array <code>a</code>? <strong>Remember indexing in Python starts from 0!</strong></p>
+<p>How would you access the value 5 in the array <code>a</code>? <strong>Remember indexing in Python starts from 0!</strong></p>
 </div>
 </div>
 <p>Notice the type of the value 1 in the array is <code>numpy.int64</code> and not just the core Python integer type <code>int</code>. The NumPy type <code>numpy.int64</code> is telling us 1 is an integer stored as a 64-bit number. NumPy has its own data types to deal with numbers depending on memory storage and floating point precision, <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#sized-aliases">click here to know see all the types</a>.</p>
@@ -375,7 +375,7 @@ Argument or Parameter?
 </section>
 <section id="attributes-methods" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="attributes-methods"><span class="header-section-number">1.7</span> Attributes &amp; Methods</h2>
-<p>An object in Python has attributes and methods. An <strong>attribute</strong> is a property of the object, some piece of information about it. A <strong>method</strong> is is a procedure associated with an object, so it is an action where the main ingredient is the object.</p>
+<p>An object in Python has attributes and methods. An <strong>attribute</strong> is a property of the object, some piece of information about it. A <strong>method</strong> is a procedure associated with an object, so it is an action where the main ingredient is the object.</p>
 <p>For example, these could be some attributes and methods a class <code>cat</code>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -385,6 +385,19 @@ Argument or Parameter?
 </div>
 <p>More formally, <strong>a method is a function</strong> that acts on the object it is part of.</p>
 <p>We can access a variable’s attributes and methods by adding a period <code>.</code> at the end of the variable’s name. So we would write <code>variable.variable_method()</code> or <code>variable.variable_attribute</code>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Check-in
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose we have a class <code>fish</code>, make a diagram similar to the <code>cat</code> class diagram showing 3 attributes for the class and 3 methods.</p>
+</div>
+</div>
 <p><strong>Example</strong></p>
 <p>NumPy arrays have many methods and attributes. Let’s see some concrete examples.</p>
 <div class="cell" data-execution_count="9">
@@ -409,7 +422,7 @@ Argument or Parameter?
 </div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shape, another attribute, tells us the array dimensions</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shape, another attribute, tells us the shape of the array (3x3)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var.shape)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(var.shape))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -418,7 +431,7 @@ Argument or Parameter?
 </div>
 </div>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ndim is an attribute hilding the number of array dimensions.</span></span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ndim is an attribute holding the number of array dimensions</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var.ndim)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(var.ndim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -490,11 +503,11 @@ R and Python
 <div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is R code</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>), <span class="at">dim =</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Using the pipe operator <code>%</code> in R’s tidyverse is closer to the dot <code>.</code> in Python:</p>
+<p>Using the pipe operator <code>%&gt;%</code> in R’s tidyverse is closer to the dot <code>.</code> in Python:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is R code</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>), <span class="at">dim =</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>var % <span class="fu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>What happens here is that the pipe <code>%</code> is passing <code>var</code> to the <code>min()</code> function as its first argument. This is essentially what happens in Python when a function is a method of a class:</p>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>var <span class="sc">%&gt;%</span> <span class="fu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What happens here is that the pipe <code>%&gt;%</code> is passing <code>var</code> to the <code>min()</code> function as its first argument. This is essentially what happens in Python when a function is a method of a class:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is Python code</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>var.<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -503,11 +516,6 @@ R and Python
 </div>
 <!--
 ## Exercises
-
-:::{.callout-tip}
-## Exercise 1
-Suppose we have a class `tree`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
-:::
 
 ::: {.callout-tip}
 ## Exercise 2
