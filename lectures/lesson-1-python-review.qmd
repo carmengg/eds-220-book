@@ -50,7 +50,7 @@ In Python we use the equal sign `=` to assign values to variables in the same wa
 ::: {.callout-caution}
 ## Naming Variables
 
-There are many ways of constructing multi-word variable names as we can see in the previous example. In this course we will name variables using **snake_case**, where words are all in small caps and separated by underscores (ex: `miles_run`). This is the naming convention suggested by the [Style Guide for Python Code](https://peps.python.org/pep-0008/).
+There are many ways of constructing multi-word variable names. In this course we will name variables using **snake_case**, where words are all in small caps and separated by underscores (ex: `my_variable`). This is the naming convention suggested by the [Style Guide for Python Code](https://peps.python.org/pep-0008/).
 :::
 
 ## Variables and Objects
@@ -80,7 +80,7 @@ type(a[0,0])
 
 ::: {.callout-tip}
 ## Check-in
-How would you access the value 4 in the array `a`? **Remember indexing in Python starts from 0!**
+How would you access the value 5 in the array `a`? **Remember indexing in Python starts from 0!**
 :::
 
 Notice the type of the value 1 in the array is `numpy.int64` and not just the core Python integer type `int`. The NumPy type `numpy.int64` is telling us 1 is an integer stored as a 64-bit number. NumPy has its own data types to deal with numbers depending on memory storage and floating point precision, [click here to know see all the types](https://numpy.org/doc/stable/reference/arrays.scalars.html#sized-aliases). 
@@ -125,7 +125,7 @@ print('I am changing the default end argument of the print function', end=' ^_^'
 
 ## Attributes & Methods
 
-An object in Python has attributes and methods. An **attribute** is a property of the object, some piece of information about it. A **method** is is a procedure associated with an object, so it is an action where the main ingredient is the object. 
+An object in Python has attributes and methods. An **attribute** is a property of the object, some piece of information about it. A **method** is a procedure associated with an object, so it is an action where the main ingredient is the object. 
 
 For example, these could be some attributes and methods a class `cat`:
 
@@ -135,6 +135,11 @@ For example, these could be some attributes and methods a class `cat`:
 More formally, **a method is a function** that acts on the object it is part of.
 
 We can access a variable's attributes and methods by adding a period `.` at the end of the variable's name. So we would write `variable.variable_method()` or `variable.variable_attribute`. 
+
+:::{.callout-tip}
+## Check-in
+Suppose we have a class `fish`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
+:::
 
 **Example**
 
@@ -153,13 +158,13 @@ print(type(var.T))
 ```
 
 ```{python}
-# shape, another attribute, tells us the array dimensions
+# shape, another attribute, tells us the shape of the array (3x3)
 print(var.shape)
 print(type(var.shape))
 ```
 
 ```{python}
-# ndim is an attribute hilding the number of array dimensions.
+# ndim is an attribute holding the number of array dimensions
 print(var.ndim)
 print(type(var.ndim))
 ```
@@ -213,15 +218,15 @@ var <- array(c(1,4,7,2,5,8,3,6,9), dim =c(3,3))
 min(var)
 ```
 
-Using the pipe operator `%` in R's tidyverse is closer to the dot `.` in Python:
+Using the pipe operator `%>%` in R's tidyverse is closer to the dot `.` in Python:
 
 ``` R
 # this is R code
 var <- array(c(1,4,7,2,5,8,3,6,9), dim =c(3,3))
-var % min()
+var %>% min()
 ```
 
-What happens here is that the pipe `%` is passing `var` to the `min()` function as its first argument. This is essentially what happens in Python when a function is a method of a class:
+What happens here is that the pipe `%>%` is passing `var` to the `min()` function as its first argument. This is essentially what happens in Python when a function is a method of a class:
 
 ``` python
 # this is Python code
@@ -234,11 +239,6 @@ When working in Python, remember that *methods are functions that are part of an
 
 <!--
 ## Exercises
-
-:::{.callout-tip}
-## Exercise 1
-Suppose we have a class `tree`, make a diagram similar to the `cat` class diagram showing 3 attributes for the class and 3 methods.
-:::
 
 ::: {.callout-tip}
 ## Exercise 2
