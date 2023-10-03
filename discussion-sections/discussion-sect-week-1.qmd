@@ -63,8 +63,78 @@ Complete the following paragraph using the given words:
 :::
 
 
-:::{.callout-tip}
-## Data Access
+:::{.callout-note}
+## About the data
 
+For this exercise we are going to use data about  [Western Indian Ocean Coral Diversity](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H).
 
+This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https://knb.ecoinformatics.org) data repository. This is an international repository intended to facilitate ecological and environmental research. It has thousands of open datasets and it's hosted by NCEAS!
+
+ Navigate to dataset's link and briefly explore the data package.
 :::
+
+0. Be sure to comment your code throughout this exercise!
+
+1. Import the pandas package using standard abbreviation in a code cell.
+
+2. Use the `pandas.read_csv()` function to read in the csv file in the Coral Diversity data by following these steps:
+
+    a. Create a new code cell under the “Read and explore data” header.
+
+    b. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H) and copy the the URL to access the `WesternIndianOceanCoralDiversity` csv file. To copy the URL: hover over the Download button –> right click –> “Copy Link".
+
+    c. Read in the data from the URL using the `pd.read_csv` function and store it as `coral_div`:
+
+    ```python
+    # read in data
+    coral_div = pd.read_csv('the URL goes here')
+    ```
+
+    d. Use attributes and methods of the `coral_div` data frame to obtain the following information about it:
+        - how many rows and columns does it have?
+        - see the first 5 rows
+        - what are its column names?
+        - what are the data types of the columns?
+    
+        In this last step, what is the difference between the `int64` and `float64` data types?
+
+    e. In which countries was this data collected? HINT: the `Country` column indicates the country of reef location. 
+
+    f. How many observers collected this data? HINT: use the `len` Python function. Not sure what it is? Use `?`.
+
+    g. 
+
+    
+
+```{python}
+import pandas as pd
+
+coral_div = pd.read_csv('https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Ae7d12a5a-f1a9-4a3e-aaa5-5222f67e799d')
+```
+
+```{python}
+coral_div.shape
+``` 
+
+```{python}
+coral_div.head()
+```
+
+```{python}
+coral_div.columns
+```
+
+```{python}
+coral_div.dtypes
+```
+
+```{python}
+coral_div.Country.unique()
+```
+
+```{python}
+len(coral_div.Observer.unique())
+```
+
+## Reference
+Tim McClanahan. (2023). Western Indian Ocean Coral Diversity. Knowledge Network for Biocomplexity. doi:10.5063/F1K35S3H.
