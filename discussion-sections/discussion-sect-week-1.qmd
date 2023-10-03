@@ -1,7 +1,7 @@
 # Discussion Section 1
 
 Date: October 6, 2023.
-
+<!--
 ## Exercise 1
 Consider the following code:
 
@@ -14,10 +14,10 @@ import numpy as np
 ![](/images/lesson-1/np-ones-docstring.png)
 
 ```{python}
-abc = np.ones([3,2], dtype=np.int8)
-print(abc)
+arr = np.ones([3,2], dtype=np.int8)
+print(arr)
 
-x = abc.mean()
+x = arr.mean()
 print(x)
 ```
 
@@ -29,14 +29,14 @@ Complete the following paragraph using the given words:
 | variable | non-default |data-type |default |
 |package | attribute | outout | parameter(s) | optional|
 
-`abc` is a ________ assigned to the NumPy ________ `np.ones([3,2])`. We construct `np.ones([3,2])` by calling a ________ from the NumPy ________. `[3,2]` and `np.int8` are ________ we pass to the `np.ones` ________. `np.int8` is a ________ parameter of `np.ones`. `abc.mean` is an ________ of `abc` and `x` is its ________. 
+`arr` is a ________ assigned to the ________ `np.ones([3,2])`. We construct `np.ones([3,2])` by calling a ________ from the NumPy ________. `[3,2]` and `np.int8` are ________ we pass to the `np.ones` ________. `np.int8` is a ________ parameter of `np.ones`. `mean` is a ________ of `abc` and `x` is its ________. 
+-->
 
-## Exercise 2
 :::{.callout-tip}
-## GitHub Setup
+## Notebook Setup
 1. Create a new repository on GitHub. Use the following settings:
 
-    a. Call the repository 'eds-220-section-1'.
+    a. Call the repository `eds-220-section-1`.
 
     b. Add a brief description for your new repository. For example: EDS 220 section - practice session for data selection in pandas.
 
@@ -44,88 +44,102 @@ Complete the following paragraph using the given words:
 
     d. Initialize the repository with a `README` file and a Python .gitignore template.
 
-2. Clone the repository to a new directory in the Taylor server under your eds-220 directory.
+2. Clone the repository to a new directory in the Taylor server under your `eds-220` directory.
 
-3. In the terminal use `cd` to navigate into the 'eds-220-section-1' directory. Use `pwd` to verify this is your current working directory.
+3. In the terminal use `cd` to navigate into the `eds-220-section-1` directory. Use `pwd` to verify `eds-220-section-1` is your current working directory.
 
-3. Create a new Python Notebook in the 'eds-220-section-1' directory. 
+3. Create a new Python Notebook in `eds-220-section-1`. 
 
 4. Update the notebook's name to something useful like 'exercise-data-selection.qmd'.
 
-5. Use the terminal to stage, commit, and push this file to the remote repository (on GitHub). Remember:
-    - to stage: `git add FILE_NAME`
-    - to commit with message: `git commit -m "COMMIT_MESSAGE"`
-    - to push: `git push`
+5. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
+    - stage: `git add FILE_NAME`
+    - commit with message: `git commit -m "COMMIT_MESSAGE"`
+    - push: `git push`
 
 6. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
 :::
 
 
 :::{.callout-note}
+## General directions
+Add comments in each one of your code cells and include markdown cells to add titles to the different execises. 
+:::
+
+:::{.callout-note}
 ## About the data
 
-For this exercise we are going to use data about  [Western Indian Ocean Coral Diversity](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H).
+For this exercise we are going to use data about  [Western Indian Ocean Coral Diversity (McClanahan, 2023)](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H).
 
-This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https://knb.ecoinformatics.org) data repository. This is an international repository intended to facilitate ecological and environmental research. It has thousands of open datasets and it's hosted by NCEAS!
+This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https://knb.ecoinformatics.org) data repository. This is an international repository intended to facilitate ecological and environmental research. It has thousands of open datasets and is hosted by NCEAS!
 
  Navigate to dataset's link and briefly explore the data package.
 :::
 
-0. Be sure to comment your code throughout this exercise!
+<!-- Data loading -->
+**1.** Import the pandas package using standard abbreviation in a code cell. Then follow these steps to read in the csv file in the Western Indian Ocean Coral Diversity data using the `pandas.read_csv()` function:
 
-1. Import the pandas package using standard abbreviation in a code cell.
+a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H) and copy the the URL to access the `WesternIndianOceanCoralDiversity` csv file. To copy the URL: 
 
-2. Use the `pandas.read_csv()` function to read in the csv file in the Coral Diversity data by following these steps:
+- hover over the Download button –> right click –> “Copy Link".
 
-    a. Create a new code cell under the “Read and explore data” header.
-
-    b. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H) and copy the the URL to access the `WesternIndianOceanCoralDiversity` csv file. To copy the URL: hover over the Download button –> right click –> “Copy Link".
-
-    c. Read in the data from the URL using the `pd.read_csv` function and store it as `coral_div`:
+b. Read in the data from the URL using the `pd.read_csv` function and store it as `coral_div` like this:
 
     ```python
     # read in data
     coral_div = pd.read_csv('the URL goes here')
     ```
 
-    d. Use attributes and methods of the `coral_div` data frame to obtain the following information about it:
-        - how many rows and columns does it have?
-        - see the first 5 rows
-        - what are its column names?
-        - what are the data types of the columns?
-    
-        In this last step, what is the difference between the `int64` and `float64` data types?
+<!-- Basic data frame information -->
+**2.** Use attributes and methods of the `coral_div` data frame to obtain the following information about it:
 
-    e. In which countries was this data collected? HINT: the `Country` column indicates the country of reef location. 
+- how many rows and columns does it have?
+- see the first 5 rows
+- what are its column names?
+- what are the data types of the columns?
 
-    f. How many observers collected this data? HINT: use the `len` Python function. Not sure what `len` does? Use `?`.
+In this last step, what is the difference between the `int64` and `float64` data types?
 
-    g. The `Coralcover` column indicates the percent of hard coral cover in each 6km reef cell surveyed. Select the observations which have a coral cover of at least 50%. 
+<!-- Understand syntax of column selection -->
+**3.** The `Country` column indicates the country of reef location. Explain in your words what is the ouput of `coral_div.Country` and `coral_div.Country.unique()`. 
 
-    h. Are there any sites with a 30% coral cover in Tanzania?
-    
-    i. We are interested in looking at the PH of sea water (`PH` column),  mean salinity (PSS) (`Salinity_mean` column), and depth of survey location in meters (`Depth` column). Select this data. 
+<!-- Check metadata + select column + unique + len -->
+**4.** Check the dataset's [metadata file README_md.doc](https://knb.ecoinformatics.org/view/doi:10.5063/F1K35S3H) to find which column has information about who made an observation. How many observers collected this data? HINT: use the `len` Python function. Not sure what `len` does? Use `?`.
 
-    j. The `max_yr` column indicates the year of last sampling at a given site. Select the PH, salinity, and depth for sites where sampling ended in 2017
+<!-- Understand syntax for row selection using condition -->
+**5.** The `Coralcover` column indicates the percent of hard coral cover in each 6km reef cell surveyed. What data is `coral_div[coral_div['Coralcover'] >= 50]` selecting?
 
-    k. Run `coral_div.Current_vel_mean.isna()`. What is the ouput telling us? 
+<!-- Use multiple conditions for row selection -->
+**6.** Are there any sites with a 30% coral cover in Tanzania?
 
-    l. Run `coral_div.Current_vel_mean.isna().any()`. What is the ouput telling us? HINT: Check the [documentation of `pandas.Sries.any`](https://pandas.pydata.org/docs/reference/api/pandas.Series.any.html).
+<!-- Select columns using a list -->
+**7.** We are interested in looking at the PH of sea water (`PH` column),  mean salinity (PSS) (`Salinity_mean` column), and depth of survey location in meters (`Depth` column). Select this data. 
+
+<!-- Select rows and columns simultaneously using loc -->
+**8.** The `max_yr` column indicates the year of last sampling at a given site. Select the PH, salinity, and depth for sites where sampling ended in 2017. 
+
+<!-- Select data using iloc-->
+**9.** Use `iloc` to select rows 95 throuhg 100 (including 100) in the 17th, 20th, and 28th columns and assign these values to a new variable called `subset`. HINT: the ouput columns should be `Salinity_mean`, `mean.npp` and `Current_vel_mean`. Are you indexing from 0?
+
+<!-- Understand what a method does -->
+**10.** Run `subset.isna()`. Explain what this code does and what the output represents.
+
+**11.** Run `subset.isna().any()`. Explain what this code does and what the output represents. HINT: It could be helpful to check the [documentation of `pandas.Sries.any`](https://pandas.pydata.org/docs/reference/api/pandas.Series.any.html).
       
-    m. Select the rows in `coral_div` that have NA in the `Current_vel_mean` column.
+**12.** Select the rows in `subset` that have NA in the `Current_vel_mean` column. HINT: you can use your answer for 9.
     
 
-    
+## References
+Tim McClanahan. (2023). Western Indian Ocean Coral Diversity. Knowledge Network for Biocomplexity. doi:10.5063/F1K35S3H.
 
 <!-- https://stackoverflow.com/questions/36226083/how-to-find-which-columns-contain-any-nan-value-in-pandas-dataframe -->
-
-    
 
 ```{python}
 import pandas as pd
 
 coral_div = pd.read_csv('https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Ae7d12a5a-f1a9-4a3e-aaa5-5222f67e799d')
 ```
+
 
 ```{python}
 coral_div.shape
@@ -159,15 +173,29 @@ coral_div[coral_div['Coralcover'] >= 50]
 coral_div[(coral_div['Coralcover']==30) & (coral_div.Country == 'Tanzania')]
 ```
 
-```{python}
-coral_div.Current_vel_mean.isna()
-```
 
 ```{python}
-coral_div.loc[coral_div['Current_vel_mean'].isna()]
+coral_div[['PH','Salinity_mean','Depth']]
 ```
 
 
+```{python}
+coral_div.loc[coral_div.max_yr == 2017 ,['PH','Salinity_mean','Depth']]
+```
 
-## Reference
-Tim McClanahan. (2023). Western Indian Ocean Coral Diversity. Knowledge Network for Biocomplexity. doi:10.5063/F1K35S3H.
+```{python}
+subset = coral_div.iloc[95:101,[16,19,27]]
+```
+
+```{python}
+subset.isna()
+```
+
+
+```{python}
+subset.isna().any()
+```
+
+```{python}
+subset[subset['Current_vel_mean'].isna()]
+```
