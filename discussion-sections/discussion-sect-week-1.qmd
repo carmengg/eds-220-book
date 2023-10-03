@@ -2,8 +2,6 @@
 
 Date: October 6, 2023.
 
-Fork and clone a repository for this lab?
-
 ## Exercise 1
 Consider the following code:
 
@@ -100,9 +98,26 @@ This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https:
 
     e. In which countries was this data collected? HINT: the `Country` column indicates the country of reef location. 
 
-    f. How many observers collected this data? HINT: use the `len` Python function. Not sure what it is? Use `?`.
+    f. How many observers collected this data? HINT: use the `len` Python function. Not sure what `len` does? Use `?`.
 
-    g. 
+    g. The `Coralcover` column indicates the percent of hard coral cover in each 6km reef cell surveyed. Select the observations which have a coral cover of at least 50%. 
+
+    h. Are there any sites with a 30% coral cover in Tanzania?
+    
+    i. We are interested in looking at the PH of sea water (`PH` column),  mean salinity (PSS) (`Salinity_mean` column), and depth of survey location in meters (`Depth` column). Select this data. 
+
+    j. The `max_yr` column indicates the year of last sampling at a given site. Select the PH, salinity, and depth for sites where sampling ended in 2017
+
+    k. Run `coral_div.Current_vel_mean.isna()`. What is the ouput telling us? 
+
+    l. Run `coral_div.Current_vel_mean.isna().any()`. What is the ouput telling us? HINT: Check the [documentation of `pandas.Sries.any`](https://pandas.pydata.org/docs/reference/api/pandas.Series.any.html).
+      
+    m. Select the rows in `coral_div` that have NA in the `Current_vel_mean` column.
+    
+
+    
+
+<!-- https://stackoverflow.com/questions/36226083/how-to-find-which-columns-contain-any-nan-value-in-pandas-dataframe -->
 
     
 
@@ -135,6 +150,24 @@ coral_div.Country.unique()
 ```{python}
 len(coral_div.Observer.unique())
 ```
+
+```{python}
+coral_div[coral_div['Coralcover'] >= 50]
+```
+
+```{python}
+coral_div[(coral_div['Coralcover']==30) & (coral_div.Country == 'Tanzania')]
+```
+
+```{python}
+coral_div.Current_vel_mean.isna()
+```
+
+```{python}
+coral_div.loc[coral_div['Current_vel_mean'].isna()]
+```
+
+
 
 ## Reference
 Tim McClanahan. (2023). Western Indian Ocean Coral Diversity. Knowledge Network for Biocomplexity. doi:10.5063/F1K35S3H.
