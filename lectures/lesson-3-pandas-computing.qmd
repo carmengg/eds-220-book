@@ -1,0 +1,43 @@
+
+<!--
+### Ploting
+We'll dip our toes in plotting to make things more interesting. 
+
+A `pandas.DataFrame` has a built-in method for ploting `plot()`. When we call it as is  `pandas` crewates one line plot for each of the columns with numeric data. 
+
+```{python}
+df.plot()
+```
+
+:::{.callout-tip}
+## Check-in 
+Look at the x-axis. What do these values correspond to? The default for `plot` is to use the values of the index as the x-axis values.
+:::
+
+As we can see, this doesn't make any sense! We need to subset the information to visualize it.
+
+-->
+
+<!--
+**Ploting**
+We can try ploting the series to visualize the data:
+
+```{python}
+# plot annual rise (plot method also works on a pandas.Series)
+annual_rise.plot()
+```
+
+This looks a bit better, at least the y-axis has the correct scale. However, we still have the index as the values for the x-axis. We can correct this by changing the index and then ploting:
+
+```{python}
+# update index of annual_rose pandas.Series
+annual_rise.index = df.year
+# check the index:
+annual_rise.head()
+```
+
+```{python}
+# plot
+annual_rise.plot()
+```
+-->

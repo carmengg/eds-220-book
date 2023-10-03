@@ -293,6 +293,7 @@ Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Th
 
 This is an example of **selecting by label**, which means we want to select data from our data frame using the *names* of the columns, *not their position*.
 
+
 #### ... with attribute syntax
 
 We can also access a single column by using attribute syntax:
