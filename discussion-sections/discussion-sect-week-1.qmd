@@ -4,11 +4,11 @@ Date: October 6, 2023.
 
 Fork and clone a repository for this lab?
 
-::: {.callout-tip}
 ## Exercise 1
 Consider the following code:
 
-```python
+
+```{python}
 import numpy as np
 
 ?np.ones
@@ -33,19 +33,38 @@ Complete the following paragraph using the given words:
 
 `abc` is a ________ assigned to the NumPy ________ `np.ones([3,2])`. We construct `np.ones([3,2])` by calling a ________ from the NumPy ________. `[3,2]` and `np.int8` are ________ we pass to the `np.ones` ________. `np.int8` is a ________ parameter of `np.ones`. `abc.mean` is an ________ of `abc` and `x` is its ________. 
 
-:::
-
-:::{.callout-tip}
 ## Exercise 2
-Work on some subsetting
+:::{.callout-tip}
+## GitHub Setup
+1. Create a new repository on GitHub. Use the following settings:
 
+    a. Call the repository 'eds-220-section-1'.
 
+    b. Add a brief description for your new repository. For example: EDS 220 section - practice session for data selection in pandas.
+
+    c. Keep the repository public.
+
+    d. Initialize the repository with a `README` file and a Python .gitignore template.
+
+2. Clone the repository to a new directory in the Taylor server under your eds-220 directory.
+
+3. In the terminal use `cd` to navigate into the 'eds-220-section-1' directory. Use `pwd` to verify this is your current working directory.
+
+3. Create a new Python Notebook in the 'eds-220-section-1' directory. 
+
+4. Update the notebook's name to something useful like 'exercise-data-selection.qmd'.
+
+5. Use the terminal to stage, commit, and push this file to the remote repository (on GitHub). Remember:
+    - to stage: `git add FILE_NAME`
+    - to commit with message: `git commit -m "COMMIT_MESSAGE"`
+    - to push: `git push`
+
+6. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
 :::
 
-Fix some broken code with subsetting
 
 :::{.callout-tip}
-## Exercise 3
-Do the iloc vs loc difference
-:::
+## Data Access
 
+
+:::
