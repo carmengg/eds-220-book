@@ -1,0 +1,72 @@
+
+:::{.callout-tip}
+## Notebook Setup
+1. Create a new repository on GitHub. Use the following settings:
+
+    a. Call the repository `eds-220-section-1`.
+
+    b. Add a brief description for your new repository. For example: EDS 220 section - practice session for data selection in pandas.
+
+    c. Keep the repository public.
+
+    d. Initialize the repository with a `README` file and a Python .gitignore template.
+
+2. Clone the repository to a new directory in the Taylor server under your `eds-220` directory.
+
+3. In the terminal use `cd` to navigate into the `eds-220-section-1` directory. Use `pwd` to verify `eds-220-section-1` is your current working directory.
+
+3. Create a new Python Notebook in `eds-220-section-1`. 
+
+4. Update the notebook's name to something useful like 'exercise-data-selection.qmd'.
+
+5. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
+    - stage: `git add FILE_NAME`
+    - commit with message: `git commit -m "COMMIT_MESSAGE"`
+    - push: `git push`
+
+6. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+:::
+
+
+:::{.callout-note}
+## General directions
+Add comments in each one of your code cells and include markdown cells to add titles to the different execises. 
+:::
+
+:::{.callout-note}
+## About the data
+
+For this exercise we will use data about [prey items for endangered terrestrial vertebrate species within central California drylands (King et. al, 2023)](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH). 
+
+This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https://knb.ecoinformatics.org) data repository. This is an international repository intended to facilitate ecological and environmental research. It has thousands of open datasets and is hosted by NCEAS!
+
+ Navigate to dataset's link and briefly explore the data package.
+:::
+
+<!-- Data exploration -->
+For many datasets data exploration begins at the data repository. Take some time to look through the dataset's description in KNB. Discuss the following questions with your team:
+
+a. Does this dataset come with an associated metadata file?
+b. Is this data collected in-situ by the authors or is it a compilation and synthesis of multiple datasets?
+c.  
+
+
+<!-- Data loading -->
+**1.** Import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the csv file in the Western Indian Ocean Coral Diversity data using the `pandas.read_csv()` function:
+
+a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H) and copy the the URL to access the `WesternIndianOceanCoralDiversity` csv file. To copy the URL: 
+
+- hover over the Download button –> right click –> “Copy Link".
+
+b. Read in the data from the URL using the `pd.read_csv` function and store it as `coral_div` like this:
+
+    ```python
+    # read in data
+    coral_div = pd.read_csv('the URL goes here')
+    ```
+
+# References
+
+Rachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.
+
+Lortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251
