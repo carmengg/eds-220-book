@@ -250,7 +250,7 @@ Notebook Setup
 <li><p>Using the terminal, clone the repository to a new directory under your <code>eds-220</code> directory.</p></li>
 <li><p>In the terminal, use <code>cd</code> to navigate into the <code>eds-220-section-1</code> directory. Use <code>pwd</code> to verify <code>eds-220-section-1</code> is your current working directory.</p></li>
 <li><p>Create a new Python Notebook in <code>eds-220-section-1</code>.</p></li>
-<li><p>Update the notebook’s name to something useful like ‘exercise-data-selection.qmd’.</p></li>
+<li><p>Update the notebook’s name to something useful like ‘exercise-data-selection.ipynb’.</p></li>
 <li><p>Use the terminal to stage, commit, and push this file to the remote repository. Remember:</p>
 <ul>
 <li>stage: <code>git add FILE_NAME</code></li>
@@ -281,6 +281,7 @@ General directions
 <li>Add comments in each one of your code cells</li>
 <li>Include markdown cells in between your code cells to add titles/information to each exercise</li>
 <li>Indications about when to commit and push changes are included, but you are welcome to commit and push more often.</li>
+<li>You won’t need to upload any data</li>
 </ul>
 </div>
 </div>
@@ -321,13 +322,14 @@ About the data
 <li>In the archive’s dataset description, notice the <code>.xml</code> document file type is <code>EML</code> which stands for <a href="https://eml.ecoinformatics.org">EML: Ecological Metadata Language</a>.</li>
 <li>Open the <code>.xml</code> file: there’s a lot going on. This is a machine-readable file that has metadata about <em>the whole dataset</em>. You can proably identify some items like title and creators.</li>
 <li>Close the file and delete it - we won’t use it today.</li>
+<li>You don’t need to write anything in your notebook about this section.</li>
 </ol>
 </section>
 <section id="csv-metadata-exploration" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="csv-metadata-exploration"><span class="header-section-number">3.3</span> <code>.csv</code> metadata exploration</h2>
 <p>Back in your notebook, import the <code>pandas</code> package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the <code>pandas.read_csv()</code> function:</p>
 <ol type="a">
-<li>Navigate to the <a href="https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH">data package site</a> and copy the URL to access the <code>arth_occurrences_with_env</code> csv file. To copy the URL:</li>
+<li>Navigate to the <a href="https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH">data package site</a> and copy the URL to access the <code>metadata_arth_occurrences</code> csv file. To copy the URL:</li>
 </ol>
 <ul>
 <li>hover over the Download button –&gt; right click –&gt; “Copy Link”.</li>

@@ -31,7 +31,7 @@ This discussion section will guide you through preliminary data exploration for 
 
 5. Create a new Python Notebook in `eds-220-section-1`. 
 
-6. Update the notebook's name to something useful like 'exercise-data-selection.qmd'.
+6. Update the notebook's name to something useful like 'exercise-data-selection.ipynb'.
 
 7. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
     - stage: `git add FILE_NAME`
@@ -56,6 +56,7 @@ This discussion section will guide you through preliminary data exploration for 
 - Add comments in each one of your code cells 
 - Include markdown cells in between your code cells to add titles/information to each exercise
 - Indications about when to commit and push changes are included, but you are welcome to commit and push more often. 
+- You won't need to upload any data 
 :::
 
 :::{.callout-note}
@@ -89,12 +90,13 @@ You may have noticed there are two metadata files: `Compiled_occurrence_records_
 a. In the archive's dataset description, notice the `.xml` document file type is `EML` which stands for [EML: Ecological Metadata Language](https://eml.ecoinformatics.org). 
 b. Open the `.xml` file: there's a lot going on. This is a machine-readable file that has metadata about *the whole dataset*. You can proably identify some items like title and creators. 
 c. Close the file and delete it - we won't use it today. 
+d. You don't need to write anything in your notebook about this section. 
 
 ## `.csv` metadata exploration
 
 Back in your notebook, import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the `pandas.read_csv()` function:
 
-a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH) and copy the URL to access the `arth_occurrences_with_env` csv file. To copy the URL: 
+a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH) and copy the URL to access the `metadata_arth_occurrences` csv file. To copy the URL: 
 
 - hover over the Download button –> right click –> “Copy Link".
 

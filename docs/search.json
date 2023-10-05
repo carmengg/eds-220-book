@@ -165,14 +165,14 @@
     "href": "discussion-sections/discussion-sect-week-1-methods.html#xml-metadata-exploration",
     "title": "3  1. Preliminary Data Exploration",
     "section": "3.2 .xml metadata exploration",
-    "text": "3.2 .xml metadata exploration\nYou may have noticed there are two metadata files: Compiled_occurrence_records_for_prey_items_of.xml and metadata_arth_occurrences.csv.\n\nIn the archive’s dataset description, notice the .xml document file type is EML which stands for EML: Ecological Metadata Language.\nOpen the .xml file: there’s a lot going on. This is a machine-readable file that has metadata about the whole dataset. You can proably identify some items like title and creators.\nClose the file and delete it - we won’t use it today."
+    "text": "3.2 .xml metadata exploration\nYou may have noticed there are two metadata files: Compiled_occurrence_records_for_prey_items_of.xml and metadata_arth_occurrences.csv.\n\nIn the archive’s dataset description, notice the .xml document file type is EML which stands for EML: Ecological Metadata Language.\nOpen the .xml file: there’s a lot going on. This is a machine-readable file that has metadata about the whole dataset. You can proably identify some items like title and creators.\nClose the file and delete it - we won’t use it today.\nYou don’t need to write anything in your notebook about this section."
   },
   {
     "objectID": "discussion-sections/discussion-sect-week-1-methods.html#csv-metadata-exploration",
     "href": "discussion-sections/discussion-sect-week-1-methods.html#csv-metadata-exploration",
     "title": "3  1. Preliminary Data Exploration",
     "section": "3.3 .csv metadata exploration",
-    "text": "3.3 .csv metadata exploration\nBack in your notebook, import the pandas package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the pandas.read_csv() function:\n\nNavigate to the data package site and copy the URL to access the arth_occurrences_with_env csv file. To copy the URL:\n\n\nhover over the Download button –&gt; right click –&gt; “Copy Link”.\n\n\nRead in the data from the URL using the pd.read_csv() function like this:\n# look at metadata\npd.read_csv('the URL goes here')\nTake a minute to look at the descriptions for the columns.\n\nNote: Not all datasets have column descriptions in a csv file. Often they come with a doc or txt file with information."
+    "text": "3.3 .csv metadata exploration\nBack in your notebook, import the pandas package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the pandas.read_csv() function:\n\nNavigate to the data package site and copy the URL to access the metadata_arth_occurrences csv file. To copy the URL:\n\n\nhover over the Download button –&gt; right click –&gt; “Copy Link”.\n\n\nRead in the data from the URL using the pd.read_csv() function like this:\n# look at metadata\npd.read_csv('the URL goes here')\nTake a minute to look at the descriptions for the columns.\n\nNote: Not all datasets have column descriptions in a csv file. Often they come with a doc or txt file with information."
   },
   {
     "objectID": "discussion-sections/discussion-sect-week-1-methods.html#data-loading",
