@@ -193,13 +193,13 @@
     "href": "discussion-sections/discussion-sect-week-1-methods.html#pd.dataframe-preliminary-exploration",
     "title": "3  1. Preliminary Data Exploration",
     "section": "3.6 pd.DataFrame preliminary exploration",
-    "text": "3.6 pd.DataFrame preliminary exploration\nRun each of the following methods for prey in a different cell and write a brief description of what they do as a comment:\n\nhead()\ntail()\ninfo()\nnunique()\n\nFor example:\n# head()\n# returns the first five rows of the data frame\nprey.head()\nIf you’re not sure about what the method does, try looking it up in the pandas.DataFrame documentation.\n\nCheck the documentation for head(). If this function has any default parameters, change them to get a different output.\n\nPrint each of the following attributes of prey in a different cell and write a brief explanation of what they do as a comment:\n\nshape\ncolumns\ndtypes\n\nIf you’re not sure about what info is the attribute showing, try looking it up in the pandas.DataFrame documentation.\n\n** check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes**"
+    "text": "3.6 pd.DataFrame preliminary exploration\nRun each of the following methods for prey in a different cell and write a brief description of what they do as a comment:\n\nhead()\ntail()\ninfo()\nnunique()\n\nFor example:\n# head()\n# returns the first five rows of the data frame\nprey.head()\nIf you’re not sure about what the method does, try looking it up in the pandas.DataFrame documentation.\n\nCheck the documentation for head(). If this function has any default parameters, change them to get a different output.\n\nPrint each of the following attributes of prey in a different cell and write a brief explanation of what they do as a comment:\n\nshape\ncolumns\ndtypes\n\nIf you’re not sure about what info is the attribute showing, try looking it up in the pandas.DataFrame documentation.\n\ncheck git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes"
   },
   {
-    "objectID": "discussion-sections/discussion-sect-week-1-methods.html#for-fun",
-    "href": "discussion-sections/discussion-sect-week-1-methods.html#for-fun",
+    "objectID": "discussion-sections/discussion-sect-week-1-methods.html#update-some-column-names",
+    "href": "discussion-sections/discussion-sect-week-1-methods.html#update-some-column-names",
     "title": "3  1. Preliminary Data Exploration",
-    "section": "3.7 For fun",
-    "text": "3.7 For fun\nChange the column names of institutionCode and datasetKey to institution_code and dataset_key, respectively. Make sure you’re actually updating the dataframe. HINT: yesterday’s class.\n\n** check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes**"
+    "section": "3.7 Update some column names",
+    "text": "3.7 Update some column names\nChange the column names of institutionCode and datasetKey to institution_code and dataset_key, respectively. Make sure you’re actually updating the dataframe. HINT: yesterday’s class.\n\ncheck git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes"
   }
 ]
