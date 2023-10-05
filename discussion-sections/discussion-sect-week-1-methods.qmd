@@ -1,15 +1,15 @@
 
-# Discussion Section
+# 1. Preliminary Data Exploration
 
 October 5, 2023.
 
-This discussion section will guide you through preliminary data exploration for a real world dataset about animal observations in the California drylands. Our goals are:
+This discussion section will guide you through preliminary data exploration for a real world dataset about animal observations in the California drylands. Our goals are to:
 
-- Keep practicing setting up a GitHub repository and git commit/ git push.
+- Keep practicing setting up a GitHub repository and using `git commit` `git push`
 - Collaborate with your new team!
 - Practice getting preliminary information from a dataset from its archive
 - Introduce `pd.read_csv()` for loading files directly from an URL
-- Introduce preliminary exploration strategies in `pandas`
+- Introduce preliminary data exploration strategies in `pandas`
 
 :::{.callout-tip}
 ## Notebook Setup
@@ -23,20 +23,22 @@ This discussion section will guide you through preliminary data exploration for 
 
     d. Initialize the repository with a `README` file and a Python .gitignore template.
 
-2. Clone the repository to a new directory in the Taylor server under your `eds-220` directory.
+2. In the Taylor server, start a new JupyterLab session or access an active one.
 
-3. In the terminal use `cd` to navigate into the `eds-220-section-1` directory. Use `pwd` to verify `eds-220-section-1` is your current working directory.
+3. Using the terminal, clone the repository to a new directory under your `eds-220` directory.
 
-3. Create a new Python Notebook in `eds-220-section-1`. 
+4. In the terminal, use `cd` to navigate into the `eds-220-section-1` directory. Use `pwd` to verify `eds-220-section-1` is your current working directory.
 
-4. Update the notebook's name to something useful like 'exercise-data-selection.qmd'.
+5. Create a new Python Notebook in `eds-220-section-1`. 
 
-5. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
+6. Update the notebook's name to something useful like 'exercise-data-selection.qmd'.
+
+7. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
     - stage: `git add FILE_NAME`
     - commit with message: `git commit -m "COMMIT_MESSAGE"`
     - push: `git push`
 
-6. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+8. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
 
 
 <p style="text-align: center;">
@@ -53,8 +55,7 @@ This discussion section will guide you through preliminary data exploration for 
 ## General directions
 - Add comments in each one of your code cells 
 - Include markdown cells in between your code cells to add titles/information to each exercise
-- Check the git status and commit/push after each exercise. 
-- You don't need to write anything in the notebook about exercises 1 and 2. 
+- Indications about when to commit and push changes are included, but you are welcome to commit and push more often. 
 :::
 
 :::{.callout-note}
@@ -69,10 +70,17 @@ This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https:
 ## Archive exploration
 For many datasets, data exploration begins at the data repository. Take some time to look through the dataset's description in KNB. Discuss the following questions with your team:
 
-a. Does this dataset come with an associated metadata file?
+a. What is this data about?
 b. Is this data collected in-situ by the authors or is it a synthesis of multiple datasets?
-c. Does the dataset contain sensitive data?
-d. During what time frame were the observations in the dataset collected?
+c. During what time frame were the observations in the dataset collected?
+d. Does this dataset come with an associated metadata file?
+e. Does the dataset contain sensitive data?
+
+In your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive. 
+
+<p style="text-align: center;">
+** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
 
 ## `.xml` metadata exploration
 
@@ -93,7 +101,7 @@ a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3
 b. Read in the data from the URL using the `pd.read_csv()` function like this:
 
     ```python
-    # read in data
+    # look at metadata
     pd.read_csv('the URL goes here')
     ```
 
@@ -119,6 +127,10 @@ b. Use a Python function to see what is the type of the `prey` variable.
 **MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
 </p>
 
+<p style="text-align: center;">
+** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
 ## Look at your data
 
 a. Run `prey` in a cell. What do you notice in the columns section?
@@ -127,6 +139,10 @@ b. To see all the column names in the same display we need to set a `pandas` opt
 ```python
 pd.set_option("display.max.columns", None)
 ```
+
+<p style="text-align: center;">
+** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
 
 ## `pd.DataFrame` preliminary exploration
 
@@ -157,25 +173,19 @@ h. `dtypes`
 
 If you're not sure about what info is the attribute showing, try looking it up in the [`pandas.DataFrame` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
 
+<p style="text-align: center;">
+** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
 ## For fun
-Change the column names of `institutionCode` and `datasetKey` to `institution_code` and  `dataset_key`, respectively. HINT: yesterday's class.
+Change the column names of `institutionCode` and `datasetKey` to `institution_code` and  `dataset_key`, respectively. Make sure you're actually updating the dataframe. HINT: yesterday's class.
+
+<p style="text-align: center;">
+** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
 
 # References
 
 Rachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.
 
 Lortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251
-
-
-<!--
-```{python}
-import pandas as pd
-pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A3baf7289-bf90-4db3-ad11-58785c09b26e")
-```
-
-
-```{python}
-prey = pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A23d42528-1048-45d4-85d1-7e13b666e744")
-prey
-```
--->
