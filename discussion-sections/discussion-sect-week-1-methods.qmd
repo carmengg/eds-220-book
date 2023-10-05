@@ -110,7 +110,42 @@ b. Use a Python function to see what is the type of the `prey` variable.
 
 a. Run `prey` in a cell. What do you notice in the columns section?
 
-b. 
+b. To see all the column names in the same display we need to set a `pandas` option. Run the following command and then look at the `prey` data again:
+```python
+pd.set_option("display.max.columns",None)
+```
+
+## 6. `pd.DataFrame` preliminary exploration
+
+Run each of the following methods for `prey` in a different cell and write a brief description of what they do as a comment: 
+
+a. `head()`
+b. `tail()`
+c. `info()`
+d. `nunique()`
+
+For example:
+
+```
+# head()
+# returns the first five rows of the data frame
+prey.head()
+```
+
+If you're not sure about what the method does, try looking it up in the [`pandas.DataFrame` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
+
+e. Check the [documentation for `head()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head). If this function has any default parameters, change them to get a different output. 
+
+Print each of the following attributes of `prey` in a different cell and write a brief explanation of what they do as a comment:
+
+f. `shape`
+g. `columns`
+h. `dtypes`
+
+If you're not sure about what info is the attribute showing, try looking it up in the [`pandas.DataFrame` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
+
+
+
 
 <!-- https://towardsdatascience.com/pandas-most-used-functions-in-data-science-51b7c2b9c38a -->
 
