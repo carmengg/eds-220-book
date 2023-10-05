@@ -28,7 +28,10 @@
 
 
 <p style="text-align: center;">
-**CHECK IN WITH YOUR TEAM**
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY SET UP YOUR NOTEBOOKS BEFORE CONTINUING**
 </p>
 
 :::
@@ -36,7 +39,10 @@
 
 :::{.callout-note}
 ## General directions
-Add comments in each one of your code cells and include markdown cells in between your code cells to add titles to the different execises. 
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+- Check the git status and commit/push after each exercise. 
+- You don't need to write anything in the notebook about exercises 1 and 2. 
 :::
 
 :::{.callout-note}
@@ -48,8 +54,7 @@ This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https:
 :::
 
 <!-- Data exploration -->
-**1. Archive exploration** 
-
+## 1. Archive exploration
 For many datasets, data exploration begins at the data repository. Take some time to look through the dataset's description in KNB. Discuss the following questions with your team:
 
 a. Does this dataset come with an associated metadata file?
@@ -57,33 +62,73 @@ b. Is this data collected in-situ by the authors or is it a synthesis of multipl
 c. Does the dataset contain sensitive data?
 d. During what time frame were the observations in the dataset collected?
 
-**2. Metadata exploration**
+## 2. `.xml` metadata exploration
 
 You may have noticed two metadata files: `Compiled_occurrence_records_for_prey_items_of.xml` and `metadata_arth_occurrences.csv`. Download both of them.
 
 a. Notice the `.xml` document file type is `EML` which stands for [EML: Ecological Metadata Language](https://eml.ecoinformatics.org). 
 b. Open the `.xml` file: there's a lot going on. This is a machine-readable file that has metadata about *the whole dataset*. You can proably identify some items like title and creators. 
-c. Open the `.csv` file: much easier to understand! Take a minute to look at the column descriptions.
 
+## 3. `.csv` metadata exploration
 
-<!-- Data loading -->
-**3. Data loading** 
-
-Back in your notebook, import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the data's csv file in the California drylands prey data using the `pandas.read_csv()` function:
+Back in your notebook, import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the `pandas.read_csv()` function:
 
 a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH) and copy the URL to access the `arth_occurrences_with_env` csv file. To copy the URL: 
 
 - hover over the Download button –> right click –> “Copy Link".
 
-b. Read in the data from the URL using the `pd.read_csv()` function and store it as `prey` like this:
+b. Read in the data from the URL using the `pd.read_csv()` function like this:
 
     ```python
     # read in data
-    prey = pd.read_csv('the URL goes here')
+    pd.read_csv('the URL goes here')
     ```
+
+c. Take a minute to look at the descriptions for the columns. 
+
+*Note:* Not all datasets have column descriptions in a `csv` file. Often they come with a `doc` or `txt` file with information. 
+
+<!-- Data loading -->
+## 4. Data loading
+a. Follow steps (a) and (b) from the previous exercise to read in the drylands prey data file `arth_occurrences_with_env.csv` using `pd.read_csv()`. Store the dataframe to a variable called `prey` like this:
+
+```python
+# read in data
+prey = pd.read_csv('the URL goes here')
+```
+
+b. Use a Python function to see what is the type of the `prey` variable. 
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
+</p>
+
+## 5. Look at your data
+
+a. Run `prey` in a cell. What do you notice in the columns section?
+
+b. 
+
+<!-- https://towardsdatascience.com/pandas-most-used-functions-in-data-science-51b7c2b9c38a -->
 
 # References
 
 Rachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.
 
 Lortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251
+
+
+
+```{python}
+import pandas as pd
+pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A3baf7289-bf90-4db3-ad11-58785c09b26e")
+```
+
+
+```{python}
+prey = pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A23d42528-1048-45d4-85d1-7e13b666e744")
+prey
+```
