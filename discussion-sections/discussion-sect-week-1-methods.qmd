@@ -79,7 +79,7 @@ e. Does the dataset contain sensitive data?
 In your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive. 
 
 <p style="text-align: center;">
-** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
 </p>
 
 ## `.xml` metadata exploration
@@ -121,14 +121,14 @@ prey = pd.read_csv('the URL goes here')
 b. Use a Python function to see what is the type of the `prey` variable. 
 
 <p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+<p style="text-align: center;">
 **CHECK IN WITH YOUR TEAM** 
 </p>
 <p style="text-align: center;">
 **MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
-</p>
-
-<p style="text-align: center;">
-** check git status -> stage changes -> check git status -> commit with message -> push  changes**
 </p>
 
 ## Look at your data
@@ -141,7 +141,7 @@ pd.set_option("display.max.columns", None)
 ```
 
 <p style="text-align: center;">
-** check git status -> stage changes -> check git status -> commit with message -> push  changes**
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
 </p>
 
 ## `pd.DataFrame` preliminary exploration

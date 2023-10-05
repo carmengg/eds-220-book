@@ -158,7 +158,7 @@
     "href": "discussion-sections/discussion-sect-week-1-methods.html#archive-exploration",
     "title": "3  1. Preliminary Data Exploration",
     "section": "3.1 Archive exploration",
-    "text": "3.1 Archive exploration\nFor many datasets, data exploration begins at the data repository. Take some time to look through the dataset’s description in KNB. Discuss the following questions with your team:\n\nWhat is this data about?\nIs this data collected in-situ by the authors or is it a synthesis of multiple datasets?\nDuring what time frame were the observations in the dataset collected?\nDoes this dataset come with an associated metadata file?\nDoes the dataset contain sensitive data?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive.\n\n** check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes**"
+    "text": "3.1 Archive exploration\nFor many datasets, data exploration begins at the data repository. Take some time to look through the dataset’s description in KNB. Discuss the following questions with your team:\n\nWhat is this data about?\nIs this data collected in-situ by the authors or is it a synthesis of multiple datasets?\nDuring what time frame were the observations in the dataset collected?\nDoes this dataset come with an associated metadata file?\nDoes the dataset contain sensitive data?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive.\n\ncheck git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes"
   },
   {
     "objectID": "discussion-sections/discussion-sect-week-1-methods.html#xml-metadata-exploration",
@@ -179,14 +179,14 @@
     "href": "discussion-sections/discussion-sect-week-1-methods.html#data-loading",
     "title": "3  1. Preliminary Data Exploration",
     "section": "3.4 Data loading",
-    "text": "3.4 Data loading\n\nFollow steps (a) and (b) from the previous exercise to read in the drylands prey data file arth_occurrences_with_env.csv using pd.read_csv(). Store the dataframe to a variable called prey like this:\n\n# read in data\nprey = pd.read_csv('the URL goes here')\n\nUse a Python function to see what is the type of the prey variable.\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING\n\n\n** check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes**"
+    "text": "3.4 Data loading\n\nFollow steps (a) and (b) from the previous exercise to read in the drylands prey data file arth_occurrences_with_env.csv using pd.read_csv(). Store the dataframe to a variable called prey like this:\n\n# read in data\nprey = pd.read_csv('the URL goes here')\n\nUse a Python function to see what is the type of the prey variable.\n\n\ncheck git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING"
   },
   {
     "objectID": "discussion-sections/discussion-sect-week-1-methods.html#look-at-your-data",
     "href": "discussion-sections/discussion-sect-week-1-methods.html#look-at-your-data",
     "title": "3  1. Preliminary Data Exploration",
     "section": "3.5 Look at your data",
-    "text": "3.5 Look at your data\n\nRun prey in a cell. What do you notice in the columns section?\nTo see all the column names in the same display we need to set a pandas option. Run the following command and then look at the prey data again:\n\npd.set_option(\"display.max.columns\", None)\n\n** check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes**"
+    "text": "3.5 Look at your data\n\nRun prey in a cell. What do you notice in the columns section?\nTo see all the column names in the same display we need to set a pandas option. Run the following command and then look at the prey data again:\n\npd.set_option(\"display.max.columns\", None)\n\ncheck git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes"
   },
   {
     "objectID": "discussion-sections/discussion-sect-week-1-methods.html#pd.dataframe-preliminary-exploration",
