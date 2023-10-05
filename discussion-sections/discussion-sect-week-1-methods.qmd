@@ -144,10 +144,8 @@ h. `dtypes`
 
 If you're not sure about what info is the attribute showing, try looking it up in the [`pandas.DataFrame` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
 
-
-
-
-<!-- https://towardsdatascience.com/pandas-most-used-functions-in-data-science-51b7c2b9c38a -->
+## 7.  For fun
+Change the column names of `institutionCode` and `datasetKey` to `institution_code` and  `dataset_key`, respectively. HINT: yesterday's class.
 
 # References
 
@@ -156,7 +154,7 @@ Rachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurr
 Lortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251
 
 
-
+<!--
 ```{python}
 import pandas as pd
 pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A3baf7289-bf90-4db3-ad11-58785c09b26e")
@@ -167,3 +165,4 @@ pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A3ba
 prey = pd.read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A23d42528-1048-45d4-85d1-7e13b666e744")
 prey
 ```
+-->
