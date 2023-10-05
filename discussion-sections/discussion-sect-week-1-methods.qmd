@@ -25,12 +25,18 @@
     - push: `git push`
 
 6. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM**
+</p>
+
 :::
 
 
 :::{.callout-note}
 ## General directions
-Add comments in each one of your code cells and include markdown cells to add titles to the different execises. 
+Add comments in each one of your code cells and include markdown cells in between your code cells to add titles to the different execises. 
 :::
 
 :::{.callout-note}
@@ -39,30 +45,41 @@ Add comments in each one of your code cells and include markdown cells to add ti
 For this exercise we will use data about [prey items for endangered terrestrial vertebrate species within central California drylands (King et. al, 2023)](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH). 
 
 This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https://knb.ecoinformatics.org) data repository. This is an international repository intended to facilitate ecological and environmental research. It has thousands of open datasets and is hosted by NCEAS!
-
- Navigate to dataset's link and briefly explore the data package.
 :::
 
 <!-- Data exploration -->
-For many datasets data exploration begins at the data repository. Take some time to look through the dataset's description in KNB. Discuss the following questions with your team:
+**1. Archive exploration** 
+
+For many datasets, data exploration begins at the data repository. Take some time to look through the dataset's description in KNB. Discuss the following questions with your team:
 
 a. Does this dataset come with an associated metadata file?
-b. Is this data collected in-situ by the authors or is it a compilation and synthesis of multiple datasets?
-c.  
+b. Is this data collected in-situ by the authors or is it a synthesis of multiple datasets?
+c. Does the dataset contain sensitive data?
+d. During what time frame were the observations in the dataset collected?
+
+**2. Metadata exploration**
+
+You may have noticed two metadata files: `Compiled_occurrence_records_for_prey_items_of.xml` and `metadata_arth_occurrences.csv`. Download both of them.
+
+a. Notice the `.xml` document file type is `EML` which stands for [EML: Ecological Metadata Language](https://eml.ecoinformatics.org). 
+b. Open the `.xml` file: there's a lot going on. This is a machine-readable file that has metadata about *the whole dataset*. You can proably identify some items like title and creators. 
+c. Open the `.csv` file: much easier to understand! Take a minute to look at the column descriptions.
 
 
 <!-- Data loading -->
-**1.** Import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the csv file in the Western Indian Ocean Coral Diversity data using the `pandas.read_csv()` function:
+**3. Data loading** 
 
-a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1K35S3H) and copy the the URL to access the `WesternIndianOceanCoralDiversity` csv file. To copy the URL: 
+Back in your notebook, import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the data's csv file in the California drylands prey data using the `pandas.read_csv()` function:
+
+a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH) and copy the URL to access the `arth_occurrences_with_env` csv file. To copy the URL: 
 
 - hover over the Download button –> right click –> “Copy Link".
 
-b. Read in the data from the URL using the `pd.read_csv` function and store it as `coral_div` like this:
+b. Read in the data from the URL using the `pd.read_csv()` function and store it as `prey` like this:
 
     ```python
     # read in data
-    coral_div = pd.read_csv('the URL goes here')
+    prey = pd.read_csv('the URL goes here')
     ```
 
 # References
