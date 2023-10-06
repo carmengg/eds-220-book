@@ -370,6 +370,9 @@ About the data
 <li><p>To see all the column names in the same display we need to set a <code>pandas</code> option. Run the following command and then look at the <code>prey</code> data again:</p></li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max.columns"</span>, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="a">
+<li>Add a comment explaining what <code>pd.set_option("display.max.columns", None)</code> does.</li>
+</ol>
 <p style="text-align: center;">
 <strong>check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes</strong>
 </p>
@@ -389,9 +392,9 @@ About the data
 prey.head()</code></pre>
 <p>If you’re not sure about what the method does, try looking it up in the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html"><code>pandas.DataFrame</code> documentation</a>.</p>
 <ol start="5" type="a">
-<li>Check the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head">documentation for <code>head()</code></a>. If this function has any default parameters, change them to get a different output.</li>
+<li>Check the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head">documentation for <code>head()</code></a>. If this function has any optional parameters, change the default value to get a different output.</li>
 </ol>
-<p>Print each of the following attributes of <code>prey</code> in a different cell and write a brief explanation of what they do as a comment:</p>
+<p>Print each of the following attributes of <code>prey</code> in a different cell and write a brief explanation of what they are as a comment:</p>
 <ol start="6" type="a">
 <li><code>shape</code></li>
 <li><code>columns</code></li>
