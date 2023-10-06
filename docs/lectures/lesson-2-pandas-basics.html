@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,10 +17,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,13 +46,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -64,7 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../discussion-sections/discussion-sect-week-1-methods.html" rel="next">
+<link href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" rel="next">
 <link href="../lectures/lesson-1-python-review.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -91,8 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -106,16 +134,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-1-python-review.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-2-pandas-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -123,61 +146,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">EDS 220 - Working with Environmental Datasets</a> 
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome!</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lectures</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-pandas-basics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></span></a>
+  <a href="../lectures/lesson-2-pandas-basics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Discussion Sections</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Discussion Sections</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/discussion-sect-week-1-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></a>
   </div>
 </li>
       </ul>
@@ -185,35 +202,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about"><span class="header-section-number">2.1</span> About</a></li>
-  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"><span class="header-section-number">2.2</span> <code>pandas</code></a></li>
-  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series"><span class="header-section-number">2.3</span> Series</a>
+  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about"><span class="toc-section-number">2.1</span>  About</a></li>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"><span class="toc-section-number">2.2</span>  <code>pandas</code></a></li>
+  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series"><span class="toc-section-number">2.3</span>  Series</a>
   <ul class="collapse">
-  <li><a href="#creating-a-pandas.series" id="toc-creating-a-pandas.series" class="nav-link" data-scroll-target="#creating-a-pandas.series"><span class="header-section-number">2.3.1</span> Creating a <code>pandas.Series</code></a></li>
-  <li><a href="#simple-operations" id="toc-simple-operations" class="nav-link" data-scroll-target="#simple-operations"><span class="header-section-number">2.3.2</span> Simple operations</a></li>
-  <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="header-section-number">2.3.3</span> Attributes &amp; Methods</a></li>
+  <li><a href="#creating-a-pandas.series" id="toc-creating-a-pandas.series" class="nav-link" data-scroll-target="#creating-a-pandas.series"><span class="toc-section-number">2.3.1</span>  Creating a <code>pandas.Series</code></a></li>
+  <li><a href="#simple-operations" id="toc-simple-operations" class="nav-link" data-scroll-target="#simple-operations"><span class="toc-section-number">2.3.2</span>  Simple operations</a></li>
+  <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="toc-section-number">2.3.3</span>  Attributes &amp; Methods</a></li>
   </ul></li>
-  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">2.4</span> Data Frames</a>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="toc-section-number">2.4</span>  Data Frames</a>
   <ul class="collapse">
-  <li><a href="#creating-a-pandas.dataframe" id="toc-creating-a-pandas.dataframe" class="nav-link" data-scroll-target="#creating-a-pandas.dataframe"><span class="header-section-number">2.4.1</span> Creating a <code>pandas.DataFrame</code></a></li>
+  <li><a href="#creating-a-pandas.dataframe" id="toc-creating-a-pandas.dataframe" class="nav-link" data-scroll-target="#creating-a-pandas.dataframe"><span class="toc-section-number">2.4.1</span>  Creating a <code>pandas.DataFrame</code></a></li>
   </ul></li>
-  <li><a href="#subsetting-a-pandas.dataframe" id="toc-subsetting-a-pandas.dataframe" class="nav-link" data-scroll-target="#subsetting-a-pandas.dataframe"><span class="header-section-number">2.5</span> Subsetting a <code>pandas.DataFrame</code></a>
+  <li><a href="#subsetting-a-pandas.dataframe" id="toc-subsetting-a-pandas.dataframe" class="nav-link" data-scroll-target="#subsetting-a-pandas.dataframe"><span class="toc-section-number">2.5</span>  Subsetting a <code>pandas.DataFrame</code></a>
   <ul class="collapse">
-  <li><a href="#selecting-a-single-column" id="toc-selecting-a-single-column" class="nav-link" data-scroll-target="#selecting-a-single-column"><span class="header-section-number">2.5.1</span> Selecting a single column…</a></li>
-  <li><a href="#selecting-multiple-columns" id="toc-selecting-multiple-columns" class="nav-link" data-scroll-target="#selecting-multiple-columns"><span class="header-section-number">2.5.2</span> Selecting multiple columns…</a></li>
-  <li><a href="#selecting-rows" id="toc-selecting-rows" class="nav-link" data-scroll-target="#selecting-rows"><span class="header-section-number">2.5.3</span> Selecting rows…</a></li>
-  <li><a href="#selecting-rows-and-columns-simultaneously" id="toc-selecting-rows-and-columns-simultaneously" class="nav-link" data-scroll-target="#selecting-rows-and-columns-simultaneously"><span class="header-section-number">2.5.4</span> Selecting rows and columns simultaneously…</a></li>
-  <li><a href="#notes-about-loc-and-iloc" id="toc-notes-about-loc-and-iloc" class="nav-link" data-scroll-target="#notes-about-loc-and-iloc"><span class="header-section-number">2.5.5</span> Notes about <code>loc</code> and <code>iloc</code></a></li>
+  <li><a href="#selecting-a-single-column" id="toc-selecting-a-single-column" class="nav-link" data-scroll-target="#selecting-a-single-column"><span class="toc-section-number">2.5.1</span>  Selecting a single column…</a></li>
+  <li><a href="#selecting-multiple-columns" id="toc-selecting-multiple-columns" class="nav-link" data-scroll-target="#selecting-multiple-columns"><span class="toc-section-number">2.5.2</span>  Selecting multiple columns…</a></li>
+  <li><a href="#selecting-rows" id="toc-selecting-rows" class="nav-link" data-scroll-target="#selecting-rows"><span class="toc-section-number">2.5.3</span>  Selecting rows…</a></li>
+  <li><a href="#selecting-rows-and-columns-simultaneously" id="toc-selecting-rows-and-columns-simultaneously" class="nav-link" data-scroll-target="#selecting-rows-and-columns-simultaneously"><span class="toc-section-number">2.5.4</span>  Selecting rows and columns simultaneously…</a></li>
+  <li><a href="#notes-about-loc-and-iloc" id="toc-notes-about-loc-and-iloc" class="nav-link" data-scroll-target="#notes-about-loc-and-iloc"><span class="toc-section-number">2.5.5</span>  Notes about <code>loc</code> and <code>iloc</code></a></li>
   </ul></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">2.6</span> Resources</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">2.7</span> Acknowledgements</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">2.6</span>  Resources</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">2.7</span>  Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></h1>
 </div>
 
 
@@ -240,8 +256,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.getcwd()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>'/Users/galaz-garcia/Documents/eds-220-book'</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="109">
+<pre><code>'/Users/c_galazgarcia/eds-220-book'</code></pre>
 </div>
 </div>
 <section id="about" class="level2" data-number="2.1">
@@ -276,13 +292,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'numpy.ndarray'&gt;
-[ 0.55130267 -0.38950712 -1.50835146  1.01872105] 
+[ 1.29006588  0.60107937 -0.52572693 -0.33036333] 
 
 &lt;class 'pandas.core.series.Series'&gt;
-0    0.551303
-1   -0.389507
-2   -1.508351
-3    1.018721
+0    1.290066
+1    0.601079
+2   -0.525727
+3   -0.330363
 dtype: float64</code></pre>
 </div>
 </div>
@@ -301,7 +317,7 @@ dtype: float64</code></pre>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a Series from a numpy array </span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pd.Series(np.arange(<span class="dv">3</span>), index<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="112">
 <pre><code>a    0
 b    1
 c    2
@@ -312,7 +328,7 @@ dtype: int64</code></pre>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a Series from a list of strings with default index</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pd.Series([<span class="st">'EDS 220'</span>, <span class="st">'EDS 222'</span>, <span class="st">'EDS 223'</span>, <span class="st">'EDS 242'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>0    EDS 220
 1    EDS 222
 2    EDS 223
@@ -334,7 +350,7 @@ d = {'a':0, 'b':1, 'c':2}
 pd.Series(d)
 ```
 
-::: {.cell-output .cell-output-display execution_count=6}
+::: {.cell-output .cell-output-display execution_count=114}
 ```
 a    0
 b    1
@@ -353,7 +369,7 @@ If we only provide a number as the data for the series, we need to provide an in
 pd.Series(3.0, index = ['A', 'B', 'C'])
 ```
 
-::: {.cell-output .cell-output-display execution_count=7}
+::: {.cell-output .cell-output-display execution_count=115}
 ```
 A    3.0
 B    3.0
@@ -401,7 +417,7 @@ dtype: int64</code></pre>
 <p>We can also produce new <code>pandas.Series</code> with <code>True</code>/<code>False</code> values indicating whether the elements in a series satisfy a condition or not:</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">&gt;</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="117">
 <pre><code>Andrea      True
 Beth        True
 Carolina    True
@@ -423,14 +439,14 @@ dtype: bool</code></pre>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if series has NAs</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>s.hasnans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="119">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>Then we might be intersted in knowing which elements in the series are NAs. We can do this using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.isna.html"><code>isna</code> method</a>:</p>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>s.isna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="120">
 <pre><code>0    False
 1    False
 2     True
@@ -440,12 +456,12 @@ dtype: bool</code></pre>
 </div>
 </div>
 <p>We can see the ouput is a <code>pd.Series</code> of boolean values indicating if an element in the row at the given index is NA (<code>True</code> = is NA) or not (<code>False</code> = not NA).</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 moving on
 </div>
 </div>
@@ -473,7 +489,7 @@ x[2:5]
 ```
 :::
 
-::: {.cell-output .cell-output-display execution_count=13}
+::: {.cell-output .cell-output-display execution_count=121}
 ```
 [2, 3, 4]
 ```
@@ -497,7 +513,7 @@ y[2:5]
 ```
 :::
 
-::: {.cell-output .cell-output-display execution_count=14}
+::: {.cell-output .cell-output-display execution_count=122}
 ```
 array([2, 3, 4])
 ```
@@ -530,7 +546,7 @@ dtype: int64
 ```
 :::
 
-::: {.cell-output .cell-output-display execution_count=15}
+::: {.cell-output .cell-output-display execution_count=123}
 ```
 2    2
 3    3
@@ -565,37 +581,36 @@ Although we likely won't be creating data frames from scratch often, I'd like to
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(d)</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="124">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">col_name_1</th>
-<th data-quarto-table-cell-role="th">col_name_2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>0</td>
-<td>3.1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1</td>
-<td>3.2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>2</td>
-<td>3.3</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>col_name_1</th>
+      <th>col_name_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3.3</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -610,37 +625,36 @@ Although we likely won't be creating data frames from scratch often, I'd like to
 <div class="cell-output cell-output-stdout">
 <pre><code>RangeIndex(start=0, stop=3, step=1)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="125">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">col_name_1</th>
-<th data-quarto-table-cell-role="th">col_name_2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">a</td>
-<td>0</td>
-<td>3.1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">b</td>
-<td>1</td>
-<td>3.2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">c</td>
-<td>2</td>
-<td>3.3</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>col_name_1</th>
+      <th>col_name_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>0</td>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>1</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>2</td>
+      <td>3.3</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -654,37 +668,36 @@ Although we likely won't be creating data frames from scratch often, I'd like to
 <div class="cell-output cell-output-stdout">
 <pre><code>Index(['col_name_1', 'col_name_2'], dtype='object')</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="126">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C1</th>
-<th data-quarto-table-cell-role="th">C2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">a</td>
-<td>0</td>
-<td>3.1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">b</td>
-<td>1</td>
-<td>3.2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">c</td>
-<td>2</td>
-<td>3.3</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>C1</th>
+      <th>C2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>0</td>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>1</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>2</td>
+      <td>3.3</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -714,108 +727,107 @@ There are two ways to subset data in a Data Frame: by position and by label.
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># see the first five rows</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="127">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-<th data-quarto-table-cell-role="th">global_glacial_volume_change</th>
-<th data-quarto-table-cell-role="th">annual_sea_level_rise</th>
-<th data-quarto-table-cell-role="th">cumulative_sea_level_rise</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1961</td>
-<td>-5.128903</td>
-<td>-108.382987</td>
-<td>-18.721190</td>
-<td>-32.350759</td>
-<td>-14.359007</td>
-<td>-4.739367</td>
-<td>-35.116389</td>
-<td>-220.823515</td>
-<td>0.610010</td>
-<td>0.610010</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1962</td>
-<td>5.576282</td>
-<td>-173.252450</td>
-<td>-24.324790</td>
-<td>-4.675440</td>
-<td>-2.161842</td>
-<td>-13.694367</td>
-<td>-78.222887</td>
-<td>-514.269862</td>
-<td>0.810625</td>
-<td>1.420635</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1963</td>
-<td>-10.123105</td>
-<td>-0.423751</td>
-<td>-2.047567</td>
-<td>-3.027298</td>
-<td>-27.535881</td>
-<td>3.419633</td>
-<td>3.765109</td>
-<td>-550.575640</td>
-<td>0.100292</td>
-<td>1.520927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1964</td>
-<td>-4.508358</td>
-<td>20.070148</td>
-<td>0.477800</td>
-<td>-18.675385</td>
-<td>-2.248286</td>
-<td>20.732633</td>
-<td>14.853096</td>
-<td>-519.589859</td>
-<td>-0.085596</td>
-<td>1.435331</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1965</td>
-<td>10.629385</td>
-<td>43.695389</td>
-<td>-0.115332</td>
-<td>-18.414602</td>
-<td>-19.398765</td>
-<td>6.862102</td>
-<td>22.793484</td>
-<td>-473.112003</td>
-<td>-0.128392</td>
-<td>1.306939</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+      <th>global_glacial_volume_change</th>
+      <th>annual_sea_level_rise</th>
+      <th>cumulative_sea_level_rise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1961</td>
+      <td>-5.128903</td>
+      <td>-108.382987</td>
+      <td>-18.721190</td>
+      <td>-32.350759</td>
+      <td>-14.359007</td>
+      <td>-4.739367</td>
+      <td>-35.116389</td>
+      <td>-220.823515</td>
+      <td>0.610010</td>
+      <td>0.610010</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1962</td>
+      <td>5.576282</td>
+      <td>-173.252450</td>
+      <td>-24.324790</td>
+      <td>-4.675440</td>
+      <td>-2.161842</td>
+      <td>-13.694367</td>
+      <td>-78.222887</td>
+      <td>-514.269862</td>
+      <td>0.810625</td>
+      <td>1.420635</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1963</td>
+      <td>-10.123105</td>
+      <td>-0.423751</td>
+      <td>-2.047567</td>
+      <td>-3.027298</td>
+      <td>-27.535881</td>
+      <td>3.419633</td>
+      <td>3.765109</td>
+      <td>-550.575640</td>
+      <td>0.100292</td>
+      <td>1.520927</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1964</td>
+      <td>-4.508358</td>
+      <td>20.070148</td>
+      <td>0.477800</td>
+      <td>-18.675385</td>
+      <td>-2.248286</td>
+      <td>20.732633</td>
+      <td>14.853096</td>
+      <td>-519.589859</td>
+      <td>-0.085596</td>
+      <td>1.435331</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1965</td>
+      <td>10.629385</td>
+      <td>43.695389</td>
+      <td>-0.115332</td>
+      <td>-18.414602</td>
+      <td>-19.398765</td>
+      <td>6.862102</td>
+      <td>22.793484</td>
+      <td>-473.112003</td>
+      <td>-0.128392</td>
+      <td>1.306939</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get column names</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>Index(['year', 'europe', 'arctic', 'alaska', 'asia', 'north_america',
        'south_america', 'antarctica', 'global_glacial_volume_change',
        'annual_sea_level_rise', 'cumulative_sea_level_rise'],
@@ -825,7 +837,7 @@ There are two ways to subset data in a Data Frame: by position and by label.
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the data types of each column</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="129">
 <pre><code>year                              int64
 europe                          float64
 arctic                          float64
@@ -843,7 +855,7 @@ dtype: object</code></pre>
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame's shape: output is a tuple (# rows, # columns)</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="130">
 <pre><code>(43, 11)</code></pre>
 </div>
 </div>
@@ -863,7 +875,7 @@ dtype: object</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="131">
 <pre><code>0    0.610010
 1    0.810625
 2    0.100292
@@ -873,12 +885,12 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </div>
 </div>
 <p>Since we only selected a single column the output is a <code>pandas.Series</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 <code>pd.DataFrame</code> = dictionary of columns
 </div>
 </div>
@@ -894,7 +906,7 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>annual_rise_2 <span class="op">=</span> df.annual_sea_level_rise</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>annual_rise_2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="132">
 <pre><code>0    0.610010
 1    0.810625
 2    0.100292
@@ -937,71 +949,70 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select all columns between 'arctic' and 'antarctica'</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>all_regions <span class="op">=</span> df.loc[:,<span class="st">'arctic'</span>:<span class="st">'antarctica'</span>]</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>all_regions.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="135">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>-108.382987</td>
-<td>-18.721190</td>
-<td>-32.350759</td>
-<td>-14.359007</td>
-<td>-4.739367</td>
-<td>-35.116389</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>-173.252450</td>
-<td>-24.324790</td>
-<td>-4.675440</td>
-<td>-2.161842</td>
-<td>-13.694367</td>
-<td>-78.222887</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>-0.423751</td>
-<td>-2.047567</td>
-<td>-3.027298</td>
-<td>-27.535881</td>
-<td>3.419633</td>
-<td>3.765109</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>20.070148</td>
-<td>0.477800</td>
-<td>-18.675385</td>
-<td>-2.248286</td>
-<td>20.732633</td>
-<td>14.853096</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>43.695389</td>
-<td>-0.115332</td>
-<td>-18.414602</td>
-<td>-19.398765</td>
-<td>6.862102</td>
-<td>22.793484</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-108.382987</td>
+      <td>-18.721190</td>
+      <td>-32.350759</td>
+      <td>-14.359007</td>
+      <td>-4.739367</td>
+      <td>-35.116389</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-173.252450</td>
+      <td>-24.324790</td>
+      <td>-4.675440</td>
+      <td>-2.161842</td>
+      <td>-13.694367</td>
+      <td>-78.222887</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.423751</td>
+      <td>-2.047567</td>
+      <td>-3.027298</td>
+      <td>-27.535881</td>
+      <td>3.419633</td>
+      <td>3.765109</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20.070148</td>
+      <td>0.477800</td>
+      <td>-18.675385</td>
+      <td>-2.248286</td>
+      <td>20.732633</td>
+      <td>14.853096</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>43.695389</td>
+      <td>-0.115332</td>
+      <td>-18.414602</td>
+      <td>-19.398765</td>
+      <td>6.862102</td>
+      <td>22.793484</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1022,129 +1033,128 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select all rows with year &gt; 1996</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>after_96 <span class="op">=</span> df[df[<span class="st">'year'</span>]<span class="op">&gt;</span><span class="dv">1996</span>]</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>after_96</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="136">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-<th data-quarto-table-cell-role="th">global_glacial_volume_change</th>
-<th data-quarto-table-cell-role="th">annual_sea_level_rise</th>
-<th data-quarto-table-cell-role="th">cumulative_sea_level_rise</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">36</td>
-<td>1997</td>
-<td>-13.724106</td>
-<td>-24.832246</td>
-<td>-167.229145</td>
-<td>-34.406403</td>
-<td>-27.680661</td>
-<td>-38.213286</td>
-<td>-20.179090</td>
-<td>-4600.686013</td>
-<td>0.909625</td>
-<td>12.709077</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">37</td>
-<td>1998</td>
-<td>-13.083338</td>
-<td>-110.429302</td>
-<td>-107.879027</td>
-<td>-58.115702</td>
-<td>30.169987</td>
-<td>-3.797978</td>
-<td>-48.129928</td>
-<td>-4914.831966</td>
-<td>0.867807</td>
-<td>13.576884</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">38</td>
-<td>1999</td>
-<td>-8.039555</td>
-<td>-64.644068</td>
-<td>-87.714653</td>
-<td>-26.211723</td>
-<td>5.888512</td>
-<td>-8.038630</td>
-<td>-40.653001</td>
-<td>-5146.368231</td>
-<td>0.639603</td>
-<td>14.216487</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">39</td>
-<td>2000</td>
-<td>-17.008590</td>
-<td>-96.494055</td>
-<td>-44.445000</td>
-<td>-37.518173</td>
-<td>-29.191986</td>
-<td>-2.767698</td>
-<td>-58.873830</td>
-<td>-5435.317175</td>
-<td>0.798202</td>
-<td>15.014688</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">40</td>
-<td>2001</td>
-<td>-8.419109</td>
-<td>-145.415483</td>
-<td>-55.749505</td>
-<td>-35.977022</td>
-<td>-0.926134</td>
-<td>7.553503</td>
-<td>-86.774675</td>
-<td>-5764.039931</td>
-<td>0.908074</td>
-<td>15.922762</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">41</td>
-<td>2002</td>
-<td>-3.392361</td>
-<td>-48.718943</td>
-<td>-87.120000</td>
-<td>-36.127226</td>
-<td>-27.853498</td>
-<td>-13.484593</td>
-<td>-30.203960</td>
-<td>-6013.225500</td>
-<td>0.688358</td>
-<td>16.611120</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">42</td>
-<td>2003</td>
-<td>-3.392361</td>
-<td>-48.718943</td>
-<td>-67.253634</td>
-<td>-36.021991</td>
-<td>-75.066475</td>
-<td>-13.223430</td>
-<td>-30.203960</td>
-<td>-6289.640976</td>
-<td>0.763579</td>
-<td>17.374699</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+      <th>global_glacial_volume_change</th>
+      <th>annual_sea_level_rise</th>
+      <th>cumulative_sea_level_rise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>36</th>
+      <td>1997</td>
+      <td>-13.724106</td>
+      <td>-24.832246</td>
+      <td>-167.229145</td>
+      <td>-34.406403</td>
+      <td>-27.680661</td>
+      <td>-38.213286</td>
+      <td>-20.179090</td>
+      <td>-4600.686013</td>
+      <td>0.909625</td>
+      <td>12.709077</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>1998</td>
+      <td>-13.083338</td>
+      <td>-110.429302</td>
+      <td>-107.879027</td>
+      <td>-58.115702</td>
+      <td>30.169987</td>
+      <td>-3.797978</td>
+      <td>-48.129928</td>
+      <td>-4914.831966</td>
+      <td>0.867807</td>
+      <td>13.576884</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>1999</td>
+      <td>-8.039555</td>
+      <td>-64.644068</td>
+      <td>-87.714653</td>
+      <td>-26.211723</td>
+      <td>5.888512</td>
+      <td>-8.038630</td>
+      <td>-40.653001</td>
+      <td>-5146.368231</td>
+      <td>0.639603</td>
+      <td>14.216487</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2000</td>
+      <td>-17.008590</td>
+      <td>-96.494055</td>
+      <td>-44.445000</td>
+      <td>-37.518173</td>
+      <td>-29.191986</td>
+      <td>-2.767698</td>
+      <td>-58.873830</td>
+      <td>-5435.317175</td>
+      <td>0.798202</td>
+      <td>15.014688</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>2001</td>
+      <td>-8.419109</td>
+      <td>-145.415483</td>
+      <td>-55.749505</td>
+      <td>-35.977022</td>
+      <td>-0.926134</td>
+      <td>7.553503</td>
+      <td>-86.774675</td>
+      <td>-5764.039931</td>
+      <td>0.908074</td>
+      <td>15.922762</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2002</td>
+      <td>-3.392361</td>
+      <td>-48.718943</td>
+      <td>-87.120000</td>
+      <td>-36.127226</td>
+      <td>-27.853498</td>
+      <td>-13.484593</td>
+      <td>-30.203960</td>
+      <td>-6013.225500</td>
+      <td>0.688358</td>
+      <td>16.611120</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2003</td>
+      <td>-3.392361</td>
+      <td>-48.718943</td>
+      <td>-67.253634</td>
+      <td>-36.021991</td>
+      <td>-75.066475</td>
+      <td>-13.223430</td>
+      <td>-30.203960</td>
+      <td>-6289.640976</td>
+      <td>0.763579</td>
+      <td>17.374699</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1157,7 +1167,7 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="137">
 <pre><code>0     False
 1     False
 2     False
@@ -1209,171 +1219,170 @@ Name: year, dtype: bool</code></pre>
 <div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>seventies <span class="op">=</span> df[df[<span class="st">'year'</span>].isin(<span class="bu">range</span>(<span class="dv">1970</span>,<span class="dv">1980</span>))]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>seventies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="138">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-<th data-quarto-table-cell-role="th">global_glacial_volume_change</th>
-<th data-quarto-table-cell-role="th">annual_sea_level_rise</th>
-<th data-quarto-table-cell-role="th">cumulative_sea_level_rise</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">9</td>
-<td>1970</td>
-<td>-6.452316</td>
-<td>-24.494667</td>
-<td>-0.125296</td>
-<td>-36.120199</td>
-<td>11.619790</td>
-<td>11.636911</td>
-<td>4.400377</td>
-<td>-999.018177</td>
-<td>0.110225</td>
-<td>2.759719</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">10</td>
-<td>1971</td>
-<td>0.414711</td>
-<td>-42.904189</td>
-<td>28.103328</td>
-<td>-8.702938</td>
-<td>-9.964542</td>
-<td>1.061299</td>
-<td>-6.735536</td>
-<td>-1038.104459</td>
-<td>0.107973</td>
-<td>2.867692</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">11</td>
-<td>1972</td>
-<td>-5.144729</td>
-<td>-27.004031</td>
-<td>-22.143350</td>
-<td>-40.883357</td>
-<td>32.363730</td>
-<td>-14.968034</td>
-<td>-6.223849</td>
-<td>-1122.885506</td>
-<td>0.234202</td>
-<td>3.101894</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">12</td>
-<td>1973</td>
-<td>4.081090</td>
-<td>9.839444</td>
-<td>22.985188</td>
-<td>-31.432594</td>
-<td>-20.883232</td>
-<td>2.103649</td>
-<td>10.539823</td>
-<td>-1125.677743</td>
-<td>0.007713</td>
-<td>3.109607</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">13</td>
-<td>1974</td>
-<td>1.545615</td>
-<td>-40.126998</td>
-<td>-29.517874</td>
-<td>-43.861622</td>
-<td>-23.991402</td>
-<td>-21.338825</td>
-<td>4.419343</td>
-<td>-1279.964287</td>
-<td>0.426206</td>
-<td>3.535813</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">14</td>
-<td>1975</td>
-<td>7.431192</td>
-<td>-32.410467</td>
-<td>-44.094084</td>
-<td>-43.357442</td>
-<td>-30.858810</td>
-<td>-2.368842</td>
-<td>-7.775315</td>
-<td>-1434.818037</td>
-<td>0.427773</td>
-<td>3.963586</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">15</td>
-<td>1976</td>
-<td>3.986753</td>
-<td>21.686639</td>
-<td>-28.234725</td>
-<td>-67.292125</td>
-<td>-12.534421</td>
-<td>-19.465358</td>
-<td>19.250607</td>
-<td>-1518.185129</td>
-<td>0.230296</td>
-<td>4.193882</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">16</td>
-<td>1977</td>
-<td>4.891410</td>
-<td>-33.123010</td>
-<td>-5.662139</td>
-<td>-62.165684</td>
-<td>-15.905332</td>
-<td>2.654950</td>
-<td>-23.727249</td>
-<td>-1652.453400</td>
-<td>0.370907</td>
-<td>4.564788</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">17</td>
-<td>1978</td>
-<td>8.404591</td>
-<td>-77.561015</td>
-<td>-12.503384</td>
-<td>-22.858040</td>
-<td>-31.097609</td>
-<td>7.127708</td>
-<td>-9.140167</td>
-<td>-1791.355022</td>
-<td>0.383706</td>
-<td>4.948495</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">18</td>
-<td>1979</td>
-<td>3.916703</td>
-<td>-88.351684</td>
-<td>-63.938851</td>
-<td>-49.242043</td>
-<td>-12.076624</td>
-<td>-17.718503</td>
-<td>-9.578557</td>
-<td>-2030.537848</td>
-<td>0.660726</td>
-<td>5.609221</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+      <th>global_glacial_volume_change</th>
+      <th>annual_sea_level_rise</th>
+      <th>cumulative_sea_level_rise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>1970</td>
+      <td>-6.452316</td>
+      <td>-24.494667</td>
+      <td>-0.125296</td>
+      <td>-36.120199</td>
+      <td>11.619790</td>
+      <td>11.636911</td>
+      <td>4.400377</td>
+      <td>-999.018177</td>
+      <td>0.110225</td>
+      <td>2.759719</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1971</td>
+      <td>0.414711</td>
+      <td>-42.904189</td>
+      <td>28.103328</td>
+      <td>-8.702938</td>
+      <td>-9.964542</td>
+      <td>1.061299</td>
+      <td>-6.735536</td>
+      <td>-1038.104459</td>
+      <td>0.107973</td>
+      <td>2.867692</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1972</td>
+      <td>-5.144729</td>
+      <td>-27.004031</td>
+      <td>-22.143350</td>
+      <td>-40.883357</td>
+      <td>32.363730</td>
+      <td>-14.968034</td>
+      <td>-6.223849</td>
+      <td>-1122.885506</td>
+      <td>0.234202</td>
+      <td>3.101894</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1973</td>
+      <td>4.081090</td>
+      <td>9.839444</td>
+      <td>22.985188</td>
+      <td>-31.432594</td>
+      <td>-20.883232</td>
+      <td>2.103649</td>
+      <td>10.539823</td>
+      <td>-1125.677743</td>
+      <td>0.007713</td>
+      <td>3.109607</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1974</td>
+      <td>1.545615</td>
+      <td>-40.126998</td>
+      <td>-29.517874</td>
+      <td>-43.861622</td>
+      <td>-23.991402</td>
+      <td>-21.338825</td>
+      <td>4.419343</td>
+      <td>-1279.964287</td>
+      <td>0.426206</td>
+      <td>3.535813</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1975</td>
+      <td>7.431192</td>
+      <td>-32.410467</td>
+      <td>-44.094084</td>
+      <td>-43.357442</td>
+      <td>-30.858810</td>
+      <td>-2.368842</td>
+      <td>-7.775315</td>
+      <td>-1434.818037</td>
+      <td>0.427773</td>
+      <td>3.963586</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1976</td>
+      <td>3.986753</td>
+      <td>21.686639</td>
+      <td>-28.234725</td>
+      <td>-67.292125</td>
+      <td>-12.534421</td>
+      <td>-19.465358</td>
+      <td>19.250607</td>
+      <td>-1518.185129</td>
+      <td>0.230296</td>
+      <td>4.193882</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1977</td>
+      <td>4.891410</td>
+      <td>-33.123010</td>
+      <td>-5.662139</td>
+      <td>-62.165684</td>
+      <td>-15.905332</td>
+      <td>2.654950</td>
+      <td>-23.727249</td>
+      <td>-1652.453400</td>
+      <td>0.370907</td>
+      <td>4.564788</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1978</td>
+      <td>8.404591</td>
+      <td>-77.561015</td>
+      <td>-12.503384</td>
+      <td>-22.858040</td>
+      <td>-31.097609</td>
+      <td>7.127708</td>
+      <td>-9.140167</td>
+      <td>-1791.355022</td>
+      <td>0.383706</td>
+      <td>4.948495</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1979</td>
+      <td>3.916703</td>
+      <td>-88.351684</td>
+      <td>-63.938851</td>
+      <td>-49.242043</td>
+      <td>-12.076624</td>
+      <td>-17.718503</td>
+      <td>-9.578557</td>
+      <td>-2030.537848</td>
+      <td>0.660726</td>
+      <td>5.609221</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1385,12 +1394,12 @@ Name: year, dtype: bool</code></pre>
 <li><p><code>df['year'].isin(range(1970,1980))</code> is then a <code>pandas.Series</code> of boolean values indicating which rows have year equal to 1970, …, 1979.</p></li>
 <li><p>when we put <code>df['year'].isin(range(1970,1980))</code> inside the selection brackets <code>[]</code> we obtain the rows of the data frame with year equal to 1970, …, 1979.</p></li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 <code>loc</code> for row selection
 </div>
 </div>
@@ -1421,101 +1430,100 @@ Name: year, dtype: bool</code></pre>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>df[ (df[<span class="st">'annual_sea_level_rise'</span>]<span class="op">&lt;</span><span class="fl">0.5</span>) <span class="op">|</span> (df[<span class="st">'annual_sea_level_rise'</span>]<span class="op">&gt;</span><span class="fl">0.8</span>)]</span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="139">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-<th data-quarto-table-cell-role="th">global_glacial_volume_change</th>
-<th data-quarto-table-cell-role="th">annual_sea_level_rise</th>
-<th data-quarto-table-cell-role="th">cumulative_sea_level_rise</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1961</td>
-<td>-5.128903</td>
-<td>-108.382987</td>
-<td>-18.721190</td>
-<td>-32.350759</td>
-<td>-14.359007</td>
-<td>-4.739367</td>
-<td>-35.116389</td>
-<td>-220.823515</td>
-<td>0.610010</td>
-<td>0.610010</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1962</td>
-<td>5.576282</td>
-<td>-173.252450</td>
-<td>-24.324790</td>
-<td>-4.675440</td>
-<td>-2.161842</td>
-<td>-13.694367</td>
-<td>-78.222887</td>
-<td>-514.269862</td>
-<td>0.810625</td>
-<td>1.420635</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1963</td>
-<td>-10.123105</td>
-<td>-0.423751</td>
-<td>-2.047567</td>
-<td>-3.027298</td>
-<td>-27.535881</td>
-<td>3.419633</td>
-<td>3.765109</td>
-<td>-550.575640</td>
-<td>0.100292</td>
-<td>1.520927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1964</td>
-<td>-4.508358</td>
-<td>20.070148</td>
-<td>0.477800</td>
-<td>-18.675385</td>
-<td>-2.248286</td>
-<td>20.732633</td>
-<td>14.853096</td>
-<td>-519.589859</td>
-<td>-0.085596</td>
-<td>1.435331</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1965</td>
-<td>10.629385</td>
-<td>43.695389</td>
-<td>-0.115332</td>
-<td>-18.414602</td>
-<td>-19.398765</td>
-<td>6.862102</td>
-<td>22.793484</td>
-<td>-473.112003</td>
-<td>-0.128392</td>
-<td>1.306939</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+      <th>global_glacial_volume_change</th>
+      <th>annual_sea_level_rise</th>
+      <th>cumulative_sea_level_rise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1961</td>
+      <td>-5.128903</td>
+      <td>-108.382987</td>
+      <td>-18.721190</td>
+      <td>-32.350759</td>
+      <td>-14.359007</td>
+      <td>-4.739367</td>
+      <td>-35.116389</td>
+      <td>-220.823515</td>
+      <td>0.610010</td>
+      <td>0.610010</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1962</td>
+      <td>5.576282</td>
+      <td>-173.252450</td>
+      <td>-24.324790</td>
+      <td>-4.675440</td>
+      <td>-2.161842</td>
+      <td>-13.694367</td>
+      <td>-78.222887</td>
+      <td>-514.269862</td>
+      <td>0.810625</td>
+      <td>1.420635</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1963</td>
+      <td>-10.123105</td>
+      <td>-0.423751</td>
+      <td>-2.047567</td>
+      <td>-3.027298</td>
+      <td>-27.535881</td>
+      <td>3.419633</td>
+      <td>3.765109</td>
+      <td>-550.575640</td>
+      <td>0.100292</td>
+      <td>1.520927</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1964</td>
+      <td>-4.508358</td>
+      <td>20.070148</td>
+      <td>0.477800</td>
+      <td>-18.675385</td>
+      <td>-2.248286</td>
+      <td>20.732633</td>
+      <td>14.853096</td>
+      <td>-519.589859</td>
+      <td>-0.085596</td>
+      <td>1.435331</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1965</td>
+      <td>10.629385</td>
+      <td>43.695389</td>
+      <td>-0.115332</td>
+      <td>-18.414602</td>
+      <td>-19.398765</td>
+      <td>6.862102</td>
+      <td>22.793484</td>
+      <td>-473.112003</td>
+      <td>-0.128392</td>
+      <td>1.306939</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1523,185 +1531,184 @@ Name: year, dtype: bool</code></pre>
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select rows with cumulative_sea_level_rise&gt;10 AND  global_glacial_volume_change&lt;-300</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>df[ (df[<span class="st">'cumulative_sea_level_rise'</span>]<span class="op">&gt;</span><span class="dv">10</span>) <span class="op">&amp;</span> (df[<span class="st">'global_glacial_volume_change'</span>]<span class="op">&lt;-</span><span class="dv">300</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="140">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-<th data-quarto-table-cell-role="th">global_glacial_volume_change</th>
-<th data-quarto-table-cell-role="th">annual_sea_level_rise</th>
-<th data-quarto-table-cell-role="th">cumulative_sea_level_rise</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">32</td>
-<td>1993</td>
-<td>16.685013</td>
-<td>-73.666274</td>
-<td>-43.702040</td>
-<td>-65.995130</td>
-<td>-33.151246</td>
-<td>-20.578403</td>
-<td>-20.311577</td>
-<td>-3672.582082</td>
-<td>0.671126</td>
-<td>10.145254</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">33</td>
-<td>1994</td>
-<td>0.741751</td>
-<td>-3.069084</td>
-<td>-59.962273</td>
-<td>-59.004710</td>
-<td>-89.506142</td>
-<td>-15.258449</td>
-<td>-8.168498</td>
-<td>-3908.977191</td>
-<td>0.653025</td>
-<td>10.798280</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">34</td>
-<td>1995</td>
-<td>-2.139665</td>
-<td>-58.167778</td>
-<td>-74.141762</td>
-<td>3.500155</td>
-<td>-0.699374</td>
-<td>-19.863392</td>
-<td>-25.951496</td>
-<td>-4088.082873</td>
-<td>0.494767</td>
-<td>11.293047</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">35</td>
-<td>1996</td>
-<td>-6.809834</td>
-<td>-4.550205</td>
-<td>-74.847017</td>
-<td>-67.436591</td>
-<td>4.867530</td>
-<td>-21.080115</td>
-<td>-11.781489</td>
-<td>-4271.401594</td>
-<td>0.506405</td>
-<td>11.799452</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">36</td>
-<td>1997</td>
-<td>-13.724106</td>
-<td>-24.832246</td>
-<td>-167.229145</td>
-<td>-34.406403</td>
-<td>-27.680661</td>
-<td>-38.213286</td>
-<td>-20.179090</td>
-<td>-4600.686013</td>
-<td>0.909625</td>
-<td>12.709077</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">37</td>
-<td>1998</td>
-<td>-13.083338</td>
-<td>-110.429302</td>
-<td>-107.879027</td>
-<td>-58.115702</td>
-<td>30.169987</td>
-<td>-3.797978</td>
-<td>-48.129928</td>
-<td>-4914.831966</td>
-<td>0.867807</td>
-<td>13.576884</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">38</td>
-<td>1999</td>
-<td>-8.039555</td>
-<td>-64.644068</td>
-<td>-87.714653</td>
-<td>-26.211723</td>
-<td>5.888512</td>
-<td>-8.038630</td>
-<td>-40.653001</td>
-<td>-5146.368231</td>
-<td>0.639603</td>
-<td>14.216487</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">39</td>
-<td>2000</td>
-<td>-17.008590</td>
-<td>-96.494055</td>
-<td>-44.445000</td>
-<td>-37.518173</td>
-<td>-29.191986</td>
-<td>-2.767698</td>
-<td>-58.873830</td>
-<td>-5435.317175</td>
-<td>0.798202</td>
-<td>15.014688</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">40</td>
-<td>2001</td>
-<td>-8.419109</td>
-<td>-145.415483</td>
-<td>-55.749505</td>
-<td>-35.977022</td>
-<td>-0.926134</td>
-<td>7.553503</td>
-<td>-86.774675</td>
-<td>-5764.039931</td>
-<td>0.908074</td>
-<td>15.922762</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">41</td>
-<td>2002</td>
-<td>-3.392361</td>
-<td>-48.718943</td>
-<td>-87.120000</td>
-<td>-36.127226</td>
-<td>-27.853498</td>
-<td>-13.484593</td>
-<td>-30.203960</td>
-<td>-6013.225500</td>
-<td>0.688358</td>
-<td>16.611120</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">42</td>
-<td>2003</td>
-<td>-3.392361</td>
-<td>-48.718943</td>
-<td>-67.253634</td>
-<td>-36.021991</td>
-<td>-75.066475</td>
-<td>-13.223430</td>
-<td>-30.203960</td>
-<td>-6289.640976</td>
-<td>0.763579</td>
-<td>17.374699</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+      <th>global_glacial_volume_change</th>
+      <th>annual_sea_level_rise</th>
+      <th>cumulative_sea_level_rise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>32</th>
+      <td>1993</td>
+      <td>16.685013</td>
+      <td>-73.666274</td>
+      <td>-43.702040</td>
+      <td>-65.995130</td>
+      <td>-33.151246</td>
+      <td>-20.578403</td>
+      <td>-20.311577</td>
+      <td>-3672.582082</td>
+      <td>0.671126</td>
+      <td>10.145254</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>1994</td>
+      <td>0.741751</td>
+      <td>-3.069084</td>
+      <td>-59.962273</td>
+      <td>-59.004710</td>
+      <td>-89.506142</td>
+      <td>-15.258449</td>
+      <td>-8.168498</td>
+      <td>-3908.977191</td>
+      <td>0.653025</td>
+      <td>10.798280</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>1995</td>
+      <td>-2.139665</td>
+      <td>-58.167778</td>
+      <td>-74.141762</td>
+      <td>3.500155</td>
+      <td>-0.699374</td>
+      <td>-19.863392</td>
+      <td>-25.951496</td>
+      <td>-4088.082873</td>
+      <td>0.494767</td>
+      <td>11.293047</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>1996</td>
+      <td>-6.809834</td>
+      <td>-4.550205</td>
+      <td>-74.847017</td>
+      <td>-67.436591</td>
+      <td>4.867530</td>
+      <td>-21.080115</td>
+      <td>-11.781489</td>
+      <td>-4271.401594</td>
+      <td>0.506405</td>
+      <td>11.799452</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>1997</td>
+      <td>-13.724106</td>
+      <td>-24.832246</td>
+      <td>-167.229145</td>
+      <td>-34.406403</td>
+      <td>-27.680661</td>
+      <td>-38.213286</td>
+      <td>-20.179090</td>
+      <td>-4600.686013</td>
+      <td>0.909625</td>
+      <td>12.709077</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>1998</td>
+      <td>-13.083338</td>
+      <td>-110.429302</td>
+      <td>-107.879027</td>
+      <td>-58.115702</td>
+      <td>30.169987</td>
+      <td>-3.797978</td>
+      <td>-48.129928</td>
+      <td>-4914.831966</td>
+      <td>0.867807</td>
+      <td>13.576884</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>1999</td>
+      <td>-8.039555</td>
+      <td>-64.644068</td>
+      <td>-87.714653</td>
+      <td>-26.211723</td>
+      <td>5.888512</td>
+      <td>-8.038630</td>
+      <td>-40.653001</td>
+      <td>-5146.368231</td>
+      <td>0.639603</td>
+      <td>14.216487</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2000</td>
+      <td>-17.008590</td>
+      <td>-96.494055</td>
+      <td>-44.445000</td>
+      <td>-37.518173</td>
+      <td>-29.191986</td>
+      <td>-2.767698</td>
+      <td>-58.873830</td>
+      <td>-5435.317175</td>
+      <td>0.798202</td>
+      <td>15.014688</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>2001</td>
+      <td>-8.419109</td>
+      <td>-145.415483</td>
+      <td>-55.749505</td>
+      <td>-35.977022</td>
+      <td>-0.926134</td>
+      <td>7.553503</td>
+      <td>-86.774675</td>
+      <td>-5764.039931</td>
+      <td>0.908074</td>
+      <td>15.922762</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2002</td>
+      <td>-3.392361</td>
+      <td>-48.718943</td>
+      <td>-87.120000</td>
+      <td>-36.127226</td>
+      <td>-27.853498</td>
+      <td>-13.484593</td>
+      <td>-30.203960</td>
+      <td>-6013.225500</td>
+      <td>0.688358</td>
+      <td>16.611120</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2003</td>
+      <td>-3.392361</td>
+      <td>-48.718943</td>
+      <td>-67.253634</td>
+      <td>-36.021991</td>
+      <td>-75.066475</td>
+      <td>-13.223430</td>
+      <td>-30.203960</td>
+      <td>-6289.640976</td>
+      <td>0.763579</td>
+      <td>17.374699</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1712,7 +1719,7 @@ Name: year, dtype: bool</code></pre>
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the fifht row = index 4</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="141">
 <pre><code>year                            1965.000000
 europe                            10.629385
 arctic                            43.695389
@@ -1730,143 +1737,142 @@ Name: 4, dtype: float64</code></pre>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select rows 23 through 30, inclduing 30</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">23</span>:<span class="dv">31</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="142">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-<th data-quarto-table-cell-role="th">arctic</th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-<th data-quarto-table-cell-role="th">north_america</th>
-<th data-quarto-table-cell-role="th">south_america</th>
-<th data-quarto-table-cell-role="th">antarctica</th>
-<th data-quarto-table-cell-role="th">global_glacial_volume_change</th>
-<th data-quarto-table-cell-role="th">annual_sea_level_rise</th>
-<th data-quarto-table-cell-role="th">cumulative_sea_level_rise</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">23</td>
-<td>1984</td>
-<td>8.581427</td>
-<td>-5.755672</td>
-<td>-33.466092</td>
-<td>-20.528535</td>
-<td>-20.734676</td>
-<td>-8.267686</td>
-<td>-3.261011</td>
-<td>-2569.339802</td>
-<td>0.232609</td>
-<td>7.097624</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">24</td>
-<td>1985</td>
-<td>-5.970980</td>
-<td>-49.651089</td>
-<td>12.065473</td>
-<td>-31.571622</td>
-<td>-33.833985</td>
-<td>10.072906</td>
-<td>-13.587886</td>
-<td>-2682.857926</td>
-<td>0.313586</td>
-<td>7.411210</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">25</td>
-<td>1986</td>
-<td>-5.680642</td>
-<td>22.900847</td>
-<td>7.557447</td>
-<td>-18.920773</td>
-<td>-33.014743</td>
-<td>-4.652030</td>
-<td>30.482473</td>
-<td>-2684.197632</td>
-<td>0.003701</td>
-<td>7.414911</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">26</td>
-<td>1987</td>
-<td>8.191477</td>
-<td>12.387780</td>
-<td>-24.007862</td>
-<td>-41.121970</td>
-<td>-48.560996</td>
-<td>1.670733</td>
-<td>3.130190</td>
-<td>-2773.325568</td>
-<td>0.246210</td>
-<td>7.661120</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">27</td>
-<td>1988</td>
-<td>-11.117228</td>
-<td>-31.066489</td>
-<td>49.897712</td>
-<td>-21.300712</td>
-<td>-46.545435</td>
-<td>13.460422</td>
-<td>-37.986834</td>
-<td>-2858.767621</td>
-<td>0.236028</td>
-<td>7.897148</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">28</td>
-<td>1989</td>
-<td>14.863220</td>
-<td>-23.462392</td>
-<td>-36.112726</td>
-<td>-46.528372</td>
-<td>-57.756422</td>
-<td>-21.687470</td>
-<td>-10.044757</td>
-<td>-3041.169131</td>
-<td>0.503872</td>
-<td>8.401020</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">29</td>
-<td>1990</td>
-<td>-1.226009</td>
-<td>-27.484542</td>
-<td>-92.713339</td>
-<td>-35.553433</td>
-<td>-56.563056</td>
-<td>-31.077022</td>
-<td>-29.893352</td>
-<td>-3318.220397</td>
-<td>0.765335</td>
-<td>9.166355</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">30</td>
-<td>1991</td>
-<td>-14.391425</td>
-<td>-34.898689</td>
-<td>-8.822063</td>
-<td>-15.338299</td>
-<td>-31.458010</td>
-<td>-7.162909</td>
-<td>-35.968429</td>
-<td>-3467.630284</td>
-<td>0.412734</td>
-<td>9.579089</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+      <th>arctic</th>
+      <th>alaska</th>
+      <th>asia</th>
+      <th>north_america</th>
+      <th>south_america</th>
+      <th>antarctica</th>
+      <th>global_glacial_volume_change</th>
+      <th>annual_sea_level_rise</th>
+      <th>cumulative_sea_level_rise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23</th>
+      <td>1984</td>
+      <td>8.581427</td>
+      <td>-5.755672</td>
+      <td>-33.466092</td>
+      <td>-20.528535</td>
+      <td>-20.734676</td>
+      <td>-8.267686</td>
+      <td>-3.261011</td>
+      <td>-2569.339802</td>
+      <td>0.232609</td>
+      <td>7.097624</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1985</td>
+      <td>-5.970980</td>
+      <td>-49.651089</td>
+      <td>12.065473</td>
+      <td>-31.571622</td>
+      <td>-33.833985</td>
+      <td>10.072906</td>
+      <td>-13.587886</td>
+      <td>-2682.857926</td>
+      <td>0.313586</td>
+      <td>7.411210</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>1986</td>
+      <td>-5.680642</td>
+      <td>22.900847</td>
+      <td>7.557447</td>
+      <td>-18.920773</td>
+      <td>-33.014743</td>
+      <td>-4.652030</td>
+      <td>30.482473</td>
+      <td>-2684.197632</td>
+      <td>0.003701</td>
+      <td>7.414911</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1987</td>
+      <td>8.191477</td>
+      <td>12.387780</td>
+      <td>-24.007862</td>
+      <td>-41.121970</td>
+      <td>-48.560996</td>
+      <td>1.670733</td>
+      <td>3.130190</td>
+      <td>-2773.325568</td>
+      <td>0.246210</td>
+      <td>7.661120</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>1988</td>
+      <td>-11.117228</td>
+      <td>-31.066489</td>
+      <td>49.897712</td>
+      <td>-21.300712</td>
+      <td>-46.545435</td>
+      <td>13.460422</td>
+      <td>-37.986834</td>
+      <td>-2858.767621</td>
+      <td>0.236028</td>
+      <td>7.897148</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>1989</td>
+      <td>14.863220</td>
+      <td>-23.462392</td>
+      <td>-36.112726</td>
+      <td>-46.528372</td>
+      <td>-57.756422</td>
+      <td>-21.687470</td>
+      <td>-10.044757</td>
+      <td>-3041.169131</td>
+      <td>0.503872</td>
+      <td>8.401020</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>1990</td>
+      <td>-1.226009</td>
+      <td>-27.484542</td>
+      <td>-92.713339</td>
+      <td>-35.553433</td>
+      <td>-56.563056</td>
+      <td>-31.077022</td>
+      <td>-29.893352</td>
+      <td>-3318.220397</td>
+      <td>0.765335</td>
+      <td>9.166355</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>1991</td>
+      <td>-14.391425</td>
+      <td>-34.898689</td>
+      <td>-8.822063</td>
+      <td>-15.338299</td>
+      <td>-31.458010</td>
+      <td>-7.162909</td>
+      <td>-35.968429</td>
+      <td>-3467.630284</td>
+      <td>0.412734</td>
+      <td>9.579089</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1884,37 +1890,36 @@ Name: 4, dtype: float64</code></pre>
 <div class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select change in glacial volume in Europe per year after 2000</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>df.loc[df[<span class="st">'year'</span>]<span class="op">&gt;</span><span class="dv">2000</span>,[<span class="st">'year'</span>,<span class="st">'europe'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="143">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">europe</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">40</td>
-<td>2001</td>
-<td>-8.419109</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">41</td>
-<td>2002</td>
-<td>-3.392361</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">42</td>
-<td>2003</td>
-<td>-3.392361</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>europe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>40</th>
+      <td>2001</td>
+      <td>-8.419109</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2002</td>
+      <td>-3.392361</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2003</td>
+      <td>-3.392361</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1933,47 +1938,46 @@ Name: 4, dtype: float64</code></pre>
 <div class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select rows 3-7 (including 7) and columns 3 and 4</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>df.iloc[ <span class="dv">3</span>:<span class="dv">8</span>, [<span class="dv">3</span>,<span class="dv">4</span>] ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="144">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">alaska</th>
-<th data-quarto-table-cell-role="th">asia</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3</td>
-<td>0.477800</td>
-<td>-18.675385</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>-0.115332</td>
-<td>-18.414602</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>0.224762</td>
-<td>-14.630284</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6</td>
-<td>-7.174030</td>
-<td>-39.013695</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">7</td>
-<td>-0.660556</td>
-<td>7.879589</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>alaska</th>
+      <th>asia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>0.477800</td>
+      <td>-18.675385</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.115332</td>
+      <td>-18.414602</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.224762</td>
+      <td>-14.630284</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>-7.174030</td>
+      <td>-39.013695</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-0.660556</td>
+      <td>7.879589</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1987,12 +1991,12 @@ Name: 4, dtype: float64</code></pre>
 </section>
 <section id="notes-about-loc-and-iloc" class="level3" data-number="2.5.5">
 <h3 data-number="2.5.5" class="anchored" data-anchor-id="notes-about-loc-and-iloc"><span class="header-section-number">2.5.5</span> Notes about <code>loc</code> and <code>iloc</code></h3>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 <code>iloc</code> vs.&nbsp;<code>loc</code>
 </div>
 </div>
@@ -2002,12 +2006,12 @@ Name: 4, dtype: float64</code></pre>
 <p>And, as always, the documentation will provide you with more information: <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>pandas.DataFrame.loc</code></a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code>pandas.DataFrame.iloc</code></a>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 <code>iloc</code> for column selection? Avoid it!
 </div>
 </div>
@@ -2020,7 +2024,7 @@ Name: 4, dtype: float64</code></pre>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [:,9] means "select all rows from the 10th column"</span></span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>annual_rise_3 <span class="op">=</span> df.iloc[:,<span class="dv">9</span>]</span>
 <span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>annual_rise_3.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="145">
 <pre><code>0    0.610010
 1    0.810625
 2    0.100292
@@ -2081,23 +2085,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -2162,92 +2152,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -2294,7 +2198,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../discussion-sections/discussion-sect-week-1-methods.html" class="pagination-link">
+      <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

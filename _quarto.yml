@@ -17,7 +17,7 @@ book:
         - lectures/lesson-2-pandas-basics.qmd
     - part: "Discussion Sections"
       chapters:
-       - discussion-sections/discussion-sect-week-1-methods.qmd
+       - discussion-sections/ds1-anthr-prelim-data-exploration.qmd
 
 execute:
   freeze: auto  # re-render only when source changes
