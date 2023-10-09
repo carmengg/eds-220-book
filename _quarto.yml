@@ -15,9 +15,13 @@ book:
       chapters:
         - lectures/lesson-1-python-review.qmd
         - lectures/lesson-2-pandas-basics.qmd
+    - part: "Discussion Sections"
+      chapters:
+       - discussion-sections/ds1-anthr-prelim-data-exploration.qmd
 
-
-
+execute:
+  freeze: auto  # re-render only when source changes
+  
 format:
   html:
     theme: cosmo

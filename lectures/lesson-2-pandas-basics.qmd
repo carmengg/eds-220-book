@@ -1,9 +1,7 @@
 # Pandas Fundamentals
 
 ## About
-In this lesson we cover the two core objects in the `pandas` library the series and the data frame. We will also learn methods to subset, select, and add data to our data frames, as well as some basic plotting with matplotlib.
-
-There is so much to learn about `pandas`. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for data wrangling and give you a solid basis on which you can explore further. 
+In this lesson we cover the two core objects in the `pandas` library, the `pandas.Series` and the `pandas.DataFrame`. We will also learn methods to select data from our datasets.
 
 ## `pandas`
 
@@ -17,6 +15,9 @@ import pandas as pd
 # we will also import numpy 
 import numpy as np
 ```
+
+
+There is so much to learn about `pandas`. While we won't be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for data wrangling and give you a solid basis on which you can explore further. 
 
 ## Series
 
@@ -37,7 +38,7 @@ print(s)
 ```
 
 
-### How to create a `pandas.Series`
+### Creating a `pandas.Series`
 
 The basic method to create a `pandas.Series` is to call
 
@@ -53,15 +54,12 @@ The `data` parameter can be:
 
 The `index` parameter is a list of index labels.
 
-#### From a numpy array or list
-
-To use this method we need to pass a numpy array (or a list of objects that can be converted to NumPy types) as `data` and a list of indices of the same length as data. 
+For now, we will create a `pandas.Series` from a numpy array or list. To use this method we need to pass a numpy array (or a list of objects that can be converted to NumPy types) as `data` and a list of indices of the same length as data. 
 
 ```{python}
 # a Series from a numpy array 
 pd.Series(np.arange(3), index=['a','b','c'])
 ```
-
 
  The `index` parameter is optional. If we don't include it, the default is to make the index equal to `[0,...,len(data)-1]`. For example:
 
@@ -70,7 +68,7 @@ pd.Series(np.arange(3), index=['a','b','c'])
 pd.Series(['EDS 220', 'EDS 222', 'EDS 223', 'EDS 242'])
 ```
 
-
+<!--
 #### From a dictionary
 
 Remember a dictionary is a set of key-value pairs. If we create a `pandas.Series` via a dictionary the keys will become the index and the values the corresponding data.
@@ -90,8 +88,10 @@ If we only provide a number as the data for the series, we need to provide an in
 pd.Series(3.0, index = ['A', 'B', 'C'])
 ```
 
+-->
 
-### Arithmetic operations
+
+### Simple operations
 
 Arithmetic operations work on series and also most NumPy functions. For example:
 
@@ -110,13 +110,45 @@ print(s)
 
 ```
 
-There's much more to say about `pandas.Series`, but this is enought to get us going. Mainly, we want to know about `pandas.Series` because they will be the columns of our `pandas.DataFrame`.
+We can also produce new `pandas.Series` with `True`/`False` values indicating whether the elements in a series satisfy a condition or not:
+
+```{python}
+s > 10
+```
+
+This kind of simple conditions on `pandas.Series` will be key when we are selecting data from data frames.
+
+<!-- TO DO: ADD COMPARING VALUES OF A SERIES -->
 
 ### Attributes & Methods
 `pandas.Series` have *many* attributes and methods, you can see a [full list in the `pandas` documentation](https://pandas.pydata.org/docs/reference/api/pandas.Series.html). For now we will cover two examples that have to do with identifying missing values.
 
-`pandas` represents a missing or NA value with `NaN`, which stands for not a number. Sometime
+`pandas` represents a missing or NA value with `NaN`, which stands for not a number. Let's construct a small series with some NA values:
 
+```{python}
+# series with NAs in it
+s = pd.Series([1, 2, np.NaN, 4, np.NaN])
+```
+
+A `pandas.Series` has an *attribute* called `hasnans` that returns `True` if there are any NaNs:
+
+```{python}
+# check if series has NAs
+s.hasnans
+```
+
+Then we might be intersted in knowing which elements in the series are NAs. We can do this using the [`isna` method](https://pandas.pydata.org/docs/reference/api/pandas.Series.isna.html):
+
+```{python}
+s.isna()
+```
+
+We can see the ouput is a `pd.Series` of boolean values indicating if an element in the row at the given index is NA (`True` = is NA) or not (`False` = not NA).
+
+:::{.callout-note}
+## moving on
+There's much more to say about `pandas.Series`, but this is enought to get us going. At this point, we mainly want to know about `pandas.Series` because `pandas.Series` are the columns of `pandas.DataFrame`s.
+:::
 
 <!--
 ::: {.callout-caution}
@@ -150,18 +182,16 @@ y[2:5]
 ::: 
 -->
 
-
-<!--
-We can access a value by position using the `iloc` method. `iloc` stands for *integer-location based indexing*. This is the same kind of indexing we do in 1-dimensional numpy arrays or lists, where we use integers to access elements in the array and the index starts from 0.
--->
-
-
 ## Data Frames
 
 The Data Frame is the most used `pandas` object. It represents tabular data and we can think of it as a spreadhseet. Each column of a `pandas.DataFrame` is a `pandas.Series`. 
 
 ### Creating a `pandas.DataFrame`
-There are [many ways of creating a `pandas.DataFrame`](https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe). Although we likely won't be creating data frames from scratch often, I'd like to go over creating a `pandas.DataFrame` from a `dict` of `pandas.Series` as this will help us understand the syntax for other Data Frame methods. 
+There are [many ways of creating a `pandas.DataFrame`](https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe). 
+
+<!--
+Although we likely won't be creating data frames from scratch often, I'd like to go over creating a `pandas.DataFrame` from a `dict` of `pandas.Series` as this will help us understand the syntax for other Data Frame methods. 
+-->
 
 We already mentioned each column of a `pandas.DataFrame` is a `pandas.Series`. In fact, the `pandas.DataFrame` is a dictionary of `pandas.Series`, with each column name being the key and the column values being the key's value. Thus, we can create a `pandas.DataFrame` in this way:
 
@@ -229,6 +259,12 @@ df.head()
 # get column names
 df.columns
 ```
+
+```{python}
+# check the data types of each column
+df.dtypes
+```
+
 ```{python}
 # data frame's shape: output is a tuple (# rows, # columns)
 df.shape
@@ -236,7 +272,7 @@ df.shape
 
 ### Selecting a single column...
 
-#### ...by label
+#### ...by column name
 This is the simplest case for selecting data. Suppose we are interested in the annual sea level rise. Then we can access that single column in this way:
 ```{python}
 # seelect a single column by using square brackets []
@@ -252,10 +288,11 @@ Since we only selected a single column the output is a `pandas.Series`.
 
 :::{.callout-note}
 ## `pd.DataFrame` = dictionary of columns
-Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary. That is the syntaxi we just used: `df['column_name']`.
+Remember we can think of a `pandas.DataFrame` as a dictionary of its columns? Then we can access a single column using the column name as the key, just like we would do in a dictionary. That is the  we just used: `df['column_name']`.
 :::
 
-In general, **selecting by label** means we want to select data from our data frame using the *names* of the columns, *not their position*.
+This is an example of **selecting by label**, which means we want to select data from our data frame using the *names* of the columns, *not their position*.
+
 
 #### ... with attribute syntax
 
@@ -288,7 +325,7 @@ print((europe_asia.shape))
 ```
 
 #### ... using a slice
-Yet another example of label selection! In this case we will use the `loc` function. This is a powerful function! The general syntax is 
+Yet another example of selecting by label! In this case we will use the `loc` selection. The general syntax is 
 
 ```python
 df.loc[ row-selection , column-selection]
@@ -305,66 +342,212 @@ all_regions.head()
 
 Notice two things:
 
-- we used the colon `:` as the `row-selection` parameters, this means "select all the rows"
+- we used the colon `:` as the `row-selection` parameter, which means "select all the rows"
 - the slice of the data frame we got includes both endpoints of the slice `'arctic':'antarctica'`. In other words we get the `arctic` column *and* the `antarctica` column. This is different from how slicing works in base Python and NumPy, where the end point is not included.
 
 ### Selecting rows...
+Now that we are familiar with some methods for selecting columns, let's move on to selecting rows. 
 
 #### ... using a condition
+Selecting which rows satisfy a particular condition is, in my experience, the most usual kind of row subsetting. The general syntax for this type of selection is `df[condition_on_rows]`. For example, suppose we are intersted in all data after 1996. We can select those rows in this way:
+
+```{python}
+# select all rows with year > 1996
+after_96 = df[df['year']>1996]
+after_96
+```
+
+Let's break down what is happening here. In this case the condition for our rows is `df['year']>1996`, this checks which rows have a value greater than 1996 in the year column. Let's see this explicitely:
+
+```{python}
+# check the type of df['year']>1996
+print(type(df['year']>1996))
+
+df['year']>1996
+```
+
+The output is a `pandas.Series` with boolean values (`True` or `False`) indicating which rows satisfy the condition year>1996. When we pass such a series of boolean values to the selection brackets `[]` we keep only those rows with a `True` value. 
+
+Here's another example of using a condition. Suppose we want to look at data from years 1970 to 1979. One way of doing this is to use the `in` operator in our condition:
+
+```{python}
+seventies = df[df['year'].isin(range(1970,1980))]
+seventies
+```
+
+Let's break it down: 
+
+- `df['year']` is the column with the year values, a `pandas.Series`,
+
+- in `df['year'].isin()`, we have that [`isin` is a method for the `pandas.Series`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html) and we are calling it using the dot `.`. 
+
+- `range(1970,1980)` constructs consecutive integers from 1970 to 1979 - remember the right endopoint (1980) is not included!
+
+- `df['year'].isin(range(1970,1980))` is then a `pandas.Series` of boolean values indicating which rows have year equal to 1970, ..., 1979. 
+
+- when we put `df['year'].isin(range(1970,1980))` inside the selection brackets `[]` we obtain the rows of the data frame with year equal to 1970, ..., 1979.
+
+:::{.callout-note}
+## `loc` for row selection
+It is equivalent to write
+
+```python
+# select rows with year<1965
+df[df['year'] < 1965]
+```
+and
+```python
+# select rows with year<1965 using love
+df.loc[ df['year'] <1965 , :]
+```
+In the second one:
+
+- we are using the `df.loc[ row-selection , column-selection]` syntax
+
+- the `row-selection` parameter is the condition `df['year']<1965`
+
+- the `column-selection` parameter is a colon `:`, which indicates we want all columns for the rows we are selecting.
+
+We prefer the first syntax when we are selecting rows and not columns since it is simpler.
+:::
+
+#### ... using multiple conditions
+We can combine multipe conditions by surrounding each one in parenthesis `()` and using the or operator `|` and the and operator `&`.
+
+***or* example**:
+
+```{python}
+# select rows with 
+# annual_sea_level_rise<0.5 mm OR annual_sea_level_rise>0.8 mm
+
+df[ (df['annual_sea_level_rise']<0.5) | (df['annual_sea_level_rise']>0.8)]
+df.head()
+```
+
+***and* example**
+
+```{python}
+# select rows with cumulative_sea_level_rise>10 AND  global_glacial_volume_change<-300
+df[ (df['cumulative_sea_level_rise']>10) & (df['global_glacial_volume_change']<-300)]
+```
+
 
 #### ... by position
 
+All the selections we have done so far have been using labels or using a condition. Sometimes we might want to select certain rows depending on their *actual position* in the data frame. In this case we use `iloc` selection with the syntax `df.iloc[row-indices]`. `iloc` stands for integer-location based indexing. Let's see some examples:
 
+```{python}
+# select the fifht row = index 4
+df.iloc[4]
+```
+
+```{python}
+# select rows 23 through 30, inclduing 30
+df.iloc[23:31]
+```
+
+Notice since we are back to indexing by position the right endpoint of the slice (6) is not included in the ouput. 
+
+### Selecting rows and columns simultaneously...
+
+Selecting rows and columns simultaneously can be done using `loc` (labels or conditions) or `iloc` (integer position).
+
+#### ...by labels or conditions
+When we want to select rows and columns simultaneously by labels or conditions we can use `loc` selection with the syntax 
+
+```python
+df.loc[ row-selection , column-selection]
+```
+
+specifying both paratmers: `row-selection` and `column-selection`. These parameters can be a condition (which generates a boolean array) or a subset of labels from the index or the column names. Let's see an examples:
+
+```{python}
+# select change in glacial volume in Europe per year after 2000
+df.loc[df['year']>2000,['year','europe']]
+```
+Let's break it down:
+
+- we are using the `df.loc[ row-selection , column-selection]` syntax
+
+- the `row-selection` parameter is the condition `df['year']>1990`, which is a boolean array saying which years are greater than 1990
+
+- the `column-selection` parameter is `['year','europe']` which is a list with the names of the two columns we are intersted in. 
+
+#### ... by position
+
+When we want to select rows and columns simultaneously by position we use `iloc` selection with the syntax:
+```python
+df.iloc[ row-indices , column-indices]
+```
+
+For example, 
+
+```{python}
+# select rows 3-7 (including 7) and columns 3 and 4
+df.iloc[ 3:8, [3,4] ]
+```
+
+Let's break it down:
+
+- we are using the `df.iloc[ row-indices , column-indices]` syntax
+
+- the `row-indices` parameter is the slice *of integer indices* 3:8. Remember the right endpoint (8) won't be included.
+
+- the `column-indices` parameter is the list of integer indices 3 and 4. This means we are selecting the fourth and fifth column.
+
+
+### Notes about `loc` and `iloc`
 
 ::: {.callout-caution}
 ## `iloc` vs. `loc`
-At the beginning, the difference between `iloc` and `loc` can be confusing. Remember the `i` in `iloc` stands for integer-location, so this function only uses integer indexing to retrieve information from the data frames. Moreover, remember `iloc` indexing works in the same way as indexing for Python lists.
+At the beginning, the difference between `iloc` and `loc` can be confusing. Remember the `i` in `iloc` stands for *integer-location*, this reminds us `iloc` only uses integer indexing to retrieve information from the data frames in the same way as indexing for Python lists.
 
 If you want to dive deeper, this is a great discussion about the difference between `iloc` and `loc`: [Stackoverflow - How are iloc and loc different?](https://stackoverflow.com/questions/31593201/how-are-iloc-and-loc-different/31593712#31593712)
+
+And, as always, the documentation will provide you with more information:
+[`pandas.DataFrame.loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) and [`pandas.DataFrame.iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html).
 :::
 
-:::{.callout-warning collapse="true"}
-## Selecting a column with `iloc`? Avoid it!
 
-Suppose we want to access the 10th column in the data frame - then we want to select a column *by position*. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the `iloc` method*:
+:::{.callout-warning}
+## `iloc` for column selection? Avoid it!
+We can also access columns by position using `iloc` - but it is best not to if possible.
+
+Suppose we want to access the 10th column in the data frame - then we want to select a column *by position*. In this case the 10th column is the annual sea level rise data and the 10th position corresponds to the index 9. We can select this column by position using the `iloc` selection:
 
 ```{python}
 # select column by position using iloc
-# the syntax is iloc[rows,columns]
+# the syntax is iloc[row-indices, column-indices]
 # [:,9] means "select all rows from the 10th column"
 annual_rise_3 = df.iloc[:,9]
 annual_rise_3.head()
 ```
 
-Unless you are really looking for information about *the 10th column*, do not access a column by position. This is bound to break in many ways:
+Unless you are *really* looking for information about *the 10th column*, do not access a column by position. This is bound to break in many ways:
 
 - it relies on a person correctly counting the position of a column. Even with a small dataset this can be prone to error.
 
-- it is not explicit: if we wnat information about sea level rise `df.annual_sea_level_rise` or `df['annual_sea_level_rise']` are explicitely telling us we are accessing that information. `df.iloc[:,9]` is obscure and uninformative.
+- it is not explicit: if we want information about sea level rise `df.annual_sea_level_rise` or `df['annual_sea_level_rise']` are explicitely telling us we are accessing that information. `df.iloc[:,9]` is obscure and uninformative.
 
-- datastets can get updated. Maybe a new column was added before `annual_sea_level_rise`, this would change the position of the column, which would make any code depnding on `df.iloc[:,9]` invalid. Accessing by label helps reproducibility!
+- datastets can get updated. Maybe a new column was added before `annual_sea_level_rise`, this would change the position of the column, which would make any code depending on `df.iloc[:,9]` invalid. Accessing by label helps reproducibility!
 
 :::
 
+## Summary
 
-This is not an exhaustive list of methods to select data, there are *so many* ways to subset the same data and [it can get quite fancy.](https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label) For a simple take on some of these concepts, the `pandas` [Getting started tutorials - How do I select a subset of a
-DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html) is a good reference. 
-
-
-
-## Basic Matplotlib
+![`pandas.DataFrame` selection flow chart](/images/selection-flow-chart.jpg)
 
 ## Resources
 
-📖 [Pandas documentation - User Guide](https://pandas.pydata.org/docs/user_guide/index.html)
+What is presented in this section is a comprehensive, but not an exhaustive list of methods to select data in `pandas.DataFrames`. There are *so many* ways to subset data to get the same result. Some of the content from this lesson is adapted from the following resources and I encourage you to read them to learn more! 
+
+📖 [Pandas getting started tutorials - How to I select a subset of a
+DataFrame](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html) 
+
+📖 [Pandas documentation - User Guide - Indexing and Selecting Data](https://pandas.pydata.org/docs/user_guide/indexing.html#indexing-slicing-with-labels)
 
 📖 [Python for Data Analysis, 3E - Getting started with pandas](https://wesmckinney.com/book/pandas-basics)
 
+## Acknowledgements
 
-
-CONTINUE:
-https://pandas.pydata.org/docs/user_guide/dsintro.html
-https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html
-https://wesmckinney.com/book/pandas-basics
-https://pandas.pydata.org/docs/user_guide/indexing.html#selection-by-label
-https://earth-env-data-science.github.io/lectures/pandas/basic_pandas.html
+The simplified glacial_loss.csv dataset was created by [Dr. Allison Horst](https://allisonhorst.github.io) as part of her course materials on environmental data science. 

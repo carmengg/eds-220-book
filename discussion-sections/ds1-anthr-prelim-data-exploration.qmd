@@ -1,0 +1,195 @@
+
+# 1. Preliminary Data Exploration
+
+October 5, 2023.
+
+This discussion section will guide you through preliminary data exploration for a real world dataset about animal observations in the California drylands. Our goals are to:
+
+- Keep practicing setting up a GitHub repository and using `git commit` `git push`
+- Collaborate with your new team!
+- Practice getting preliminary information from a dataset from its archive
+- Introduce `pd.read_csv()` for loading files directly from an URL
+- Introduce preliminary data exploration strategies in `pandas`
+
+:::{.callout-tip}
+## Notebook Setup
+1. Create a new repository on GitHub. Use the following settings:
+
+    a. Call the repository `eds-220-section-1`.
+
+    b. Add a brief description for your new repository. For example: EDS 220 section - practice session for data selection in pandas.
+
+    c. Keep the repository public.
+
+    d. Initialize the repository with a `README` file and a Python .gitignore template.
+
+2. In the Taylor server, start a new JupyterLab session or access an active one.
+
+3. Using the terminal, clone the repository to a new directory under your `eds-220` directory.
+
+4. In the terminal, use `cd` to navigate into the `eds-220-section-1` directory. Use `pwd` to verify `eds-220-section-1` is your current working directory.
+
+5. Create a new Python Notebook in `eds-220-section-1`. 
+
+6. Update the notebook's name to something useful like 'exercise-data-selection.ipynb'.
+
+7. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
+    - stage: `git add FILE_NAME`
+    - commit with message: `git commit -m "COMMIT_MESSAGE"`
+    - push: `git push`
+
+8. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY SET UP YOUR NOTEBOOKS BEFORE CONTINUING**
+</p>
+
+:::
+
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+- Indications about when to commit and push changes are included, but you are welcome to commit and push more often. 
+- You won't need to upload any data 
+:::
+
+:::{.callout-note}
+## About the data
+
+For this exercise we will use data about [prey items for endangered terrestrial vertebrate species within central California drylands (King et. al, 2023)](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH). 
+
+This dataset is stored in the [Knowledge Network for Biocomplexity (KNB)](https://knb.ecoinformatics.org) data repository. This is an international repository intended to facilitate ecological and environmental research. It has thousands of open datasets and is hosted by NCEAS!
+:::
+
+<!-- Data exploration -->
+## Archive exploration
+For many datasets, data exploration begins at the data repository. Take some time to look through the dataset's description in KNB. Discuss the following questions with your team:
+
+a. What is this data about?
+b. Is this data collected in-situ by the authors or is it a synthesis of multiple datasets?
+c. During what time frame were the observations in the dataset collected?
+d. Does this dataset come with an associated metadata file?
+e. Does the dataset contain sensitive data?
+
+In your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive. 
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+## `.xml` metadata exploration
+
+You may have noticed there are two metadata files: `Compiled_occurrence_records_for_prey_items_of.xml` and `metadata_arth_occurrences.csv`. 
+
+a. In the archive's dataset description, notice the `.xml` document file type is `EML` which stands for [EML: Ecological Metadata Language](https://eml.ecoinformatics.org). 
+b. Open the `.xml` file: there's a lot going on. This is a machine-readable file that has metadata about *the whole dataset*. You can proably identify some items like title and creators. 
+c. Close the file and delete it - we won't use it today. 
+d. You don't need to write anything in your notebook about this section. 
+
+## `.csv` metadata exploration
+
+Back in your notebook, import the `pandas` package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the `pandas.read_csv()` function:
+
+a. Navigate to the [data package site](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH) and copy the URL to access the `metadata_arth_occurrences` csv file. To copy the URL: 
+
+- hover over the Download button –> right click –> “Copy Link".
+
+b. Read in the data from the URL using the `pd.read_csv()` function like this:
+
+    ```python
+    # look at metadata
+    pd.read_csv('the URL goes here')
+    ```
+
+c. Take a minute to look at the descriptions for the columns. 
+
+**Note:** Not all datasets have column descriptions in a `csv` file. Often they come with a `doc` or `txt` file with information. 
+
+<!-- Data loading -->
+## Data loading
+a. Follow steps (a) and (b) from the previous exercise to read in the drylands prey data file `arth_occurrences_with_env.csv` using `pd.read_csv()`. Store the dataframe to a variable called `prey` like this:
+
+```python
+# read in data
+prey = pd.read_csv('the URL goes here')
+```
+
+b. Use a Python function to see what is the type of the `prey` variable. 
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
+</p>
+
+## Look at your data
+
+a. Run `prey` in a cell. What do you notice in the columns section?
+
+b. To see all the column names in the same display we need to set a `pandas` option. Run the following command and then look at the `prey` data again:
+```python
+pd.set_option("display.max.columns", None)
+```
+
+c. Add a comment explaining what `pd.set_option("display.max.columns", None)` does. 
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+## `pd.DataFrame` preliminary exploration
+
+Run each of the following methods for `prey` in a different cell and write a brief description of what they do as a comment: 
+
+a. `head()`
+b. `tail()`
+c. `info()`
+d. `nunique()`
+
+For example:
+
+```
+# head()
+# returns the first five rows of the data frame
+prey.head()
+```
+
+If you're not sure about what the method does, try looking it up in the [`pandas.DataFrame` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
+
+e. Check the [documentation for `head()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head). If this function has any optional parameters, change the default value to get a different output. 
+
+Print each of the following attributes of `prey` in a different cell and write a brief explanation of what they are as a comment:
+
+f. `shape`
+g. `columns`
+h. `dtypes`
+
+If you're not sure about what info is the attribute showing, try looking it up in the [`pandas.DataFrame` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+## Update some column names
+Change the column names of `institutionCode` and `datasetKey` to `institution_code` and  `dataset_key`, respectively. Make sure you're actually updating the dataframe. HINT: yesterday's class.
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+# References
+
+Rachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.
+
+Lortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251

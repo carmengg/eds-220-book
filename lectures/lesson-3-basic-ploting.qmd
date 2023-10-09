@@ -1,0 +1,96 @@
+
+## Plotting
+Let's dip our toes in plotting to make things more interesting. 
+To get us started, we will use again the simplified data (glacial_loss.csv) from the National Snow and Ice Data Center ([Original dataset](​http://dx.doi.org/10.7265/N52N506F)). The column descriptions are:
+
+- **year**: ​calendar year
+- **europe - antarctica**: ​change in glacial volume (km3​ ​) in each region that year
+- **global_glacial_volume_change**: ​cumulative​ global glacial volume change (km3),
+starting in 1961
+- **annual_sea_level_rise**: ​annual rise in sea level (mm)
+- **cumulative_sea_level_rise**:​ cumulative rise in sea level (mm) since 1961
+
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+-->
+
+```{python}
+import pandas as pd
+
+# read in file
+df = pd.read_csv('data/lesson-1/glacial_loss.csv')
+
+# see the first five rows
+df.head()
+```
+
+## `plot()` method
+
+A `pandas.DataFrame` has a [built-in method `plot()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html) for plotting . 
+When we call it without specifying any other parameters `plot()` creates one line plot for each of the columns with numeric data. 
+
+```{python}
+# one line plot per column with numeric data - a mess
+df.plot()
+```
+
+As we can see, this doesn't make any sense! In particular, look at the x-axis. The default for `plot` is to use the values of the index as the x-axis values. Let's see some examples about how to improve this situation.
+
+### Example: one line plot
+
+We can plot one column against another by using the following syntax:
+
+```python
+df.plot(x='x_values_column', y='y_values_column')
+```
+For example, 
+```{python}
+# change in glacial volume per year in Europe
+df.plot(x='year', y='europe')
+```
+
+We can do some basic customization specifying other arguments of the plot function. Some basic ones are:
+
+- `title`: Title to use for the plot.
+- `xlabel`: Name to use for the xlabel on x-axis
+- `ylabel`: Name to use for the ylabel on y-axis
+- `color`: change the color of our plot
+
+In action:
+
+```{python}
+df.plot(x='year', 
+        y='europe',
+        title='Change in glacial volume per year in Europe',
+        xlabel='Year',
+        ylabel='​Change in glacial volume (km3​)',
+        color='green'
+        )
+```
+
+### Example: scatter plot
+
+Suppose we want to visualy compare the change in glacial volume values measured in Antarctica and the Arctic, we can do this with a scatterplot. For example:
+
+```{python}
+df.plot(kind='scatter',
+        x='arctic', 
+        y='antarctica',
+        title='Comparison of change in glacial volume per year in Antarctica and the Arctic',
+        xlabel='​change in glacial volume per year in the Arctic (km3​)',
+        ylabel='​change in glacial volume per year in Antarctica (km3​)',
+        color='#ff3b01',
+        alpha=0.4
+        )
+```
+
+Notice we used a few different arguments here:
+
+- `kind`: controls what kind of plot is drawn, [see `plot()` documentation for all options](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html)
+- `color`: here we used a HEX code to specify the color
+- `alpha`: controls the transparency 
