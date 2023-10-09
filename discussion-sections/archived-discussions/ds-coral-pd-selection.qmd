@@ -105,10 +105,10 @@ coral_div = pd.read_csv('https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%
 <!-- Basic data frame information -->
 **2.** Use attributes and methods of the `coral_div` data frame to obtain the following information about it:
 
-- how many rows and columns does it have?
-- see the first 5 rows
-- what are the column names?
-- what are the data types of the columns?
+a. how many rows and columns does it have?
+b. see the first 5 rows
+c. what are the column names?
+d. what are the data types of the columns?
 
 In this last step, what is the difference between the `int64` and `float64` data types?
 
@@ -142,7 +142,7 @@ coral_div.dtypes
 ## Solution
 `coral_div.Country` returns the `Country` column of the dataframe, this is a `pandas.Series`. 
 
-`coral_div.Country.unique()` returns the uniqeu values of the `Country` column. These are the countries where the reefs are located:
+`coral_div.Country.unique()` returns the unique values of the `Country` column. These are the countries where the reefs are located:
 
 ```{python}
 # countries where reefs are located
