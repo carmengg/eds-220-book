@@ -332,18 +332,18 @@ df.loc[ row-selection , column-selection]
 ```
 where `row-selection` and `column-selection` are the rows and columns we want to subset from the data frame. 
 
-Let's start by a simple example, where we want to select a slice of columns, say the change in glacial volume per year in all regions. This corresponds to all columns between `arctic` and `antarctica`.
+Let's start by a simple example, where we want to select a slice of columns, say the change in glacial volume per year in all regions. This corresponds to all columns between `europe` and `antarctica`.
 
 ```{python}
 # select all columns between 'arctic' and 'antarctica'
-all_regions = df.loc[:,'arctic':'antarctica']
+all_regions = df.loc[:,'europe':'antarctica']
 all_regions.head()
 ```
 
 Notice two things:
 
 - we used the colon `:` as the `row-selection` parameter, which means "select all the rows"
-- the slice of the data frame we got includes both endpoints of the slice `'arctic':'antarctica'`. In other words we get the `arctic` column *and* the `antarctica` column. This is different from how slicing works in base Python and NumPy, where the end point is not included.
+- the slice of the data frame we got includes both endpoints of the slice `'arctic':'antarctica'`. In other words we get the `europe` column *and* the `antarctica` column. This is different from how slicing works in base Python and NumPy, where the endpoint is not included.
 
 ### Selecting rows...
 Now that we are familiar with some methods for selecting columns, let's move on to selecting rows. 
