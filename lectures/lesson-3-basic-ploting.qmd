@@ -97,28 +97,149 @@ df.plot(x='year',
 
 Notice that for specifying the colors we used a **HEX code**, this gives us more control over the looks of our graph. 
 
-## Scatter plots
-
-
-
-### Example: scatter plot
-
-Suppose we want to visualy compare the change in glacial volume values measured in Antarctica and the Arctic, we can do this with a scatterplot. For example:
+We can also create separate plots for each column by setting the `subset` to `True`.
 
 ```{python}
-df.plot(kind='scatter',
-        x='arctic', 
-        y='antarctica',
-        title='Comparison of change in glacial volume per year in Antarctica and the Arctic',
-        xlabel='​change in glacial volume per year in the Arctic (km3​)',
-        ylabel='​change in glacial volume per year in Antarctica (km3​)',
-        color='#ff3b01',
-        alpha=0.4
+df.plot(x='year', 
+        y=['arctic', 'alaska'],
+        title = 'Change in glacial volume per year in Alaska and the Arctic',
+        xlabel='Year',
+        ylabel='​Change in glacial volume (km3​)',        
+        color = {'arctic':'#F48FB1',
+                 'alaska': '#AB47BC'
+                 },
+        subplots=True
         )
 ```
 
-Notice we used a few different arguments here:
+### Check-in
 
-- `kind`: controls what kind of plot is drawn, [see `plot()` documentation for all options](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html)
-- `color`: here we used a HEX code to specify the color
-- `alpha`: controls the transparency 
+(1)
+Plot a graph of the annual sea level rise with respect to the years.
+
+(2)
+What information is the `columns` variable is retrieving from the data frame? Describe in a sentence what is being plotted.
+```{python}
+columns = df.loc[:,'europe':'antarctica'].columns
+df.plot(x='year', 
+        y=columns, 
+        subplots=True)
+```
+
+We will move on to another dataset for the rest of the lecture. The great...
+
+## Palmer penguins dataset
+
+For the next plots we will use the  Palmer Penguins dataset (Horst et al., 2020). This contains size measurements for three penguin species in the Palmer Archipelago, Antarctica. 
+
+<!--
+[]()
+The Palmer Archipelago penguins. Artwork by @allison_horst.
+-->
+
+The data is usually accessed through the `palmerpenguins` R data package. There is no similar access to the Palmer penguins data through Python (yet!), so we will read the raw csv directly into Python using the URL: [https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv)
+
+The Palmer penguins dataset has the following columns:
+
+- **species**:
+- **island**:
+- **bill_length_mm**:
+- **bill_depth_mm**:
+- **flipper_lenght_mm**:
+- **body_mass_g**:
+- **sex_year**:
+
+Let's start by reading in the data.
+
+```{python}
+# read in data
+penguins = pd.read_csv('https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv')
+
+# look at dataframe's head
+penguins.head()
+```
+
+```{python}
+# check column data types and NA values
+penguins.info()
+```
+
+```{python}
+# simple statistics about numeric columns
+penguins.describe()
+```
+
+We can also subset the dataframe to get information about particular columns or groups of columns.
+
+```{python}
+# get count unique values in categorical columns and year
+penguins[['species', 'island', 'sex', 'year']].nunique()
+```
+
+```{python}
+# get unique values in species column
+print(penguins.species.unique())
+```
+
+```{python}
+# species counts 
+print(penguins.species.value_counts())
+```
+
+## `kind` argument in `plot()`
+
+We talked about how the `plot()` function creates by default a line plot. The parameter that controls this behaviour is `plot()`'s `kind` parameter. By changing the value of `kind` we can create different kinds of plots. Let's look at the documentation to see what these values are:
+
+[`pandas.DataFrame.plot` documentation extract - accessed Oct 10,2023]()
+
+Notice the default value of `kind` is `'line'`. Let's use this parameter to create some different plots. 
+
+## Scatter plots
+Suppose we want to visualy compare the flipper length agains the body mass, we can do this with a scatterplot. 
+
+Example:
+
+```{python}
+penguins.plot(kind='scatter',
+        x='flipper_length_mm', 
+        y='body_mass_g')
+```
+
+
+```{python}
+penguins.plot(kind='scatter',
+        x='flipper_length_mm', 
+        y='body_mass_g',
+        title='Flipper length and body mass for Palmer penguins',
+        xlabel='Flipper length (mm)',
+        ylabel='Body mass (g)',
+        color='#ff3b01',
+        alpha=0.4  # controls transparency
+        )
+```
+
+## Histograms
+
+We can create a histogram of our data setting `kind='hist'` in `plot()`. 
+
+```{python}
+# using plot without subsetting data - a mess again
+penguins.plot(kind='hist')
+```
+
+To gain actual information, let's subset the data before plotting it. For example, suppose we want to look at the distribution of flipper length. We could do it in this way:
+
+```{python}
+# distribution of flipper length measurements
+# first select data, then plot
+penguins.flipper_length_mm.plot(kind='hist',
+                                title='Penguin flipper lengths',
+                                xlabel='Flipper length (mm)',
+                                grid=True)
+```
+
+We can also create multiple graphs by setting the `subplots` argument in plot. For example, making separate histograms for bill length and depth:
+
+```{python}
+
+```
