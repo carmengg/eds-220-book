@@ -1,6 +1,8 @@
 
 ## Plotting
-Let's dip our toes in plotting to make things more interesting. 
+Let's dip our toes into plotting to make things more interesting. 
+
+
 To get us started, we will use again the simplified data (glacial_loss.csv) from the National Snow and Ice Data Center ([Original dataset](​http://dx.doi.org/10.7265/N52N506F)). The column descriptions are:
 
 - **year**: ​calendar year
@@ -31,7 +33,7 @@ df.head()
 
 ## `plot()` method
 
-A `pandas.DataFrame` has a [built-in method `plot()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html) for plotting . 
+A `pandas.DataFrame` has a [built-in method `plot()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html) for plotting. 
 When we call it without specifying any other parameters `plot()` creates one line plot for each of the columns with numeric data. 
 
 ```{python}
@@ -41,9 +43,9 @@ df.plot()
 
 As we can see, this doesn't make any sense! In particular, look at the x-axis. The default for `plot` is to use the values of the index as the x-axis values. Let's see some examples about how to improve this situation.
 
-### Example: one line plot
+## Line plots
 
-We can plot one column against another by using the following syntax:
+We can make a line plot of one column against another by using the following syntax:
 
 ```python
 df.plot(x='x_values_column', y='y_values_column')
@@ -54,7 +56,7 @@ For example,
 df.plot(x='year', y='europe')
 ```
 
-We can do some basic customization specifying other arguments of the plot function. Some basic ones are:
+We can do some basic customization specifying other arguments of the `plot` function. Some basic ones are:
 
 - `title`: Title to use for the plot.
 - `xlabel`: Name to use for the xlabel on x-axis
@@ -72,6 +74,32 @@ df.plot(x='year',
         color='green'
         )
 ```
+
+You can see all the [optional arguments for the `plot()` function in the documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html).
+
+### Multiple line plots
+Let's say we want to graph the change in glacial volume in the Arctic and Alaska. We can do it by updating these arguments:
+
+- `y` : a list of column names that will be plotted against x
+- `color`: specify the color of each column's line with a dictionary `{'col_1' : 'color_1', 'col_2':'color_2}`
+
+```{python}
+df.plot(x='year', 
+        y=['arctic', 'alaska'],
+        title = 'Change in glacial volume per year in Alaska and the Arctic',
+        xlabel='Year',
+        ylabel='​Change in glacial volume (km3​)',        
+        color = {'arctic':'#F48FB1',
+                 'alaska': '#AB47BC'
+                 }
+        )
+```
+
+Notice that for specifying the colors we used a **HEX code**, this gives us more control over the looks of our graph. 
+
+## Scatter plots
+
+
 
 ### Example: scatter plot
 
