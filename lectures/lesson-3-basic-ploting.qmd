@@ -240,36 +240,38 @@ penguins.flipper_length_mm.plot(kind='hist',
 
 
 ### Check-in
-Select data and find a value for the `kind` parameter that gives you a boxplot to make a basic boxplot for the penguin's bill length and depth on the same axis. 
+(1) Select data and find a value for the `kind` parameter that gives you a boxplot to make a basic boxplot for the penguin's bill length and depth on the same axis. 
 <!--
 ```{python}
 penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 ```
 -->
 
-## Group by
+(2) Create a histogram of the flipper length of female gentoo penguins. HINT: you need to select both rows and columns.
 
-In the previous histogram we can see there might be two different populations. This is not surprising since we know these are flipper lengths for penguins of three different species, two sexes and three islands, all of which could affect the flipper lenghts. So let's say we want to plot histograms of the flipper lengths by species on the same axis. How would we do this `by hand`?
+## Grouping
+
+Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calcualte a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species.  How would we do this `by hand`?
 
 0. We start with our data and notice there are multiple species in the `species` column.
 
 1. We split our original table to group all observations from the same species together.
 
-2. We create a histogram for the flipper length of each species.
+2. We calculate the average flipper length for each of the groups we form.
 
-3. Then we combine the histograms for each species into a single plot.
+3. Then we combine the values for average flipper length per species into a single table.
 
-
+<!-- ADD DIAGRAM HERE -->
 
 This is known as the **Split-Apply-Combine strategy**. This strategy follows the three steps we explained above:
 
 1. **Split**: Split the data into logical groups (e.g. species, sex, island, etc.)
 
-2. **Apply**: Calculate some summary statistic on each group (e.g. histogram per species, number of individuals per island, flipper length by sex and species)
+2. **Apply**: Calculate some summary statistic on each group (e.g. average flipper length by species, number of individuals per island, body mass by sex, etc.)
 
 3. **Combine**: Combine the statistic calculated on each group back together.
 
-In Python we can use the `groupby()` method to do split (or group) the data into different categories. The general syntax for `groupby()` is
+In Python we can use the `groupby()` method to split (i.e. group) the data into different categories. The general syntax for `groupby()` is
 
 ```python
 df.groupby(columns_to_group_by)
@@ -278,6 +280,41 @@ where most often we will have
 `columns_to_group_by` = a single column name (string) or a list of column names
 
 Let's see an example:
+
+```{python}
+# average flipper length per species
+avg_flipper = penguins.groupby("species").flipper_length_mm.mean()
+```
+
+There's a lot going on there, let's break it down (remember the `.` can be read as "and then...")
+
+- start with the `penguins` data frame, and then...
+- group the data frame by species values, and then...
+- select the `'flipper_length_mm'` column, and then...
+- calculate the `mean()`
+
+IMPORTANT! Because we used `groupby()` the mean will be calculated on each group. If we ommit `groupby()` we obtain the average for the whole flipper length column:
+
+```{python}
+penguins.flipper_length_mm.mean()
+```
+
+We can sort the `avg_flipper` data and then graph it as a bar plot.
+
+```{python}
+# sort in descending order
+# remember to reassign to actually update data
+avg_flipper = avg_flipper.sort_values(ascending=False)
+
+# plot as a bar plot
+avg_flipper.plot(kind='bar',
+                 title='Average flipper length by species',
+                 ylabel='Flipper length (mm)',
+                 rot=360  # rotation for ticks 
+                 ) 
+```
+
+## Further plotting
 
 ```{python}
 # make histograms of flipper length by species =
@@ -290,7 +327,7 @@ penguins.groupby('species').flipper_length_mm.plot(kind='hist')
 
 ### Check-in
 
-Create a scatter plot of the flipper length agains body mass (x=flipper length, y=body mass) by sex. 
+Create a scatter plot of the flipper length against body mass (x=flipper length, y=body mass) by sex. 
 
 
 
