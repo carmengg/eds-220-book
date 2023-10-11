@@ -195,7 +195,7 @@ Notice the default value of `kind` is `'line'`.
 Let's change the `kind` parameter to create some different plots. 
 
 ## Scatter plots
-Suppose we want to visualy compare the flipper length agains the body mass, we can do this with a scatterplot. 
+Suppose we want to visualy compare the flipper length against the body mass, we can do this with a scatterplot. 
 
 Example:
 
@@ -264,7 +264,7 @@ penguins.flipper_length_mm.plot(kind='hist',
 
 
 ### Check-in
-(1) Select data and update the `kind` parameter to make boxplots of the bill length and bill depth. 
+(1) Select the `bill_length_mm` and `bill_depth_mm` columns in the `penguins` dataframe and then update the kind parameter to `box` to make boxplots of the bill length and bill depth.
 <!--
 ```{python}
 penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
@@ -275,7 +275,7 @@ penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 
 <!--
 ```{python}
-penguins.loc[penguins.species == 'gentoo', 'flipper_length_mm'].plot(kind='hist')
+penguins.loc[penguins.species == 'Gentoo', 'flipper_length_mm'].plot(kind='hist')
 ```
 -->
 
@@ -289,7 +289,7 @@ penguins.loc[(penguins.species == 'gentoo') & (penguins.sex == 'female'), 'flipp
 
 ## Grouping
 
-Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calcualte a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species.  How would we do this `by hand`?
+Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calculate a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species.  How would we do this "by hand"?
 
 0. We start with our data and notice there are multiple species in the `species` column.
 
@@ -299,8 +299,6 @@ Our penguins data is naturally split into different groups: there are three diff
 
 3. Then we combine the values for average flipper length per species into a single table.
 
-<!-- ADD DIAGRAM HERE -->
-
 This is known as the **Split-Apply-Combine strategy**. This strategy follows the three steps we explained above:
 
 1. **Split**: Split the data into logical groups (e.g. species, sex, island, etc.)
@@ -308,6 +306,8 @@ This is known as the **Split-Apply-Combine strategy**. This strategy follows the
 2. **Apply**: Calculate some summary statistic on each group (e.g. average flipper length by species, number of individuals per island, body mass by sex, etc.)
 
 3. **Combine**: Combine the statistic calculated on each group back together.
+
+![Split-apply-combine to calculate mean flipper length](/images/lesson-3-plot/split-apply-combine-penguins-diagram.png)
 
 In Python we can use the `groupby()` method to split (i.e. group) the data into different categories. The general syntax for `groupby()` is
 
