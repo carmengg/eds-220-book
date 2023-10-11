@@ -99,7 +99,7 @@ Notice that for specifying the colors we used a **HEX code**, this gives us more
 
 We can also create separate plots for each column by setting the `subset` to `True`.
 
-```python
+```{python}
 df.plot(x='year', 
         y=['arctic', 'alaska'],
         title = 'Change in glacial volume per year in Alaska and the Arctic',
@@ -119,7 +119,7 @@ Plot a graph of the annual sea level rise with respect to the years.
 
 (2)
 What information is the `columns` variable retrieving from the data frame? Describe in a sentence what is being plotted.
-```{python}
+```python
 columns = df.loc[:,'europe':'antarctica'].columns
 df.plot(x='year', 
         y=columns, 
@@ -420,8 +420,6 @@ Create a scatter plot of the flipper length against body mass (x=flipper length,
 ## References
 Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.
 
-The `groupby()` section is based on an NCEAS Learning Hub I updated for the Delta Stewardship Council in June 2023. [https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
+The `groupby()` section is based on this [NCEAS Learning Hub R lesson.](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
 
  Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
-
-```

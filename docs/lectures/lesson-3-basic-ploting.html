@@ -462,7 +462,8 @@ os.chdir(os.path.join(home,'eds-220-book'))
 </div>
 <p>Notice that for specifying the colors we used a <strong>HEX code</strong>, this gives us more control over how our graph looks.</p>
 <p>We can also create separate plots for each column by setting the <code>subset</code> to <code>True</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[<span class="st">'arctic'</span>, <span class="st">'alaska'</span>],</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> <span class="st">'Change in glacial volume per year in Alaska and the Arctic'</span>,</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        xlabel<span class="op">=</span><span class="st">'Year'</span>,</span>
@@ -472,6 +473,15 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                 },</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>array([&lt;AxesSubplot:xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;,
+       &lt;AxesSubplot:xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;],
+      dtype=object)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-8-output-2.png" width="604" height="477"></p>
+</div>
+</div>
 </section>
 <section id="check-in" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="check-in"><span class="header-section-number">3.2.2</span> Check-in</h3>
@@ -479,21 +489,10 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <li><p>Plot a graph of the annual sea level rise with respect to the years.</p></li>
 <li><p>What information is the <code>columns</code> variable retrieving from the data frame? Describe in a sentence what is being plotted.</p></li>
 </ol>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> df.loc[:,<span class="st">'europe'</span>:<span class="st">'antarctica'</span>].columns</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>columns, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>array([&lt;AxesSubplot:xlabel='year'&gt;, &lt;AxesSubplot:xlabel='year'&gt;,
-       &lt;AxesSubplot:xlabel='year'&gt;, &lt;AxesSubplot:xlabel='year'&gt;,
-       &lt;AxesSubplot:xlabel='year'&gt;, &lt;AxesSubplot:xlabel='year'&gt;,
-       &lt;AxesSubplot:xlabel='year'&gt;], dtype=object)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-8-output-2.png" width="586" height="429"></p>
-</div>
-</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> df.loc[:,<span class="st">'europe'</span>:<span class="st">'antarctica'</span>].columns</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>columns, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We will move on to another dataset for the rest of the lecture. The great…</p>
 </section>
 </section>
@@ -757,7 +756,7 @@ Name: species, dtype: int64</code></pre>
 </section>
 <section id="scatter-plots" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">3.5</span> Scatter plots</h2>
-<p>Suppose we want to visualy compare the flipper length agains the body mass, we can do this with a scatterplot.</p>
+<p>Suppose we want to visualy compare the flipper length against the body mass, we can do this with a scatterplot.</p>
 <p>Example:</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
@@ -989,7 +988,7 @@ Name: body_mass_g, dtype: float64</code></pre>
 <section id="check-in-1" class="level3" data-number="3.7.1">
 <h3 data-number="3.7.1" class="anchored" data-anchor-id="check-in-1"><span class="header-section-number">3.7.1</span> Check-in</h3>
 <ol type="1">
-<li><p>Select data and update the <code>kind</code> parameter to make boxplots of the bill length and bill depth. <!--
+<li><p>Select the <code>bill_length_mm</code> and <code>bill_depth_mm</code> columns in the <code>penguins</code> dataframe and then update the kind parameter to <code>box</code> to make boxplots of the bill length and bill depth. <!--
 
 ::: {.cell execution_count=21}
 ``` {.python .cell-code}
@@ -1015,7 +1014,7 @@ penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 
 ::: {.cell execution_count=22}
 ``` {.python .cell-code}
-penguins.loc[penguins.species == 'gentoo', 'flipper_length_mm'].plot(kind='hist')
+penguins.loc[penguins.species == 'Gentoo', 'flipper_length_mm'].plot(kind='hist')
 ```
 
 ::: {.cell-output .cell-output-display execution_count=22}
@@ -1025,7 +1024,7 @@ penguins.loc[penguins.species == 'gentoo', 'flipper_length_mm'].plot(kind='hist'
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-23-output-2.png){width=608 height=411}
+![](lesson-3-basic-ploting_files/figure-html/cell-23-output-2.png){width=597 height=411}
 :::
 :::
 
@@ -1056,20 +1055,25 @@ penguins.loc[(penguins.species == 'gentoo') & (penguins.sex == 'female'), 'flipp
 </section>
 <section id="grouping" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="grouping"><span class="header-section-number">3.8</span> Grouping</h2>
-<p>Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calcualte a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species. How would we do this <code>by hand</code>?</p>
+<p>Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calculate a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species. How would we do this “by hand”?</p>
 <ol start="0" type="1">
 <li><p>We start with our data and notice there are multiple species in the <code>species</code> column.</p></li>
 <li><p>We split our original table to group all observations from the same species together.</p></li>
 <li><p>We calculate the average flipper length for each of the groups we formed.</p></li>
 <li><p>Then we combine the values for average flipper length per species into a single table.</p></li>
 </ol>
-<!-- ADD DIAGRAM HERE -->
 <p>This is known as the <strong>Split-Apply-Combine strategy</strong>. This strategy follows the three steps we explained above:</p>
 <ol type="1">
 <li><p><strong>Split</strong>: Split the data into logical groups (e.g.&nbsp;species, sex, island, etc.)</p></li>
 <li><p><strong>Apply</strong>: Calculate some summary statistic on each group (e.g.&nbsp;average flipper length by species, number of individuals per island, body mass by sex, etc.)</p></li>
 <li><p><strong>Combine</strong>: Combine the statistic calculated on each group back together.</p></li>
 </ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-3-plot/split-apply-combine-penguins-diagram.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Split-apply-combine to calculate mean flipper length</figcaption><p></p>
+</figure>
+</div>
 <p>In Python we can use the <code>groupby()</code> method to split (i.e.&nbsp;group) the data into different categories. The general syntax for <code>groupby()</code> is</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.groupby(columns_to_group_by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where most often we will have <code>columns_to_group_by</code> = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame</p>
@@ -1348,9 +1352,8 @@ Create a scatter plot of the flipper length against body mass (x=flipper length,
 <section id="references" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="references"><span class="header-section-number">3.9</span> References</h2>
 <p>Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.</p>
-<p>The <code>groupby()</code> section is based on an NCEAS Learning Hub I updated for the Delta Stewardship Council in June 2023. <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize">https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize</a></p>
+<p>The <code>groupby()</code> section is based on this <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize">NCEAS Learning Hub R lesson.</a></p>
 <p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
-<p>```</p>
 
 
 </section>
