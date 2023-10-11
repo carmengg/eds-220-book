@@ -132,7 +132,7 @@ We will move on to another dataset for the rest of the lecture. The great...
 
 For the next plots we will use the  Palmer Penguins dataset (Horst et al., 2020). This contains size measurements for three penguin species in the Palmer Archipelago, Antarctica. 
 
-[The Palmer Archipelago penguins. Artwork by @allison_horst.](/images/lesson-3-plot/lter_penguins.png)
+![The Palmer Archipelago penguins. Artwork by @allison_horst.](/images/lesson-3-plot/lter_penguins.png)
 
 The data is usually accessed through the `palmerpenguins` R data package. There is no similar access to the Palmer penguins data through Python (yet!), so we will read the raw csv directly into Python using the URL: [https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv)
 
@@ -188,7 +188,7 @@ print(penguins.species.value_counts())
 
 We talked about how the `plot()` function creates by default a line plot. The parameter that controls this behaviour is `plot()`'s `kind` parameter. By changing the value of `kind` we can create different kinds of plots. Let's look at the documentation to see what these values are:
 
-[`pandas.DataFrame.plot` documentation extract - accessed Oct 10,2023](/images/lesson-3-plot/df-plot-doc.png)
+![`pandas.DataFrame.plot` documentation extract - accessed Oct 10,2023](/images/lesson-3-plot/df-plot-doc.png)
 
 Notice the default value of `kind` is `'line'`. 
 
@@ -217,6 +217,29 @@ penguins.plot(kind='scatter',
         color='#ff3b01',
         alpha=0.4  # controls transparency
         )
+```
+
+## Bar plots
+
+We can create bar plots of our data setting `kind='bar'` in the `plot()` method.
+
+For example, let's say we want to get data about the 10 penguins with lowest body mass. We can first select this data using the `nsmallest()` method for series:
+
+```{python}
+smallest = penguins.body_mass_g.nsmallest(10).sort_values()
+smallest
+```
+
+We can then plot this data as a bar plot
+
+```{python}
+smallest.plot(kind='bar')
+```
+
+If we wanted to look at other data for these smallest penguins we can use the index of the `smallest` `pandas.Series` to select those rows in the original `penguins` data frame using `loc`:
+
+```{python}
+penguins.loc[smallest.index]
 ```
 
 ## Histograms
@@ -256,9 +279,9 @@ penguins.loc[penguins.species == 'gentoo', 'flipper_length_mm'].plot(kind='hist'
 ```
 -->
 
+<!--
 (3) Create a histogram of the flipper length of *female* gentoo penguins.
 
-<!--
 ```{python}
 penguins.loc[(penguins.species == 'gentoo') & (penguins.sex == 'female'), 'flipper_length_mm'].plot(kind='hist')
 ```
@@ -336,33 +359,43 @@ avg_flipper.plot(kind='bar',
                  ) 
 ```
 
-We can also group by combinations of columns. For example, suppose we want to know what was the number of penguins in every island on different years. We can obtain this information by doing
+We can also group by combinations of columns. For example, suppose we want to know what was the number of penguins in every island on different years. We can use the `count()` method to count the number of non-NA values in each column like this:
 
 ```{python}
-penguins.groupby(['island','year']).count() #?
+penguins.count()
 ```
 
-What if we wanted to obtain the 4 most populated islands on a given year?
+When we group by island and year we get the count of non-NA values for each column divided for each combination of island and year:
 
 ```{python}
-penguins.groupby(['island','year']).count().max(5) #?
+penguins.groupby(['island','year']).count()
 ```
 
-Then we can plot this information using a bar plot:
+Let's say we want to plot the surveyed population per year and island. We could then use a "one liner" to do it in this way:
 
 ```{python}
-
+penguins.groupby(['island','year']).count().species.sort_values().plot(kind='bar')
 ```
-
 <!--
 Talk about what is `groupby()` : lazy method
 -->
 
 ### Check-in
 
-(1) Use `groupby` to calculate the maximum value of penguin's body mass by year.
+(1) Use `groupby` and the `max()` method for data frames to calculate the maximum value of penguin's body mass by year and species.
 
-(2) Display the data you created as a line plot of maximum body mass (y-values) by year (x-values).
+<!--
+
+```{python}
+penguins.groupby(['year','species']).body_mass_g.max()
+```
+-->
+
+(2) Use (1) to display the highest body masses per year and species as a bar plot in descending order.
+
+<!--
+penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=False).plot(kind='bar')
+-->
 
 <!--
 ## Further plotting
@@ -387,7 +420,6 @@ Create a scatter plot of the flipper length against body mass (x=flipper length,
 ## References
 Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.
 
-## Acknowledgements
 The `groupby()` section is based on an NCEAS Learning Hub I updated for the Delta Stewardship Council in June 2023. [https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
 
  Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.

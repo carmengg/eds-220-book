@@ -222,14 +222,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#palmer-penguins-dataset" id="toc-palmer-penguins-dataset" class="nav-link" data-scroll-target="#palmer-penguins-dataset"><span class="toc-section-number">3.3</span>  Palmer penguins dataset</a></li>
   <li><a href="#kind-argument-in-plot" id="toc-kind-argument-in-plot" class="nav-link" data-scroll-target="#kind-argument-in-plot"><span class="toc-section-number">3.4</span>  <code>kind</code> argument in <code>plot()</code></a></li>
   <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots"><span class="toc-section-number">3.5</span>  Scatter plots</a></li>
-  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="toc-section-number">3.6</span>  Histograms</a>
+  <li><a href="#bar-plots" id="toc-bar-plots" class="nav-link" data-scroll-target="#bar-plots"><span class="toc-section-number">3.6</span>  Bar plots</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="toc-section-number">3.7</span>  Histograms</a>
   <ul class="collapse">
-  <li><a href="#check-in-1" id="toc-check-in-1" class="nav-link" data-scroll-target="#check-in-1"><span class="toc-section-number">3.6.1</span>  Check-in</a></li>
+  <li><a href="#check-in-1" id="toc-check-in-1" class="nav-link" data-scroll-target="#check-in-1"><span class="toc-section-number">3.7.1</span>  Check-in</a></li>
   </ul></li>
-  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">3.7</span>  Grouping</a>
+  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">3.8</span>  Grouping</a>
   <ul class="collapse">
-  <li><a href="#check-in-2" id="toc-check-in-2" class="nav-link" data-scroll-target="#check-in-2"><span class="toc-section-number">3.7.1</span>  Check-in</a></li>
+  <li><a href="#check-in-2" id="toc-check-in-2" class="nav-link" data-scroll-target="#check-in-2"><span class="toc-section-number">3.8.1</span>  Check-in</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">3.9</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -253,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Let’s dip our toes into plotting to make things more interesting.</p>
+<p>Let’s learn the basics of plotting with <code>pandas</code> to make things more interesting.</p>
 <p>To get us started, we will use again the simplified data (glacial_loss.csv) from the National Snow and Ice Data Center (<a href="​http://dx.doi.org/10.7265/N52N506F">Original dataset</a>). The column descriptions are:</p>
 <ul>
 <li><strong>year</strong>: ​calendar year</li>
@@ -458,10 +460,9 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <p><img src="lesson-3-basic-ploting_files/figure-html/cell-7-output-2.png" width="604" height="449"></p>
 </div>
 </div>
-<p>Notice that for specifying the colors we used a <strong>HEX code</strong>, this gives us more control over the looks of our graph.</p>
+<p>Notice that for specifying the colors we used a <strong>HEX code</strong>, this gives us more control over how our graph looks.</p>
 <p>We can also create separate plots for each column by setting the <code>subset</code> to <code>True</code>.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[<span class="st">'arctic'</span>, <span class="st">'alaska'</span>],</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> <span class="st">'Change in glacial volume per year in Alaska and the Arctic'</span>,</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        xlabel<span class="op">=</span><span class="st">'Year'</span>,</span>
@@ -471,35 +472,26 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                 },</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>array([&lt;AxesSubplot:xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;,
-       &lt;AxesSubplot:xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;],
-      dtype=object)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-8-output-2.png" width="604" height="477"></p>
-</div>
-</div>
 </section>
 <section id="check-in" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="check-in"><span class="header-section-number">3.2.2</span> Check-in</h3>
 <ol type="1">
 <li><p>Plot a graph of the annual sea level rise with respect to the years.</p></li>
-<li><p>What information is the <code>columns</code> variable is retrieving from the data frame? Describe in a sentence what is being plotted.</p></li>
+<li><p>What information is the <code>columns</code> variable retrieving from the data frame? Describe in a sentence what is being plotted.</p></li>
 </ol>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> df.loc[:,<span class="st">'europe'</span>:<span class="st">'antarctica'</span>].columns</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>columns, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> df.loc[:,<span class="st">'europe'</span>:<span class="st">'antarctica'</span>].columns</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>columns, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array([&lt;AxesSubplot:xlabel='year'&gt;, &lt;AxesSubplot:xlabel='year'&gt;,
        &lt;AxesSubplot:xlabel='year'&gt;, &lt;AxesSubplot:xlabel='year'&gt;,
        &lt;AxesSubplot:xlabel='year'&gt;, &lt;AxesSubplot:xlabel='year'&gt;,
        &lt;AxesSubplot:xlabel='year'&gt;], dtype=object)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-9-output-2.png" width="586" height="429"></p>
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-8-output-2.png" width="586" height="429"></p>
 </div>
 </div>
 <p>We will move on to another dataset for the rest of the lecture. The great…</p>
@@ -508,29 +500,32 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <section id="palmer-penguins-dataset" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="palmer-penguins-dataset"><span class="header-section-number">3.3</span> Palmer penguins dataset</h2>
 <p>For the next plots we will use the Palmer Penguins dataset (Horst et al., 2020). This contains size measurements for three penguin species in the Palmer Archipelago, Antarctica.</p>
-<!--
-[]()
-The Palmer Archipelago penguins. Artwork by @allison_horst.
--->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-3-plot/lter_penguins.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Palmer Archipelago penguins. Artwork by <span class="citation" data-cites="allison_horst">@allison_horst</span>.</figcaption><p></p>
+</figure>
+</div>
 <p>The data is usually accessed through the <code>palmerpenguins</code> R data package. There is no similar access to the Palmer penguins data through Python (yet!), so we will read the raw csv directly into Python using the URL: <a href="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv">https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv</a></p>
 <p>The Palmer penguins dataset has the following columns:</p>
 <ul>
-<li><strong>species</strong>:</li>
-<li><strong>island</strong>:</li>
-<li><strong>bill_length_mm</strong>:</li>
-<li><strong>bill_depth_mm</strong>:</li>
-<li><strong>flipper_lenght_mm</strong>:</li>
-<li><strong>body_mass_g</strong>:</li>
-<li><strong>sex_year</strong>:</li>
+<li><strong>species</strong></li>
+<li><strong>island</strong></li>
+<li><strong>bill_length_mm</strong></li>
+<li><strong>bill_depth_mm</strong></li>
+<li><strong>flipper_lenght_mm</strong></li>
+<li><strong>body_mass_g</strong></li>
+<li><strong>sex</strong></li>
+<li><strong>year</strong></li>
 </ul>
 <p>Let’s start by reading in the data.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv'</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># look at dataframe's head</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># look at dataframe's head</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -609,9 +604,9 @@ The Palmer Archipelago penguins. Artwork by @allison_horst.
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check column data types and NA values</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>penguins.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check column data types and NA values</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>penguins.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 344 entries, 0 to 343
@@ -630,10 +625,10 @@ dtypes: float64(4), int64(1), object(3)
 memory usage: 21.6+ KB</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple statistics about numeric columns</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>penguins.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple statistics about numeric columns</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>penguins.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
 
@@ -718,11 +713,11 @@ memory usage: 21.6+ KB</code></pre>
 </div>
 </div>
 </div>
-<p>We can also subset the dataframe to get information about particular columns or groups of columns.</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get count unique values in categorical columns and year</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>penguins[[<span class="st">'species'</span>, <span class="st">'island'</span>, <span class="st">'sex'</span>, <span class="st">'year'</span>]].nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<p>We can also subset the dataframe to get information about a particular column or groups of columns.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get count unique values in categorical columns and year</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>penguins[[<span class="st">'species'</span>, <span class="st">'island'</span>, <span class="st">'sex'</span>, <span class="st">'year'</span>]].nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>species    3
 island     3
 sex        2
@@ -730,16 +725,16 @@ year       3
 dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique values in species column</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins.species.unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique values in species column</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins.species.unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['Adelie' 'Gentoo' 'Chinstrap']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># species counts </span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins.species.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># species unique value counts </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins.species.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adelie       152
 Gentoo       124
@@ -751,104 +746,321 @@ Name: species, dtype: int64</code></pre>
 <section id="kind-argument-in-plot" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="kind-argument-in-plot"><span class="header-section-number">3.4</span> <code>kind</code> argument in <code>plot()</code></h2>
 <p>We talked about how the <code>plot()</code> function creates by default a line plot. The parameter that controls this behaviour is <code>plot()</code>’s <code>kind</code> parameter. By changing the value of <code>kind</code> we can create different kinds of plots. Let’s look at the documentation to see what these values are:</p>
-<p><a href=""><code>pandas.DataFrame.plot</code> documentation extract - accessed Oct 10,2023</a></p>
-<p>Notice the default value of <code>kind</code> is <code>'line'</code>. Let’s use this parameter to create some different plots.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-3-plot/df-plot-doc.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><code>pandas.DataFrame.plot</code> documentation extract - accessed Oct 10,2023</figcaption><p></p>
+</figure>
+</div>
+<p>Notice the default value of <code>kind</code> is <code>'line'</code>.</p>
+<p>Let’s change the <code>kind</code> parameter to create some different plots.</p>
 </section>
 <section id="scatter-plots" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">3.5</span> Scatter plots</h2>
 <p>Suppose we want to visualy compare the flipper length agains the body mass, we can do this with a scatterplot.</p>
 <p>Example:</p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'body_mass_g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'body_mass_g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>&lt;AxesSubplot:xlabel='flipper_length_mm', ylabel='body_mass_g'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-16-output-2.png" width="602" height="429"></p>
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-15-output-2.png" width="602" height="429"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'body_mass_g'</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">'Flipper length and body mass for Palmer penguins'</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        xlabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        ylabel<span class="op">=</span><span class="st">'Body mass (g)'</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'#ff3b01'</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.4</span>  <span class="co"># controls transparency</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<p>We can update some other arguments to customize the graph:</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'body_mass_g'</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">'Flipper length and body mass for Palmer penguins'</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        xlabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        ylabel<span class="op">=</span><span class="st">'Body mass (g)'</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'#ff3b01'</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.4</span>  <span class="co"># controls transparency</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>&lt;AxesSubplot:title={'center':'Flipper length and body mass for Palmer penguins'}, xlabel='Flipper length (mm)', ylabel='Body mass (g)'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-17-output-2.png" width="602" height="449"></p>
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-16-output-2.png" width="602" height="449"></p>
 </div>
 </div>
 </section>
-<section id="histograms" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="histograms"><span class="header-section-number">3.6</span> Histograms</h2>
-<p>We can create a histogram of our data setting <code>kind='hist'</code> in <code>plot()</code>.</p>
+<section id="bar-plots" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="bar-plots"><span class="header-section-number">3.6</span> Bar plots</h2>
+<p>We can create bar plots of our data setting <code>kind='bar'</code> in the <code>plot()</code> method.</p>
+<p>For example, let’s say we want to get data about the 10 penguins with lowest body mass. We can first select this data using the <code>nsmallest()</code> method for series:</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>smallest <span class="op">=</span> penguins.body_mass_g.nsmallest(<span class="dv">10</span>).sort_values()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>smallest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>314    2700.0
+58     2850.0
+64     2850.0
+54     2900.0
+98     2900.0
+116    2900.0
+298    2900.0
+104    2925.0
+47     2975.0
+44     3000.0
+Name: body_mass_g, dtype: float64</code></pre>
+</div>
+</div>
+<p>We can then plot this data as a bar plot</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using plot without subsetting data - a mess again</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'hist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>smallest.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-18-output-2.png" width="583" height="424"></p>
+</div>
+</div>
+<p>If we wanted to look at other data for these smallest penguins we can use the index of the <code>smallest</code> <code>pandas.Series</code> to select those rows in the original <code>penguins</code> data frame using <code>loc</code>:</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[smallest.index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>314</th>
+      <td>Chinstrap</td>
+      <td>Dream</td>
+      <td>46.9</td>
+      <td>16.6</td>
+      <td>192.0</td>
+      <td>2700.0</td>
+      <td>female</td>
+      <td>2008</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Adelie</td>
+      <td>Biscoe</td>
+      <td>36.5</td>
+      <td>16.6</td>
+      <td>181.0</td>
+      <td>2850.0</td>
+      <td>female</td>
+      <td>2008</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>Adelie</td>
+      <td>Biscoe</td>
+      <td>36.4</td>
+      <td>17.1</td>
+      <td>184.0</td>
+      <td>2850.0</td>
+      <td>female</td>
+      <td>2008</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Adelie</td>
+      <td>Biscoe</td>
+      <td>34.5</td>
+      <td>18.1</td>
+      <td>187.0</td>
+      <td>2900.0</td>
+      <td>female</td>
+      <td>2008</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Adelie</td>
+      <td>Dream</td>
+      <td>33.1</td>
+      <td>16.1</td>
+      <td>178.0</td>
+      <td>2900.0</td>
+      <td>female</td>
+      <td>2008</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>38.6</td>
+      <td>17.0</td>
+      <td>188.0</td>
+      <td>2900.0</td>
+      <td>female</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>Chinstrap</td>
+      <td>Dream</td>
+      <td>43.2</td>
+      <td>16.6</td>
+      <td>187.0</td>
+      <td>2900.0</td>
+      <td>female</td>
+      <td>2007</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>Adelie</td>
+      <td>Biscoe</td>
+      <td>37.9</td>
+      <td>18.6</td>
+      <td>193.0</td>
+      <td>2925.0</td>
+      <td>female</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Adelie</td>
+      <td>Dream</td>
+      <td>37.5</td>
+      <td>18.9</td>
+      <td>179.0</td>
+      <td>2975.0</td>
+      <td>NaN</td>
+      <td>2007</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Adelie</td>
+      <td>Dream</td>
+      <td>37.0</td>
+      <td>16.9</td>
+      <td>185.0</td>
+      <td>3000.0</td>
+      <td>female</td>
+      <td>2007</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="histograms" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="histograms"><span class="header-section-number">3.7</span> Histograms</h2>
+<p>We can create a histogram of our data setting <code>kind='hist'</code> in <code>plot()</code>.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using plot without subsetting data - a mess again</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'hist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>&lt;AxesSubplot:ylabel='Frequency'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-18-output-2.png" width="593" height="411"></p>
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-20-output-2.png" width="593" height="411"></p>
 </div>
 </div>
 <p>To gain actual information, let’s subset the data before plotting it. For example, suppose we want to look at the distribution of flipper length. We could do it in this way:</p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of flipper length measurements</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># first select data, then plot</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>penguins.flipper_length_mm.plot(kind<span class="op">=</span><span class="st">'hist'</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                                title<span class="op">=</span><span class="st">'Penguin flipper lengths'</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                                xlabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                                grid<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of flipper length measurements</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># first select data, then plot</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>penguins.flipper_length_mm.plot(kind<span class="op">=</span><span class="st">'hist'</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                                title<span class="op">=</span><span class="st">'Penguin flipper lengths'</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                                xlabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                                grid<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>&lt;AxesSubplot:title={'center':'Penguin flipper lengths'}, ylabel='Frequency'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-19-output-2.png" width="585" height="431"></p>
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-21-output-2.png" width="585" height="431"></p>
 </div>
 </div>
-<section id="check-in-1" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="check-in-1"><span class="header-section-number">3.6.1</span> Check-in</h3>
+<section id="check-in-1" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="check-in-1"><span class="header-section-number">3.7.1</span> Check-in</h3>
 <ol type="1">
-<li><p>Select data and find a value for the <code>kind</code> parameter that gives you a boxplot to make a basic boxplot for the penguin’s bill length and depth on the same axis. <!--
+<li><p>Select data and update the <code>kind</code> parameter to make boxplots of the bill length and bill depth. <!--
 
-::: {.cell execution_count=19}
+::: {.cell execution_count=21}
 ``` {.python .cell-code}
 penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 ```
 
-::: {.cell-output .cell-output-display execution_count=19}
+::: {.cell-output .cell-output-display execution_count=21}
 ```
 <AxesSubplot:>
 ```
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-20-output-2.png){width=566 height=411}
+![](lesson-3-basic-ploting_files/figure-html/cell-22-output-2.png){width=566 height=411}
 :::
 :::
 
 
 --></p></li>
-<li><p>Create a histogram of the flipper length of female gentoo penguins. HINT: you need to select both rows and columns.</p></li>
+<li><p>Select both rows and columns to create a histogram of the flipper length of gentoo penguins.</p></li>
 </ol>
+<!--
+
+::: {.cell execution_count=22}
+``` {.python .cell-code}
+penguins.loc[penguins.species == 'gentoo', 'flipper_length_mm'].plot(kind='hist')
+```
+
+::: {.cell-output .cell-output-display execution_count=22}
+```
+<AxesSubplot:ylabel='Frequency'>
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](lesson-3-basic-ploting_files/figure-html/cell-23-output-2.png){width=608 height=411}
+:::
+:::
+
+
+-->
+<!--
+(3) Create a histogram of the flipper length of *female* gentoo penguins.
+
+::: {.cell execution_count=23}
+``` {.python .cell-code}
+penguins.loc[(penguins.species == 'gentoo') & (penguins.sex == 'female'), 'flipper_length_mm'].plot(kind='hist')
+```
+
+::: {.cell-output .cell-output-display execution_count=23}
+```
+<AxesSubplot:ylabel='Frequency'>
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](lesson-3-basic-ploting_files/figure-html/cell-24-output-2.png){width=608 height=411}
+:::
+:::
+
+
+-->
 </section>
 </section>
-<section id="grouping" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="grouping"><span class="header-section-number">3.7</span> Grouping</h2>
+<section id="grouping" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="grouping"><span class="header-section-number">3.8</span> Grouping</h2>
 <p>Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calcualte a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species. How would we do this <code>by hand</code>?</p>
 <ol start="0" type="1">
 <li><p>We start with our data and notice there are multiple species in the <code>species</code> column.</p></li>
 <li><p>We split our original table to group all observations from the same species together.</p></li>
-<li><p>We calculate the average flipper length for each of the groups we form.</p></li>
+<li><p>We calculate the average flipper length for each of the groups we formed.</p></li>
 <li><p>Then we combine the values for average flipper length per species into a single table.</p></li>
 </ol>
 <!-- ADD DIAGRAM HERE -->
@@ -859,56 +1071,248 @@ penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 <li><p><strong>Combine</strong>: Combine the statistic calculated on each group back together.</p></li>
 </ol>
 <p>In Python we can use the <code>groupby()</code> method to split (i.e.&nbsp;group) the data into different categories. The general syntax for <code>groupby()</code> is</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.groupby(columns_to_group_by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where most often we will have <code>columns_to_group_by</code> = a single column name (string) or a list of column names</p>
-<p>Let’s see an example:</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.groupby(columns_to_group_by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where most often we will have <code>columns_to_group_by</code> = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame</p>
+<p>Let’s see an example.</p>
+<p>First, if we don’t use the <code>groupby()</code> method, we obtain the average for the whole flipper length column:</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>penguins.flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>200.91520467836258</code></pre>
+</div>
+</div>
+<p>To get the mean flipper length by species we first group our dataset by the species column’s data:</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>species
+Adelie       189.953642
+Chinstrap    195.823529
+Gentoo       217.186992
+Name: flipper_length_mm, dtype: float64</code></pre>
+</div>
 </div>
 <p>There’s a lot going on there, let’s break it down (remember the <code>.</code> can be read as “and then…”)</p>
 <ul>
 <li>start with the <code>penguins</code> data frame, and then…</li>
-<li>group the data frame by species values, and then…</li>
+<li>use <code>groupby()</code> to group the data frame by <code>species</code> values, and then…</li>
 <li>select the <code>'flipper_length_mm'</code> column, and then…</li>
 <li>calculate the <code>mean()</code></li>
 </ul>
-<p>IMPORTANT! Because we used <code>groupby()</code> the mean will be calculated on each group. If we ommit <code>groupby()</code> we obtain the average for the whole flipper length column:</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>penguins.flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>200.91520467836258</code></pre>
-</div>
-</div>
-<p>We can sort the <code>avg_flipper</code> data and then graph it as a bar plot.</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sort in descending order</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remember to reassign to actually update data</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> avg_flipper.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot as a bar plot</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>avg_flipper.plot(kind<span class="op">=</span><span class="st">'bar'</span>,</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>                 title<span class="op">=</span><span class="st">'Average flipper length by species'</span>,</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>                 ylabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>                 rot<span class="op">=</span><span class="dv">360</span>  <span class="co"># rotation for ticks </span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>                 ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<p>We can store our new data frame as <code>avg_flipper</code> and then graph it as a bar plot:</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sort in descending order</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remember to reassign to actually update data</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> avg_flipper.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot as a bar plot</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>avg_flipper.plot(kind<span class="op">=</span><span class="st">'bar'</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>                 title<span class="op">=</span><span class="st">'Average flipper length by species'</span>,</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>                 ylabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>                 rot<span class="op">=</span><span class="dv">360</span>  <span class="co"># rotation for ticks </span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>                 ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>&lt;AxesSubplot:title={'center':'Average flipper length by species'}, xlabel='species', ylabel='Flipper length (mm)'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-23-output-2.png" width="593" height="449"></p>
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-27-output-2.png" width="593" height="449"></p>
 </div>
 </div>
-<!-- Example of groupby multiple levels (maybe selecting the minimum? -->
-<section id="check-in-2" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="check-in-2"><span class="header-section-number">3.7.1</span> Check-in</h3>
-<!-- Something about group by and then plot -->
+<p>We can also group by combinations of columns. For example, suppose we want to know what was the number of penguins in every island on different years. We can use the <code>count()</code> method to count the number of non-NA values in each column like this:</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>penguins.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>species              344
+island               344
+bill_length_mm       342
+bill_depth_mm        342
+flipper_length_mm    342
+body_mass_g          342
+sex                  333
+year                 344
+dtype: int64</code></pre>
+</div>
+</div>
+<p>When we group by island and year we get the count of non-NA values for each column divided for each combination of island and year:</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>penguins.groupby([<span class="st">'island'</span>,<span class="st">'year'</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>species</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+    <tr>
+      <th>island</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">Biscoe</th>
+      <th>2007</th>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>64</td>
+      <td>64</td>
+      <td>64</td>
+      <td>64</td>
+      <td>64</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>60</td>
+      <td>59</td>
+      <td>59</td>
+      <td>59</td>
+      <td>59</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Dream</th>
+      <th>2007</th>
+      <td>46</td>
+      <td>46</td>
+      <td>46</td>
+      <td>46</td>
+      <td>46</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>34</td>
+      <td>34</td>
+      <td>34</td>
+      <td>34</td>
+      <td>34</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Torgersen</th>
+      <th>2007</th>
+      <td>20</td>
+      <td>19</td>
+      <td>19</td>
+      <td>19</td>
+      <td>19</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let’s say we want to plot the surveyed population per year and island. We could then use a “one liner” to do it in this way:</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>penguins.groupby([<span class="st">'island'</span>,<span class="st">'year'</span>]).count().species.sort_values().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>&lt;AxesSubplot:xlabel='island,year'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-3-basic-ploting_files/figure-html/cell-30-output-2.png" width="566" height="534"></p>
+</div>
+</div>
+<!--
+Talk about what is `groupby()` : lazy method
+-->
+<section id="check-in-2" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="check-in-2"><span class="header-section-number">3.8.1</span> Check-in</h3>
+<ol type="1">
+<li>Use <code>groupby</code> and the <code>max()</code> method for data frames to calculate the maximum value of penguin’s body mass by year and species.</li>
+</ol>
+<!--
+
+::: {.cell execution_count=30}
+``` {.python .cell-code}
+penguins.groupby(['year','species']).body_mass_g.max()
+```
+
+::: {.cell-output .cell-output-display execution_count=30}
+```
+year  species  
+2007  Adelie       4675.0
+      Chinstrap    4400.0
+      Gentoo       6300.0
+2008  Adelie       4700.0
+      Chinstrap    4800.0
+      Gentoo       6000.0
+2009  Adelie       4775.0
+      Chinstrap    4450.0
+      Gentoo       6000.0
+Name: body_mass_g, dtype: float64
+```
+:::
+:::
+
+
+-->
+<ol start="2" type="1">
+<li>Use (1) to display the highest body masses per year and species as a bar plot in descending order.</li>
+</ol>
+<!--
+penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=False).plot(kind='bar')
+-->
 <!--
 ## Further plotting
 
 MENTION SEABORN
 
-::: {.cell execution_count=23}
+::: {.cell execution_count=31}
 ``` {.python .cell-code}
 # make histograms of flipper length by species =
 #   group penguins by species
@@ -916,7 +1320,7 @@ MENTION SEABORN
 penguins.groupby('species').flipper_length_mm.plot(kind='hist')
 ```
 
-::: {.cell-output .cell-output-display execution_count=23}
+::: {.cell-output .cell-output-display execution_count=31}
 ```
 species
 Adelie       AxesSubplot(0.125,0.11;0.775x0.77)
@@ -927,29 +1331,28 @@ Name: flipper_length_mm, dtype: object
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-24-output-2.png){width=585 height=411}
+![](lesson-3-basic-ploting_files/figure-html/cell-32-output-2.png){width=585 height=411}
 :::
 :::
 
 
 `groupby()` keeps track of which data values correspond to which values in `columns_to_group_by`.
 
+
 ### Check-in
 
 Create a scatter plot of the flipper length against body mass (x=flipper length, y=body mass) by sex. 
 -->
-<!--
-## References
-Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.
-
-## Acknowledgements
-The `groupby()` section is based on an NCEAS Learning Hub I updated for the Delta Stewardship Council in June 2023. [https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
-
- Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
--->
-
-
 </section>
+</section>
+<section id="references" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="references"><span class="header-section-number">3.9</span> References</h2>
+<p>Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.</p>
+<p>The <code>groupby()</code> section is based on an NCEAS Learning Hub I updated for the Delta Stewardship Council in June 2023. <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize">https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize</a></p>
+<p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
+<p>```</p>
+
+
 </section>
 
 </main> <!-- /main -->
