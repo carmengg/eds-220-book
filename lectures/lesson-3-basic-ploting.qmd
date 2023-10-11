@@ -314,7 +314,17 @@ avg_flipper.plot(kind='bar',
                  ) 
 ```
 
+
+<!-- Example of groupby multiple levels (maybe selecting the minimum? -->
+
+### Check-in
+
+<!-- Something about group by and then plot -->
+
+<!--
 ## Further plotting
+
+MENTION SEABORN
 
 ```{python}
 # make histograms of flipper length by species =
@@ -328,7 +338,7 @@ penguins.groupby('species').flipper_length_mm.plot(kind='hist')
 ### Check-in
 
 Create a scatter plot of the flipper length against body mass (x=flipper length, y=body mass) by sex. 
-
+-->
 
 
 <!--
