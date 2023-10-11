@@ -1,6 +1,5 @@
-
 ## Plotting
-Let's dip our toes into plotting to make things more interesting. 
+Let's learn the basics of plotting with `pandas` to make things more interesting. 
 
 
 To get us started, we will use again the simplified data (glacial_loss.csv) from the National Snow and Ice Data Center ([Original dataset](​http://dx.doi.org/10.7265/N52N506F)). The column descriptions are:
@@ -95,11 +94,12 @@ df.plot(x='year',
         )
 ```
 
-Notice that for specifying the colors we used a **HEX code**, this gives us more control over the looks of our graph. 
+Notice that for specifying the colors we used a **HEX code**, this gives us more control over how our graph looks.
+
 
 We can also create separate plots for each column by setting the `subset` to `True`.
 
-```{python}
+```python
 df.plot(x='year', 
         y=['arctic', 'alaska'],
         title = 'Change in glacial volume per year in Alaska and the Arctic',
@@ -118,7 +118,7 @@ df.plot(x='year',
 Plot a graph of the annual sea level rise with respect to the years.
 
 (2)
-What information is the `columns` variable is retrieving from the data frame? Describe in a sentence what is being plotted.
+What information is the `columns` variable retrieving from the data frame? Describe in a sentence what is being plotted.
 ```{python}
 columns = df.loc[:,'europe':'antarctica'].columns
 df.plot(x='year', 
@@ -132,22 +132,20 @@ We will move on to another dataset for the rest of the lecture. The great...
 
 For the next plots we will use the  Palmer Penguins dataset (Horst et al., 2020). This contains size measurements for three penguin species in the Palmer Archipelago, Antarctica. 
 
-<!--
-[]()
-The Palmer Archipelago penguins. Artwork by @allison_horst.
--->
+[The Palmer Archipelago penguins. Artwork by @allison_horst.](/images/lesson-3-plot/lter_penguins.png)
 
 The data is usually accessed through the `palmerpenguins` R data package. There is no similar access to the Palmer penguins data through Python (yet!), so we will read the raw csv directly into Python using the URL: [https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv)
 
 The Palmer penguins dataset has the following columns:
 
-- **species**:
-- **island**:
-- **bill_length_mm**:
-- **bill_depth_mm**:
-- **flipper_lenght_mm**:
-- **body_mass_g**:
-- **sex_year**:
+- **species**
+- **island**
+- **bill_length_mm**
+- **bill_depth_mm**
+- **flipper_lenght_mm**
+- **body_mass_g**
+- **sex**
+- **year**
 
 Let's start by reading in the data.
 
@@ -169,7 +167,7 @@ penguins.info()
 penguins.describe()
 ```
 
-We can also subset the dataframe to get information about particular columns or groups of columns.
+We can also subset the dataframe to get information about a particular column or groups of columns.
 
 ```{python}
 # get count unique values in categorical columns and year
@@ -182,7 +180,7 @@ print(penguins.species.unique())
 ```
 
 ```{python}
-# species counts 
+# species unique value counts 
 print(penguins.species.value_counts())
 ```
 
@@ -190,9 +188,11 @@ print(penguins.species.value_counts())
 
 We talked about how the `plot()` function creates by default a line plot. The parameter that controls this behaviour is `plot()`'s `kind` parameter. By changing the value of `kind` we can create different kinds of plots. Let's look at the documentation to see what these values are:
 
-[`pandas.DataFrame.plot` documentation extract - accessed Oct 10,2023]()
+[`pandas.DataFrame.plot` documentation extract - accessed Oct 10,2023](/images/lesson-3-plot/df-plot-doc.png)
 
-Notice the default value of `kind` is `'line'`. Let's use this parameter to create some different plots. 
+Notice the default value of `kind` is `'line'`. 
+
+Let's change the `kind` parameter to create some different plots. 
 
 ## Scatter plots
 Suppose we want to visualy compare the flipper length agains the body mass, we can do this with a scatterplot. 
@@ -205,6 +205,7 @@ penguins.plot(kind='scatter',
         y='body_mass_g')
 ```
 
+We can update some other arguments to customize the graph:
 
 ```{python}
 penguins.plot(kind='scatter',
@@ -240,14 +241,28 @@ penguins.flipper_length_mm.plot(kind='hist',
 
 
 ### Check-in
-(1) Select data and find a value for the `kind` parameter that gives you a boxplot to make a basic boxplot for the penguin's bill length and depth on the same axis. 
+(1) Select data and update the `kind` parameter to make boxplots of the bill length and bill depth. 
 <!--
 ```{python}
 penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 ```
 -->
 
-(2) Create a histogram of the flipper length of female gentoo penguins. HINT: you need to select both rows and columns.
+(2) Select both rows and columns to create a histogram of the flipper length of gentoo penguins. 
+
+<!--
+```{python}
+penguins.loc[penguins.species == 'gentoo', 'flipper_length_mm'].plot(kind='hist')
+```
+-->
+
+(3) Create a histogram of the flipper length of *female* gentoo penguins.
+
+<!--
+```{python}
+penguins.loc[(penguins.species == 'gentoo') & (penguins.sex == 'female'), 'flipper_length_mm'].plot(kind='hist')
+```
+-->
 
 ## Grouping
 
@@ -257,7 +272,7 @@ Our penguins data is naturally split into different groups: there are three diff
 
 1. We split our original table to group all observations from the same species together.
 
-2. We calculate the average flipper length for each of the groups we form.
+2. We calculate the average flipper length for each of the groups we formed.
 
 3. Then we combine the values for average flipper length per species into a single table.
 
@@ -277,7 +292,7 @@ In Python we can use the `groupby()` method to split (i.e. group) the data into 
 df.groupby(columns_to_group_by)
 ```
 where most often we will have
-`columns_to_group_by` = a single column name (string) or a list of column names
+`columns_to_group_by` = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame
 
 Let's see an example:
 
@@ -289,11 +304,11 @@ avg_flipper = penguins.groupby("species").flipper_length_mm.mean()
 There's a lot going on there, let's break it down (remember the `.` can be read as "and then...")
 
 - start with the `penguins` data frame, and then...
-- group the data frame by species values, and then...
+- use `groupby()` to group the data frame by `species` values, and then...
 - select the `'flipper_length_mm'` column, and then...
 - calculate the `mean()`
 
-IMPORTANT! Because we used `groupby()` the mean will be calculated on each group. If we ommit `groupby()` we obtain the average for the whole flipper length column:
+Notice that because we used `groupby()` the mean will be calculated on each group. If we ommit `groupby()` we obtain the average for the whole flipper length column:
 
 ```{python}
 penguins.flipper_length_mm.mean()
@@ -302,6 +317,10 @@ penguins.flipper_length_mm.mean()
 We can sort the `avg_flipper` data and then graph it as a bar plot.
 
 ```{python}
+
+# average flipper length per species
+avg_flipper = penguins.groupby("species").flipper_length_mm.mean()
+
 # sort in descending order
 # remember to reassign to actually update data
 avg_flipper = avg_flipper.sort_values(ascending=False)
@@ -314,12 +333,33 @@ avg_flipper.plot(kind='bar',
                  ) 
 ```
 
+We can also group by combinations of columns. For example, suppose we want to know what was the number of penguins in every island on different years. We can obtain this information by doing
 
-<!-- Example of groupby multiple levels (maybe selecting the minimum? -->
+```{python}
+penguins.groupby(['island','year']).count() #?
+```
+
+What if we wanted to obtain the 4 most populated islands on a given year?
+
+```{python}
+penguins.groupby(['island','year']).count().max(5) #?
+```
+
+Then we can plot this information using a bar plot:
+
+```{python}
+
+```
+
+<!--
+Talk about what is `groupby()` : lazy method
+-->
 
 ### Check-in
 
-<!-- Something about group by and then plot -->
+(1) Use `groupby` to calculate the maximum value of penguin's body mass by year.
+
+(2) Display the data you created as a line plot of maximum body mass (y-values) by year (x-values).
 
 <!--
 ## Further plotting
@@ -335,13 +375,12 @@ penguins.groupby('species').flipper_length_mm.plot(kind='hist')
 
 `groupby()` keeps track of which data values correspond to which values in `columns_to_group_by`.
 
+
 ### Check-in
 
 Create a scatter plot of the flipper length against body mass (x=flipper length, y=body mass) by sex. 
 -->
 
-
-<!--
 ## References
 Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.
 
@@ -349,4 +388,5 @@ Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarct
 The `groupby()` section is based on an NCEAS Learning Hub I updated for the Delta Stewardship Council in June 2023. [https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
 
  Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
--->
+
+```
