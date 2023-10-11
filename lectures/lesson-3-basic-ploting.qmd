@@ -294,11 +294,19 @@ df.groupby(columns_to_group_by)
 where most often we will have
 `columns_to_group_by` = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame
 
-Let's see an example:
+Let's see an example.
+
+First, if we don't use the `groupby()` method, we obtain the average for the whole flipper length column:
+
+```{python}
+penguins.flipper_length_mm.mean()
+```
+
+To get the mean flipper length by species we first group our dataset by the species column's data:
 
 ```{python}
 # average flipper length per species
-avg_flipper = penguins.groupby("species").flipper_length_mm.mean()
+penguins.groupby("species").flipper_length_mm.mean()
 ```
 
 There's a lot going on there, let's break it down (remember the `.` can be read as "and then...")
@@ -308,13 +316,8 @@ There's a lot going on there, let's break it down (remember the `.` can be read 
 - select the `'flipper_length_mm'` column, and then...
 - calculate the `mean()`
 
-Notice that because we used `groupby()` the mean will be calculated on each group. If we ommit `groupby()` we obtain the average for the whole flipper length column:
 
-```{python}
-penguins.flipper_length_mm.mean()
-```
-
-We can sort the `avg_flipper` data and then graph it as a bar plot.
+We can store our new data frame as `avg_flipper` and then graph it as a bar plot:
 
 ```{python}
 
