@@ -1,0 +1,10 @@
+# Updating datafarmes
+
+
+```{python}
+# read in data
+penguins = pd.read_csv('https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv')
+
+# look at dataframe's head
+penguins.head()
+```

@@ -11,11 +11,14 @@ book:
   #date: "October 2023"
   chapters:
     - index.qmd
-    - part: "Lectures"
+    - lectures/lesson-1-python-review.qmd
+    - part: "pandas"
       chapters:
-        - lectures/lesson-1-python-review.qmd
-        - lectures/lesson-2-pandas-basics.qmd
-        - lectures/lesson-3-basic-ploting.qmd
+        - lectures/lesson-2-series-dataframes.qmd
+        - lectures/lesson-3-pandas-subsetting.qmd
+        - lectures/lesson-4-basic-plotting.qmd
+        #- lectures/lesson-5-updating-dataframes.qmd
+        #- lectures/lesson-6-groupby.qmd
     - part: "Discussion Sections"
       chapters:
        - discussion-sections/ds1-anthr-prelim-data-exploration.qmd

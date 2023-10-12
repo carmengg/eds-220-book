@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 4&nbsp; 1. Preliminary Data Exploration</title>
+<title>EDS 220 - Working with Environmental Datasets - 5&nbsp; Preliminary Data Exploration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-3-basic-ploting.html" rel="prev">
+<link href="../lectures/lesson-4-basic-plotting.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -160,9 +160,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lectures</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -170,17 +175,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-pandas-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-basic-ploting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
       </ul>
@@ -195,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
   </div>
 </li>
       </ul>
@@ -209,14 +214,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#archive-exploration" id="toc-archive-exploration" class="nav-link active" data-scroll-target="#archive-exploration"><span class="toc-section-number">4.1</span>  Archive exploration</a></li>
-  <li><a href="#xml-metadata-exploration" id="toc-xml-metadata-exploration" class="nav-link" data-scroll-target="#xml-metadata-exploration"><span class="toc-section-number">4.2</span>  <code>.xml</code> metadata exploration</a></li>
-  <li><a href="#csv-metadata-exploration" id="toc-csv-metadata-exploration" class="nav-link" data-scroll-target="#csv-metadata-exploration"><span class="toc-section-number">4.3</span>  <code>.csv</code> metadata exploration</a></li>
-  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading"><span class="toc-section-number">4.4</span>  Data loading</a></li>
-  <li><a href="#look-at-your-data" id="toc-look-at-your-data" class="nav-link" data-scroll-target="#look-at-your-data"><span class="toc-section-number">4.5</span>  Look at your data</a></li>
-  <li><a href="#pd.dataframe-preliminary-exploration" id="toc-pd.dataframe-preliminary-exploration" class="nav-link" data-scroll-target="#pd.dataframe-preliminary-exploration"><span class="toc-section-number">4.6</span>  <code>pd.DataFrame</code> preliminary exploration</a></li>
-  <li><a href="#update-some-column-names" id="toc-update-some-column-names" class="nav-link" data-scroll-target="#update-some-column-names"><span class="toc-section-number">4.7</span>  Update some column names</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">5</span>  References</a></li>
+  <li><a href="#archive-exploration" id="toc-archive-exploration" class="nav-link active" data-scroll-target="#archive-exploration"><span class="toc-section-number">5.1</span>  Archive exploration</a></li>
+  <li><a href="#xml-metadata-exploration" id="toc-xml-metadata-exploration" class="nav-link" data-scroll-target="#xml-metadata-exploration"><span class="toc-section-number">5.2</span>  <code>.xml</code> metadata exploration</a></li>
+  <li><a href="#csv-metadata-exploration" id="toc-csv-metadata-exploration" class="nav-link" data-scroll-target="#csv-metadata-exploration"><span class="toc-section-number">5.3</span>  <code>.csv</code> metadata exploration</a></li>
+  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading"><span class="toc-section-number">5.4</span>  Data loading</a></li>
+  <li><a href="#look-at-your-data" id="toc-look-at-your-data" class="nav-link" data-scroll-target="#look-at-your-data"><span class="toc-section-number">5.5</span>  Look at your data</a></li>
+  <li><a href="#pd.dataframe-preliminary-exploration" id="toc-pd.dataframe-preliminary-exploration" class="nav-link" data-scroll-target="#pd.dataframe-preliminary-exploration"><span class="toc-section-number">5.6</span>  <code>pd.DataFrame</code> preliminary exploration</a></li>
+  <li><a href="#update-some-column-names" id="toc-update-some-column-names" class="nav-link" data-scroll-target="#update-some-column-names"><span class="toc-section-number">5.7</span>  Update some column names</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">6</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -225,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></h1>
 </div>
 
 
@@ -321,8 +326,8 @@ About the data
 </div>
 </div>
 <!-- Data exploration -->
-<section id="archive-exploration" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="archive-exploration"><span class="header-section-number">4.1</span> Archive exploration</h2>
+<section id="archive-exploration" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="archive-exploration"><span class="header-section-number">5.1</span> Archive exploration</h2>
 <p>For many datasets, data exploration begins at the data repository. Take some time to look through the dataset’s description in KNB. Discuss the following questions with your team:</p>
 <ol type="a">
 <li>What is this data about?</li>
@@ -336,8 +341,8 @@ About the data
 <strong>check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes</strong>
 </p>
 </section>
-<section id="xml-metadata-exploration" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="xml-metadata-exploration"><span class="header-section-number">4.2</span> <code>.xml</code> metadata exploration</h2>
+<section id="xml-metadata-exploration" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="xml-metadata-exploration"><span class="header-section-number">5.2</span> <code>.xml</code> metadata exploration</h2>
 <p>You may have noticed there are two metadata files: <code>Compiled_occurrence_records_for_prey_items_of.xml</code> and <code>metadata_arth_occurrences.csv</code>.</p>
 <ol type="a">
 <li>In the archive’s dataset description, notice the <code>.xml</code> document file type is <code>EML</code> which stands for <a href="https://eml.ecoinformatics.org">EML: Ecological Metadata Language</a>.</li>
@@ -346,8 +351,8 @@ About the data
 <li>You don’t need to write anything in your notebook about this section.</li>
 </ol>
 </section>
-<section id="csv-metadata-exploration" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="csv-metadata-exploration"><span class="header-section-number">4.3</span> <code>.csv</code> metadata exploration</h2>
+<section id="csv-metadata-exploration" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="csv-metadata-exploration"><span class="header-section-number">5.3</span> <code>.csv</code> metadata exploration</h2>
 <p>Back in your notebook, import the <code>pandas</code> package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the <code>pandas.read_csv()</code> function:</p>
 <ol type="a">
 <li>Navigate to the <a href="https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF1VM49RH">data package site</a> and copy the URL to access the <code>metadata_arth_occurrences</code> csv file. To copy the URL:</li>
@@ -364,8 +369,8 @@ About the data
 <p><strong>Note:</strong> Not all datasets have column descriptions in a <code>csv</code> file. Often they come with a <code>doc</code> or <code>txt</code> file with information.</p>
 <!-- Data loading -->
 </section>
-<section id="data-loading" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="data-loading"><span class="header-section-number">4.4</span> Data loading</h2>
+<section id="data-loading" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="data-loading"><span class="header-section-number">5.4</span> Data loading</h2>
 <ol type="a">
 <li>Follow steps (a) and (b) from the previous exercise to read in the drylands prey data file <code>arth_occurrences_with_env.csv</code> using <code>pd.read_csv()</code>. Store the dataframe to a variable called <code>prey</code> like this:</li>
 </ol>
@@ -384,8 +389,8 @@ About the data
 <strong>MAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING</strong>
 </p>
 </section>
-<section id="look-at-your-data" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="look-at-your-data"><span class="header-section-number">4.5</span> Look at your data</h2>
+<section id="look-at-your-data" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="look-at-your-data"><span class="header-section-number">5.5</span> Look at your data</h2>
 <ol type="a">
 <li><p>Run <code>prey</code> in a cell. What do you notice in the columns section?</p></li>
 <li><p>To see all the column names in the same display we need to set a <code>pandas</code> option. Run the following command and then look at the <code>prey</code> data again:</p></li>
@@ -398,8 +403,8 @@ About the data
 <strong>check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes</strong>
 </p>
 </section>
-<section id="pd.dataframe-preliminary-exploration" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="pd.dataframe-preliminary-exploration"><span class="header-section-number">4.6</span> <code>pd.DataFrame</code> preliminary exploration</h2>
+<section id="pd.dataframe-preliminary-exploration" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="pd.dataframe-preliminary-exploration"><span class="header-section-number">5.6</span> <code>pd.DataFrame</code> preliminary exploration</h2>
 <p>Run each of the following methods for <code>prey</code> in a different cell and write a brief description of what they do as a comment:</p>
 <ol type="a">
 <li><code>head()</code></li>
@@ -426,15 +431,15 @@ prey.head()</code></pre>
 <strong>check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes</strong>
 </p>
 </section>
-<section id="update-some-column-names" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="update-some-column-names"><span class="header-section-number">4.7</span> Update some column names</h2>
+<section id="update-some-column-names" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="update-some-column-names"><span class="header-section-number">5.7</span> Update some column names</h2>
 <p>Change the column names of <code>institutionCode</code> and <code>datasetKey</code> to <code>institution_code</code> and <code>dataset_key</code>, respectively. Make sure you’re actually updating the dataframe. HINT: yesterday’s class.</p>
 <p style="text-align: center;">
 <strong>check git status -&gt; stage changes -&gt; check git status -&gt; commit with message -&gt; push changes</strong>
 </p>
 </section>
-<section id="references" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> References</h1>
+<section id="references" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> References</h1>
 <p>Rachel King, Jenna Braun, Michael Westphal, &amp; CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.</p>
 <p>Lortie, C. J., Braun, J., King, R., &amp; Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251</p>
 
@@ -577,8 +582,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-3-basic-ploting.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting</span></span>
+      <a href="../lectures/lesson-4-basic-plotting.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

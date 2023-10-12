@@ -1,5 +1,5 @@
 
-# 1. Preliminary Data Exploration
+# Preliminary Data Exploration
 
 October 5, 2023.
 

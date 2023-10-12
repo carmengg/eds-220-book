@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 3&nbsp; Plotting</title>
+<title>EDS 220 - Working with Environmental Datasets - 4&nbsp; Plotting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" rel="next">
-<link href="../lectures/lesson-2-pandas-basics.html" rel="prev">
+<link href="../lectures/lesson-3-pandas-subsetting.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -164,9 +164,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lectures</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -174,17 +179,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-pandas-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-basic-ploting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
       </ul>
@@ -199,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
   </div>
 </li>
       </ul>
@@ -213,25 +218,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#plot-method" id="toc-plot-method" class="nav-link active" data-scroll-target="#plot-method"><span class="toc-section-number">3.1</span>  <code>plot()</code> method</a></li>
-  <li><a href="#line-plots" id="toc-line-plots" class="nav-link" data-scroll-target="#line-plots"><span class="toc-section-number">3.2</span>  Line plots</a>
+  <li><a href="#plot-method" id="toc-plot-method" class="nav-link active" data-scroll-target="#plot-method"><span class="toc-section-number">4.1</span>  <code>plot()</code> method</a></li>
+  <li><a href="#line-plots" id="toc-line-plots" class="nav-link" data-scroll-target="#line-plots"><span class="toc-section-number">4.2</span>  Line plots</a>
   <ul class="collapse">
-  <li><a href="#multiple-line-plots" id="toc-multiple-line-plots" class="nav-link" data-scroll-target="#multiple-line-plots"><span class="toc-section-number">3.2.1</span>  Multiple line plots</a></li>
-  <li><a href="#check-in" id="toc-check-in" class="nav-link" data-scroll-target="#check-in"><span class="toc-section-number">3.2.2</span>  Check-in</a></li>
+  <li><a href="#multiple-line-plots" id="toc-multiple-line-plots" class="nav-link" data-scroll-target="#multiple-line-plots"><span class="toc-section-number">4.2.1</span>  Multiple line plots</a></li>
+  <li><a href="#check-in" id="toc-check-in" class="nav-link" data-scroll-target="#check-in"><span class="toc-section-number">4.2.2</span>  Check-in</a></li>
   </ul></li>
-  <li><a href="#palmer-penguins-dataset" id="toc-palmer-penguins-dataset" class="nav-link" data-scroll-target="#palmer-penguins-dataset"><span class="toc-section-number">3.3</span>  Palmer penguins dataset</a></li>
-  <li><a href="#kind-argument-in-plot" id="toc-kind-argument-in-plot" class="nav-link" data-scroll-target="#kind-argument-in-plot"><span class="toc-section-number">3.4</span>  <code>kind</code> argument in <code>plot()</code></a></li>
-  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots"><span class="toc-section-number">3.5</span>  Scatter plots</a></li>
-  <li><a href="#bar-plots" id="toc-bar-plots" class="nav-link" data-scroll-target="#bar-plots"><span class="toc-section-number">3.6</span>  Bar plots</a></li>
-  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="toc-section-number">3.7</span>  Histograms</a>
+  <li><a href="#palmer-penguins-dataset" id="toc-palmer-penguins-dataset" class="nav-link" data-scroll-target="#palmer-penguins-dataset"><span class="toc-section-number">4.3</span>  Palmer penguins dataset</a></li>
+  <li><a href="#kind-argument-in-plot" id="toc-kind-argument-in-plot" class="nav-link" data-scroll-target="#kind-argument-in-plot"><span class="toc-section-number">4.4</span>  <code>kind</code> argument in <code>plot()</code></a></li>
+  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots"><span class="toc-section-number">4.5</span>  Scatter plots</a></li>
+  <li><a href="#bar-plots" id="toc-bar-plots" class="nav-link" data-scroll-target="#bar-plots"><span class="toc-section-number">4.6</span>  Bar plots</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="toc-section-number">4.7</span>  Histograms</a>
   <ul class="collapse">
-  <li><a href="#check-in-1" id="toc-check-in-1" class="nav-link" data-scroll-target="#check-in-1"><span class="toc-section-number">3.7.1</span>  Check-in</a></li>
+  <li><a href="#check-in-1" id="toc-check-in-1" class="nav-link" data-scroll-target="#check-in-1"><span class="toc-section-number">4.7.1</span>  Check-in</a></li>
   </ul></li>
-  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">3.8</span>  Grouping</a>
-  <ul class="collapse">
-  <li><a href="#check-in-2" id="toc-check-in-2" class="nav-link" data-scroll-target="#check-in-2"><span class="toc-section-number">3.8.1</span>  Check-in</a></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">3.9</span>  References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">4.8</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -240,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></h1>
 </div>
 
 
@@ -285,7 +286,7 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># see the first five rows</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <div>
 
@@ -382,34 +383,34 @@ os.chdir(os.path.join(home,'eds-220-book'))
 </div>
 </div>
 </div>
-<section id="plot-method" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="plot-method"><span class="header-section-number">3.1</span> <code>plot()</code> method</h2>
+<section id="plot-method" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="plot-method"><span class="header-section-number">4.1</span> <code>plot()</code> method</h2>
 <p>A <code>pandas.DataFrame</code> has a <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">built-in method <code>plot()</code></a> for plotting. When we call it without specifying any other parameters <code>plot()</code> creates one line plot for each of the columns with numeric data.</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one line plot per column with numeric data - a mess</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-4-output-2.png" width="594" height="411"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-4-output-2.png" width="594" height="411"></p>
 </div>
 </div>
 <p>As we can see, this doesn’t make any sense! In particular, look at the x-axis. The default for <code>plot</code> is to use the values of the index as the x-axis values. Let’s see some examples about how to improve this situation.</p>
 </section>
-<section id="line-plots" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="line-plots"><span class="header-section-number">3.2</span> Line plots</h2>
+<section id="line-plots" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="line-plots"><span class="header-section-number">4.2</span> Line plots</h2>
 <p>We can make a line plot of one column against another by using the following syntax:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'x_values_column'</span>, y<span class="op">=</span><span class="st">'y_values_column'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For example,</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change in glacial volume per year in Europe</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'europe'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>&lt;AxesSubplot:xlabel='year'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-5-output-2.png" width="577" height="429"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-5-output-2.png" width="577" height="429"></p>
 </div>
 </div>
 <p>We can do some basic customization specifying other arguments of the <code>plot</code> function. Some basic ones are:</p>
@@ -428,16 +429,16 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        ylabel<span class="op">=</span><span class="st">'​Change in glacial volume (km3​)'</span>,</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'green'</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>&lt;AxesSubplot:title={'center':'Change in glacial volume per year in Europe'}, xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-6-output-2.png" width="596" height="449"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-6-output-2.png" width="596" height="449"></p>
 </div>
 </div>
 <p>You can see all the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html">optional arguments for the <code>plot()</code> function in the documentation</a>.</p>
-<section id="multiple-line-plots" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="multiple-line-plots"><span class="header-section-number">3.2.1</span> Multiple line plots</h3>
+<section id="multiple-line-plots" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="multiple-line-plots"><span class="header-section-number">4.2.1</span> Multiple line plots</h3>
 <p>Let’s say we want to graph the change in glacial volume in the Arctic and Alaska. We can do it by updating these arguments:</p>
 <ul>
 <li><code>y</code> : a list of column names that will be plotted against x</li>
@@ -453,11 +454,11 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'alaska'</span>: <span class="st">'#AB47BC'</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                 }</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>&lt;AxesSubplot:title={'center':'Change in glacial volume per year in Alaska and the Arctic'}, xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-7-output-2.png" width="604" height="449"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-7-output-2.png" width="604" height="449"></p>
 </div>
 </div>
 <p>Notice that for specifying the colors we used a <strong>HEX code</strong>, this gives us more control over how our graph looks.</p>
@@ -473,18 +474,18 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                 },</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        subplots<span class="op">=</span><span class="va">True</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array([&lt;AxesSubplot:xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;,
        &lt;AxesSubplot:xlabel='Year', ylabel='\u200bChange in glacial volume (km3\u200b)'&gt;],
       dtype=object)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-8-output-2.png" width="604" height="477"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-8-output-2.png" width="604" height="477"></p>
 </div>
 </div>
 </section>
-<section id="check-in" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="check-in"><span class="header-section-number">3.2.2</span> Check-in</h3>
+<section id="check-in" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="check-in"><span class="header-section-number">4.2.2</span> Check-in</h3>
 <ol type="1">
 <li><p>Plot a graph of the annual sea level rise with respect to the years.</p></li>
 <li><p>What information is the <code>columns</code> variable retrieving from the data frame? Describe in a sentence what is being plotted.</p></li>
@@ -496,8 +497,8 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <p>We will move on to another dataset for the rest of the lecture. The great…</p>
 </section>
 </section>
-<section id="palmer-penguins-dataset" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="palmer-penguins-dataset"><span class="header-section-number">3.3</span> Palmer penguins dataset</h2>
+<section id="palmer-penguins-dataset" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="palmer-penguins-dataset"><span class="header-section-number">4.3</span> Palmer penguins dataset</h2>
 <p>For the next plots we will use the Palmer Penguins dataset (Horst et al., 2020). This contains size measurements for three penguin species in the Palmer Archipelago, Antarctica.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -505,7 +506,7 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <p></p><figcaption class="figure-caption">The Palmer Archipelago penguins. Artwork by <span class="citation" data-cites="allison_horst">@allison_horst</span>.</figcaption><p></p>
 </figure>
 </div>
-<p>The data is usually accessed through the <code>palmerpenguins</code> R data package. There is no similar access to the Palmer penguins data through Python (yet!), so we will read the raw csv directly into Python using the URL: <a href="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv">https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv</a></p>
+<p>The data is usually accessed through the <code>palmerpenguins</code> R data package. Today we will access the csv directly into Python using the URL: <a href="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv">https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv</a></p>
 <p>The Palmer penguins dataset has the following columns:</p>
 <ul>
 <li><strong>species</strong></li>
@@ -524,7 +525,7 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># look at dataframe's head</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
 
@@ -627,7 +628,7 @@ memory usage: 21.6+ KB</code></pre>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple statistics about numeric columns</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>penguins.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="34">
 
 <div>
 
@@ -716,7 +717,7 @@ memory usage: 21.6+ KB</code></pre>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get count unique values in categorical columns and year</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>penguins[[<span class="st">'species'</span>, <span class="st">'island'</span>, <span class="st">'sex'</span>, <span class="st">'year'</span>]].nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>species    3
 island     3
 sex        2
@@ -742,8 +743,8 @@ Name: species, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="kind-argument-in-plot" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="kind-argument-in-plot"><span class="header-section-number">3.4</span> <code>kind</code> argument in <code>plot()</code></h2>
+<section id="kind-argument-in-plot" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="kind-argument-in-plot"><span class="header-section-number">4.4</span> <code>kind</code> argument in <code>plot()</code></h2>
 <p>We talked about how the <code>plot()</code> function creates by default a line plot. The parameter that controls this behaviour is <code>plot()</code>’s <code>kind</code> parameter. By changing the value of <code>kind</code> we can create different kinds of plots. Let’s look at the documentation to see what these values are:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -754,19 +755,19 @@ Name: species, dtype: int64</code></pre>
 <p>Notice the default value of <code>kind</code> is <code>'line'</code>.</p>
 <p>Let’s change the <code>kind</code> parameter to create some different plots.</p>
 </section>
-<section id="scatter-plots" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">3.5</span> Scatter plots</h2>
+<section id="scatter-plots" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">4.5</span> Scatter plots</h2>
 <p>Suppose we want to visualy compare the flipper length against the body mass, we can do this with a scatterplot.</p>
 <p>Example:</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'body_mass_g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>&lt;AxesSubplot:xlabel='flipper_length_mm', ylabel='body_mass_g'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-15-output-2.png" width="602" height="429"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-15-output-2.png" width="602" height="429"></p>
 </div>
 </div>
 <p>We can update some other arguments to customize the graph:</p>
@@ -780,22 +781,22 @@ Name: species, dtype: int64</code></pre>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'#ff3b01'</span>,</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.4</span>  <span class="co"># controls transparency</span></span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>&lt;AxesSubplot:title={'center':'Flipper length and body mass for Palmer penguins'}, xlabel='Flipper length (mm)', ylabel='Body mass (g)'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-16-output-2.png" width="602" height="449"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-16-output-2.png" width="602" height="449"></p>
 </div>
 </div>
 </section>
-<section id="bar-plots" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="bar-plots"><span class="header-section-number">3.6</span> Bar plots</h2>
+<section id="bar-plots" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="bar-plots"><span class="header-section-number">4.6</span> Bar plots</h2>
 <p>We can create bar plots of our data setting <code>kind='bar'</code> in the <code>plot()</code> method.</p>
 <p>For example, let’s say we want to get data about the 10 penguins with lowest body mass. We can first select this data using the <code>nsmallest()</code> method for series:</p>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>smallest <span class="op">=</span> penguins.body_mass_g.nsmallest(<span class="dv">10</span>).sort_values()</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>smallest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>314    2700.0
 58     2850.0
 64     2850.0
@@ -812,17 +813,17 @@ Name: body_mass_g, dtype: float64</code></pre>
 <p>We can then plot this data as a bar plot</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>smallest.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-18-output-2.png" width="583" height="424"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-18-output-2.png" width="583" height="424"></p>
 </div>
 </div>
 <p>If we wanted to look at other data for these smallest penguins we can use the index of the <code>smallest</code> <code>pandas.Series</code> to select those rows in the original <code>penguins</code> data frame using <code>loc</code>:</p>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[smallest.index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="42">
 
 <div>
 
@@ -957,17 +958,17 @@ Name: body_mass_g, dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="histograms" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="histograms"><span class="header-section-number">3.7</span> Histograms</h2>
+<section id="histograms" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="histograms"><span class="header-section-number">4.7</span> Histograms</h2>
 <p>We can create a histogram of our data setting <code>kind='hist'</code> in <code>plot()</code>.</p>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using plot without subsetting data - a mess again</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>penguins.plot(kind<span class="op">=</span><span class="st">'hist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>&lt;AxesSubplot:ylabel='Frequency'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-20-output-2.png" width="593" height="411"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-20-output-2.png" width="593" height="411"></p>
 </div>
 </div>
 <p>To gain actual information, let’s subset the data before plotting it. For example, suppose we want to look at the distribution of flipper length. We could do it in this way:</p>
@@ -978,15 +979,15 @@ Name: body_mass_g, dtype: float64</code></pre>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                                title<span class="op">=</span><span class="st">'Penguin flipper lengths'</span>,</span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                                xlabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                                grid<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>&lt;AxesSubplot:title={'center':'Penguin flipper lengths'}, ylabel='Frequency'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-21-output-2.png" width="585" height="431"></p>
+<p><img src="lesson-4-basic-plotting_files/figure-html/cell-21-output-2.png" width="585" height="431"></p>
 </div>
 </div>
-<section id="check-in-1" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="check-in-1"><span class="header-section-number">3.7.1</span> Check-in</h3>
+<section id="check-in-1" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="check-in-1"><span class="header-section-number">4.7.1</span> Check-in</h3>
 <ol type="1">
 <li><p>Select the <code>bill_length_mm</code> and <code>bill_depth_mm</code> columns in the <code>penguins</code> dataframe and then update the kind parameter to <code>box</code> to make boxplots of the bill length and bill depth. <!--
 
@@ -995,14 +996,14 @@ Name: body_mass_g, dtype: float64</code></pre>
 penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 ```
 
-::: {.cell-output .cell-output-display execution_count=21}
+::: {.cell-output .cell-output-display execution_count=45}
 ```
 <AxesSubplot:>
 ```
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-22-output-2.png){width=566 height=411}
+![](lesson-4-basic-plotting_files/figure-html/cell-22-output-2.png){width=566 height=411}
 :::
 :::
 
@@ -1017,14 +1018,14 @@ penguins[['bill_length_mm','bill_depth_mm']].plot(kind='box')
 penguins.loc[penguins.species == 'Gentoo', 'flipper_length_mm'].plot(kind='hist')
 ```
 
-::: {.cell-output .cell-output-display execution_count=22}
+::: {.cell-output .cell-output-display execution_count=46}
 ```
 <AxesSubplot:ylabel='Frequency'>
 ```
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-23-output-2.png){width=597 height=411}
+![](lesson-4-basic-plotting_files/figure-html/cell-23-output-2.png){width=597 height=411}
 :::
 :::
 
@@ -1038,285 +1039,25 @@ penguins.loc[penguins.species == 'Gentoo', 'flipper_length_mm'].plot(kind='hist'
 penguins.loc[(penguins.species == 'gentoo') & (penguins.sex == 'female'), 'flipper_length_mm'].plot(kind='hist')
 ```
 
-::: {.cell-output .cell-output-display execution_count=23}
+::: {.cell-output .cell-output-display execution_count=47}
 ```
 <AxesSubplot:ylabel='Frequency'>
 ```
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-24-output-2.png){width=608 height=411}
+![](lesson-4-basic-plotting_files/figure-html/cell-24-output-2.png){width=608 height=411}
 :::
 :::
 
 
--->
-</section>
-</section>
-<section id="grouping" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="grouping"><span class="header-section-number">3.8</span> Grouping</h2>
-<p>Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calculate a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species. How would we do this “by hand”?</p>
-<ol start="0" type="1">
-<li><p>We start with our data and notice there are multiple species in the <code>species</code> column.</p></li>
-<li><p>We split our original table to group all observations from the same species together.</p></li>
-<li><p>We calculate the average flipper length for each of the groups we formed.</p></li>
-<li><p>Then we combine the values for average flipper length per species into a single table.</p></li>
-</ol>
-<p>This is known as the <strong>Split-Apply-Combine strategy</strong>. This strategy follows the three steps we explained above:</p>
-<ol type="1">
-<li><p><strong>Split</strong>: Split the data into logical groups (e.g.&nbsp;species, sex, island, etc.)</p></li>
-<li><p><strong>Apply</strong>: Calculate some summary statistic on each group (e.g.&nbsp;average flipper length by species, number of individuals per island, body mass by sex, etc.)</p></li>
-<li><p><strong>Combine</strong>: Combine the statistic calculated on each group back together.</p></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/lesson-3-plot/split-apply-combine-penguins-diagram.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Split-apply-combine to calculate mean flipper length</figcaption><p></p>
-</figure>
-</div>
-<p>In Python we can use the <code>groupby()</code> method to split (i.e.&nbsp;group) the data into different categories. The general syntax for <code>groupby()</code> is</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.groupby(columns_to_group_by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where most often we will have <code>columns_to_group_by</code> = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame</p>
-<p>Let’s see an example.</p>
-<p>First, if we don’t use the <code>groupby()</code> method, we obtain the average for the whole flipper length column:</p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>penguins.flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>200.91520467836258</code></pre>
-</div>
-</div>
-<p>To get the mean flipper length by species we first group our dataset by the species column’s data:</p>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
-<pre><code>species
-Adelie       189.953642
-Chinstrap    195.823529
-Gentoo       217.186992
-Name: flipper_length_mm, dtype: float64</code></pre>
-</div>
-</div>
-<p>There’s a lot going on there, let’s break it down (remember the <code>.</code> can be read as “and then…”)</p>
-<ul>
-<li>start with the <code>penguins</code> data frame, and then…</li>
-<li>use <code>groupby()</code> to group the data frame by <code>species</code> values, and then…</li>
-<li>select the <code>'flipper_length_mm'</code> column, and then…</li>
-<li>calculate the <code>mean()</code></li>
-</ul>
-<p>We can store our new data frame as <code>avg_flipper</code> and then graph it as a bar plot:</p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sort in descending order</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remember to reassign to actually update data</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> avg_flipper.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot as a bar plot</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>avg_flipper.plot(kind<span class="op">=</span><span class="st">'bar'</span>,</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>                 title<span class="op">=</span><span class="st">'Average flipper length by species'</span>,</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>                 ylabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>                 rot<span class="op">=</span><span class="dv">360</span>  <span class="co"># rotation for ticks </span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>                 ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
-<pre><code>&lt;AxesSubplot:title={'center':'Average flipper length by species'}, xlabel='species', ylabel='Flipper length (mm)'&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-27-output-2.png" width="593" height="449"></p>
-</div>
-</div>
-<p>We can also group by combinations of columns. For example, suppose we want to know what was the number of penguins in every island on different years. We can use the <code>count()</code> method to count the number of non-NA values in each column like this:</p>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>penguins.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
-<pre><code>species              344
-island               344
-bill_length_mm       342
-bill_depth_mm        342
-flipper_length_mm    342
-body_mass_g          342
-sex                  333
-year                 344
-dtype: int64</code></pre>
-</div>
-</div>
-<p>When we group by island and year we get the count of non-NA values for each column divided for each combination of island and year:</p>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>penguins.groupby([<span class="st">'island'</span>,<span class="st">'year'</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>species</th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-      <th>sex</th>
-    </tr>
-    <tr>
-      <th>island</th>
-      <th>year</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="3" valign="top">Biscoe</th>
-      <th>2007</th>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <th>2008</th>
-      <td>64</td>
-      <td>64</td>
-      <td>64</td>
-      <td>64</td>
-      <td>64</td>
-      <td>63</td>
-    </tr>
-    <tr>
-      <th>2009</th>
-      <td>60</td>
-      <td>59</td>
-      <td>59</td>
-      <td>59</td>
-      <td>59</td>
-      <td>57</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">Dream</th>
-      <th>2007</th>
-      <td>46</td>
-      <td>46</td>
-      <td>46</td>
-      <td>46</td>
-      <td>46</td>
-      <td>45</td>
-    </tr>
-    <tr>
-      <th>2008</th>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-    </tr>
-    <tr>
-      <th>2009</th>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">Torgersen</th>
-      <th>2007</th>
-      <td>20</td>
-      <td>19</td>
-      <td>19</td>
-      <td>19</td>
-      <td>19</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>2008</th>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>2009</th>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Let’s say we want to plot the surveyed population per year and island. We could then use a “one liner” to do it in this way:</p>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>penguins.groupby([<span class="st">'island'</span>,<span class="st">'year'</span>]).count().species.sort_values().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>&lt;AxesSubplot:xlabel='island,year'&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="lesson-3-basic-ploting_files/figure-html/cell-30-output-2.png" width="566" height="534"></p>
-</div>
-</div>
-<!--
-Talk about what is `groupby()` : lazy method
--->
-<section id="check-in-2" class="level3" data-number="3.8.1">
-<h3 data-number="3.8.1" class="anchored" data-anchor-id="check-in-2"><span class="header-section-number">3.8.1</span> Check-in</h3>
-<ol type="1">
-<li>Use <code>groupby</code> and the <code>max()</code> method for data frames to calculate the maximum value of penguin’s body mass by year and species.</li>
-</ol>
-<!--
-
-::: {.cell execution_count=30}
-``` {.python .cell-code}
-penguins.groupby(['year','species']).body_mass_g.max()
-```
-
-::: {.cell-output .cell-output-display execution_count=30}
-```
-year  species  
-2007  Adelie       4675.0
-      Chinstrap    4400.0
-      Gentoo       6300.0
-2008  Adelie       4700.0
-      Chinstrap    4800.0
-      Gentoo       6000.0
-2009  Adelie       4775.0
-      Chinstrap    4450.0
-      Gentoo       6000.0
-Name: body_mass_g, dtype: float64
-```
-:::
-:::
-
-
--->
-<ol start="2" type="1">
-<li>Use (1) to display the highest body masses per year and species as a bar plot in descending order.</li>
-</ol>
-<!--
-penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=False).plot(kind='bar')
 -->
 <!--
 ## Further plotting
 
 MENTION SEABORN
 
-::: {.cell execution_count=31}
+::: {.cell execution_count=24}
 ``` {.python .cell-code}
 # make histograms of flipper length by species =
 #   group penguins by species
@@ -1324,7 +1065,7 @@ MENTION SEABORN
 penguins.groupby('species').flipper_length_mm.plot(kind='hist')
 ```
 
-::: {.cell-output .cell-output-display execution_count=31}
+::: {.cell-output .cell-output-display execution_count=48}
 ```
 species
 Adelie       AxesSubplot(0.125,0.11;0.775x0.77)
@@ -1335,7 +1076,7 @@ Name: flipper_length_mm, dtype: object
 :::
 
 ::: {.cell-output .cell-output-display}
-![](lesson-3-basic-ploting_files/figure-html/cell-32-output-2.png){width=585 height=411}
+![](lesson-4-basic-plotting_files/figure-html/cell-25-output-2.png){width=585 height=411}
 :::
 :::
 
@@ -1349,11 +1090,9 @@ Create a scatter plot of the flipper length against body mass (x=flipper length,
 -->
 </section>
 </section>
-<section id="references" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="references"><span class="header-section-number">3.9</span> References</h2>
+<section id="references" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="references"><span class="header-section-number">4.8</span> References</h2>
 <p>Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi:10.5281/zenodo.3960218.</p>
-<p>The <code>groupby()</code> section is based on this <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize">NCEAS Learning Hub R lesson.</a></p>
-<p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
 
 
 </section>
@@ -1494,13 +1233,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-2-pandas-basics.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></span>
+      <a href="../lectures/lesson-3-pandas-subsetting.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1. Preliminary Data Exploration</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
