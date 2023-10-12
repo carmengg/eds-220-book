@@ -1,0 +1,74 @@
+# Updating datafarmes
+
+```{python}
+import pandas as pd
+
+# will use this to create some random numbers
+import random
+
+# read in data
+penguins = pd.read_csv('https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv')
+
+# look at dataframe's head
+penguins.head()
+```
+
+Example:
+
+Suppose we want to create a new column where the body mass is in kilograms instead of grams, so we need to divide the `body_mass_g` by 1000. 
+
+```{python}
+# add a new column body_mass_kg 
+# sane syntax as adding a new key to a dictionary
+penguins['body_mass_kg'] = penguins.body_mass_g/1000
+
+# confirm the new column is the data frame
+print('body_mass_kg' in penguins.columns)
+
+# take a look at the new column
+penguins.head()
+```
+
+
+Notice the new column got added at the end. If we want to insert a new column at a particular position we use the data frame method `insert()`:
+```python
+df.insert(loc = integer_index,  # location of new column
+          column = new_col_name, 
+          value = new_col_values)
+```
+
+Example: 
+
+Suppose each penguin observation gets a unique identifier as a three digit number. We want to add this column, at the beginning of the data frame. We can use `insert` to do this:
+
+```{python}
+# create random 3-digit codes
+# random.sample used for random sampling wo replacement
+codes = random.sample(range(100,1000), len(penguins))
+
+# insert codes at the front of data frame = index 0
+penguins.insert(loc=0, 
+                column = 'code',
+                value = codes)
+        
+penguins.head()
+```
+
+<!--
+Moving columns: pop, then insert
+
+df.insert(0, 'name', df.pop('name'))
+https://stackoverflow.com/questions/35321812/move-column-in-pandas-dataframe
+
+Inserting at a particular location.
+
+df.columns.get_loc()
+-->
+
+
+Remember we talked about how a `pandas.DataFrame` could be seen as a dictionary of its columns. The most basic way of adding a new column to a data frame is the same way of adding a new key-value pair to a dictionary:
+```python
+# adding a new key-value pair to a dictionary
+# same as adding a new column in pandas
+dict[new_key] = new_value
+```
