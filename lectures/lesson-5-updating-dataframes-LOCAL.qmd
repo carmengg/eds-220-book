@@ -82,6 +82,7 @@ We can assign multiple columns in the same call by using the data frame's `assig
 df.assign( new_col1_name = new_col1_values, 
            new_col2_name = new_col2_values)
 ```
+Notice the new column names are not strings, we declare them as if we were creating variables.
 
 Example:
 
@@ -93,11 +94,36 @@ We can do this using `assign()`:
 ```{python}
 # create new columns in the data frame
 # random.choices used for random sampling with replacement
-penguins = penguins.assign( flipper_length_cm = df.flipper_length_mm /10, 
+# need to reassign output of assign() to update the data frame
+penguins = penguins.assign( flipper_length_cm = penguins.flipper_length_mm /10, 
                             observer =   random.choices(['A','B','C'], k=len(penguins)))
 # look at result
 penguins.head()
 ```
 
-Notice the new column name is not a string, we declare it as if we were creating a variable.
+## Removing columns
 
+We can remove columns using the [`drop()` method for data frames](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html), the syntax is:
+```python
+df.drop(columns = col_names)
+```
+where `col_names` can be single column name (str) ot a list of column names. 
+
+Example:
+
+Now that we updated the units for flipper length and body mass, it makes sense to remove the previous columns to avoid duplicate information. We can do this using `drop()`:
+
+```{python}
+# use a list of column names
+# reassign output of drop() to dataframe to update it
+penguins = penguins.drop(columns=['flipper_length_mm','body_mass_g'])
+
+# check columns
+print(penguins.columns)
+```
+
+<!--
+## Reordering columns and updating names
+-->
+
+## Updating values 
