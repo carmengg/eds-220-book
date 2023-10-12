@@ -1,6 +1,5 @@
 # Python Review
 
-## About
 This is a short reveiw about some core concepts in Python exemplified by objects in the `numpy` library. 
 
 ## `numpy`

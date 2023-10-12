@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-2-pandas-basics.html" rel="next">
+<link href="../lectures/lesson-2-series-dataframes.html" rel="next">
 <link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -161,9 +161,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lectures</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -171,17 +176,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-pandas-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-basic-ploting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
       </ul>
@@ -196,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
   </div>
 </li>
       </ul>
@@ -210,13 +215,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about"><span class="toc-section-number">1.1</span>  About</a></li>
-  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy"><span class="toc-section-number">1.2</span>  <code>numpy</code></a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="toc-section-number">1.3</span>  Variables</a></li>
-  <li><a href="#variables-and-objects" id="toc-variables-and-objects" class="nav-link" data-scroll-target="#variables-and-objects"><span class="toc-section-number">1.4</span>  Variables and Objects</a></li>
-  <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types"><span class="toc-section-number">1.5</span>  Types</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">1.6</span>  Functions</a></li>
-  <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="toc-section-number">1.7</span>  Attributes &amp; Methods</a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link active" data-scroll-target="#numpy"><span class="toc-section-number">1.1</span>  <code>numpy</code></a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="toc-section-number">1.2</span>  Variables</a></li>
+  <li><a href="#variables-and-objects" id="toc-variables-and-objects" class="nav-link" data-scroll-target="#variables-and-objects"><span class="toc-section-number">1.3</span>  Variables and Objects</a></li>
+  <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types"><span class="toc-section-number">1.4</span>  Types</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">1.5</span>  Functions</a></li>
+  <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="toc-section-number">1.6</span>  Attributes &amp; Methods</a></li>
   </ul>
 </nav>
     </div>
@@ -240,12 +244,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="about" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="about"><span class="header-section-number">1.1</span> About</h2>
 <p>This is a short reveiw about some core concepts in Python exemplified by objects in the <code>numpy</code> library.</p>
-</section>
-<section id="numpy" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="numpy"><span class="header-section-number">1.2</span> <code>numpy</code></h2>
+<section id="numpy" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="numpy"><span class="header-section-number">1.1</span> <code>numpy</code></h2>
 <p>NumPy is one of the core packages for numerical computing in Python. Many of the packages we will use in this course use NumPy’s arrays as their building blocks. Additionally, numpy objects have been optimized for processing, so computations on them are really fast and use less memory than doing the equivalent using base Python.</p>
 <p>In this lesson we will use <code>numpy</code> to review some core concepts in Python you’re already familiar with.</p>
 <p>First, let’s start by importing the library:</p>
@@ -253,8 +254,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="variables" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.3</span> Variables</h2>
+<section id="variables" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.2</span> Variables</h2>
 <p>We can think of a <strong>variable</strong> as a name we assign to a particular object in Python. For example:</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign a small array to variable a</span></span>
@@ -268,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the value</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>array([[1, 1, 2],
        [3, 5, 8]])</code></pre>
 </div>
@@ -308,14 +309,14 @@ Naming Variables
 </div>
 </div>
 </section>
-<section id="variables-and-objects" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="variables-and-objects"><span class="header-section-number">1.4</span> Variables and Objects</h2>
+<section id="variables-and-objects" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="variables-and-objects"><span class="header-section-number">1.3</span> Variables and Objects</h2>
 <p>You will often encounter the word <strong>object</strong> in Python documentation and tutorials. Informally speaking, an object is a bundle of <em>properties</em> and <em>actions</em> about something specific. For example, an object could represent a data frame with properties such as number of rows, names of columns, and date created, and actions suchs as selecting a specific row or adding a new column.</p>
 <p>A variable is the name we give a specific object, and the same object can be referenced by different variables. An analogy for this is the following: the Sun (object) is called “sol” in Spanish and “soleil” in French, so two different names (variables) represent the same object. You can read more technical details about the <a href="https://realpython.com/python-variables/#object-references">difference between objects and variables in Python here</a>.</p>
 <p>In practice, we can often use the word variable and object interchangeably. I want to bring up what objects are so you’re not caught off-guard with vocabulary you’ll often encounter in the documentation, StackExchange, etc. We’ll often use the word object too (for example, in the next subsection!).</p>
 </section>
-<section id="types" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="types"><span class="header-section-number">1.5</span> Types</h2>
+<section id="types" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="types"><span class="header-section-number">1.4</span> Types</h2>
 <p>Every object in Python has a <strong>type</strong>, the type tells us what kind of object it is. We can also call the type of an object, the <strong>class</strong> of an object (so class and type both mean what kind of object we have).</p>
 <p>We can see the type/class of a variable/object by using the <code>type</code> function:</p>
 <div class="cell" data-execution_count="5">
@@ -325,7 +326,7 @@ Naming Variables
 <pre><code>[[1 1 2]
  [3 5 8]]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>numpy.ndarray</code></pre>
 </div>
 </div>
@@ -336,7 +337,7 @@ Naming Variables
 <div class="cell-output cell-output-stdout">
 <pre><code>1</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>numpy.int64</code></pre>
 </div>
 </div>
@@ -356,8 +357,8 @@ Check-in
 <p>Notice the type of the value 1 in the array is <code>numpy.int64</code> and not just the core Python integer type <code>int</code>. The NumPy type <code>numpy.int64</code> is telling us 1 is an integer stored as a 64-bit number. NumPy has its own data types to deal with numbers depending on memory storage and floating point precision, <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#sized-aliases">click here to know see all the types</a>.</p>
 <p>Since “everything in Python is an object” and every object has a class, we will interact with SO MANY classes in this course. Often, knowing the type of an object is the first step to finding information to code what you want!</p>
 </section>
-<section id="functions" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="functions"><span class="header-section-number">1.6</span> Functions</h2>
+<section id="functions" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="functions"><span class="header-section-number">1.5</span> Functions</h2>
 <p><code>print</code> was our first example of a Python <strong>function</strong>. Functions take in a set of <strong>arguments</strong>, separated by commas, and use those arguments to create some <strong>output</strong>. There are several built-in funcions in Python, most of them are for interacting with the basic Python data types. You can see a <a href="https://realpython.com/python-data-types/#built-in-functions">list of them here</a>.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -393,8 +394,8 @@ Argument or Parameter?
 </div>
 </div>
 </section>
-<section id="attributes-methods" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="attributes-methods"><span class="header-section-number">1.7</span> Attributes &amp; Methods</h2>
+<section id="attributes-methods" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="attributes-methods"><span class="header-section-number">1.6</span> Attributes &amp; Methods</h2>
 <p>An object in Python has attributes and methods. An <strong>attribute</strong> is a property of the object, some piece of information about it. A <strong>method</strong> is a procedure associated with an object, so it is an action where the main ingredient is the object.</p>
 <p>For example, these could be some attributes and methods a class <code>cat</code>:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -424,7 +425,7 @@ Check-in
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a 3x3 array</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([[1, 2, 3],
        [4, 5, 6],
        [7, 8, 9]])</code></pre>
@@ -464,14 +465,14 @@ Check-in
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the tolist method returns the array as a nested list of scalars</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>var.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the min method returns the minimum value in the array along an axis</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>var.<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>array([1, 2, 3])</code></pre>
 </div>
 </div>
@@ -488,7 +489,7 @@ Check-in
 <p>We can also call the <code>min</code> method without any parameters:</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>var.<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>1</code></pre>
 </div>
 </div>
@@ -498,13 +499,13 @@ Check-in
 <p>Remember, methods are functions associated to an object. We can check this!</p>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(var.tolist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>builtin_function_or_method</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(var.<span class="bu">min</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>builtin_function_or_method</code></pre>
 </div>
 </div>
@@ -598,7 +599,7 @@ var = np.array([2,3,5,7,11,13]).reshape([2,3])
 var
 ```
 
-::: {.cell-output .cell-output-display execution_count=38}
+::: {.cell-output .cell-output-display execution_count=19}
 ```
 array([[ 2,  3,  5],
        [ 7, 11, 13]])
@@ -753,8 +754,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-2-pandas-basics.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pandas Fundamentals</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-2-series-dataframes.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
