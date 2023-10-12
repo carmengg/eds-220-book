@@ -134,7 +134,7 @@ For the next plots we will use the  Palmer Penguins dataset (Horst et al., 2020)
 
 ![The Palmer Archipelago penguins. Artwork by @allison_horst.](/images/lesson-3-plot/lter_penguins.png)
 
-The data is usually accessed through the `palmerpenguins` R data package. There is no similar access to the Palmer penguins data through Python (yet!), so we will read the raw csv directly into Python using the URL: [https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv)
+The data is usually accessed through the `palmerpenguins` R data package. Today we will access the csv directly into Python using the URL: [https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv)
 
 The Palmer penguins dataset has the following columns:
 
