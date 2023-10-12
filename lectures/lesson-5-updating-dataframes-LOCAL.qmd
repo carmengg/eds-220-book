@@ -33,7 +33,7 @@ penguins.head()
 Notice the new column got added at the end. If we want to insert a new column at a particular position we use the data frame method `insert()`:
 ```python
 df.insert(loc = integer_index,  # location of new column
-          column = new_col_name, 
+          column = 'new_col_name', 
           value = new_col_values)
 ```
 
@@ -65,10 +65,39 @@ Inserting at a particular location.
 df.columns.get_loc()
 -->
 
-
+:::{.callout-note}
+## `pd.DataFrames` and dictionaries
 Remember we talked about how a `pandas.DataFrame` could be seen as a dictionary of its columns. The most basic way of adding a new column to a data frame is the same way of adding a new key-value pair to a dictionary:
 ```python
 # adding a new key-value pair to a dictionary
 # same as adding a new column in pandas
 dict[new_key] = new_value
 ```
+:::
+
+## Adding multiple columns
+
+We can assign multiple columns in the same call by using the data frame's `assign()` method. The general syntax is:
+```python
+df.assign( new_col1_name = new_col1_values, 
+           new_col2_name = new_col2_values)
+```
+
+Example:
+
+Suppose we want to add these new columns: 
+- flipper length converted from mm to cm, and
+- a code representing the observer.
+We can do this using `assign()`:
+
+```{python}
+# create new columns in the data frame
+# random.choices used for random sampling with replacement
+penguins = penguins.assign( flipper_length_cm = df.flipper_length_mm /10, 
+                            observer =   random.choices(['A','B','C'], k=len(penguins)))
+# look at result
+penguins.head()
+```
+
+Notice the new column name is not a string, we declare it as if we were creating a variable.
+
