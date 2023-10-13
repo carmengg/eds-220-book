@@ -126,4 +126,44 @@ print(penguins.columns)
 ## Reordering columns and updating names
 -->
 
-## Updating values 
+## Updating values
+
+Sometimes we want to update certain value within our data frame. We'll review some methods and best practices to do that in this section. 
+
+### A single value
+We can access a single value in a `pd.DataFrame` using the locators
+- [`at[]`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.at.html) to select by labels, or
+- [`iat[]`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.at.html) to select by position. 
+
+
+The syntax for `at[]` is:
+```python
+df.at[single_index_value, 'column_name']
+```
+Think of `at[]` as the equivalent to `loc[]` when trying to access a single value.
+
+Example:
+Let's say we want to know what was the bill length of the penguin in the fourth row. We can access that using `at[]`:
+
+```{python}
+# access value at row with index=3 and column='bill_length_mm'
+penguins.at[3,'bill_length_mm']
+```
+
+We get this is an NA. Maybe we want to update it to 38.3 mm. We can do this with `at[]` too:
+```{python}
+# update NA to 38.3
+penguins.at[3,'bill_length_mm'] = 38.3
+
+# we can check it was updated
+penguins.head()
+```
+
+If we want to access a single value by position as we do with `iloc[]` we use the `iat[]` locator.
+
+### Multiple values in a column
+
+What if we want to update multiple values in a column?
+
+
+## `SettingWithCopyWarning`
