@@ -1,4 +1,4 @@
-# Updating datafarmes
+# Updating dataframes
 
 ```{python}
 import pandas as pd
@@ -165,5 +165,40 @@ If we want to access a single value by position as we do with `iloc[]` we use th
 
 What if we want to update multiple values in a column?
 
+When we only want to update some values in a column we can do this by select this data using `loc` (if selecting by labels) or `iloc` (if selecting by position). The general sytanx is
+```python
+# modifies data in place
+df.loc[row_selection, col_name] = new_values
+```
+where `row_selection` is the rows we want to update, `col_name` is a single column name, and `new_values` is the new value or values we want. If using multiple values, this the `new_values` must be of the same length as the number of rows selected, 
+
+Suppose, for example, that we want to update the "male" tag to "M".
+
+```{python}
+# select rows with sex=male and update the values in the sex column
+penguins.loc[penguins.sex=='male', 'sex'] = 'M'
+
+# check changes
+penguins.head()
+```
+
 
 ## `SettingWithCopyWarning`
+
+Suppose we want to similarly update the 'female' values in the sex column to 'F'. This is an example of another way we might try to do it, but it won't update our dataframe:
+
+```{python}
+# select rows and columns with two selection brackets [][] (chained indexing), instead of loc[]
+# then trying to update the values
+penguins[penguins.sex=='female']['sex'] = 'F'
+```
+
+When we select the data we want to update using **chained indexing** (`[][]`) instead of `loc[]` we get a `SettingWithCopyWarning`. *This is not an error*, `pandas` is trying to alert us to a potential bug, in this case that we did not update our dataframe:
+
+```{python}
+# no values were updated
+penguins.head()
+```
+
+<!-- MAKE SOME DIAGRAMS LIKE DATAQUEST https://www.dataquest.io/blog/settingwithcopywarning/ -->
+
