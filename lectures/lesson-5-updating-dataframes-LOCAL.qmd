@@ -183,7 +183,7 @@ penguins.head()
 ```
 
 
-## `SettingWithCopyWarning`
+## `SettingWithCopyWarning` I
 
 Suppose we want to similarly update the 'female' values in the sex column to 'F'. This is an example of another way we might try to do it, but it won't update our dataframe:
 
@@ -202,3 +202,33 @@ penguins.head()
 
 <!-- MAKE SOME DIAGRAMS LIKE DATAQUEST https://www.dataquest.io/blog/settingwithcopywarning/ -->
 
+To see what is going on we need to understand that some `pandas` operations return a view to your data, while others return a **copy** of your data.
+
+- **Views** are actual subsets of the original data, when we update them, we are modifying the original data frame. 
+
+- **Copies** are unique objects, independent of our original data frames. When we update a copy we are not modifying the original data frame. 
+
+Depending on what we are trying to do we might want to modify the original dataframe or we might want to modify a copy. 
+
+::: {.callout-warning}
+The `SettingWithCopyWarning` is letting us know our code is ambiguous and we need to double check the code is doing what we intended. 
+:::
+
+**Check-in** 
+Update the 'female' values in the `penguins` data frame to 'F'. Don't use chained indexing
+
+```{python}
+# no chained indexing in assignment = no warning
+penguins.loc[penguins.sex=='female','sex'] = 'F'
+
+# notice the values were updated now
+penguins.head()
+```
+
+## `SettingWithCopyWarning` II
+
+
+
+assigning to the product of chained indexing has inherently unpredictable results.
+
+Another 
