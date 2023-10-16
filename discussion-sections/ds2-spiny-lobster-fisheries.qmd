@@ -60,6 +60,8 @@ October X, 2023.
 For this exercise we will use data about [California spiny lobster (*Panuliris interruptus*) in the Santa Barbara Channel (Lenihan, 2021)](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-sbc.148.1). 
 
 This dataset is stored in the [Environmental Data Initiative (EDI)](https://edirepository.org) data repository. This is a huge data repository committed to make data Findable, Accessible, Interoperable, and Reusable (FAIR). 
+It is the main repository for all the data associated to the [Long Term Ecological Research Network (LTER)](https://lternet.edu).
+
 :::
 
 <!-- Data exploration -->
