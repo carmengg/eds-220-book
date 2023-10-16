@@ -1,5 +1,5 @@
-# Updating datafarmes
-In this lesson we will introduce methods for updating a pandas dataframe, these include adding and removing columns and updating specific values. 
+# Updating data frames
+In this lesson we will introduce methods for updating a pandas data frame, these include adding and removing columns and updating specific values. 
 
 ## Data: Palmer penguins
 
@@ -39,7 +39,7 @@ where new_column values could be:
 - a `pd.Series` or `numpy.array` of the same length as the data frame
 - a single scalar
 
-**Example:**
+**Example**
 
 Suppose we want to create a new column where the body mass is in kilograms instead of grams, so we need to divide the `body_mass_g` by 1000. 
 
@@ -72,7 +72,7 @@ df.insert(loc = integer_index,  # location of new column
           value = new_col_values)
 ```
 
-**Example:**
+**Example**
 
 Suppose each penguin observation gets a unique identifier as a three digit number. We want to add this column, at the beginning of the data frame. We can use `insert` to do this:
 
@@ -108,7 +108,7 @@ df.assign( new_col1_name = new_col1_values,
 ```
 Notice the new column names are not strings, we declare them as if we were creating variables.
 
-Example:
+**Example**
 
 Suppose we want to add these new columns: 
 
@@ -131,11 +131,12 @@ penguins.head()
 
 We can remove columns using the [`drop()` method for data frames](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html), the syntax is:
 ```python
-df.drop(columns = col_names)
+df = df.drop(columns = col_names)
 ```
-where `col_names` can be a single column name (str) ot a list of column names. 
+where `col_names` can be a single column name (str) or a list of column names. The `drop()` method does not modify the data frame in place, so you need to reassign the output.
 
-**Example:**
+
+**Example**
 
 Now that we updated the units for flipper length and body mass, it makes sense to remove the previous columns to avoid duplicate information. We can do this using `drop()`:
 
@@ -169,7 +170,7 @@ df.at[single_index_value, 'column_name']
 ```
 Think of `at[]` as the equivalent to `loc[]` when trying to access a single value.
 
-**Example:**
+**Example**
 
 Let's say we want to know what was the bill length of the penguin in the fourth row. We can access that using `at[]`:
 
@@ -187,7 +188,7 @@ penguins.at[3,'bill_length_mm'] = 38.3
 penguins.head()
 ```
 
-If we want to access or update a single value by position as we do with `iloc[]` we use the `iat[]` locator.
+If we want to access or update a single value by position we use the `iat[]` locator.
 
 ### Multiple values in a column
 
@@ -200,7 +201,7 @@ Often we want to create a new column where the new values depend on conditions o
 
 **Example**
 
-Suppose we want to classify all penguins with body mass less than 3kg as small, the ones with body greater or equal than 3kg but less than 5kg as medium, and those with body mass greater or equal than 5kg as large. One way to add this information in a new column using `numpy.select()`:
+Suppose we want to classify all penguins with body mass less than 3kg as small, penguins with body mass greater or equal than 3kg but less than 5kg as medium, and those with body mass greater or equal than 5kg as large. One way to add this information in a new column using `numpy.select()`:
 
 ```{python}
 # create a list with the conditions
@@ -220,8 +221,6 @@ penguins['size'] = np.select(conditions, choices, default=np.nan)
 penguins.head()
 ```
 
-
-
 <!-- 
 https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python
 
@@ -230,7 +229,7 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
 
 #### By selecting values
 
-When we only want to update some values in a column we can do this by select this data using `loc` (if selecting by labels) or `iloc` (if selecting by position). The general sytanx for updating data with `loc` is:
+When we only want to update some values in a column we can do this by selecting this data using `loc` (if selecting by labels) or `iloc` (if selecting by position). The general sytanx for updating data with `loc` is:
 ```python
 # modifies data in place
 df.loc[row_selection, col_name] = new_values
@@ -241,7 +240,9 @@ where
 - `col_name` is a single column name, and 
 - `new_values` is the new value or values we want. If using multiple values, then `new_values` must be of the same length as the number of rows selected, 
 
-Suppose, for example, that we want to update the "Male" value in the sex column to "M".
+**Example**
+
+Suppose we want to update the "Male" value in the sex column to "M".
 
 ```{python}
 # select rows with sex=male and update the values in the sex column
@@ -254,7 +255,7 @@ penguins.head()
 
 ## `SettingWithCopyWarning`
 
-Suppose we want to similarly update the "Female" values in the sex column to "F". This is an example of another way we might try to do it, but it won't update our dataframe:
+Suppose we want to similarly update the "Female" values in the sex column to "F". This is an example of another way we might try to do it, but it won't update our data frame:
 
 ```{python}
 # select rows and columns with two selection brackets [][] (chained indexing), instead of loc[]
@@ -262,11 +263,11 @@ Suppose we want to similarly update the "Female" values in the sex column to "F"
 penguins[penguins.sex=='Female']['sex'] = 'F'
 ```
 
-When we select the data we want to update using **chained indexing** (`[][]`) instead of `loc[]` we get a `SettingWithCopyWarning`. Wit this warning, `pandas` is trying to alert us to a potential bug. In this case that we did not update our dataframe:
+When we select the data we want to update using **chained indexing** (`[][]`) instead of `loc[]` we get a `SettingWithCopyWarning`. Wit this warning, `pandas` is trying to alert us to a potential bug. In this case that we did not update our data frame:
 
 ```{python}
 # no values were updated
-penguins.head()
+penguins.sex.unique()
 ```
 
 ::: {.callout-warning}
@@ -284,7 +285,7 @@ To see what is going on we need to understand that some `pandas` operations retu
 
 - **Copies** are unique objects, independent of our original data frames. When we update a copy we are not modifying the original data frame. 
 
-Depending on what we are trying to do we might want to modify the original dataframe or we might want to modify a copy. 
+Depending on what we are trying to do we might want to modify the original data frame or we might want to modify a copy. 
 
 **Check-in** 
 
@@ -298,7 +299,10 @@ penguins.loc[penguins.sex=='Female','sex'] = 'F'
 penguins.head()
 ```
 
-Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subset of a dataframe we have already stored in a new variable. 
+
+#### Another `SettingWithCopyWarning`
+
+Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subset of a data frame we have already stored in a new variable. 
 
 **Example** 
 
@@ -320,10 +324,10 @@ It might not seem like it, but we have a chained assignment here too. We essenti
 penguins[penguins.island=='Biscoe']['sample_col'] = 100
 ```
 
-To fix this we can **take control of the copy-view situation and explicitely ask for a copy of the dataset when subsetting the data**:
+To fix this we can **take control of the copy-view situation and explicitely ask for a copy of the dataset when subsetting the data**. Use the `copy()` method to do this:
 
 ```{python}
-# make sure you get a new dataframe with penguins from Biscoe island
+# make sure you get a new data frame with penguins from Biscoe island
 biscoe = penguins[penguins.island=='Biscoe'].copy()
 
 # add a column, no warning
