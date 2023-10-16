@@ -163,7 +163,19 @@ If we want to access a single value by position as we do with `iloc[]` we use th
 
 ### Multiple values in a column
 
-What if we want to update multiple values in a column?
+What if we want to update multiple values in a column? We'll cover two cases: with a condition on the column values and by selecting a few values to update. 
+
+
+#### By condition
+
+
+<!-- 
+https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python
+
+https://numpy.org/doc/stable/reference/generated/numpy.select.html
+-->
+
+#### By selecting values
 
 When we only want to update some values in a column we can do this by select this data using `loc` (if selecting by labels) or `iloc` (if selecting by position). The general sytanx is
 ```python
@@ -183,7 +195,7 @@ penguins.head()
 ```
 
 
-## `SettingWithCopyWarning` I
+### `SettingWithCopyWarning` I
 
 Suppose we want to similarly update the 'female' values in the sex column to 'F'. This is an example of another way we might try to do it, but it won't update our dataframe:
 
@@ -228,7 +240,7 @@ penguins.loc[penguins.sex=='female','sex'] = 'F'
 penguins.head()
 ```
 
-## `SettingWithCopyWarning` II
+### `SettingWithCopyWarning` II
 
 Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subsete of a dataframe we have already stored in a new variable. 
 
@@ -282,11 +294,3 @@ To learn more about the `SettingWithCopyWarning`, these are some articles that g
 📖 [Real Python-  SettingWithCopyWarning in pandas: Views vs Copies](https://realpython.com/pandas-settingwithcopywarning/#reader-comments)
 
 📖 [Dataquest - SettingwithCopyWarning: How to Fix This Warning in Pandas](https://www.dataquest.io/blog/settingwithcopywarning/)
-
-##
-
-<!-- 
-https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python
-
-https://numpy.org/doc/stable/reference/generated/numpy.select.html
--->
