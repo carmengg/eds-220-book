@@ -213,11 +213,11 @@ where
 - `col_name` is a single column name, and 
 - `new_values` is the new value or values we want. If using multiple values, then `new_values` must be of the same length as the number of rows selected, 
 
-Suppose, for example, that we want to update the "male" value in the sex column to "M".
+Suppose, for example, that we want to update the "Male" value in the sex column to "M".
 
 ```{python}
 # select rows with sex=male and update the values in the sex column
-penguins.loc[penguins.sex=='male', 'sex'] = 'M'
+penguins.loc[penguins.sex=='Male', 'sex'] = 'M'
 
 # check changes
 penguins.head()
@@ -226,30 +226,20 @@ penguins.head()
 
 ### `SettingWithCopyWarning` I
 
-Suppose we want to similarly update the 'female' values in the sex column to 'F'. This is an example of another way we might try to do it, but it won't update our dataframe:
+Suppose we want to similarly update the "Female" values in the sex column to "F". This is an example of another way we might try to do it, but it won't update our dataframe:
 
 ```{python}
 # select rows and columns with two selection brackets [][] (chained indexing), instead of loc[]
 # then trying to update the values
-penguins[penguins.sex=='female']['sex'] = 'F'
+penguins[penguins.sex=='Female']['sex'] = 'F'
 ```
 
-When we select the data we want to update using **chained indexing** (`[][]`) instead of `loc[]` we get a `SettingWithCopyWarning`. *This is not an error*, `pandas` is trying to alert us to a potential bug, in this case that we did not update our dataframe:
+When we select the data we want to update using **chained indexing** (`[][]`) instead of `loc[]` we get a `SettingWithCopyWarning`. Wit this warning, `pandas` is trying to alert us to a potential bug. In this case that we did not update our dataframe:
 
 ```{python}
 # no values were updated
 penguins.head()
 ```
-
-<!-- MAKE SOME DIAGRAMS LIKE DATAQUEST https://www.dataquest.io/blog/settingwithcopywarning/ -->
-
-To see what is going on we need to understand that some `pandas` operations return a view to your data, while others return a **copy** of your data.
-
-- **Views** are actual subsets of the original data, when we update them, we are modifying the original data frame. 
-
-- **Copies** are unique objects, independent of our original data frames. When we update a copy we are not modifying the original data frame. 
-
-Depending on what we are trying to do we might want to modify the original dataframe or we might want to modify a copy. 
 
 ::: {.callout-warning}
 The `SettingWithCopyWarning` is letting us know our code is ambiguous and we need to double check the code is doing what we intended. In the words of the [`pandas` documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#why-does-assignment-fail-when-using-chained-indexing):
@@ -258,12 +248,23 @@ The `SettingWithCopyWarning` is letting us know our code is ambiguous and we nee
 
 :::
 
+<!-- MAKE SOME DIAGRAMS LIKE DATAQUEST https://www.dataquest.io/blog/settingwithcopywarning/ -->
+
+To see what is going on we need to understand that some `pandas` operations return a view to your data, while others return a copy of your data.
+
+- **Views** are actual subsets of the original data, when we update them, we are modifying the original data frame. 
+
+- **Copies** are unique objects, independent of our original data frames. When we update a copy we are not modifying the original data frame. 
+
+Depending on what we are trying to do we might want to modify the original dataframe or we might want to modify a copy. 
+
 **Check-in** 
-Update the 'female' values in the `penguins` data frame to 'F'. Don't use chained indexing
+
+Update the "Female" values in the `penguins` data frame to "F". Don't use chained indexing
 
 ```{python}
 # no chained indexing in assignment = no warning
-penguins.loc[penguins.sex=='female','sex'] = 'F'
+penguins.loc[penguins.sex=='Female','sex'] = 'F'
 
 # notice the values were updated now
 penguins.head()
@@ -271,9 +272,11 @@ penguins.head()
 
 ### `SettingWithCopyWarning` II
 
-Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subsete of a dataframe we have already stored in a new variable. 
+Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subset of a dataframe we have already stored in a new variable. 
 
-For example, suppose we only want to use data from Biscoe island and, after doing some analyses, we want to create a new column on it:
+**Example** 
+
+Suppose we only want to use data from Biscoe island and, after doing some analyses, we want to add a new column to it:
 
 ```{python}
 # select penguins from Biscoe island
@@ -285,13 +288,13 @@ biscoe = penguins[penguins.island=='Biscoe']
 biscoe['sample_col'] = 100
 ```
 
-It might not seem like it, but we have a chained assignment here too, we essentialy wrote:
+It might not seem like it, but we have a chained assignment here too. We essentialy wrote:
 
 ```python
 penguins[penguins.island=='Biscoe']['sample_col'] = 100
 ```
 
-To fix this we can take control of the copy-view situation and explicitely ask for a copy of the dataset when we are subsetting the data:
+To fix this we can **take control of the copy-view situation and explicitely ask for a copy of the dataset when subsetting the data**:
 
 ```{python}
 # make sure you get a new dataframe with penguins from Biscoe island
@@ -314,7 +317,7 @@ penguins.head()
 ```
 
 
-The `SettingWithCopyWarning` can often be tricky, there are also false positives and false negatives. Avoiding chained indexing and making a copy of your data frame subset whenever possible will save you from many of the usual pitfalls. 
+The `SettingWithCopyWarning` can often be tricky, there are also false positives and false negatives. Avoiding chained indexing and making a copy of your data frame subset whenever possible will save you from the usual pitfalls. 
 
 To learn more about the `SettingWithCopyWarning`, these are some articles that go into more depth:
 

@@ -17,7 +17,7 @@ book:
         - lectures/lesson-2-series-dataframes.qmd
         - lectures/lesson-3-pandas-subsetting.qmd
         - lectures/lesson-4-basic-plotting.qmd
-        #- lectures/lesson-5-updating-dataframes.qmd
+        - lectures/lesson-5-updating-dataframes.qmd
         #- lectures/lesson-6-groupby.qmd
     - part: "Discussion Sections"
       chapters:
