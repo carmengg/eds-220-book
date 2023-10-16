@@ -11,6 +11,10 @@ We will use the Palmer penguins dataset (Horst et al., 2020). This time we will 
 :::
 
 ```{python}
+# standard libraries
+import pandas as pd
+import numpy as np
+
 # importing seaborn with its standard abbreviation
 import seaborn as sns
 
@@ -92,7 +96,6 @@ df.insert(0, 'name', df.pop('name'))
 https://stackoverflow.com/questions/35321812/move-column-in-pandas-dataframe
 
 Inserting at a particular location.
-
 df.columns.get_loc()
 -->
 
@@ -193,6 +196,31 @@ What if we want to update multiple values in a column? We'll cover two cases: wi
 
 #### By condition
 
+Often we want to create a new column where the new values depend on conditions on another column's values. 
+
+**Example**
+
+Suppose we want to classify all penguins with body mass less than 3kg as small, the ones with body greater or equal than 3kg but less than 5kg as medium, and those with body mass greater or equal than 5kg as large. One way to add this information in a new column using `numpy.select()`:
+
+```{python}
+# create a list with the conditions
+conditions = [penguins.body_mass_kg < 3, 
+              (3 <= penguins.body_mass_kg) & (penguins.body_mass_kg < 5),
+              5 <= penguins.body_mass_kg]
+
+# create a list with the choices
+choices = ["small",
+           "medium",
+           "large"]
+
+# add the selections using np.select
+# default = value for anything that falls outside conditions
+penguins['size'] = np.select(conditions, choices, default=np.nan)
+
+penguins.head()
+```
+
+
 
 <!-- 
 https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python
@@ -224,7 +252,7 @@ penguins.head()
 ```
 
 
-### `SettingWithCopyWarning` I
+## `SettingWithCopyWarning`
 
 Suppose we want to similarly update the "Female" values in the sex column to "F". This is an example of another way we might try to do it, but it won't update our dataframe:
 
@@ -269,8 +297,6 @@ penguins.loc[penguins.sex=='Female','sex'] = 'F'
 # notice the values were updated now
 penguins.head()
 ```
-
-### `SettingWithCopyWarning` II
 
 Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subset of a dataframe we have already stored in a new variable. 
 
