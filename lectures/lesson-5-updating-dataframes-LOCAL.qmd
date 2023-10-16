@@ -211,7 +211,10 @@ To see what is going on we need to understand that some `pandas` operations retu
 Depending on what we are trying to do we might want to modify the original dataframe or we might want to modify a copy. 
 
 ::: {.callout-warning}
-The `SettingWithCopyWarning` is letting us know our code is ambiguous and we need to double check the code is doing what we intended. 
+The `SettingWithCopyWarning` is letting us know our code is ambiguous and we need to double check the code is doing what we intended. In the words of the [`pandas` documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#why-does-assignment-fail-when-using-chained-indexing):
+
+> assigning to the product of chained indexing has inherently unpredictable results.
+
 :::
 
 **Check-in** 
@@ -227,8 +230,63 @@ penguins.head()
 
 ## `SettingWithCopyWarning` II
 
+Another common situation where `SettingWithCopyWarning` comes up is when we try to update a subsete of a dataframe we have already stored in a new variable. 
+
+For example, suppose we only want to use data from Biscoe island and, after doing some analyses, we want to create a new column on it:
+
+```{python}
+# select penguins from Biscoe island
+biscoe = penguins[penguins.island=='Biscoe']
+
+# 50 lines of code here
+
+# add a column, we get a warning
+biscoe['sample_col'] = 100
+```
+
+It might not seem like it, but we have a chained assignment here too, we essentialy wrote:
+
+```python
+penguins[penguins.island=='Biscoe']['sample_col'] = 100
+```
+
+To fix this we can take control of the copy-view situation and explicitely ask for a copy of the dataset when we are subsetting the data:
+
+```{python}
+# make sure you get a new dataframe with penguins from Biscoe island
+biscoe = penguins[penguins.island=='Biscoe'].copy()
+
+# add a column, no warning
+biscoe['sample_col'] = 100
+```
+
+Now we are sure we did not modify our initial data, but rather the `biscoe` data frame:
+
+```{python}
+# new column is there
+biscoe.head()
+```
+
+```{python}
+# and we are sure our original df wasn't modified
+penguins.head()
+```
 
 
-assigning to the product of chained indexing has inherently unpredictable results.
+The `SettingWithCopyWarning` can often be tricky, there are also false positives and false negatives. Avoiding chained indexing and making a copy of your data frame subset whenever possible will save you from many of the usual pitfalls. 
 
-Another 
+To learn more about the `SettingWithCopyWarning`, these are some articles that go into more depth:
+
+📖 [`pandas` Documentation -  Returning a view versus a copy](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy)
+
+📖 [Real Python-  SettingWithCopyWarning in pandas: Views vs Copies](https://realpython.com/pandas-settingwithcopywarning/#reader-comments)
+
+📖 [Dataquest - SettingwithCopyWarning: How to Fix This Warning in Pandas](https://www.dataquest.io/blog/settingwithcopywarning/)
+
+##
+
+<!-- 
+https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python
+
+https://numpy.org/doc/stable/reference/generated/numpy.select.html
+-->
