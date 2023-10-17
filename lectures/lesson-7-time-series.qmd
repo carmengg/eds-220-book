@@ -1,0 +1,63 @@
+# Basic time series
+
+In this section we will learn some basic handling of time series. 
+
+## `Timestamp`
+
+- basic pandas data type for dates
+- what it is
+- create one
+
+- NaT = not a time. `pd.NaT` = nd behaves similar as np.nan does for float data.
+
+## Data: Precipitation in Boulder, CO
+
+To exemplify some of the basic time series functionalities we'll be using data about hourly precipitation in the county of Boulder, Colorado. In 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. 
+
+This data was obtained via the [National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service](https://www.ncdc.noaa.gov/cdo-web/). This dataset is a csv and can be acceses at [this link](https://www.ncei.noaa.gov/orders/cdo/3488381.csv). You can [view the full documentation here](https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf). The following is a summary of the column descriptions:
+
+- STATION: identification number indentifying the station. 
+- STATION_NAME: optional field, name identifying the station location. 
+- DATE: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.
+- HPCP: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
+
+**GOAL**: to visualize the unusual weather event that took place in September 2013.
+
+## Data preparation
+
+Let's start by reading in the data and looking at it's head:
+```{python}
+import pandas as pd
+
+# read in data 
+precip = pd.read_csv('https://raw.githubusercontent.com/samanthastevenson/EDS220_Fall2022/main/Precip_BoulderCO_COOPstation.csv')
+
+# check df's head
+precip.head()
+```
+
+And make a first try at plotting the precipitation:
+
+```{python}
+precip.HPCP.plot()
+```
+
+There's a few things going on with this graph:
+ 
+1. There are many jumps close to 1000. This is clearly not right and these are outliers. Looking at the column description we can see 999.99 indicates the HPCP data is missing.
+
+2. The x-axis values are given by the 
+
+## Outliers
+
+
+## Date index
+
+## Subsetting by date
+
+## Resample
+
+## Acknowledgements
+
+This lesson was adapted from X and Y.
+
