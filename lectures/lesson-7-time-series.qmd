@@ -71,11 +71,52 @@ We can try making our plot again:
 precip.HPCP.plot()
 ```
 
-This looks much better and we can already see there is something going on close to the end of the time series. 
+This looks much better and we can already see there is something going on close to the end of the time series. We still need to set the index as the time.
 
-## Date index
+## Strings into dates
+First, notice that the DATE column in our dataframe is not of type `datetime`. We can check this using the `dtypes` attribute for dataframes:
+```{python}
+# check the dtypes of all columns
+precip.dtypes
+```
+
+<!--
+precip.DATE.apply(type).unique()
+-->
+The `object` dtype means that (most likely) all values in that column are strings. We can convert strings to datetime objects using the `to_datetime()` pandas function, which takes in a `pd.Series` with strings that can be converted to dates and gives as an output a `pd.Series` with the strings converted to `datetime` objects. For example:
+
+```{python}
+# covert precip.DATE column to timedate objects
+pd.to_datetime(precip.DATE)
+```
+
+We can overwrite the DATE column with this output:
+
+```{python}
+# convert DATE column from string to timestamps
+precip.DATE = pd.to_datetime(precip.DATE)
+
+# check column data type is updated
+print(precip.dtypes)
+
+# check new values
+precip.head()
+```
+
+And we can make another try at plotting our precipitation data:
+
+```{python}
+precip.plot(x='DATE', y='HPCP')
+```
+
+Notice the x-axis is now neatly organized into years - `pandas` is very time-aware.
+
+## Timestamp index
+At its core, a data frame is a time series data if it is indexed by a specific moment in time (timestamp). 
+
 
 ## Subsetting by date
+
 
 ## Resample
 
