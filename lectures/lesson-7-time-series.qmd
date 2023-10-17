@@ -12,7 +12,7 @@ In this section we will learn some basic handling of time series.
 
 ## Data: Precipitation in Boulder, CO
 
-To exemplify some of the basic time series functionalities we'll be using data about hourly precipitation in the county of Boulder, Colorado. In 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. 
+To exemplify some of the basic time series functionalities we'll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify the unusual weather event that took place in September 2013.
 
 This data was obtained via the [National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service](https://www.ncdc.noaa.gov/cdo-web/). This dataset is a csv and can be acceses at [this link](https://www.ncei.noaa.gov/orders/cdo/3488381.csv). You can [view the full documentation here](https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf). The following is a summary of the column descriptions:
 
@@ -21,16 +21,15 @@ This data was obtained via the [National Oceanic and Atmosperic Administration (
 - DATE: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.
 - HPCP: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
 
-**GOAL**: to visualize the unusual weather event that took place in September 2013.
-
 ## Data preparation
 
 Let's start by reading in the data and looking at it's head:
 ```{python}
 import pandas as pd
 
+url = 'https://www.ncei.noaa.gov/orders/cdo/3488381.csv'
 # read in data 
-precip = pd.read_csv('https://raw.githubusercontent.com/samanthastevenson/EDS220_Fall2022/main/Precip_BoulderCO_COOPstation.csv')
+precip = pd.read_csv(url)
 
 # check df's head
 precip.head()
@@ -46,10 +45,33 @@ There's a few things going on with this graph:
  
 1. There are many jumps close to 1000. This is clearly not right and these are outliers. Looking at the column description we can see 999.99 indicates the HPCP data is missing.
 
-2. The x-axis values are given by the 
+2. The x-axis values are given by the index of the dataframe and not relative to time. 
+
+3. We are only intersted in the precipitation data from 2013, this is plotting all our data.
+
+Let's fix each one of these separately.
 
 ## Outliers
 
+Since the metadata indicates the missing values are indicated by the number 999.99 we can use this information to re-load the dataframe indicating 999.99 is the missing value. To do this, we add the `na_values` parameter to the `pd.read_csv()` function to indicitate additional values that should be recognized as `NA`:
+
+```{python}
+# read in csv indicating NA values
+precip = pd.read_csv(url, na_values=[999.99])
+
+# check updated df
+precip.head()
+```
+
+Check the `na_values` parameter in the [`pd.read_csv()` documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) to learn more about which values are identified as `NA` by default. 
+
+We can try making our plot again:
+
+```{python}
+precip.HPCP.plot()
+```
+
+This looks much better and we can already see there is something going on close to the end of the time series. 
 
 ## Date index
 
