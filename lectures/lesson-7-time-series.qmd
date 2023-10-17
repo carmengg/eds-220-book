@@ -112,8 +112,30 @@ precip.plot(x='DATE', y='HPCP')
 Notice the x-axis is now neatly organized into years - `pandas` is very time-aware.
 
 ## Timestamp index
-At its core, a data frame is a time series data if it is indexed by a specific moment in time (timestamp). 
 
+At its core, we have time series data if our data frame is indexed by moments in time (timestamp). Using our DATE column as the index will allows us to do many operations depending on time, including subsetting and resampling. 
+
+Updating the index of a dataframe is simple, we use the `set_index()` method. It's general syntax is
+```python
+df = df.set_index(new_index)
+```
+where `new_index` is an array or `pd.Series` of the same length as our data frame (we need one index per row!). Notice that `set_index` does not modify the data frame in place.
+
+In our precipitation data this is:
+
+```{python}
+# set DATE coumn as index
+precip = precip.set_index(precip.DATE)
+
+# check new index
+precip.head()
+```
+
+Since we know the default behaviour of `plot()` is to use the index as the x-axis, we can simplify our plot like this:
+
+```{python}
+precip.HPCP.plot()
+```
 
 ## Subsetting by date
 
