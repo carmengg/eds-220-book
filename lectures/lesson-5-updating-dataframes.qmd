@@ -103,7 +103,7 @@ df.columns.get_loc()
 
 We can assign multiple columns in the same call by using the data frame's `assign()` method. The general syntax is:
 ```python
-df.assign( new_col1_name = new_col1_values, 
+df = df.assign( new_col1_name = new_col1_values, 
            new_col2_name = new_col2_values)
 ```
 Notice the new column names are not strings, we declare them as if we were creating variables.
