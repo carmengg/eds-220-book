@@ -138,11 +138,40 @@ precip.HPCP.plot()
 ```
 
 ## Subsetting by date
+`pandas` has great functionality to subset a dataframe when using a time index. These are some examples:
 
+```{python}
+
+```
+
+
+```{python}
+# select data from a given month and year
+# use loc['year-month']
+precip.loc['2010-05']
+```
+
+```{python}
+# select data from a given year
+# use loc['year']
+precip.loc['2013']
+```
 
 ## Resample
 
+
+## More info
+
+As usual, there's so much more to learn about time series data. These documents will allow you to dive deeper:
+
+📖 [`pandas` getting started tutorials - How to handle time series data with ease](https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html#min-tut-09-timeseries)
+
+📖 [Time Series Chapter, Python for Data Analysis, Wes McKinney](https://wesmckinney.com/book/time-series)
+
+📖 [`pandas` User Guide - Time series/date functionality](https://pandas.pydata.org/docs/user_guide/timeseries.html)
+
+
 ## Acknowledgements
 
-This lesson was adapted from X and Y.
+This lesson was adapted from [Dr. Sam Stevenson's lecture on Data quality control and outliers: 1D time series](https://github.com/samanthastevenson/EDS220_Fall2022/blob/main/Precipitation_QCexample_BoulderCO.ipynb) and [Earth Lab's Lesson 1. Work With Datetime Format in Python - Time Series Data](https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/introduction-to-time-series-in-pandas-python/).
 
