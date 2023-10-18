@@ -19,10 +19,10 @@ To exemplify some of the basic time series functionalities we'll be using data a
 
 This data was obtained via the [National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service](https://www.ncdc.noaa.gov/cdo-web/). This dataset is a csv and can be acceses at [this link](https://www.ncei.noaa.gov/orders/cdo/3488381.csv). You can [view the full documentation here](https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf). The following is a summary of the column descriptions:
 
-- STATION: identification number indentifying the station. 
-- STATION_NAME: optional field, name identifying the station location. 
-- DATE: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.
-- HPCP: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
+- **STATION**: identification number indentifying the station. 
+- **STATION_NAME**: optional field, name identifying the station location. 
+- **DATE**: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.
+- **HPCP**: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
 
 ## Data preparation
 

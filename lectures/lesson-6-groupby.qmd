@@ -1,9 +1,19 @@
-git# `groupby()`
+# `groupby()`
+
+In this section we will go over the `groupby()` function and the split-apply-combine strategy.
+
+<!--
+Make a short intro about summarizing values in a whole column.
+-->
 
 ```{python}
 import pandas as pd 
+import seaborn as sns
+
 # read in data
-penguins = pd.read_csv('https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv')
+penguins = pd.read_csv("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv")
+
+penguins.head()
 ```
 
 ## Grouping
@@ -118,6 +128,6 @@ penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=Fal
 
 
 ## Acknowledgmenets
-The `groupby()` section is based on this [NCEAS Learning Hub R lesson.](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
+This section is based on this [NCEAS Learning Hub R lesson.](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
 
  Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.

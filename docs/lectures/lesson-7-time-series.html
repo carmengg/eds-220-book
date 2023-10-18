@@ -281,10 +281,10 @@ Add section about
 <p>To exemplify some of the basic time series functionalities we’ll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In September 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify this unusual weather event.</p>
 <p>This data was obtained via the <a href="https://www.ncdc.noaa.gov/cdo-web/">National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service</a>. This dataset is a csv and can be acceses at <a href="https://www.ncei.noaa.gov/orders/cdo/3488381.csv">this link</a>. You can <a href="https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf">view the full documentation here</a>. The following is a summary of the column descriptions:</p>
 <ul>
-<li>STATION: identification number indentifying the station.</li>
-<li>STATION_NAME: optional field, name identifying the station location.</li>
-<li>DATE: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.</li>
-<li>HPCP: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.</li>
+<li><strong>STATION</strong>: identification number indentifying the station.</li>
+<li><strong>STATION_NAME</strong>: optional field, name identifying the station location.</li>
+<li><strong>DATE</strong>: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.</li>
+<li><strong>HPCP</strong>: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.</li>
 </ul>
 </section>
 <section id="data-preparation" class="level2" data-number="7.2">
@@ -1003,7 +1003,7 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing happens</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>].resample(<span class="st">'D'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>&lt;pandas.core.resample.DatetimeIndexResampler object at 0x7fbc80eade50&gt;</code></pre>
+<pre><code>&lt;pandas.core.resample.DatetimeIndexResampler object at 0x7f77d8dabad0&gt;</code></pre>
 </div>
 </div>
 <p>To get an output we need to add an aggregator function that indicates how we want to summarize the data that falls on each day. In this case we want the total precipitation on a day, so we will aggreagte using <code>sum()</code>:</p>
