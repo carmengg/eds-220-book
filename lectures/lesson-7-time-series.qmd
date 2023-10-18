@@ -3,7 +3,7 @@
 In this section we will learn some basic handling of time series. 
 
 <!--
-Add section about
+Add section about how Python represents time
 ## `Timestamp`
 
 - basic pandas data type for dates
@@ -22,7 +22,7 @@ This data was obtained via the [National Oceanic and Atmosperic Administration (
 - **STATION**: identification number indentifying the station. 
 - **STATION_NAME**: optional field, name identifying the station location. 
 - **DATE**: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.
-- **HPCP**: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
+- **HPCP**: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
 
 ## Data preparation
 
@@ -54,9 +54,11 @@ There's a few things going on with this graph:
 
 Let's fix each one of these issues separately.
 
-## Outliers
+## Indicate missing data
 
-The metadata states the missing values are indicated by the number 999.99. We can use this information to re-load the dataframe indicating 999.99 is the missing value. To do this, we add the `na_values` parameter to the `pd.read_csv()` function to indicitate additional values that should be recognized as `NA`:
+The metadata states the missing values are indicated by the number 999.99. 
+We can use this information to reload the dataframe indicating 999.99 is the missing value. 
+To do this, we add the `na_values` parameter to the `pd.read_csv()` function to indicitate additional values that should be recognized as `NA`:
 
 ```{python}
 # read in csv indicating NA values
@@ -134,7 +136,7 @@ df = df.set_index(new_index)
 where `new_index` is:
 
 - the name of the column (string) we want to set as index, or
-- an array or `pd.Series` of the same length as our data frame (we need one index per row!). 
+- if our new index is not a column in the dataframe, an array or `pd.Series` of the same length as our data frame (we need one index per row!). 
 
 Notice that `set_index` does not modify the data frame in place.
 
@@ -219,7 +221,7 @@ daily_precip_2013
 Notice the index now is every day in 2013. Finally, we can plot our data:
 
 ```{python}
-daily_precip_2013.plot(ylabel='daily precipitation (1/100 inch)', 
+daily_precip_2013.plot(ylabel='daily precipitation (in)', 
                        xlabel='date',
                        title='Precipitation in Boulder, CO during 2013')
 ```
