@@ -175,7 +175,43 @@ precip.loc['2013'].plot()
 ```
 
 ## Resample
+Resampling a time series means converting a time series from one frequency to another. For example, monthly to yearly (downsampling) or weekly to daily (upsampling). We can resample with the `resample()` method. The simplest use is to call
+```python
+df.resample(new_frequency).aggregator_function()
+```
+where:
+-  `new_frequency` is a string representing the new frequence to resample the data, for example `'D'` for day, `w` for week, `M` for month, `Y` for year, and
+- `aggregator_function()` is the function we will use to aggregate the data into the new frequence. For example, `max()`, `min()`, `sum()` or `average()`. 
+
+`resample()` works similarly to `groupby()` in the sense that you need to specify a way to aggregate the data to get any output. 
+
+**Example**
+
+Our 2013 precipitation data has hourly frequency and we want to resample it to daily frequency. 
+
+```{python}
+# resample 2013 hourly data to daily frequency
+# nothing happens
+precip.loc['2013'].resample('D')
+```
+
+To get an output we need to add an aggregator function that indicates how we want to summarize the data that falls on each day. In this case we want the total precipitation on a day, so we will aggreagte using `sum()`:
+
+```{python}
+# total daily precipitation in 2013
 daily_precip_2013 = precip.loc['2013'].resample('D').sum()
+
+daily_precip_2013
+```
+
+Notice the index now is every day in 2013. Finally, we can plot our data:
+
+```{python}
+daily_precip_2013.plot(ylabel='daily precipitation (1/100 inch)', 
+                       xlabel='date',
+                       title='Precipitation in Boulder, CO during 2013')
+```
+
 
 ## More info
 
