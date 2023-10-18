@@ -18,7 +18,8 @@ book:
         - lectures/lesson-3-pandas-subsetting.qmd
         - lectures/lesson-4-basic-plotting.qmd
         - lectures/lesson-5-updating-dataframes.qmd
-        #- lectures/lesson-6-groupby.qmd
+        - lectures/lesson-6-groupby.qmd
+        - lectures/lesson-7-time-series.qmd
     - part: "Discussion Sections"
       chapters:
        - discussion-sections/ds1-anthr-prelim-data-exploration.qmd

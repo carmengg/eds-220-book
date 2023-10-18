@@ -26,19 +26,19 @@ This data was obtained via the [National Oceanic and Atmosperic Administration (
 
 ## Data preparation
 
-Let's start by reading in the data and looking at it's head:
+Let's start by reading in the data and taking a look at it.
 ```{python}
 import pandas as pd
 
-url = 'https://www.ncei.noaa.gov/orders/cdo/3488381.csv'
 # read in data 
+url = 'https://www.ncei.noaa.gov/orders/cdo/3488381.csv'
 precip = pd.read_csv(url)
 
 # check df's head
 precip.head()
 ```
 
-And make a first try at plotting the precipitation:
+Let's make a first attempt at plotting the precipitation:
 
 ```{python}
 precip.HPCP.plot()
@@ -50,13 +50,13 @@ There's a few things going on with this graph:
 
 2. The x-axis values are given by the index of the dataframe and not relative to time. 
 
-3. We are only intersted in the precipitation data from 2013, this is plotting all our data.
+3. We are only intersted in the precipitation data from 2013, this graph is trying to plot all our data.
 
-Let's fix each one of these separately.
+Let's fix each one of these issues separately.
 
 ## Outliers
 
-Since the metadata indicates the missing values are indicated by the number 999.99 we can use this information to re-load the dataframe indicating 999.99 is the missing value. To do this, we add the `na_values` parameter to the `pd.read_csv()` function to indicitate additional values that should be recognized as `NA`:
+The metadata states the missing values are indicated by the number 999.99. We can use this information to re-load the dataframe indicating 999.99 is the missing value. To do this, we add the `na_values` parameter to the `pd.read_csv()` function to indicitate additional values that should be recognized as `NA`:
 
 ```{python}
 # read in csv indicating NA values
@@ -66,7 +66,11 @@ precip = pd.read_csv(url, na_values=[999.99])
 precip.head()
 ```
 
+::: {.callout-note}
+## Default NA values
+
 Check the `na_values` parameter in the [`pd.read_csv()` documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) to learn more about which values are identified as `NA` by default. 
+:::
 
 We can try making our plot again:
 
@@ -77,7 +81,7 @@ precip.HPCP.plot()
 This looks much better and we can already see there is something going on close to the end of the time series. We still need to set the index as the time.
 
 ## Strings into dates
-First, notice that the DATE column in our dataframe is not of type `datetime`. We can check this using the `dtypes` attribute for dataframes:
+Notice that the DATE column in our dataframe is not of type `datetime`. We can check this using the `dtypes` attribute for dataframes:
 ```{python}
 # check the dtypes of all columns
 precip.dtypes
@@ -86,7 +90,12 @@ precip.dtypes
 <!--
 precip.DATE.apply(type).unique()
 -->
-The `object` dtype means that (most likely) all values in that column are strings. We can convert strings to datetime objects using the `to_datetime()` pandas function, which takes in a `pd.Series` with strings that can be converted to dates and gives as an output a `pd.Series` with the strings converted to `datetime` objects. For example:
+The `object` dtype means that (most likely) all values in that column are strings. We can convert strings to datetime objects using the `to_datetime()` pandas function:
+
+- `pd.to_datetime()` input: a `pd.Series` with strings that can be converted to dates
+- `pd.to_datetime()` output: a `pd.Series` with the strings converted to `datetime` objects
+ 
+ **Example**
 
 ```{python}
 # covert precip.DATE column to timedate objects
@@ -112,21 +121,24 @@ And we can make another try at plotting our precipitation data:
 precip.plot(x='DATE', y='HPCP')
 ```
 
-Notice the x-axis is now neatly organized into years - `pandas` is very time-aware.
+Notice the x-axis is now neatly organized into years.
 
 ## Timestamp index
 
-At its core, we have time series data if our data frame is indexed by moments in time (timestamp). Using our DATE column as the index will allows us to do many operations depending on time, including subsetting and resampling. 
+At its core, we have time series data if our data frame is indexed by moments in time. Using our DATE column as the index will allows us to do many operations with respect to  time, including subsetting and resampling. 
 
 Updating the index of a dataframe is simple, we use the `set_index()` method. It's general syntax is
 ```python
 df = df.set_index(new_index)
 ```
 where `new_index` is:
+
 - the name of the column (string) we want to set as index, or
 - an array or `pd.Series` of the same length as our data frame (we need one index per row!). 
 
 Notice that `set_index` does not modify the data frame in place.
+
+**Example**
 
 In our precipitation data this is:
 
@@ -138,7 +150,7 @@ precip = precip.set_index('DATE')
 precip.head()
 ```
 
-Since we know the default behaviour of `plot()` is to use the index as the x-axis and make a line plot for each numeric column, we can simplify our plot like this:
+Since we know the default behaviour of `plot()` is to use the index as the x-axis and make a line plot for each numeric column, we can simplify our plot making like this:
 
 ```{python}
 precip.plot()
