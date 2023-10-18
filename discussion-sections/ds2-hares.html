@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ds2-hares</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="ds2-hares_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ds2-hares_files/libs/quarto-html/quarto.js"></script>
+<script src="ds2-hares_files/libs/quarto-html/popper.min.js"></script>
+<script src="ds2-hares_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ds2-hares_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ds2-hares_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ds2-hares_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ds2-hares_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ds2-hares_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ds2-hares_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="data-cleaning" class="level1">
+<h1>Data cleaning</h1>
+<p>October 19, 2023.</p>
+<!-- include description and goals -->
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Notebook Setup
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Create a new repository on GitHub. Use the following settings:</p>
+<ol type="a">
+<li><p>Call the repository <code>eds-220-sections</code>. We’ll try reusing this same repository for all upcoming sections.</p></li>
+<li><p>Add a brief description for your new repository. For example: EDS 220 sections - practice sessions for environmental data analysis.</p></li>
+<li><p>Keep the repository public.</p></li>
+<li><p>Initialize the repository with a <code>README</code> file and a Python .gitignore template.</p></li>
+</ol></li>
+</ol>
+<!--
+2. Add your repository's URL and your GitHub username to [this spreadsheet](https://docs.google.com/spreadsheets/d/1VPEIU0PSHs90cwD_RiIhY6swEBSMR-6MmTmM_toykvM/edit?usp=sharing). Names or ordered alphabetically by surname. We won't grade these, it's just for keeping track. 
+-->
+<ol start="2" type="1">
+<li><p>In the Taylor server, start a new JupyterLab session or access an active one.</p></li>
+<li><p>Using the terminal, clone the repository to a new directory under your <code>eds-220</code> directory.</p></li>
+<li><p>In the terminal, navigate into the <code>eds-220-sections</code> directory and verify <code>eds-220-sections</code> is your current working directory.</p></li>
+<li><p>Create a new Python Notebook in <code>eds-220-sections</code>.</p></li>
+<li><p>Update the notebook’s name to something useful like ‘exercise-hares-data.ipynb’.</p></li>
+<li><p>Use the terminal to stage, commit, and push this file to the remote repository. Remember:</p>
+<ul>
+<li>stage: <code>git add FILE_NAME</code></li>
+<li>commit with message: <code>git commit -m "COMMIT_MESSAGE"</code></li>
+<li>push: <code>git push</code></li>
+</ul></li>
+<li><p>If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow <a href="https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/">steps 13-18 in this guide</a> to set it up.</p></li>
+</ol>
+<p style="text-align: center;">
+<strong>CHECK IN WITH YOUR TEAM</strong>
+</p>
+<p style="text-align: center;">
+<strong>MAKE SURE YOU’VE ALL SUCCESSFULLY SET UP YOUR NOTEBOOKS BEFORE CONTINUING</strong>
+</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+General directions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Add comments in each one of your code cells</li>
+<li>Include markdown cells in between your code cells to add titles/information to each exercise</li>
+<li>Indications about when to commit and push changes are included, but you are encouraged to commit and push more often.</li>
+<li>You won’t need to upload any data.</li>
+</ul>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+About the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this exercise we will use data about <a href="https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-bnz.55.22">Snowshoe hares (<em>Lepus americanus</em>) in the Bonanza Creek Experimental Forest (Kielland et al., 2017)</a>.</p>
+<p>This dataset is stored in the <a href="https://edirepository.org">Environmental Data Initiative (EDI)</a> data repository. This is a huge data repository committed to make data Findable, Accessible, Interoperable, and Reusable (FAIR). It is the main repository for all the data associated to the <a href="https://lternet.edu">Long Term Ecological Research Network (LTER)</a>.</p>
+</div>
+</div>
+<section id="archive-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="archive-exploration">Archive exploration</h2>
+<p>Take some time to look through the dataset’s description in EDI and click around. Discuss the following questions with your team:</p>
+<ol type="a">
+<li>What is this data about?</li>
+<li>During what time frame were the observations in the dataset collected?</li>
+<li>Does the dataset contain sensitive data?</li>
+<li>Is there a publication associated with this dataset?</li>
+</ol>
+<p>In your notebook: use a markdown cell to add a <em>brief</em> description of the dataset, including a citation, date of access, and a link to the archive.</p>
+</section>
+<section id="adding-an-image" class="level2">
+<h2 class="anchored" data-anchor-id="adding-an-image">Adding an image</h2>
+<p>Follow these steps to add an image of a hare using a URL:</p>
+<ol type="a">
+<li><p>Go to <a href="">https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,<em>washington_co,<em>maine</em>-01</em>%2818988734889%29.jpg</a></p></li>
+<li><p>Get the URL of the hare image. To do this:</p></li>
+</ol>
+<ul>
+<li>hover over the image –&gt; right click –&gt; “Copy Image Address”.</li>
+</ul>
+<ol start="3" type="a">
+<li><p>At the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL: <code>![image description](URL-goes-here)</code></p></li>
+<li><p>Do you need to add an attribution in the image description? Check the license at the <a href="https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,_washington_co,_maine_-01_%2818988734889%29.jpg">bottom of wikimedia page</a>.</p></li>
+</ol>
+<p style="text-align: center;">
+<strong>commit and push changes</strong>
+</p>
+</section>
+<section id="data-loading" class="level2">
+<h2 class="anchored" data-anchor-id="data-loading">Data loading</h2>
+<p>Back in your notebook, import the <code>pandas</code> package in a code cell and import the <code>55_Hare_Data_2012.txt</code> from its URL using the <code>pandas.read_csv()</code>. Store it in a variable named <code>hares</code>. Take a look at the head of the dataframe.</p>
+<p style="text-align: center;">
+<strong>commit and push changes</strong>
+</p>
+<p style="text-align: center;">
+<strong>CHECK IN WITH YOUR TEAM</strong>
+</p>
+<p style="text-align: center;">
+<strong>MAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING</strong>
+</p>
+</section>
+<section id="metadata-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="metadata-exploration">Metadata exploration</h2>
+<p>Back in the EDI repository, click on <em>View Full Metadata</em> to access more information.</p>
+<p>Go to the “Detailed Metadata” section and click on “Data Entities”. Take a minute to look at the descriptions for the dataset’s columns.</p>
+</section>
+<section id="detecting-messy-values" class="level2">
+<h2 class="anchored" data-anchor-id="detecting-messy-values">Detecting messy values</h2>
+<ol type="1">
+<li><p>Check if the sex column hsa NAs. HINT: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.hasnans.html"><code>hasnans</code> attribute for <code>pd.Series</code></a></p></li>
+<li><p>Get the number of teams each unique non-NA value in the sex column appears by running <code>hares.sex.value_counts()</code>.</p></li>
+<li><p>Check the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">documentation of <code>value_counts()</code></a>. What is the purpose of the <code>dropna=False</code> parameter? Do step 2 again, this time adding the <code>dropna=False</code> parameter to <code>value_counts()</code>.</p></li>
+<li><p>Discuss with your team the output of the unique value counts. Notice anything odd?</p></li>
+<li><p>You likely noticed there seem to be some repeated values, for example <code>m</code> appears twice. Use the <code>unique()</code> method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.</p></li>
+<li><p>In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset.</p></li>
+</ol>
+<p style="text-align: center;">
+<strong>commit and push changes</strong>
+</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<!-- ADD REFERENCES -->
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

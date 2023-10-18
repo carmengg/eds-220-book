@@ -1,0 +1,151 @@
+# Data cleaning
+
+October 19, 2023.
+
+<!-- include description and goals -->
+
+:::{.callout-tip}
+## Notebook Setup
+1. Create a new repository on GitHub. Use the following settings:
+
+    a. Call the repository `eds-220-sections`. We'll try reusing this same repository for all upcoming sections.
+
+    b. Add a brief description for your new repository. For example: EDS 220 sections - practice sessions for environmental data analysis.
+
+    c. Keep the repository public.
+
+    d. Initialize the repository with a `README` file and a Python .gitignore template.
+
+<!--
+2. Add your repository's URL and your GitHub username to [this spreadsheet](https://docs.google.com/spreadsheets/d/1VPEIU0PSHs90cwD_RiIhY6swEBSMR-6MmTmM_toykvM/edit?usp=sharing). Names or ordered alphabetically by surname. We won't grade these, it's just for keeping track. 
+-->
+
+2. In the Taylor server, start a new JupyterLab session or access an active one.
+
+3. Using the terminal, clone the repository to a new directory under your `eds-220` directory.
+
+4. In the terminal, navigate into the `eds-220-sections` directory and verify `eds-220-sections` is your current working directory.
+
+5. Create a new Python Notebook in `eds-220-sections`. 
+
+6. Update the notebook's name to something useful like 'exercise-hares-data.ipynb'.
+
+7. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
+    - stage: `git add FILE_NAME`
+    - commit with message: `git commit -m "COMMIT_MESSAGE"`
+    - push: `git push`
+
+8. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY SET UP YOUR NOTEBOOKS BEFORE CONTINUING**
+</p>
+
+:::
+
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+- Indications about when to commit and push changes are included, but you are encouraged to commit and push more often. 
+- You won't need to upload any data.
+:::
+
+:::{.callout-note}
+## About the data
+
+For this exercise we will use data about [Snowshoe hares (*Lepus americanus*) in the Bonanza Creek Experimental Forest (Kielland et al., 2017)](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-bnz.55.22). 
+
+This dataset is stored in the [Environmental Data Initiative (EDI)](https://edirepository.org) data repository. This is a huge data repository committed to make data Findable, Accessible, Interoperable, and Reusable (FAIR). 
+It is the main repository for all the data associated to the [Long Term Ecological Research Network (LTER)](https://lternet.edu).
+
+:::
+
+## Archive exploration
+Take some time to look through the dataset's description in EDI and click around. Discuss the following questions with your team:
+
+a. What is this data about?
+b. During what time frame were the observations in the dataset collected?
+c. Does the dataset contain sensitive data?
+d. Is there a publication associated with this dataset?
+
+In your notebook: use a markdown cell to add a *brief* description of the dataset, including a citation, date of access, and a link to the archive. 
+
+## Adding an image
+Follow these steps to add an image of a hare using a URL:
+
+a. Go to [https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,_washington_co,_maine_-01_%2818988734889%29.jpg]()
+
+b. Get the URL of the hare image. To do this:
+
+- hover over the image –> right click –> “Copy Image Address".
+
+c. At the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL:
+`![image description](URL-goes-here)`
+
+d. Do you need to add an attribution in the image description? Check the license at the [bottom of wikimedia page](https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,_washington_co,_maine_-01_%2818988734889%29.jpg).
+
+<p style="text-align: center;">
+**commit and push changes**
+</p>
+
+## Data loading
+
+Back in your notebook, import the `pandas` package in a code cell and import the `55_Hare_Data_2012.txt` from its URL using the `pandas.read_csv()`. Store it in a variable named `hares`. Take a look at the head of the dataframe. 
+
+<p style="text-align: center;">
+**commit and push changes**
+</p>
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
+</p>
+
+## Metadata exploration
+Back in the EDI repository, click on *View Full Metadata* to access more information. 
+
+Go to the "Detailed Metadata" section and click on "Data Entities". Take a minute to look at the descriptions for the dataset's columns.  
+
+## Detecting messy values
+
+1. Check if the sex column hsa NAs. HINT: [`hasnans` attribute for `pd.Series`](https://pandas.pydata.org/docs/reference/api/pandas.Series.hasnans.html)
+
+2. Get the number of teams each unique non-NA value in the sex column appears by running `hares.sex.value_counts()`. 
+
+3. Check the [documentation of `value_counts()`](https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html). What is the purpose of the `dropna=False` parameter? Do step 2 again, this time adding the `dropna=False` parameter to `value_counts()`.
+
+4. Discuss with your team the output of the unique value counts. Notice anything odd?
+
+5. You likely noticed there seem to be some repeated values, for example `m` appears twice. Use the `unique()` method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.
+
+6. In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset. 
+
+<p style="text-align: center;">
+**commit and push changes**
+</p>
+
+## Clean values
+
+1. Use `np.Select` like we did on Monday to create a new column called `sex_simple` 
+
+- 'F','f', and 'f ' get assigned to 'female', 
+- 'M','m', and 'm ' get assigned to 'male', and 
+- anything else gets assigned `np.nan`
+
+HINTS: 
+
+a. You need to create a list with two conditions and a list with two choices. 
+b. 
+
+
+# References
+
+<!-- ADD REFERENCES -->
