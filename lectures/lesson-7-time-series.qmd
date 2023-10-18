@@ -2,14 +2,29 @@
 
 In this section we will learn some basic handling of time series. 
 
+## Timestamps
+
+`pandas` represents an instant in time using the `pandas.Timestamp` class. For example:
+
+```{python}
+import pandas as pd
+
+# create a timestamp
+pd.Timestamp(year=2020, month=10, day=18, hour=12, minute=30, second=15)
+```
+
+When we store multiple Timestamps in a `pd.Series` (for example when we have a column of dates) the data type of the column is set to `datetime64[ns]`:
+
+```{python}
+# Notice the dtype of the column is datetime64
+pd.Series([pd.Timestamp(2020,10,18), 
+           pd.Timestamp(2020,10,17),
+           pd.Timestamp(2020,10,16)])
+```
+
+This is enough to get us started!
+
 <!--
-Add section about how Python represents time
-## `Timestamp`
-
-- basic pandas data type for dates
-- what it is
-- create one
-
 - NaT = not a time. `pd.NaT` = nd behaves similar as np.nan does for float data.
 -->
 
@@ -28,10 +43,8 @@ This data was obtained via the [National Oceanic and Atmosperic Administration (
 
 Let's start by reading in the data and taking a look at it.
 ```{python}
-import pandas as pd
-
 # read in data 
-url = 'https://www.ncei.noaa.gov/orders/cdo/3488381.csv'
+url = 'https://raw.githubusercontent.com/carmengg/eds-220-book/main/data/boulder_colorado_2013_hourly_precipitation.csv'
 precip = pd.read_csv(url)
 
 # check df's head
@@ -218,12 +231,20 @@ daily_precip_2013 = precip.loc['2013'].resample('D').sum()
 daily_precip_2013
 ```
 
-Notice the index now is every day in 2013. Finally, we can plot our data:
+Notice the index now is every day in 2013. We should rename that column since it is not longer hourly precipitation:
+
+```{python}
+# rename column
+daily_precip_2013 = daily_precip_2013.rename(columns={'HPCP':'daily_precipitation'})
+```
+
+ Finally, we can plot our data:
 
 ```{python}
 daily_precip_2013.plot(ylabel='daily precipitation (in)', 
                        xlabel='date',
-                       title='Precipitation in Boulder, CO during 2013')
+                       title='Precipitation in Boulder, CO during 2013',
+                       legend=False)
 ```
 
 
