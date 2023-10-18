@@ -30,8 +30,13 @@ penguins.count()
 
 ```{python}
 # get the minimum value in each column
-penguins.min()
+penguins.select_dtypes('number').min()
 ```
+
+<!--
+TO DO:
+Add a note about select_dtypes
+-->
 
 ## Grouping
 
@@ -126,7 +131,9 @@ Let's say we want to plot the surveyed population per year and island. We could 
 ```{python}
 penguins.groupby(['island','year']).count().species.sort_values().plot(kind='barh')
 ```
+
 <!--
+TO DO:
 Talk about what is `groupby()` : lazy method
 -->
 
@@ -135,7 +142,6 @@ Talk about what is `groupby()` : lazy method
 (1) Use `groupby` and the `max()` method for data frames to calculate the maximum value of penguin's body mass by year and species.
 
 <!--
-
 ```{python}
 penguins.groupby(['year','species']).body_mass_g.max()
 ```
