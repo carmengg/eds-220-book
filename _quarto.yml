@@ -23,6 +23,7 @@ book:
     - part: "Discussion Sections"
       chapters:
        - discussion-sections/ds1-anthr-prelim-data-exploration.qmd
+       - discussion-sections/ds2-hares.qmd
 
 execute:
   freeze: auto  # re-render only when source changes

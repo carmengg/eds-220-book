@@ -397,5 +397,61 @@
     "title": "8  Preliminary Data Exploration",
     "section": "8.7 Update some column names",
     "text": "8.7 Update some column names\nChange the column names of institutionCode and datasetKey to institution_code and dataset_key, respectively. Make sure you’re actually updating the dataframe. HINT: yesterday’s class.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html",
+    "href": "discussion-sections/ds2-hares.html",
+    "title": "9  Data cleaning",
+    "section": "",
+    "text": "10 References\nKielland, K., F.S. Chapin, R.W. Ruess, and Bonanza Creek LTER. 2017. Snowshoe hare physical data in Bonanza Creek Experimental Forest: 1999-Present ver 22. Environmental Data Initiative. https://doi.org/10.6073/pasta/03dce4856d79b91557d8e6ce2cbcdc14 (Accessed 2023-10-18)."
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#archive-exploration",
+    "href": "discussion-sections/ds2-hares.html#archive-exploration",
+    "title": "9  Data cleaning",
+    "section": "9.1 Archive exploration",
+    "text": "9.1 Archive exploration\nTake some time to look through the dataset’s description in EDI and click around. Discuss the following questions with your team:\n\nWhat is this data about?\nDuring what time frame were the observations in the dataset collected?\nDoes the dataset contain sensitive data?\nIs there a publication associated with this dataset?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive."
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#adding-an-image",
+    "href": "discussion-sections/ds2-hares.html#adding-an-image",
+    "title": "9  Data cleaning",
+    "section": "9.2 Adding an image",
+    "text": "9.2 Adding an image\nFollow these steps to add an image of a hare using a URL:\n\nGo to https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,washington_co,maine-01%2818988734889%29.jpg\nGet the URL of the hare image. To do this:\n\n\nhover over the image –> right click –> “Copy Image Address”.\n\n\nAt the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL: ![image description](URL-goes-here)\nDo you need to add an attribution in the image description? Check the license at the bottom of wikimedia page.\n\n\ncommit and push changes"
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#data-loading",
+    "href": "discussion-sections/ds2-hares.html#data-loading",
+    "title": "9  Data cleaning",
+    "section": "9.3 Data loading",
+    "text": "9.3 Data loading\nBack in your notebook, import the pandas package in a code cell and import the 55_Hare_Data_2012.txt from its URL using the pandas.read_csv(). Store it in a variable named hares. Take a look at the head of the dataframe.\n\ncommit and push changes\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING"
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#metadata-exploration",
+    "href": "discussion-sections/ds2-hares.html#metadata-exploration",
+    "title": "9  Data cleaning",
+    "section": "9.4 Metadata exploration",
+    "text": "9.4 Metadata exploration\nBack in the EDI repository, click on View Full Metadata to access more information.\nGo to the “Detailed Metadata” section and click on “Data Entities”. Take a minute to look at the descriptions for the dataset’s columns."
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#detecting-messy-values",
+    "href": "discussion-sections/ds2-hares.html#detecting-messy-values",
+    "title": "9  Data cleaning",
+    "section": "9.5 Detecting messy values",
+    "text": "9.5 Detecting messy values\n\nGet the number of teams each unique non-NA value in the sex column appears by running hares.sex.value_counts().\nCheck the documentation of value_counts(). What is the purpose of the dropna=False parameter? Do step 2 again, this time adding the dropna=False parameter to value_counts().\nDiscuss with your team the output of the unique value counts. Notice anything odd?\nYou likely noticed there seem to be some repeated values, for example m appears twice. Use the unique() method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.\nIn the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset.\n\n\ncommit and push changes"
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#clean-values",
+    "href": "discussion-sections/ds2-hares.html#clean-values",
+    "title": "9  Data cleaning",
+    "section": "9.6 Clean values",
+    "text": "9.6 Clean values\n\nUse np.select like we did on Monday to create a new column called sex_simple\n\n\n‘F’, ‘f’, and ‘f’ get assigned to ‘female’,\n‘M’, ‘m’, and ‘m’ get assigned to ‘male’, and\nanything else gets assigned np.nan\n\nHINTS:\n\nYou need to create a list with two conditions and a list with two choices.\nTo write the condition think about what does (hares.sex=='F') | (hares.sex=='f') mean? Do you need to add anything else?\n\n\nCheck the counts of unique values (including NAs) in the new sex_simple column.\n\n\ncommit and push changes"
+  },
+  {
+    "objectID": "discussion-sections/ds2-hares.html#calculate-mean-weight",
+    "href": "discussion-sections/ds2-hares.html#calculate-mean-weight",
+    "title": "9  Data cleaning",
+    "section": "9.7 Calculate mean weight",
+    "text": "9.7 Calculate mean weight\n\nUse groupby() to calculate the mean weight by sex (use the new column).\n\n\ncommit and push changes"
   }
 ]

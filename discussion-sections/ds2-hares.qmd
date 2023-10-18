@@ -116,17 +116,15 @@ Go to the "Detailed Metadata" section and click on "Data Entities". Take a minut
 
 ## Detecting messy values
 
-1. Check if the sex column hsa NAs. HINT: [`hasnans` attribute for `pd.Series`](https://pandas.pydata.org/docs/reference/api/pandas.Series.hasnans.html)
+1. Get the number of teams each unique non-NA value in the sex column appears by running `hares.sex.value_counts()`. 
 
-2. Get the number of teams each unique non-NA value in the sex column appears by running `hares.sex.value_counts()`. 
+2. Check the [documentation of `value_counts()`](https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html). What is the purpose of the `dropna=False` parameter? Do step 2 again, this time adding the `dropna=False` parameter to `value_counts()`.
 
-3. Check the [documentation of `value_counts()`](https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html). What is the purpose of the `dropna=False` parameter? Do step 2 again, this time adding the `dropna=False` parameter to `value_counts()`.
+3. Discuss with your team the output of the unique value counts. Notice anything odd?
 
-4. Discuss with your team the output of the unique value counts. Notice anything odd?
+4. You likely noticed there seem to be some repeated values, for example `m` appears twice. Use the `unique()` method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.
 
-5. You likely noticed there seem to be some repeated values, for example `m` appears twice. Use the `unique()` method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.
-
-6. In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset. 
+5. In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset. 
 
 <p style="text-align: center;">
 **commit and push changes**
@@ -134,18 +132,30 @@ Go to the "Detailed Metadata" section and click on "Data Entities". Take a minut
 
 ## Clean values
 
-1. Use `np.Select` like we did on Monday to create a new column called `sex_simple` 
+6. Use `np.select` like we did on Monday to create a new column called `sex_simple` 
 
-- 'F','f', and 'f ' get assigned to 'female', 
-- 'M','m', and 'm ' get assigned to 'male', and 
+- 'F', 'f', and 'f ' get assigned to 'female', 
+- 'M', 'm', and 'm ' get assigned to 'male', and 
 - anything else gets assigned `np.nan`
 
 HINTS: 
 
 a. You need to create a list with two conditions and a list with two choices. 
-b. 
+b. To write the condition think about what does `(hares.sex=='F') | (hares.sex=='f')` mean? Do you need to add anything else?
 
+7. Check the counts of unique values (including NAs) in the new `sex_simple` column.
+
+<p style="text-align: center;">
+**commit and push changes**
+</p>
+
+## Calculate mean weight
+
+8. Use `groupby()` to calculate the mean weight by sex (use the new column). 
+
+<p style="text-align: center;">
+**commit and push changes**
+</p>
 
 # References
-
-<!-- ADD REFERENCES -->
+Kielland, K., F.S. Chapin, R.W. Ruess, and Bonanza Creek LTER. 2017. Snowshoe hare physical data in Bonanza Creek Experimental Forest: 1999-Present ver 22. Environmental Data Initiative. https://doi.org/10.6073/pasta/03dce4856d79b91557d8e6ce2cbcdc14 (Accessed 2023-10-18).
