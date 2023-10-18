@@ -2,6 +2,8 @@
 
 In this section we will learn some basic handling of time series. 
 
+<!--
+Add section about
 ## `Timestamp`
 
 - basic pandas data type for dates
@@ -9,10 +11,11 @@ In this section we will learn some basic handling of time series.
 - create one
 
 - NaT = not a time. `pd.NaT` = nd behaves similar as np.nan does for float data.
+-->
 
 ## Data: Precipitation in Boulder, CO
 
-To exemplify some of the basic time series functionalities we'll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify the unusual weather event that took place in September 2013.
+To exemplify some of the basic time series functionalities we'll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In September 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify this unusual weather event.
 
 This data was obtained via the [National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service](https://www.ncdc.noaa.gov/cdo-web/). This dataset is a csv and can be acceses at [this link](https://www.ncei.noaa.gov/orders/cdo/3488381.csv). You can [view the full documentation here](https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf). The following is a summary of the column descriptions:
 
@@ -119,36 +122,44 @@ Updating the index of a dataframe is simple, we use the `set_index()` method. It
 ```python
 df = df.set_index(new_index)
 ```
-where `new_index` is an array or `pd.Series` of the same length as our data frame (we need one index per row!). Notice that `set_index` does not modify the data frame in place.
+where `new_index` is:
+- the name of the column (string) we want to set as index, or
+- an array or `pd.Series` of the same length as our data frame (we need one index per row!). 
+
+Notice that `set_index` does not modify the data frame in place.
 
 In our precipitation data this is:
 
 ```{python}
 # set DATE coumn as index
-precip = precip.set_index(precip.DATE)
+precip = precip.set_index('DATE')
 
 # check new index
 precip.head()
 ```
 
-Since we know the default behaviour of `plot()` is to use the index as the x-axis, we can simplify our plot like this:
+Since we know the default behaviour of `plot()` is to use the index as the x-axis and make a line plot for each numeric column, we can simplify our plot like this:
 
 ```{python}
-precip.HPCP.plot()
+precip.plot()
 ```
+
+<!--
+:::{.callout-note}
+More on pd.read_csv(). You can set the index and the date columns
+df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
+
+:::
+-->
 
 ## Subsetting by date
 `pandas` has great functionality to subset a dataframe when using a time index. These are some examples:
-
-```{python}
-
-```
 
 
 ```{python}
 # select data from a given month and year
 # use loc['year-month']
-precip.loc['2010-05']
+precip.loc['2013-09']
 ```
 
 ```{python}
@@ -157,8 +168,14 @@ precip.loc['2010-05']
 precip.loc['2013']
 ```
 
-## Resample
+We can use this selection to plot data as usual. Notice we have a lot of gaps due to missing data. 
 
+```{python}
+precip.loc['2013'].plot()
+```
+
+## Resample
+daily_precip_2013 = precip.loc['2013'].resample('D').sum()
 
 ## More info
 
@@ -174,4 +191,3 @@ As usual, there's so much more to learn about time series data. These documents 
 ## Acknowledgements
 
 This lesson was adapted from [Dr. Sam Stevenson's lecture on Data quality control and outliers: 1D time series](https://github.com/samanthastevenson/EDS220_Fall2022/blob/main/Precipitation_QCexample_BoulderCO.ipynb) and [Earth Lab's Lesson 1. Work With Datetime Format in Python - Time Series Data](https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/introduction-to-time-series-in-pandas-python/).
-
