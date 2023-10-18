@@ -233,15 +233,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-precipitation-in-boulder-co" id="toc-data-precipitation-in-boulder-co" class="nav-link active" data-scroll-target="#data-precipitation-in-boulder-co"><span class="toc-section-number">7.1</span>  Data: Precipitation in Boulder, CO</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">7.2</span>  Data preparation</a></li>
-  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers"><span class="toc-section-number">7.3</span>  Outliers</a></li>
-  <li><a href="#strings-into-dates" id="toc-strings-into-dates" class="nav-link" data-scroll-target="#strings-into-dates"><span class="toc-section-number">7.4</span>  Strings into dates</a></li>
-  <li><a href="#timestamp-index" id="toc-timestamp-index" class="nav-link" data-scroll-target="#timestamp-index"><span class="toc-section-number">7.5</span>  Timestamp index</a></li>
-  <li><a href="#subsetting-by-date" id="toc-subsetting-by-date" class="nav-link" data-scroll-target="#subsetting-by-date"><span class="toc-section-number">7.6</span>  Subsetting by date</a></li>
-  <li><a href="#resample" id="toc-resample" class="nav-link" data-scroll-target="#resample"><span class="toc-section-number">7.7</span>  Resample</a></li>
-  <li><a href="#more-info" id="toc-more-info" class="nav-link" data-scroll-target="#more-info"><span class="toc-section-number">7.8</span>  More info</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">7.9</span>  Acknowledgements</a></li>
+  <li><a href="#timestamps" id="toc-timestamps" class="nav-link active" data-scroll-target="#timestamps"><span class="toc-section-number">7.1</span>  Timestamps</a></li>
+  <li><a href="#data-precipitation-in-boulder-co" id="toc-data-precipitation-in-boulder-co" class="nav-link" data-scroll-target="#data-precipitation-in-boulder-co"><span class="toc-section-number">7.2</span>  Data: Precipitation in Boulder, CO</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">7.3</span>  Data preparation</a></li>
+  <li><a href="#indicate-missing-data" id="toc-indicate-missing-data" class="nav-link" data-scroll-target="#indicate-missing-data"><span class="toc-section-number">7.4</span>  Indicate missing data</a></li>
+  <li><a href="#strings-into-dates" id="toc-strings-into-dates" class="nav-link" data-scroll-target="#strings-into-dates"><span class="toc-section-number">7.5</span>  Strings into dates</a></li>
+  <li><a href="#timestamp-index" id="toc-timestamp-index" class="nav-link" data-scroll-target="#timestamp-index"><span class="toc-section-number">7.6</span>  Timestamp index</a></li>
+  <li><a href="#subsetting-by-date" id="toc-subsetting-by-date" class="nav-link" data-scroll-target="#subsetting-by-date"><span class="toc-section-number">7.7</span>  Subsetting by date</a></li>
+  <li><a href="#resample" id="toc-resample" class="nav-link" data-scroll-target="#resample"><span class="toc-section-number">7.8</span>  Resample</a></li>
+  <li><a href="#more-info" id="toc-more-info" class="nav-link" data-scroll-target="#more-info"><span class="toc-section-number">7.9</span>  More info</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">7.10</span>  Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -266,40 +267,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>In this section we will learn some basic handling of time series.</p>
+<section id="timestamps" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="timestamps"><span class="header-section-number">7.1</span> Timestamps</h2>
+<p><code>pandas</code> represents an instant in time using the <code>pandas.Timestamp</code> class. For example:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a timestamp</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pd.Timestamp(year<span class="op">=</span><span class="dv">2020</span>, month<span class="op">=</span><span class="dv">10</span>, day<span class="op">=</span><span class="dv">18</span>, hour<span class="op">=</span><span class="dv">12</span>, minute<span class="op">=</span><span class="dv">30</span>, second<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Timestamp('2020-10-18 12:30:15')</code></pre>
+</div>
+</div>
+<p>When we store multiple Timestamps in a <code>pd.Series</code> (for example when we have a column of dates) the data type of the column is set to <code>datetime64[ns]</code>:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice the dtype of the column is datetime64</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pd.Series([pd.Timestamp(<span class="dv">2020</span>,<span class="dv">10</span>,<span class="dv">18</span>), </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           pd.Timestamp(<span class="dv">2020</span>,<span class="dv">10</span>,<span class="dv">17</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           pd.Timestamp(<span class="dv">2020</span>,<span class="dv">10</span>,<span class="dv">16</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0   2020-10-18
+1   2020-10-17
+2   2020-10-16
+dtype: datetime64[ns]</code></pre>
+</div>
+</div>
+<p>This is enough to get us started!</p>
 <!--
-Add section about
-## `Timestamp`
-
-- basic pandas data type for dates
-- what it is
-- create one
-
 - NaT = not a time. `pd.NaT` = nd behaves similar as np.nan does for float data.
 -->
-<section id="data-precipitation-in-boulder-co" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="data-precipitation-in-boulder-co"><span class="header-section-number">7.1</span> Data: Precipitation in Boulder, CO</h2>
+</section>
+<section id="data-precipitation-in-boulder-co" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="data-precipitation-in-boulder-co"><span class="header-section-number">7.2</span> Data: Precipitation in Boulder, CO</h2>
 <p>To exemplify some of the basic time series functionalities we’ll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In September 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify this unusual weather event.</p>
 <p>This data was obtained via the <a href="https://www.ncdc.noaa.gov/cdo-web/">National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service</a>. This dataset is a csv and can be acceses at <a href="https://www.ncei.noaa.gov/orders/cdo/3488381.csv">this link</a>. You can <a href="https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf">view the full documentation here</a>. The following is a summary of the column descriptions:</p>
 <ul>
 <li><strong>STATION</strong>: identification number indentifying the station.</li>
 <li><strong>STATION_NAME</strong>: optional field, name identifying the station location.</li>
 <li><strong>DATE</strong>: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.</li>
-<li><strong>HPCP</strong>: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in hundredths of inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.</li>
+<li><strong>HPCP</strong>: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.</li>
 </ul>
 </section>
-<section id="data-preparation" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">7.2</span> Data preparation</h2>
+<section id="data-preparation" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">7.3</span> Data preparation</h2>
 <p>Let’s start by reading in the data and taking a look at it.</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://www.ncei.noaa.gov/orders/cdo/3488381.csv'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>precip <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check df's head</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/carmengg/eds-220-book/main/data/boulder_colorado_2013_hourly_precipitation.csv'</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>precip <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check df's head</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
 
@@ -367,13 +386,13 @@ Add section about
 </div>
 </div>
 <p>Let’s make a first attempt at plotting the precipitation:</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>precip.HPCP.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>precip.HPCP.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-7-time-series_files/figure-html/cell-3-output-2.png" width="583" height="411"></p>
+<p><img src="lesson-7-time-series_files/figure-html/cell-5-output-2.png" width="583" height="411"></p>
 </div>
 </div>
 <p>There’s a few things going on with this graph:</p>
@@ -384,16 +403,16 @@ Add section about
 </ol>
 <p>Let’s fix each one of these issues separately.</p>
 </section>
-<section id="outliers" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="outliers"><span class="header-section-number">7.3</span> Outliers</h2>
-<p>The metadata states the missing values are indicated by the number 999.99. We can use this information to re-load the dataframe indicating 999.99 is the missing value. To do this, we add the <code>na_values</code> parameter to the <code>pd.read_csv()</code> function to indicitate additional values that should be recognized as <code>NA</code>:</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in csv indicating NA values</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>precip <span class="op">=</span> pd.read_csv(url, na_values<span class="op">=</span>[<span class="fl">999.99</span>])</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check updated df</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<section id="indicate-missing-data" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="indicate-missing-data"><span class="header-section-number">7.4</span> Indicate missing data</h2>
+<p>The metadata states the missing values are indicated by the number 999.99. We can use this information to reload the dataframe indicating 999.99 is the missing value. To do this, we add the <code>na_values</code> parameter to the <code>pd.read_csv()</code> function to indicitate additional values that should be recognized as <code>NA</code>:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in csv indicating NA values</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>precip <span class="op">=</span> pd.read_csv(url, na_values<span class="op">=</span>[<span class="fl">999.99</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check updated df</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -474,24 +493,24 @@ Default NA values
 </div>
 </div>
 <p>We can try making our plot again:</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>precip.HPCP.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>precip.HPCP.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-7-time-series_files/figure-html/cell-5-output-2.png" width="571" height="411"></p>
+<p><img src="lesson-7-time-series_files/figure-html/cell-7-output-2.png" width="571" height="411"></p>
 </div>
 </div>
 <p>This looks much better and we can already see there is something going on close to the end of the time series. We still need to set the index as the time.</p>
 </section>
-<section id="strings-into-dates" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="strings-into-dates"><span class="header-section-number">7.4</span> Strings into dates</h2>
+<section id="strings-into-dates" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="strings-into-dates"><span class="header-section-number">7.5</span> Strings into dates</h2>
 <p>Notice that the DATE column in our dataframe is not of type <code>datetime</code>. We can check this using the <code>dtypes</code> attribute for dataframes:</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the dtypes of all columns</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>precip.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the dtypes of all columns</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>precip.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>STATION              object
 STATION_NAME         object
 DATE                 object
@@ -510,10 +529,10 @@ precip.DATE.apply(type).unique()
 <li><code>pd.to_datetime()</code> output: a <code>pd.Series</code> with the strings converted to <code>datetime</code> objects</li>
 </ul>
 <p><strong>Example</strong></p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># covert precip.DATE column to timedate objects</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(precip.DATE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># covert precip.DATE column to timedate objects</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(precip.DATE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>0      2000-01-01 00:00:00
 1      2000-01-01 01:00:00
 2      2000-01-02 20:00:00
@@ -529,15 +548,15 @@ Name: DATE, Length: 9006, dtype: datetime64[ns]</code></pre>
 </div>
 </div>
 <p>We can overwrite the DATE column with this output:</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert DATE column from string to timestamps</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>precip.DATE <span class="op">=</span> pd.to_datetime(precip.DATE)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check column data type is updated</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(precip.dtypes)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check new values</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert DATE column from string to timestamps</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>precip.DATE <span class="op">=</span> pd.to_datetime(precip.DATE)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check column data type is updated</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(precip.dtypes)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check new values</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>STATION                     object
 STATION_NAME                object
@@ -547,7 +566,7 @@ Measurement Flag            object
 Quality Flag                object
 dtype: object</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
 
@@ -615,37 +634,37 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>And we can make another try at plotting our precipitation data:</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>precip.plot(x<span class="op">=</span><span class="st">'DATE'</span>, y<span class="op">=</span><span class="st">'HPCP'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>precip.plot(x<span class="op">=</span><span class="st">'DATE'</span>, y<span class="op">=</span><span class="st">'HPCP'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>&lt;AxesSubplot:xlabel='DATE'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-7-time-series_files/figure-html/cell-9-output-2.png" width="571" height="401"></p>
+<p><img src="lesson-7-time-series_files/figure-html/cell-11-output-2.png" width="571" height="401"></p>
 </div>
 </div>
 <p>Notice the x-axis is now neatly organized into years.</p>
 </section>
-<section id="timestamp-index" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="timestamp-index"><span class="header-section-number">7.5</span> Timestamp index</h2>
+<section id="timestamp-index" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="timestamp-index"><span class="header-section-number">7.6</span> Timestamp index</h2>
 <p>At its core, we have time series data if our data frame is indexed by moments in time. Using our DATE column as the index will allows us to do many operations with respect to time, including subsetting and resampling.</p>
 <p>Updating the index of a dataframe is simple, we use the <code>set_index()</code> method. It’s general syntax is</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(new_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(new_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where <code>new_index</code> is:</p>
 <ul>
 <li>the name of the column (string) we want to set as index, or</li>
-<li>an array or <code>pd.Series</code> of the same length as our data frame (we need one index per row!).</li>
+<li>if our new index is not a column in the dataframe, an array or <code>pd.Series</code> of the same length as our data frame (we need one index per row!).</li>
 </ul>
 <p>Notice that <code>set_index</code> does not modify the data frame in place.</p>
 <p><strong>Example</strong></p>
 <p>In our precipitation data this is:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set DATE coumn as index</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>precip <span class="op">=</span> precip.set_index(<span class="st">'DATE'</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check new index</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set DATE coumn as index</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>precip <span class="op">=</span> precip.set_index(<span class="st">'DATE'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check new index</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>precip.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
 
@@ -715,13 +734,13 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Since we know the default behaviour of <code>plot()</code> is to use the index as the x-axis and make a line plot for each numeric column, we can simplify our plot making like this:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>precip.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>precip.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>&lt;AxesSubplot:xlabel='DATE'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-7-time-series_files/figure-html/cell-11-output-2.png" width="571" height="401"></p>
+<p><img src="lesson-7-time-series_files/figure-html/cell-13-output-2.png" width="571" height="401"></p>
 </div>
 </div>
 <!--
@@ -732,14 +751,14 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 :::
 -->
 </section>
-<section id="subsetting-by-date" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="subsetting-by-date"><span class="header-section-number">7.6</span> Subsetting by date</h2>
+<section id="subsetting-by-date" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="subsetting-by-date"><span class="header-section-number">7.7</span> Subsetting by date</h2>
 <p><code>pandas</code> has great functionality to subset a dataframe when using a time index. These are some examples:</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data from a given month and year</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use loc['year-month']</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013-09'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data from a given month and year</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use loc['year-month']</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013-09'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -857,11 +876,11 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data from a given year</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use loc['year']</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data from a given year</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use loc['year']</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
 
 <div>
 
@@ -980,39 +999,39 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 </div>
 </div>
 <p>We can use this selection to plot data as usual. Notice we have a lot of gaps due to missing data.</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>].plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>].plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>&lt;AxesSubplot:xlabel='DATE'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-7-time-series_files/figure-html/cell-14-output-2.png" width="571" height="412"></p>
+<p><img src="lesson-7-time-series_files/figure-html/cell-16-output-2.png" width="571" height="412"></p>
 </div>
 </div>
 </section>
-<section id="resample" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="resample"><span class="header-section-number">7.7</span> Resample</h2>
+<section id="resample" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="resample"><span class="header-section-number">7.8</span> Resample</h2>
 <p>Resampling a time series means converting a time series from one frequency to another. For example, monthly to yearly (downsampling) or weekly to daily (upsampling). We can resample with the <code>resample()</code> method. The simplest use is to call</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.resample(new_frequency).aggregator_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df.resample(new_frequency).aggregator_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where: - <code>new_frequency</code> is a string representing the new frequence to resample the data, for example <code>'D'</code> for day, <code>w</code> for week, <code>M</code> for month, <code>Y</code> for year, and - <code>aggregator_function()</code> is the function we will use to aggregate the data into the new frequence. For example, <code>max()</code>, <code>min()</code>, <code>sum()</code> or <code>average()</code>.</p>
 <p><code>resample()</code> works similarly to <code>groupby()</code> in the sense that you need to specify a way to aggregate the data to get any output.</p>
 <p><strong>Example</strong></p>
 <p>Our 2013 precipitation data has hourly frequency and we want to resample it to daily frequency.</p>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># resample 2013 hourly data to daily frequency</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing happens</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>].resample(<span class="st">'D'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>&lt;pandas.core.resample.DatetimeIndexResampler object at 0x7f77d8dabad0&gt;</code></pre>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># resample 2013 hourly data to daily frequency</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing happens</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>precip.loc[<span class="st">'2013'</span>].resample(<span class="st">'D'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>&lt;pandas.core.resample.DatetimeIndexResampler object at 0x7f2b11ceb510&gt;</code></pre>
 </div>
 </div>
 <p>To get an output we need to add an aggregator function that indicates how we want to summarize the data that falls on each day. In this case we want the total precipitation on a day, so we will aggreagte using <code>sum()</code>:</p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total daily precipitation in 2013</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>daily_precip_2013 <span class="op">=</span> precip.loc[<span class="st">'2013'</span>].resample(<span class="st">'D'</span>).<span class="bu">sum</span>()</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>daily_precip_2013</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total daily precipitation in 2013</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>daily_precip_2013 <span class="op">=</span> precip.loc[<span class="st">'2013'</span>].resample(<span class="st">'D'</span>).<span class="bu">sum</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>daily_precip_2013</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
 
@@ -1078,28 +1097,34 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 </div>
 </div>
 </div>
-<p>Notice the index now is every day in 2013. Finally, we can plot our data:</p>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>daily_precip_2013.plot(ylabel<span class="op">=</span><span class="st">'daily precipitation (1/100 inch)'</span>, </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                       xlabel<span class="op">=</span><span class="st">'date'</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                       title<span class="op">=</span><span class="st">'Precipitation in Boulder, CO during 2013'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>&lt;AxesSubplot:title={'center':'Precipitation in Boulder, CO during 2013'}, xlabel='date', ylabel='daily precipitation (1/100 inch)'&gt;</code></pre>
+<p>Notice the index now is every day in 2013. We should rename that column since it is not longer hourly precipitation:</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename column</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>daily_precip_2013 <span class="op">=</span> daily_precip_2013.rename(columns<span class="op">=</span>{<span class="st">'HPCP'</span>:<span class="st">'daily_precipitation'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we can plot our data:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>daily_precip_2013.plot(ylabel<span class="op">=</span><span class="st">'daily precipitation (in)'</span>, </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                       xlabel<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                       title<span class="op">=</span><span class="st">'Precipitation in Boulder, CO during 2013'</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>                       legend<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>&lt;AxesSubplot:title={'center':'Precipitation in Boulder, CO during 2013'}, xlabel='date', ylabel='daily precipitation (in)'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-7-time-series_files/figure-html/cell-17-output-2.png" width="576" height="464"></p>
+<p><img src="lesson-7-time-series_files/figure-html/cell-20-output-2.png" width="576" height="464"></p>
 </div>
 </div>
 </section>
-<section id="more-info" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="more-info"><span class="header-section-number">7.8</span> More info</h2>
+<section id="more-info" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="more-info"><span class="header-section-number">7.9</span> More info</h2>
 <p>As usual, there’s so much more to learn about time series data. These documents will allow you to dive deeper:</p>
 <p>📖 <a href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html#min-tut-09-timeseries"><code>pandas</code> getting started tutorials - How to handle time series data with ease</a></p>
 <p>📖 <a href="https://wesmckinney.com/book/time-series">Time Series Chapter, Python for Data Analysis, Wes McKinney</a></p>
 <p>📖 <a href="https://pandas.pydata.org/docs/user_guide/timeseries.html"><code>pandas</code> User Guide - Time series/date functionality</a></p>
 </section>
-<section id="acknowledgements" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">7.9</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">7.10</span> Acknowledgements</h2>
 <p>This lesson was adapted from <a href="https://github.com/samanthastevenson/EDS220_Fall2022/blob/main/Precipitation_QCexample_BoulderCO.ipynb">Dr.&nbsp;Sam Stevenson’s lecture on Data quality control and outliers: 1D time series</a> and <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/introduction-to-time-series-in-pandas-python/">Earth Lab’s Lesson 1. Work With Datetime Format in Python - Time Series Data</a>.</p>
 
 
