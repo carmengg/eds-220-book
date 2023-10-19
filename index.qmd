@@ -43,5 +43,5 @@ This website is created with [Quarto](https://quarto.org) and is published  thro
 If you have suggestions on how to correct, improve, or expand these notes, please feel free to email galaz-garcia@nceas.ucsb.edu or [file a GitHub issue](https://github.com/carmengg/eds-220-book/issues). 
 
 ## License
-All content in this book is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license](https://creativecommons.org/licenses/by-sa/4.0/).
+All content in this book is licensed under the [Creative Commons Attribution NonCommercial 4.0 International (CC BY-NC 4.0) license](https://creativecommons.org/licenses/by-nc/4.0/).
 
