@@ -141,8 +141,10 @@ Matplotlib graphs the data in a **figure** which can have one or more **axes**. 
 We initialize a new figure and axes by calling `pylot`'s `subplots()` function and we show the graph using `plt.show()`:
 
 ```{python}
-# create a blank figure with an empty axis
+# create a blank figure (fig) with an empty axis (ax)
 fig, ax = plt.subplots()
+
+# display figure
 plt.show()
 ```
 
@@ -153,11 +155,78 @@ Notice we get a figure with a single empty axis. We can think of this step as se
 Notice that `plt.subplots()` is a function that returns two objects (has two outputs). 
 :::
 
+### Adding a layer
+
+When using `matplotlib`, it can be useful to think of creating a plot as adding layers to an axis. 
+
+**Example**
+
+The first layer we want to add to our axis is the pigs_recent point data. The general syntax to do this is:
+```python
+# create new figure and axis
+fig, ax = plt.subplots()
+
+# plot df on the ax axis
+df.plot(ax=ax, 
+        ...)   # other arguments for plot function
+
+# display figure
+plt.show()
+```
+
+**Example**
+
+We can plot our data using `matplotlib` like this:
+
+```{python}
+# create new figure and axis
+fig, ax = plt.subplots()
+
+# add pigs point plot to our figure's axis
+pigs_recent.plot(ax=ax)
+
+# display figure
+plt.show
+```
+
+### Customization 
+
+Matplotlib allows for a lot of customization. 
+Some of it can be done directly in the `plot()` method for the dataframe (like we've done when ploting data using `pandas`), while other is done by updating attributes of the axis `ax`. 
+The following image shows some examples of elements in the axis that can be updated.
+
 ![Image source: Matplotlib documentation](/images/lesson-8-geopandas/anatomy.png)
 
+**Example**
+
+Some basic customization for our pigs data could looke like this:
+
+```{python}
+# initialize empty figure
+fig, ax = plt.subplots()
+
+# add data to axis
+# notice customization happens as arguments in plot()
+pigs_recent.plot(ax=ax,
+                 alpha=0.5,
+                 color='brown'
+                 )
+
+# update axis 
+# customization separate from the data plotting
+ax.set_title('Reported "Sus scrofa" sightings in CA (2020-2023)')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+# display figure
+plt.show()
+```
 
 ## Simple map
 
+<!--
+https://data.ca.gov/dataset/ca-geographic-boundaries
+-->
 
 ## References
 GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp
