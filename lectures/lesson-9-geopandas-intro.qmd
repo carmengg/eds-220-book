@@ -297,6 +297,4 @@ GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/1
 [Matplotlib Documentation - Basic Usage](
 https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py)
 
-<!--
-https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r
--->
+[NEON tutorials - Intro to Vector Data in R](https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r)
