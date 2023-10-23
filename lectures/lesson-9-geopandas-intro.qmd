@@ -42,7 +42,24 @@ pigs.head(3)
 
 As usual, we can check the type of our objects using the `type` Python function:
 
+```{python}
+# type of the pigs dataframe 
+print(type(pigs))
 
+# type of the geometry column
+print(type(pigs.geometry))
+
+# type of the gbifID column
+print(type(pigs.gbifID))
+```
+
+We can also check the type of a single point in the geometry column:
+
+```{python}
+print(type(pigs.geometry[0]))
+```
+
+This is a `shapely` point. `shapely` is another Python library that to construct and modify points, lines, and polygons. We will talk more about it in the next lessons.
 
 ## Geometric information
 
