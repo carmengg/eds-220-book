@@ -222,10 +222,34 @@ ax.set_ylabel('Latitude')
 plt.show()
 ```
 
+<!--
 ## Simple map
 
-<!--
-https://data.ca.gov/dataset/ca-geographic-boundaries
+[California's government Open Data Portal](https://data.ca.gov/dataset/ca-geographic-boundaries)
+
+```{python}
+# initialize empty figure
+fig, ax = plt.subplots()
+
+# add CA polygon to axis
+ca_new.plot(ax=ax)
+
+# add data to axis
+# notice customization happens as arguments in plot()
+pigs_recent.plot(ax=ax,
+                 alpha=0.5,
+                 color='brown')
+
+# update axis 
+# customization separate from the data plotting
+ax.set_title('Reported "Sus scrofa" sightings in CA (2020-2023)')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+# display figure
+plt.show()
+```
+
 -->
 
 ## References
