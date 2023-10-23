@@ -1,3 +1,12 @@
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+-->
+
 # `geopandas`
 
 GeoPandas is a Python library that extends the `pandas` library by adding support for geospatial data. In this lesson we will introduce the `geopandas` library to work with vector data. We will also make our first map. 
@@ -14,17 +23,18 @@ import matplotlib.pyplot as plt
 
 ## Data
 
-In this lesson we will use simplified point data about wild pigs (*Sus scrofa*) sightings in California county from the [Global Biodiversity Information Facility](https://www.gbif.org). 
+In this lesson we will use simplified point data about wild pigs (*Sus scrofa*) sightings in California, USA from the [Global Biodiversity Information Facility](https://www.gbif.org). 
 
 We can read in a shapefile with `geopandas` by using the `gpd.read_file()` function. 
 
 ```{python}
-pigs = gpd.read_file('gbif_sus_scroga_california/gbif_sus_scroga_california.shp')
+pigs = gpd.read_file('data/gbif_sus_scroga_california/gbif_sus_scroga_california.shp')
 pigs.head()
 ```
 
 ::: {.callout-caution}
-Although the parameter is only the `.shp` file, remember that we need to have at least the `.shx` and `.dbf` files in the same directory as the `.shp` to read in the data. 
+## One shapefile = multiple files
+Although the parameter for `gpd.read_file()` is only the `.shp` file, remember that we need to have at least the `.shx` and `.dbf` files in the same directory as the `.shp` to read in the data. 
 :::
 
 ## `GeoSeries` and `GeoDataFrame`
@@ -57,6 +67,12 @@ print(type(pigs.geometry))
 print(type(pigs.gbifID))
 ```
 
+The new data type of the geometry column is also reflected when we look at the data types of the columns in the data frame:
+
+```{python}
+pigs.dtypes
+```
+
 We can also check the type of each element in the geometry column using the `geom_type` attribute of a `gpd.GeoDataFrame`:
 
 ```{python}
@@ -75,11 +91,11 @@ Two other important attributes of a `gpd.GeoDataFrame` are its coordinate refere
 We can think of the **coordinate reference system (CRS)** as the instructions to locate each feature in our dataframe on the surface of the Earth. We access the CRS of a `gpd.GeoDataFrame` using the `crs` attribute:
 
 ```{python}
-# access the crs of the GeoDataFrame
+# access the CRS of the GeoDataFrame
 pigs.crs
 ```
 
-The **extent** is the bounding box covering *all* the features in our spatial dataset. This is formed finding the points that are furthest west, east, south and north.
+The **extent** of the geo-dataframe is the bounding box covering *all* the features in our geo-dataframe. This is formed by finding the points that are furthest west, east, south and north.
 
 ![Spatial extent of different vector data. Image Source: National Ecological Observatory Network (NEON)](/images/lesson-8-geopandas/spatial-extent.png)
 
@@ -91,10 +107,11 @@ pigs.total_bounds
 
 ## Data wrangling
 
-GeoPandas is conveniently built on top of `pandas`, so we may use all everything we have learned about data selection, wrangling, and modification for `pd.DataFrame`.
+GeoPandas is conveniently built on top of `pandas`, so we may use  everything we have learned about data selection, wrangling, and modification for a `pd.DataFrame`.
 
 **Example**
-Suppose we want to only use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:
+
+Suppose we only want to use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:
 
 ```{python}
 # use sort_index() method to order the index
@@ -131,14 +148,19 @@ pigs_recent.plot()
 
 ### `matplotlib`'s `fig` and `ax`
 
-Going forward we will often want to do more complex visualizations where we add different layers to a graph and customizations. To do this we will use the `matplotlib` Python library for creating visualizations. We can interact with `matplotlib` via its `pyplot` interface, which we imported at the top of the notebook as 
+Going forward, we will often want to make more complex visualizations where we add different layers to a graph and customize it. 
+To do this we will use the `matplotlib` Python library for creating visualizations. 
+We can interact with `matplotlib` via its `pyplot` interface, which we imported at the top of the notebook as 
 ```python
 # import matplotlib with standard abbreviation
 import matplotlib.pyplot as plt
 ```
 
-Matplotlib graphs the data in a **figure** which can have one or more **axes**. The axis is only the are specified by the x-y axis and what is plotted in it. 
-We initialize a new figure and axes by calling `pylot`'s `subplots()` function and we show the graph using `plt.show()`:
+Matplotlib graphs the data in a **figure** which can have one or more **axes**. 
+The axis is only the area specified by the x-y axis and what is plotted in it. To create a new blank figure:
+
+1. Initialize a new figure and axes by calling `pyplot`'s `subplots()` function, and
+2. show the graph using `plt.show()`:
 
 ```{python}
 # create a blank figure (fig) with an empty axis (ax)
@@ -157,11 +179,8 @@ Notice that `plt.subplots()` is a function that returns two objects (has two out
 
 ### Adding a layer
 
-When using `matplotlib`, it can be useful to think of creating a plot as adding layers to an axis. 
-
-**Example**
-
-The first layer we want to add to our axis is the pigs_recent point data. The general syntax to do this is:
+When using `matplotlib`, it can be useful to think of creating a plot as adding layers to an axis.
+The general syntax to plot a datafram `df` onto an axis is:
 ```python
 # create new figure and axis
 fig, ax = plt.subplots()
@@ -172,10 +191,11 @@ df.plot(ax=ax,
 
 # display figure
 plt.show()
-```
+``` 
 
 **Example**
 
+The first layer we want to add to our axis is the `pigs_recent` point data. 
 We can plot our data using `matplotlib` like this:
 
 ```{python}
@@ -227,12 +247,12 @@ plt.show()
 
 [California's government Open Data Portal](https://data.ca.gov/dataset/ca-geographic-boundaries)
 
-```{python}
+```python
 # initialize empty figure
 fig, ax = plt.subplots()
 
 # add CA polygon to axis
-ca_new.plot(ax=ax)
+ca.plot(ax=ax)
 
 # add data to axis
 # notice customization happens as arguments in plot()
@@ -257,5 +277,9 @@ GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/1
 
 [Geopandas Documentation - Introduction to GeoPandas](https://geopandas.org/en/stable/getting_started/introduction.html)
 
-[Matplotlib Documentation - Basic Usage]
-https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py
+[Matplotlib Documentation - Basic Usage](
+https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py)
+
+<!--
+https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r
+-->

@@ -20,6 +20,10 @@ book:
         - lectures/lesson-5-updating-dataframes.qmd
         - lectures/lesson-6-groupby.qmd
         - lectures/lesson-7-time-series.qmd
+    - part: "geopandas"
+      chapters:
+        - lectures/lesson-8-vector-data.qmd
+        - lectures/lesson-9-geopandas-intro.qmd
     - part: "Discussion Sections"
       chapters:
        - discussion-sections/ds1-anthr-prelim-data-exploration.qmd

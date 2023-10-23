@@ -15,10 +15,13 @@ Vector data is one of the two primary types of geospatial data (the other one be
 
 Each item in the vector data is usually referred to as a **feature**. 
 So each point would be a feature, each polygon is a feature, etc. 
+
+![Image Source: National Ecological Observatory Network (NEON)](/images/lesson-7-vector-data/point_line_poly.png)
+
 In addition to the geospatial information stored, vector data can include **attributes** that describe each feature. 
 For example, a vector dataset where each feature is a polygon representing the boundary of a state could have as attributes the population and are of the state.
 
-![Image Source: National Ecological Observatory Network (NEON)](/images/lesson-7-vector-data/point_line_poly.png)
+![Image Source: National Ecological Observatory Network (NEON)](/images/lesson-7-vector-data/spatial-attribute-tables.png)
 
 ## Shapefiles
 
