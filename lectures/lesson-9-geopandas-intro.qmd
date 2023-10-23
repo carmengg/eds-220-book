@@ -10,11 +10,18 @@ import geopandas as gpd
 
 ## Data
 
-In this lesson we will use  with point data about wild pigs (*Sus scrofa) sightings in Santa Barbara county from the [Global Biodiversity Information Facility](https://www.gbif.org).
+In this lesson we will use simplified point data about wild pigs (*Sus scrofa*) sightings in California county from the [Global Biodiversity Information Facility](https://www.gbif.org). 
+
+We can read in a shapefile with `geopandas` by using the `gpd.read_file()` function. 
 
 ```{python}
-
+pigs = gpd.read_file('gbif_sus_scroga_california/gbif_sus_scroga_california.shp')
+pigs.head()
 ```
+
+::: {.callout-caution}
+Although the parameter is only the `.shp` file, remember that we need to have at least the `.shx` and `.dbf` files in the same directory as the `.shp` to read in the data. 
+:::
 
 ## `GeoSeries` and `GeoDataFrame`
 
@@ -26,6 +33,16 @@ The **geometry column** in a `gpd.GeoDataFrame` holds the geometry (point, polyg
 ![Image source: GeoPandas documentation](/images/lesson-8-geopandas/dataframe.svg)
 
 **Example**
+
+First of all, notice that the leftmost column of `pigs` is a column named `geometry` whose values indicate points. 
+
+```{python}
+pigs.head(3)
+```
+
+As usual, we can check the type of our objects using the `type` Python function:
+
+
 
 ## Geometric information
 
@@ -43,5 +60,7 @@ The **geometry column** in a `gpd.GeoDataFrame` holds the geometry (point, polyg
 ## References
 
 [Geopandas Documentation - Introduction to GeoPandas](https://geopandas.org/en/stable/getting_started/introduction.html)
+
+
 
 -->
