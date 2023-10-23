@@ -15,19 +15,17 @@ book:
     - part: "pandas"
       chapters:
         - lectures/lesson-2-series-dataframes.qmd
+        - discussion-sections/ds1-anthr-prelim-data-exploration.qmd 
         - lectures/lesson-3-pandas-subsetting.qmd
         - lectures/lesson-4-basic-plotting.qmd
         - lectures/lesson-5-updating-dataframes.qmd
+        - discussion-sections/ds2-hares.qmd        
         - lectures/lesson-6-groupby.qmd
         - lectures/lesson-7-time-series.qmd
     - part: "geopandas"
       chapters:
         - lectures/lesson-8-vector-data.qmd
         - lectures/lesson-9-geopandas-intro.qmd
-    - part: "Discussion Sections"
-      chapters:
-       - discussion-sections/ds1-anthr-prelim-data-exploration.qmd
-       - discussion-sections/ds2-hares.qmd
 
 execute:
   freeze: auto  # re-render only when source changes

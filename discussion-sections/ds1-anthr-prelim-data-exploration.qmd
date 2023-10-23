@@ -1,5 +1,5 @@
 
-# Preliminary Data Exploration
+# Lab: Preliminary data exploration
 
 October 5, 2023.
 

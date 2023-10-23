@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 3&nbsp; Subsetting</title>
+<title>EDS 220 - Working with Environmental Datasets - 4&nbsp; Subsetting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/lesson-4-basic-plotting.html" rel="next">
-<link href="../lectures/lesson-2-series-dataframes.html" rel="prev">
+<link href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -184,27 +184,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
   </div>
 </li>
       </ul>
@@ -219,32 +229,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Discussion Sections</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
       </ul>
@@ -258,17 +248,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#subsetting-a-pandas.dataframe" id="toc-subsetting-a-pandas.dataframe" class="nav-link active" data-scroll-target="#subsetting-a-pandas.dataframe"><span class="toc-section-number">3.1</span>  Subsetting a <code>pandas.DataFrame</code></a>
+  <li><a href="#subsetting-a-pandas.dataframe" id="toc-subsetting-a-pandas.dataframe" class="nav-link active" data-scroll-target="#subsetting-a-pandas.dataframe"><span class="toc-section-number">4.1</span>  Subsetting a <code>pandas.DataFrame</code></a>
   <ul class="collapse">
-  <li><a href="#selecting-a-single-column" id="toc-selecting-a-single-column" class="nav-link" data-scroll-target="#selecting-a-single-column"><span class="toc-section-number">3.1.1</span>  Selecting a single column…</a></li>
-  <li><a href="#selecting-multiple-columns" id="toc-selecting-multiple-columns" class="nav-link" data-scroll-target="#selecting-multiple-columns"><span class="toc-section-number">3.1.2</span>  Selecting multiple columns…</a></li>
-  <li><a href="#selecting-rows" id="toc-selecting-rows" class="nav-link" data-scroll-target="#selecting-rows"><span class="toc-section-number">3.1.3</span>  Selecting rows…</a></li>
-  <li><a href="#selecting-rows-and-columns-simultaneously" id="toc-selecting-rows-and-columns-simultaneously" class="nav-link" data-scroll-target="#selecting-rows-and-columns-simultaneously"><span class="toc-section-number">3.1.4</span>  Selecting rows and columns simultaneously…</a></li>
-  <li><a href="#notes-about-loc-and-iloc" id="toc-notes-about-loc-and-iloc" class="nav-link" data-scroll-target="#notes-about-loc-and-iloc"><span class="toc-section-number">3.1.5</span>  Notes about <code>loc</code> and <code>iloc</code></a></li>
+  <li><a href="#selecting-a-single-column" id="toc-selecting-a-single-column" class="nav-link" data-scroll-target="#selecting-a-single-column"><span class="toc-section-number">4.1.1</span>  Selecting a single column…</a></li>
+  <li><a href="#selecting-multiple-columns" id="toc-selecting-multiple-columns" class="nav-link" data-scroll-target="#selecting-multiple-columns"><span class="toc-section-number">4.1.2</span>  Selecting multiple columns…</a></li>
+  <li><a href="#selecting-rows" id="toc-selecting-rows" class="nav-link" data-scroll-target="#selecting-rows"><span class="toc-section-number">4.1.3</span>  Selecting rows…</a></li>
+  <li><a href="#selecting-rows-and-columns-simultaneously" id="toc-selecting-rows-and-columns-simultaneously" class="nav-link" data-scroll-target="#selecting-rows-and-columns-simultaneously"><span class="toc-section-number">4.1.4</span>  Selecting rows and columns simultaneously…</a></li>
+  <li><a href="#notes-about-loc-and-iloc" id="toc-notes-about-loc-and-iloc" class="nav-link" data-scroll-target="#notes-about-loc-and-iloc"><span class="toc-section-number">4.1.5</span>  Notes about <code>loc</code> and <code>iloc</code></a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">3.2</span>  Summary</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">3.3</span>  Resources</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">3.4</span>  Acknowledgements</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.2</span>  Summary</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">4.3</span>  Resources</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">4.4</span>  Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -277,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></h1>
 </div>
 
 
@@ -293,8 +283,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>In this lesson we will learn different methods to select data from a <code>pandas.DataFrame</code>.</p>
-<section id="subsetting-a-pandas.dataframe" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="subsetting-a-pandas.dataframe"><span class="header-section-number">3.1</span> Subsetting a <code>pandas.DataFrame</code></h2>
+<section id="subsetting-a-pandas.dataframe" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="subsetting-a-pandas.dataframe"><span class="header-section-number">4.1</span> Subsetting a <code>pandas.DataFrame</code></h2>
 <p>Like it’s often the case when working with <code>pandas</code>, there are <em>many</em> ways in which we can subset a data frame. We will review the core methods to do this. <!--
 There are two ways to subset data in a Data Frame: by position and by label. 
 
@@ -452,10 +442,10 @@ dtype: object</code></pre>
 <pre><code>(43, 11)</code></pre>
 </div>
 </div>
-<section id="selecting-a-single-column" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="selecting-a-single-column"><span class="header-section-number">3.1.1</span> Selecting a single column…</h3>
-<section id="by-column-name" class="level4" data-number="3.1.1.1">
-<h4 data-number="3.1.1.1" class="anchored" data-anchor-id="by-column-name"><span class="header-section-number">3.1.1.1</span> …by column name</h4>
+<section id="selecting-a-single-column" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="selecting-a-single-column"><span class="header-section-number">4.1.1</span> Selecting a single column…</h3>
+<section id="by-column-name" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="by-column-name"><span class="header-section-number">4.1.1.1</span> …by column name</h4>
 <p>This is the simplest case for selecting data. Suppose we are interested in the annual sea level rise. Then we can access that single column in this way:</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seelect a single column by using square brackets []</span></span>
@@ -493,8 +483,8 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </div>
 <p>This is an example of <strong>selecting by label</strong>, which means we want to select data from our data frame using the <em>names</em> of the columns, <em>not their position</em>.</p>
 </section>
-<section id="with-attribute-syntax" class="level4" data-number="3.1.1.2">
-<h4 data-number="3.1.1.2" class="anchored" data-anchor-id="with-attribute-syntax"><span class="header-section-number">3.1.1.2</span> … with attribute syntax</h4>
+<section id="with-attribute-syntax" class="level4" data-number="4.1.1.2">
+<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="with-attribute-syntax"><span class="header-section-number">4.1.1.2</span> … with attribute syntax</h4>
 <p>We can also access a single column by using attribute syntax:</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>annual_rise_2 <span class="op">=</span> df.annual_sea_level_rise</span>
@@ -510,10 +500,10 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="selecting-multiple-columns" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="selecting-multiple-columns"><span class="header-section-number">3.1.2</span> Selecting multiple columns…</h3>
-<section id="using-a-list-of-column-names" class="level4" data-number="3.1.2.1">
-<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="using-a-list-of-column-names"><span class="header-section-number">3.1.2.1</span> … using a list of column names</h4>
+<section id="selecting-multiple-columns" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="selecting-multiple-columns"><span class="header-section-number">4.1.2</span> Selecting multiple columns…</h3>
+<section id="using-a-list-of-column-names" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="using-a-list-of-column-names"><span class="header-section-number">4.1.2.1</span> … using a list of column names</h4>
 <p>This is another example of selecting by labels. We just need to pass a list with the column names to the square brackets <code>[]</code>. For example, say we want to look at the change in glacial volume in Europe and Asia, then we can select those columns like this:</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns with names "europe" and "asia"</span></span>
@@ -532,8 +522,8 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="using-a-slice" class="level4" data-number="3.1.2.2">
-<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="using-a-slice"><span class="header-section-number">3.1.2.2</span> … using a slice</h4>
+<section id="using-a-slice" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="using-a-slice"><span class="header-section-number">4.1.2.2</span> … using a slice</h4>
 <p>Yet another example of selecting by label! In this case we will use the <code>loc</code> selection. The general syntax is</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df.loc[ row<span class="op">-</span>selection , column<span class="op">-</span>selection]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where <code>row-selection</code> and <code>column-selection</code> are the rows and columns we want to subset from the data frame.</p>
@@ -622,11 +612,11 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </ul>
 </section>
 </section>
-<section id="selecting-rows" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="selecting-rows"><span class="header-section-number">3.1.3</span> Selecting rows…</h3>
+<section id="selecting-rows" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="selecting-rows"><span class="header-section-number">4.1.3</span> Selecting rows…</h3>
 <p>Now that we are familiar with some methods for selecting columns, let’s move on to selecting rows.</p>
-<section id="using-a-condition" class="level4" data-number="3.1.3.1">
-<h4 data-number="3.1.3.1" class="anchored" data-anchor-id="using-a-condition"><span class="header-section-number">3.1.3.1</span> … using a condition</h4>
+<section id="using-a-condition" class="level4" data-number="4.1.3.1">
+<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="using-a-condition"><span class="header-section-number">4.1.3.1</span> … using a condition</h4>
 <p>Selecting which rows satisfy a particular condition is, in my experience, the most usual kind of row subsetting. The general syntax for this type of selection is <code>df[condition_on_rows]</code>. For example, suppose we are intersted in all data after 1996. We can select those rows in this way:</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select all rows with year &gt; 1996</span></span>
@@ -1019,8 +1009,8 @@ Name: year, dtype: bool</code></pre>
 </div>
 </div>
 </section>
-<section id="using-multiple-conditions" class="level4" data-number="3.1.3.2">
-<h4 data-number="3.1.3.2" class="anchored" data-anchor-id="using-multiple-conditions"><span class="header-section-number">3.1.3.2</span> … using multiple conditions</h4>
+<section id="using-multiple-conditions" class="level4" data-number="4.1.3.2">
+<h4 data-number="4.1.3.2" class="anchored" data-anchor-id="using-multiple-conditions"><span class="header-section-number">4.1.3.2</span> … using multiple conditions</h4>
 <p>We can combine multipe conditions by surrounding each one in parenthesis <code>()</code> and using the or operator <code>|</code> and the and operator <code>&amp;</code>.</p>
 <p><strong><em>or</em> example</strong>:</p>
 <div class="cell" data-execution_count="13">
@@ -1312,8 +1302,8 @@ Name: year, dtype: bool</code></pre>
 </div>
 </div>
 </section>
-<section id="by-position" class="level4" data-number="3.1.3.3">
-<h4 data-number="3.1.3.3" class="anchored" data-anchor-id="by-position"><span class="header-section-number">3.1.3.3</span> … by position</h4>
+<section id="by-position" class="level4" data-number="4.1.3.3">
+<h4 data-number="4.1.3.3" class="anchored" data-anchor-id="by-position"><span class="header-section-number">4.1.3.3</span> … by position</h4>
 <p>All the selections we have done so far have been using labels or using a condition. Sometimes we might want to select certain rows depending on their <em>actual position</em> in the data frame. In this case we use <code>iloc</code> selection with the syntax <code>df.iloc[row-indices]</code>. <code>iloc</code> stands for integer-location based indexing. Let’s see some examples:</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the fifht row = index 4</span></span>
@@ -1478,11 +1468,11 @@ Name: 4, dtype: float64</code></pre>
 <p>Notice since we are back to indexing by position the right endpoint of the slice (6) is not included in the ouput.</p>
 </section>
 </section>
-<section id="selecting-rows-and-columns-simultaneously" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="selecting-rows-and-columns-simultaneously"><span class="header-section-number">3.1.4</span> Selecting rows and columns simultaneously…</h3>
+<section id="selecting-rows-and-columns-simultaneously" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="selecting-rows-and-columns-simultaneously"><span class="header-section-number">4.1.4</span> Selecting rows and columns simultaneously…</h3>
 <p>Selecting rows and columns simultaneously can be done using <code>loc</code> (labels or conditions) or <code>iloc</code> (integer position).</p>
-<section id="by-labels-or-conditions" class="level4" data-number="3.1.4.1">
-<h4 data-number="3.1.4.1" class="anchored" data-anchor-id="by-labels-or-conditions"><span class="header-section-number">3.1.4.1</span> …by labels or conditions</h4>
+<section id="by-labels-or-conditions" class="level4" data-number="4.1.4.1">
+<h4 data-number="4.1.4.1" class="anchored" data-anchor-id="by-labels-or-conditions"><span class="header-section-number">4.1.4.1</span> …by labels or conditions</h4>
 <p>When we want to select rows and columns simultaneously by labels or conditions we can use <code>loc</code> selection with the syntax</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df.loc[ row<span class="op">-</span>selection , column<span class="op">-</span>selection]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>specifying both paratmers: <code>row-selection</code> and <code>column-selection</code>. These parameters can be a condition (which generates a boolean array) or a subset of labels from the index or the column names. Let’s see an examples:</p>
@@ -1529,8 +1519,8 @@ Name: 4, dtype: float64</code></pre>
 <li><p>the <code>column-selection</code> parameter is <code>['year','europe']</code> which is a list with the names of the two columns we are intersted in.</p></li>
 </ul>
 </section>
-<section id="by-position-1" class="level4" data-number="3.1.4.2">
-<h4 data-number="3.1.4.2" class="anchored" data-anchor-id="by-position-1"><span class="header-section-number">3.1.4.2</span> … by position</h4>
+<section id="by-position-1" class="level4" data-number="4.1.4.2">
+<h4 data-number="4.1.4.2" class="anchored" data-anchor-id="by-position-1"><span class="header-section-number">4.1.4.2</span> … by position</h4>
 <p>When we want to select rows and columns simultaneously by position we use <code>iloc</code> selection with the syntax:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df.iloc[ row<span class="op">-</span>indices , column<span class="op">-</span>indices]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For example,</p>
@@ -1588,8 +1578,8 @@ Name: 4, dtype: float64</code></pre>
 </ul>
 </section>
 </section>
-<section id="notes-about-loc-and-iloc" class="level3" data-number="3.1.5">
-<h3 data-number="3.1.5" class="anchored" data-anchor-id="notes-about-loc-and-iloc"><span class="header-section-number">3.1.5</span> Notes about <code>loc</code> and <code>iloc</code></h3>
+<section id="notes-about-loc-and-iloc" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="notes-about-loc-and-iloc"><span class="header-section-number">4.1.5</span> Notes about <code>loc</code> and <code>iloc</code></h3>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1642,8 +1632,8 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="summary" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.2</span> Summary</h2>
+<section id="summary" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.2</span> Summary</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/selection-flow-chart.jpg" class="img-fluid figure-img"></p>
@@ -1651,15 +1641,15 @@ Name: annual_sea_level_rise, dtype: float64</code></pre>
 </figure>
 </div>
 </section>
-<section id="resources" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="resources"><span class="header-section-number">3.3</span> Resources</h2>
+<section id="resources" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="resources"><span class="header-section-number">4.3</span> Resources</h2>
 <p>What is presented in this section is a comprehensive, but not an exhaustive list of methods to select data in <code>pandas.DataFrames</code>. There are <em>so many</em> ways to subset data to get the same result. Some of the content from this lesson is adapted from the following resources and I encourage you to read them to learn more!</p>
 <p>📖 <a href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html">Pandas getting started tutorials - How to I select a subset of a DataFrame</a></p>
 <p>📖 <a href="https://pandas.pydata.org/docs/user_guide/indexing.html#indexing-slicing-with-labels">Pandas documentation - User Guide - Indexing and Selecting Data</a></p>
 <p>📖 <a href="https://wesmckinney.com/book/pandas-basics">Python for Data Analysis, 3E - Getting started with pandas</a></p>
 </section>
-<section id="acknowledgements" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">3.4</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">4.4</span> Acknowledgements</h2>
 <p>The simplified glacial_loss.csv dataset was created by <a href="https://allisonhorst.github.io">Dr.&nbsp;Allison Horst</a> as part of her course materials on environmental data science.</p>
 
 
@@ -1801,13 +1791,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-2-series-dataframes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></span>
+      <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-4-basic-plotting.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

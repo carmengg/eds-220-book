@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 6&nbsp; groupby()</title>
+<title>EDS 220 - Working with Environmental Datasets - 8&nbsp; groupby()</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/lesson-7-time-series.html" rel="next">
-<link href="../lectures/lesson-5-updating-dataframes.html" rel="prev">
+<link href="../discussion-sections/ds2-hares.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -184,27 +184,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
   </div>
 </li>
       </ul>
@@ -219,32 +229,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Discussion Sections</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
       </ul>
@@ -258,12 +248,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link active" data-scroll-target="#summary-statistics"><span class="toc-section-number">6.1</span>  Summary statistics</a></li>
-  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">6.2</span>  Grouping</a>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link active" data-scroll-target="#summary-statistics"><span class="toc-section-number">8.1</span>  Summary statistics</a></li>
+  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">8.2</span>  Grouping</a>
   <ul class="collapse">
-  <li><a href="#check-in" id="toc-check-in" class="nav-link" data-scroll-target="#check-in"><span class="toc-section-number">6.2.1</span>  Check-in</a></li>
+  <li><a href="#check-in" id="toc-check-in" class="nav-link" data-scroll-target="#check-in"><span class="toc-section-number">8.2.1</span>  Check-in</a></li>
   </ul></li>
-  <li><a href="#acknowledgmenets" id="toc-acknowledgmenets" class="nav-link" data-scroll-target="#acknowledgmenets"><span class="toc-section-number">6.3</span>  Acknowledgmenets</a></li>
+  <li><a href="#acknowledgmenets" id="toc-acknowledgmenets" class="nav-link" data-scroll-target="#acknowledgmenets"><span class="toc-section-number">8.3</span>  Acknowledgmenets</a></li>
   </ul>
 </nav>
     </div>
@@ -272,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></h1>
 </div>
 
 
@@ -374,8 +364,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<section id="summary-statistics" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">6.1</span> Summary statistics</h2>
+<section id="summary-statistics" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">8.1</span> Summary statistics</h2>
 <p>In <code>pandas</code> it is easy to get summary statistics for each column in a dataframe by using methods such as</p>
 <ul>
 <li><code>sum()</code>: sum values in each column,</li>
@@ -418,8 +408,8 @@ TO DO:
 Add a note about select_dtypes
 -->
 </section>
-<section id="grouping" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="grouping"><span class="header-section-number">6.2</span> Grouping</h2>
+<section id="grouping" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="grouping"><span class="header-section-number">8.2</span> Grouping</h2>
 <p>Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calculate a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species. How would we do this “by hand”?</p>
 <ol start="0" type="1">
 <li><p>We start with our data and notice there are multiple species in the <code>species</code> column.</p></li>
@@ -642,8 +632,8 @@ dtype: int64</code></pre>
 TO DO:
 Talk about what is `groupby()` : lazy method
 -->
-<section id="check-in" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="check-in"><span class="header-section-number">6.2.1</span> Check-in</h3>
+<section id="check-in" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="check-in"><span class="header-section-number">8.2.1</span> Check-in</h3>
 <ol type="1">
 <li>Use <code>groupby</code> and the <code>max()</code> method for data frames to calculate the maximum value of penguin’s body mass by year and species.</li>
 </ol>
@@ -681,8 +671,8 @@ penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=Fal
 -->
 </section>
 </section>
-<section id="acknowledgmenets" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="acknowledgmenets"><span class="header-section-number">6.3</span> Acknowledgmenets</h2>
+<section id="acknowledgmenets" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="acknowledgmenets"><span class="header-section-number">8.3</span> Acknowledgmenets</h2>
 <p>This section is based on this <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize">NCEAS Learning Hub R lesson.</a></p>
 <p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
 
@@ -825,13 +815,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-5-updating-dataframes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></span>
+      <a href="../discussion-sections/ds2-hares.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-7-time-series.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

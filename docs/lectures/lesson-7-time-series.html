@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 7&nbsp; Basic time series</title>
+<title>EDS 220 - Working with Environmental Datasets - 9&nbsp; Basic time series</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -184,27 +184,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
   </div>
 </li>
       </ul>
@@ -219,32 +229,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Discussion Sections</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
       </ul>
@@ -258,16 +248,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#timestamps" id="toc-timestamps" class="nav-link active" data-scroll-target="#timestamps"><span class="toc-section-number">7.1</span>  Timestamps</a></li>
-  <li><a href="#data-precipitation-in-boulder-co" id="toc-data-precipitation-in-boulder-co" class="nav-link" data-scroll-target="#data-precipitation-in-boulder-co"><span class="toc-section-number">7.2</span>  Data: Precipitation in Boulder, CO</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">7.3</span>  Data preparation</a></li>
-  <li><a href="#indicate-missing-data" id="toc-indicate-missing-data" class="nav-link" data-scroll-target="#indicate-missing-data"><span class="toc-section-number">7.4</span>  Indicate missing data</a></li>
-  <li><a href="#strings-into-dates" id="toc-strings-into-dates" class="nav-link" data-scroll-target="#strings-into-dates"><span class="toc-section-number">7.5</span>  Strings into dates</a></li>
-  <li><a href="#timestamp-index" id="toc-timestamp-index" class="nav-link" data-scroll-target="#timestamp-index"><span class="toc-section-number">7.6</span>  Timestamp index</a></li>
-  <li><a href="#subsetting-by-date" id="toc-subsetting-by-date" class="nav-link" data-scroll-target="#subsetting-by-date"><span class="toc-section-number">7.7</span>  Subsetting by date</a></li>
-  <li><a href="#resample" id="toc-resample" class="nav-link" data-scroll-target="#resample"><span class="toc-section-number">7.8</span>  Resample</a></li>
-  <li><a href="#more-info" id="toc-more-info" class="nav-link" data-scroll-target="#more-info"><span class="toc-section-number">7.9</span>  More info</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">7.10</span>  Acknowledgements</a></li>
+  <li><a href="#timestamps" id="toc-timestamps" class="nav-link active" data-scroll-target="#timestamps"><span class="toc-section-number">9.1</span>  Timestamps</a></li>
+  <li><a href="#data-precipitation-in-boulder-co" id="toc-data-precipitation-in-boulder-co" class="nav-link" data-scroll-target="#data-precipitation-in-boulder-co"><span class="toc-section-number">9.2</span>  Data: Precipitation in Boulder, CO</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">9.3</span>  Data preparation</a></li>
+  <li><a href="#indicate-missing-data" id="toc-indicate-missing-data" class="nav-link" data-scroll-target="#indicate-missing-data"><span class="toc-section-number">9.4</span>  Indicate missing data</a></li>
+  <li><a href="#strings-into-dates" id="toc-strings-into-dates" class="nav-link" data-scroll-target="#strings-into-dates"><span class="toc-section-number">9.5</span>  Strings into dates</a></li>
+  <li><a href="#timestamp-index" id="toc-timestamp-index" class="nav-link" data-scroll-target="#timestamp-index"><span class="toc-section-number">9.6</span>  Timestamp index</a></li>
+  <li><a href="#subsetting-by-date" id="toc-subsetting-by-date" class="nav-link" data-scroll-target="#subsetting-by-date"><span class="toc-section-number">9.7</span>  Subsetting by date</a></li>
+  <li><a href="#resample" id="toc-resample" class="nav-link" data-scroll-target="#resample"><span class="toc-section-number">9.8</span>  Resample</a></li>
+  <li><a href="#more-info" id="toc-more-info" class="nav-link" data-scroll-target="#more-info"><span class="toc-section-number">9.9</span>  More info</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">9.10</span>  Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -276,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></h1>
 </div>
 
 
@@ -292,8 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>In this section we will learn some basic handling of time series.</p>
-<section id="timestamps" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="timestamps"><span class="header-section-number">7.1</span> Timestamps</h2>
+<section id="timestamps" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="timestamps"><span class="header-section-number">9.1</span> Timestamps</h2>
 <p><code>pandas</code> represents an instant in time using the <code>pandas.Timestamp</code> class. For example:</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -322,8 +312,8 @@ dtype: datetime64[ns]</code></pre>
 - NaT = not a time. `pd.NaT` = nd behaves similar as np.nan does for float data.
 -->
 </section>
-<section id="data-precipitation-in-boulder-co" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="data-precipitation-in-boulder-co"><span class="header-section-number">7.2</span> Data: Precipitation in Boulder, CO</h2>
+<section id="data-precipitation-in-boulder-co" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="data-precipitation-in-boulder-co"><span class="header-section-number">9.2</span> Data: Precipitation in Boulder, CO</h2>
 <p>To exemplify some of the basic time series functionalities we’ll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In September 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify this unusual weather event.</p>
 <p>This data was obtained via the <a href="https://www.ncdc.noaa.gov/cdo-web/">National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service</a>. This dataset is a csv and can be acceses at <a href="https://www.ncei.noaa.gov/orders/cdo/3488381.csv">this link</a>. You can <a href="https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf">view the full documentation here</a>. The following is a summary of the column descriptions:</p>
 <ul>
@@ -333,8 +323,8 @@ dtype: datetime64[ns]</code></pre>
 <li><strong>HPCP</strong>: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.</li>
 </ul>
 </section>
-<section id="data-preparation" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">7.3</span> Data preparation</h2>
+<section id="data-preparation" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">9.3</span> Data preparation</h2>
 <p>Let’s start by reading in the data and taking a look at it.</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data </span></span>
@@ -428,8 +418,8 @@ dtype: datetime64[ns]</code></pre>
 </ol>
 <p>Let’s fix each one of these issues separately.</p>
 </section>
-<section id="indicate-missing-data" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="indicate-missing-data"><span class="header-section-number">7.4</span> Indicate missing data</h2>
+<section id="indicate-missing-data" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="indicate-missing-data"><span class="header-section-number">9.4</span> Indicate missing data</h2>
 <p>The metadata states the missing values are indicated by the number 999.99. We can use this information to reload the dataframe indicating 999.99 is the missing value. To do this, we add the <code>na_values</code> parameter to the <code>pd.read_csv()</code> function to indicitate additional values that should be recognized as <code>NA</code>:</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in csv indicating NA values</span></span>
@@ -529,8 +519,8 @@ Default NA values
 </div>
 <p>This looks much better and we can already see there is something going on close to the end of the time series. We still need to set the index as the time.</p>
 </section>
-<section id="strings-into-dates" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="strings-into-dates"><span class="header-section-number">7.5</span> Strings into dates</h2>
+<section id="strings-into-dates" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="strings-into-dates"><span class="header-section-number">9.5</span> Strings into dates</h2>
 <p>Notice that the DATE column in our dataframe is not of type <code>datetime</code>. We can check this using the <code>dtypes</code> attribute for dataframes:</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the dtypes of all columns</span></span>
@@ -670,8 +660,8 @@ dtype: object</code></pre>
 </div>
 <p>Notice the x-axis is now neatly organized into years.</p>
 </section>
-<section id="timestamp-index" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="timestamp-index"><span class="header-section-number">7.6</span> Timestamp index</h2>
+<section id="timestamp-index" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="timestamp-index"><span class="header-section-number">9.6</span> Timestamp index</h2>
 <p>At its core, we have time series data if our data frame is indexed by moments in time. Using our DATE column as the index will allows us to do many operations with respect to time, including subsetting and resampling.</p>
 <p>Updating the index of a dataframe is simple, we use the <code>set_index()</code> method. It’s general syntax is</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(new_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -776,8 +766,8 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 :::
 -->
 </section>
-<section id="subsetting-by-date" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="subsetting-by-date"><span class="header-section-number">7.7</span> Subsetting by date</h2>
+<section id="subsetting-by-date" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="subsetting-by-date"><span class="header-section-number">9.7</span> Subsetting by date</h2>
 <p><code>pandas</code> has great functionality to subset a dataframe when using a time index. These are some examples:</p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data from a given month and year</span></span>
@@ -1034,8 +1024,8 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 </div>
 </div>
 </section>
-<section id="resample" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="resample"><span class="header-section-number">7.8</span> Resample</h2>
+<section id="resample" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="resample"><span class="header-section-number">9.8</span> Resample</h2>
 <p>Resampling a time series means converting a time series from one frequency to another. For example, monthly to yearly (downsampling) or weekly to daily (upsampling). We can resample with the <code>resample()</code> method. The simplest use is to call</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df.resample(new_frequency).aggregator_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where: - <code>new_frequency</code> is a string representing the new frequence to resample the data, for example <code>'D'</code> for day, <code>w</code> for week, <code>M</code> for month, <code>Y</code> for year, and - <code>aggregator_function()</code> is the function we will use to aggregate the data into the new frequence. For example, <code>max()</code>, <code>min()</code>, <code>sum()</code> or <code>average()</code>.</p>
@@ -1141,15 +1131,15 @@ df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
 </div>
 </div>
 </section>
-<section id="more-info" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="more-info"><span class="header-section-number">7.9</span> More info</h2>
+<section id="more-info" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="more-info"><span class="header-section-number">9.9</span> More info</h2>
 <p>As usual, there’s so much more to learn about time series data. These documents will allow you to dive deeper:</p>
 <p>📖 <a href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html#min-tut-09-timeseries"><code>pandas</code> getting started tutorials - How to handle time series data with ease</a></p>
 <p>📖 <a href="https://wesmckinney.com/book/time-series">Time Series Chapter, Python for Data Analysis, Wes McKinney</a></p>
 <p>📖 <a href="https://pandas.pydata.org/docs/user_guide/timeseries.html"><code>pandas</code> User Guide - Time series/date functionality</a></p>
 </section>
-<section id="acknowledgements" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">7.10</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">9.10</span> Acknowledgements</h2>
 <p>This lesson was adapted from <a href="https://github.com/samanthastevenson/EDS220_Fall2022/blob/main/Precipitation_QCexample_BoulderCO.ipynb">Dr.&nbsp;Sam Stevenson’s lecture on Data quality control and outliers: 1D time series</a> and <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/introduction-to-time-series-in-pandas-python/">Earth Lab’s Lesson 1. Work With Datetime Format in Python - Time Series Data</a>.</p>
 
 
@@ -1292,12 +1282,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/lesson-6-groupby.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-8-vector-data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
