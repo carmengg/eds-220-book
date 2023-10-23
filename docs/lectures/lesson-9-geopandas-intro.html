@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EDS 220 - Working with Environmental Datasets - 9&nbsp; geopandas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" rel="next">
+<link href="../lectures/lesson-8-vector-data.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">EDS 220 - Working with Environmental Datasets</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">geopandas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Discussion Sections</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="toc-section-number">9.1</span>  Data</a></li>
+  <li><a href="#geoseries-and-geodataframe" id="toc-geoseries-and-geodataframe" class="nav-link" data-scroll-target="#geoseries-and-geodataframe"><span class="toc-section-number">9.2</span>  <code>GeoSeries</code> and <code>GeoDataFrame</code></a></li>
+  <li><a href="#geometric-information" id="toc-geometric-information" class="nav-link" data-scroll-target="#geometric-information"><span class="toc-section-number">9.3</span>  Geometric information</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling"><span class="toc-section-number">9.4</span>  Data wrangling</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting"><span class="toc-section-number">9.5</span>  Plotting</a>
+  <ul class="collapse">
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="toc-section-number">9.5.1</span>  <code>plot()</code></a></li>
+  <li><a href="#matplotlibs-fig-and-ax" id="toc-matplotlibs-fig-and-ax" class="nav-link" data-scroll-target="#matplotlibs-fig-and-ax"><span class="toc-section-number">9.5.2</span>  <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></a></li>
+  <li><a href="#adding-a-layer" id="toc-adding-a-layer" class="nav-link" data-scroll-target="#adding-a-layer"><span class="toc-section-number">9.5.3</span>  Adding a layer</a></li>
+  <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization"><span class="toc-section-number">9.5.4</span>  Customization</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">9.6</span>  References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- 
+Fixing the preview working directory
+
+::: {.cell execution_count=1}
+``` {.python .cell-code}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+:::
+
+
+-->
+<p>GeoPandas is a Python library that extends the <code>pandas</code> library by adding support for geospatial data. In this lesson we will introduce the <code>geopandas</code> library to work with vector data. We will also make our first map.</p>
+<p>To begin with, let’s import <code>geopandas</code> with its standard abbreviation <code>gpd</code>:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the library we will explore</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we will start using matplotlib for making maps</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="data"><span class="header-section-number">9.1</span> Data</h2>
+<p>In this lesson we will use simplified point data about wild pigs (<em>Sus scrofa</em>) sightings in California, USA from the <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>.</p>
+<p>We can read in a shapefile with <code>geopandas</code> by using the <code>gpd.read_file()</code> function.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="op">=</span> gpd.read_file(<span class="st">'data/gbif_sus_scroga_california/gbif_sus_scroga_california.shp'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pigs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="767">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>gbifID</th>
+      <th>species</th>
+      <th>state</th>
+      <th>individual</th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>inst</th>
+      <th>collection</th>
+      <th>catalogNum</th>
+      <th>identified</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>899953814</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>22.0</td>
+      <td>3.0</td>
+      <td>2014.0</td>
+      <td>iNaturalist</td>
+      <td>Observations</td>
+      <td>581956</td>
+      <td>edwardrooks</td>
+      <td>POINT (-121.53812 37.08846)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>899951348</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>2007.0</td>
+      <td>iNaturalist</td>
+      <td>Observations</td>
+      <td>576047</td>
+      <td>Bruce Freeman</td>
+      <td>POINT (-120.54942 35.47354)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>896560733</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>20.0</td>
+      <td>12.0</td>
+      <td>1937.0</td>
+      <td>MVZ</td>
+      <td>Hild</td>
+      <td>MVZ:Hild:195</td>
+      <td>Museum of Vertebrate Zoology, University of Ca...</td>
+      <td>POINT (-122.27063 37.87610)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>896559958</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>1969.0</td>
+      <td>MVZ</td>
+      <td>Hild</td>
+      <td>MVZ:Hild:1213</td>
+      <td>Museum of Vertebrate Zoology, University of Ca...</td>
+      <td>POINT (-121.82297 38.44543)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>896559722</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1961.0</td>
+      <td>MVZ</td>
+      <td>Hild</td>
+      <td>MVZ:Hild:1004</td>
+      <td>Museum of Vertebrate Zoology, University of Ca...</td>
+      <td>POINT (-121.74559 38.54882)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+One shapefile = multiple files
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although the parameter for <code>gpd.read_file()</code> is only the <code>.shp</code> file, remember that we need to have at least the <code>.shx</code> and <code>.dbf</code> files in the same directory as the <code>.shp</code> to read in the data.</p>
+</div>
+</div>
+</section>
+<section id="geoseries-and-geodataframe" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="geoseries-and-geodataframe"><span class="header-section-number">9.2</span> <code>GeoSeries</code> and <code>GeoDataFrame</code></h2>
+<p>The core data structure in GeoPandas is the <code>geopandas.GeoDataFrame</code>. We can think of it as a <code>pandas.DataFrame</code> with a dedicated geometry column that can perform spatial operations.</p>
+<p>The <strong>geometry column</strong> in a <code>gpd.GeoDataFrame</code> holds the geometry (point, polygon, etc) of each spatial feature. Columns in the <code>gpd.GeoDataFrame</code> with attributes about the features are <code>pandas.Series</code> like in a regular <code>pd.DataFrame</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-8-geopandas/dataframe.svg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: GeoPandas documentation</figcaption><p></p>
+</figure>
+</div>
+<p><strong>Example</strong></p>
+<p>First of all, notice that the leftmost column of <code>pigs</code> is a column named <code>geometry</code> whose values indicate points.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pigs.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="768">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>gbifID</th>
+      <th>species</th>
+      <th>state</th>
+      <th>individual</th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>inst</th>
+      <th>collection</th>
+      <th>catalogNum</th>
+      <th>identified</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>899953814</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>22.0</td>
+      <td>3.0</td>
+      <td>2014.0</td>
+      <td>iNaturalist</td>
+      <td>Observations</td>
+      <td>581956</td>
+      <td>edwardrooks</td>
+      <td>POINT (-121.53812 37.08846)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>899951348</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>2007.0</td>
+      <td>iNaturalist</td>
+      <td>Observations</td>
+      <td>576047</td>
+      <td>Bruce Freeman</td>
+      <td>POINT (-120.54942 35.47354)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>896560733</td>
+      <td>Sus scrofa</td>
+      <td>California</td>
+      <td>NaN</td>
+      <td>20.0</td>
+      <td>12.0</td>
+      <td>1937.0</td>
+      <td>MVZ</td>
+      <td>Hild</td>
+      <td>MVZ:Hild:195</td>
+      <td>Museum of Vertebrate Zoology, University of Ca...</td>
+      <td>POINT (-122.27063 37.87610)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>As usual, we can check the type of our objects using the <code>type</code> Python function:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type of the pigs dataframe </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(pigs))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># type of the geometry column</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(pigs.geometry))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># type of the gbifID column</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(pigs.gbifID))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'geopandas.geodataframe.GeoDataFrame'&gt;
+&lt;class 'geopandas.geoseries.GeoSeries'&gt;
+&lt;class 'pandas.core.series.Series'&gt;</code></pre>
+</div>
+</div>
+<p>The new data type of the geometry column is also reflected when we look at the data types of the columns in the data frame:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pigs.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="770">
+<pre><code>gbifID           int64
+species         object
+state           object
+individual     float64
+day            float64
+month          float64
+year           float64
+inst            object
+collection      object
+catalogNum      object
+identified      object
+geometry      geometry
+dtype: object</code></pre>
+</div>
+</div>
+<p>We can also check the type of each element in the geometry column using the <code>geom_type</code> attribute of a <code>gpd.GeoDataFrame</code>:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pigs.geom_type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="771">
+<pre><code>0       Point
+1       Point
+2       Point
+3       Point
+4       Point
+        ...  
+1041    Point
+1042    Point
+1043    Point
+1044    Point
+1045    Point
+Length: 1046, dtype: object</code></pre>
+</div>
+</div>
+<!--
+
+This is a `shapely` point. `shapely` is another Python library that to construct and modify points, lines, and polygons. We will talk more about it in the next lessons.
+-->
+</section>
+<section id="geometric-information" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="geometric-information"><span class="header-section-number">9.3</span> Geometric information</h2>
+<p>Two other important attributes of a <code>gpd.GeoDataFrame</code> are its coordinate reference system (CRS) and its extent.</p>
+<p>We can think of the <strong>coordinate reference system (CRS)</strong> as the instructions to locate each feature in our dataframe on the surface of the Earth. We access the CRS of a <code>gpd.GeoDataFrame</code> using the <code>crs</code> attribute:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access the CRS of the GeoDataFrame</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pigs.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="772">
+<pre><code>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich</code></pre>
+</div>
+</div>
+<p>The <strong>extent</strong> of the geo-dataframe is the bounding box covering <em>all</em> the features in our geo-dataframe. This is formed by finding the points that are furthest west, east, south and north.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-8-geopandas/spatial-extent.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Spatial extent of different vector data. Image Source: National Ecological Observatory Network (NEON)</figcaption><p></p>
+</figure>
+</div>
+<p>We access the extent of a <code>gpd.GeoDataFrame</code> using the <code>total_bounds</code> attribute:</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pigs.total_bounds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="773">
+<pre><code>array([-124.29448 ,   32.593433, -115.4356  ,   40.934296])</code></pre>
+</div>
+</div>
+</section>
+<section id="data-wrangling" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="data-wrangling"><span class="header-section-number">9.4</span> Data wrangling</h2>
+<p>GeoPandas is conveniently built on top of <code>pandas</code>, so we may use everything we have learned about data selection, wrangling, and modification for a <code>pd.DataFrame</code>.</p>
+<p><strong>Example</strong></p>
+<p>Suppose we only want to use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use sort_index() method to order the index</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pigs.year.value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="774">
+<pre><code>1818.0     31
+1910.0      1
+1925.0      1
+1927.0      4
+1929.0      3
+         ... 
+2019.0    101
+2020.0    159
+2021.0    164
+2022.0    185
+2023.0     98
+Name: year, Length: 61, dtype: int64</code></pre>
+</div>
+</div>
+<p>We can use our usual data selection to get data from 2020 onwards:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># selet data from 2020 onwards</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pigs_recent <span class="op">=</span> pigs[pigs.year<span class="op">&gt;=</span><span class="dv">2020</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print length of original dataframe</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(pigs))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check length of new dataframe</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(pigs_recent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1046</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="775">
+<pre><code>606</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="plotting"><span class="header-section-number">9.5</span> Plotting</h2>
+<section id="plot" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="plot"><span class="header-section-number">9.5.1</span> <code>plot()</code></h3>
+<p>Similarly to a <code>pd.DataFrame</code>, a <code>gpd.GeoDataFrame</code> has a <code>plot()</code> method that we can call directly to create a quick view of our data. The geospatial information of the <code>gpd.GeoDataFrame</code> will be used to create the axes of the plot.</p>
+<p><strong>Example</strong></p>
+<p>This is a quick look at our recent pigs data:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pigs_recent.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="776">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-13-output-2.png" width="368" height="411"></p>
+</div>
+</div>
+</section>
+<section id="matplotlibs-fig-and-ax" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="matplotlibs-fig-and-ax"><span class="header-section-number">9.5.2</span> <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></h3>
+<p>Going forward, we will often want to make more complex visualizations where we add different layers to a graph and customize it. To do this we will use the <code>matplotlib</code> Python library for creating visualizations. We can interact with <code>matplotlib</code> via its <code>pyplot</code> interface, which we imported at the top of the notebook as</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib with standard abbreviation</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Matplotlib graphs the data in a <strong>figure</strong> which can have one or more <strong>axes</strong>. The axis is only the area specified by the x-y axis and what is plotted in it. To create a new blank figure:</p>
+<ol type="1">
+<li>Initialize a new figure and axes by calling <code>pyplot</code>’s <code>subplots()</code> function, and</li>
+<li>show the graph using <code>plt.show()</code>:</li>
+</ol>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a blank figure (fig) with an empty axis (ax)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-14-output-1.png" width="581" height="416"></p>
+</div>
+</div>
+<p>Notice we get a figure with a single empty axis. We can think of this step as setting a new blank canvas on which we will paint upon.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Functions with multiple return values
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that <code>plt.subplots()</code> is a function that returns two objects (has two outputs).</p>
+</div>
+</div>
+</section>
+<section id="adding-a-layer" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="adding-a-layer"><span class="header-section-number">9.5.3</span> Adding a layer</h3>
+<p>When using <code>matplotlib</code>, it can be useful to think of creating a plot as adding layers to an axis. The general syntax to plot a datafram <code>df</code> onto an axis is:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new figure and axis</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot df on the ax axis</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>df.plot(ax<span class="op">=</span>ax, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        ...)   <span class="co"># other arguments for plot function</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example</strong></p>
+<p>The first layer we want to add to our axis is the <code>pigs_recent</code> point data. We can plot our data using <code>matplotlib</code> like this:</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new figure and axis</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add pigs point plot to our figure's axis</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>pigs_recent.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="778">
+<pre><code>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-15-output-2.png" width="368" height="411"></p>
+</div>
+</div>
+</section>
+<section id="customization" class="level3" data-number="9.5.4">
+<h3 data-number="9.5.4" class="anchored" data-anchor-id="customization"><span class="header-section-number">9.5.4</span> Customization</h3>
+<p>Matplotlib allows for a lot of customization. Some of it can be done directly in the <code>plot()</code> method for the dataframe (like we’ve done when ploting data using <code>pandas</code>), while other is done by updating attributes of the axis <code>ax</code>. The following image shows some examples of elements in the axis that can be updated.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-8-geopandas/anatomy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: Matplotlib documentation</figcaption><p></p>
+</figure>
+</div>
+<p><strong>Example</strong></p>
+<p>Some basic customization for our pigs data could looke like this:</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize empty figure</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add data to axis</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># notice customization happens as arguments in plot()</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>pigs_recent.plot(ax<span class="op">=</span>ax,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                 alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">'brown'</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># update axis </span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># customization separate from the data plotting</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Reported "Sus scrofa" sightings in CA (2020-2023)'</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-16-output-1.png" width="424" height="449"></p>
+</div>
+</div>
+<!--
+## Simple map
+
+[California's government Open Data Portal](https://data.ca.gov/dataset/ca-geographic-boundaries)
+
+```python
+# initialize empty figure
+fig, ax = plt.subplots()
+
+# add CA polygon to axis
+ca.plot(ax=ax)
+
+# add data to axis
+# notice customization happens as arguments in plot()
+pigs_recent.plot(ax=ax,
+                 alpha=0.5,
+                 color='brown')
+
+# update axis 
+# customization separate from the data plotting
+ax.set_title('Reported "Sus scrofa" sightings in CA (2020-2023)')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+# display figure
+plt.show()
+```
+
+-->
+</section>
+</section>
+<section id="references" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="references"><span class="header-section-number">9.6</span> References</h2>
+<p>GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp</p>
+<p><a href="https://geopandas.org/en/stable/getting_started/introduction.html">Geopandas Documentation - Introduction to GeoPandas</a></p>
+<p><a href="https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py">Matplotlib Documentation - Basic Usage</a></p>
+<p>&lt;!– https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/lesson-8-vector-data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

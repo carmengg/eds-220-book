@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Carmen Galaz García">
 
-<title>EDS 220 - Working with Environmental Datasets</title>
+<title>EDS 220 - Working with Environmental Datasets - 8&nbsp; Vector data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lectures/lesson-1-python-review.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/lesson-9-geopandas-intro.html" rel="next">
+<link href="../lectures/lesson-7-time-series.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">EDS 220 - Working with Environmental Datasets</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">EDS 220 - Working with Environmental Datasets</a> 
+      <a href="../">EDS 220 - Working with Environmental Datasets</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -95,12 +95,12 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Welcome!</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -113,32 +113,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
   </div>
 </li>
       </ul>
@@ -153,12 +153,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
       </ul>
@@ -173,12 +173,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
   </div>
 </li>
       </ul>
@@ -192,20 +192,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
-  <ul class="collapse">
-  <li><a href="#about" id="toc-about" class="nav-link" data-scroll-target="#about">About</a></li>
-  <li><a href="#instruction-team" id="toc-instruction-team" class="nav-link" data-scroll-target="#instruction-team">Instruction Team</a>
-  <ul class="collapse">
-  <li><a href="#instructor" id="toc-instructor" class="nav-link" data-scroll-target="#instructor">Instructor</a></li>
-  <li><a href="#ta" id="toc-ta" class="nav-link" data-scroll-target="#ta">TA</a></li>
-  </ul></li>
-  <li><a href="#syllabus" id="toc-syllabus" class="nav-link" data-scroll-target="#syllabus">Syllabus</a></li>
-  <li><a href="#calendar" id="toc-calendar" class="nav-link" data-scroll-target="#calendar">Calendar</a></li>
-  <li><a href="#about-this-website" id="toc-about-this-website" class="nav-link" data-scroll-target="#about-this-website">About this website</a></li>
-  <li><a href="#contribute" id="toc-contribute" class="nav-link" data-scroll-target="#contribute">Contribute</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
+  <li><a href="#points-lines-and-polygons" id="toc-points-lines-and-polygons" class="nav-link active" data-scroll-target="#points-lines-and-polygons"><span class="toc-section-number">8.1</span>  Points, lines, and polygons</a></li>
+  <li><a href="#shapefiles" id="toc-shapefiles" class="nav-link" data-scroll-target="#shapefiles"><span class="toc-section-number">8.2</span>  Shapefiles</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">8.3</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -214,19 +203,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">EDS 220 - Working with Environmental Datasets</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vector data</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Carmen Galaz García </p>
-          </div>
-  </div>
     
   
     
@@ -235,54 +218,81 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome!</h1>
-<p>Welcome to the course materials for EDS 220 - Working with Environmental Datasets! This course is part of the <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">UCSB Masters in Environmental Data Science</a>.</p>
-<p>In this website you will find the materials covered during lectures and discussion sections for the Fall 2023 term. <em>This site will be under construction throughout the course.</em></p>
-<section id="about" class="level2">
-<h2 class="anchored" data-anchor-id="about">About</h2>
-<p>This hands-on course explores widely used environmental data formats and Python libraries for analyzing diverse environmental data. Students will gain experience working with popular open data repositories and cloud platforms to source and analyze real-world environmental datasets. The course will also serve as an introduction to Python programming and provide opportunities to practice effective communication of the strengths and weaknesses of students’ data products and analyses.</p>
+<p>Vector data is one of the two primary types of geospatial data (the other one being raster data). In this section we will review what vector data is and go over some common data formats for it.</p>
+<section id="points-lines-and-polygons" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="points-lines-and-polygons"><span class="header-section-number">8.1</span> Points, lines, and polygons</h2>
+<p><strong>Vector data</strong> represents speciifc features on the Earth’s surface. There are three types of vector data:</p>
+<ul>
+<li><p><strong>Points:</strong> each point has a single x,y location. Examples of pointdata that can be represented as point vector data are sampling locations or animal sightings.</p></li>
+<li><p><strong>Lines:</strong> a line is composed of at least two points that are connected. Roads and streams are commonly depicted as line vector data.</p></li>
+<li><p><strong>Polygons:</strong> polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countires, states, cities, etc) are examples of polygon vector data.</p></li>
+</ul>
+<p>Each item in the vector data is usually referred to as a <strong>feature</strong>. So each point would be a feature, each polygon is a feature, etc.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-7-vector-data/point_line_poly.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image Source: National Ecological Observatory Network (NEON)</figcaption><p></p>
+</figure>
+</div>
+<p>In addition to the geospatial information stored, vector data can include <strong>attributes</strong> that describe each feature. For example, a vector dataset where each feature is a polygon representing the boundary of a state could have as attributes the population and are of the state.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lesson-7-vector-data/spatial-attribute-tables.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image Source: National Ecological Observatory Network (NEON)</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="instruction-team" class="level2">
-<h2 class="anchored" data-anchor-id="instruction-team">Instruction Team</h2>
-<section id="instructor" class="level3">
-<h3 class="anchored" data-anchor-id="instructor">Instructor</h3>
-<p><strong>Carmen Galaz García</strong> (she/her/hers)</p>
-<p>E-mail: galaz-garcia@nceas.ucsb.edu</p>
-<p>Office hour: Wednesday 3:30-4:30 pm, NCEAS classroom</p>
-<p>Best way to contact me: e-mail</p>
+<section id="shapefiles" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="shapefiles"><span class="header-section-number">8.2</span> Shapefiles</h2>
+<p>One of the most popular formats to store vector data is the <strong>shapefile</strong> data format. The <code>shapefile</code> format is developed and maintained by the Environmental Systems Research Institute (Esri).</p>
+<p>So far we’ve been working with data that comes stored in a single file, like a <code>csv</code> or <code>txt</code> file for tabular data. A shapefile is actually a collection of files that interact together to create a single data file. All the files that make up a shapefile need to have the same name (different extensions) and be in the same directory. For our shapefiles to work we need <em>at least</em> these three files:</p>
+<ul>
+<li><code>.shp</code>: shape format, this file has the geometries for all features.</li>
+<li><code>.shx</code>: shape index format, this file indexes the features</li>
+<li><code>.dbf</code>: attribute format, this file stores the attributes for features as a table</li>
+</ul>
+<p>Sometimes shapefiles will have additional files, including:</p>
+<ul>
+<li><code>.prj</code>: a file containing information about the projection and coordinate reference system</li>
+<li><code>.sbn</code> and <code>.sbx</code>: files that contian a spatial index of the features</li>
+<li><code>.shp.xml</code>: geospatial metadata in XML format.</li>
+</ul>
+<p>Check the <a href="https://en.wikipedia.org/wiki/Shapefile">Wikipedia page about shapefiles</a> to see a more extensive list of files associated to shapefiles.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+File management
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember: when working with a shapefile all the associated files must have the same name (different extensions) and be located in the same directory.</p>
+</div>
+</div>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Different vector types = separate shapefiles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each shapefile can only hold one type of vector data. So only points, only lines, or only polygons can be inside a single shapefile.</p>
+</div>
+</div>
+<!--
+## Acknowledgements
+-->
 </section>
-<section id="ta" class="level3">
-<h3 class="anchored" data-anchor-id="ta">TA</h3>
-<p><strong>Yutian Fang</strong> (she/her/hers)</p>
-<p>E-mail: yutianfang@bren.ucsb.edu</p>
-<p>Office Hours: Tuesday, 4-5 pm, Decker’s deck (Bren school).</p>
-<p>Best way to contact me: email</p>
-</section>
-</section>
-<section id="syllabus" class="level2">
-<h2 class="anchored" data-anchor-id="syllabus">Syllabus</h2>
-<p><a href="https://docs.google.com/document/d/1XQdwoDJz2G1UVOjMqPj_1Yez1Ix4bgSuWXUyw7b1U60/edit?usp=sharing">Click here to access the syllabus.</a></p>
-</section>
-<section id="calendar" class="level2">
-<h2 class="anchored" data-anchor-id="calendar">Calendar</h2>
-<p>The following is our ideal calendar, the course content and calendar may be subject to change as the course progresses.</p>
-<p><img src="./images/index/calendar.png" class="img-fluid"></p>
-</section>
-<section id="about-this-website" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-website">About this website</h2>
-<p>This website is created with <a href="https://quarto.org">Quarto</a> and is published through <a href="https://quarto.org/docs/publishing/github-pages.html">GitHub pages</a>. <a href="https://github.com/carmengg/eds-220-book">Click here to go to the website’s GitHub repository</a>.</p>
-</section>
-<section id="contribute" class="level2">
-<h2 class="anchored" data-anchor-id="contribute">Contribute</h2>
-<p>If you have suggestions on how to correct, improve, or expand these notes, please feel free to email galaz-garcia@nceas.ucsb.edu or <a href="https://github.com/carmengg/eds-220-book/issues">file a GitHub issue</a>.</p>
-</section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p>All content in this book is licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution NonCommercial 4.0 International (CC BY-NC 4.0) license</a>.</p>
+<section id="references" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="references"><span class="header-section-number">8.3</span> References</h2>
+<p>Data Carpentires - <a href="https://datacarpentry.org/organization-geospatial/aio.html">Introduction to Geospatial Concepts</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -421,10 +431,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../lectures/lesson-7-time-series.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lectures/lesson-1-python-review.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-9-geopandas-intro.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

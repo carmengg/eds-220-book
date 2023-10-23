@@ -343,115 +343,178 @@
     "text": "7.10 Acknowledgements\nThis lesson was adapted from Dr. Sam Stevenson’s lecture on Data quality control and outliers: 1D time series and Earth Lab’s Lesson 1. Work With Datetime Format in Python - Time Series Data."
   },
   {
+    "objectID": "lectures/lesson-8-vector-data.html#points-lines-and-polygons",
+    "href": "lectures/lesson-8-vector-data.html#points-lines-and-polygons",
+    "title": "8  Vector data",
+    "section": "8.1 Points, lines, and polygons",
+    "text": "8.1 Points, lines, and polygons\nVector data represents speciifc features on the Earth’s surface. There are three types of vector data:\n\nPoints: each point has a single x,y location. Examples of pointdata that can be represented as point vector data are sampling locations or animal sightings.\nLines: a line is composed of at least two points that are connected. Roads and streams are commonly depicted as line vector data.\nPolygons: polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countires, states, cities, etc) are examples of polygon vector data.\n\nEach item in the vector data is usually referred to as a feature. So each point would be a feature, each polygon is a feature, etc.\n\n\n\nImage Source: National Ecological Observatory Network (NEON)\n\n\nIn addition to the geospatial information stored, vector data can include attributes that describe each feature. For example, a vector dataset where each feature is a polygon representing the boundary of a state could have as attributes the population and are of the state.\n\n\n\nImage Source: National Ecological Observatory Network (NEON)"
+  },
+  {
+    "objectID": "lectures/lesson-8-vector-data.html#shapefiles",
+    "href": "lectures/lesson-8-vector-data.html#shapefiles",
+    "title": "8  Vector data",
+    "section": "8.2 Shapefiles",
+    "text": "8.2 Shapefiles\nOne of the most popular formats to store vector data is the shapefile data format. The shapefile format is developed and maintained by the Environmental Systems Research Institute (Esri).\nSo far we’ve been working with data that comes stored in a single file, like a csv or txt file for tabular data. A shapefile is actually a collection of files that interact together to create a single data file. All the files that make up a shapefile need to have the same name (different extensions) and be in the same directory. For our shapefiles to work we need at least these three files:\n\n.shp: shape format, this file has the geometries for all features.\n.shx: shape index format, this file indexes the features\n.dbf: attribute format, this file stores the attributes for features as a table\n\nSometimes shapefiles will have additional files, including:\n\n.prj: a file containing information about the projection and coordinate reference system\n.sbn and .sbx: files that contian a spatial index of the features\n.shp.xml: geospatial metadata in XML format.\n\nCheck the Wikipedia page about shapefiles to see a more extensive list of files associated to shapefiles.\n\n\n\n\n\n\nFile management\n\n\n\nRemember: when working with a shapefile all the associated files must have the same name (different extensions) and be located in the same directory.\n\n\n\n\n\n\n\n\nDifferent vector types = separate shapefiles\n\n\n\nEach shapefile can only hold one type of vector data. So only points, only lines, or only polygons can be inside a single shapefile."
+  },
+  {
+    "objectID": "lectures/lesson-8-vector-data.html#references",
+    "href": "lectures/lesson-8-vector-data.html#references",
+    "title": "8  Vector data",
+    "section": "8.3 References",
+    "text": "8.3 References\nData Carpentires - Introduction to Geospatial Concepts"
+  },
+  {
+    "objectID": "lectures/lesson-9-geopandas-intro.html#data",
+    "href": "lectures/lesson-9-geopandas-intro.html#data",
+    "title": "9  geopandas",
+    "section": "9.1 Data",
+    "text": "9.1 Data\nIn this lesson we will use simplified point data about wild pigs (Sus scrofa) sightings in California, USA from the Global Biodiversity Information Facility.\nWe can read in a shapefile with geopandas by using the gpd.read_file() function.\n\npigs = gpd.read_file('data/gbif_sus_scroga_california/gbif_sus_scroga_california.shp')\npigs.head()\n\n\n\n\n\n  \n    \n      \n      gbifID\n      species\n      state\n      individual\n      day\n      month\n      year\n      inst\n      collection\n      catalogNum\n      identified\n      geometry\n    \n  \n  \n    \n      0\n      899953814\n      Sus scrofa\n      California\n      NaN\n      22.0\n      3.0\n      2014.0\n      iNaturalist\n      Observations\n      581956\n      edwardrooks\n      POINT (-121.53812 37.08846)\n    \n    \n      1\n      899951348\n      Sus scrofa\n      California\n      NaN\n      9.0\n      6.0\n      2007.0\n      iNaturalist\n      Observations\n      576047\n      Bruce Freeman\n      POINT (-120.54942 35.47354)\n    \n    \n      2\n      896560733\n      Sus scrofa\n      California\n      NaN\n      20.0\n      12.0\n      1937.0\n      MVZ\n      Hild\n      MVZ:Hild:195\n      Museum of Vertebrate Zoology, University of Ca...\n      POINT (-122.27063 37.87610)\n    \n    \n      3\n      896559958\n      Sus scrofa\n      California\n      NaN\n      1.0\n      4.0\n      1969.0\n      MVZ\n      Hild\n      MVZ:Hild:1213\n      Museum of Vertebrate Zoology, University of Ca...\n      POINT (-121.82297 38.44543)\n    \n    \n      4\n      896559722\n      Sus scrofa\n      California\n      NaN\n      1.0\n      1.0\n      1961.0\n      MVZ\n      Hild\n      MVZ:Hild:1004\n      Museum of Vertebrate Zoology, University of Ca...\n      POINT (-121.74559 38.54882)\n    \n  \n\n\n\n\n\n\n\n\n\n\nOne shapefile = multiple files\n\n\n\nAlthough the parameter for gpd.read_file() is only the .shp file, remember that we need to have at least the .shx and .dbf files in the same directory as the .shp to read in the data."
+  },
+  {
+    "objectID": "lectures/lesson-9-geopandas-intro.html#geoseries-and-geodataframe",
+    "href": "lectures/lesson-9-geopandas-intro.html#geoseries-and-geodataframe",
+    "title": "9  geopandas",
+    "section": "9.2 GeoSeries and GeoDataFrame",
+    "text": "9.2 GeoSeries and GeoDataFrame\nThe core data structure in GeoPandas is the geopandas.GeoDataFrame. We can think of it as a pandas.DataFrame with a dedicated geometry column that can perform spatial operations.\nThe geometry column in a gpd.GeoDataFrame holds the geometry (point, polygon, etc) of each spatial feature. Columns in the gpd.GeoDataFrame with attributes about the features are pandas.Series like in a regular pd.DataFrame.\n\n\n\nImage source: GeoPandas documentation\n\n\nExample\nFirst of all, notice that the leftmost column of pigs is a column named geometry whose values indicate points.\n\npigs.head(3)\n\n\n\n\n\n  \n    \n      \n      gbifID\n      species\n      state\n      individual\n      day\n      month\n      year\n      inst\n      collection\n      catalogNum\n      identified\n      geometry\n    \n  \n  \n    \n      0\n      899953814\n      Sus scrofa\n      California\n      NaN\n      22.0\n      3.0\n      2014.0\n      iNaturalist\n      Observations\n      581956\n      edwardrooks\n      POINT (-121.53812 37.08846)\n    \n    \n      1\n      899951348\n      Sus scrofa\n      California\n      NaN\n      9.0\n      6.0\n      2007.0\n      iNaturalist\n      Observations\n      576047\n      Bruce Freeman\n      POINT (-120.54942 35.47354)\n    \n    \n      2\n      896560733\n      Sus scrofa\n      California\n      NaN\n      20.0\n      12.0\n      1937.0\n      MVZ\n      Hild\n      MVZ:Hild:195\n      Museum of Vertebrate Zoology, University of Ca...\n      POINT (-122.27063 37.87610)\n    \n  \n\n\n\n\nAs usual, we can check the type of our objects using the type Python function:\n\n# type of the pigs dataframe \nprint(type(pigs))\n\n# type of the geometry column\nprint(type(pigs.geometry))\n\n# type of the gbifID column\nprint(type(pigs.gbifID))\n\n<class 'geopandas.geodataframe.GeoDataFrame'>\n<class 'geopandas.geoseries.GeoSeries'>\n<class 'pandas.core.series.Series'>\n\n\nThe new data type of the geometry column is also reflected when we look at the data types of the columns in the data frame:\n\npigs.dtypes\n\ngbifID           int64\nspecies         object\nstate           object\nindividual     float64\nday            float64\nmonth          float64\nyear           float64\ninst            object\ncollection      object\ncatalogNum      object\nidentified      object\ngeometry      geometry\ndtype: object\n\n\nWe can also check the type of each element in the geometry column using the geom_type attribute of a gpd.GeoDataFrame:\n\npigs.geom_type\n\n0       Point\n1       Point\n2       Point\n3       Point\n4       Point\n        ...  \n1041    Point\n1042    Point\n1043    Point\n1044    Point\n1045    Point\nLength: 1046, dtype: object"
+  },
+  {
+    "objectID": "lectures/lesson-9-geopandas-intro.html#geometric-information",
+    "href": "lectures/lesson-9-geopandas-intro.html#geometric-information",
+    "title": "9  geopandas",
+    "section": "9.3 Geometric information",
+    "text": "9.3 Geometric information\nTwo other important attributes of a gpd.GeoDataFrame are its coordinate reference system (CRS) and its extent.\nWe can think of the coordinate reference system (CRS) as the instructions to locate each feature in our dataframe on the surface of the Earth. We access the CRS of a gpd.GeoDataFrame using the crs attribute:\n\n# access the CRS of the GeoDataFrame\npigs.crs\n\n<Geographic 2D CRS: EPSG:4326>\nName: WGS 84\nAxis Info [ellipsoidal]:\n- Lat[north]: Geodetic latitude (degree)\n- Lon[east]: Geodetic longitude (degree)\nArea of Use:\n- name: World.\n- bounds: (-180.0, -90.0, 180.0, 90.0)\nDatum: World Geodetic System 1984 ensemble\n- Ellipsoid: WGS 84\n- Prime Meridian: Greenwich\n\n\nThe extent of the geo-dataframe is the bounding box covering all the features in our geo-dataframe. This is formed by finding the points that are furthest west, east, south and north.\n\n\n\nSpatial extent of different vector data. Image Source: National Ecological Observatory Network (NEON)\n\n\nWe access the extent of a gpd.GeoDataFrame using the total_bounds attribute:\n\npigs.total_bounds\n\narray([-124.29448 ,   32.593433, -115.4356  ,   40.934296])"
+  },
+  {
+    "objectID": "lectures/lesson-9-geopandas-intro.html#data-wrangling",
+    "href": "lectures/lesson-9-geopandas-intro.html#data-wrangling",
+    "title": "9  geopandas",
+    "section": "9.4 Data wrangling",
+    "text": "9.4 Data wrangling\nGeoPandas is conveniently built on top of pandas, so we may use everything we have learned about data selection, wrangling, and modification for a pd.DataFrame.\nExample\nSuppose we only want to use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:\n\n# use sort_index() method to order the index\npigs.year.value_counts().sort_index()\n\n1818.0     31\n1910.0      1\n1925.0      1\n1927.0      4\n1929.0      3\n         ... \n2019.0    101\n2020.0    159\n2021.0    164\n2022.0    185\n2023.0     98\nName: year, Length: 61, dtype: int64\n\n\nWe can use our usual data selection to get data from 2020 onwards:\n\n# selet data from 2020 onwards\npigs_recent = pigs[pigs.year>=2020]\n\n# print length of original dataframe\nprint(len(pigs))\n\n# check length of new dataframe\nlen(pigs_recent)\n\n1046\n\n\n606"
+  },
+  {
+    "objectID": "lectures/lesson-9-geopandas-intro.html#plotting",
+    "href": "lectures/lesson-9-geopandas-intro.html#plotting",
+    "title": "9  geopandas",
+    "section": "9.5 Plotting",
+    "text": "9.5 Plotting\n\n9.5.1 plot()\nSimilarly to a pd.DataFrame, a gpd.GeoDataFrame has a plot() method that we can call directly to create a quick view of our data. The geospatial information of the gpd.GeoDataFrame will be used to create the axes of the plot.\nExample\nThis is a quick look at our recent pigs data:\n\npigs_recent.plot()\n\n<AxesSubplot:>\n\n\n\n\n\n\n\n9.5.2 matplotlib’s fig and ax\nGoing forward, we will often want to make more complex visualizations where we add different layers to a graph and customize it. To do this we will use the matplotlib Python library for creating visualizations. We can interact with matplotlib via its pyplot interface, which we imported at the top of the notebook as\n# import matplotlib with standard abbreviation\nimport matplotlib.pyplot as plt\nMatplotlib graphs the data in a figure which can have one or more axes. The axis is only the area specified by the x-y axis and what is plotted in it. To create a new blank figure:\n\nInitialize a new figure and axes by calling pyplot’s subplots() function, and\nshow the graph using plt.show():\n\n\n# create a blank figure (fig) with an empty axis (ax)\nfig, ax = plt.subplots()\n\n# display figure\nplt.show()\n\n\n\n\nNotice we get a figure with a single empty axis. We can think of this step as setting a new blank canvas on which we will paint upon.\n\n\n\n\n\n\nFunctions with multiple return values\n\n\n\nNotice that plt.subplots() is a function that returns two objects (has two outputs).\n\n\n\n\n9.5.3 Adding a layer\nWhen using matplotlib, it can be useful to think of creating a plot as adding layers to an axis. The general syntax to plot a datafram df onto an axis is:\n# create new figure and axis\nfig, ax = plt.subplots()\n\n# plot df on the ax axis\ndf.plot(ax=ax, \n        ...)   # other arguments for plot function\n\n# display figure\nplt.show()\nExample\nThe first layer we want to add to our axis is the pigs_recent point data. We can plot our data using matplotlib like this:\n\n# create new figure and axis\nfig, ax = plt.subplots()\n\n# add pigs point plot to our figure's axis\npigs_recent.plot(ax=ax)\n\n# display figure\nplt.show\n\n<function matplotlib.pyplot.show(close=None, block=None)>\n\n\n\n\n\n\n\n9.5.4 Customization\nMatplotlib allows for a lot of customization. Some of it can be done directly in the plot() method for the dataframe (like we’ve done when ploting data using pandas), while other is done by updating attributes of the axis ax. The following image shows some examples of elements in the axis that can be updated.\n\n\n\nImage source: Matplotlib documentation\n\n\nExample\nSome basic customization for our pigs data could looke like this:\n\n# initialize empty figure\nfig, ax = plt.subplots()\n\n# add data to axis\n# notice customization happens as arguments in plot()\npigs_recent.plot(ax=ax,\n                 alpha=0.5,\n                 color='brown'\n                 )\n\n# update axis \n# customization separate from the data plotting\nax.set_title('Reported \"Sus scrofa\" sightings in CA (2020-2023)')\nax.set_xlabel('Longitude')\nax.set_ylabel('Latitude')\n\n# display figure\nplt.show()"
+  },
+  {
+    "objectID": "lectures/lesson-9-geopandas-intro.html#references",
+    "href": "lectures/lesson-9-geopandas-intro.html#references",
+    "title": "9  geopandas",
+    "section": "9.6 References",
+    "text": "9.6 References\nGBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp\nGeopandas Documentation - Introduction to GeoPandas\nMatplotlib Documentation - Basic Usage\n<!– https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r"
+  },
+  {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html",
-    "title": "8  Preliminary Data Exploration",
+    "title": "10  Preliminary Data Exploration",
     "section": "",
-    "text": "9 References\nRachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.\nLortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251"
+    "text": "11 References\nRachel King, Jenna Braun, Michael Westphal, & CJ Lortie. (2023). Compiled occurrence records for prey items of listed species found in California drylands with associated environmental data. Knowledge Network for Biocomplexity. doi:10.5063/F1VM49RH.\nLortie, C. J., Braun, J., King, R., & Westphal, M. (2023). The importance of open data describing prey item species lists for endangered species. Ecological Solutions and Evidence, 4(2), e12251. https://doi.org/10.1002/2688-8319.12251"
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#archive-exploration",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#archive-exploration",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.1 Archive exploration",
-    "text": "8.1 Archive exploration\nFor many datasets, data exploration begins at the data repository. Take some time to look through the dataset’s description in KNB. Discuss the following questions with your team:\n\nWhat is this data about?\nIs this data collected in-situ by the authors or is it a synthesis of multiple datasets?\nDuring what time frame were the observations in the dataset collected?\nDoes this dataset come with an associated metadata file?\nDoes the dataset contain sensitive data?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.1 Archive exploration",
+    "text": "10.1 Archive exploration\nFor many datasets, data exploration begins at the data repository. Take some time to look through the dataset’s description in KNB. Discuss the following questions with your team:\n\nWhat is this data about?\nIs this data collected in-situ by the authors or is it a synthesis of multiple datasets?\nDuring what time frame were the observations in the dataset collected?\nDoes this dataset come with an associated metadata file?\nDoes the dataset contain sensitive data?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#xml-metadata-exploration",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#xml-metadata-exploration",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.2 .xml metadata exploration",
-    "text": "8.2 .xml metadata exploration\nYou may have noticed there are two metadata files: Compiled_occurrence_records_for_prey_items_of.xml and metadata_arth_occurrences.csv.\n\nIn the archive’s dataset description, notice the .xml document file type is EML which stands for EML: Ecological Metadata Language.\nOpen the .xml file: there’s a lot going on. This is a machine-readable file that has metadata about the whole dataset. You can proably identify some items like title and creators.\nClose the file and delete it - we won’t use it today.\nYou don’t need to write anything in your notebook about this section."
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.2 .xml metadata exploration",
+    "text": "10.2 .xml metadata exploration\nYou may have noticed there are two metadata files: Compiled_occurrence_records_for_prey_items_of.xml and metadata_arth_occurrences.csv.\n\nIn the archive’s dataset description, notice the .xml document file type is EML which stands for EML: Ecological Metadata Language.\nOpen the .xml file: there’s a lot going on. This is a machine-readable file that has metadata about the whole dataset. You can proably identify some items like title and creators.\nClose the file and delete it - we won’t use it today.\nYou don’t need to write anything in your notebook about this section."
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#csv-metadata-exploration",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#csv-metadata-exploration",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.3 .csv metadata exploration",
-    "text": "8.3 .csv metadata exploration\nBack in your notebook, import the pandas package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the pandas.read_csv() function:\n\nNavigate to the data package site and copy the URL to access the metadata_arth_occurrences csv file. To copy the URL:\n\n\nhover over the Download button –> right click –> “Copy Link”.\n\n\nRead in the data from the URL using the pd.read_csv() function like this:\n# look at metadata\npd.read_csv('the URL goes here')\nTake a minute to look at the descriptions for the columns.\n\nNote: Not all datasets have column descriptions in a csv file. Often they come with a doc or txt file with information."
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.3 .csv metadata exploration",
+    "text": "10.3 .csv metadata exploration\nBack in your notebook, import the pandas package using standard abbreviation in a code cell. Then follow these steps to read in the metadata csv using the pandas.read_csv() function:\n\nNavigate to the data package site and copy the URL to access the metadata_arth_occurrences csv file. To copy the URL:\n\n\nhover over the Download button –> right click –> “Copy Link”.\n\n\nRead in the data from the URL using the pd.read_csv() function like this:\n# look at metadata\npd.read_csv('the URL goes here')\nTake a minute to look at the descriptions for the columns.\n\nNote: Not all datasets have column descriptions in a csv file. Often they come with a doc or txt file with information."
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#data-loading",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#data-loading",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.4 Data loading",
-    "text": "8.4 Data loading\n\nFollow steps (a) and (b) from the previous exercise to read in the drylands prey data file arth_occurrences_with_env.csv using pd.read_csv(). Store the dataframe to a variable called prey like this:\n\n# read in data\nprey = pd.read_csv('the URL goes here')\n\nUse a Python function to see what is the type of the prey variable.\n\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING"
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.4 Data loading",
+    "text": "10.4 Data loading\n\nFollow steps (a) and (b) from the previous exercise to read in the drylands prey data file arth_occurrences_with_env.csv using pd.read_csv(). Store the dataframe to a variable called prey like this:\n\n# read in data\nprey = pd.read_csv('the URL goes here')\n\nUse a Python function to see what is the type of the prey variable.\n\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING"
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#look-at-your-data",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#look-at-your-data",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.5 Look at your data",
-    "text": "8.5 Look at your data\n\nRun prey in a cell. What do you notice in the columns section?\nTo see all the column names in the same display we need to set a pandas option. Run the following command and then look at the prey data again:\n\npd.set_option(\"display.max.columns\", None)\n\nAdd a comment explaining what pd.set_option(\"display.max.columns\", None) does.\n\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.5 Look at your data",
+    "text": "10.5 Look at your data\n\nRun prey in a cell. What do you notice in the columns section?\nTo see all the column names in the same display we need to set a pandas option. Run the following command and then look at the prey data again:\n\npd.set_option(\"display.max.columns\", None)\n\nAdd a comment explaining what pd.set_option(\"display.max.columns\", None) does.\n\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#pd.dataframe-preliminary-exploration",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#pd.dataframe-preliminary-exploration",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.6 pd.DataFrame preliminary exploration",
-    "text": "8.6 pd.DataFrame preliminary exploration\nRun each of the following methods for prey in a different cell and write a brief description of what they do as a comment:\n\nhead()\ntail()\ninfo()\nnunique()\n\nFor example:\n# head()\n# returns the first five rows of the data frame\nprey.head()\nIf you’re not sure about what the method does, try looking it up in the pandas.DataFrame documentation.\n\nCheck the documentation for head(). If this function has any optional parameters, change the default value to get a different output.\n\nPrint each of the following attributes of prey in a different cell and write a brief explanation of what they are as a comment:\n\nshape\ncolumns\ndtypes\n\nIf you’re not sure about what info is the attribute showing, try looking it up in the pandas.DataFrame documentation.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.6 pd.DataFrame preliminary exploration",
+    "text": "10.6 pd.DataFrame preliminary exploration\nRun each of the following methods for prey in a different cell and write a brief description of what they do as a comment:\n\nhead()\ntail()\ninfo()\nnunique()\n\nFor example:\n# head()\n# returns the first five rows of the data frame\nprey.head()\nIf you’re not sure about what the method does, try looking it up in the pandas.DataFrame documentation.\n\nCheck the documentation for head(). If this function has any optional parameters, change the default value to get a different output.\n\nPrint each of the following attributes of prey in a different cell and write a brief explanation of what they are as a comment:\n\nshape\ncolumns\ndtypes\n\nIf you’re not sure about what info is the attribute showing, try looking it up in the pandas.DataFrame documentation.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
   },
   {
     "objectID": "discussion-sections/ds1-anthr-prelim-data-exploration.html#update-some-column-names",
     "href": "discussion-sections/ds1-anthr-prelim-data-exploration.html#update-some-column-names",
-    "title": "8  Preliminary Data Exploration",
-    "section": "8.7 Update some column names",
-    "text": "8.7 Update some column names\nChange the column names of institutionCode and datasetKey to institution_code and dataset_key, respectively. Make sure you’re actually updating the dataframe. HINT: yesterday’s class.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
+    "title": "10  Preliminary Data Exploration",
+    "section": "10.7 Update some column names",
+    "text": "10.7 Update some column names\nChange the column names of institutionCode and datasetKey to institution_code and dataset_key, respectively. Make sure you’re actually updating the dataframe. HINT: yesterday’s class.\n\ncheck git status -> stage changes -> check git status -> commit with message -> push changes"
   },
   {
     "objectID": "discussion-sections/ds2-hares.html",
     "href": "discussion-sections/ds2-hares.html",
-    "title": "9  Data cleaning",
+    "title": "11  Data cleaning",
     "section": "",
-    "text": "10 References\nKielland, K., F.S. Chapin, R.W. Ruess, and Bonanza Creek LTER. 2017. Snowshoe hare physical data in Bonanza Creek Experimental Forest: 1999-Present ver 22. Environmental Data Initiative. https://doi.org/10.6073/pasta/03dce4856d79b91557d8e6ce2cbcdc14 (Accessed 2023-10-18)."
+    "text": "12 References\nKielland, K., F.S. Chapin, R.W. Ruess, and Bonanza Creek LTER. 2017. Snowshoe hare physical data in Bonanza Creek Experimental Forest: 1999-Present ver 22. Environmental Data Initiative. https://doi.org/10.6073/pasta/03dce4856d79b91557d8e6ce2cbcdc14 (Accessed 2023-10-18)."
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#archive-exploration",
     "href": "discussion-sections/ds2-hares.html#archive-exploration",
-    "title": "9  Data cleaning",
-    "section": "9.1 Archive exploration",
-    "text": "9.1 Archive exploration\nTake some time to look through the dataset’s description in EDI and click around. Discuss the following questions with your team:\n\nWhat is this data about?\nDuring what time frame were the observations in the dataset collected?\nDoes the dataset contain sensitive data?\nIs there a publication associated with this dataset?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive."
+    "title": "11  Data cleaning",
+    "section": "11.1 Archive exploration",
+    "text": "11.1 Archive exploration\nTake some time to look through the dataset’s description in EDI and click around. Discuss the following questions with your team:\n\nWhat is this data about?\nDuring what time frame were the observations in the dataset collected?\nDoes the dataset contain sensitive data?\nIs there a publication associated with this dataset?\n\nIn your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive."
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#adding-an-image",
     "href": "discussion-sections/ds2-hares.html#adding-an-image",
-    "title": "9  Data cleaning",
-    "section": "9.2 Adding an image",
-    "text": "9.2 Adding an image\nFollow these steps to add an image of a hare using a URL:\n\nGo to https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,washington_co,maine-01%2818988734889%29.jpg\nGet the URL of the hare image. To do this:\n\n\nhover over the image –> right click –> “Copy Image Address”.\n\n\nAt the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL: ![image description](URL-goes-here)\nDo you need to add an attribution in the image description? Check the license at the bottom of wikimedia page.\n\n\ncommit and push changes"
+    "title": "11  Data cleaning",
+    "section": "11.2 Adding an image",
+    "text": "11.2 Adding an image\nFollow these steps to add an image of a hare using a URL:\n\nGo to https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,washington_co,maine-01%2818988734889%29.jpg\nGet the URL of the hare image. To do this:\n\n\nhover over the image –> right click –> “Copy Image Address”.\n\n\nAt the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL: ![image description](URL-goes-here)\nDo you need to add an attribution in the image description? Check the license at the bottom of wikimedia page.\n\n\ncommit and push changes"
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#data-loading",
     "href": "discussion-sections/ds2-hares.html#data-loading",
-    "title": "9  Data cleaning",
-    "section": "9.3 Data loading",
-    "text": "9.3 Data loading\nBack in your notebook, import the pandas package in a code cell and import the 55_Hare_Data_2012.txt from its URL using the pandas.read_csv(). Store it in a variable named hares. Take a look at the head of the dataframe.\n\ncommit and push changes\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING"
+    "title": "11  Data cleaning",
+    "section": "11.3 Data loading",
+    "text": "11.3 Data loading\nBack in your notebook, import the pandas package in a code cell and import the 55_Hare_Data_2012.txt from its URL using the pandas.read_csv(). Store it in a variable named hares. Take a look at the head of the dataframe.\n\ncommit and push changes\n\n\nCHECK IN WITH YOUR TEAM\n\n\nMAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING"
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#metadata-exploration",
     "href": "discussion-sections/ds2-hares.html#metadata-exploration",
-    "title": "9  Data cleaning",
-    "section": "9.4 Metadata exploration",
-    "text": "9.4 Metadata exploration\nBack in the EDI repository, click on View Full Metadata to access more information.\nGo to the “Detailed Metadata” section and click on “Data Entities”. Take a minute to look at the descriptions for the dataset’s columns."
+    "title": "11  Data cleaning",
+    "section": "11.4 Metadata exploration",
+    "text": "11.4 Metadata exploration\nBack in the EDI repository, click on View Full Metadata to access more information.\nGo to the “Detailed Metadata” section and click on “Data Entities”. Take a minute to look at the descriptions for the dataset’s columns."
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#detecting-messy-values",
     "href": "discussion-sections/ds2-hares.html#detecting-messy-values",
-    "title": "9  Data cleaning",
-    "section": "9.5 Detecting messy values",
-    "text": "9.5 Detecting messy values\n\nGet the number of teams each unique non-NA value in the sex column appears by running hares.sex.value_counts().\nCheck the documentation of value_counts(). What is the purpose of the dropna=False parameter? Do step 2 again, this time adding the dropna=False parameter to value_counts().\nDiscuss with your team the output of the unique value counts. Notice anything odd?\nYou likely noticed there seem to be some repeated values, for example m appears twice. Use the unique() method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.\nIn the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset.\n\n\ncommit and push changes"
+    "title": "11  Data cleaning",
+    "section": "11.5 Detecting messy values",
+    "text": "11.5 Detecting messy values\n\nGet the number of teams each unique non-NA value in the sex column appears by running hares.sex.value_counts().\nCheck the documentation of value_counts(). What is the purpose of the dropna=False parameter? Do step 2 again, this time adding the dropna=False parameter to value_counts().\nDiscuss with your team the output of the unique value counts. Notice anything odd?\nYou likely noticed there seem to be some repeated values, for example m appears twice. Use the unique() method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.\nIn the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset.\n\n\ncommit and push changes"
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#clean-values",
     "href": "discussion-sections/ds2-hares.html#clean-values",
-    "title": "9  Data cleaning",
-    "section": "9.6 Clean values",
-    "text": "9.6 Clean values\n\nUse np.select like we did on Monday to create a new column called sex_simple\n\n\n‘F’, ‘f’, and ‘f’ get assigned to ‘female’,\n‘M’, ‘m’, and ‘m’ get assigned to ‘male’, and\nanything else gets assigned np.nan\n\nHINTS:\n\nYou need to create a list with two conditions and a list with two choices.\nTo write the condition think about what does (hares.sex=='F') | (hares.sex=='f') mean? Do you need to add anything else?\n\n\nCheck the counts of unique values (including NAs) in the new sex_simple column.\n\n\ncommit and push changes"
+    "title": "11  Data cleaning",
+    "section": "11.6 Clean values",
+    "text": "11.6 Clean values\n\nUse np.select like we did on Monday to create a new column called sex_simple\n\n\n‘F’, ‘f’, and ‘f’ get assigned to ‘female’,\n‘M’, ‘m’, and ‘m’ get assigned to ‘male’, and\nanything else gets assigned np.nan\n\nHINTS:\n\nYou need to create a list with two conditions and a list with two choices.\nTo write the condition think about what does (hares.sex=='F') | (hares.sex=='f') mean? Do you need to add anything else?\n\n\nCheck the counts of unique values (including NAs) in the new sex_simple column.\n\n\ncommit and push changes"
   },
   {
     "objectID": "discussion-sections/ds2-hares.html#calculate-mean-weight",
     "href": "discussion-sections/ds2-hares.html#calculate-mean-weight",
-    "title": "9  Data cleaning",
-    "section": "9.7 Calculate mean weight",
-    "text": "9.7 Calculate mean weight\n\nUse groupby() to calculate the mean weight by sex (use the new column).\n\n\ncommit and push changes"
+    "title": "11  Data cleaning",
+    "section": "11.7 Calculate mean weight",
+    "text": "11.7 Calculate mean weight\n\nUse groupby() to calculate the mean weight by sex (use the new column).\n\n\ncommit and push changes"
   }
 ]
