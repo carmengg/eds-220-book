@@ -87,6 +87,28 @@ pigs.total_bounds
 
 ## Data wrangling
 
+GeoPandas is conveniently built on top of `pandas`, so we may use all everything we have learned about data selection, wrangling, and modification for `pd.DataFrame`.
+
+**Example**
+Suppose we want to only use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:
+
+```{python}
+# use sort_index() method to order the index
+pigs.year.value_counts().sort_index()
+```
+
+We can use our usual data selection to get data from 2000 onwards:
+
+```{python}
+# selet data from 2000 onwards
+pigs_recent = pigs[pigs.year>=2000]
+
+# print length of original dataframe
+print(len(pigs))
+
+# check length of new dataframe
+len(pigs_recent)
+```
 
 ## Plotting
 
@@ -98,3 +120,5 @@ pigs.total_bounds
 ## References
 
 [Geopandas Documentation - Introduction to GeoPandas](https://geopandas.org/en/stable/getting_started/introduction.html)
+
+GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp

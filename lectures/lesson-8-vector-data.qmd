@@ -43,6 +43,11 @@ Check the [Wikipedia page about shapefiles](https://en.wikipedia.org/wiki/Shapef
 Remember: when working with a shapefile all the associated files must have the same name (different extensions) and be located in the same directory. 
 :::
 
+::: {.callout-caution}
+## Different vector types = separate shapefiles
+Each shapefile can only hold one type of vector data. So only points, only lines, or only polygons can be inside a single shapefile. 
+:::
+
 <!--
 ## Acknowledgements
 -->
