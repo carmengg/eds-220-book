@@ -1,0 +1,53 @@
+# Vector data
+
+Vector data is one of the two primary types of geospatial data (the other one being raster data). In this section we will review what vector data is and go over some common data formats for it.
+
+
+## Points, lines, and polygons
+
+**Vector data** represents speciifc features on the Earth's surface. There are three types of vector data:
+
+- **Points:** each point has a single x,y location. Examples of pointdata that can be represented as point vector data are sampling locations or animal sightings.
+
+- **Lines:** a line is composed of at least two points that are connected. Roads and streams are commonly depicted as line vector data. 
+
+- **Polygons:** polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countires, states, cities, etc) are examples of polygon vector data.
+
+Each item in the vector data is usually referred to as a **feature**. 
+So each point would be a feature, each polygon is a feature, etc. 
+In addition to the geospatial information stored, vector data can include **attributes** that describe each feature. 
+For example, a vector dataset where each feature is a polygon representing the boundary of a state could have as attributes the population and are of the state.
+
+![Image Source: National Ecological Observatory Network (NEON)](/images/lesson-7-vector-data/point_line_poly.png)
+
+## Shapefiles
+
+One of the most popular formats to store vector data is the **shapefile** data format. The `shapefile` format is developed and maintained by the Environmental Systems Research Institute (Esri).
+
+So far we've been working with data that comes stored in a single file, like a `csv` or `txt` file for tabular data. A shapefile is actually a collection of files that interact together to create a single data file. All the files that make up a shapefile need to  have the same name (different extensions) and be in the same directory. For our shapefiles to work we need *at least* these three files:
+
+- `.shp`: shape format, this file has the geometries for all features.
+- `.shx`: shape index format, this file indexes the features
+- `.dbf`: attribute format, this file stores the attributes for features as a table
+
+Sometimes shapefiles will have additional files, including:
+
+- `.prj`: a file containing information about the projection and coordinate reference system 
+- `.sbn` and `.sbx`: files that contian a spatial index of the features
+- `.shp.xml`: geospatial metadata in XML format. 
+
+Check the [Wikipedia page about shapefiles](https://en.wikipedia.org/wiki/Shapefile) to see a more extensive list of files associated to shapefiles.
+
+::: {.callout-caution}
+## File management
+Remember: when working with a shapefile all the associated files must have the same name (different extensions) and be located in the same directory. 
+:::
+
+<!--
+## Acknowledgements
+-->
+
+
+## References
+
+Data Carpentires - [Introduction to Geospatial Concepts](https://datacarpentry.org/organization-geospatial/aio.html) 
