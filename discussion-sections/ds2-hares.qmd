@@ -1,0 +1,15 @@
+## Data loading
+a. Access the `55_Hare_Data_2012.txt` dataset directly throuhg its URL using `pd.read_csv()`. Store the data frame to a variable called `hares`.
+
+b. Check the head of the data frame. 
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
+</p>
