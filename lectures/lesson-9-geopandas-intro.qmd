@@ -5,7 +5,11 @@ GeoPandas is a Python library that extends the `pandas` library by adding suppor
 To begin with, let's import `geopandas` with its standard abbreviation `gpd`:
 
 ```{python}
+# this is the library we will explore
 import geopandas as gpd
+
+# we will start using matplotlib for making maps
+import matplotlib.pyplot as plt
 ```
 
 ## Data
@@ -97,11 +101,11 @@ Suppose we want to only use recent data for wild pig observations. A quick check
 pigs.year.value_counts().sort_index()
 ```
 
-We can use our usual data selection to get data from 2000 onwards:
+We can use our usual data selection to get data from 2020 onwards:
 
 ```{python}
-# selet data from 2000 onwards
-pigs_recent = pigs[pigs.year>=2000]
+# selet data from 2020 onwards
+pigs_recent = pigs[pigs.year>=2020]
 
 # print length of original dataframe
 print(len(pigs))
@@ -112,9 +116,22 @@ len(pigs_recent)
 
 ## Plotting
 
+### `plot()`
+
+Similarly to a `pd.DataFrame`, a `gpd.GeoDataFrame` has a `plot()` method that we can call directly to create a quick view of our data. 
+The geospatial information of the `gpd.GeoDataFrame` will be used to create the axes of the plot.
+
+**Example**
+
+This is a quick look at our recent pigs data:
+
+```{python}
+pigs_recent.plot()
+```
+
+### `matplotlib`'s `fig` and `ax`
 
 ## Simple map
-
 
 
 ## References
