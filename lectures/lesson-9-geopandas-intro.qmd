@@ -1,0 +1,47 @@
+# `geopandas`
+
+GeoPandas is a Python library that extends the `pandas` library by adding support for geospatial data. In this lesson we will introduce the `geopandas` library to work with vector data. We will also make our first map. 
+
+To begin with, let's import `geopandas` with its standard abbreviation `gpd`:
+
+```{python}
+import geopandas as gpd
+```
+
+## Data
+
+In this lesson we will use  with point data about wild pigs (*Sus scrofa) sightings in Santa Barbara county from the [Global Biodiversity Information Facility](https://www.gbif.org).
+
+```{python}
+
+```
+
+## `GeoSeries` and `GeoDataFrame`
+
+The core data structure in GeoPandas is the `geopandas.GeoDataFrame`. 
+We can think of it as a `pandas.DataFrame` with a dedicated geometry column that can perform spatial operations. 
+
+The **geometry column** in a `gpd.GeoDataFrame` holds the geometry (point, polygon, etc) of each spatial feature. Columns in the `gpd.GeoDataFrame` with attributes about the features are `pandas.Series` like in a regular `pd.DataFrame`. 
+
+![Image source: GeoPandas documentation](/images/lesson-8-geopandas/dataframe.svg)
+
+**Example**
+
+## Geometric information
+
+
+## Data wrangling
+
+
+## Plotting
+
+
+## Simple map
+
+<!--
+
+## References
+
+[Geopandas Documentation - Introduction to GeoPandas](https://geopandas.org/en/stable/getting_started/introduction.html)
+
+-->
