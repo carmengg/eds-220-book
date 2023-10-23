@@ -5,13 +5,13 @@ Vector data is one of the two primary types of geospatial data (the other one be
 
 ## Points, lines, and polygons
 
-**Vector data** represents speciifc features on the Earth's surface. There are three types of vector data:
+**Vector data** represents specific features on the Earth's surface. There are three types of vector data:
 
-- **Points:** each point has a single x,y location. Examples of pointdata that can be represented as point vector data are sampling locations or animal sightings.
+- **Points:** each point has a single x,y location. Examples of data that can be represented as point vector data are sampling locations or animal sightings.
 
 - **Lines:** a line is composed of at least two points that are connected. Roads and streams are commonly depicted as line vector data. 
 
-- **Polygons:** polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countires, states, cities, etc) are examples of polygon vector data.
+- **Polygons:** polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countries, states, cities, etc) are examples of polygon vector data.
 
 Each item in the vector data is usually referred to as a **feature**. 
 So each point would be a feature, each polygon is a feature, etc. 
@@ -36,7 +36,7 @@ So far we've been working with data that comes stored in a single file, like a `
 Sometimes shapefiles will have additional files, including:
 
 - `.prj`: a file containing information about the projection and coordinate reference system 
-- `.sbn` and `.sbx`: files that contian a spatial index of the features
+- `.sbn` and `.sbx`: files that contain a spatial index of the features
 - `.shp.xml`: geospatial metadata in XML format. 
 
 Check the [Wikipedia page about shapefiles](https://en.wikipedia.org/wiki/Shapefile) to see a more extensive list of files associated to shapefiles.
