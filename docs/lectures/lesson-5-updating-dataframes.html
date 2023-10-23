@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" rel="next">
+<link href="../lectures/lesson-6-groupby.html" rel="next">
 <link href="../lectures/lesson-4-basic-plotting.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -197,6 +197,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -209,7 +219,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data cleaning</span></a>
   </div>
 </li>
       </ul>
@@ -521,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -533,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -545,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -557,7 +572,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>NaN</td>
@@ -569,7 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -597,7 +612,7 @@ df.columns.get_loc()
 <section id="adding-multiple-columns" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="adding-multiple-columns"><span class="header-section-number">5.3</span> Adding multiple columns</h2>
 <p>We can assign multiple columns in the same call by using the data frame’s <code>assign()</code> method. The general syntax is:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.assign( new_col1_name <span class="op">=</span> new_col1_values, </span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.assign( new_col1_name <span class="op">=</span> new_col1_values, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>           new_col2_name <span class="op">=</span> new_col2_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice the new column names are not strings, we declare them as if we were creating variables.</p>
 <p><strong>Example</strong></p>
@@ -639,7 +654,7 @@ df.columns.get_loc()
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -649,11 +664,11 @@ df.columns.get_loc()
       <td>Male</td>
       <td>3.75</td>
       <td>18.1</td>
-      <td>B</td>
+      <td>C</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -663,11 +678,11 @@ df.columns.get_loc()
       <td>Female</td>
       <td>3.80</td>
       <td>18.6</td>
-      <td>B</td>
+      <td>C</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -681,7 +696,7 @@ df.columns.get_loc()
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>NaN</td>
@@ -695,7 +710,7 @@ df.columns.get_loc()
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -705,7 +720,7 @@ df.columns.get_loc()
       <td>Female</td>
       <td>3.45</td>
       <td>19.3</td>
-      <td>B</td>
+      <td>A</td>
     </tr>
   </tbody>
 </table>
@@ -788,7 +803,7 @@ df.columns.get_loc()
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -796,11 +811,11 @@ df.columns.get_loc()
       <td>Male</td>
       <td>3.75</td>
       <td>18.1</td>
-      <td>B</td>
+      <td>C</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -808,11 +823,11 @@ df.columns.get_loc()
       <td>Female</td>
       <td>3.80</td>
       <td>18.6</td>
-      <td>B</td>
+      <td>C</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -824,7 +839,7 @@ df.columns.get_loc()
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>38.3</td>
@@ -836,7 +851,7 @@ df.columns.get_loc()
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -844,7 +859,7 @@ df.columns.get_loc()
       <td>Female</td>
       <td>3.45</td>
       <td>19.3</td>
-      <td>B</td>
+      <td>A</td>
     </tr>
   </tbody>
 </table>
@@ -900,7 +915,7 @@ df.columns.get_loc()
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -908,12 +923,12 @@ df.columns.get_loc()
       <td>Male</td>
       <td>3.75</td>
       <td>18.1</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -921,12 +936,12 @@ df.columns.get_loc()
       <td>Female</td>
       <td>3.80</td>
       <td>18.6</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -939,7 +954,7 @@ df.columns.get_loc()
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>38.3</td>
@@ -952,7 +967,7 @@ df.columns.get_loc()
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -960,7 +975,7 @@ df.columns.get_loc()
       <td>Female</td>
       <td>3.45</td>
       <td>19.3</td>
-      <td>B</td>
+      <td>A</td>
       <td>medium</td>
     </tr>
   </tbody>
@@ -1017,7 +1032,7 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -1025,12 +1040,12 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
       <td>M</td>
       <td>3.75</td>
       <td>18.1</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -1038,12 +1053,12 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
       <td>Female</td>
       <td>3.80</td>
       <td>18.6</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -1056,7 +1071,7 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>38.3</td>
@@ -1069,7 +1084,7 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -1077,7 +1092,7 @@ https://numpy.org/doc/stable/reference/generated/numpy.select.html
       <td>Female</td>
       <td>3.45</td>
       <td>19.3</td>
-      <td>B</td>
+      <td>A</td>
       <td>medium</td>
     </tr>
   </tbody>
@@ -1168,7 +1183,7 @@ Warning
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -1176,12 +1191,12 @@ Warning
       <td>M</td>
       <td>3.75</td>
       <td>18.1</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -1189,12 +1204,12 @@ Warning
       <td>F</td>
       <td>3.80</td>
       <td>18.6</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -1207,7 +1222,7 @@ Warning
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>38.3</td>
@@ -1220,7 +1235,7 @@ Warning
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -1228,7 +1243,7 @@ Warning
       <td>F</td>
       <td>3.45</td>
       <td>19.3</td>
-      <td>B</td>
+      <td>A</td>
       <td>medium</td>
     </tr>
   </tbody>
@@ -1298,7 +1313,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>20</th>
-      <td>881</td>
+      <td>666</td>
       <td>Adelie</td>
       <td>Biscoe</td>
       <td>37.8</td>
@@ -1306,13 +1321,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>F</td>
       <td>3.40</td>
       <td>17.4</td>
-      <td>B</td>
+      <td>A</td>
       <td>medium</td>
       <td>100</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>754</td>
+      <td>348</td>
       <td>Adelie</td>
       <td>Biscoe</td>
       <td>37.7</td>
@@ -1320,13 +1335,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>M</td>
       <td>3.60</td>
       <td>18.0</td>
-      <td>A</td>
+      <td>C</td>
       <td>medium</td>
       <td>100</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>602</td>
+      <td>753</td>
       <td>Adelie</td>
       <td>Biscoe</td>
       <td>35.9</td>
@@ -1334,13 +1349,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>F</td>
       <td>3.80</td>
       <td>18.9</td>
-      <td>A</td>
+      <td>C</td>
       <td>medium</td>
       <td>100</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>352</td>
+      <td>513</td>
       <td>Adelie</td>
       <td>Biscoe</td>
       <td>38.2</td>
@@ -1348,13 +1363,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>M</td>
       <td>3.95</td>
       <td>18.5</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
       <td>100</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>673</td>
+      <td>893</td>
       <td>Adelie</td>
       <td>Biscoe</td>
       <td>38.8</td>
@@ -1362,7 +1377,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>M</td>
       <td>3.80</td>
       <td>18.0</td>
-      <td>C</td>
+      <td>A</td>
       <td>medium</td>
       <td>100</td>
     </tr>
@@ -1397,7 +1412,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>0</th>
-      <td>832</td>
+      <td>330</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.1</td>
@@ -1405,12 +1420,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>M</td>
       <td>3.75</td>
       <td>18.1</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>494</td>
+      <td>128</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>39.5</td>
@@ -1418,12 +1433,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>F</td>
       <td>3.80</td>
       <td>18.6</td>
-      <td>B</td>
+      <td>C</td>
       <td>medium</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>554</td>
+      <td>530</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>40.3</td>
@@ -1436,7 +1451,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     </tr>
     <tr>
       <th>3</th>
-      <td>338</td>
+      <td>796</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>38.3</td>
@@ -1449,7 +1464,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     </tr>
     <tr>
       <th>4</th>
-      <td>606</td>
+      <td>692</td>
       <td>Adelie</td>
       <td>Torgersen</td>
       <td>36.7</td>
@@ -1457,7 +1472,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>F</td>
       <td>3.45</td>
       <td>19.3</td>
-      <td>B</td>
+      <td>A</td>
       <td>medium</td>
     </tr>
   </tbody>
@@ -1620,8 +1635,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Preliminary Data Exploration</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-6-groupby.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

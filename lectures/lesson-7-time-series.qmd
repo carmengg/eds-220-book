@@ -1,0 +1,264 @@
+# Basic time series
+
+In this section we will learn some basic handling of time series. 
+
+## Timestamps
+
+`pandas` represents an instant in time using the `pandas.Timestamp` class. For example:
+
+```{python}
+import pandas as pd
+
+# create a timestamp
+pd.Timestamp(year=2020, month=10, day=18, hour=12, minute=30, second=15)
+```
+
+When we store multiple Timestamps in a `pd.Series` (for example when we have a column of dates) the data type of the column is set to `datetime64[ns]`:
+
+```{python}
+# Notice the dtype of the column is datetime64
+pd.Series([pd.Timestamp(2020,10,18), 
+           pd.Timestamp(2020,10,17),
+           pd.Timestamp(2020,10,16)])
+```
+
+This is enough to get us started!
+
+<!--
+- NaT = not a time. `pd.NaT` = nd behaves similar as np.nan does for float data.
+-->
+
+## Data: Precipitation in Boulder, CO
+
+To exemplify some of the basic time series functionalities we'll be using data about hourly precipitation in the county of Boulder, Colorado from 2000 to 2014. In September 2013, an unusual weather pattern led to some of the most intense precipitation ever recorded in this region, causing devastating floods throughout the Colorado Front Range. Our goal is to visualize precipitation data in 2013 and identify this unusual weather event.
+
+This data was obtained via the [National Oceanic and Atmosperic Administration (NOAA) Climate Data Online service](https://www.ncdc.noaa.gov/cdo-web/). This dataset is a csv and can be acceses at [this link](https://www.ncei.noaa.gov/orders/cdo/3488381.csv). You can [view the full documentation here](https://www.ncei.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf). The following is a summary of the column descriptions:
+
+- **STATION**: identification number indentifying the station. 
+- **STATION_NAME**: optional field, name identifying the station location. 
+- **DATE**: this is the year of the record (4 digits), followed by month (2 digits), followed by day of the month (2 digits), followed by a space and ending with a time of observation that is a two digit indication of the local time hour, followed by a colon (:) followed by a two digit indication of the minute which for this dataset will always be 00. Note: The subsequent data value will be for the hour ending at the time specified here. Hour 00:00 will be listed as the first hour of each date, however since this data is by definition an accumulation of the previous 60 minutes, it actually occurred on the previous day.
+- **HPCP**: The amount of precipitation recorded at the station for the hour ending at the time specified for DATE above given in inches. The values 999.99 means the data value is missing. Hours with no precipitation are not shown.
+
+## Data preparation
+
+Let's start by reading in the data and taking a look at it.
+```{python}
+# read in data 
+url = 'https://raw.githubusercontent.com/carmengg/eds-220-book/main/data/boulder_colorado_2013_hourly_precipitation.csv'
+precip = pd.read_csv(url)
+
+# check df's head
+precip.head()
+```
+
+Let's make a first attempt at plotting the precipitation:
+
+```{python}
+precip.HPCP.plot()
+```
+
+There's a few things going on with this graph:
+ 
+1. There are many jumps close to 1000. This is clearly not right and these are outliers. Looking at the column description we can see 999.99 indicates the HPCP data is missing.
+
+2. The x-axis values are given by the index of the dataframe and not relative to time. 
+
+3. We are only intersted in the precipitation data from 2013, this graph is trying to plot all our data.
+
+Let's fix each one of these issues separately.
+
+## Indicate missing data
+
+The metadata states the missing values are indicated by the number 999.99. 
+We can use this information to reload the dataframe indicating 999.99 is the missing value. 
+To do this, we add the `na_values` parameter to the `pd.read_csv()` function to indicitate additional values that should be recognized as `NA`:
+
+```{python}
+# read in csv indicating NA values
+precip = pd.read_csv(url, na_values=[999.99])
+
+# check updated df
+precip.head()
+```
+
+::: {.callout-note}
+## Default NA values
+
+Check the `na_values` parameter in the [`pd.read_csv()` documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) to learn more about which values are identified as `NA` by default. 
+:::
+
+We can try making our plot again:
+
+```{python}
+precip.HPCP.plot()
+```
+
+This looks much better and we can already see there is something going on close to the end of the time series. We still need to set the index as the time.
+
+## Strings into dates
+Notice that the DATE column in our dataframe is not of type `datetime`. We can check this using the `dtypes` attribute for dataframes:
+```{python}
+# check the dtypes of all columns
+precip.dtypes
+```
+
+<!--
+precip.DATE.apply(type).unique()
+-->
+The `object` dtype means that (most likely) all values in that column are strings. We can convert strings to datetime objects using the `to_datetime()` pandas function:
+
+- `pd.to_datetime()` input: a `pd.Series` with strings that can be converted to dates
+- `pd.to_datetime()` output: a `pd.Series` with the strings converted to `datetime` objects
+ 
+ **Example**
+
+```{python}
+# covert precip.DATE column to timedate objects
+pd.to_datetime(precip.DATE)
+```
+
+We can overwrite the DATE column with this output:
+
+```{python}
+# convert DATE column from string to timestamps
+precip.DATE = pd.to_datetime(precip.DATE)
+
+# check column data type is updated
+print(precip.dtypes)
+
+# check new values
+precip.head()
+```
+
+And we can make another try at plotting our precipitation data:
+
+```{python}
+precip.plot(x='DATE', y='HPCP')
+```
+
+Notice the x-axis is now neatly organized into years.
+
+## Timestamp index
+
+At its core, we have time series data if our data frame is indexed by moments in time. Using our DATE column as the index will allows us to do many operations with respect to  time, including subsetting and resampling. 
+
+Updating the index of a dataframe is simple, we use the `set_index()` method. It's general syntax is
+```python
+df = df.set_index(new_index)
+```
+where `new_index` is:
+
+- the name of the column (string) we want to set as index, or
+- if our new index is not a column in the dataframe, an array or `pd.Series` of the same length as our data frame (we need one index per row!). 
+
+Notice that `set_index` does not modify the data frame in place.
+
+**Example**
+
+In our precipitation data this is:
+
+```{python}
+# set DATE coumn as index
+precip = precip.set_index('DATE')
+
+# check new index
+precip.head()
+```
+
+Since we know the default behaviour of `plot()` is to use the index as the x-axis and make a line plot for each numeric column, we can simplify our plot making like this:
+
+```{python}
+precip.plot()
+```
+
+<!--
+:::{.callout-note}
+More on pd.read_csv(). You can set the index and the date columns
+df = pd.read_csv(file, index_col=['date'], parse_dates=['date'])
+
+:::
+-->
+
+## Subsetting by date
+`pandas` has great functionality to subset a dataframe when using a time index. These are some examples:
+
+
+```{python}
+# select data from a given month and year
+# use loc['year-month']
+precip.loc['2013-09']
+```
+
+```{python}
+# select data from a given year
+# use loc['year']
+precip.loc['2013']
+```
+
+We can use this selection to plot data as usual. Notice we have a lot of gaps due to missing data. 
+
+```{python}
+precip.loc['2013'].plot()
+```
+
+## Resample
+Resampling a time series means converting a time series from one frequency to another. For example, monthly to yearly (downsampling) or weekly to daily (upsampling). We can resample with the `resample()` method. The simplest use is to call
+```python
+df.resample(new_frequency).aggregator_function()
+```
+where:
+-  `new_frequency` is a string representing the new frequence to resample the data, for example `'D'` for day, `w` for week, `M` for month, `Y` for year, and
+- `aggregator_function()` is the function we will use to aggregate the data into the new frequence. For example, `max()`, `min()`, `sum()` or `average()`. 
+
+`resample()` works similarly to `groupby()` in the sense that you need to specify a way to aggregate the data to get any output. 
+
+**Example**
+
+Our 2013 precipitation data has hourly frequency and we want to resample it to daily frequency. 
+
+```{python}
+# resample 2013 hourly data to daily frequency
+# nothing happens
+precip.loc['2013'].resample('D')
+```
+
+To get an output we need to add an aggregator function that indicates how we want to summarize the data that falls on each day. In this case we want the total precipitation on a day, so we will aggreagte using `sum()`:
+
+```{python}
+# total daily precipitation in 2013
+daily_precip_2013 = precip.loc['2013'].resample('D').sum()
+
+daily_precip_2013
+```
+
+Notice the index now is every day in 2013. We should rename that column since it is not longer hourly precipitation:
+
+```{python}
+# rename column
+daily_precip_2013 = daily_precip_2013.rename(columns={'HPCP':'daily_precipitation'})
+```
+
+ Finally, we can plot our data:
+
+```{python}
+daily_precip_2013.plot(ylabel='daily precipitation (in)', 
+                       xlabel='date',
+                       title='Precipitation in Boulder, CO during 2013',
+                       legend=False)
+```
+
+
+## More info
+
+As usual, there's so much more to learn about time series data. These documents will allow you to dive deeper:
+
+📖 [`pandas` getting started tutorials - How to handle time series data with ease](https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html#min-tut-09-timeseries)
+
+📖 [Time Series Chapter, Python for Data Analysis, Wes McKinney](https://wesmckinney.com/book/time-series)
+
+📖 [`pandas` User Guide - Time series/date functionality](https://pandas.pydata.org/docs/user_guide/timeseries.html)
+
+
+## Acknowledgements
+
+This lesson was adapted from [Dr. Sam Stevenson's lecture on Data quality control and outliers: 1D time series](https://github.com/samanthastevenson/EDS220_Fall2022/blob/main/Precipitation_QCexample_BoulderCO.ipynb) and [Earth Lab's Lesson 1. Work With Datetime Format in Python - Time Series Data](https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/introduction-to-time-series-in-pandas-python/).

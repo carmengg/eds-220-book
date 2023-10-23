@@ -1,10 +1,42 @@
 # `groupby()`
 
+In this section we will go over the `groupby()` function and the split-apply-combine strategy. We will use the Palmer penguins data.
+
 ```{python}
 import pandas as pd 
-# read in data
-penguins = pd.read_csv('https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv')
+
+# read in Palmer penguins data
+penguins = pd.read_csv("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv")
+
+penguins.head()
 ```
+
+## Summary statistics
+
+In `pandas` it is easy to get summary statistics for each column in a dataframe by using methods such as 
+
+- `sum()`: sum values in each column,
+- `count()`: count non-NA values in each column,
+- `min()` and `max()`: get the minimum and maximum value in each column,  
+- `mean()` and `median()`: get the mean and median value in each column,
+- `std()` and `var()`: get the standard deviation and variance in each column.
+
+**Example**
+
+```{python}
+# get the number of non-NA values in each column 
+penguins.count()
+```
+
+```{python}
+# get the minimum value in each column
+penguins.select_dtypes('number').min()
+```
+
+<!--
+TO DO:
+Add a note about select_dtypes
+-->
 
 ## Grouping
 
@@ -36,7 +68,7 @@ df.groupby(columns_to_group_by)
 where most often we will have
 `columns_to_group_by` = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame
 
-Let's see an example.
+**Example**
 
 First, if we don't use the `groupby()` method, we obtain the average for the whole flipper length column:
 
@@ -78,7 +110,11 @@ avg_flipper.plot(kind='bar',
                  ) 
 ```
 
-We can also group by combinations of columns. For example, suppose we want to know what was the number of penguins in every island on different years. We can use the `count()` method to count the number of non-NA values in each column like this:
+We can also group by combinations of columns. 
+
+**Example**
+
+ Suppose we want to know what was the number of penguins in every island on different years. We can use the `count()` method to count the number of non-NA values in each column like this:
 
 ```{python}
 penguins.count()
@@ -93,9 +129,11 @@ penguins.groupby(['island','year']).count()
 Let's say we want to plot the surveyed population per year and island. We could then use a "one liner" to do it in this way:
 
 ```{python}
-penguins.groupby(['island','year']).count().species.sort_values().plot(kind='bar')
+penguins.groupby(['island','year']).count().species.sort_values().plot(kind='barh')
 ```
+
 <!--
+TO DO:
 Talk about what is `groupby()` : lazy method
 -->
 
@@ -104,7 +142,6 @@ Talk about what is `groupby()` : lazy method
 (1) Use `groupby` and the `max()` method for data frames to calculate the maximum value of penguin's body mass by year and species.
 
 <!--
-
 ```{python}
 penguins.groupby(['year','species']).body_mass_g.max()
 ```
@@ -113,11 +150,11 @@ penguins.groupby(['year','species']).body_mass_g.max()
 (2) Use (1) to display the highest body masses per year and species as a bar plot in descending order.
 
 <!--
-penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=False).plot(kind='bar')
+penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=False).plot(kind='barh')
 -->
 
 
 ## Acknowledgmenets
-The `groupby()` section is based on this [NCEAS Learning Hub R lesson.](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
+This section is based on this [NCEAS Learning Hub R lesson.](https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize)
 
  Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
