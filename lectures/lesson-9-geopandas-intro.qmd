@@ -131,11 +131,38 @@ pigs_recent.plot()
 
 ### `matplotlib`'s `fig` and `ax`
 
+Going forward we will often want to do more complex visualizations where we add different layers to a graph and customizations. To do this we will use the `matplotlib` Python library for creating visualizations. We can interact with `matplotlib` via its `pyplot` interface, which we imported at the top of the notebook as 
+```python
+# import matplotlib with standard abbreviation
+import matplotlib.pyplot as plt
+```
+
+Matplotlib graphs the data in a **figure** which can have one or more **axes**. The axis is only the are specified by the x-y axis and what is plotted in it. 
+We initialize a new figure and axes by calling `pylot`'s `subplots()` function and we show the graph using `plt.show()`:
+
+```{python}
+# create a blank figure with an empty axis
+fig, ax = plt.subplots()
+plt.show()
+```
+
+Notice we get a figure with a single empty axis. We can think of this step as setting a new blank canvas on which we will paint upon. 
+
+::: {.callout-note}
+## Functions with multiple return values
+Notice that `plt.subplots()` is a function that returns two objects (has two outputs). 
+:::
+
+![Image source: Matplotlib documentation](/images/lesson-8-geopandas/anatomy.png)
+
+
 ## Simple map
 
 
 ## References
+GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp
 
 [Geopandas Documentation - Introduction to GeoPandas](https://geopandas.org/en/stable/getting_started/introduction.html)
 
-GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp
+[Matplotlib Documentation - Basic Usage]
+https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py
