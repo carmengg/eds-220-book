@@ -156,6 +156,11 @@ We can interact with `matplotlib` via its `pyplot` interface, which we imported 
 import matplotlib.pyplot as plt
 ```
 
+::: {.callout-caution 
+## Best practices for importing packages
+We always import libraries at the top of our notebook in a single cell. If halfway through our analysis we realize we need to import a new library, we still need to go back to that first cell and import it there!
+:::
+
 Matplotlib graphs the data in a **figure** which can have one or more **axes**. 
 The axis is only the area specified by the x-y axis and what is plotted in it. To create a new blank figure:
 
@@ -242,35 +247,47 @@ ax.set_ylabel('Latitude')
 plt.show()
 ```
 
-<!--
 ## Simple map
 
-[California's government Open Data Portal](https://data.ca.gov/dataset/ca-geographic-boundaries)
+We can add multiple layers of shapefiles to our maps by plotting multiple geo-dataframes on the same axis. 
+
+**Example**
+
+We will import a shapefile with the outline of the state of CA. The original shapefile was obtained through the [California's government Open Data Portal](https://data.ca.gov/dataset/ca-geographic-boundaries), and the one used here was updated to match the CRS of the points (we'll talk more about matching CRSs later). 
+
+```{python}
+# import CA boundary
+ca_boundary = gpd.read_file('data/ca-boundary/ca-boundary.shp')
+ca_boundary
+```
+
+We can see this geo-dataframe has a single feature whose geometry is MultiPolygon. 
+Plotting the California outline with the point data is easy: just add it as a layer in your axis.
 
 ```python
-# initialize empty figure
+# initialize an empty figure 
 fig, ax = plt.subplots()
 
-# add CA polygon to axis
-ca.plot(ax=ax)
+# add layers
+# add CA boundary
+ca_boundary.plot(ax = ax,
+                color = 'none',
+                edgecolor = '#362312')
 
-# add data to axis
-# notice customization happens as arguments in plot()
-pigs_recent.plot(ax=ax,
-                 alpha=0.5,
-                 color='brown')
+# add pig point data
+pigs_recent.plot(ax = ax,
+                alpha = .5,
+                color = '#FF5768',
+                edgecolor = '#FFBF65')
 
-# update axis 
-# customization separate from the data plotting
+# customization
 ax.set_title('Reported "Sus scrofa" sightings in CA (2020-2023)')
-ax.set_xlabel('Longitude')
-ax.set_ylabel('Latitude')
+ax.set_xlabel('longitude')
+ax.set_ylabel('latitude')
 
 # display figure
 plt.show()
 ```
-
--->
 
 ## References
 GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp
