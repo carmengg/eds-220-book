@@ -53,16 +53,37 @@ print(type(pigs.geometry))
 print(type(pigs.gbifID))
 ```
 
-We can also check the type of a single point in the geometry column:
+We can also check the type of each element in the geometry column using the `geom_type` attribute of a `gpd.GeoDataFrame`:
 
 ```{python}
-print(type(pigs.geometry[0]))
+pigs.geom_type
 ```
 
+<!--
+
 This is a `shapely` point. `shapely` is another Python library that to construct and modify points, lines, and polygons. We will talk more about it in the next lessons.
+-->
 
 ## Geometric information
 
+Two other important attributes of a `gpd.GeoDataFrame` are its coordinate reference system (CRS) and its extent. 
+
+We can think of the **coordinate reference system (CRS)** as the instructions to locate each feature in our dataframe on the surface of the Earth. We access the CRS of a `gpd.GeoDataFrame` using the `crs` attribute:
+
+```{python}
+# access the crs of the GeoDataFrame
+pigs.crs
+```
+
+The **extent** is the bounding box covering *all* the features in our spatial dataset. This is formed finding the points that are furthest west, east, south and north.
+
+![Spatial extent of different vector data. Image Source: National Ecological Observatory Network (NEON)](/images/lesson-8-geopandas/spatial-extent.png)
+
+We access the extent of a `gpd.GeoDataFrame` using the `total_bounds` attribute:
+
+```{python}
+pigs.total_bounds
+```
 
 ## Data wrangling
 
@@ -72,12 +93,8 @@ This is a `shapely` point. `shapely` is another Python library that to construct
 
 ## Simple map
 
-<!--
+
 
 ## References
 
 [Geopandas Documentation - Introduction to GeoPandas](https://geopandas.org/en/stable/getting_started/introduction.html)
-
-
-
--->
