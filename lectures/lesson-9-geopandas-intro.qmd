@@ -5,6 +5,17 @@ import os
 home = os.path.expanduser("~")
 os.chdir(os.path.join(home,'eds-220-book'))
 ```
+
+
+Ignore ShapelyDeprecationWarning warning in render
+
+```{python}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
 -->
 
 # `geopandas`
@@ -264,7 +275,7 @@ ca_boundary
 We can see this geo-dataframe has a single feature whose geometry is MultiPolygon. 
 Plotting the California outline with the point data is easy: just add it as a layer in your axis.
 
-```python
+```{python}
 # initialize an empty figure 
 fig, ax = plt.subplots()
 
@@ -282,8 +293,8 @@ pigs_recent.plot(ax = ax,
 
 # customization
 ax.set_title('Reported "Sus scrofa" sightings in CA (2020-2023)')
-ax.set_xlabel('longitude')
-ax.set_ylabel('latitude')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
 
 # display figure
 plt.show()

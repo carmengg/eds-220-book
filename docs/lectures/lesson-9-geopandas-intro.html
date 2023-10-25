@@ -302,10 +302,23 @@ os.chdir(os.path.join(home,'eds-220-book'))
 :::
 
 
+Ignore ShapelyDeprecationWarning warning in render
+
+::: {.cell execution_count=2}
+``` {.python .cell-code}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+:::
+
+
 -->
 <p>GeoPandas is a Python library that extends the <code>pandas</code> library by adding support for geospatial data. In this lesson we will introduce the <code>geopandas</code> library to work with vector data. We will also make our first map.</p>
 <p>To begin with, let’s import <code>geopandas</code> with its standard abbreviation <code>gpd</code>:</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the library we will explore</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -316,10 +329,10 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <h2 data-number="11.1" class="anchored" data-anchor-id="data"><span class="header-section-number">11.1</span> Data</h2>
 <p>In this lesson we will use simplified point data about wild pigs (<em>Sus scrofa</em>) sightings in California, USA from the <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>.</p>
 <p>We can read in a shapefile with <code>geopandas</code> by using the <code>gpd.read_file()</code> function.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="op">=</span> gpd.read_file(<span class="st">'data/gbif_sus_scroga_california/gbif_sus_scroga_california.shp'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pigs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="38">
 
 <div>
 
@@ -448,9 +461,9 @@ One shapefile = multiple files
 </div>
 <p><strong>Example</strong></p>
 <p>First of all, notice that the leftmost column of <code>pigs</code> is a column named <code>geometry</code> whose values indicate points.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pigs.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="39">
 
 <div>
 
@@ -524,7 +537,7 @@ One shapefile = multiple files
 </div>
 </div>
 <p>As usual, we can check the type of our objects using the <code>type</code> Python function:</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type of the pigs dataframe </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(pigs))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -540,9 +553,9 @@ One shapefile = multiple files
 </div>
 </div>
 <p>The new data type of the geometry column is also reflected when we look at the data types of the columns in the data frame:</p>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pigs.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>gbifID           int64
 species         object
 state           object
@@ -559,9 +572,9 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>We can also check the type of each element in the geometry column using the <code>geom_type</code> attribute of a <code>gpd.GeoDataFrame</code>:</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pigs.geom_type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>0       Point
 1       Point
 2       Point
@@ -585,10 +598,10 @@ This is a `shapely` point. `shapely` is another Python library that to construct
 <h2 data-number="11.3" class="anchored" data-anchor-id="geometric-information"><span class="header-section-number">11.3</span> Geometric information</h2>
 <p>Two other important attributes of a <code>gpd.GeoDataFrame</code> are its coordinate reference system (CRS) and its extent.</p>
 <p>We can think of the <strong>coordinate reference system (CRS)</strong> as the instructions to locate each feature in our dataframe on the surface of the Earth. We access the CRS of a <code>gpd.GeoDataFrame</code> using the <code>crs</code> attribute:</p>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access the CRS of the GeoDataFrame</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pigs.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>&lt;Geographic 2D CRS: EPSG:4326&gt;
 Name: WGS 84
 Axis Info [ellipsoidal]:
@@ -610,9 +623,9 @@ Datum: World Geodetic System 1984 ensemble
 </figure>
 </div>
 <p>We access the extent of a <code>gpd.GeoDataFrame</code> using the <code>total_bounds</code> attribute:</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pigs.total_bounds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>array([-124.29448 ,   32.593433, -115.4356  ,   40.934296])</code></pre>
 </div>
 </div>
@@ -622,10 +635,10 @@ Datum: World Geodetic System 1984 ensemble
 <p>GeoPandas is conveniently built on top of <code>pandas</code>, so we may use everything we have learned about data selection, wrangling, and modification for a <code>pd.DataFrame</code>.</p>
 <p><strong>Example</strong></p>
 <p>Suppose we only want to use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:</p>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use sort_index() method to order the index</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pigs.year.value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>1818.0     31
 1910.0      1
 1925.0      1
@@ -641,7 +654,7 @@ Name: year, Length: 61, dtype: int64</code></pre>
 </div>
 </div>
 <p>We can use our usual data selection to get data from 2020 onwards:</p>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># selet data from 2020 onwards</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pigs_recent <span class="op">=</span> pigs[pigs.year<span class="op">&gt;=</span><span class="dv">2020</span>]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -653,7 +666,7 @@ Name: year, Length: 61, dtype: int64</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>1046</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>606</code></pre>
 </div>
 </div>
@@ -665,13 +678,13 @@ Name: year, Length: 61, dtype: int64</code></pre>
 <p>Similarly to a <code>pd.DataFrame</code>, a <code>gpd.GeoDataFrame</code> has a <code>plot()</code> method that we can call directly to create a quick view of our data. The geospatial information of the <code>gpd.GeoDataFrame</code> will be used to create the axes of the plot.</p>
 <p><strong>Example</strong></p>
 <p>This is a quick look at our recent pigs data:</p>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pigs_recent.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-13-output-2.png" width="368" height="411"></p>
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-14-output-2.png" width="368" height="411"></p>
 </div>
 </div>
 </section>
@@ -691,14 +704,14 @@ Name: year, Length: 61, dtype: int64</code></pre>
 <li>Initialize a new figure and axes by calling <code>pyplot</code>’s <code>subplots()</code> function, and</li>
 <li>show the graph using <code>plt.show()</code>:</li>
 </ol>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a blank figure (fig) with an empty axis (ax)</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-14-output-1.png" width="581" height="416"></p>
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-15-output-1.png" width="581" height="416"></p>
 </div>
 </div>
 <p>Notice we get a figure with a single empty axis. We can think of this step as setting a new blank canvas on which we will paint upon.</p>
@@ -729,7 +742,7 @@ Functions with multiple return values
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Example</strong></p>
 <p>The first layer we want to add to our axis is the <code>pigs_recent</code> point data. We can plot our data using <code>matplotlib</code> like this:</p>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new figure and axis</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -738,11 +751,11 @@ Functions with multiple return values
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-15-output-2.png" width="368" height="411"></p>
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-16-output-2.png" width="368" height="411"></p>
 </div>
 </div>
 </section>
@@ -757,7 +770,7 @@ Functions with multiple return values
 </div>
 <p><strong>Example</strong></p>
 <p>Some basic customization for our pigs data could looke like this:</p>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize empty figure</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -777,7 +790,7 @@ Functions with multiple return values
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-16-output-1.png" width="424" height="449"></p>
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-17-output-1.png" width="424" height="449"></p>
 </div>
 </div>
 </section>
@@ -786,11 +799,11 @@ Functions with multiple return values
 <p>We can add multiple layers of shapefiles to our maps by plotting multiple geo-dataframes on the same axis.</p>
 <p><strong>Example</strong></p>
 <p>We will import a shapefile with the outline of the state of CA. The original shapefile was obtained through the <a href="https://data.ca.gov/dataset/ca-geographic-boundaries">California’s government Open Data Portal</a>, and the one used here was updated to match the CRS of the points (we’ll talk more about matching CRSs later).</p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import CA boundary</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ca_boundary <span class="op">=</span> gpd.read_file(<span class="st">'data/ca-boundary/ca-boundary.shp'</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ca_boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="51">
 
 <div>
 
@@ -840,7 +853,8 @@ Functions with multiple return values
 </div>
 </div>
 <p>We can see this geo-dataframe has a single feature whose geometry is MultiPolygon. Plotting the California outline with the point data is easy: just add it as a layer in your axis.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize an empty figure </span></span>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize an empty figure </span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add layers</span></span>
@@ -857,11 +871,15 @@ Functions with multiple return values
 <span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># customization</span></span>
 <span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Reported "Sus scrofa" sightings in CA (2020-2023)'</span>)</span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'longitude'</span>)</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'latitude'</span>)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)</span>
 <span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
 <span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-9-geopandas-intro_files/figure-html/cell-19-output-1.png" width="428" height="449"></p>
+</div>
+</div>
 </section>
 <section id="references" class="level2" data-number="11.8">
 <h2 data-number="11.8" class="anchored" data-anchor-id="references"><span class="header-section-number">11.8</span> References</h2>

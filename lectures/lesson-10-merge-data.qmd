@@ -47,8 +47,8 @@ Notice that left and right joins can ultimately be the same depending on the pos
 ![](/images/merging_data/join-diagrams-right.png)
 
 
-### Full Outer Join
-Finally, a *full outer join* includes all data from all rows in both tables, and includes missing values wherever necessary.
+### Full Join
+Finally, a *full outer join* (or just *full join*) includes all data from all rows in both tables, and includes missing values wherever necessary.
 
 ![](/images/merging_data/join-diagrams-full.png)
 
@@ -296,19 +296,17 @@ scandi_countries.plot(column='n_communities',
 To finish, we can use `matplotlib` to customize our map:
 
 ```{python}
-fig, ax = plt.subplots(figsize=(10, 10))
-
+fig, ax = plt.subplots(figsize=(5, 5))
+#countries.plot(ax=ax)
 scandi_countries.plot(ax=ax,
                       column='n_communities',
                        cmap='BuPu',
                        legend=True,
-                       edgecolor='black',
-                       legend_kwds={'shrink':.8,
-                                    'label': 'Number of Arctic communities', 
-                                    'orientation': 'horizontal'
+                       edgecolor="0.8",
+                       legend_kwds={"shrink":.8,
+                                    'label': "Number of Arctic communities"
                                     }
                        )
-
 
 ax.set_title('Arctic communities in Scandinavia',  fontsize=20)
 ax.set_xlabel('Longitude')
@@ -317,10 +315,9 @@ ax.set_ylabel('Latitude')
 plt.show()
 ```
 
-<!--
-EXERCISES:
+**Check-in**
+
 Add the scandinavian communities as dots on the choropleth map.
--->
 
 
 ## Complete workflow
@@ -340,6 +337,14 @@ communities = gpd.read_file('https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Ae
 countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
 countries.head()
 
+# ======= COUNTRIES PREPARATION =======
+# make column names lower case
+countries.columns = countries.columns.str.lower()
+
+# select a subset of the columns
+countries_sub = countries[['admin','type','geometry']]
+
+
 # ======= COMMUNITIES PREPARATION =======
 # extract number of communities by country as a pd.Series
 n_comms = communities.groupby('country').count().name
@@ -351,11 +356,12 @@ n_comms = pd.DataFrame(n_comms).rename(columns={'name':'n_communities'}).reset_i
 scandi_codes = ['DK','NO','SE','FO','FI','IS','AX']
 scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
 
-# ======= COUNTRIES PREPARATION =======
-# make column names lower case
-countries.columns = countries.columns.str.lower()
+# select communities from Scandinavian countries
+scandi_communities = communities[communities.country.isin(scandi_codes)]
+scandi_communities
 
-# names of Scandinavian countries
+# ======= MERGE DATASETS =======
+# add names as admin column to scandi_n_comms
 scandi_names = ['Aland Islands',
                 'Denmark',
                 'Finland',
@@ -363,27 +369,31 @@ scandi_names = ['Aland Islands',
                 'Iceland',
                 'Norway',
                 'Sweden']
-
-# subset Scandinavian countries
-scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
-
-# ======= MERGE DATASETS =======
 scandi_n_comms['admin'] = scandi_names
-scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
+# merge dataframes 
+scandi_countries = pd.merge(countries_sub,
+                            scandi_n_comms,
+                            how='inner',
+                            on='admin')
+# update index
+scandi_countries = scandi_countries.set_index('admin')
 
 # ======= CREATE MAP =======
-fig, ax = plt.subplots(figsize=(10, 10))
-
+fig, ax = plt.subplots()
+#countries.plot(ax=ax)
 scandi_countries.plot(ax=ax,
                       column='n_communities',
                        cmap='BuPu',
                        legend=True,
-                       edgecolor='black',
-                       legend_kwds={'shrink':.8,
-                                    'label': 'Number of Arctic communities', 
-                                    'orientation': 'horizontal'
+                       edgecolor="0.8",
+                       legend_kwds={"shrink":.8,
+                                    'label': "Number of Arctic communities"
                                     }
                        )
+
+scandi_communities.plot(ax=ax, 
+                        edgecolor='red',
+                        color='white')
 
 ax.set_title('Arctic communities in Scandinavia',  fontsize=20)
 ax.set_xlabel('Longitude')
@@ -397,8 +407,8 @@ plt.show()
 
 The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
 
-## References
-
 Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
+
+## References
 
 Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude >= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.
