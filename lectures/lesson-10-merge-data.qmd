@@ -1,3 +1,22 @@
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+
+Ignore ShapelyDeprecationWarning warning in render
+
+```{python}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+-->
+
 # Merging data
 
 In this section we will learn how to join dataframes and will apply this to creating a choropleth map with `geopandas`.
@@ -8,32 +27,32 @@ Frequently, analysis of data will require merging these separately managed table
 
 When conceptualizing merges, one can think of two tables, one on the *left* and one on the *right*.
 
-![](images/merging_data/join-diagrams-separate.png)
+![](/images/merging_data/join-diagrams-separate.png)
 
 ### Inner Join
 An *INNER JOIN*  is when you merge the subset of rows that have matches in both the left table and the right table.
 
-![](images/merging_data/join-diagrams-inner.png)
+![](/images/merging_data/join-diagrams-inner.png)
 
 ### Left Join
 A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
 
-![](images/merging_data/join-diagrams-left.png)
+![](/images/merging_data/join-diagrams-left.png)
 
 ### Right Join
 A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables
 
-![](images/merging_data/join-diagrams-right.png)
+![](/images/merging_data/join-diagrams-right.png)
 
 
 ### Full Outer Join
 Finally, a *FULL OUTER JOIN* includes all data from all rows in both tables, and includes missing values wherever necessary.
 
-![](images/merging_data/join-diagrams-full.png)
+![](/images/merging_data/join-diagrams-full.png)
 
 Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.
 
-![Image source: R for Data Science, Wickham & Grolemund.](images/merging_data/join-venn.png)
+![Image source: R for Data Science, Wickham & Grolemund.](/images/merging_data/join-venn.png)
 
 We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-problems target="_blank"> the Relational Data chapter in the "R for Data Science" book </a> for more examples and best practices about joins.
 
@@ -46,16 +65,16 @@ Our goal in this lesson will be to join two datasets, one with demographic infor
 
 We will use two datasets in this lesson. 
  The first dataset is [Natural Earth's medium scale  cultural boundaries data (1:50m)](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/). 
-This dataset comes as a shapefile we need to download. 
+We can obtain this dataset by downloading the shapefile. 
 [Natural Earth](https://www.naturalearthdata.com) is a public domain dataset with ready-to-use data for creating maps. 
 
-The second dataset we will use is [list of Arctic communities and their location (Brook, 2023)](https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80) which can be accessed through the DataONE repository. 
+The second dataset we will use is a [list of Arctic communities and their location (Brook, 2023)](https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80) which can be accessed through the DataONE repository. 
 This is a GeoJSON file with the following attributes:
 
-- **name**: Name of Arctic community, 
-- **population**: Population of Arctic community, as of 2022
-- **country**: Country that the Arctic community falls within (see dataset metadata for the codes)
-- **geoname-id**: Numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data
+- **name**: name of Arctic community, 
+- **population**: population of Arctic community, as of 2022
+- **country**: country that the Arctic community falls within (see dataset metadata for the codes)
+- **geoname-id**: numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data
 
 
 ## Data preparation
@@ -88,7 +107,7 @@ To import the Natural Earth countries polygons we use the `geopandas.read_file()
 
 ```{python}
 # import countries polygons
-countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
+countries = gpd.read_file('data/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
 countries.head()
 ```
 
@@ -121,14 +140,14 @@ scandi_names = ['Aland Islands',
                 'Norway',
                 'Sweden']
 
-# select Scandi countries and adming, type, and geometry columns
+# select Scandi countries and admin, type, and geometry columns
 # remeber: the geometry column has the polygons for each country
 scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
 scandi_countries
 ```
 
 Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
-We can verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
+Let's verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
 
 ```{python}
 # check Aland Islands is nowhere in data frame
@@ -159,7 +178,7 @@ Notice that the `countries` and `communities` GeoDataFrames both have the same c
 countries.crs == communities.crs
 ```
 
-This makes it easy to take a quick look at our data by plotting it on top of the countries dataframe:
+This makes it easy to take a quick look at our communities data by plotting it on top of the countries dataframe:
 
 ```{python}
 fig, ax = plt.subplots()
@@ -178,18 +197,22 @@ n_comms = communities.groupby('country').count().name
 
 # convert the pd.Series into a pd.DataFrame and update it
 n_comms = pd.DataFrame(n_comms).rename(columns={'name':'n_communities'}).reset_index()
-
-n_comms
 ```
 
 Let's break this down a bit:
+
 - We start with our `communities` dataframe and use `groupby('country')` to group by country code, 
 - then we use `count()` as an aggregator function to count how many rows belong to each country code.
 - The result of this operation is a dataframe (run `communities.groupby('country').count()` to check) and we select a single column with the counts by selecting the `name` column.
 - The result is a single `pd.Series` in the variable `n_comms`.
 - We then convert this `pd.Series` into a `pd.DataFrame` and clean it up a bit.
 
- Since we only want data from Scandinavia, we can use the codes for this countries to locate these rows:
+```{python}
+# number of communities per country
+n_comms
+```
+
+ Since we only want data from Scandinavia, we can use the codes for these countries to locate these rows:
 
 ```{python}
 # select Scandinavia data
@@ -212,7 +235,7 @@ scandi_n_comms.head(2)
 ```
 
 We can easily fix this by adding an `admin` column to `scandi_n_comms`. 
-Conveniently, the `scandi_names` list is in the same order as the country codes in the `scandi_n_comms` dataframe, so we can readily add a new column:
+Conveniently, the `scandi_names` list is in the same order as the country codes in the `scandi_n_comms` dataframe, so we can readily add this list as a new column:
 
 ```{python}
 # Add country names 

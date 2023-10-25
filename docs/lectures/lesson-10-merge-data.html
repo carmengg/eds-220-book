@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EDS 220 - Working with Environmental Datasets - 12&nbsp; Merging data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/lesson-9-geopandas-intro.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">EDS 220 - Working with Environmental Datasets</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">geopandas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins"><span class="toc-section-number">12.1</span>  Types of Joins</a>
+  <ul class="collapse">
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="toc-section-number">12.1.1</span>  Inner Join</a></li>
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">12.1.2</span>  Left Join</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">12.1.3</span>  Right Join</a></li>
+  <li><a href="#full-outer-join" id="toc-full-outer-join" class="nav-link" data-scroll-target="#full-outer-join"><span class="toc-section-number">12.1.4</span>  Full Outer Join</a></li>
+  </ul></li>
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="toc-section-number">12.2</span>  Goal</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">12.3</span>  Data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">12.4</span>  Data preparation</a>
+  <ul class="collapse">
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">12.4.1</span>  Countries</a></li>
+  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="toc-section-number">12.4.2</span>  Arctic communities</a></li>
+  </ul></li>
+  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">12.5</span>  Merge datasets</a></li>
+  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">12.6</span>  Choropleth map</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="toc-section-number">12.7</span>  Acknowledgments</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.8</span>  References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- 
+Fixing the preview working directory
+
+::: {.cell execution_count=1}
+``` {.python .cell-code}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+:::
+
+
+Ignore ShapelyDeprecationWarning warning in render
+
+::: {.cell execution_count=2}
+``` {.python .cell-code}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+:::
+
+
+-->
+<p>In this section we will learn how to join dataframes and will apply this to creating a choropleth map with <code>geopandas</code>.</p>
+<section id="types-of-joins" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">12.1</span> Types of Joins</h2>
+<p>Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.</p>
+<p>When conceptualizing merges, one can think of two tables, one on the <em>left</em> and one on the <em>right</em>.</p>
+<p><img src="../images/merging_data/join-diagrams-separate.png" class="img-fluid"></p>
+<section id="inner-join" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">12.1.1</span> Inner Join</h3>
+<p>An <em>INNER JOIN</em> is when you merge the subset of rows that have matches in both the left table and the right table.</p>
+<p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid"></p>
+</section>
+<section id="left-join" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">12.1.2</span> Left Join</h3>
+<p>A <em>LEFT JOIN</em> takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don’t match from the left table are still provided with a missing value (na) from the right table.</p>
+<p><img src="../images/merging_data/join-diagrams-left.png" class="img-fluid"></p>
+</section>
+<section id="right-join" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">12.1.3</span> Right Join</h3>
+<p>A <em>RIGHT JOIN</em> is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables</p>
+<p><img src="../images/merging_data/join-diagrams-right.png" class="img-fluid"></p>
+</section>
+<section id="full-outer-join" class="level3" data-number="12.1.4">
+<h3 data-number="12.1.4" class="anchored" data-anchor-id="full-outer-join"><span class="header-section-number">12.1.4</span> Full Outer Join</h3>
+<p>Finally, a <em>FULL OUTER JOIN</em> includes all data from all rows in both tables, and includes missing values wherever necessary.</p>
+<p><img src="../images/merging_data/join-diagrams-full.png" class="img-fluid"></p>
+<p>Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/merging_data/join-venn.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund.</figcaption><p></p>
+</figure>
+</div>
+<p>We suggest reading<a href="https://r4ds.had.co.nz/relational-data.html#join-problems" target="_blank"> the Relational Data chapter in the “R for Data Science” book </a> for more examples and best practices about joins.</p>
+</section>
+</section>
+<section id="goal" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="goal"><span class="header-section-number">12.2</span> Goal</h2>
+<p>Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in <a href="https://en.wikipedia.org/wiki/Scandinavia">Scandinavia</a>:</p>
+<p><img src="../images/arctic-comms.png" class="img-fluid"></p>
+</section>
+<section id="data" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="data"><span class="header-section-number">12.3</span> Data</h2>
+<p>We will use two datasets in this lesson. The first dataset is <a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/">Natural Earth’s medium scale cultural boundaries data (1:50m)</a>. We can obtain this dataset by downloading the shapefile. <a href="https://www.naturalearthdata.com">Natural Earth</a> is a public domain dataset with ready-to-use data for creating maps.</p>
+<p>The second dataset we will use is a <a href="https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80">list of Arctic communities and their location (Brook, 2023)</a> which can be accessed through the DataONE repository. This is a GeoJSON file with the following attributes:</p>
+<ul>
+<li><strong>name</strong>: name of Arctic community,</li>
+<li><strong>population</strong>: population of Arctic community, as of 2022</li>
+<li><strong>country</strong>: country that the Arctic community falls within (see dataset metadata for the codes)</li>
+<li><strong>geoname-id</strong>: numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data</li>
+</ul>
+</section>
+<section id="data-preparation" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">12.4</span> Data preparation</h2>
+<p>We start our analysis by importing the necessary libraries:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+# will use this library to add a background to our map
+import contextily as ctx
+-->
+<p>The Natural Earth dataset has many columns, so we need to update the <code>pandas</code> display settings to show all columns:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display all column when looking at dataframes</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max.columns"</span>, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="countries" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="countries"><span class="header-section-number">12.4.1</span> Countries</h3>
+<p>Now we move on to preparing the polygons for the Scandinavian countries. To import the Natural Earth countries polygons we use the <code>geopandas.read_file()</code> function again:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import countries polygons</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> gpd.read_file(<span class="st">'data/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>countries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>featurecla</th>
+      <th>scalerank</th>
+      <th>LABELRANK</th>
+      <th>SOVEREIGNT</th>
+      <th>SOV_A3</th>
+      <th>ADM0_DIF</th>
+      <th>LEVEL</th>
+      <th>TYPE</th>
+      <th>TLC</th>
+      <th>ADMIN</th>
+      <th>ADM0_A3</th>
+      <th>GEOU_DIF</th>
+      <th>GEOUNIT</th>
+      <th>GU_A3</th>
+      <th>SU_DIF</th>
+      <th>SUBUNIT</th>
+      <th>SU_A3</th>
+      <th>BRK_DIFF</th>
+      <th>NAME</th>
+      <th>NAME_LONG</th>
+      <th>BRK_A3</th>
+      <th>BRK_NAME</th>
+      <th>BRK_GROUP</th>
+      <th>ABBREV</th>
+      <th>POSTAL</th>
+      <th>FORMAL_EN</th>
+      <th>FORMAL_FR</th>
+      <th>NAME_CIAWF</th>
+      <th>NOTE_ADM0</th>
+      <th>NOTE_BRK</th>
+      <th>NAME_SORT</th>
+      <th>NAME_ALT</th>
+      <th>MAPCOLOR7</th>
+      <th>MAPCOLOR8</th>
+      <th>MAPCOLOR9</th>
+      <th>MAPCOLOR13</th>
+      <th>POP_EST</th>
+      <th>POP_RANK</th>
+      <th>POP_YEAR</th>
+      <th>GDP_MD</th>
+      <th>GDP_YEAR</th>
+      <th>ECONOMY</th>
+      <th>INCOME_GRP</th>
+      <th>FIPS_10</th>
+      <th>ISO_A2</th>
+      <th>ISO_A2_EH</th>
+      <th>ISO_A3</th>
+      <th>ISO_A3_EH</th>
+      <th>ISO_N3</th>
+      <th>ISO_N3_EH</th>
+      <th>UN_A3</th>
+      <th>WB_A2</th>
+      <th>WB_A3</th>
+      <th>WOE_ID</th>
+      <th>WOE_ID_EH</th>
+      <th>WOE_NOTE</th>
+      <th>ADM0_ISO</th>
+      <th>ADM0_DIFF</th>
+      <th>ADM0_TLC</th>
+      <th>ADM0_A3_US</th>
+      <th>ADM0_A3_FR</th>
+      <th>ADM0_A3_RU</th>
+      <th>ADM0_A3_ES</th>
+      <th>ADM0_A3_CN</th>
+      <th>ADM0_A3_TW</th>
+      <th>ADM0_A3_IN</th>
+      <th>ADM0_A3_NP</th>
+      <th>ADM0_A3_PK</th>
+      <th>ADM0_A3_DE</th>
+      <th>ADM0_A3_GB</th>
+      <th>ADM0_A3_BR</th>
+      <th>ADM0_A3_IL</th>
+      <th>ADM0_A3_PS</th>
+      <th>ADM0_A3_SA</th>
+      <th>ADM0_A3_EG</th>
+      <th>ADM0_A3_MA</th>
+      <th>ADM0_A3_PT</th>
+      <th>ADM0_A3_AR</th>
+      <th>ADM0_A3_JP</th>
+      <th>ADM0_A3_KO</th>
+      <th>ADM0_A3_VN</th>
+      <th>ADM0_A3_TR</th>
+      <th>ADM0_A3_ID</th>
+      <th>ADM0_A3_PL</th>
+      <th>ADM0_A3_GR</th>
+      <th>ADM0_A3_IT</th>
+      <th>ADM0_A3_NL</th>
+      <th>ADM0_A3_SE</th>
+      <th>ADM0_A3_BD</th>
+      <th>ADM0_A3_UA</th>
+      <th>ADM0_A3_UN</th>
+      <th>ADM0_A3_WB</th>
+      <th>CONTINENT</th>
+      <th>REGION_UN</th>
+      <th>SUBREGION</th>
+      <th>REGION_WB</th>
+      <th>NAME_LEN</th>
+      <th>LONG_LEN</th>
+      <th>ABBREV_LEN</th>
+      <th>TINY</th>
+      <th>HOMEPART</th>
+      <th>MIN_ZOOM</th>
+      <th>MIN_LABEL</th>
+      <th>MAX_LABEL</th>
+      <th>LABEL_X</th>
+      <th>LABEL_Y</th>
+      <th>NE_ID</th>
+      <th>WIKIDATAID</th>
+      <th>NAME_AR</th>
+      <th>NAME_BN</th>
+      <th>NAME_DE</th>
+      <th>NAME_EN</th>
+      <th>NAME_ES</th>
+      <th>NAME_FA</th>
+      <th>NAME_FR</th>
+      <th>NAME_EL</th>
+      <th>NAME_HE</th>
+      <th>NAME_HI</th>
+      <th>NAME_HU</th>
+      <th>NAME_ID</th>
+      <th>NAME_IT</th>
+      <th>NAME_JA</th>
+      <th>NAME_KO</th>
+      <th>NAME_NL</th>
+      <th>NAME_PL</th>
+      <th>NAME_PT</th>
+      <th>NAME_RU</th>
+      <th>NAME_SV</th>
+      <th>NAME_TR</th>
+      <th>NAME_UK</th>
+      <th>NAME_UR</th>
+      <th>NAME_VI</th>
+      <th>NAME_ZH</th>
+      <th>NAME_ZHT</th>
+      <th>FCLASS_ISO</th>
+      <th>TLC_DIFF</th>
+      <th>FCLASS_TLC</th>
+      <th>FCLASS_US</th>
+      <th>FCLASS_FR</th>
+      <th>FCLASS_RU</th>
+      <th>FCLASS_ES</th>
+      <th>FCLASS_CN</th>
+      <th>FCLASS_TW</th>
+      <th>FCLASS_IN</th>
+      <th>FCLASS_NP</th>
+      <th>FCLASS_PK</th>
+      <th>FCLASS_DE</th>
+      <th>FCLASS_GB</th>
+      <th>FCLASS_BR</th>
+      <th>FCLASS_IL</th>
+      <th>FCLASS_PS</th>
+      <th>FCLASS_SA</th>
+      <th>FCLASS_EG</th>
+      <th>FCLASS_MA</th>
+      <th>FCLASS_PT</th>
+      <th>FCLASS_AR</th>
+      <th>FCLASS_JP</th>
+      <th>FCLASS_KO</th>
+      <th>FCLASS_VN</th>
+      <th>FCLASS_TR</th>
+      <th>FCLASS_ID</th>
+      <th>FCLASS_PL</th>
+      <th>FCLASS_GR</th>
+      <th>FCLASS_IT</th>
+      <th>FCLASS_NL</th>
+      <th>FCLASS_SE</th>
+      <th>FCLASS_BD</th>
+      <th>FCLASS_UA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Admin-0 country</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Sovereign country</td>
+      <td>1</td>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>0</td>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>0</td>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>0</td>
+      <td>Zimbabwe</td>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>NaN</td>
+      <td>Zimb.</td>
+      <td>ZW</td>
+      <td>Republic of Zimbabwe</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>5</td>
+      <td>3</td>
+      <td>9</td>
+      <td>14645468.0</td>
+      <td>14</td>
+      <td>2019</td>
+      <td>21440</td>
+      <td>2019</td>
+      <td>5. Emerging region: G20</td>
+      <td>5. Low income</td>
+      <td>ZI</td>
+      <td>ZW</td>
+      <td>ZW</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>716</td>
+      <td>716</td>
+      <td>716</td>
+      <td>ZW</td>
+      <td>ZWE</td>
+      <td>23425004</td>
+      <td>23425004</td>
+      <td>Exact WOE match as country</td>
+      <td>ZWE</td>
+      <td>NaN</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>ZWE</td>
+      <td>-99</td>
+      <td>-99</td>
+      <td>Africa</td>
+      <td>Africa</td>
+      <td>Eastern Africa</td>
+      <td>Sub-Saharan Africa</td>
+      <td>8</td>
+      <td>8</td>
+      <td>5</td>
+      <td>-99</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>2.5</td>
+      <td>8.0</td>
+      <td>29.925444</td>
+      <td>-18.911640</td>
+      <td>1159321441</td>
+      <td>Q954</td>
+      <td>زيمبابوي</td>
+      <td>জিম্বাবুয়ে</td>
+      <td>Simbabwe</td>
+      <td>Zimbabwe</td>
+      <td>Zimbabue</td>
+      <td>زیمبابوه</td>
+      <td>Zimbabwe</td>
+      <td>Ζιμπάμπουε</td>
+      <td>זימבבואה</td>
+      <td>ज़िम्बाब्वे</td>
+      <td>Zimbabwe</td>
+      <td>Zimbabwe</td>
+      <td>Zimbabwe</td>
+      <td>ジンバブエ</td>
+      <td>짐바브웨</td>
+      <td>Zimbabwe</td>
+      <td>Zimbabwe</td>
+      <td>Zimbábue</td>
+      <td>Зимбабве</td>
+      <td>Zimbabwe</td>
+      <td>Zimbabve</td>
+      <td>Зімбабве</td>
+      <td>زمبابوے</td>
+      <td>Zimbabwe</td>
+      <td>津巴布韦</td>
+      <td>辛巴威</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Admin-0 country</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Sovereign country</td>
+      <td>1</td>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>0</td>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>0</td>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>0</td>
+      <td>Zambia</td>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>ZM</td>
+      <td>Republic of Zambia</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>8</td>
+      <td>5</td>
+      <td>13</td>
+      <td>17861030.0</td>
+      <td>14</td>
+      <td>2019</td>
+      <td>23309</td>
+      <td>2019</td>
+      <td>7. Least developed region</td>
+      <td>4. Lower middle income</td>
+      <td>ZA</td>
+      <td>ZM</td>
+      <td>ZM</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>894</td>
+      <td>894</td>
+      <td>894</td>
+      <td>ZM</td>
+      <td>ZMB</td>
+      <td>23425003</td>
+      <td>23425003</td>
+      <td>Exact WOE match as country</td>
+      <td>ZMB</td>
+      <td>NaN</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>ZMB</td>
+      <td>-99</td>
+      <td>-99</td>
+      <td>Africa</td>
+      <td>Africa</td>
+      <td>Eastern Africa</td>
+      <td>Sub-Saharan Africa</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>-99</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>8.0</td>
+      <td>26.395298</td>
+      <td>-14.660804</td>
+      <td>1159321439</td>
+      <td>Q953</td>
+      <td>زامبيا</td>
+      <td>জাম্বিয়া</td>
+      <td>Sambia</td>
+      <td>Zambia</td>
+      <td>Zambia</td>
+      <td>زامبیا</td>
+      <td>Zambie</td>
+      <td>Ζάμπια</td>
+      <td>זמביה</td>
+      <td>ज़ाम्बिया</td>
+      <td>Zambia</td>
+      <td>Zambia</td>
+      <td>Zambia</td>
+      <td>ザンビア</td>
+      <td>잠비아</td>
+      <td>Zambia</td>
+      <td>Zambia</td>
+      <td>Zâmbia</td>
+      <td>Замбия</td>
+      <td>Zambia</td>
+      <td>Zambiya</td>
+      <td>Замбія</td>
+      <td>زیمبیا</td>
+      <td>Zambia</td>
+      <td>赞比亚</td>
+      <td>尚比亞</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Admin-0 country</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Yemen</td>
+      <td>YEM</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Sovereign country</td>
+      <td>1</td>
+      <td>Yemen</td>
+      <td>YEM</td>
+      <td>0</td>
+      <td>Yemen</td>
+      <td>YEM</td>
+      <td>0</td>
+      <td>Yemen</td>
+      <td>YEM</td>
+      <td>0</td>
+      <td>Yemen</td>
+      <td>Yemen</td>
+      <td>YEM</td>
+      <td>Yemen</td>
+      <td>NaN</td>
+      <td>Yem.</td>
+      <td>YE</td>
+      <td>Republic of Yemen</td>
+      <td>NaN</td>
+      <td>Yemen</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yemen, Rep.</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>11</td>
+      <td>29161922.0</td>
+      <td>15</td>
+      <td>2019</td>
+      <td>22581</td>
+      <td>2019</td>
+      <td>7. Least developed region</td>
+      <td>4. Lower middle income</td>
+      <td>YM</td>
+      <td>YE</td>
+      <td>YE</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>887</td>
+      <td>887</td>
+      <td>887</td>
+      <td>RY</td>
+      <td>YEM</td>
+      <td>23425002</td>
+      <td>23425002</td>
+      <td>Exact WOE match as country</td>
+      <td>YEM</td>
+      <td>NaN</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>YEM</td>
+      <td>-99</td>
+      <td>-99</td>
+      <td>Asia</td>
+      <td>Asia</td>
+      <td>Western Asia</td>
+      <td>Middle East &amp; North Africa</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
+      <td>-99</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>8.0</td>
+      <td>45.874383</td>
+      <td>15.328226</td>
+      <td>1159321425</td>
+      <td>Q805</td>
+      <td>اليمن</td>
+      <td>ইয়েমেন</td>
+      <td>Jemen</td>
+      <td>Yemen</td>
+      <td>Yemen</td>
+      <td>یمن</td>
+      <td>Yémen</td>
+      <td>Υεμένη</td>
+      <td>תימן</td>
+      <td>यमन</td>
+      <td>Jemen</td>
+      <td>Yaman</td>
+      <td>Yemen</td>
+      <td>イエメン</td>
+      <td>예멘</td>
+      <td>Jemen</td>
+      <td>Jemen</td>
+      <td>Iémen</td>
+      <td>Йемен</td>
+      <td>Jemen</td>
+      <td>Yemen</td>
+      <td>Ємен</td>
+      <td>یمن</td>
+      <td>Yemen</td>
+      <td>也门</td>
+      <td>葉門</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MULTIPOLYGON (((53.08564 16.64839, 52.58145 16...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Admin-0 country</td>
+      <td>3</td>
+      <td>2</td>
+      <td>Vietnam</td>
+      <td>VNM</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Sovereign country</td>
+      <td>1</td>
+      <td>Vietnam</td>
+      <td>VNM</td>
+      <td>0</td>
+      <td>Vietnam</td>
+      <td>VNM</td>
+      <td>0</td>
+      <td>Vietnam</td>
+      <td>VNM</td>
+      <td>0</td>
+      <td>Vietnam</td>
+      <td>Vietnam</td>
+      <td>VNM</td>
+      <td>Vietnam</td>
+      <td>NaN</td>
+      <td>Viet.</td>
+      <td>VN</td>
+      <td>Socialist Republic of Vietnam</td>
+      <td>NaN</td>
+      <td>Vietnam</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Vietnam</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>6</td>
+      <td>5</td>
+      <td>4</td>
+      <td>96462106.0</td>
+      <td>16</td>
+      <td>2019</td>
+      <td>261921</td>
+      <td>2019</td>
+      <td>5. Emerging region: G20</td>
+      <td>4. Lower middle income</td>
+      <td>VM</td>
+      <td>VN</td>
+      <td>VN</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>704</td>
+      <td>704</td>
+      <td>704</td>
+      <td>VN</td>
+      <td>VNM</td>
+      <td>23424984</td>
+      <td>23424984</td>
+      <td>Exact WOE match as country</td>
+      <td>VNM</td>
+      <td>NaN</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>VNM</td>
+      <td>-99</td>
+      <td>-99</td>
+      <td>Asia</td>
+      <td>Asia</td>
+      <td>South-Eastern Asia</td>
+      <td>East Asia &amp; Pacific</td>
+      <td>7</td>
+      <td>7</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>105.387292</td>
+      <td>21.715416</td>
+      <td>1159321417</td>
+      <td>Q881</td>
+      <td>فيتنام</td>
+      <td>ভিয়েতনাম</td>
+      <td>Vietnam</td>
+      <td>Vietnam</td>
+      <td>Vietnam</td>
+      <td>ویتنام</td>
+      <td>Viêt Nam</td>
+      <td>Βιετνάμ</td>
+      <td>וייטנאם</td>
+      <td>वियतनाम</td>
+      <td>Vietnám</td>
+      <td>Vietnam</td>
+      <td>Vietnam</td>
+      <td>ベトナム</td>
+      <td>베트남</td>
+      <td>Vietnam</td>
+      <td>Wietnam</td>
+      <td>Vietname</td>
+      <td>Вьетнам</td>
+      <td>Vietnam</td>
+      <td>Vietnam</td>
+      <td>В'єтнам</td>
+      <td>ویتنام</td>
+      <td>Việt Nam</td>
+      <td>越南</td>
+      <td>越南</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MULTIPOLYGON (((104.06396 10.39082, 104.08301 ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Admin-0 country</td>
+      <td>5</td>
+      <td>3</td>
+      <td>Venezuela</td>
+      <td>VEN</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Sovereign country</td>
+      <td>1</td>
+      <td>Venezuela</td>
+      <td>VEN</td>
+      <td>0</td>
+      <td>Venezuela</td>
+      <td>VEN</td>
+      <td>0</td>
+      <td>Venezuela</td>
+      <td>VEN</td>
+      <td>0</td>
+      <td>Venezuela</td>
+      <td>Venezuela</td>
+      <td>VEN</td>
+      <td>Venezuela</td>
+      <td>NaN</td>
+      <td>Ven.</td>
+      <td>VE</td>
+      <td>Bolivarian Republic of Venezuela</td>
+      <td>República Bolivariana de Venezuela</td>
+      <td>Venezuela</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Venezuela, RB</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>28515829.0</td>
+      <td>15</td>
+      <td>2019</td>
+      <td>482359</td>
+      <td>2014</td>
+      <td>5. Emerging region: G20</td>
+      <td>3. Upper middle income</td>
+      <td>VE</td>
+      <td>VE</td>
+      <td>VE</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>862</td>
+      <td>862</td>
+      <td>862</td>
+      <td>VE</td>
+      <td>VEN</td>
+      <td>23424982</td>
+      <td>23424982</td>
+      <td>Exact WOE match as country</td>
+      <td>VEN</td>
+      <td>NaN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>VEN</td>
+      <td>-99</td>
+      <td>-99</td>
+      <td>South America</td>
+      <td>Americas</td>
+      <td>South America</td>
+      <td>Latin America &amp; Caribbean</td>
+      <td>9</td>
+      <td>9</td>
+      <td>4</td>
+      <td>-99</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>2.5</td>
+      <td>7.5</td>
+      <td>-64.599381</td>
+      <td>7.182476</td>
+      <td>1159321411</td>
+      <td>Q717</td>
+      <td>فنزويلا</td>
+      <td>ভেনেজুয়েলা</td>
+      <td>Venezuela</td>
+      <td>Venezuela</td>
+      <td>Venezuela</td>
+      <td>ونزوئلا</td>
+      <td>Venezuela</td>
+      <td>Βενεζουέλα</td>
+      <td>ונצואלה</td>
+      <td>वेनेज़ुएला</td>
+      <td>Venezuela</td>
+      <td>Venezuela</td>
+      <td>Venezuela</td>
+      <td>ベネズエラ</td>
+      <td>베네수엘라</td>
+      <td>Venezuela</td>
+      <td>Wenezuela</td>
+      <td>Venezuela</td>
+      <td>Венесуэла</td>
+      <td>Venezuela</td>
+      <td>Venezuela</td>
+      <td>Венесуела</td>
+      <td>وینیزویلا</td>
+      <td>Venezuela</td>
+      <td>委内瑞拉</td>
+      <td>委內瑞拉</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>Admin-0 country</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MULTIPOLYGON (((-60.82119 9.13838, -60.94141 9...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Taking a quick look at this dataset:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick view</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>countries.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-10-merge-data_files/figure-html/cell-7-output-2.png" width="577" height="293"></p>
+</div>
+</div>
+<p>Notice the column names are in all caps. It is easier to work with column names in small caps because we don’t need to be pressing shift or capslock. We can do this update like this:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># re-assign the column names: .str.lower() makes them lower case</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>countries.columns <span class="op">=</span> countries.columns.<span class="bu">str</span>.lower()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(countries.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['featurecla', 'scalerank', 'labelrank', 'sovereignt', 'sov_a3',
+       'adm0_dif', 'level', 'type', 'tlc', 'admin',
+       ...
+       'fclass_tr', 'fclass_id', 'fclass_pl', 'fclass_gr', 'fclass_it',
+       'fclass_nl', 'fclass_se', 'fclass_bd', 'fclass_ua', 'geometry'],
+      dtype='object', length=169)</code></pre>
+</div>
+</div>
+<p>Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names of Scandinavian countries</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scandi_names <span class="op">=</span> [<span class="st">'Aland Islands'</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Denmark'</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Finland'</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Faroe Islands'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Iceland'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Norway'</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Sweden'</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># select Scandi countries and admin, type, and geometry columns</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># remeber: the geometry column has the polygons for each country</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> countries.loc[countries.admin.isin(scandi_names),[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>admin</th>
+      <th>type</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>48</th>
+      <td>Sweden</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>Norway</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>Iceland</td>
+      <td>Sovereign country</td>
+      <td>POLYGON ((-15.54312 66.22852, -15.42847 66.224...</td>
+    </tr>
+    <tr>
+      <th>169</th>
+      <td>Finland</td>
+      <td>Country</td>
+      <td>MULTIPOLYGON (((24.15547 65.80527, 24.04902 65...</td>
+    </tr>
+    <tr>
+      <th>182</th>
+      <td>Faroe Islands</td>
+      <td>Dependency</td>
+      <td>MULTIPOLYGON (((-6.62319 61.80596, -6.64277 61...</td>
+    </tr>
+    <tr>
+      <th>183</th>
+      <td>Denmark</td>
+      <td>Country</td>
+      <td>MULTIPOLYGON (((12.56875 55.78506, 12.57119 55...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Notice the Aland Islands do not appear in the <code>scandi_countries</code> dataframe. Let’s verify that the ‘Aland Islands’ value does not occur anywhere in the dataframe:</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check Aland Islands is nowhere in data frame</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">'Aland Islands'</span> <span class="kw">in</span> countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>The <code>values</code> attribute of a dataframe returns all the values in the dataframe as an array:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the underlying values of the dataframe</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>array([['Admin-0 country', 1, 3, ..., nan, nan,
+        &lt;POLYGON ((31.288 -22.402, 31.197 -22.345, 31.073 -22.308, 30.916 -22.291, 3...&gt;],
+       ['Admin-0 country', 1, 3, ..., nan, nan,
+        &lt;POLYGON ((30.396 -15.643, 30.251 -15.643, 29.995 -15.644, 29.73 -15.645, 29...&gt;],
+       ['Admin-0 country', 1, 3, ..., nan, nan,
+        &lt;MULTIPOLYGON (((53.086 16.648, 52.581 16.47, 52.448 16.391, 52.328 16.294, ...&gt;],
+       ...,
+       ['Admin-0 country', 3, 4, ..., nan, nan,
+        &lt;MULTIPOLYGON (((-45.718 -60.521, -45.5 -60.546, -45.386 -60.583, -45.357 -6...&gt;],
+       ['Admin-0 country', 3, 6, ..., nan, nan,
+        &lt;POLYGON ((-63.123 18.069, -63.011 18.069, -63.012 18.045, -63.023 18.019, -...&gt;],
+       ['Admin-0 country', 5, 6, ..., nan, nan,
+        &lt;POLYGON ((179.214 -8.524, 179.201 -8.535, 179.196 -8.535, 179.201 -8.512, 1...&gt;]],
+      dtype=object)</code></pre>
+</div>
+</div>
+</section>
+<section id="arctic-communities" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="arctic-communities"><span class="header-section-number">12.4.2</span> Arctic communities</h3>
+<p>In the same way as we previously used <code>pandas.read_csv()</code>, we can read in the Arctic communities data directly from the data repository using <code>geopandas.read_file()</code>:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>communities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>name</th>
+      <th>population</th>
+      <th>country</th>
+      <th>geoname-id</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Udomlya</td>
+      <td>32373</td>
+      <td>RU</td>
+      <td>452949</td>
+      <td>POINT (34.99250 57.87944)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Valmiera</td>
+      <td>26963</td>
+      <td>LV</td>
+      <td>453754</td>
+      <td>POINT (25.42751 57.54108)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ventspils</td>
+      <td>42644</td>
+      <td>LV</td>
+      <td>454310</td>
+      <td>POINT (21.57288 57.38988)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Vec-Liepāja</td>
+      <td>85260</td>
+      <td>LV</td>
+      <td>454432</td>
+      <td>POINT (21.01667 56.53333)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Tukums</td>
+      <td>18348</td>
+      <td>LV</td>
+      <td>454768</td>
+      <td>POINT (23.15528 56.96694)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Notice that the <code>countries</code> and <code>communities</code> GeoDataFrames both have the same crs:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>countries.crs <span class="op">==</span> communities.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>This makes it easy to take a quick look at our communities data by plotting it on top of the countries dataframe:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>countries.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>communities.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-10-merge-data_files/figure-html/cell-14-output-1.png" width="403" height="411"></p>
+</div>
+</div>
+<p>Next, we want to calculate the number of arctic communities by country.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate number of communities by country</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract number of communities by country as a pd.Series</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> communities.groupby(<span class="st">'country'</span>).count().name</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the pd.Series into a pd.DataFrame and update it</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> pd.DataFrame(n_comms).rename(columns<span class="op">=</span>{<span class="st">'name'</span>:<span class="st">'n_communities'</span>}).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s break this down a bit:</p>
+<ul>
+<li>We start with our <code>communities</code> dataframe and use <code>groupby('country')</code> to group by country code,</li>
+<li>then we use <code>count()</code> as an aggregator function to count how many rows belong to each country code.</li>
+<li>The result of this operation is a dataframe (run <code>communities.groupby('country').count()</code> to check) and we select a single column with the counts by selecting the <code>name</code> column.</li>
+<li>The result is a single <code>pd.Series</code> in the variable <code>n_comms</code>.</li>
+<li>We then convert this <code>pd.Series</code> into a <code>pd.DataFrame</code> and clean it up a bit.</li>
+</ul>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of communities per country</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>n_communities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AX</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>BY</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CA</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DK</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>EE</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>FI</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>FO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>GB</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>GL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>IS</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>LT</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>LV</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NO</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>RU</td>
+      <td>774</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>SE</td>
+      <td>133</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>US</td>
+      <td>115</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Since we only want data from Scandinavia, we can use the codes for these countries to locate these rows:</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select Scandinavia data</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>scandi_codes <span class="op">=</span> [<span class="st">'DK'</span>,<span class="st">'NO'</span>,<span class="st">'SE'</span>,<span class="st">'FO'</span>,<span class="st">'FI'</span>,<span class="st">'IS'</span>,<span class="st">'AX'</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>n_communities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AX</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DK</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>FI</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>FO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>IS</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NO</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>SE</td>
+      <td>133</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="merge-datasets" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="merge-datasets"><span class="header-section-number">12.5</span> Merge datasets</h2>
+<p>To merge two datasets they need to have at least one column in common. Currently our datasets do not have any columns in common:</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>admin</th>
+      <th>type</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>48</th>
+      <td>Sweden</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>Norway</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>scandi_n_comms.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>n_communities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AX</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DK</td>
+      <td>72</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We can easily fix this by adding an <code>admin</code> column to <code>scandi_n_comms</code>. Conveniently, the <code>scandi_names</code> list is in the same order as the country codes in the <code>scandi_n_comms</code> dataframe, so we can readily add this list as a new column:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add country names </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>n_communities</th>
+      <th>admin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AX</td>
+      <td>1</td>
+      <td>Aland Islands</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DK</td>
+      <td>72</td>
+      <td>Denmark</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>FI</td>
+      <td>98</td>
+      <td>Finland</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>FO</td>
+      <td>1</td>
+      <td>Faroe Islands</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>IS</td>
+      <td>5</td>
+      <td>Iceland</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NO</td>
+      <td>48</td>
+      <td>Norway</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>SE</td>
+      <td>133</td>
+      <td>Sweden</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> pd.merge(scandi_countries,scandi_n_comms)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>admin</th>
+      <th>type</th>
+      <th>geometry</th>
+      <th>country</th>
+      <th>n_communities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sweden</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
+      <td>SE</td>
+      <td>133</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Norway</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
+      <td>NO</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Iceland</td>
+      <td>Sovereign country</td>
+      <td>POLYGON ((-15.54312 66.22852, -15.42847 66.224...</td>
+      <td>IS</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Finland</td>
+      <td>Country</td>
+      <td>MULTIPOLYGON (((24.15547 65.80527, 24.04902 65...</td>
+      <td>FI</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Faroe Islands</td>
+      <td>Dependency</td>
+      <td>MULTIPOLYGON (((-6.62319 61.80596, -6.64277 61...</td>
+      <td>FO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Denmark</td>
+      <td>Country</td>
+      <td>MULTIPOLYGON (((12.56875 55.78506, 12.57119 55...</td>
+      <td>DK</td>
+      <td>72</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="choropleth-map" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="choropleth-map"><span class="header-section-number">12.6</span> Choropleth map</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth map</a> is an efficient way to visualize aggregate data per region.</p>
+<p>To make a choropleth map from our polygons <code>GeoDataFrame</code> we need to specify the <code>column</code> parameter in <code>plot()</code> and make it equal to the column with the values we want to plot in each country.</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-10-merge-data_files/figure-html/cell-22-output-2.png" width="442" height="411"></p>
+</div>
+</div>
+<p>To finish, we can use <code>matplotlib</code> to customize our map:</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(ax<span class="op">=</span>ax,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                      column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                       cmap<span class="op">=</span><span class="st">'BuPu'</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                       legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                       edgecolor<span class="op">=</span><span class="st">'black'</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                       legend_kwds<span class="op">=</span>{<span class="st">'shrink'</span>:<span class="fl">.8</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'label'</span>: <span class="st">'Number of Arctic communities'</span>, </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'orientation'</span>: <span class="st">'horizontal'</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                                    }</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Arctic communities in Scandinavia'</span>,  fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="lesson-10-merge-data_files/figure-html/cell-23-output-1.png" width="614" height="746"></p>
+</div>
+</div>
+<!--
+# use ctx to add a basemap     
+# ctx.add_basemap(ax=ax, 
+#                attribution=False,
+#                crs=scandi_countries.crs.to_string())
+-->
+<!--
+EXERCISES:
+
+Add the scandinavian communities as dots on the choropleth map.
+
+-->
+<!--
+## Complete workflow
+
+```python
+# import libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+import geopandas as gpd
+
+# ======= IMPORT DATA ========
+# read in Arctic communities data
+communities = gpd.read_file('https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4')
+
+# import countries polygons
+countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
+countries.head()
+
+# ======= COMMUNITIES PREPARATION =======
+# extract number of communities by country as a pd.Series
+n_comms = communities.groupby('country').count().name
+
+# convert the pd.Series into a pd.DataFrame and update it
+n_comms = pd.DataFrame(n_comms).rename(columns={'name':'n_communities'}).reset_index()
+
+# select Scandinavia data
+scandi_codes = ['DK','NO','SE','FO','FI','IS','AX']
+scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
+
+# ======= COUNTRIES PREPARATION =======
+# make column names lower case
+countries.columns = countries.columns.str.lower()
+
+# names of Scandinavian countries
+scandi_names = ['Aland Islands',
+                'Denmark',
+                'Finland',
+                'Faroe Islands',
+                'Iceland',
+                'Norway',
+                'Sweden']
+
+# subset Scandinavian countries
+scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
+
+# ======= MERGE DATASETS =======
+scandi_n_comms['admin'] = scandi_names
+scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
+
+```
+-->
+</section>
+<section id="acknowledgments" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="acknowledgments"><span class="header-section-number">12.7</span> Acknowledgments</h2>
+<p>The section about merging data is based on the <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data">Data Modeling Essentials R lesson</a> from the NCEAS Learning Hub.</p>
+</section>
+<section id="references" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="references"><span class="header-section-number">12.8</span> References</h2>
+<p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
+<p>Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude &gt;= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/lesson-9-geopandas-intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

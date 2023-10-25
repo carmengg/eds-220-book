@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lectures/lesson-10-merge-data.html" rel="next">
 <link href="../lectures/lesson-8-vector-data.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -183,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -203,12 +204,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -236,6 +237,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -255,10 +261,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="toc-section-number">11.5.1</span>  <code>plot()</code></a></li>
   <li><a href="#matplotlibs-fig-and-ax" id="toc-matplotlibs-fig-and-ax" class="nav-link" data-scroll-target="#matplotlibs-fig-and-ax"><span class="toc-section-number">11.5.2</span>  <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></a></li>
-  <li><a href="#adding-a-layer" id="toc-adding-a-layer" class="nav-link" data-scroll-target="#adding-a-layer"><span class="toc-section-number">11.5.3</span>  Adding a layer</a></li>
-  <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization"><span class="toc-section-number">11.5.4</span>  Customization</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">11.6</span>  References</a></li>
+  <li><a href="#best-practices-for-importing-packages" id="toc-best-practices-for-importing-packages" class="nav-link" data-scroll-target="#best-practices-for-importing-packages"><span class="toc-section-number">11.6</span>  Best practices for importing packages</a></li>
+  <li><a href="#adding-a-layer" id="toc-adding-a-layer" class="nav-link" data-scroll-target="#adding-a-layer"><span class="toc-section-number">11.6.1</span>  Adding a layer</a></li>
+  <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization"><span class="toc-section-number">11.6.2</span>  Customization</a></li>
+  <li><a href="#simple-map" id="toc-simple-map" class="nav-link" data-scroll-target="#simple-map"><span class="toc-section-number">11.7</span>  Simple map</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">11.8</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -311,7 +319,7 @@ os.chdir(os.path.join(home,'eds-220-book'))
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="op">=</span> gpd.read_file(<span class="st">'data/gbif_sus_scroga_california/gbif_sus_scroga_california.shp'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pigs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="767">
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
 
@@ -442,7 +450,7 @@ One shapefile = multiple files
 <p>First of all, notice that the leftmost column of <code>pigs</code> is a column named <code>geometry</code> whose values indicate points.</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pigs.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="768">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -534,7 +542,7 @@ One shapefile = multiple files
 <p>The new data type of the geometry column is also reflected when we look at the data types of the columns in the data frame:</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pigs.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="770">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>gbifID           int64
 species         object
 state           object
@@ -553,7 +561,7 @@ dtype: object</code></pre>
 <p>We can also check the type of each element in the geometry column using the <code>geom_type</code> attribute of a <code>gpd.GeoDataFrame</code>:</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pigs.geom_type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="771">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>0       Point
 1       Point
 2       Point
@@ -580,7 +588,7 @@ This is a `shapely` point. `shapely` is another Python library that to construct
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access the CRS of the GeoDataFrame</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pigs.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="772">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>&lt;Geographic 2D CRS: EPSG:4326&gt;
 Name: WGS 84
 Axis Info [ellipsoidal]:
@@ -604,7 +612,7 @@ Datum: World Geodetic System 1984 ensemble
 <p>We access the extent of a <code>gpd.GeoDataFrame</code> using the <code>total_bounds</code> attribute:</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pigs.total_bounds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="773">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([-124.29448 ,   32.593433, -115.4356  ,   40.934296])</code></pre>
 </div>
 </div>
@@ -617,7 +625,7 @@ Datum: World Geodetic System 1984 ensemble
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use sort_index() method to order the index</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pigs.year.value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="774">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>1818.0     31
 1910.0      1
 1925.0      1
@@ -645,7 +653,7 @@ Name: year, Length: 61, dtype: int64</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>1046</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="775">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>606</code></pre>
 </div>
 </div>
@@ -659,7 +667,7 @@ Name: year, Length: 61, dtype: int64</code></pre>
 <p>This is a quick look at our recent pigs data:</p>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pigs_recent.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="776">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -672,6 +680,12 @@ Name: year, Length: 61, dtype: int64</code></pre>
 <p>Going forward, we will often want to make more complex visualizations where we add different layers to a graph and customize it. To do this we will use the <code>matplotlib</code> Python library for creating visualizations. We can interact with <code>matplotlib</code> via its <code>pyplot</code> interface, which we imported at the top of the notebook as</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib with standard abbreviation</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="best-practices-for-importing-packages" class="level2 {.callout-caution" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="best-practices-for-importing-packages"><span class="header-section-number">11.6</span> Best practices for importing packages</h2>
+<p>We always import libraries at the top of our notebook in a single cell. If halfway through our analysis we realize we need to import a new library, we still need to go back to that first cell and import it there!</p>
+</section>
 <p>Matplotlib graphs the data in a <strong>figure</strong> which can have one or more <strong>axes</strong>. The axis is only the area specified by the x-y axis and what is plotted in it. To create a new blank figure:</p>
 <ol type="1">
 <li>Initialize a new figure and axes by calling <code>pyplot</code>’s <code>subplots()</code> function, and</li>
@@ -701,9 +715,8 @@ Functions with multiple return values
 <p>Notice that <code>plt.subplots()</code> is a function that returns two objects (has two outputs).</p>
 </div>
 </div>
-</section>
-<section id="adding-a-layer" class="level3" data-number="11.5.3">
-<h3 data-number="11.5.3" class="anchored" data-anchor-id="adding-a-layer"><span class="header-section-number">11.5.3</span> Adding a layer</h3>
+<section id="adding-a-layer" class="level3" data-number="11.6.1">
+<h3 data-number="11.6.1" class="anchored" data-anchor-id="adding-a-layer"><span class="header-section-number">11.6.1</span> Adding a layer</h3>
 <p>When using <code>matplotlib</code>, it can be useful to think of creating a plot as adding layers to an axis. The general syntax to plot a datafram <code>df</code> onto an axis is:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new figure and axis</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
@@ -725,7 +738,7 @@ Functions with multiple return values
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="778">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -733,8 +746,8 @@ Functions with multiple return values
 </div>
 </div>
 </section>
-<section id="customization" class="level3" data-number="11.5.4">
-<h3 data-number="11.5.4" class="anchored" data-anchor-id="customization"><span class="header-section-number">11.5.4</span> Customization</h3>
+<section id="customization" class="level3" data-number="11.6.2">
+<h3 data-number="11.6.2" class="anchored" data-anchor-id="customization"><span class="header-section-number">11.6.2</span> Customization</h3>
 <p>Matplotlib allows for a lot of customization. Some of it can be done directly in the <code>plot()</code> method for the dataframe (like we’ve done when ploting data using <code>pandas</code>), while other is done by updating attributes of the axis <code>ax</code>. The following image shows some examples of elements in the axis that can be updated.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -767,43 +780,95 @@ Functions with multiple return values
 <p><img src="lesson-9-geopandas-intro_files/figure-html/cell-16-output-1.png" width="424" height="449"></p>
 </div>
 </div>
-<!--
-## Simple map
-
-[California's government Open Data Portal](https://data.ca.gov/dataset/ca-geographic-boundaries)
-
-```python
-# initialize empty figure
-fig, ax = plt.subplots()
-
-# add CA polygon to axis
-ca.plot(ax=ax)
-
-# add data to axis
-# notice customization happens as arguments in plot()
-pigs_recent.plot(ax=ax,
-                 alpha=0.5,
-                 color='brown')
-
-# update axis 
-# customization separate from the data plotting
-ax.set_title('Reported "Sus scrofa" sightings in CA (2020-2023)')
-ax.set_xlabel('Longitude')
-ax.set_ylabel('Latitude')
-
-# display figure
-plt.show()
-```
-
--->
 </section>
+<section id="simple-map" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="simple-map"><span class="header-section-number">11.7</span> Simple map</h2>
+<p>We can add multiple layers of shapefiles to our maps by plotting multiple geo-dataframes on the same axis.</p>
+<p><strong>Example</strong></p>
+<p>We will import a shapefile with the outline of the state of CA. The original shapefile was obtained through the <a href="https://data.ca.gov/dataset/ca-geographic-boundaries">California’s government Open Data Portal</a>, and the one used here was updated to match the CRS of the points (we’ll talk more about matching CRSs later).</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import CA boundary</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ca_boundary <span class="op">=</span> gpd.read_file(<span class="st">'data/ca-boundary/ca-boundary.shp'</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ca_boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>REGION</th>
+      <th>DIVISION</th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>GEOID</th>
+      <th>STUSPS</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>MTFCC</th>
+      <th>FUNCSTAT</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>INTPTLAT</th>
+      <th>INTPTLON</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>9</td>
+      <td>06</td>
+      <td>01779778</td>
+      <td>06</td>
+      <td>CA</td>
+      <td>California</td>
+      <td>00</td>
+      <td>G4000</td>
+      <td>A</td>
+      <td>403501101370</td>
+      <td>20466718403</td>
+      <td>+37.1551773</td>
+      <td>-119.5434183</td>
+      <td>MULTIPOLYGON (((-119.63473 33.26545, -119.6363...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We can see this geo-dataframe has a single feature whose geometry is MultiPolygon. Plotting the California outline with the point data is easy: just add it as a layer in your axis.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize an empty figure </span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add layers</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># add CA boundary</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>ca_boundary.plot(ax <span class="op">=</span> ax,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                color <span class="op">=</span> <span class="st">'none'</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                edgecolor <span class="op">=</span> <span class="st">'#362312'</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># add pig point data</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>pigs_recent.plot(ax <span class="op">=</span> ax,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>                alpha <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>                color <span class="op">=</span> <span class="st">'#FF5768'</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>                edgecolor <span class="op">=</span> <span class="st">'#FFBF65'</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># customization</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Reported "Sus scrofa" sightings in CA (2020-2023)'</span>)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'longitude'</span>)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'latitude'</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co"># display figure</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="references" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="references"><span class="header-section-number">11.6</span> References</h2>
+<section id="references" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="references"><span class="header-section-number">11.8</span> References</h2>
 <p>GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp</p>
 <p><a href="https://geopandas.org/en/stable/getting_started/introduction.html">Geopandas Documentation - Introduction to GeoPandas</a></p>
 <p><a href="https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py">Matplotlib Documentation - Basic Usage</a></p>
-<p>&lt;!– https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r</p>
+<p><a href="https://www.neonscience.org/resources/learning-hub/tutorials/intro-vector-data-r">NEON tutorials - Intro to Vector Data in R</a></p>
 
 
 </section>
@@ -949,6 +1014,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../lectures/lesson-10-merge-data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

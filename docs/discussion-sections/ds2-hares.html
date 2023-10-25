@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 7&nbsp; Lab: Data cleaning</title>
+<title>EDS 220 - Working with Environmental Datasets - 8&nbsp; * Lab: Data cleaning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-6-groupby.html" rel="next">
-<link href="../lectures/lesson-5-updating-dataframes.html" rel="prev">
+<link href="../lectures/lesson-7-time-series.html" rel="next">
+<link href="../lectures/lesson-6-groupby.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -138,12 +138,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -171,6 +171,11 @@ ul.task-list li input[type="checkbox"] {
   <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -182,14 +187,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#archive-exploration" id="toc-archive-exploration" class="nav-link active" data-scroll-target="#archive-exploration"><span class="toc-section-number">7.1</span>  Archive exploration</a></li>
-  <li><a href="#adding-an-image" id="toc-adding-an-image" class="nav-link" data-scroll-target="#adding-an-image"><span class="toc-section-number">7.2</span>  Adding an image</a></li>
-  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading"><span class="toc-section-number">7.3</span>  Data loading</a></li>
-  <li><a href="#metadata-exploration" id="toc-metadata-exploration" class="nav-link" data-scroll-target="#metadata-exploration"><span class="toc-section-number">7.4</span>  Metadata exploration</a></li>
-  <li><a href="#detecting-messy-values" id="toc-detecting-messy-values" class="nav-link" data-scroll-target="#detecting-messy-values"><span class="toc-section-number">7.5</span>  Detecting messy values</a></li>
-  <li><a href="#clean-values" id="toc-clean-values" class="nav-link" data-scroll-target="#clean-values"><span class="toc-section-number">7.6</span>  Clean values</a></li>
-  <li><a href="#calculate-mean-weight" id="toc-calculate-mean-weight" class="nav-link" data-scroll-target="#calculate-mean-weight"><span class="toc-section-number">7.7</span>  Calculate mean weight</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">8</span>  References</a></li>
+  <li><a href="#archive-exploration" id="toc-archive-exploration" class="nav-link active" data-scroll-target="#archive-exploration"><span class="toc-section-number">8.1</span>  Archive exploration</a></li>
+  <li><a href="#adding-an-image" id="toc-adding-an-image" class="nav-link" data-scroll-target="#adding-an-image"><span class="toc-section-number">8.2</span>  Adding an image</a></li>
+  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading"><span class="toc-section-number">8.3</span>  Data loading</a></li>
+  <li><a href="#metadata-exploration" id="toc-metadata-exploration" class="nav-link" data-scroll-target="#metadata-exploration"><span class="toc-section-number">8.4</span>  Metadata exploration</a></li>
+  <li><a href="#detecting-messy-values" id="toc-detecting-messy-values" class="nav-link" data-scroll-target="#detecting-messy-values"><span class="toc-section-number">8.5</span>  Detecting messy values</a></li>
+  <li><a href="#clean-values" id="toc-clean-values" class="nav-link" data-scroll-target="#clean-values"><span class="toc-section-number">8.6</span>  Clean values</a></li>
+  <li><a href="#calculate-mean-weight" id="toc-calculate-mean-weight" class="nav-link" data-scroll-target="#calculate-mean-weight"><span class="toc-section-number">8.7</span>  Calculate mean weight</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">9</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></h1>
 </div>
 
 
@@ -291,8 +296,8 @@ About the data
 <p>This dataset is stored in the <a href="https://edirepository.org">Environmental Data Initiative (EDI)</a> data repository. This is a huge data repository committed to make data Findable, Accessible, Interoperable, and Reusable (FAIR). It is the main repository for all the data associated to the <a href="https://lternet.edu">Long Term Ecological Research Network (LTER)</a>.</p>
 </div>
 </div>
-<section id="archive-exploration" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="archive-exploration"><span class="header-section-number">7.1</span> Archive exploration</h2>
+<section id="archive-exploration" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="archive-exploration"><span class="header-section-number">8.1</span> Archive exploration</h2>
 <p>Take some time to look through the dataset’s description in EDI and click around. Discuss the following questions with your team:</p>
 <ol type="a">
 <li>What is this data about?</li>
@@ -302,8 +307,8 @@ About the data
 </ol>
 <p>In your notebook: use a markdown cell to add a <em>brief</em> description of the dataset, including a citation, date of access, and a link to the archive.</p>
 </section>
-<section id="adding-an-image" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="adding-an-image"><span class="header-section-number">7.2</span> Adding an image</h2>
+<section id="adding-an-image" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="adding-an-image"><span class="header-section-number">8.2</span> Adding an image</h2>
 <p>Follow these steps to add an image of a hare using a URL:</p>
 <ol type="a">
 <li><p>Go to <a href="">https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,<em>washington_co,<em>maine</em>-01</em>%2818988734889%29.jpg</a></p></li>
@@ -320,8 +325,8 @@ About the data
 <strong>commit and push changes</strong>
 </p>
 </section>
-<section id="data-loading" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="data-loading"><span class="header-section-number">7.3</span> Data loading</h2>
+<section id="data-loading" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="data-loading"><span class="header-section-number">8.3</span> Data loading</h2>
 <p>Back in your notebook, import the <code>pandas</code> package in a code cell and import the <code>55_Hare_Data_2012.txt</code> from its URL using the <code>pandas.read_csv()</code>. Store it in a variable named <code>hares</code>. Take a look at the head of the dataframe.</p>
 <p style="text-align: center;">
 <strong>commit and push changes</strong>
@@ -333,13 +338,13 @@ About the data
 <strong>MAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING</strong>
 </p>
 </section>
-<section id="metadata-exploration" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="metadata-exploration"><span class="header-section-number">7.4</span> Metadata exploration</h2>
+<section id="metadata-exploration" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="metadata-exploration"><span class="header-section-number">8.4</span> Metadata exploration</h2>
 <p>Back in the EDI repository, click on <em>View Full Metadata</em> to access more information.</p>
 <p>Go to the “Detailed Metadata” section and click on “Data Entities”. Take a minute to look at the descriptions for the dataset’s columns.</p>
 </section>
-<section id="detecting-messy-values" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="detecting-messy-values"><span class="header-section-number">7.5</span> Detecting messy values</h2>
+<section id="detecting-messy-values" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="detecting-messy-values"><span class="header-section-number">8.5</span> Detecting messy values</h2>
 <ol type="1">
 <li><p>Get the number of teams each unique non-NA value in the sex column appears by running <code>hares.sex.value_counts()</code>.</p></li>
 <li><p>Check the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">documentation of <code>value_counts()</code></a>. What is the purpose of the <code>dropna=False</code> parameter? Do step 2 again, this time adding the <code>dropna=False</code> parameter to <code>value_counts()</code>.</p></li>
@@ -351,8 +356,8 @@ About the data
 <strong>commit and push changes</strong>
 </p>
 </section>
-<section id="clean-values" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="clean-values"><span class="header-section-number">7.6</span> Clean values</h2>
+<section id="clean-values" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="clean-values"><span class="header-section-number">8.6</span> Clean values</h2>
 <ol start="6" type="1">
 <li>Use <code>np.select</code> like we did on Monday to create a new column called <code>sex_simple</code></li>
 </ol>
@@ -373,8 +378,8 @@ About the data
 <strong>commit and push changes</strong>
 </p>
 </section>
-<section id="calculate-mean-weight" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="calculate-mean-weight"><span class="header-section-number">7.7</span> Calculate mean weight</h2>
+<section id="calculate-mean-weight" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="calculate-mean-weight"><span class="header-section-number">8.7</span> Calculate mean weight</h2>
 <ol start="8" type="1">
 <li>Use <code>groupby()</code> to calculate the mean weight by sex (use the new column).</li>
 </ol>
@@ -382,8 +387,8 @@ About the data
 <strong>commit and push changes</strong>
 </p>
 </section>
-<section id="references" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> References</h1>
+<section id="references" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> References</h1>
 <p>Kielland, K., F.S. Chapin, R.W. Ruess, and Bonanza Creek LTER. 2017. Snowshoe hare physical data in Bonanza Creek Experimental Forest: 1999-Present ver 22. Environmental Data Initiative. https://doi.org/10.6073/pasta/03dce4856d79b91557d8e6ce2cbcdc14 (Accessed 2023-10-18).</p>
 
 
@@ -525,13 +530,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-5-updating-dataframes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span>
+      <a href="../lectures/lesson-6-groupby.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-6-groupby.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-7-time-series.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

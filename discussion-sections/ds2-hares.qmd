@@ -1,4 +1,4 @@
-# Lab: Data cleaning
+# * Lab: Data cleaning
 
 October 19, 2023.
 

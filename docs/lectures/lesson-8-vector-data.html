@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Preliminary data exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -138,12 +138,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab: Data cleaning</span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -169,6 +169,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
   </div>
 </li>
       </ul>
@@ -211,11 +216,11 @@ ul.task-list li input[type="checkbox"] {
 <p>Vector data is one of the two primary types of geospatial data (the other one being raster data). In this section we will review what vector data is and go over some common data formats for it.</p>
 <section id="points-lines-and-polygons" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="points-lines-and-polygons"><span class="header-section-number">10.1</span> Points, lines, and polygons</h2>
-<p><strong>Vector data</strong> represents speciifc features on the Earth’s surface. There are three types of vector data:</p>
+<p><strong>Vector data</strong> represents specific features on the Earth’s surface. There are three types of vector data:</p>
 <ul>
-<li><p><strong>Points:</strong> each point has a single x,y location. Examples of pointdata that can be represented as point vector data are sampling locations or animal sightings.</p></li>
+<li><p><strong>Points:</strong> each point has a single x,y location. Examples of data that can be represented as point vector data are sampling locations or animal sightings.</p></li>
 <li><p><strong>Lines:</strong> a line is composed of at least two points that are connected. Roads and streams are commonly depicted as line vector data.</p></li>
-<li><p><strong>Polygons:</strong> polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countires, states, cities, etc) are examples of polygon vector data.</p></li>
+<li><p><strong>Polygons:</strong> polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countries, states, cities, etc) are examples of polygon vector data.</p></li>
 </ul>
 <p>Each item in the vector data is usually referred to as a <strong>feature</strong>. So each point would be a feature, each polygon is a feature, etc.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -244,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Sometimes shapefiles will have additional files, including:</p>
 <ul>
 <li><code>.prj</code>: a file containing information about the projection and coordinate reference system</li>
-<li><code>.sbn</code> and <code>.sbx</code>: files that contian a spatial index of the features</li>
+<li><code>.sbn</code> and <code>.sbx</code>: files that contain a spatial index of the features</li>
 <li><code>.shp.xml</code>: geospatial metadata in XML format.</li>
 </ul>
 <p>Check the <a href="https://en.wikipedia.org/wiki/Shapefile">Wikipedia page about shapefiles</a> to see a more extensive list of files associated to shapefiles.</p>
