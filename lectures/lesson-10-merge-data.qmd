@@ -38,13 +38,13 @@ Sometimes people represent joins as Venn diagrams, showing which parts of the le
 We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-problems target="_blank"> the Relational Data chapter in the "R for Data Science" book </a> for more examples and best practices about joins.
 
 ## Goal
-Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map:
+Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in [Scandinavia](https://en.wikipedia.org/wiki/Scandinavia):
 
 ## Data
 
 We will use two datasets in this lesson. 
 The first dataset is [list of Arctic communities and their location (Brook, 2023)](https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80) which can be accessed through the DataONE repository. 
-This is a GEOJSON file with the following attributes:
+This is a GeoJSON file with the following attributes:
 
 - **name**: Name of Arctic community, 
 - **population**: Population of Arctic community, as of 2022
@@ -55,11 +55,78 @@ The second dataset we will use is [Natural Earth's medium scale  cultural bounda
 This dataset comes as a shapefile we will need to download. 
 [Natural Earth](https://www.naturalearthdata.com) is a public domain dataset with ready-to-use data for creating maps. 
 
+## Data preparation
+
+We start our analysis by importing the necessary libraries:
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+import geopandas as gpd
+```
+
+The Natural Earth dataset has many columns, so we nees to update `pandas` display settings to show all columns:
+
+```{python}
+# display all column when looking at dataframes
+pd.set_option("display.max.columns", None)
+```
+
+### Arctic communities
+
+In the same way as we previously used `pandas.read_csv()`, we can read in the Arctic communities data directly from the data repository using `geopandas.read_file()`:
+
+```{python}
+# read in Arctic communities data
+communities = gpd.read_file('https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4')
+communities.head()
+```
+
+Next, we want to calculate the number of arctic communities by country. 
+
+```{python}
+# calculate number of communities by country
+
+# extract number of communities by country as a pd.Series
+n_comms = communities.groupby('country').count().name
+
+# convert the pd.Series into a pd.DataFrame and update it
+n_comms = pd.DataFrame(n_comms).rename(columns={'name':'n_communities'}).reset_index()
+
+n_comms
+```
+
+Let's break this down a bit:
+- We start with our `communities` dataframe and use `groupby('country')` to group by country code, 
+- then we use `count()` as an aggregator function to count how many rows belong to each country code.
+- The result of this operation is a dataframe (run `communities.groupby('country').count()` to check) and we select a single column with the counts by selecting the `name` column.
+- The result is a single `pd.Series` in the variable `n_comms`.
+- We then convert this `pd.Series` into a `pd.DataFrame` and clean it up a bit.
+
+We only want to use data for Scandinavia, this includes the following countries: Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden. We can  select this data using the `isin()` method for `pd.Series` inside the locator brackets:
+
+```{python}
+# select Scandinavia data
+scandi_codes = ['DK','NO','SE','FO','FI','IS','AX']
+scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
+scandi_n_comms
+```
 
 ## 
 
-## Radiant Earth countries
-
+```{python}
+# Add country names 
+scandi_names = ['Aland Islands',
+                'Denmark',
+                'Finland',
+                'Faroe Islands',
+                'Iceland',
+                'Norway',
+                'Sweden']
+scandi_n_comms['admin'] = scandi_names
+scandi_n_comms
+```
 
 <!--
 ## Acknowledgments
