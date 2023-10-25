@@ -2,7 +2,7 @@
 
 In this section we will learn how to join dataframes and will apply this to creating a choropleth map with `geopandas`.
 
-
+## Types of Joins
 
 Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.
 
@@ -10,23 +10,23 @@ When conceptualizing merges, one can think of two tables, one on the *left* and 
 
 ![](images/merging_data/join-diagrams-separate.png)
 
-## Inner Join
+### Inner Join
 An *INNER JOIN*  is when you merge the subset of rows that have matches in both the left table and the right table.
 
 ![](images/merging_data/join-diagrams-inner.png)
 
-## Left Join
+### Left Join
 A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
 
 ![](images/merging_data/join-diagrams-left.png)
 
-## Right Join
+### Right Join
 A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables
 
 ![](images/merging_data/join-diagrams-right.png)
 
 
-## Full Outer Join
+### Full Outer Join
 Finally, a *FULL OUTER JOIN* includes all data from all rows in both tables, and includes missing values wherever necessary.
 
 ![](images/merging_data/join-diagrams-full.png)
@@ -40,10 +40,16 @@ We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-probl
 ## Goal
 Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in [Scandinavia](https://en.wikipedia.org/wiki/Scandinavia):
 
+![](/images/scandi_countries.png)
+
 ## Data
 
 We will use two datasets in this lesson. 
-The first dataset is [list of Arctic communities and their location (Brook, 2023)](https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80) which can be accessed through the DataONE repository. 
+ The first dataset is [Natural Earth's medium scale  cultural boundaries data (1:50m)](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/). 
+This dataset comes as a shapefile we need to download. 
+[Natural Earth](https://www.naturalearthdata.com) is a public domain dataset with ready-to-use data for creating maps. 
+
+The second dataset we will use is [list of Arctic communities and their location (Brook, 2023)](https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80) which can be accessed through the DataONE repository. 
 This is a GeoJSON file with the following attributes:
 
 - **name**: Name of Arctic community, 
@@ -51,9 +57,6 @@ This is a GeoJSON file with the following attributes:
 - **country**: Country that the Arctic community falls within (see dataset metadata for the codes)
 - **geoname-id**: Numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data
 
-The second dataset we will use is [Natural Earth's medium scale  cultural boundaries data (1:50m)](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/). 
-This dataset comes as a shapefile we will need to download. 
-[Natural Earth](https://www.naturalearthdata.com) is a public domain dataset with ready-to-use data for creating maps. 
 
 ## Data preparation
 
@@ -64,13 +67,77 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 import geopandas as gpd
+
+# will use this library to add a background to our map
+import contextily as ctx
 ```
 
-The Natural Earth dataset has many columns, so we nees to update `pandas` display settings to show all columns:
+The Natural Earth dataset has many columns, so we need to update the `pandas` display settings to show all columns:
 
 ```{python}
 # display all column when looking at dataframes
 pd.set_option("display.max.columns", None)
+```
+
+### Countries 
+
+Now we move on to preparing the polygons for the Scandinavian countries.
+To import the Natural Earth countries polygons we use the `geopandas.read_file()` function again:
+
+```{python}
+# import countries polygons
+countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
+countries.head()
+```
+
+Taking a quick look at this dataset:
+
+```{python}
+# quick view
+countries.plot()
+```
+
+Notice the column names are in all caps. 
+It is easier to work with column names in small caps because we don't need to be pressing shift or capslock. 
+We can do this update like this:
+
+```{python}
+# re-assign the column names: .str.lower() makes them lower case
+countries.columns = countries.columns.str.lower()
+print(countries.columns)
+```
+
+Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:
+
+```{python}
+# names of Scandinavian countries
+scandi_names = ['Aland Islands',
+                'Denmark',
+                'Finland',
+                'Faroe Islands',
+                'Iceland',
+                'Norway',
+                'Sweden']
+
+# select Scandi countries and adming, type, and geometry columns
+# remeber: the geometry column has the polygons for each country
+scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
+scandi_countries
+```
+
+Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
+We can verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
+
+```{python}
+# check Aland Islands is nowhere in data frame
+'Aland Islands' in countries.values
+```
+
+The `values` attribute of a dataframe returns all the values in the dataframe as an array:
+
+```{python}
+# the underlying values of the dataframe
+countries.values
 ```
 
 ### Arctic communities
@@ -104,7 +171,7 @@ Let's break this down a bit:
 - The result is a single `pd.Series` in the variable `n_comms`.
 - We then convert this `pd.Series` into a `pd.DataFrame` and clean it up a bit.
 
-We only want to use data for Scandinavia, this includes the following countries: Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden. We can  select this data using the `isin()` method for `pd.Series` inside the locator brackets:
+ We can  select this data using the `isin()` method for `pd.Series` inside the locator brackets:
 
 ```{python}
 # select Scandinavia data
@@ -113,71 +180,10 @@ scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
 scandi_n_comms
 ```
 
-### Countries outlines 
-
-Now we move on to preparing the polygons for the Scandinavian countries.
-To import the Natural Earth countries polygons we use the `geopandas.read_file()` function again:
-
-```{python}
-# import countries polygons
-countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
-countries.head()
-```
-
-Taking a quick look at this dataset:
-
-```{python}
-# quick view
-countries.plot()
-```
-
-Notice the column names are in all caps. 
-It is easier to work with column names in small caps because we don't need to be pressing shift or capslock. 
-We can do this update like this:
-
-```{python}
-# re-assign the column names: .str.lower() makes them lower case
-countries.columns = countries.columns.str.lower()
-print(countries.columns)
-```
-
-Next, we want to select only the data for Scandinavian countries and a few of the 169 columns in the dataset:
-
-```{python}
-# names of Scandinavian countries
-scandi_names = ['Aland Islands',
-                'Denmark',
-                'Finland',
-                'Faroe Islands',
-                'Iceland',
-                'Norway',
-                'Sweden']
-
-# select Scandi countries and adming, type, and geometry columns
-# remeber: the geometry column has the polygons for each country
-scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
-scandi_countries
-```
-
-Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
-We can verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
-
-```{python}
-# check Aland Islands is nowhere in data frame
-'Aland Islands' in countries.values
-```
-
-The `values` attribute of a dataframe returns all the values in the dataframe as an array:
-
-```{python}
-# the underlying values of the dataframe
-countries.values
-```
-
 ## Merge datasets 
 
 To merge two datasets they need to have at least one column in common. 
-Currently our datasets do not have any columns in column:
+Currently our datasets do not have any columns in common:
 
 ```{python}
 scandi_countries.head(2)
@@ -187,7 +193,7 @@ scandi_countries.head(2)
 scandi_n_comms.head(2)
 ```
 
-We can easily fix it by adding an `admin` column to `scandi_n_comms`. 
+We can easily fix this by adding an `admin` column to `scandi_n_comms`. 
 Conveniently, the `scandi_names` list is in the same order as the country codes in the `scandi_n_comms` dataframe, so we can readily add a new column:
 
 ```{python}
@@ -203,12 +209,41 @@ scandi_countries
 
 A [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) is an efficient way to visualize aggregate data per region. 
 
+To make a choropleth map from our polygons `GeoDataFrame` we need to specify the `column` parameter in `plot()` and make it equal to the column with the values we want to plot in each country. 
 
 ```{python}
-scandi_countries.plot(column='n_communities')
+scandi_countries.plot(column='n_communities',
+                      legend=True)
 ```
 
+To finish, we can use `matplotlib` to customize our graph:
 
+```{python}
+fig, ax = plt.subplots(figsize=(10, 10))
+
+scandi_countries.plot(ax=ax,
+                      column='n_communities',
+                       cmap='BuPu',
+                       legend=True,
+                       edgecolor="black",
+                       legend_kwds={'shrink':.8,
+                                    'label': "Number of Arctic communities", 
+                                    'orientation': "horizontal"
+                                    }
+                       )
+# use ctx to add a basemap     
+ctx.add_basemap(ax=ax, 
+               attribution=False,
+               crs=scandi_countries.crs.to_string())
+
+ax.set_title('Arctic communities in Scandinavia',  fontsize=20)
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+plt.show()
+```
+
+<!--
 ## Complete workflow
 
 ```python
@@ -258,6 +293,7 @@ scandi_n_comms['admin'] = scandi_names
 scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
 
 ```
+-->
 
 ## Acknowledgments
 
