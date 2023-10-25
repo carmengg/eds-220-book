@@ -40,7 +40,7 @@ We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-probl
 ## Goal
 Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in [Scandinavia](https://en.wikipedia.org/wiki/Scandinavia):
 
-![](/images/scandi_countries.png)
+![](/images/arctic-comms.png)
 
 ## Data
 
@@ -67,10 +67,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 import geopandas as gpd
+```
 
+<!--
 # will use this library to add a background to our map
 import contextily as ctx
-```
+-->
 
 The Natural Earth dataset has many columns, so we need to update the `pandas` display settings to show all columns:
 
@@ -150,6 +152,22 @@ communities = gpd.read_file('https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Ae
 communities.head()
 ```
 
+
+Notice that the `countries` and `communities` GeoDataFrames both have the same crs:
+
+```{python}
+countries.crs == communities.crs
+```
+
+This makes it easy to take a quick look at our data by plotting it on top of the countries dataframe:
+
+```{python}
+fig, ax = plt.subplots()
+countries.plot(ax=ax)
+communities.plot(ax=ax, color='red')
+plt.show()
+```
+
 Next, we want to calculate the number of arctic communities by country. 
 
 ```{python}
@@ -171,7 +189,7 @@ Let's break this down a bit:
 - The result is a single `pd.Series` in the variable `n_comms`.
 - We then convert this `pd.Series` into a `pd.DataFrame` and clean it up a bit.
 
- We can  select this data using the `isin()` method for `pd.Series` inside the locator brackets:
+ Since we only want data from Scandinavia, we can use the codes for this countries to locate these rows:
 
 ```{python}
 # select Scandinavia data
@@ -202,8 +220,10 @@ scandi_n_comms['admin'] = scandi_names
 scandi_n_comms
 ```
 
+```{python}
 scandi_countries = pd.merge(scandi_countries,scandi_n_comms)
 scandi_countries
+```
 
 ## Choropleth map
 
@@ -216,7 +236,7 @@ scandi_countries.plot(column='n_communities',
                       legend=True)
 ```
 
-To finish, we can use `matplotlib` to customize our graph:
+To finish, we can use `matplotlib` to customize our map:
 
 ```{python}
 fig, ax = plt.subplots(figsize=(10, 10))
@@ -225,16 +245,13 @@ scandi_countries.plot(ax=ax,
                       column='n_communities',
                        cmap='BuPu',
                        legend=True,
-                       edgecolor="black",
+                       edgecolor='black',
                        legend_kwds={'shrink':.8,
-                                    'label': "Number of Arctic communities", 
-                                    'orientation': "horizontal"
+                                    'label': 'Number of Arctic communities', 
+                                    'orientation': 'horizontal'
                                     }
                        )
-# use ctx to add a basemap     
-ctx.add_basemap(ax=ax, 
-               attribution=False,
-               crs=scandi_countries.crs.to_string())
+
 
 ax.set_title('Arctic communities in Scandinavia',  fontsize=20)
 ax.set_xlabel('Longitude')
@@ -242,6 +259,20 @@ ax.set_ylabel('Latitude')
 
 plt.show()
 ```
+
+<!--
+# use ctx to add a basemap     
+# ctx.add_basemap(ax=ax, 
+#                attribution=False,
+#                crs=scandi_countries.crs.to_string())
+-->
+
+<!--
+EXERCISES:
+
+Add the scandinavian communities as dots on the choropleth map.
+
+-->
 
 <!--
 ## Complete workflow
@@ -299,7 +330,7 @@ scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
 
 The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
 
-## Referencs
+## References
 
 Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
 
