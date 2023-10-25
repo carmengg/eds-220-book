@@ -51,6 +51,77 @@ Remember: when working with a shapefile all the associated files must have the s
 Each shapefile can only hold one type of vector data. So only points, only lines, or only polygons can be inside a single shapefile. 
 :::
 
+
+## GeoJSON
+
+[GeoJSON](https://en.wikipedia.org/wiki/GeoJSON), which stands for Geographic JavaScript Object Notation, is an open format for encoding vector data (points, lines, polygons, and multipolygons) and their attributes. 
+It is a popular format for web mapping applications. 
+The GeoJSON format uses a single file, with extension `.json` or `.geojson`. 
+
+While shapefiles can be in any coordinate reference system, the [GeoJSON specification](https://datatracker.ietf.org/doc/html/rfc7946) requires GeoJSON files to use the World Geodetic System 1984 (WGS84) and all points being expressed as longitude and latitude units of decimal degrees.
+
+Data in a GeoJSON is stored as attribute-value pairs (think dictionaries!) and lists. The following are examples of how points, lines, and polygons are represented as GeoJSON features:
+
+![Source: Wikipedia](/images/lesson-7-vector-data/geojson-vector-types.png)
+
+The followng is an example of a full GeoJSON file. Notice multiple types of geometries can be mixed within the same file:
+```python
+# Source: Wikipedia
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [102.0, 0.5]
+      },
+      "properties": {
+        "prop0": "value0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [102.0, 0.0],
+          [103.0, 1.0],
+          [104.0, 0.0],
+          [105.0, 1.0]
+        ]
+      },
+      "properties": {
+        "prop0": "value0",
+        "prop1": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [100.0, 0.0],
+            [101.0, 0.0],
+            [101.0, 1.0],
+            [100.0, 1.0],
+            [100.0, 0.0]
+          ]
+        ]
+      },
+      "properties": {
+        "prop0": "value0",
+        "prop1": { "this": "that" }
+      }
+    }
+  ]
+}
+```
+
+The website [https://geojson.io/](https://geojson.io/) is a nice tool to easily create GeoJSON files.
+
+
 <!--
 ## Acknowledgements
 -->
