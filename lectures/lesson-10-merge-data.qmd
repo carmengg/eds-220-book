@@ -1,0 +1,74 @@
+# Merging data
+
+In this section we will learn how to join dataframes and will apply this to creating a choropleth map with `geopandas`.
+
+
+
+Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.
+
+When conceptualizing merges, one can think of two tables, one on the *left* and one on the *right*.
+
+![](images/merging_data/join-diagrams-separate.png)
+
+## Inner Join
+An *INNER JOIN*  is when you merge the subset of rows that have matches in both the left table and the right table.
+
+![](images/merging_data/join-diagrams-inner.png)
+
+## Left Join
+A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
+
+![](images/merging_data/join-diagrams-left.png)
+
+## Right Join
+A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables
+
+![](images/merging_data/join-diagrams-right.png)
+
+
+## Full Outer Join
+Finally, a *FULL OUTER JOIN* includes all data from all rows in both tables, and includes missing values wherever necessary.
+
+![](images/merging_data/join-diagrams-full.png)
+
+Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.
+
+![Image source: R for Data Science, Wickham & Grolemund.](images/merging_data/join-venn.png)
+
+We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-problems target="_blank"> the Relational Data chapter in the "R for Data Science" book </a> for more examples and best practices about joins.
+
+## Goal
+Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map:
+
+## Data
+
+We will use two datasets in this lesson. 
+The first dataset is [list of Arctic communities and their location (Brook, 2023)](https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80) which can be accessed through the DataONE repository. 
+This is a GEOJSON file with the following attributes:
+
+- **name**: Name of Arctic community, 
+- **population**: Population of Arctic community, as of 2022
+- **country**: Country that the Arctic community falls within (see dataset metadata for the codes)
+- **geoname-id**: Numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data
+
+The second dataset we will use is [Natural Earth's medium scale  cultural boundaries data (1:50m)](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/). 
+This dataset comes as a shapefile we will need to download. 
+[Natural Earth](https://www.naturalearthdata.com) is a public domain dataset with ready-to-use data for creating maps. 
+
+
+## 
+
+## Radiant Earth countries
+
+
+<!--
+## Acknowledgments
+
+The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
+
+Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
+
+## Referencs
+Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude >= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.
+
+-->
