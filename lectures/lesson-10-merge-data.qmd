@@ -113,10 +113,38 @@ scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
 scandi_n_comms
 ```
 
-## 
+### Countries outlines 
+
+Now we move on to preparing the polygons for the Scandinavian countries.
+To import the Natural Earth countries polygons we use the `geopandas.read_file()` function again:
 
 ```{python}
-# Add country names 
+# import countries polygons
+countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
+countries.head()
+```
+
+Taking a quick look at this dataset:
+
+```{python}
+# quick view
+countries.plot()
+```
+
+Notice the column names are in all caps. 
+It is easier to work with column names in small caps because we don't need to be pressing shift or capslock. 
+We can do this update like this:
+
+```{python}
+# re-assign the column names: .str.lower() makes them lower case
+countries.columns = countries.columns.str.lower()
+print(countries.columns, '\n')
+```
+
+Next, we want to select only the data for Scandinavian countries and a few of the 169 columns in the dataset:
+
+```{python}
+# names of Scandinavian countries
 scandi_names = ['Aland Islands',
                 'Denmark',
                 'Finland',
@@ -124,18 +152,43 @@ scandi_names = ['Aland Islands',
                 'Iceland',
                 'Norway',
                 'Sweden']
+
+# select Scandi countries and adming, type, and geometry columns
+# remeber: the geometry column has the polygons for each country
+scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
+scandi_countries
+```
+
+Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
+We can verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
+
+```{python}
+# check Aland Islands is nowehere in data frame
+'Aland Islands' in countries.values
+```
+
+The `values` attribute of a dataframe returns all the values in the dataframe as an array:
+
+```{python}
+# the underlying values of the dataframe
+countries.values
+```
+
+
+
+```{python}
+# Add country names 
 scandi_n_comms['admin'] = scandi_names
 scandi_n_comms
 ```
 
-<!--
+
 ## Acknowledgments
 
 The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
 
+## Referencs
+
 Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub & Delta Stewardship Council.
 
-## Referencs
 Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude >= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.
-
--->
