@@ -252,24 +252,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins"><span class="toc-section-number">12.1</span>  Types of Joins</a>
+  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal"><span class="toc-section-number">12.1</span>  Goal</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">12.2</span>  Data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">12.3</span>  Data preparation</a>
   <ul class="collapse">
-  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="toc-section-number">12.1.1</span>  Inner Join</a></li>
-  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">12.1.2</span>  Left Join</a></li>
-  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">12.1.3</span>  Right Join</a></li>
-  <li><a href="#full-outer-join" id="toc-full-outer-join" class="nav-link" data-scroll-target="#full-outer-join"><span class="toc-section-number">12.1.4</span>  Full Outer Join</a></li>
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">12.3.1</span>  Countries</a></li>
+  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="toc-section-number">12.3.2</span>  Arctic communities</a></li>
   </ul></li>
-  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="toc-section-number">12.2</span>  Goal</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">12.3</span>  Data</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">12.4</span>  Data preparation</a>
-  <ul class="collapse">
-  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">12.4.1</span>  Countries</a></li>
-  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="toc-section-number">12.4.2</span>  Arctic communities</a></li>
-  </ul></li>
-  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">12.5</span>  Merge datasets</a></li>
-  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">12.6</span>  Choropleth map</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="toc-section-number">12.7</span>  Acknowledgments</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.8</span>  References</a></li>
+  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">12.4</span>  Merge datasets</a></li>
+  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">12.5</span>  Choropleth map</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.6</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -320,47 +312,53 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 
 -->
 <p>In this section we will learn how to join dataframes and will apply this to creating a choropleth map with <code>geopandas</code>.</p>
-<section id="types-of-joins" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">12.1</span> Types of Joins</h2>
-<p>Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.</p>
-<p>When conceptualizing merges, one can think of two tables, one on the <em>left</em> and one on the <em>right</em>.</p>
-<p><img src="../images/merging_data/join-diagrams-separate.png" class="img-fluid"></p>
-<section id="inner-join" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">12.1.1</span> Inner Join</h3>
-<p>An <em>INNER JOIN</em> is when you merge the subset of rows that have matches in both the left table and the right table.</p>
-<p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid"></p>
-</section>
-<section id="left-join" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">12.1.2</span> Left Join</h3>
-<p>A <em>LEFT JOIN</em> takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don’t match from the left table are still provided with a missing value (na) from the right table.</p>
-<p><img src="../images/merging_data/join-diagrams-left.png" class="img-fluid"></p>
-</section>
-<section id="right-join" class="level3" data-number="12.1.3">
-<h3 data-number="12.1.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">12.1.3</span> Right Join</h3>
-<p>A <em>RIGHT JOIN</em> is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables</p>
-<p><img src="../images/merging_data/join-diagrams-right.png" class="img-fluid"></p>
-</section>
-<section id="full-outer-join" class="level3" data-number="12.1.4">
-<h3 data-number="12.1.4" class="anchored" data-anchor-id="full-outer-join"><span class="header-section-number">12.1.4</span> Full Outer Join</h3>
-<p>Finally, a <em>FULL OUTER JOIN</em> includes all data from all rows in both tables, and includes missing values wherever necessary.</p>
-<p><img src="../images/merging_data/join-diagrams-full.png" class="img-fluid"></p>
-<p>Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/merging_data/join-venn.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund.</figcaption><p></p>
-</figure>
-</div>
-<p>We suggest reading<a href="https://r4ds.had.co.nz/relational-data.html#join-problems" target="_blank"> the Relational Data chapter in the “R for Data Science” book </a> for more examples and best practices about joins.</p>
-</section>
-</section>
-<section id="goal" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="goal"><span class="header-section-number">12.2</span> Goal</h2>
+
+<!--
+## Types of Joins
+
+Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.
+
+When conceptualizing merges, one can think of two tables, one on the *left* and one on the *right*.
+
+![](/images/merging_data/join-diagrams-separate.png)
+
+### Inner Join
+An *INNER JOIN*  is when you merge the subset of rows that have matches in both the left table and the right table.
+
+![](/images/merging_data/join-diagrams-inner.png)
+
+### Left Join
+A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. 
+Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
+
+![](/images/merging_data/join-diagrams-left.png)
+
+### Right Join
+A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. 
+Notice that left and right joins can ultimately be the same depending on the positions of the tables
+
+![](/images/merging_data/join-diagrams-right.png)
+
+
+### Full Outer Join
+Finally, a *FULL OUTER JOIN* includes all data from all rows in both tables, and includes missing values wherever necessary.
+
+![](/images/merging_data/join-diagrams-full.png)
+
+Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.
+
+![Image source: R for Data Science, Wickham & Grolemund.](/images/merging_data/join-venn.png)
+
+We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-problems target="_blank"> the Relational Data chapter in the "R for Data Science" book </a> for more examples and best practices about joins.
+
+-->
+<section id="goal" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">12.1</span> Goal</h2>
 <p>Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in <a href="https://en.wikipedia.org/wiki/Scandinavia">Scandinavia</a>:</p>
 <p><img src="../images/arctic-comms.png" class="img-fluid"></p>
 </section>
-<section id="data" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="data"><span class="header-section-number">12.3</span> Data</h2>
+<section id="data" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="data"><span class="header-section-number">12.2</span> Data</h2>
 <p>We will use two datasets in this lesson. The first dataset is <a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/">Natural Earth’s medium scale cultural boundaries data (1:50m)</a>. We can obtain this dataset by downloading the shapefile. <a href="https://www.naturalearthdata.com">Natural Earth</a> is a public domain dataset with ready-to-use data for creating maps.</p>
 <p>The second dataset we will use is a <a href="https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80">list of Arctic communities and their location (Brook, 2023)</a> which can be accessed through the DataONE repository. This is a GeoJSON file with the following attributes:</p>
 <ul>
@@ -370,8 +368,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <li><strong>geoname-id</strong>: numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data</li>
 </ul>
 </section>
-<section id="data-preparation" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">12.4</span> Data preparation</h2>
+<section id="data-preparation" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">12.3</span> Data preparation</h2>
 <p>We start our analysis by importing the necessary libraries:</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -388,14 +386,14 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display all column when looking at dataframes</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max.columns"</span>, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="countries" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="countries"><span class="header-section-number">12.4.1</span> Countries</h3>
+<section id="countries" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="countries"><span class="header-section-number">12.3.1</span> Countries</h3>
 <p>Now we move on to preparing the polygons for the Scandinavian countries. To import the Natural Earth countries polygons we use the <code>geopandas.read_file()</code> function again:</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import countries polygons</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> gpd.read_file(<span class="st">'data/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>countries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <div>
 
@@ -1444,7 +1442,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick view</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>countries.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1480,7 +1478,7 @@ import contextily as ctx
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># remeber: the geometry column has the polygons for each country</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> countries.loc[countries.admin.isin(scandi_names),[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="29">
 
 <div>
 
@@ -1539,7 +1537,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check Aland Islands is nowhere in data frame</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">'Aland Islands'</span> <span class="kw">in</span> countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>False</code></pre>
 </div>
 </div>
@@ -1547,7 +1545,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the underlying values of the dataframe</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array([['Admin-0 country', 1, 3, ..., nan, nan,
         &lt;POLYGON ((31.288 -22.402, 31.197 -22.345, 31.073 -22.308, 30.916 -22.291, 3...&gt;],
        ['Admin-0 country', 1, 3, ..., nan, nan,
@@ -1565,14 +1563,14 @@ import contextily as ctx
 </div>
 </div>
 </section>
-<section id="arctic-communities" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="arctic-communities"><span class="header-section-number">12.4.2</span> Arctic communities</h3>
+<section id="arctic-communities" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="arctic-communities"><span class="header-section-number">12.3.2</span> Arctic communities</h3>
 <p>In the same way as we previously used <code>pandas.read_csv()</code>, we can read in the Arctic communities data directly from the data repository using <code>geopandas.read_file()</code>:</p>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>communities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
 
@@ -1636,7 +1634,7 @@ import contextily as ctx
 <p>Notice that the <code>countries</code> and <code>communities</code> GeoDataFrames both have the same crs:</p>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>countries.crs <span class="op">==</span> communities.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>True</code></pre>
 </div>
 </div>
@@ -1671,7 +1669,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of communities per country</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
 
@@ -1775,7 +1773,7 @@ import contextily as ctx
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>scandi_codes <span class="op">=</span> [<span class="st">'DK'</span>,<span class="st">'NO'</span>,<span class="st">'SE'</span>,<span class="st">'FO'</span>,<span class="st">'FI'</span>,<span class="st">'IS'</span>,<span class="st">'AX'</span>]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="60">
+<div class="cell-output cell-output-display" data-execution_count="37">
 
 <div>
 
@@ -1830,12 +1828,12 @@ import contextily as ctx
 </div>
 </section>
 </section>
-<section id="merge-datasets" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="merge-datasets"><span class="header-section-number">12.5</span> Merge datasets</h2>
+<section id="merge-datasets" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="merge-datasets"><span class="header-section-number">12.4</span> Merge datasets</h2>
 <p>To merge two datasets they need to have at least one column in common. Currently our datasets do not have any columns in common:</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="38">
 
 <div>
 
@@ -1868,7 +1866,7 @@ import contextily as ctx
 </div>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>scandi_n_comms.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="39">
 
 <div>
 
@@ -1901,7 +1899,7 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add country names </span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
 
@@ -1962,10 +1960,36 @@ import contextily as ctx
 </div>
 </div>
 </div>
+<p>To merge dataframes we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html#pandas.merge"><code>pandas.merge()</code> function</a>. The basic syntax for it is:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>output_df <span class="op">=</span> pd.merge(left_df,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                     right_df, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                     how <span class="op">=</span> type_of_join, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                     on <span class="op">=</span> column_to_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where</p>
+<ul>
+<li><code>output_df</code> is the dataframe resulting from the merge,</li>
+<li><code>left_df</code> is the dataframe we have “on the left side”,</li>
+<li><code>right_df</code> is the dataframe we have “on the right side”,</li>
+<li><code>how</code> specifies the type of join between the left and right dataframes, (<a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html#pandas.merge">check the options here</a>), the default is to do an inner join,</li>
+<li><code>on</code> specifies the column to join on, this column must be present in both our dataframes.</li>
+</ul>
+<p>In our case we want to perform an inner join between our dataframes. This will merge the subset of rows that have matches in both the left table and the right table.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund</figcaption><p></p>
+</figure>
+</div>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> pd.merge(scandi_countries,scandi_n_comms)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge dataframes </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> pd.merge(scandi_countries,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                            scandi_n_comms,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                            how<span class="op">=</span><span class="st">'inner'</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                            on<span class="op">=</span><span class="st">'admin'</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># update index</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> scandi_countries.set_index(<span class="st">'admin'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
 
 <div>
 
@@ -1973,57 +1997,57 @@ import contextily as ctx
   <thead>
     <tr>
       <th></th>
-      <th>admin</th>
       <th>type</th>
       <th>geometry</th>
       <th>country</th>
       <th>n_communities</th>
     </tr>
+    <tr>
+      <th>admin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Sweden</td>
+      <th>Sweden</th>
       <td>Sovereign country</td>
       <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
       <td>SE</td>
       <td>133</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Norway</td>
+      <th>Norway</th>
       <td>Sovereign country</td>
       <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
       <td>NO</td>
       <td>48</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Iceland</td>
+      <th>Iceland</th>
       <td>Sovereign country</td>
       <td>POLYGON ((-15.54312 66.22852, -15.42847 66.224...</td>
       <td>IS</td>
       <td>5</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Finland</td>
+      <th>Finland</th>
       <td>Country</td>
       <td>MULTIPOLYGON (((24.15547 65.80527, 24.04902 65...</td>
       <td>FI</td>
       <td>98</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>Faroe Islands</td>
+      <th>Faroe Islands</th>
       <td>Dependency</td>
       <td>MULTIPOLYGON (((-6.62319 61.80596, -6.64277 61...</td>
       <td>FO</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Denmark</td>
+      <th>Denmark</th>
       <td>Country</td>
       <td>MULTIPOLYGON (((12.56875 55.78506, 12.57119 55...</td>
       <td>DK</td>
@@ -2034,44 +2058,54 @@ import contextily as ctx
 </div>
 </div>
 </div>
+<p>Notice that the row for Aland Islands is not present in the merged dataframe. This is expected because although ‘Aland Islands’ was a value in the admin column of the <code>scandi_n_comms</code>, it wasn’t a value in the <code>scand_countries</code> admin column.</p>
+<p>The Aland Islands is an autonomous region of Finland and there is one Arctic community registered in this region. We will directly add one to Finland to not lose this value in the map:</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.at[<span class="st">'Finland'</span>, <span class="st">'n_communities'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scandi_countries.at[<span class="st">'Finland'</span>, <span class="st">'n_communities'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>99</code></pre>
+</div>
+</div>
 </section>
-<section id="choropleth-map" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="choropleth-map"><span class="header-section-number">12.6</span> Choropleth map</h2>
+<section id="choropleth-map" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="choropleth-map"><span class="header-section-number">12.5</span> Choropleth map</h2>
 <p>A <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth map</a> is an efficient way to visualize aggregate data per region.</p>
 <p>To make a choropleth map from our polygons <code>GeoDataFrame</code> we need to specify the <code>column</code> parameter in <code>plot()</code> and make it equal to the column with the values we want to plot in each country.</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-10-merge-data_files/figure-html/cell-22-output-2.png" width="442" height="411"></p>
+<p><img src="lesson-10-merge-data_files/figure-html/cell-23-output-2.png" width="442" height="411"></p>
 </div>
 </div>
 <p>To finish, we can use <code>matplotlib</code> to customize our map:</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(ax<span class="op">=</span>ax,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                      column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                       cmap<span class="op">=</span><span class="st">'BuPu'</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                       legend<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                       edgecolor<span class="op">=</span><span class="st">'black'</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                       legend_kwds<span class="op">=</span>{<span class="st">'shrink'</span>:<span class="fl">.8</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'label'</span>: <span class="st">'Number of Arctic communities'</span>, </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'orientation'</span>: <span class="st">'horizontal'</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                                    }</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>                       )</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Arctic communities in Scandinavia'</span>,  fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(ax<span class="op">=</span>ax,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                      column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                       cmap<span class="op">=</span><span class="st">'BuPu'</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                       legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                       edgecolor<span class="op">=</span><span class="st">'black'</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                       legend_kwds<span class="op">=</span>{<span class="st">'shrink'</span>:<span class="fl">.8</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'label'</span>: <span class="st">'Number of Arctic communities'</span>, </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'orientation'</span>: <span class="st">'horizontal'</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                                    }</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Arctic communities in Scandinavia'</span>,  fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-10-merge-data_files/figure-html/cell-23-output-1.png" width="614" height="746"></p>
+<p><img src="lesson-10-merge-data_files/figure-html/cell-24-output-1.png" width="614" height="746"></p>
 </div>
 </div>
 <!--
@@ -2137,13 +2171,15 @@ scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
 
 ```
 -->
+<!--
+## Acknowledgments
+
+The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
+
+-->
 </section>
-<section id="acknowledgments" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="acknowledgments"><span class="header-section-number">12.7</span> Acknowledgments</h2>
-<p>The section about merging data is based on the <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data">Data Modeling Essentials R lesson</a> from the NCEAS Learning Hub.</p>
-</section>
-<section id="references" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="references"><span class="header-section-number">12.8</span> References</h2>
+<section id="references" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="references"><span class="header-section-number">12.6</span> References</h2>
 <p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
 <p>Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude &gt;= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.</p>
 

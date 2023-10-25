@@ -21,6 +21,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 
 In this section we will learn how to join dataframes and will apply this to creating a choropleth map with `geopandas`.
 
+<!--
 ## Types of Joins
 
 Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.
@@ -35,12 +36,14 @@ An *INNER JOIN*  is when you merge the subset of rows that have matches in both 
 ![](/images/merging_data/join-diagrams-inner.png)
 
 ### Left Join
-A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
+A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. 
+Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
 
 ![](/images/merging_data/join-diagrams-left.png)
 
 ### Right Join
-A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables
+A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. 
+Notice that left and right joins can ultimately be the same depending on the positions of the tables
 
 ![](/images/merging_data/join-diagrams-right.png)
 
@@ -55,6 +58,8 @@ Sometimes people represent joins as Venn diagrams, showing which parts of the le
 ![Image source: R for Data Science, Wickham & Grolemund.](/images/merging_data/join-venn.png)
 
 We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-problems target="_blank"> the Relational Data chapter in the "R for Data Science" book </a> for more examples and best practices about joins.
+
+-->
 
 ## Goal
 Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in [Scandinavia](https://en.wikipedia.org/wiki/Scandinavia):
@@ -243,9 +248,49 @@ scandi_n_comms['admin'] = scandi_names
 scandi_n_comms
 ```
 
+To merge dataframes we can use the [`pandas.merge()` function](https://pandas.pydata.org/docs/reference/api/pandas.merge.html#pandas.merge). 
+The basic syntax for it is:
+
+```python
+output_df = pd.merge(left_df,
+                     right_df, 
+                     how = type_of_join, 
+                     on = column_to_join)
+```
+where
+
+- `output_df` is the dataframe resulting from the merge,
+- `left_df` is the dataframe we have "on the left side",
+- `right_df` is the dataframe we have "on the right side",
+- `how` specifies the type of join between the left and right dataframes, ([check the options here](https://pandas.pydata.org/docs/reference/api/pandas.merge.html#pandas.merge)), the default is to do an inner join,
+- `on` specifies the column to join on, this column must be present in both our dataframes. 
+
+In our case we want to perform an inner join between our dataframes. This will merge the subset of rows that have matches in both the left table and the right table.
+
+![Image source: R for Data Science, Wickham & Grolemund](/images/merging_data/join-diagrams-inner.png)
+
+
 ```{python}
-scandi_countries = pd.merge(scandi_countries,scandi_n_comms)
+# merge dataframes 
+scandi_countries = pd.merge(scandi_countries,
+                            scandi_n_comms,
+                            how='inner',
+                            on='admin')
+# update index
+scandi_countries = scandi_countries.set_index('admin')
 scandi_countries
+```
+
+Notice that the row for Aland Islands is not present in the merged dataframe. 
+This is expected because although 'Aland Islands' was a value in the admin column of the `scandi_n_comms`, it wasn't a value in the `scand_countries` admin column. 
+
+The Aland Islands is an autonomous region of Finland and there is one Arctic community registered in this region. 
+We will directly add one to Finland to not lose this value in the map:
+
+```{python}
+scandi_countries.at['Finland', 'n_communities'] += 1
+
+print(scandi_countries.at['Finland', 'n_communities'])
 ```
 
 ## Choropleth map
@@ -349,9 +394,12 @@ scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
 ```
 -->
 
+<!--
 ## Acknowledgments
 
 The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
+
+-->
 
 ## References
 
