@@ -133,9 +133,18 @@ countries.columns = countries.columns.str.lower()
 print(countries.columns)
 ```
 
-Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:
+Finally, we have too many columns, so let's only keep a few*:
 
 ```{python}
+# remeber: the geometry column has the polygons for each country
+countries_sub = countries[['admin','type','geometry']]
+countries_sub.head()
+```
+
+<!--
+Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:
+
+```python
 # names of Scandinavian countries
 scandi_names = ['Aland Islands',
                 'Denmark',
@@ -154,17 +163,18 @@ scandi_countries
 Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
 Let's verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
 
-```{python}
+```python
 # check Aland Islands is nowhere in data frame
 'Aland Islands' in countries.values
 ```
 
 The `values` attribute of a dataframe returns all the values in the dataframe as an array:
 
-```{python}
+```python
 # the underlying values of the dataframe
 countries.values
 ```
+-->
 
 ### Arctic communities
 
@@ -192,7 +202,7 @@ communities.plot(ax=ax, color='red')
 plt.show()
 ```
 
-Next, we want to calculate the number of arctic communities by country. 
+Next, we want to calculate the number of Arctic communities by country. 
 
 ```{python}
 # calculate number of communities by country
@@ -232,18 +242,24 @@ To merge two datasets they need to have at least one column in common.
 Currently our datasets do not have any columns in common:
 
 ```{python}
-scandi_countries.head(2)
+countries_sub.head(2)
 ```
 
 ```{python}
 scandi_n_comms.head(2)
 ```
 
-We can easily fix this by adding an `admin` column to `scandi_n_comms`. 
-Conveniently, the `scandi_names` list is in the same order as the country codes in the `scandi_n_comms` dataframe, so we can readily add this list as a new column:
+We can easily fix this by adding an `admin` column to `scandi_n_comms`:
 
 ```{python}
 # Add country names 
+scandi_names = ['Aland Islands',
+                'Denmark',
+                'Finland',
+                'Faroe Islands',
+                'Iceland',
+                'Norway',
+                'Sweden']
 scandi_n_comms['admin'] = scandi_names
 scandi_n_comms
 ```
@@ -272,7 +288,7 @@ In our case we want to perform an inner join between our dataframes. This will m
 
 ```{python}
 # merge dataframes 
-scandi_countries = pd.merge(scandi_countries,
+scandi_countries = pd.merge(countries_sub,
                             scandi_n_comms,
                             how='inner',
                             on='admin')
@@ -282,10 +298,22 @@ scandi_countries
 ```
 
 Notice that the row for Aland Islands is not present in the merged dataframe. 
-This is expected because although 'Aland Islands' was a value in the admin column of the `scandi_n_comms`, it wasn't a value in the `scand_countries` admin column. 
+We can verify the value 'Aland Islands' was *nowhere* in our original countries dataframe like this:
+
+```{python}
+# check Aland Islands is nowhere in data frame
+'Aland Islands' in countries.values
+```
+
+The `values` attribute of a dataframe returns all the values in the dataframe as an array:
+
+```{python}
+# the underlying values of the dataframe
+countries.values
+```
 
 The Aland Islands is an autonomous region of Finland and there is one Arctic community registered in this region. 
-We will directly add one to Finland to not lose this value in the map:
+We will directly add one to Finland to not lose this piece of data:
 
 ```{python}
 scandi_countries.at['Finland', 'n_communities'] += 1
@@ -342,7 +370,7 @@ Add the scandinavian communities as dots on the choropleth map.
 
 -->
 
-<!--
+
 ## Complete workflow
 
 ```python
@@ -391,8 +419,28 @@ scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','ty
 scandi_n_comms['admin'] = scandi_names
 scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
 
+# ======= CREATE MAP =======
+fig, ax = plt.subplots(figsize=(10, 10))
+
+scandi_countries.plot(ax=ax,
+                      column='n_communities',
+                       cmap='BuPu',
+                       legend=True,
+                       edgecolor='black',
+                       legend_kwds={'shrink':.8,
+                                    'label': 'Number of Arctic communities', 
+                                    'orientation': 'horizontal'
+                                    }
+                       )
+
+
+ax.set_title('Arctic communities in Scandinavia',  fontsize=20)
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+plt.show()
 ```
--->
+
 
 <!--
 ## Acknowledgments

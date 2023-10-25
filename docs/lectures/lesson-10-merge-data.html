@@ -261,7 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">12.4</span>  Merge datasets</a></li>
   <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">12.5</span>  Choropleth map</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.6</span>  References</a></li>
+  <li><a href="#complete-workflow" id="toc-complete-workflow" class="nav-link" data-scroll-target="#complete-workflow"><span class="toc-section-number">12.6</span>  Complete workflow</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.7</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -393,7 +394,7 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import countries polygons</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> gpd.read_file(<span class="st">'data/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>countries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="47">
 
 <div>
 
@@ -1442,7 +1443,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick view</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>countries.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1463,22 +1464,12 @@ import contextily as ctx
       dtype='object', length=169)</code></pre>
 </div>
 </div>
-<p>Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:</p>
+<p>Finally, we have too many columns, so let’s only keep a few*:</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names of Scandinavian countries</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scandi_names <span class="op">=</span> [<span class="st">'Aland Islands'</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Denmark'</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Finland'</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Faroe Islands'</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Iceland'</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Norway'</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Sweden'</span>]</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># select Scandi countries and admin, type, and geometry columns</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># remeber: the geometry column has the polygons for each country</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> countries.loc[countries.admin.isin(scandi_names),[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remeber: the geometry column has the polygons for each country</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>countries_sub <span class="op">=</span> countries[[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>countries_sub.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
 
 <div>
 
@@ -1493,84 +1484,83 @@ import contextily as ctx
   </thead>
   <tbody>
     <tr>
-      <th>48</th>
-      <td>Sweden</td>
+      <th>0</th>
+      <td>Zimbabwe</td>
       <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
+      <td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
     </tr>
     <tr>
-      <th>88</th>
-      <td>Norway</td>
+      <th>1</th>
+      <td>Zambia</td>
       <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
+      <td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
     </tr>
     <tr>
-      <th>145</th>
-      <td>Iceland</td>
+      <th>2</th>
+      <td>Yemen</td>
       <td>Sovereign country</td>
-      <td>POLYGON ((-15.54312 66.22852, -15.42847 66.224...</td>
+      <td>MULTIPOLYGON (((53.08564 16.64839, 52.58145 16...</td>
     </tr>
     <tr>
-      <th>169</th>
-      <td>Finland</td>
-      <td>Country</td>
-      <td>MULTIPOLYGON (((24.15547 65.80527, 24.04902 65...</td>
+      <th>3</th>
+      <td>Vietnam</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((104.06396 10.39082, 104.08301 ...</td>
     </tr>
     <tr>
-      <th>182</th>
-      <td>Faroe Islands</td>
-      <td>Dependency</td>
-      <td>MULTIPOLYGON (((-6.62319 61.80596, -6.64277 61...</td>
-    </tr>
-    <tr>
-      <th>183</th>
-      <td>Denmark</td>
-      <td>Country</td>
-      <td>MULTIPOLYGON (((12.56875 55.78506, 12.57119 55...</td>
+      <th>4</th>
+      <td>Venezuela</td>
+      <td>Sovereign country</td>
+      <td>MULTIPOLYGON (((-60.82119 9.13838, -60.94141 9...</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Notice the Aland Islands do not appear in the <code>scandi_countries</code> dataframe. Let’s verify that the ‘Aland Islands’ value does not occur anywhere in the dataframe:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check Aland Islands is nowhere in data frame</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">'Aland Islands'</span> <span class="kw">in</span> countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
-<pre><code>False</code></pre>
-</div>
-</div>
-<p>The <code>values</code> attribute of a dataframe returns all the values in the dataframe as an array:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the underlying values of the dataframe</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
-<pre><code>array([['Admin-0 country', 1, 3, ..., nan, nan,
-        &lt;POLYGON ((31.288 -22.402, 31.197 -22.345, 31.073 -22.308, 30.916 -22.291, 3...&gt;],
-       ['Admin-0 country', 1, 3, ..., nan, nan,
-        &lt;POLYGON ((30.396 -15.643, 30.251 -15.643, 29.995 -15.644, 29.73 -15.645, 29...&gt;],
-       ['Admin-0 country', 1, 3, ..., nan, nan,
-        &lt;MULTIPOLYGON (((53.086 16.648, 52.581 16.47, 52.448 16.391, 52.328 16.294, ...&gt;],
-       ...,
-       ['Admin-0 country', 3, 4, ..., nan, nan,
-        &lt;MULTIPOLYGON (((-45.718 -60.521, -45.5 -60.546, -45.386 -60.583, -45.357 -6...&gt;],
-       ['Admin-0 country', 3, 6, ..., nan, nan,
-        &lt;POLYGON ((-63.123 18.069, -63.011 18.069, -63.012 18.045, -63.023 18.019, -...&gt;],
-       ['Admin-0 country', 5, 6, ..., nan, nan,
-        &lt;POLYGON ((179.214 -8.524, 179.201 -8.535, 179.196 -8.535, 179.201 -8.512, 1...&gt;]],
-      dtype=object)</code></pre>
-</div>
-</div>
+<!--
+Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:
+
+```python
+# names of Scandinavian countries
+scandi_names = ['Aland Islands',
+                'Denmark',
+                'Finland',
+                'Faroe Islands',
+                'Iceland',
+                'Norway',
+                'Sweden']
+
+# select Scandi countries and admin, type, and geometry columns
+# remeber: the geometry column has the polygons for each country
+scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
+scandi_countries
+```
+
+Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
+Let's verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
+
+```python
+# check Aland Islands is nowhere in data frame
+'Aland Islands' in countries.values
+```
+
+The `values` attribute of a dataframe returns all the values in the dataframe as an array:
+
+```python
+# the underlying values of the dataframe
+countries.values
+```
+-->
 </section>
 <section id="arctic-communities" class="level3" data-number="12.3.2">
 <h3 data-number="12.3.2" class="anchored" data-anchor-id="arctic-communities"><span class="header-section-number">12.3.2</span> Arctic communities</h3>
 <p>In the same way as we previously used <code>pandas.read_csv()</code>, we can read in the Arctic communities data directly from the data repository using <code>geopandas.read_file()</code>:</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>communities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>communities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
 
 <div>
 
@@ -1632,31 +1622,31 @@ import contextily as ctx
 </div>
 </div>
 <p>Notice that the <code>countries</code> and <code>communities</code> GeoDataFrames both have the same crs:</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>countries.crs <span class="op">==</span> communities.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>countries.crs <span class="op">==</span> communities.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>This makes it easy to take a quick look at our communities data by plotting it on top of the countries dataframe:</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>countries.plot(ax<span class="op">=</span>ax)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>communities.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>countries.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>communities.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="lesson-10-merge-data_files/figure-html/cell-14-output-1.png" width="403" height="411"></p>
+<p><img src="lesson-10-merge-data_files/figure-html/cell-12-output-1.png" width="403" height="411"></p>
 </div>
 </div>
-<p>Next, we want to calculate the number of arctic communities by country.</p>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate number of communities by country</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract number of communities by country as a pd.Series</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> communities.groupby(<span class="st">'country'</span>).count().name</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the pd.Series into a pd.DataFrame and update it</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> pd.DataFrame(n_comms).rename(columns<span class="op">=</span>{<span class="st">'name'</span>:<span class="st">'n_communities'</span>}).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, we want to calculate the number of Arctic communities by country.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate number of communities by country</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract number of communities by country as a pd.Series</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> communities.groupby(<span class="st">'country'</span>).count().name</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the pd.Series into a pd.DataFrame and update it</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> pd.DataFrame(n_comms).rename(columns<span class="op">=</span>{<span class="st">'name'</span>:<span class="st">'n_communities'</span>}).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s break this down a bit:</p>
 <ul>
@@ -1666,10 +1656,10 @@ import contextily as ctx
 <li>The result is a single <code>pd.Series</code> in the variable <code>n_comms</code>.</li>
 <li>We then convert this <code>pd.Series</code> into a <code>pd.DataFrame</code> and clean it up a bit.</li>
 </ul>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of communities per country</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of communities per country</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
 
 <div>
 
@@ -1768,12 +1758,12 @@ import contextily as ctx
 </div>
 </div>
 <p>Since we only want data from Scandinavia, we can use the codes for these countries to locate these rows:</p>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select Scandinavia data</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>scandi_codes <span class="op">=</span> [<span class="st">'DK'</span>,<span class="st">'NO'</span>,<span class="st">'SE'</span>,<span class="st">'FO'</span>,<span class="st">'FI'</span>,<span class="st">'IS'</span>,<span class="st">'AX'</span>]</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select Scandinavia data</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>scandi_codes <span class="op">=</span> [<span class="st">'DK'</span>,<span class="st">'NO'</span>,<span class="st">'SE'</span>,<span class="st">'FO'</span>,<span class="st">'FI'</span>,<span class="st">'IS'</span>,<span class="st">'AX'</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
 
 <div>
 
@@ -1831,9 +1821,9 @@ import contextily as ctx
 <section id="merge-datasets" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="merge-datasets"><span class="header-section-number">12.4</span> Merge datasets</h2>
 <p>To merge two datasets they need to have at least one column in common. Currently our datasets do not have any columns in common:</p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countries_sub.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
 
 <div>
 
@@ -1848,25 +1838,25 @@ import contextily as ctx
   </thead>
   <tbody>
     <tr>
-      <th>48</th>
-      <td>Sweden</td>
+      <th>0</th>
+      <td>Zimbabwe</td>
       <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
+      <td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
     </tr>
     <tr>
-      <th>88</th>
-      <td>Norway</td>
+      <th>1</th>
+      <td>Zambia</td>
       <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
+      <td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>scandi_n_comms.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scandi_n_comms.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
 
 <div>
 
@@ -1894,12 +1884,19 @@ import contextily as ctx
 </div>
 </div>
 </div>
-<p>We can easily fix this by adding an <code>admin</code> column to <code>scandi_n_comms</code>. Conveniently, the <code>scandi_names</code> list is in the same order as the country codes in the <code>scandi_n_comms</code> dataframe, so we can readily add this list as a new column:</p>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add country names </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<p>We can easily fix this by adding an <code>admin</code> column to <code>scandi_n_comms</code>:</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add country names </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>scandi_names <span class="op">=</span> [<span class="st">'Aland Islands'</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Denmark'</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Finland'</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Faroe Islands'</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Iceland'</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Norway'</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Sweden'</span>]</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
 
 <div>
 
@@ -1961,10 +1958,10 @@ import contextily as ctx
 </div>
 </div>
 <p>To merge dataframes we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html#pandas.merge"><code>pandas.merge()</code> function</a>. The basic syntax for it is:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>output_df <span class="op">=</span> pd.merge(left_df,</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                     right_df, </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                     how <span class="op">=</span> type_of_join, </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                     on <span class="op">=</span> column_to_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>output_df <span class="op">=</span> pd.merge(left_df,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                     right_df, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                     how <span class="op">=</span> type_of_join, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                     on <span class="op">=</span> column_to_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where</p>
 <ul>
 <li><code>output_df</code> is the dataframe resulting from the merge,</li>
@@ -1980,16 +1977,16 @@ import contextily as ctx
 <p></p><figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund</figcaption><p></p>
 </figure>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge dataframes </span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> pd.merge(scandi_countries,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                            scandi_n_comms,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                            how<span class="op">=</span><span class="st">'inner'</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                            on<span class="op">=</span><span class="st">'admin'</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># update index</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> scandi_countries.set_index(<span class="st">'admin'</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge dataframes </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> pd.merge(countries_sub,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                            scandi_n_comms,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                            how<span class="op">=</span><span class="st">'inner'</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                            on<span class="op">=</span><span class="st">'admin'</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># update index</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> scandi_countries.set_index(<span class="st">'admin'</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
 
 <div>
 
@@ -2058,8 +2055,36 @@ import contextily as ctx
 </div>
 </div>
 </div>
-<p>Notice that the row for Aland Islands is not present in the merged dataframe. This is expected because although ‘Aland Islands’ was a value in the admin column of the <code>scandi_n_comms</code>, it wasn’t a value in the <code>scand_countries</code> admin column.</p>
-<p>The Aland Islands is an autonomous region of Finland and there is one Arctic community registered in this region. We will directly add one to Finland to not lose this value in the map:</p>
+<p>Notice that the row for Aland Islands is not present in the merged dataframe. We can verify the value ‘Aland Islands’ was <em>nowhere</em> in our original countries dataframe like this:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check Aland Islands is nowhere in data frame</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">'Aland Islands'</span> <span class="kw">in</span> countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>The <code>values</code> attribute of a dataframe returns all the values in the dataframe as an array:</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the underlying values of the dataframe</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>array([['Admin-0 country', 1, 3, ..., nan, nan,
+        &lt;POLYGON ((31.288 -22.402, 31.197 -22.345, 31.073 -22.308, 30.916 -22.291, 3...&gt;],
+       ['Admin-0 country', 1, 3, ..., nan, nan,
+        &lt;POLYGON ((30.396 -15.643, 30.251 -15.643, 29.995 -15.644, 29.73 -15.645, 29...&gt;],
+       ['Admin-0 country', 1, 3, ..., nan, nan,
+        &lt;MULTIPOLYGON (((53.086 16.648, 52.581 16.47, 52.448 16.391, 52.328 16.294, ...&gt;],
+       ...,
+       ['Admin-0 country', 3, 4, ..., nan, nan,
+        &lt;MULTIPOLYGON (((-45.718 -60.521, -45.5 -60.546, -45.386 -60.583, -45.357 -6...&gt;],
+       ['Admin-0 country', 3, 6, ..., nan, nan,
+        &lt;POLYGON ((-63.123 18.069, -63.011 18.069, -63.012 18.045, -63.023 18.019, -...&gt;],
+       ['Admin-0 country', 5, 6, ..., nan, nan,
+        &lt;POLYGON ((179.214 -8.524, 179.201 -8.535, 179.196 -8.535, 179.201 -8.512, 1...&gt;]],
+      dtype=object)</code></pre>
+</div>
+</div>
+<p>The Aland Islands is an autonomous region of Finland and there is one Arctic community registered in this region. We will directly add one to Finland to not lose this piece of data:</p>
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.at[<span class="st">'Finland'</span>, <span class="st">'n_communities'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2076,7 +2101,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -2120,57 +2145,74 @@ EXERCISES:
 Add the scandinavian communities as dots on the choropleth map.
 
 -->
-<!--
-## Complete workflow
-
-```python
-# import libraries
-import pandas as pd
-import matplotlib.pyplot as plt
-
-import geopandas as gpd
-
-# ======= IMPORT DATA ========
-# read in Arctic communities data
-communities = gpd.read_file('https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4')
-
-# import countries polygons
-countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
-countries.head()
-
-# ======= COMMUNITIES PREPARATION =======
-# extract number of communities by country as a pd.Series
-n_comms = communities.groupby('country').count().name
-
-# convert the pd.Series into a pd.DataFrame and update it
-n_comms = pd.DataFrame(n_comms).rename(columns={'name':'n_communities'}).reset_index()
-
-# select Scandinavia data
-scandi_codes = ['DK','NO','SE','FO','FI','IS','AX']
-scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
-
-# ======= COUNTRIES PREPARATION =======
-# make column names lower case
-countries.columns = countries.columns.str.lower()
-
-# names of Scandinavian countries
-scandi_names = ['Aland Islands',
-                'Denmark',
-                'Finland',
-                'Faroe Islands',
-                'Iceland',
-                'Norway',
-                'Sweden']
-
-# subset Scandinavian countries
-scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
-
-# ======= MERGE DATASETS =======
-scandi_n_comms['admin'] = scandi_names
-scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
-
-```
--->
+</section>
+<section id="complete-workflow" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="complete-workflow"><span class="header-section-number">12.6</span> Complete workflow</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ======= IMPORT DATA ========</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># import countries polygons</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> gpd.read_file(<span class="st">'ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp'</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>countries.head()</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ======= COMMUNITIES PREPARATION =======</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co"># extract number of communities by country as a pd.Series</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> communities.groupby(<span class="st">'country'</span>).count().name</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the pd.Series into a pd.DataFrame and update it</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>n_comms <span class="op">=</span> pd.DataFrame(n_comms).rename(columns<span class="op">=</span>{<span class="st">'name'</span>:<span class="st">'n_communities'</span>}).reset_index()</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="co"># select Scandinavia data</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>scandi_codes <span class="op">=</span> [<span class="st">'DK'</span>,<span class="st">'NO'</span>,<span class="st">'SE'</span>,<span class="st">'FO'</span>,<span class="st">'FI'</span>,<span class="st">'IS'</span>,<span class="st">'AX'</span>]</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ======= COUNTRIES PREPARATION =======</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="co"># make column names lower case</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>countries.columns <span class="op">=</span> countries.columns.<span class="bu">str</span>.lower()</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a><span class="co"># names of Scandinavian countries</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>scandi_names <span class="op">=</span> [<span class="st">'Aland Islands'</span>,</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Denmark'</span>,</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Finland'</span>,</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Faroe Islands'</span>,</span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Iceland'</span>,</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Norway'</span>,</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Sweden'</span>]</span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="co"># subset Scandinavian countries</span></span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> countries.loc[countries.admin.isin(scandi_names),[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="co"># ======= MERGE DATASETS =======</span></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> pd.merge(scandi_countries, scandi_n_comms)</span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a><span class="co"># ======= CREATE MAP =======</span></span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(ax<span class="op">=</span>ax,</span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a>                      column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>                       cmap<span class="op">=</span><span class="st">'BuPu'</span>,</span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>                       legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>                       edgecolor<span class="op">=</span><span class="st">'black'</span>,</span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>                       legend_kwds<span class="op">=</span>{<span class="st">'shrink'</span>:<span class="fl">.8</span>,</span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'label'</span>: <span class="st">'Number of Arctic communities'</span>, </span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'orientation'</span>: <span class="st">'horizontal'</span></span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a>                                    }</span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Arctic communities in Scandinavia'</span>,  fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)</span>
+<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)</span>
+<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!--
 ## Acknowledgments
 
@@ -2178,8 +2220,8 @@ The section about merging data is based on the [Data Modeling Essentials R lesso
 
 -->
 </section>
-<section id="references" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="references"><span class="header-section-number">12.6</span> References</h2>
+<section id="references" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="references"><span class="header-section-number">12.7</span> References</h2>
 <p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
 <p>Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude &gt;= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.</p>
 
