@@ -21,45 +21,41 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 
 In this section we will learn how to join dataframes and will apply this to creating a choropleth map with `geopandas`.
 
-<!--
 ## Types of Joins
 
-Frequently, analysis of data will require merging these separately managed tables back together. There are multiple ways to join the observations in two tables, based on how the rows of one table are merged with the rows of the other. Regardless of the join we will perform, we need to start by identifying the primary key in each table and how these appear as foreign keys in other tables.
-
-When conceptualizing merges, one can think of two tables, one on the *left* and one on the *right*.
+Frequently, analysis of data will require merging separate dataframes. 
+There are multiple ways to merge observations. 
+When conceptualizing merges, we think of two tables, one on the *left* and one on the *right*.
 
 ![](/images/merging_data/join-diagrams-separate.png)
 
 ### Inner Join
-An *INNER JOIN*  is when you merge the subset of rows that have matches in both the left table and the right table.
+An *inner join*  is when you merge the subset of rows that have matches in both the left table and the right table.
 
 ![](/images/merging_data/join-diagrams-inner.png)
 
 ### Left Join
-A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table. 
+A *left join* takes all of the rows from the left table, and merges on the data from matching rows in the right table. 
 Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
 
 ![](/images/merging_data/join-diagrams-left.png)
 
 ### Right Join
-A *RIGHT JOIN* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. 
-Notice that left and right joins can ultimately be the same depending on the positions of the tables
+A *right join* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. 
+Notice that left and right joins can ultimately be the same depending on the positions of the tables.
 
 ![](/images/merging_data/join-diagrams-right.png)
 
 
 ### Full Outer Join
-Finally, a *FULL OUTER JOIN* includes all data from all rows in both tables, and includes missing values wherever necessary.
+Finally, a *full outer join* includes all data from all rows in both tables, and includes missing values wherever necessary.
 
 ![](/images/merging_data/join-diagrams-full.png)
 
-Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.
+Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. 
+This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.
 
 ![Image source: R for Data Science, Wickham & Grolemund.](/images/merging_data/join-venn.png)
-
-We suggest reading<a href=https://r4ds.had.co.nz/relational-data.html#join-problems target="_blank"> the Relational Data chapter in the "R for Data Science" book </a> for more examples and best practices about joins.
-
--->
 
 ## Goal
 Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in [Scandinavia](https://en.wikipedia.org/wiki/Scandinavia):
@@ -140,41 +136,6 @@ Finally, we have too many columns, so let's only keep a few*:
 countries_sub = countries[['admin','type','geometry']]
 countries_sub.head()
 ```
-
-<!--
-Next, we want to select only the data for Scandinavian countries (Aland Islands, Denmark, Finland, Faroe Islands, Iceland, Norway, and Sweden) and a few of the 169 columns in the dataset:
-
-```python
-# names of Scandinavian countries
-scandi_names = ['Aland Islands',
-                'Denmark',
-                'Finland',
-                'Faroe Islands',
-                'Iceland',
-                'Norway',
-                'Sweden']
-
-# select Scandi countries and admin, type, and geometry columns
-# remeber: the geometry column has the polygons for each country
-scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
-scandi_countries
-```
-
-Notice the Aland Islands do not appear in the `scandi_countries` dataframe. 
-Let's verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
-
-```python
-# check Aland Islands is nowhere in data frame
-'Aland Islands' in countries.values
-```
-
-The `values` attribute of a dataframe returns all the values in the dataframe as an array:
-
-```python
-# the underlying values of the dataframe
-countries.values
-```
--->
 
 ### Arctic communities
 
@@ -357,17 +318,8 @@ plt.show()
 ```
 
 <!--
-# use ctx to add a basemap     
-# ctx.add_basemap(ax=ax, 
-#                attribution=False,
-#                crs=scandi_countries.crs.to_string())
--->
-
-<!--
 EXERCISES:
-
 Add the scandinavian communities as dots on the choropleth map.
-
 -->
 
 
@@ -433,7 +385,6 @@ scandi_countries.plot(ax=ax,
                                     }
                        )
 
-
 ax.set_title('Arctic communities in Scandinavia',  fontsize=20)
 ax.set_xlabel('Longitude')
 ax.set_ylabel('Latitude')
@@ -442,12 +393,9 @@ plt.show()
 ```
 
 
-<!--
 ## Acknowledgments
 
 The section about merging data is based on the [Data Modeling Essentials R lesson](https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data) from the NCEAS Learning Hub. 
-
--->
 
 ## References
 
