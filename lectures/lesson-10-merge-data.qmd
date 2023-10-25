@@ -138,7 +138,7 @@ We can do this update like this:
 ```{python}
 # re-assign the column names: .str.lower() makes them lower case
 countries.columns = countries.columns.str.lower()
-print(countries.columns, '\n')
+print(countries.columns)
 ```
 
 Next, we want to select only the data for Scandinavian countries and a few of the 169 columns in the dataset:
@@ -163,7 +163,7 @@ Notice the Aland Islands do not appear in the `scandi_countries` dataframe.
 We can verify that the 'Aland Islands' value does not occur anywhere in the dataframe:
 
 ```{python}
-# check Aland Islands is nowehere in data frame
+# check Aland Islands is nowhere in data frame
 'Aland Islands' in countries.values
 ```
 
@@ -174,7 +174,21 @@ The `values` attribute of a dataframe returns all the values in the dataframe as
 countries.values
 ```
 
+## Merge datasets 
 
+To merge two datasets they need to have at least one column in common. 
+Currently our datasets do not have any columns in column:
+
+```{python}
+scandi_countries.head(2)
+```
+
+```{python}
+scandi_n_comms.head(2)
+```
+
+We can easily fix it by adding an `admin` column to `scandi_n_comms`. 
+Conveniently, the `scandi_names` list is in the same order as the country codes in the `scandi_n_comms` dataframe, so we can readily add a new column:
 
 ```{python}
 # Add country names 
@@ -182,6 +196,68 @@ scandi_n_comms['admin'] = scandi_names
 scandi_n_comms
 ```
 
+scandi_countries = pd.merge(scandi_countries,scandi_n_comms)
+scandi_countries
+
+## Choropleth map
+
+A [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) is an efficient way to visualize aggregate data per region. 
+
+
+```{python}
+scandi_countries.plot(column='n_communities')
+```
+
+
+## Complete workflow
+
+```python
+# import libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+import geopandas as gpd
+
+# ======= IMPORT DATA ========
+# read in Arctic communities data
+communities = gpd.read_file('https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4')
+
+# import countries polygons
+countries = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
+countries.head()
+
+# ======= COMMUNITIES PREPARATION =======
+# extract number of communities by country as a pd.Series
+n_comms = communities.groupby('country').count().name
+
+# convert the pd.Series into a pd.DataFrame and update it
+n_comms = pd.DataFrame(n_comms).rename(columns={'name':'n_communities'}).reset_index()
+
+# select Scandinavia data
+scandi_codes = ['DK','NO','SE','FO','FI','IS','AX']
+scandi_n_comms = n_comms[n_comms.country.isin(scandi_codes)].copy()
+
+# ======= COUNTRIES PREPARATION =======
+# make column names lower case
+countries.columns = countries.columns.str.lower()
+
+# names of Scandinavian countries
+scandi_names = ['Aland Islands',
+                'Denmark',
+                'Finland',
+                'Faroe Islands',
+                'Iceland',
+                'Norway',
+                'Sweden']
+
+# subset Scandinavian countries
+scandi_countries = countries.loc[countries.admin.isin(scandi_names),['admin','type','geometry']]
+
+# ======= MERGE DATASETS =======
+scandi_n_comms['admin'] = scandi_names
+scandi_countries = pd.merge(scandi_countries, scandi_n_comms)
+
+```
 
 ## Acknowledgments
 
