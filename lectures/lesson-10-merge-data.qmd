@@ -27,30 +27,30 @@ Frequently, analysis of data will require merging separate dataframes.
 There are multiple ways to merge observations. 
 When conceptualizing merges, we think of two tables, one on the *left* and one on the *right*.
 
-![](/images/merging_data/join-diagrams-separate.png)
+![Image source: Data Modeling Essentials, NCEAS Learning Hub](/images/merging_data/join-diagrams-separate.png)
 
 ### Inner Join
 An *inner join*  is when you merge the subset of rows that have matches in both the left table and the right table.
 
-![](/images/merging_data/join-diagrams-inner.png)
+![Image source: Data Modeling Essentials, NCEAS Learning Hub](/images/merging_data/join-diagrams-inner.png)
 
 ### Left Join
 A *left join* takes all of the rows from the left table, and merges on the data from matching rows in the right table. 
 Keys that don't match from the left table are still provided with a missing value (na) from the right table. 
 
-![](/images/merging_data/join-diagrams-left.png)
+![Image source: Data Modeling Essentials, NCEAS Learning Hub](/images/merging_data/join-diagrams-left.png)
 
 ### Right Join
 A *right join* is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. 
 Notice that left and right joins can ultimately be the same depending on the positions of the tables.
 
-![](/images/merging_data/join-diagrams-right.png)
+![Image source: Data Modeling Essentials, NCEAS Learning Hub](/images/merging_data/join-diagrams-right.png)
 
 
 ### Full Join
 Finally, a *full outer join* (or just *full join*) includes all data from all rows in both tables, and includes missing values wherever necessary.
 
-![](/images/merging_data/join-diagrams-full.png)
+![Image source: Data Modeling Essentials, NCEAS Learning Hub](/images/merging_data/join-diagrams-full.png)
 
 Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. 
 This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.
@@ -244,7 +244,7 @@ where
 
 In our case we want to perform an inner join between our dataframes. This will merge the subset of rows that have matches in both the left table and the right table.
 
-![Image source: R for Data Science, Wickham & Grolemund](/images/merging_data/join-diagrams-inner.png)
+![Image source: Data Modeling Essentials, NCEAS Learning Hub](/images/merging_data/join-diagrams-inner.png)
 
 
 ```{python}
