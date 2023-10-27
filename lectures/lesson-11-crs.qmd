@@ -30,34 +30,55 @@ THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
 The ellipsoid is an abstract mathematical object on which we can locate points on it by using angles. 
 The coordinate system on the ellipsoid is (angles from x, angles form y). 
 
-THIS IS A DIAGRAM ABOUT LAT/LON COORDINATES ON THE ELLIPSOID
+[Latitude and longtide are angular coordinates on the ellipsoid. [Source: Coordinate systems and map projections - University of Twente](https://ltb.itc.utwente.nl/498/learningoutcome/show/59273)](/images/crs/lat_lon_ellipsoid.jpg)
 
 The next step is thus to make a decision on how to allign the ellipsoid so that it's surface corresponds to actual places on the Earth. 
 We could think, for example of how to place the ellipsoid's center relative to Earth's mass center (is it the same or is it off?) or how to allign the ellipsoid's axes with the Earth (which meridian will be our prime meridian?). 
 Generally speaking, a **geodetic datum**, or just **datum**, is how we are alligning our abstract ellipsoid to match the Earth's surface. 
 
-THIS IS A DIAGRAM ABOUT DIFFERENT WAYS TO ALLIGN THE ELLIPSOID WITH THE EARTH
-https://www.e-education.psu.edu/geog862/sites/www.e-education.psu.edu.geog862/files/images/Lesson05/European%20Datum.png
+[Regional datums to optimize location accuracy. Source: GPS for Land Surveyors](/images/crs/European%20Datum.png)
 
-Geographers and cartographers have used *many* datums across time and applications. 
+::: {.callout-caution}
+## Many datums
+Geographers and cartographers have created and used *many* datums across time and applications. 
 Sometimes datum refers both to a choice of ellipsoid *and* how to allign it to the Earth. 
-More importantly, different datums are used to increase the accuracy of representing locations at specific regions of Earth. 
+More importantly, different datums are used to increase the accuracy of representing different regions of Earth. 
 At the [GIS wiki](http://wiki.gis.com/wiki/index.php/Datum_(geodesy)) you can see a list of names of different datums optimized for different regions. 
-
+:::
 
 ### 3. Geographic CRS: Lat/lon coordinates for all the world
 
-At this point we have successfully made a correspondence between the surface of the Earth and our ellipsoid. 
+At this point, we have successfully made a correspondence between the Earth's surface of and our ellipsoid. 
 This means we can now use the lat,lon coordinates of the ellipsoid to locate *any* point on the Earth's sruface. 
 What we have now is a **geographic CRS**. 
 Geographic coordinate reference systems use degrees of latitude and longitude to locate points on the Earth, still thinking of it as a 3D object.
 
 ### 4. Projection: Flatten a portion of your ellipsoid to make a planar map
 
+A map is a flat (2-dimensional) representation of a region of the Earth. 
 In a geographic CRS we use a 3-dimensional model of the Earth (the ellipsoid) to locate places on it. 
+To transform our 3D ellipsoid to make a 2D representation we need to use a projection. 
+A **projection** is a method to convert between angular coordinates (i.e. lat, long coordiantes in 3D) and planar coordnates (i.e. x, y coordinates in 2D).
 
+[Image Source: Battersby, S. (2017). Map Projections. The Geographic Information Science & Technology Body of Knowledge](/images/crs/figure2-projections.png)
+
+::: {.callout-caution}
+## Many projections
+There are *many* ways to project an ellipsoid into a 2-dimensional region. 
+However, no matter what projection we use, the area, distances, or angles of the actual regions on Earth will be distorted when we project. 
+Ultimately, the choice of projection relies on whether we want to optimze calculations involving area, angle, or distance measurements, as well as aesthetics when creating a map.
+:::
+
+**More about projections:**
+
+🎥 [Vox - Why all world maps are wrong](https://www.youtube.com/watch?v=kIID5FDi2JQ)
+
+📖 [QGIS - A gentle introduction to GIS - Coordinate Reference Systems ](https://docs.qgis.org/3.28/en/docs/gentle_gis_introduction/coordinate_reference_systems.html)
 
 ### 5. Projected CRS: x,y coordinates for a specific region
+
+When we project a region of the ellipsoid to represent a region of Earth on the plane we obtain a new set of planar coordinates, thus obtaining a **projected CRS**. 
+A projected CRS must also include a **unit of measure** for its axes.  
 
 - Components of a CRSs
 
@@ -77,10 +98,8 @@ Projected:
 
 ## Resources
 
-📖 [Vox - Why all world maps are wrong](https://www.youtube.com/watch?v=kIID5FDi2JQ)
-
 📖 [Choosing the Right Map Projection by  Michael Corey](https://source.opennews.org/articles/choosing-right-map-projection/)
 
 📖 [NCEAS Overview of Coordinate Reference Systems (CRS) in R](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf)
 
-📖 [QGIS - A gentle introduction to GIS - Coordinate Reference Systems ](https://docs.qgis.org/3.28/en/docs/gentle_gis_introduction/coordinate_reference_systems.html)
+
