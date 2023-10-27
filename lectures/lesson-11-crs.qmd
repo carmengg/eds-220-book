@@ -10,7 +10,7 @@ A CRS is, at its core, a way to represent places on the Earth as coordinates.
 
 To understand what are the components of a CRS it can be useful to think of the process we would undergo to match places on the Earth to numbers (coordinates) that represent them.
 
-### 1.  Ellipsoid - Pick a shape for the Earth
+### 1.  Ellipsoid: Pick a shape for the Earth
 
 Start with the Earth. 
 Our planet is not a perfect spehere. 
@@ -25,7 +25,7 @@ The ellipsoid used to represent the Earth's shape has changed across time and it
 THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
 
 
-### 2. Datum - Allign the ellipsoid with Earth's locations
+### 2. Datum: Allign the ellipsoid with Earth's locations
 
 The ellipsoid is an abstract mathematical object on which we can locate points on it by using angles. 
 The coordinate system on the ellipsoid is (angles from x, angles form y). 
@@ -45,24 +45,35 @@ More importantly, different datums are used to increase the accuracy of represen
 At the [GIS wiki](http://wiki.gis.com/wiki/index.php/Datum_(geodesy)) you can see a list of names of different datums optimized for different regions. 
 
 
-### 3. Geographic CRS - Lat/lon coordinates for all the world
+### 3. Geographic CRS: Lat/lon coordinates for all the world
+
+At this point we have successfully made a correspondence between the surface of the Earth and our ellipsoid. 
+This means we can now use the lat,lon coordinates of the ellipsoid to locate *any* point on the Earth's sruface. 
+What we have now is a **geographic CRS**. 
+Geographic coordinate reference systems use degrees of latitude and longitude to locate points on the Earth, still thinking of it as a 3D object.
+
+### 4. Projection: Flatten a portion of your ellipsoid to make a planar map
+
+In a geographic CRS we use a 3-dimensional model of the Earth (the ellipsoid) to locate places on it. 
 
 
+### 5. Projected CRS: x,y coordinates for a specific region
 
-### 4. Projection - Flatten a portion of your ellipsoid to make a planar map
+- Components of a CRSs
 
+## Common CRSs
+Geographic:
 
-### 5. Projected CRS - x,y coordinates for specific region
+- WGS84
+- NAD83
 
-- Components of a CRS
+Projected: 
 
-## Geographic vs. Projected
+- UTM
 
-## Common CRS
+## Matching CRS
 
-## CRS in Python
-
-## Which CRS to chose
+- Which CRS to chose
 
 ## Resources
 
