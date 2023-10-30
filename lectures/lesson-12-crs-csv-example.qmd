@@ -281,7 +281,7 @@ where:
 
 In our case:
 
-```{python}
+```python
 bb_states = states.clip(bbox)
 bb_states.plot()
 ```
