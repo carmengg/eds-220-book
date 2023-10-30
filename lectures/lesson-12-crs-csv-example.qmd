@@ -153,7 +153,37 @@ states.statefp = states.statefp.astype('int')
 
 ## Data Preparation
 
-Our goal here is to only keep the 
+For the pupose of our map (and lesson), we want to keep only the states but remove western islands of Alaska. 
+Before we do that *we need to check* there is no power plant data over these islands. 
+We can do this by plotting the power plants dataset over the states. 
+
+### Reproject (change CRS)
+Remember these two datasets have different CRSs:
+
+```{python}
+# check if CRSs match
+# we SHOULD NOT combine data with different CRSs
+states.crs == power_plants.crs
+```
+
+Changing CRS in GeoPandas is very simple using the `to_crs()` method for `gpd.GeoDataFrame`s. 
+The general syntax is:
+```python
+updated_df = geo_df.to_crs(new_crs)
+```
+where:
+- `updated_df` is the output of the method,
+- `geo_df` is the `gpd.GeoDataFrame` we want to transform, 
+- `new_crs` an object of type CRS, the CRS we want to convert to. 
+
+In our case, we will convert the states `gpd.GeoDataFrame` to match the CRS of the power_plants `gpd.GeoDataFrame`:
+
+```{python}
+# reproject states to power_plants.crs
+states = states.to_crs(power_plants.crs)
+
+print
+```
 
 <!--
 https://medium.com/@alex_44314/use-python-geopandas-to-make-a-us-map-with-alaska-and-hawaii-39a9f5c222c6
