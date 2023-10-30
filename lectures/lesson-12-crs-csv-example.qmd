@@ -1,0 +1,25 @@
+# Updating CRS
+
+In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to make a CSV into a `geopandas.GeoDataFrame`, setting its CRS manually. 
+
+## Data
+We will use two datasets in this lesson. 
+The first one is a dataset from the U.S. Energy Information Administration (EIA) with [information about operable electric generating plants in the United States by energy source, as of May 2023](https://atlas.eia.gov/datasets/eia::power-plants/about). 
+Follow these steps to download the datset for this lesson:
+
+1. Click on the "Download" button.
+2. On the side panel click on "Download" for the csv format of the file.
+
+You can [access the metadata for this dataset here](https://eia.maps.arcgis.com/sharing/rest/content/items/bf5c5110b1b944d299bb683cdbd02d2a/info/metadata/metadata.xml?format=default&output=html). 
+
+The second dataset is a [TIGER shapefile from the United States Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341). 
+TIGER stands for [Topologically Integrated Geographic Encoding and Referencing](https://en.wikipedia.org/wiki/Topologically_Integrated_Geographic_Encoding_and_Referencing). This used to be the data format the US Census distributed geospatial data, but since 2008 TIGER files are converted to shapefiles. 
+We will use the shapefiles for the US states. 
+Follow these steps to download shapefile with the United States' states:
+
+1. At the bottom of the [2022 page](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341), under Download, click on "Web Interface"
+2. For year, select 2022, and for layer type select "States (and equivalent)". Click submit. 
+3. Click on "Download national file".
+
+**Move both datasets to your working directory, inside a directory named "data".**
+
