@@ -21,7 +21,7 @@ Follow these steps to download shapefile with the United States' states:
 2. For year, select 2022, and for layer type select "States (and equivalent)". Click submit. 
 3. Click on "Download national file".
 
-**Move both datasets to your working directory, inside a directory named "data".**
+**Move both datasets to your working directory.**
 
 ## `DataFrame` to `GeoDataFrame`
 
@@ -37,7 +37,6 @@ import matplotlib.pyplot as plt
 Our first step is to import the power plants dataset. 
 Notice this is a csv, geopandas doesn't have a way to extract a geometry column from a csv, so we will need to create this geometry manually. 
 We start by reading in the data using `pandas`.
-
 
 ```{python}
 # import power plants data
@@ -80,4 +79,23 @@ print('is projected?: ', power_plants.crs.is_projected)
 print('ellipsoid: ', power_plants.crs.ellipsoid)
 
 states.crs
+```
+
+Now that we have a geometry column and a CRS, we can plot our dataset:
+
+```{python}
+power_plants.plot()
+```
+
+## TIGER shapefile
+
+Next, we import the TIGER shapefile:
+
+```{python}
+# read-in data
+states = gpd.read_file('tl_2022_us_state/tl_2022_us_state.shp')
+# update column names to small caps
+states.columns = states.columns.str.lower()
+
+states.head()
 ```
