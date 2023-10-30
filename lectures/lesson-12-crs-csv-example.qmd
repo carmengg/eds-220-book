@@ -39,6 +39,7 @@ import matplotlib.pyplot as plt
 ```
 
 And update pandas display options:
+
 ```{python}
 # display all column when looking at dataframes
 pd.set_option("display.max.columns", None)
@@ -261,3 +262,41 @@ In our case:
 bb_states = states.clip(bbox)
 bb_states.plot()
 ```
+
+## Plotting
+
+
+```{python}
+fig, ax = plt.subplots(figsize=(18, 14))
+# remove the axis box around the vis
+ax.axis('off')
+# annotate the data source, date of access, and hyperlink
+ax.annotate("Data: U.S. Energy Information Administration (EIA), accessed Oct 30, 2023 \nhttps://atlas.eia.gov/datasets/eia::power-plants/about", 
+            xy=(0.25, .06), 
+            xycoords='figure fraction', 
+            fontsize=14, 
+            color='#555555')
+
+ax.set_title('Operable electric generating plants in the United States by energy source',
+fontsize=24)
+
+bb_states.plot(ax=ax,
+               color='none',
+               edgecolor = '#362312')
+power_plants.plot(ax=ax, 
+                  column='primsource',
+                  legend=True,
+                  markersize = 4,
+                  cmap='tab20',
+                  alpha=0.5,
+                  # adjust legend location
+                  legend_kwds={"loc": "upper right", 
+                               # "bbox_to_anchor": (1, 0.5),
+                                "title":'Primary energy source'})
+```
+<!--
+
+https://www.flexprojector.com
+
+https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-vector-plots/python-customize-map-legends-geopandas/
+-->
