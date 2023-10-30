@@ -38,6 +38,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
+And update pandas display options:
+```{python}
+# display all column when looking at dataframes
+pd.set_option("display.max.columns", None)
+```
 
 Our first step is to import the power plants dataset. 
 Notice this is a csv, geopandas doesn't have a way to extract a geometry column from a csv, so we will need to create this geometry manually. 
@@ -157,6 +162,14 @@ For the pupose of our map (and lesson), we want to keep only the states but remo
 Before we do that *we need to check* there is no power plant data over these islands. 
 We can do this by plotting the power plants dataset over the states. 
 
+### Selection
+
+A simple first step is to rewrite the states geodataframe to only include polygons for the US states:
+
+```{python}
+states = states[states.region!=9]
+```
+
 ### Reproject (change CRS)
 Remember these two datasets have different CRSs:
 
@@ -169,11 +182,11 @@ states.crs == power_plants.crs
 Changing CRS in GeoPandas is very simple using the `to_crs()` method for `gpd.GeoDataFrame`s. 
 The general syntax is:
 ```python
-updated_df = geo_df.to_crs(new_crs)
+updated_geodf = geodf.to_crs(new_crs)
 ```
 where:
-- `updated_df` is the output of the method,
-- `geo_df` is the `gpd.GeoDataFrame` we want to transform, 
+- `updated_geodf` is the output of the method,
+- `geodf` is the `gpd.GeoDataFrame` we want to transform, 
 - `new_crs` an object of type CRS, the CRS we want to convert to. 
 
 In our case, we will convert the states `gpd.GeoDataFrame` to match the CRS of the power_plants `gpd.GeoDataFrame`:
@@ -184,7 +197,7 @@ states = states.to_crs(power_plants.crs)
 print(states.crs == power_plants.crs)
 ```
 
-Nowe we can visually confirm there are no power statoins in the western islands of Alaska:
+Now we can visually confirm there are no power statoins in the western islands of Alaska:
 
 ```{python}
 # plot both datasets
@@ -198,3 +211,53 @@ plt.show()
 <!--
 https://medium.com/@alex_44314/use-python-geopandas-to-make-a-us-map-with-alaska-and-hawaii-39a9f5c222c6
 -->
+
+To clip to our interste area we will first create a GeoJSON file with a bounding box by going to [http://geojson.io](http://geojson.io). 
+After drawing the bounding box, copy paste it into a new file with extension .json. 
+
+::: {.callout-note}
+## Creating bounding boxes
+This is one way to create a bounding box as a separate file. We will learn other ways of creating polygons using `shapely` later on. 
+:::
+
+We can now read in our bounding box. Remember all GeoJSOn files have a CRS WGS84/EPSG:4326:
+
+```{python}
+# import bounding box
+bbox = gpd.read_file('bounding_box.json')
+
+# look at CRS
+print(bbox.crs)
+
+# check bbox CRS matches states
+print(bbox.crs == states.crs)
+
+# check data frame
+bbox
+```
+
+Since these are in the same CRS, we can go ahead and plot them:
+
+```{python}
+fig, ax = plt.subplots()
+states.plot(ax=ax)
+bb.plot(ax=ax, color='none', edgecolor='red')
+plt.show()
+```
+
+Clipping a `gpd.GeoDataFrame` using a bounding box is easy using the [`clip()` method](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.clip.html). 
+The general syntax is:
+```python
+updated_geodf = geodf.clip(mask)
+```
+where:
+- `updated_geodf` is the output of the method,
+- `geodf` is the `gpd.GeoDataFrame` we want to clip, 
+- `mask` is a `gpd.GeoDataFrame` with the polygon(s) we want to use for clipping. This `mask` must be in the same CRS as `geodf`!
+
+In our case:
+
+```{python}
+bb_states = states.clip(bbox)
+bb_states.plot()
+```
