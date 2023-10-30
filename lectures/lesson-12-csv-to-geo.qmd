@@ -17,9 +17,9 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 ```
 -->
 
-# Updating CRS
+# cvs to `GeoDataFrame`
 
-In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to make a CSV into a `geopandas.GeoDataFrame`, setting its CRS manually. 
+In this lesson we will learn how to make a csv into a `geopandas.GeoDataFrame`, setting its CRS manually and learn some more customizations for maps and matplotlib figures.
 
 ## Data
 We will use two datasets in this lesson. 
@@ -168,15 +168,15 @@ states.statefp = states.statefp.astype('int')
  These rows correspond to non-state regions:
 
 ```{python}
- print(states.region.unique())
- states[states.region==9]
+print(states.region.unique())
+states[states.region==9]
 ``` 
 
  We can check that Alaska and the non-state regions are causing the long map:
 
 ```{python}
 # plot data in states that is not Alaska (code 2) and doesn't have region code 9
- states[(states.statefp!=2) & (states.region!=9)].plot()
+states[(states.statefp!=2) & (states.region!=9)].plot()
 ```
 
 ## Data selection
@@ -215,23 +215,27 @@ plt.show()
 And we can finish by adding more information to contextualize our map:
 
 ```{python}
-fig, ax = plt.subplots(figsize=(14, 10))
+# figsize updates the figure size
+fig, ax = plt.subplots(figsize=(10, 6))
 
+# --------------------------
 # remove the axis box around the map
 ax.axis('off')
-# annotate the data source
-ax.annotate("Data: U.S. Energy Information Administration (EIA), accessed Oct 30, 2023 \nhttps://atlas.eia.gov/datasets/eia::power-plants/about", 
-            xy=(0.25, .06), 
-            xycoords='figure fraction', 
-            fontsize=14, 
-            color='#555555')
 
 # update title
 ax.set_title('Operable electric generating plants in the contiguous United States',
-fontsize=22)
+fontsize=20)
 
+# annotate the data source
+ax.annotate("Data: U.S. Energy Information Administration (EIA), accessed Oct 30, 2023 \nhttps://atlas.eia.gov/datasets/eia::power-plants/about", 
+            xy=(0.25, .06), # position
+            xycoords='figure fraction', 
+            fontsize=10, 
+            color='#555555')
+
+# --------------------------
 # add states 
-bb_states.plot(ax=ax,
+states.plot(ax=ax,
                color='none',
                edgecolor = '#362312')
 
@@ -242,13 +246,11 @@ power_plants.plot(ax=ax,
                   markersize = 4,
                   cmap='tab20',
                   alpha=0.5,
-                  # adjust legend location
-                  legend_kwds={'loc': "upper right", 
+                  # adjust legend
+                  legend_kwds={'loc': "lower right", 
                                 'title':'Primary energy source',
-                                'title_fontsize':'medium', 
-                        'fontsize':'small'})
-
-leg = ax.get_legend()
+                                'title_fontsize':'small', 
+                                'fontsize':'small'})
 ```
 <!--
 
