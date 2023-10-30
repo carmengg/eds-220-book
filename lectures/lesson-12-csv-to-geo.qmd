@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 ```
 -->
 
-# cvs to `GeoDataFrame`
+# csv to `GeoDataFrame`
 
 In this lesson we will learn how to make a csv into a `geopandas.GeoDataFrame`, setting its CRS manually and learn some more customizations for maps and matplotlib figures.
 
@@ -189,9 +189,25 @@ states = states[(states.region!=9) & (~states.statefp.isin([2,15]))]
 power_plants = power_plants[~power_plants.state.isin(['Puerto Rico','Hawaii','Alaska'])]
 ```
 
+::: {.callout-tip}
+## `~` = not
+In the previous code we used the syntax 
+```python
+~df.column.isin([val1, val2, val3])
+```
+The `~` tilde symbol is used in Python to negate a statement. 
+So the previous line could be read as "the values in df's column which are *not* in the list [val1, val2, val3]."
+:::
 ## Plotting
 
-We can now try plotting both datasets together. To color the power_plants dots according to color we just need
+Before we plot our data, let's make sure they are in the same CRS:
+
+```{python}
+states.crs == power_plants.crs
+```
+
+We can now try plotting both datasets together. 
+To color the power_plants dots according to color we just need
 
 ```{python}
 fig, ax = plt.subplots()
