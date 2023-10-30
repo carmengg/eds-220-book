@@ -324,26 +324,51 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <section id="types-of-joins" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">12.1</span> Types of Joins</h2>
 <p>Frequently, analysis of data will require merging separate dataframes. There are multiple ways to merge observations. When conceptualizing merges, we think of two tables, one on the <em>left</em> and one on the <em>right</em>.</p>
-<p><img src="../images/merging_data/join-diagrams-separate.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/merging_data/join-diagrams-separate.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+</figure>
+</div>
 <section id="inner-join" class="level3" data-number="12.1.1">
 <h3 data-number="12.1.1" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">12.1.1</span> Inner Join</h3>
 <p>An <em>inner join</em> is when you merge the subset of rows that have matches in both the left table and the right table.</p>
-<p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="left-join" class="level3" data-number="12.1.2">
 <h3 data-number="12.1.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">12.1.2</span> Left Join</h3>
 <p>A <em>left join</em> takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don’t match from the left table are still provided with a missing value (na) from the right table.</p>
-<p><img src="../images/merging_data/join-diagrams-left.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/merging_data/join-diagrams-left.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="right-join" class="level3" data-number="12.1.3">
 <h3 data-number="12.1.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">12.1.3</span> Right Join</h3>
 <p>A <em>right join</em> is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables.</p>
-<p><img src="../images/merging_data/join-diagrams-right.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/merging_data/join-diagrams-right.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="full-join" class="level3" data-number="12.1.4">
 <h3 data-number="12.1.4" class="anchored" data-anchor-id="full-join"><span class="header-section-number">12.1.4</span> Full Join</h3>
 <p>Finally, a <em>full outer join</em> (or just <em>full join</em>) includes all data from all rows in both tables, and includes missing values wherever necessary.</p>
-<p><img src="../images/merging_data/join-diagrams-full.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/merging_data/join-diagrams-full.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+</figure>
+</div>
 <p>Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -394,7 +419,7 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import countries polygons</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> gpd.read_file(<span class="st">'data/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>countries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="97">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -1443,7 +1468,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick view</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>countries.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="98">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1469,7 +1494,7 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remeber: the geometry column has the polygons for each country</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>countries_sub <span class="op">=</span> countries[[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>countries_sub.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="100">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -1526,7 +1551,7 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>communities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="101">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
 
@@ -1590,7 +1615,7 @@ import contextily as ctx
 <p>Notice that the <code>countries</code> and <code>communities</code> GeoDataFrames both have the same crs:</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>countries.crs <span class="op">==</span> communities.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="102">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>True</code></pre>
 </div>
 </div>
@@ -1625,7 +1650,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of communities per country</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="105">
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -1729,7 +1754,7 @@ import contextily as ctx
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>scandi_codes <span class="op">=</span> [<span class="st">'DK'</span>,<span class="st">'NO'</span>,<span class="st">'SE'</span>,<span class="st">'FO'</span>,<span class="st">'FI'</span>,<span class="st">'IS'</span>,<span class="st">'AX'</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="106">
+<div class="cell-output cell-output-display" data-execution_count="14">
 
 <div>
 
@@ -1789,7 +1814,7 @@ import contextily as ctx
 <p>To merge two datasets they need to have at least one column in common. Currently our datasets do not have any columns in common:</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countries_sub.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="107">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
 
@@ -1822,7 +1847,7 @@ import contextily as ctx
 </div>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scandi_n_comms.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="108">
+<div class="cell-output cell-output-display" data-execution_count="16">
 
 <div>
 
@@ -1862,7 +1887,7 @@ import contextily as ctx
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Sweden'</span>]</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="109">
+<div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
 
@@ -1940,7 +1965,7 @@ import contextily as ctx
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
 </figure>
 </div>
 <div class="cell" data-execution_count="18">
@@ -1952,7 +1977,7 @@ import contextily as ctx
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># update index</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> scandi_countries.set_index(<span class="st">'admin'</span>)</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="110">
+<div class="cell-output cell-output-display" data-execution_count="18">
 
 <div>
 
@@ -2025,7 +2050,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check Aland Islands is nowhere in data frame</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">'Aland Islands'</span> <span class="kw">in</span> countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="111">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>False</code></pre>
 </div>
 </div>
@@ -2033,7 +2058,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the underlying values of the dataframe</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>countries.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="112">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>array([['Admin-0 country', 1, 3, ..., nan, nan,
         &lt;POLYGON ((31.288 -22.402, 31.197 -22.345, 31.073 -22.308, 30.916 -22.291, 3...&gt;],
        ['Admin-0 country', 1, 3, ..., nan, nan,
@@ -2067,7 +2092,7 @@ import contextily as ctx
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>scandi_countries.plot(column<span class="op">=</span><span class="st">'n_communities'</span>,</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="114">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">

@@ -207,6 +207,7 @@ The general syntax is:
 updated_geodf = geodf.to_crs(new_crs)
 ```
 where:
+
 - `updated_geodf` is the output of the method,
 - `geodf` is the `gpd.GeoDataFrame` we want to transform, 
 - `new_crs` an object of type CRS, the CRS we want to convert to. 
@@ -234,7 +235,7 @@ plt.show()
 https://medium.com/@alex_44314/use-python-geopandas-to-make-a-us-map-with-alaska-and-hawaii-39a9f5c222c6
 -->
 
-To clip to our interste area we will first create a GeoJSON file with a bounding box by going to [http://geojson.io](http://geojson.io). 
+To clip to our interest area we will first create a GeoJSON file with a bounding box by going to [http://geojson.io](http://geojson.io). 
 After drawing the bounding box, copy paste it into a new file with extension .json. 
 
 ::: {.callout-note}
@@ -273,6 +274,7 @@ The general syntax is:
 updated_geodf = geodf.clip(mask)
 ```
 where:
+
 - `updated_geodf` is the output of the method,
 - `geodf` is the `gpd.GeoDataFrame` we want to clip, 
 - `mask` is a `gpd.GeoDataFrame` with the polygon(s) we want to use for clipping. This `mask` must be in the same CRS as `geodf`!
@@ -280,8 +282,8 @@ where:
 In our case:
 
 ```{python}
-#bb_states = states.clip(bbox)
-#bb_states.plot()
+bb_states = states.clip(bbox)
+bb_states.plot()
 ```
 
 ## Plotting
