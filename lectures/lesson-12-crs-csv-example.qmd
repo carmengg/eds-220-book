@@ -181,10 +181,20 @@ In our case, we will convert the states `gpd.GeoDataFrame` to match the CRS of t
 ```{python}
 # reproject states to power_plants.crs
 states = states.to_crs(power_plants.crs)
-
-print
+print(states.crs == power_plants.crs)
 ```
 
+Nowe we can visually confirm there are no power statoins in the western islands of Alaska:
+
+```{python}
+# plot both datasets
+fig, ax = plt.subplots()
+states.plot(ax=ax)
+power_plants.plot(ax=ax, color='red', alpha=0.2)
+plt.show()
+```
+
+### Clipping
 <!--
 https://medium.com/@alex_44314/use-python-geopandas-to-make-a-us-map-with-alaska-and-hawaii-39a9f5c222c6
 -->
