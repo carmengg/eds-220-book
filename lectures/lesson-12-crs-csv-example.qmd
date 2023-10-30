@@ -23,7 +23,7 @@ Follow these steps to download shapefile with the United States' states:
 
 **Move both datasets to your working directory, inside a directory named "data".**
 
-## Libraries
+## `DataFrame` to `GeoDataFrame`
 
 Let's start by importing the necessary libraries:
 
@@ -31,15 +31,53 @@ Let's start by importing the necessary libraries:
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# https://pyproj4.github.io/pyproj/dev/api/crs/crs.html
-from pyproj.crs import CRS
 ```
 
-This is our first time using `pyproj`, this is a library to work with cartographic projections and coordinate transformations.
 
-The syntax `from pyproj.crs import CRS` means that from the `pyproj.crs` module of `pyproj` we *only* want to import the [`CRS` clhttps://pyproj4.github.io/pyproj/dev/api/crs/crs.html).
+Our first step is to import the power plants dataset. 
+Notice this is a csv, geopandas doesn't have a way to extract a geometry column from a csv, so we will need to create this geometry manually. 
+We start by reading in the data using `pandas`.
 
-## `DataFrame` to `GeoDataFrame`
 
-Our first step is to import the 
+```{python}
+# import power plants data
+power_plants = pd.read_csv('Power_Plants.csv')
+power_plants.head()
+```
+
+```{python}
+# update column names to small caps
+power_plants.columns = power_plants.columns.str.lower()
+```
+
+From the csv documentation we know the longitude and latitude columns have the location of the power plants in lon/lat coordinates using the CRS WGS 84 (EPSG:4326). 
+We use this information to create a new `gpd.GeoDataFrame` from the `pd.DataFrame` using the GeoPandas function `points_from_xy()` like this:
+
+```{python}
+
+power_plants = gpd.GeoDataFrame(power_plants, # data
+                                    # specify geometry column
+                                    geometry=gpd.points_from_xy(power_plants.longitude, 
+                                             power_plants.latitude),
+                                    # specify CRS
+                                    crs='EPSG:4326'
+                    )
+```
+
+Check we now have a geometry column:
+
+```{python}
+power_plants.head(3)
+```
+
+Let's see some information about the CRS of our power plants dataset:
+
+```{python}
+# print infomration about the 
+print('datum: ', power_plants.crs.datum)
+print('is geographic?: ', power_plants.crs.is_geographic)
+print('is projected?: ', power_plants.crs.is_projected)
+print('ellipsoid: ', power_plants.crs.ellipsoid)
+
+states.crs
+```
