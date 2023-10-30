@@ -21,6 +21,11 @@ Follow these steps to download shapefile with the United States' states:
 2. For year, select 2022, and for layer type select "States (and equivalent)". Click submit. 
 3. Click on "Download national file".
 
+You can check the [metadata for all the TIGER shapefiles here](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/tiger-geo-line.html). 
+The columns for this shapefile are:
+
+![Source: TIGER/Line Shapefiles Technical Documentation](/images/tiger_shp_columns.png)
+
 **Move both datasets to your working directory.**
 
 ## `DataFrame` to `GeoDataFrame`
@@ -72,10 +77,10 @@ power_plants.head(3)
 Let's see some information about the CRS of our power plants dataset:
 
 ```{python}
-# print infomration about the 
-print('datum: ', power_plants.crs.datum)
+# print information about the 
 print('is geographic?: ', power_plants.crs.is_geographic)
 print('is projected?: ', power_plants.crs.is_projected)
+print('datum: ', power_plants.crs.datum)
 print('ellipsoid: ', power_plants.crs.ellipsoid)
 
 states.crs
@@ -89,6 +94,7 @@ power_plants.plot()
 
 ## TIGER shapefile
 
+### Import and exploration
 Next, we import the TIGER shapefile:
 
 ```{python}
@@ -99,3 +105,59 @@ states.columns = states.columns.str.lower()
 
 states.head()
 ```
+
+Let's see some information about the CRS of our states geodataframe:
+
+```{python}
+# print information about the CRS
+states.crs
+```
+
+And plot it:
+
+```{python}
+states.plot()
+```
+
+ Notice the map covers a big extension, this is because, according to the TIGER shapefiles metadata:
+ > In addition to the fifty states, the Census Bureau treats the District of Columbia, Puerto Rico, and the Island areas (American Samoa, the Commonwealth of the Northern Mariana Islands, Guam, and the U.S. Virgin Islands) as statistical equivalents of states for the purpose of data presentation. 
+
+ In [this US Census Bureau file](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf) we can see the what each code for the region, division, and state corresponds to. 
+ These should be numeric codes, so we can start by updating these columns:
+
+ ```{python}
+ # notice region, division, and statefp are strings (object) types
+ states.dtypes
+ ```
+
+ ```{python}
+ # update dtypes of code columns
+states.region = states.region.astype('int')
+states.division = states.division.astype('int')
+states.statefp = states.statefp.astype('int')
+ ```
+
+ States corresponds to regions 1 through 4. 
+ However, there's also a code 9 for the region. 
+ These rows correspond to non-state regions:
+
+ ```{python}
+ print(states.region.unique())
+ states[states.region==9]
+ ``` 
+
+ Also, we can use the Alaska statfep code 2 to see that this is the state causing the long map:
+
+ ```{python}
+ states[states.statefp==2].plot()
+ ```
+
+### Data Preparation
+
+Our goal here is to only keep the 
+
+<!--
+https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf
+
+https://medium.com/@alex_44314/use-python-geopandas-to-make-a-us-map-with-alaska-and-hawaii-39a9f5c222c6
+-->
