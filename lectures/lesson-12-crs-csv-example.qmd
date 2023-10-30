@@ -94,7 +94,6 @@ power_plants.plot()
 
 ## TIGER shapefile
 
-### Import and exploration
 Next, we import the TIGER shapefile:
 
 ```{python}
@@ -146,18 +145,16 @@ states.statefp = states.statefp.astype('int')
  states[states.region==9]
  ``` 
 
- Also, we can use the Alaska statfep code 2 to see that this is the state causing the long map:
+ Also, we can use the Alaska's statfep code 2 to see that this is the state causing the long map:
 
  ```{python}
- states[states.statefp==2].plot()
+ states[(states.statefp!=2) & (states.region!=9)].plot()
  ```
 
-### Data Preparation
+## Data Preparation
 
 Our goal here is to only keep the 
 
 <!--
-https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf
-
 https://medium.com/@alex_44314/use-python-geopandas-to-make-a-us-map-with-alaska-and-hawaii-39a9f5c222c6
 -->
