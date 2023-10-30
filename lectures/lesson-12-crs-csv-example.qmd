@@ -280,7 +280,7 @@ ax.annotate("Data: U.S. Energy Information Administration (EIA), accessed Oct 30
             color='#555555')
 
 # update title
-ax.set_title('Operable electric generating plants in the United States by energy source',
+ax.set_title('Operable electric generating plants in the United States',
 fontsize=22)
 
 # add states 
