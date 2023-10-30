@@ -1,3 +1,22 @@
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+
+Ignore ShapelyDeprecationWarning warning in render
+
+```{python}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+-->
+
 # Updating CRS
 
 In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to make a CSV into a `geopandas.GeoDataFrame`, setting its CRS manually. 
@@ -51,8 +70,8 @@ We start by reading in the data using `pandas`.
 
 ```{python}
 # import power plants data
-power_plants = pd.read_csv('Power_Plants.csv')
-power_plants.head()
+power_plants = pd.read_csv('data/Power_Plants.csv')
+power_plants.head(3)
 ```
 
 ```{python}
@@ -89,7 +108,7 @@ print('is projected?: ', power_plants.crs.is_projected)
 print('datum: ', power_plants.crs.datum)
 print('ellipsoid: ', power_plants.crs.ellipsoid)
 
-states.crs
+power_plants.crs
 ```
 
 Now that we have a geometry column and a CRS, we can plot our dataset:
@@ -104,7 +123,7 @@ Next, we import the TIGER shapefile:
 
 ```{python}
 # read-in data
-states = gpd.read_file('tl_2022_us_state/tl_2022_us_state.shp')
+states = gpd.read_file('data/tl_2022_us_state/tl_2022_us_state.shp')
 # update column names to small caps
 states.columns = states.columns.str.lower()
 
@@ -125,37 +144,38 @@ states.plot()
 ```
 
  Notice the map covers a big extension, this is because, according to the TIGER shapefiles metadata:
+ 
  > In addition to the fifty states, the Census Bureau treats the District of Columbia, Puerto Rico, and the Island areas (American Samoa, the Commonwealth of the Northern Mariana Islands, Guam, and the U.S. Virgin Islands) as statistical equivalents of states for the purpose of data presentation. 
 
  In [this US Census Bureau file](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf) we can see the what each code for the region, division, and state corresponds to. 
  These should be numeric codes, so we can start by updating these columns:
 
- ```{python}
+```{python}
  # notice region, division, and statefp are strings (object) types
  states.dtypes
- ```
+```
 
- ```{python}
+```{python}
  # update dtypes of code columns
 states.region = states.region.astype('int')
 states.division = states.division.astype('int')
 states.statefp = states.statefp.astype('int')
- ```
+```
 
  States corresponds to regions 1 through 4. 
  However, there's also a code 9 for the region. 
  These rows correspond to non-state regions:
 
- ```{python}
+```{python}
  print(states.region.unique())
  states[states.region==9]
- ``` 
+``` 
 
  Also, we can use the Alaska's statfep code 2 to see that this is the state causing the long map:
 
- ```{python}
+```{python}
  states[(states.statefp!=2) & (states.region!=9)].plot()
- ```
+```
 
 ## Data Preparation
 
@@ -226,7 +246,7 @@ We can now read in our bounding box. Remember all GeoJSOn files have a CRS WGS84
 
 ```{python}
 # import bounding box
-bbox = gpd.read_file('bounding_box.json')
+bbox = gpd.read_file('data/bounding_box.json')
 
 # look at CRS
 print(bbox.crs)
@@ -243,7 +263,7 @@ Since these are in the same CRS, we can go ahead and plot them:
 ```{python}
 fig, ax = plt.subplots()
 states.plot(ax=ax)
-bb.plot(ax=ax, color='none', edgecolor='red')
+bbox.plot(ax=ax, color='none', edgecolor='red')
 plt.show()
 ```
 
@@ -260,14 +280,14 @@ where:
 In our case:
 
 ```{python}
-bb_states = states.clip(bbox)
-bb_states.plot()
+#bb_states = states.clip(bbox)
+#bb_states.plot()
 ```
 
 ## Plotting
 
 
-```{python}
+```python
 fig, ax = plt.subplots(figsize=(14, 10))
 
 # remove the axis box around the map
