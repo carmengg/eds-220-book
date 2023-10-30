@@ -23,3 +23,23 @@ Follow these steps to download shapefile with the United States' states:
 
 **Move both datasets to your working directory, inside a directory named "data".**
 
+## Libraries
+
+Let's start by importing the necessary libraries:
+
+```{python}
+import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# https://pyproj4.github.io/pyproj/dev/api/crs/crs.html
+from pyproj.crs import CRS
+```
+
+This is our first time using `pyproj`, this is a library to work with cartographic projections and coordinate transformations.
+
+The syntax `from pyproj.crs import CRS` means that from the `pyproj.crs` module of `pyproj` we *only* want to import the [`CRS` clhttps://pyproj4.github.io/pyproj/dev/api/crs/crs.html).
+
+## `DataFrame` to `GeoDataFrame`
+
+Our first step is to import the 
