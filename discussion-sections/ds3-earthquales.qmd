@@ -48,4 +48,5 @@ id = event identifier
 place = where the event took place
 type = type of event
 
+Further information about the dataset can be accessed in the [ANSS Comprehensive Earthquake Catalog (ComCat) Documentation](https://earthquake.usgs.gov/data/comcat/).
 :::
