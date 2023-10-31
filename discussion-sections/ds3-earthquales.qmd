@@ -1,0 +1,51 @@
+- Select earthquake data for this year
+- Plot the 10 biggest earthquakes so far
+- Make a map
+- Add a background
+https://earthquake.usgs.gov/earthquakes/search/
+
+# *Lab: Maps
+
+:::{.callout-tip}
+## Notebook Setup
+1. In the Taylor server, start a new JupyterLab session or access an active one.
+
+2. In the directory navigation bar, open the `eds-220-sections` directory you created in the last lab.
+
+4. In the terminal, navigate into the `eds-220-sections` directory and verify `eds-220-sections` is your current working directory.
+
+5. Create a new Python Notebook in `eds-220-sections`. 
+
+6. Update the notebook's name to something useful like 'exercise-earthquake-data.ipynb'.
+
+7. Use the terminal to stage, commit, and push this file to the remote repository. 
+
+8. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+
+:::
+
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+- Indications about when to commit and push changes are included, but you are encouraged to commit and push more often. 
+:::
+
+:::{.callout-note}
+## About the data
+
+For this task we are going to use simplified data from the [USGS Earthquakes Database](https://earthquake.usgs.gov/earthquakes/search/). 
+This is the same dataset we used for homework 1 - task 4. 
+It is in tabular format and has the following columns.
+
+time = date and time of event (all events from 2014)
+latitude = decimal degrees [-90,90]
+longitude = decimal degrees [-360,360]
+depth = depth of the event (km)
+mag = magnitude of event
+id = event identifier
+place = where the event took place
+type = type of event
+
+:::
