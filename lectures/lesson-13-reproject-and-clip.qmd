@@ -215,3 +215,34 @@ plt.show()
 This is better: we can see there is the Alaska poygons and some points on top of it. 
 Our next step is to select these points. 
 
+### Clipping
+
+**Clipping** means using a polygon (or polygons) to only select geospatial data within them. 
+Clipping a `gpd.GeoDataFrame` using a bounding box is easy using the [`clip()` function](https://geopandas.org/en/stable/docs/reference/api/geopandas.clip.html). 
+The general syntax is:
+```python
+updated_geodf = gpd.clip(geodf, mask)
+```
+where:
+
+- `updated_geodf` is the output of the method: the intersection of the geometries in `geodf` with `mask`,
+- `geodf` is the `gpd.GeoDataFrame` we want to clip, 
+- `mask` is a `gpd.GeoDataFrame` with the polygon(s) we want to use for clipping. This `mask` must be in the same CRS as `geodf`!
+
+In our case:
+
+```{python}
+# clip places to Alaska
+ak_places = gpd.clip(places, alaska)
+print('Number of places in AK:', len(ak_places))
+```
+
+```{python}
+# plot populated places in Alaska
+fig, ax = plt.subplots()
+
+alaska.plot(ax=ax)
+ak_places.plot(ax=ax, color='red')
+
+plt.show()
+```
