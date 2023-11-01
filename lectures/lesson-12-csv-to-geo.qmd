@@ -90,7 +90,7 @@ power_plants = gpd.GeoDataFrame(power_plants, # data
                                     geometry=gpd.points_from_xy(power_plants.longitude, 
                                              power_plants.latitude),
                                     # specify CRS
-                                    crs='EPSG:4326'
+                                    crs='EPSG:4269'
                     )
 ```
 
