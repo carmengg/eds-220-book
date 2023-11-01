@@ -1,0 +1,79 @@
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+
+Ignore ShapelyDeprecationWarning warning in render
+
+```{python}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+-->
+
+# Reprojecting & Clipping
+
+In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to clip different geometries using a polygon in a `geopandas.GeoDataFrame`.
+
+## Data
+We will use three datasets in this lesson. 
+
+**First dataset**
+The first dataset is a [TIGER shapefile from the United States Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341). 
+
+We will use the shapefiles for the US states. 
+Follow these steps to download shapefile with the United States' states:
+
+1. At the bottom of the [2022 page](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341), under Download, click on "Web Interface"
+2. For year, select 2022, and for layer type select "States (and equivalent)". Click submit. 
+3. Click on "Download national file".
+
+You can check the [metadata for all the TIGER shapefiles here](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/tiger-geo-line.html). 
+The columns for this shapefile are:
+
+![Source: TIGER/Line Shapefiles Technical Documentation](/images/tiger_shp_columns.png)
+
+**Second dataset**
+The second dataset we'll use is [Natural Earth's simple medium scale populated places dataset](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/). We can obtain this dataset by downloading the shapefile (choose the one that says "simple (less columns)").
+
+**Third dataset**
+The third dataset we'll use is [Natural Earth's road dataset](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/roads/). 
+We can obtain this dataset by downloading the shapefile 
+
+**Move all datasets to a directory named "data" inside your working directory.**
+
+## Import data
+
+Let's start by loading our libraries and then importing the datasets we'll use.
+
+```{python}
+import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# this is our first time using this function
+from shapely.geometry import box
+```
+
+
+```{python}
+# display all columns when looking at dataframes
+pd.set_option("display.max.columns", None)
+
+# ----- IMPORT DATA -----
+# states from US Census TIGER files
+states = gpd.read_file('tl_2022_us_state/tl_2022_us_state.shp')
+
+# populated places from Natural Earth
+places = gpd.read_file('ne_50m_populated_places_simple/ne_50m_populated_places_simple.shp')
+
+# roads from Natural Earth
+roads = gpd.read_file('ne_10m_roads/ne_10m_roads.shp')
+
+```
