@@ -15,7 +15,7 @@ book:
   chapters:
     - index.qmd
     - lectures/lesson-1-python-review.qmd
-    - part: "pandas"
+    - part: "Tabular data"
       chapters:
         - lectures/lesson-2-series-dataframes.qmd
         - discussion-sections/ds1-anthr-prelim-data-exploration.qmd 
@@ -25,7 +25,7 @@ book:
         - lectures/lesson-6-groupby.qmd
         - discussion-sections/ds2-hares.qmd                
         - lectures/lesson-7-time-series.qmd
-    - part: "geopandas"
+    - part: "Vector data"
       chapters:
         - lectures/lesson-8-vector-data.qmd
         - lectures/lesson-9-geopandas-intro.qmd
