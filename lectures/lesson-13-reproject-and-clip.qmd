@@ -181,7 +181,7 @@ plt.show()
 
 ::: {.callout-important}
 ## Data in weird places? Check your CRSs
-This is a classic mistake in geospatial. 
+This is a classic mistake in  analysis. 
 To plot, analyze, or integrate different geospatial datasets they must **have the same CRS**. 
 
 Here, `alaska` and `places` have different CRSs, leading to unexpected results when plotting them together:
@@ -218,7 +218,7 @@ Our next step is to select these points.
 ### Clipping
 
 **Clipping** means using a polygon (or polygons) to only select geospatial data within them. 
-Clipping a `gpd.GeoDataFrame` using a bounding box is easy using the [`clip()` function](https://geopandas.org/en/stable/docs/reference/api/geopandas.clip.html). 
+Clipping a `gpd.GeoDataFrame` is easy using the geopandas [`clip()` function](https://geopandas.org/en/stable/docs/reference/api/geopandas.clip.html). 
 The general syntax is:
 ```python
 updated_geodf = gpd.clip(geodf, mask)
@@ -266,7 +266,7 @@ roads.plot()
 
 ### One-liner clipping
 
-You may have already noticed that `roads` is not in the same CRS as `alask`, so we these geo-datasets shound't interact until they're in the same CRS. 
+You may have already noticed that `roads` is not in the same CRS as `alaska`, so these geo-datasets shound't interact until they're in the same CRS. 
 Before jumping right into reprojecting and clipping, we will subset the data to select only US roads:
 
 ```{python}
@@ -300,9 +300,9 @@ However in the `usa_roads` there are no broken lines.
 This should make us suspect we are leaving data out and clipping *exactly* to the polygons in `alaska` is not quite what we want. 
 
 ### Clipping with bounding box
-We will cip the `usa_roads` geo-dataframe with the bounding box of `alaska` instead of its polygons. 
-To do this we use the [`box` function we imported from `shapely.geometry`](https://shapely.readthedocs.io/en/stable/manual.html#shapely.geometry.box). 
-The syntax for `box` is:
+We will clip the `usa_roads` geo-dataframe with the bounding box of `alaska` instead of its polygons. 
+To create a bounding box, we first use the [`box()` function we imported from `shapely.geometry`](https://shapely.readthedocs.io/en/stable/manual.html#shapely.geometry.box). 
+The syntax for `box()` is:
 ```python
 box(minx, miny, maxx, maxy)
 ```
@@ -310,7 +310,7 @@ the output is a X representing a box constructed like this:
 
 <!-- INSERT BOX DIAGRAM -->
 
-If we want to create a bounding box from a geo-dataframe `gdf`, a more straightforward syntax is:
+If we want to create a shapely polygon from the bounds of a geo-dataframe `gdf`, a more straightforward syntax is:
 ```python 
 box(*gdf.total_bounds)
 ```
@@ -324,6 +324,16 @@ print(type(bbox))
 bbox
 ```
 
+::: {.callout-tip}
+## `*` as unpacking operator
+In the last syntax we are using the asterisk `*` as an unpacking operator on the array `gdf.total_bounds`. 
+Think about it as unpacking the elements of `gdf.total_bounds` and assigning them one-by-one to the paremeters `minx, miny, maxx, maxy` of `box()`.
+
+This is a good article explaining more about unpacking with `*` in Python:
+https://geekflare.com/python-unpacking-operators/
+:::
+
+
 ```{python}
 # create geo-dataframe from bounding box
 ak_bbox = gpd.GeoDataFrame(geometry = [bbox], # assign geometry column
@@ -332,16 +342,7 @@ print(type(ak_bbox))
 ak_bbox
 ```
 
-::: {.callout-tip}
-## `*` as unpacking operator
-In the last syntax we are using the asterisk `*` as an unpacking operator on the array `gdf.total_bounds`. 
-Think about it as taking the elements of `gdf.total_bounds` and assigning them one-by-one to the usual paremeters of box `minx, miny, maxx, maxy`.
-
-This is a good article explaining more about unpacking with `*` in Python:
-https://geekflare.com/python-unpacking-operators/
-:::
-
-We can now clip the roads using Alaska's bounding box, instead of the polygons:
+We can now clip the roads using Alaska's bounding box:
 ```{python}
 ak_complete_roads = gpd.clip(usa_roads.to_crs(ak_bbox.crs), ak_bbox)
 ak_complete_roads.plot()
@@ -368,3 +369,23 @@ Variable: Symbolic name that stores an object and has a reserved memory location
 -->
 
 ## Plot
+
+Finally, we can put all our data together in the same map:
+
+```{python}
+# https://matplotlib.org/stable/api/markers_api.html
+# Trouble: not in the same CRS
+# this is cool! but now we are seeing all Arctic comms
+fig, ax = plt.subplots(figsize=(12,8))
+# --------------------------
+ax.axis('off')
+
+alaska.plot(ax=ax, color='none', edgecolor='0.7')
+ak_complete_roads.plot(ax=ax, column='type', legend=True)
+#ak_comms.plot(ax=ax, color='red')
+ak_places.plot(ax=ax, color='red', marker='s')
+
+# --------------------------
+
+plt.show()
+```
