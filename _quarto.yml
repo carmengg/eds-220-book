@@ -28,9 +28,9 @@ book:
     - part: "geopandas"
       chapters:
         - lectures/lesson-8-vector-data.qmd
+        - lectures/lesson-11-crs.qmd
         - lectures/lesson-9-geopandas-intro.qmd
         - lectures/lesson-10-merge-data.qmd
-        - lectures/lesson-11-crs.qmd
         - lectures/lesson-12-csv-to-geo.qmd
 
 execute:
