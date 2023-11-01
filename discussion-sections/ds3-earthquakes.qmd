@@ -1,9 +1,3 @@
-- Select earthquake data for this year
-- Plot the 10 biggest earthquakes so far
-- Make a map
-- Add a background
-https://earthquake.usgs.gov/earthquakes/search/
-
 # *Lab: Maps
 
 :::{.callout-tip}
@@ -16,7 +10,7 @@ https://earthquake.usgs.gov/earthquakes/search/
 
 5. Create a new Python Notebook in `eds-220-sections`. 
 
-6. Update the notebook's name to something useful like 'exercise-earthquake-data.ipynb'.
+6. Update the notebook's name to something useful like 'map-earthquake-data.ipynb'.
 
 7. Use the terminal to stage, commit, and push this file to the remote repository. 
 
@@ -30,13 +24,17 @@ https://earthquake.usgs.gov/earthquakes/search/
 - Add comments in each one of your code cells 
 - Include markdown cells in between your code cells to add titles/information to each exercise
 - Indications about when to commit and push changes are included, but you are encouraged to commit and push more often. 
+- You won't need to upload any data.
 :::
 
 :::{.callout-note}
 ## About the data
 
-For this task we are going to use simplified data from the [USGS Earthquakes Database](https://earthquake.usgs.gov/earthquakes/search/). 
-This is the same dataset we used for homework 1 - task 4. 
+For this task we are going to use two datasets. 
+
+**First dataset**
+Simplified data from the [USGS Earthquakes Database](https://earthquake.usgs.gov/earthquakes/search/). 
+This is the same dataset we used for homework 1, task 4. 
 It is in tabular format and has the following columns.
 
 time = date and time of event (all events from 2014)
@@ -49,4 +47,31 @@ place = where the event took place
 type = type of event
 
 Further information about the dataset can be accessed in the [ANSS Comprehensive Earthquake Catalog (ComCat) Documentation](https://earthquake.usgs.gov/data/comcat/).
+
+**Second dataset**
 :::
+
+<!-- Data exploration -->
+## Archive exploration
+
+<!-- Data loading -->
+## Earthquake data
+
+### Import data
+
+Import the earthquake data directly from the following URL (it is a csv file): 
+https://raw.githubusercontent.com/carmengg/eds220-hwk-1/main/data/earthquake_data.csv
+Store it in a variable `raw_eqk`.
+
+Do some simple preliminary exploration of the `raw_eqk` dataframe.
+
+### Data selection
+
+1. Check which are the unique values of the type of earthquakes. 
+2. Select only data with with type equal to 'eartquake' and magnitude greater than or equal to 6.5. 
+3. Store this as a new dataframe called `eqk`.
+
+
+### `pd.DataFrame` to `gpd.GeoDataFrame`
+1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: we did this on Monday!
+2. Make a simple plot of the `eqk` data.
