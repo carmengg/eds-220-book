@@ -32,6 +32,8 @@ book:
         - lectures/lesson-10-merge-data.qmd
         - lectures/lesson-11-crs.qmd
         - lectures/lesson-12-csv-to-geo.qmd
+  appendices:
+    - appendices/set-pat.qmd
 
 execute:
   freeze: auto  # re-render only when source changes
