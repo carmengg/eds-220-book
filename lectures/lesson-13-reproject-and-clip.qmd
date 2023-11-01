@@ -246,3 +246,47 @@ ak_places.plot(ax=ax, color='red')
 
 plt.show()
 ```
+
+## Prepare roads 
+
+### Exploration
+Now we move on to our roads dataset. 
+
+```{python}
+# print the CRS
+print(roads.crs)
+
+# look at first five columns
+roads.head(3)
+```
+
+```{python}
+roads.plot()
+```
+
+### Clipping & Reprojection
+
+You may have already noticed that `roads` is not in the same CRS as `alask`, so we these geo-datasets shound't interact until they're in the same CRS. 
+Before jumping right into reprojecting and clipping, we will subset the data to select only US roads:
+
+```{python}
+# select US roads only
+usa_roads = roads[roads.sov_a3 == 'USA']
+usa_roads.plot()
+```
+
+::: {.callout-caution}
+## Reduce your tabular data before reducing via geometries
+Geospatial operations are usually costly. 
+The more detailed our geometries the longer in takes to do geospatial computations. 
+It's a good practice to try to reduce your data as much as possible before applying any geospatial transformation. 
+:::
+
+We will now do a "one-liner" to clip `usa_roads` using the `alaska` polygon. Notice we are using the ouput of `usa_roads.to_crs(alaska.crs)` and thus not changing the `usa_roads` geo-dataframe or creating new variables:
+
+```{python}
+# clip usa_roads to alaska geometry
+ak_roads = gpd.clip(usa_roads.to_crs(alaska.crs),alaska)
+
+ak_roads.plot()
+```
