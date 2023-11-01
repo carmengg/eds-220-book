@@ -122,9 +122,12 @@ Go to the "Detailed Metadata" section and click on "Data Entities". Take a minut
 
 3. Discuss with your team the output of the unique value counts. Notice anything odd?
 
-4. You likely noticed there seem to be some repeated values, for example `m` appears twice. Use the `unique()` method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.
+4. You likely noticed there seems to be some repeated values, for example `m` appears twice. 
+Use the `unique()` method on the sex column to see the unique non-NA values in this column. 
+Discuss with your team what is the cause of the seemingly repeated values.
 
-5. In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset. 
+5. In the metadata section of the EDI repository, find which are the allowed values for the sex column. 
+Discuss with your team whether these values correspond to the values present in the dataset. 
 
 <p style="text-align: center;">
 **commit and push changes**

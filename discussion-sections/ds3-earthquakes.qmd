@@ -52,10 +52,6 @@ The first dataset is Natural Earth's low resolution cultural boundaries data.
 These low-resolution polygons are available directly through `geopandas` and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or finer geospatial analysis.
 :::
 
-## Archive exploration
-
-FILL THIS IN
-
 ## Earthquake data
 
 ### Import data
@@ -74,7 +70,7 @@ Do some simple preliminary exploration of the `raw_eqk` dataframe.
 
 
 ### `pd.DataFrame` to `gpd.GeoDataFrame`
-1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: we did this on Monday!
+1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: find the CRS of the dataset by [looking at the metadata](https://earthquake.usgs.gov/data/comcat/)
 2. Make a simple plot of the `eqk` data.
 
 ## Import low-resolution countries polygons
@@ -88,6 +84,7 @@ worldmap
 
 ## Map
 
-FILL THIS IN
-
-ADD MY MAP IMAGE
+Create a map of the earthquales of magnitude greater equal to 6.5 across the world in 2014. 
+Color the points by the magnitude. 
+This is an example of how it could look like:
+![](earthquake_map.png)
