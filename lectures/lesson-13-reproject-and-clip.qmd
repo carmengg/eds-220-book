@@ -332,6 +332,15 @@ print(type(ak_bbox))
 ak_bbox
 ```
 
+::: {.callout-tip}
+## `*` as unpacking operator
+In the last syntax we are using the asterisk `*` as an unpacking operator on the array `gdf.total_bounds`. 
+Think about it as taking the elements of `gdf.total_bounds` and assigning them one-by-one to the usual paremeters of box `minx, miny, maxx, maxy`.
+
+This is a good article explaining more about unpacking with `*` in Python:
+https://geekflare.com/python-unpacking-operators/
+:::
+
 We can now clip the roads using Alaska's bounding box, instead of the polygons:
 ```{python}
 ak_complete_roads = gpd.clip(usa_roads.to_crs(ak_bbox.crs), ak_bbox)
@@ -353,5 +362,9 @@ ax2.set_title('Roads clipped with AK bounding box')
 #plt.axis('equal')
 plt.show()
 ```
+
+<!-- 
+Variable: Symbolic name that stores an object and has a reserved memory location.
+-->
 
 ## Plot
