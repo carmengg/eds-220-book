@@ -19,7 +19,10 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 
 # Reprojecting & Clipping
 
-In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to clip different geometries using a polygon in a `geopandas.GeoDataFrame`.
+In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to clip different geometries using a polygon in a `geopandas.GeoDataFrame`. 
+Through doing these operations we will create the following map of roads and populated places in Alaska:
+
+![](/images/alaska_roads_and_places.png)
 
 ## Data
 We will use three datasets in this lesson. 
@@ -61,7 +64,6 @@ import matplotlib.pyplot as plt
 from shapely.geometry import box
 ```
 
-
 ```{python}
 # display all columns when looking at dataframes
 pd.set_option("display.max.columns", None)
@@ -69,11 +71,72 @@ pd.set_option("display.max.columns", None)
 # ----- IMPORT DATA -----
 # states from US Census TIGER files
 states = gpd.read_file('tl_2022_us_state/tl_2022_us_state.shp')
+# make column names small caps
+states.columns = states.columns.str.lower()
 
 # populated places from Natural Earth
 places = gpd.read_file('ne_50m_populated_places_simple/ne_50m_populated_places_simple.shp')
 
 # roads from Natural Earth
 roads = gpd.read_file('ne_10m_roads/ne_10m_roads.shp')
-
 ```
+
+## Prepare Alaska polygon: reprojecting
+
+Let's start by taking taking a look at our stats geo-dataframe. 
+Since this is a geospatial dataset, exploration should include *at least* checking the head of the dataset, plotting the data, and looking at its CRS.
+
+```{python}
+# print the CRS
+print(states.crs)
+
+# look at first five columns
+states.head()
+```
+
+```{python}
+states.plot()
+```
+
+For this lesson, we are intersted in plotting data in Alaska. 
+Let's start by selecting this data:
+
+```{python}
+# select Alaska from states
+alaska = states[states.name =='Alaska']
+alaska.plot()
+```
+
+As in our previous lesson, we bump into the issue of Alaska's islands elongating the map. 
+To fix this, we will reproject the Alaska geo-dataframe. 
+**Reprojecting** means precisely this, changing the coordinate reference system of your geospatial data. 
+In our case we will reproject the Alaska geo-dataframe to the CRS EPSG:3338. 
+This CRS is a *projected* CRS, better suited for working with data from Alaska:
+
+![Source: [spatialreference.org](https://spatialreference.org/ref/epsg/nad83-alaska-albers/) ](/images/epsg_3338.png)
+
+Changing CRSs in GeoPandas is very simple using the `to_crs()` method for `gpd.GeoDataFrame`s. 
+The general syntax is:
+```python
+updated_geodf = geodf.to_crs(new_crs)
+```
+where:
+
+- `updated_geodf` is the output of the method, a new geodataframe (`to_crs()` does not work in place), 
+- `geodf` is the `gpd.GeoDataFrame` we want to transform, 
+- `new_crs` an object of type CRS or string representing the CRS (ex: `'epsg:3338'`), the CRS we want to convert to. 
+
+In our case:
+
+```{python}
+# change to projected CRS optimized for Alaska
+alaska = alaska.to_crs('epsg:3338')
+alaska.plot()
+```
+
+```{python}
+# check new CRS
+print('is this CRS projected? ', alaska.crs.is_projected)
+alaska.crs
+```
+
