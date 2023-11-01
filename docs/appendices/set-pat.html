@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 8&nbsp; * Lab: Data cleaning</title>
+<title>EDS 220 - Working with Environmental Datasets - Appendix A — Setting a PAT</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-7-time-series.html" rel="next">
-<link href="../lectures/lesson-6-groupby.html" rel="prev">
+<link href="../lectures/lesson-12-csv-to-geo.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></h1>
+      <h1 class="quarto-secondary-nav-title">Appendix A — Setting a PAT</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -143,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -198,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
   </div>
 </li>
       </ul>
@@ -208,27 +207,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#archive-exploration" id="toc-archive-exploration" class="nav-link active" data-scroll-target="#archive-exploration"><span class="toc-section-number">8.1</span>  Archive exploration</a></li>
-  <li><a href="#adding-an-image" id="toc-adding-an-image" class="nav-link" data-scroll-target="#adding-an-image"><span class="toc-section-number">8.2</span>  Adding an image</a></li>
-  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading"><span class="toc-section-number">8.3</span>  Data loading</a></li>
-  <li><a href="#metadata-exploration" id="toc-metadata-exploration" class="nav-link" data-scroll-target="#metadata-exploration"><span class="toc-section-number">8.4</span>  Metadata exploration</a></li>
-  <li><a href="#detecting-messy-values" id="toc-detecting-messy-values" class="nav-link" data-scroll-target="#detecting-messy-values"><span class="toc-section-number">8.5</span>  Detecting messy values</a></li>
-  <li><a href="#clean-values" id="toc-clean-values" class="nav-link" data-scroll-target="#clean-values"><span class="toc-section-number">8.6</span>  Clean values</a></li>
-  <li><a href="#calculate-mean-weight" id="toc-calculate-mean-weight" class="nav-link" data-scroll-target="#calculate-mean-weight"><span class="toc-section-number">8.7</span>  Calculate mean weight</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">9</span>  References</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></h1>
+<h1 class="title d-none d-lg-block">Appendix A — Setting a PAT</h1>
 </div>
 
 
@@ -243,181 +229,46 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>October 19, 2023.</p>
-<!-- include description and goals -->
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Notebook Setup
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p>This section contains instructions for creatiog a Personal Access Token (PAT):</p>
 <ol type="1">
-<li><p>Create a new repository on GitHub. Use the following settings:</p>
-<ol type="a">
-<li><p>Call the repository <code>eds-220-sections</code>. We’ll try reusing this same repository for all upcoming sections.</p></li>
-<li><p>Add a brief description for your new repository. For example: EDS 220 sections - practice sessions for environmental data analysis.</p></li>
-<li><p>Keep the repository public.</p></li>
-<li><p>Initialize the repository with a <code>README</code> file and a Python .gitignore template.</p></li>
-</ol></li>
+<li>In <a href="https://github.com">GitHub</a> navigate to:</li>
 </ol>
-<!--
-2. Add your repository's URL and your GitHub username to [this spreadsheet](https://docs.google.com/spreadsheets/d/1VPEIU0PSHs90cwD_RiIhY6swEBSMR-6MmTmM_toykvM/edit?usp=sharing). Names or ordered alphabetically by surname. We won't grade these, it's just for keeping track. 
--->
+<ul>
+<li>settings</li>
+<li>developer settings (last option on the left)</li>
+<li>tokens (classic)</li>
+<li>generate new token button (near right corner)</li>
+<li>Click on: Generate new token (classic)</li>
+</ul>
 <ol start="2" type="1">
-<li><p>In the Taylor server, start a new JupyterLab session or access an active one.</p></li>
-<li><p>Using the terminal, clone the repository to a new directory under your <code>eds-220</code> directory.</p></li>
-<li><p>In the terminal, navigate into the <code>eds-220-sections</code> directory and verify <code>eds-220-sections</code> is your current working directory.</p></li>
-<li><p>Create a new Python Notebook in <code>eds-220-sections</code>.</p></li>
-<li><p>Update the notebook’s name to something useful like ‘exercise-hares-data.ipynb’.</p></li>
-<li><p>Use the terminal to stage, commit, and push this file to the remote repository. Remember:</p>
-<ul>
-<li>stage: <code>git add FILE_NAME</code></li>
-<li>commit with message: <code>git commit -m "COMMIT_MESSAGE"</code></li>
-<li>push: <code>git push</code></li>
-</ul></li>
-<li><p>If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow <a href="https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/">steps 13-18 in this guide</a> to set it up.</p></li>
+<li>Select the following options:</li>
 </ol>
-<p style="text-align: center;">
-<strong>CHECK IN WITH YOUR TEAM</strong>
-</p>
-<p style="text-align: center;">
-<strong>MAKE SURE YOU’VE ALL SUCCESSFULLY SET UP YOUR NOTEBOOKS BEFORE CONTINUING</strong>
-</p>
-</div>
-</div>
+<ul>
+<li>☑️ Repo (clicking this will select all boxes in the section, that’s ok)</li>
+<li>☑️ workflow</li>
+<li>☑️ gist</li>
+<li>☑️ user (clicking this will select all boxes in the section, that’s ok)</li>
+</ul>
+<ol start="3" type="1">
+<li><p>Click generate token.</p></li>
+<li><p>Copy and paste the PAT somewhere for now!</p></li>
+<li><p>Back at the terminal try to push your changes again using <code>git push</code>. When prompted, enter your GitHub username and the new PAT as the password.</p></li>
+</ol>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-General directions
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Add comments in each one of your code cells</li>
-<li>Include markdown cells in between your code cells to add titles/information to each exercise</li>
-<li>Indications about when to commit and push changes are included, but you are encouraged to commit and push more often.</li>
-<li>You won’t need to upload any data.</li>
-</ul>
+<p>In steps 1-5 we generated a PAT manually. This is the same process as using <code>usethis::create_github_token</code> from an R console as explained in the <a href="https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat">MEDS installation guide</a>. The options we selected in step 2 are the same options for the PAT given by <code>usethis::create_github_token</code>.</p>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-About the data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For this exercise we will use data about <a href="https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-bnz.55.22">Snowshoe hares (<em>Lepus americanus</em>) in the Bonanza Creek Experimental Forest (Kielland et al., 2017)</a>.</p>
-<p>This dataset is stored in the <a href="https://edirepository.org">Environmental Data Initiative (EDI)</a> data repository. This is a huge data repository committed to make data Findable, Accessible, Interoperable, and Reusable (FAIR). It is the main repository for all the data associated to the <a href="https://lternet.edu">Long Term Ecological Research Network (LTER)</a>.</p>
-</div>
-</div>
-<section id="archive-exploration" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="archive-exploration"><span class="header-section-number">8.1</span> Archive exploration</h2>
-<p>Take some time to look through the dataset’s description in EDI and click around. Discuss the following questions with your team:</p>
-<ol type="a">
-<li>What is this data about?</li>
-<li>During what time frame were the observations in the dataset collected?</li>
-<li>Does the dataset contain sensitive data?</li>
-<li>Is there a publication associated with this dataset?</li>
-</ol>
-<p>In your notebook: use a markdown cell to add a <em>brief</em> description of the dataset, including a citation, date of access, and a link to the archive.</p>
-</section>
-<section id="adding-an-image" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="adding-an-image"><span class="header-section-number">8.2</span> Adding an image</h2>
-<p>Follow these steps to add an image of a hare using a URL:</p>
-<ol type="a">
-<li><p>Go to <a href="">https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,<em>washington_co,<em>maine</em>-01</em>%2818988734889%29.jpg</a></p></li>
-<li><p>Get the URL of the hare image. To do this:</p></li>
-</ol>
-<ul>
-<li>hover over the image –&gt; right click –&gt; “Copy Image Address”.</li>
-</ul>
-<ol start="3" type="a">
-<li><p>At the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL: <code>![image description](URL-goes-here)</code></p></li>
-<li><p>Do you need to add an attribution in the image description? Check the license at the <a href="https://commons.wikimedia.org/wiki/File:SNOWSHOE_HARE_%28Lepus_americanus%29_%285-28-2015%29_quoddy_head,_washington_co,_maine_-01_%2818988734889%29.jpg">bottom of wikimedia page</a>.</p></li>
-</ol>
-<p style="text-align: center;">
-<strong>commit and push changes</strong>
-</p>
-</section>
-<section id="data-loading" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="data-loading"><span class="header-section-number">8.3</span> Data loading</h2>
-<p>Back in your notebook, import the <code>pandas</code> package in a code cell and import the <code>55_Hare_Data_2012.txt</code> from its URL using the <code>pandas.read_csv()</code>. Store it in a variable named <code>hares</code>. Take a look at the head of the dataframe.</p>
-<p style="text-align: center;">
-<strong>commit and push changes</strong>
-</p>
-<p style="text-align: center;">
-<strong>CHECK IN WITH YOUR TEAM</strong>
-</p>
-<p style="text-align: center;">
-<strong>MAKE SURE YOU’VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING</strong>
-</p>
-</section>
-<section id="metadata-exploration" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="metadata-exploration"><span class="header-section-number">8.4</span> Metadata exploration</h2>
-<p>Back in the EDI repository, click on <em>View Full Metadata</em> to access more information.</p>
-<p>Go to the “Detailed Metadata” section and click on “Data Entities”. Take a minute to look at the descriptions for the dataset’s columns.</p>
-</section>
-<section id="detecting-messy-values" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="detecting-messy-values"><span class="header-section-number">8.5</span> Detecting messy values</h2>
-<ol type="1">
-<li><p>Get the number of teams each unique non-NA value in the sex column appears by running <code>hares.sex.value_counts()</code>.</p></li>
-<li><p>Check the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">documentation of <code>value_counts()</code></a>. What is the purpose of the <code>dropna=False</code> parameter? Do step 2 again, this time adding the <code>dropna=False</code> parameter to <code>value_counts()</code>.</p></li>
-<li><p>Discuss with your team the output of the unique value counts. Notice anything odd?</p></li>
-<li><p>You likely noticed there seem to be some repeated values, for example <code>m</code> appears twice. Use the <code>unique()</code> method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.</p></li>
-<li><p>In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset.</p></li>
-</ol>
-<p style="text-align: center;">
-<strong>commit and push changes</strong>
-</p>
-</section>
-<section id="clean-values" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="clean-values"><span class="header-section-number">8.6</span> Clean values</h2>
-<ol start="6" type="1">
-<li>Use <code>np.select</code> like we did on Monday to create a new column called <code>sex_simple</code></li>
-</ol>
-<ul>
-<li>‘F’, ‘f’, and ‘f’ get assigned to ‘female’,</li>
-<li>‘M’, ‘m’, and ‘m’ get assigned to ‘male’, and</li>
-<li>anything else gets assigned <code>np.nan</code></li>
-</ul>
-<p>HINTS:</p>
-<ol type="a">
-<li>You need to create a list with two conditions and a list with two choices.</li>
-<li>To write the condition think about what does <code>(hares.sex=='F') | (hares.sex=='f')</code> mean? Do you need to add anything else?</li>
-</ol>
-<ol start="7" type="1">
-<li>Check the counts of unique values (including NAs) in the new <code>sex_simple</code> column.</li>
-</ol>
-<p style="text-align: center;">
-<strong>commit and push changes</strong>
-</p>
-</section>
-<section id="calculate-mean-weight" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="calculate-mean-weight"><span class="header-section-number">8.7</span> Calculate mean weight</h2>
-<ol start="8" type="1">
-<li>Use <code>groupby()</code> to calculate the mean weight by sex (use the new column).</li>
-</ol>
-<p style="text-align: center;">
-<strong>commit and push changes</strong>
-</p>
-</section>
-<section id="references" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> References</h1>
-<p>Kielland, K., F.S. Chapin, R.W. Ruess, and Bonanza Creek LTER. 2017. Snowshoe hare physical data in Bonanza Creek Experimental Forest: 1999-Present ver 22. Environmental Data Initiative. https://doi.org/10.6073/pasta/03dce4856d79b91557d8e6ce2cbcdc14 (Accessed 2023-10-18).</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -555,14 +406,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-6-groupby.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span>
+      <a href="../lectures/lesson-12-csv-to-geo.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-7-time-series.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

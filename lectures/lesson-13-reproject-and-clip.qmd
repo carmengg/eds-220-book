@@ -1,0 +1,370 @@
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+
+Ignore ShapelyDeprecationWarning warning in render
+
+```{python}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+-->
+
+# Reprojecting & Clipping
+
+In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to clip different geometries using a polygon in a `geopandas.GeoDataFrame`. 
+Through doing these operations we will create the following map of roads and populated places in Alaska:
+
+![](/images/alaska_roads_and_places.png)
+
+## Data
+We will use three datasets in this lesson. 
+
+**First dataset**
+The first dataset is a [TIGER shapefile from the United States Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341). 
+
+We will use the shapefiles for the US states. 
+Follow these steps to download shapefile with the United States' states:
+
+1. At the bottom of the [2022 page](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341), under Download, click on "Web Interface"
+2. For year, select 2022, and for layer type select "States (and equivalent)". Click submit. 
+3. Click on "Download national file".
+
+You can check the [metadata for all the TIGER shapefiles here](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/tiger-geo-line.html). 
+The columns for this shapefile are:
+
+![Source: TIGER/Line Shapefiles Technical Documentation](/images/tiger_shp_columns.png)
+
+**Second dataset**
+The second dataset we'll use is [Natural Earth's simple medium scale populated places dataset](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/). We can obtain this dataset by downloading the shapefile (choose the one that says "simple (less columns)").
+
+**Third dataset**
+The third dataset we'll use is [Natural Earth's road dataset](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/roads/). 
+We can obtain this dataset by downloading the shapefile 
+
+**Move all datasets to a directory named "data" inside your working directory.**
+
+## Import data
+
+Let's start by loading our libraries and then importing the datasets we'll use.
+
+```{python}
+import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# this is our first time using this function
+from shapely.geometry import box
+```
+
+```{python}
+# display all columns when looking at dataframes
+pd.set_option("display.max.columns", None)
+
+# ----- IMPORT DATA -----
+# states from US Census TIGER files
+states = gpd.read_file('tl_2022_us_state/tl_2022_us_state.shp')
+# make column names small caps
+states.columns = states.columns.str.lower()
+
+# populated places from Natural Earth
+places = gpd.read_file('ne_50m_populated_places_simple/ne_50m_populated_places_simple.shp')
+
+# roads from Natural Earth
+roads = gpd.read_file('ne_10m_roads/ne_10m_roads.shp')
+```
+
+## Prepare Alaska polygon
+
+### Exploration
+
+Let's start by taking taking a look at our stats geo-dataframe. 
+Since this is a geospatial dataset, exploration should include *at least* checking the head of the dataset, plotting the data, and looking at its CRS.
+
+```{python}
+# print the CRS
+print(states.crs)
+
+# look at first five columns
+states.head(3)
+```
+
+```{python}
+states.plot()
+```
+
+### Selection
+
+For this lesson, we are intersted in plotting data in Alaska. 
+Let's start by selecting this data:
+
+```{python}
+# select Alaska from states
+alaska = states[states.name =='Alaska']
+alaska.plot()
+```
+
+### Reprojecting
+
+As in our previous lesson, we bump into the issue of Alaska's islands elongating the map. 
+To fix this, we will reproject the Alaska geo-dataframe. 
+**Reprojecting** means precisely this, changing the coordinate reference system of your geospatial data. 
+In our case we will reproject the Alaska geo-dataframe to the CRS EPSG:3338. 
+This CRS is a *projected* CRS, better suited for working with data from Alaska:
+
+![Source: [spatialreference.org](https://spatialreference.org/ref/epsg/nad83-alaska-albers/) ](/images/epsg_3338.png)
+
+Changing CRSs in GeoPandas is very simple using the `to_crs()` method for `gpd.GeoDataFrame`s. 
+The general syntax is:
+```python
+updated_geodf = geodf.to_crs(new_crs)
+```
+where:
+
+- `updated_geodf` is the output of the method, a new geodataframe (`to_crs()` does not work in place), 
+- `geodf` is the `gpd.GeoDataFrame` we want to transform, 
+- `new_crs` an object of type CRS or string representing the CRS (ex: `'epsg:3338'`), the CRS we want to convert to. 
+
+In our case:
+
+```{python}
+# change to projected CRS optimized for Alaska
+alaska = alaska.to_crs('epsg:3338')
+alaska.plot()
+```
+
+```{python}
+# check new CRS
+print('is this CRS projected? ', alaska.crs.is_projected)
+alaska.crs
+```
+
+## Prepare populated places
+
+### Exploration 
+
+Let's now explore the populated places data. 
+
+```{python}
+# print the CRS
+print(places.crs)
+
+# look at first five columns
+places.head(3)
+```
+
+```{python}
+places.plot()
+```
+
+This dataset has CRS EPSG:4326, this is the EPSG code for the WGS84 CRS. 
+This is not surprise since this is a global dataset, and EPSG:4326/WGS84 is the most used CRS for such data.
+
+Let's see what happens when we try to plot this data on top of Alaska:
+
+```{python}
+# Trouble
+fig, ax = plt.subplots()
+
+alaska.plot(ax=ax)
+places.plot(ax=ax, color='red')
+
+plt.show()
+```
+
+::: {.callout-important}
+## Data in weird places? Check your CRSs
+This is a classic mistake in geospatial. 
+To plot, analyze, or integrate different geospatial datasets they must **have the same CRS**. 
+
+Here, `alaska` and `places` have different CRSs, leading to unexpected results when plotting them together:
+```{python}
+print(alaska.crs)
+print(places.crs)
+```
+:::
+
+### Reprojecting
+
+Reprojecting the `places` geo-datafarme into `alaska`'s CRS is simple using `to_crs()`:
+
+```{python}
+# update crs
+places = places.to_crs(alaska.crs)
+print(alaska.crs == places.crs)
+```
+
+Let's check that map again:
+
+```{python}
+fig, ax = plt.subplots()
+
+alaska.plot(ax=ax)
+places.plot(ax=ax, color='red', markersize=2 )
+
+plt.show()
+```
+
+This is better: we can see there is the Alaska poygons and some points on top of it. 
+Our next step is to select these points. 
+
+### Clipping
+
+**Clipping** means using a polygon (or polygons) to only select geospatial data within them. 
+Clipping a `gpd.GeoDataFrame` using a bounding box is easy using the [`clip()` function](https://geopandas.org/en/stable/docs/reference/api/geopandas.clip.html). 
+The general syntax is:
+```python
+updated_geodf = gpd.clip(geodf, mask)
+```
+where:
+
+- `updated_geodf` is the output of the method: the intersection of the geometries in `geodf` with `mask`,
+- `geodf` is the `gpd.GeoDataFrame` we want to clip, 
+- `mask` is a `gpd.GeoDataFrame` with the polygon(s) we want to use for clipping. This `mask` must be in the same CRS as `geodf`!
+
+In our case:
+
+```{python}
+# clip places to Alaska
+ak_places = gpd.clip(places, alaska)
+print('Number of places in AK:', len(ak_places))
+```
+
+```{python}
+# plot populated places in Alaska
+fig, ax = plt.subplots()
+
+alaska.plot(ax=ax)
+ak_places.plot(ax=ax, color='red')
+
+plt.show()
+```
+
+## Prepare roads 
+
+### Exploration
+Now we move on to our roads dataset. 
+
+```{python}
+# print the CRS
+print(roads.crs)
+
+# look at first five columns
+roads.head(3)
+```
+
+```{python}
+roads.plot()
+```
+
+### One-liner clipping
+
+You may have already noticed that `roads` is not in the same CRS as `alask`, so we these geo-datasets shound't interact until they're in the same CRS. 
+Before jumping right into reprojecting and clipping, we will subset the data to select only US roads:
+
+```{python}
+# select US roads only
+usa_roads = roads[roads.sov_a3 == 'USA']
+usa_roads.plot()
+```
+
+::: {.callout-caution}
+## Reduce your tabular data before reducing via geometries
+Geospatial operations are usually costly. 
+The more detailed our geometries the longer in takes to do geospatial computations. 
+It's a good practice to try to reduce your data as much as possible before applying any geospatial transformation. 
+:::
+
+<!--
+YOU CAN JUMP FROM HERE TO CLIPPING WITH BOUNDING BOX
+-->
+
+We will now do a "one-liner" to clip `usa_roads` using the `alaska` polygon. Notice we are using the ouput of `usa_roads.to_crs(alaska.crs)` and thus not changing the `usa_roads` geo-dataframe or creating new variables:
+
+```{python}
+# clip usa_roads to alaska geometry
+ak_roads = gpd.clip(usa_roads.to_crs(alaska.crs),alaska)
+
+ak_roads.plot()
+```
+
+Notice how the lines break on the small islands? 
+However in the `usa_roads` there are no broken lines. 
+This should make us suspect we are leaving data out and clipping *exactly* to the polygons in `alaska` is not quite what we want. 
+
+### Clipping with bounding box
+We will cip the `usa_roads` geo-dataframe with the bounding box of `alaska` instead of its polygons. 
+To do this we use the [`box` function we imported from `shapely.geometry`](https://shapely.readthedocs.io/en/stable/manual.html#shapely.geometry.box). 
+The syntax for `box` is:
+```python
+box(minx, miny, maxx, maxy)
+```
+the output is a X representing a box constructed like this:
+
+<!-- INSERT BOX DIAGRAM -->
+
+If we want to create a bounding box from a geo-dataframe `gdf`, a more straightforward syntax is:
+```python 
+box(*gdf.total_bounds)
+```
+
+<!-- ADD MORE DETAILS ABOUT THIS -->
+In our case:
+
+```{python}
+bbox = box(*alaska.total_bounds)
+print(type(bbox))
+bbox
+```
+
+```{python}
+# create geo-dataframe from bounding box
+ak_bbox = gpd.GeoDataFrame(geometry = [bbox], # assign geometry column
+                           crs = alaska.crs) # assign CRS
+print(type(ak_bbox))
+ak_bbox
+```
+
+::: {.callout-tip}
+## `*` as unpacking operator
+In the last syntax we are using the asterisk `*` as an unpacking operator on the array `gdf.total_bounds`. 
+Think about it as taking the elements of `gdf.total_bounds` and assigning them one-by-one to the usual paremeters of box `minx, miny, maxx, maxy`.
+
+This is a good article explaining more about unpacking with `*` in Python:
+https://geekflare.com/python-unpacking-operators/
+:::
+
+We can now clip the roads using Alaska's bounding box, instead of the polygons:
+```{python}
+ak_complete_roads = gpd.clip(usa_roads.to_crs(ak_bbox.crs), ak_bbox)
+ak_complete_roads.plot()
+```
+
+Notice the difference between the two clipping methods:
+
+```{python}
+# two rows, one column
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10,10))
+
+ak_roads.plot(ax=ax1)
+ax1.set_title('Roads clipped with AK multipolygon')
+
+ak_complete_roads.plot(ax=ax2)
+ax2.set_title('Roads clipped with AK bounding box')
+
+#plt.axis('equal')
+plt.show()
+```
+
+<!-- 
+Variable: Symbolic name that stores an object and has a reserved memory location.
+-->
+
+## Plot
