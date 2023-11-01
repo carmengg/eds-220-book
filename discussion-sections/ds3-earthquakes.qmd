@@ -23,7 +23,6 @@
 ## General directions
 - Add comments in each one of your code cells 
 - Include markdown cells in between your code cells to add titles/information to each exercise
-- Indications about when to commit and push changes are included, but you are encouraged to commit and push more often. 
 - You won't need to upload any data.
 :::
 
@@ -49,12 +48,14 @@ type = type of event
 Further information about the dataset can be accessed in the [ANSS Comprehensive Earthquake Catalog (ComCat) Documentation](https://earthquake.usgs.gov/data/comcat/).
 
 **Second dataset**
+The first dataset is Natural Earth's low resolution cultural boundaries data. 
+These low-resolution polygons are available directly through `geopandas` and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or finer geospatial analysis.
 :::
 
-<!-- Data exploration -->
 ## Archive exploration
 
-<!-- Data loading -->
+FILL THIS IN
+
 ## Earthquake data
 
 ### Import data
@@ -75,3 +76,18 @@ Do some simple preliminary exploration of the `raw_eqk` dataframe.
 ### `pd.DataFrame` to `gpd.GeoDataFrame`
 1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: we did this on Monday!
 2. Make a simple plot of the `eqk` data.
+
+## Import low-resolution countries polygons
+
+Run the following line to import Natural Earth's low-resolution countries polygons using `geopandas`:
+
+```python
+worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
+worldmap
+```
+
+## Map
+
+FILL THIS IN
+
+ADD MY MAP IMAGE
