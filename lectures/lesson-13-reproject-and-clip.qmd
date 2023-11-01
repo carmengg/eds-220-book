@@ -81,7 +81,9 @@ places = gpd.read_file('ne_50m_populated_places_simple/ne_50m_populated_places_s
 roads = gpd.read_file('ne_10m_roads/ne_10m_roads.shp')
 ```
 
-## Prepare Alaska polygon: reprojecting
+## Prepare Alaska polygon
+
+### Exploration
 
 Let's start by taking taking a look at our stats geo-dataframe. 
 Since this is a geospatial dataset, exploration should include *at least* checking the head of the dataset, plotting the data, and looking at its CRS.
@@ -91,12 +93,14 @@ Since this is a geospatial dataset, exploration should include *at least* checki
 print(states.crs)
 
 # look at first five columns
-states.head()
+states.head(3)
 ```
 
 ```{python}
 states.plot()
 ```
+
+### Selection
 
 For this lesson, we are intersted in plotting data in Alaska. 
 Let's start by selecting this data:
@@ -106,6 +110,8 @@ Let's start by selecting this data:
 alaska = states[states.name =='Alaska']
 alaska.plot()
 ```
+
+### Reprojecting
 
 As in our previous lesson, we bump into the issue of Alaska's islands elongating the map. 
 To fix this, we will reproject the Alaska geo-dataframe. 
@@ -139,4 +145,73 @@ alaska.plot()
 print('is this CRS projected? ', alaska.crs.is_projected)
 alaska.crs
 ```
+
+## Prepare populated places
+
+### Exploration 
+
+Let's now explore the populated places data. 
+
+```{python}
+# print the CRS
+print(places.crs)
+
+# look at first five columns
+places.head(3)
+```
+
+```{python}
+places.plot()
+```
+
+This dataset has CRS EPSG:4326, this is the EPSG code for the WGS84 CRS. 
+This is not surprise since this is a global dataset, and EPSG:4326/WGS84 is the most used CRS for such data.
+
+Let's see what happens when we try to plot this data on top of Alaska:
+
+```{python}
+# Trouble
+fig, ax = plt.subplots()
+
+alaska.plot(ax=ax)
+places.plot(ax=ax, color='red')
+
+plt.show()
+```
+
+::: {.callout-important}
+## Data in weird places? Check your CRSs
+This is a classic mistake in geospatial. 
+To plot, analyze, or integrate different geospatial datasets they must **have the same CRS**. 
+
+Here, `alaska` and `places` have different CRSs, leading to unexpected results when plotting them together:
+```{python}
+print(alaska.crs)
+print(places.crs)
+```
+:::
+
+### Reprojecting
+
+Reprojecting the `places` geo-datafarme into `alaska`'s CRS is simple using `to_crs()`:
+
+```{python}
+# update crs
+places = places.to_crs(alaska.crs)
+print(alaska.crs == places.crs)
+```
+
+Let's check that map again:
+
+```{python}
+fig, ax = plt.subplots()
+
+alaska.plot(ax=ax)
+places.plot(ax=ax, color='red', markersize=2 )
+
+plt.show()
+```
+
+This is better: we can see there is the Alaska poygons and some points on top of it. 
+Our next step is to select these points. 
 
