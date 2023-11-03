@@ -168,22 +168,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
   </div>
 </li>
       </ul>
@@ -374,7 +379,7 @@ About the data
 <li><p>Get the number of teams each unique non-NA value in the sex column appears by running <code>hares.sex.value_counts()</code>.</p></li>
 <li><p>Check the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">documentation of <code>value_counts()</code></a>. What is the purpose of the <code>dropna=False</code> parameter? Do step 2 again, this time adding the <code>dropna=False</code> parameter to <code>value_counts()</code>.</p></li>
 <li><p>Discuss with your team the output of the unique value counts. Notice anything odd?</p></li>
-<li><p>You likely noticed there seem to be some repeated values, for example <code>m</code> appears twice. Use the <code>unique()</code> method on the sex column to see the unique non-NA values in this column. Discuss with your team what was the cause of the seemingly repeated values.</p></li>
+<li><p>You likely noticed there seems to be some repeated values, for example <code>m</code> appears twice. Use the <code>unique()</code> method on the sex column to see the unique non-NA values in this column. Discuss with your team what is the cause of the seemingly repeated values.</p></li>
 <li><p>In the metadata section of the EDI repository, find which are the allowed values for the sex column. Discuss with your team whether these values correspond to the values present in the dataset.</p></li>
 </ol>
 <p style="text-align: center;">

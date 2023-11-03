@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - Appendix A — Setting a PAT</title>
+<title>EDS 220 - Working with Environmental Datasets - 15&nbsp; *Lab: Maps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,7 +93,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../discussion-sections/ds3-earthquakes.html" rel="prev">
+<link href="../appendices/set-pat.html" rel="next">
+<link href="../lectures/lesson-12-csv-to-geo.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Appendix A — Setting a PAT</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -187,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
   </div>
 </li>
       </ul>
@@ -202,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
   </div>
 </li>
       </ul>
@@ -212,14 +276,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#earthquake-data" id="toc-earthquake-data" class="nav-link active" data-scroll-target="#earthquake-data"><span class="toc-section-number">15.1</span>  Earthquake data</a>
+  <ul class="collapse">
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="toc-section-number">15.1.1</span>  Import data</a></li>
+  <li><a href="#data-selection" id="toc-data-selection" class="nav-link" data-scroll-target="#data-selection"><span class="toc-section-number">15.1.2</span>  Data selection</a></li>
+  <li><a href="#pd.dataframe-to-gpd.geodataframe" id="toc-pd.dataframe-to-gpd.geodataframe" class="nav-link" data-scroll-target="#pd.dataframe-to-gpd.geodataframe"><span class="toc-section-number">15.1.3</span>  <code>pd.DataFrame</code> to <code>gpd.GeoDataFrame</code></a></li>
+  </ul></li>
+  <li><a href="#import-low-resolution-countries-polygons" id="toc-import-low-resolution-countries-polygons" class="nav-link" data-scroll-target="#import-low-resolution-countries-polygons"><span class="toc-section-number">15.2</span>  Import low-resolution countries polygons</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="toc-section-number">15.3</span>  Map</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Appendix A — Setting a PAT</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></h1>
 </div>
 
 
@@ -234,46 +311,110 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This section contains instructions for creatiog a Personal Access Token (PAT):</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Notebook Setup
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li>In <a href="https://github.com">GitHub</a> navigate to:</li>
+<li><p>In the Taylor server, start a new JupyterLab session or access an active one.</p></li>
+<li><p>In the directory navigation bar, open the <code>eds-220-sections</code> directory you created in the last lab.</p></li>
+<li><p>In the terminal, navigate into the <code>eds-220-sections</code> directory and verify <code>eds-220-sections</code> is your current working directory.</p></li>
+<li><p>Create a new Python Notebook in <code>eds-220-sections</code>.</p></li>
+<li><p>Update the notebook’s name to something useful like ‘map-earthquake-data.ipynb’.</p></li>
+<li><p>Use the terminal to stage, commit, and push this file to the remote repository.</p></li>
+<li><p>If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow <a href="https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/">steps 13-18 in this guide</a> to set it up.</p></li>
 </ol>
-<ul>
-<li>settings</li>
-<li>developer settings (last option on the left)</li>
-<li>tokens (classic)</li>
-<li>generate new token button (near right corner)</li>
-<li>Click on: Generate new token (classic)</li>
-</ul>
-<ol start="2" type="1">
-<li>Select the following options:</li>
-</ol>
-<ul>
-<li>☑️ Repo (clicking this will select all boxes in the section, that’s ok)</li>
-<li>☑️ workflow</li>
-<li>☑️ gist</li>
-<li>☑️ user (clicking this will select all boxes in the section, that’s ok)</li>
-</ul>
-<ol start="3" type="1">
-<li><p>Click generate token.</p></li>
-<li><p>Copy and paste the PAT somewhere for now!</p></li>
-<li><p>Back at the terminal try to push your changes again using <code>git push</code>. When prompted, enter your GitHub username and the new PAT as the password.</p></li>
-</ol>
+</div>
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Note
+General directions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In steps 1-5 we generated a PAT manually. This is the same process as using <code>usethis::create_github_token</code> from an R console as explained in the <a href="https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat">MEDS installation guide</a>. The options we selected in step 2 are the same options for the PAT given by <code>usethis::create_github_token</code>.</p>
+<ul>
+<li>Add comments in each one of your code cells</li>
+<li>Include markdown cells in between your code cells to add titles/information to each exercise</li>
+<li>You won’t need to upload any data.</li>
+</ul>
 </div>
 </div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+About the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this task we are going to use two datasets.</p>
+<p><strong>First dataset</strong></p>
+<p>Simplified data from the <a href="https://earthquake.usgs.gov/earthquakes/search/">USGS Earthquakes Database</a>. This is the same dataset we used for homework 1, task 4. It is in tabular format and has the following columns:</p>
+<ul>
+<li>time = date and time of event (all events from 2014)</li>
+<li>latitude = decimal degrees [-90,90]</li>
+<li>longitude = decimal degrees [-360,360]</li>
+<li>depth = depth of the event (km)</li>
+<li>mag = magnitude of event</li>
+<li>id = event identifier</li>
+<li>place = where the event took place</li>
+<li>type = type of event</li>
+</ul>
+<p>Further information about the dataset can be accessed in the <a href="https://earthquake.usgs.gov/data/comcat/">ANSS Comprehensive Earthquake Catalog (ComCat) Documentation</a>.</p>
+<p><strong>Second dataset</strong></p>
+<p>The second dataset is Natural Earth’s low resolution cultural boundaries data. These low-resolution polygons are available directly through <code>geopandas</code> and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or detailed geospatial analysis.</p>
+</div>
+</div>
+<section id="earthquake-data" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="earthquake-data"><span class="header-section-number">15.1</span> Earthquake data</h2>
+<section id="import-data" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="import-data"><span class="header-section-number">15.1.1</span> Import data</h3>
+<ol type="1">
+<li><p>Import the earthquake data directly from the <a href="https://raw.githubusercontent.com/carmengg/eds220-hwk-1/main/data/earthquake_data.csv">following URL (it is a csv file)</a>. Store it in a variable <code>raw_eqk</code>.</p></li>
+<li><p>Do some simple preliminary exploration of the <code>raw_eqk</code> dataframe.</p></li>
+</ol>
+</section>
+<section id="data-selection" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="data-selection"><span class="header-section-number">15.1.2</span> Data selection</h3>
+<ol type="1">
+<li>Check which are the unique values for the type of earthquakes.</li>
+<li>Select only data with with type equal to ‘eartquake’ and magnitude greater than or equal to 6.5.</li>
+<li>Store this as a new dataframe called <code>eqk</code>.</li>
+</ol>
+</section>
+<section id="pd.dataframe-to-gpd.geodataframe" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="pd.dataframe-to-gpd.geodataframe"><span class="header-section-number">15.1.3</span> <code>pd.DataFrame</code> to <code>gpd.GeoDataFrame</code></h3>
+<ol type="1">
+<li>Overwrite <code>eqk</code> dataframe as a <code>geopandas.GeoDataFrame</code>. HINT: find the CRS of the dataset by <a href="https://earthquake.usgs.gov/data/comcat/">looking at the metadata</a>.</li>
+<li>Make a simple plot of the <code>eqk</code> data.</li>
+</ol>
+</section>
+</section>
+<section id="import-low-resolution-countries-polygons" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="import-low-resolution-countries-polygons"><span class="header-section-number">15.2</span> Import low-resolution countries polygons</h2>
+<p>Run the following line to import Natural Earth’s low-resolution countries polygons using <code>geopandas</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>worldmap <span class="op">=</span> gpd.read_file(gpd.datasets.get_path(<span class="st">"naturalearth_lowres"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>worldmap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="map" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="map"><span class="header-section-number">15.3</span> Map</h2>
+<p>Create a map of the earthquales of magnitude greater equal to 6.5 across the world in 2014. Color the points by the magnitude. This is an example of how it could look like:</p>
+<p><img src="earthquake_map.png" class="img-fluid"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -411,11 +552,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../discussion-sections/ds3-earthquakes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span>
+      <a href="../lectures/lesson-12-csv-to-geo.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../appendices/set-pat.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

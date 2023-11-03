@@ -35,16 +35,16 @@ For this task we are going to use two datasets.
 
 Simplified data from the [USGS Earthquakes Database](https://earthquake.usgs.gov/earthquakes/search/). 
 This is the same dataset we used for homework 1, task 4. 
-It is in tabular format and has the following columns.
+It is in tabular format and has the following columns:
 
-time = date and time of event (all events from 2014)
-latitude = decimal degrees [-90,90]
-longitude = decimal degrees [-360,360]
-depth = depth of the event (km)
-mag = magnitude of event
-id = event identifier
-place = where the event took place
-type = type of event
+- time = date and time of event (all events from 2014)
+- latitude = decimal degrees [-90,90]
+- longitude = decimal degrees [-360,360]
+- depth = depth of the event (km)
+- mag = magnitude of event
+- id = event identifier
+- place = where the event took place
+- type = type of event
 
 Further information about the dataset can be accessed in the [ANSS Comprehensive Earthquake Catalog (ComCat) Documentation](https://earthquake.usgs.gov/data/comcat/).
 
@@ -58,21 +58,20 @@ These low-resolution polygons are available directly through `geopandas` and are
 
 ### Import data
 
-Import the earthquake data directly from the following URL (it is a csv file): 
-https://raw.githubusercontent.com/carmengg/eds220-hwk-1/main/data/earthquake_data.csv
+1. Import the earthquake data directly from the [following URL (it is a csv file)](https://raw.githubusercontent.com/carmengg/eds220-hwk-1/main/data/earthquake_data.csv).
 Store it in a variable `raw_eqk`.
 
-Do some simple preliminary exploration of the `raw_eqk` dataframe.
+2. Do some simple preliminary exploration of the `raw_eqk` dataframe.
 
 ### Data selection
 
-1. Check which are the unique values of the type of earthquakes. 
+1. Check which are the unique values for the type of earthquakes. 
 2. Select only data with with type equal to 'eartquake' and magnitude greater than or equal to 6.5. 
 3. Store this as a new dataframe called `eqk`.
 
 
 ### `pd.DataFrame` to `gpd.GeoDataFrame`
-1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: find the CRS of the dataset by [looking at the metadata](https://earthquake.usgs.gov/data/comcat/)
+1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: find the CRS of the dataset by [looking at the metadata](https://earthquake.usgs.gov/data/comcat/).
 2. Make a simple plot of the `eqk` data.
 
 ## Import low-resolution countries polygons
@@ -89,4 +88,5 @@ worldmap
 Create a map of the earthquales of magnitude greater equal to 6.5 across the world in 2014. 
 Color the points by the magnitude. 
 This is an example of how it could look like:
+
 ![](earthquake_map.png)

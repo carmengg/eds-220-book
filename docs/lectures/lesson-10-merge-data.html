@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 12&nbsp; Merging data</title>
+<title>EDS 220 - Working with Environmental Datasets - 13&nbsp; Merging data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-11-crs.html" rel="next">
+<link href="../lectures/lesson-12-csv-to-geo.html" rel="next">
 <link href="../lectures/lesson-9-geopandas-intro.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -234,22 +234,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
   </div>
 </li>
       </ul>
@@ -278,25 +283,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins"><span class="toc-section-number">12.1</span>  Types of Joins</a>
+  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins"><span class="toc-section-number">13.1</span>  Types of Joins</a>
   <ul class="collapse">
-  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="toc-section-number">12.1.1</span>  Inner Join</a></li>
-  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">12.1.2</span>  Left Join</a></li>
-  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">12.1.3</span>  Right Join</a></li>
-  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="toc-section-number">12.1.4</span>  Full Join</a></li>
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="toc-section-number">13.1.1</span>  Inner Join</a></li>
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">13.1.2</span>  Left Join</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">13.1.3</span>  Right Join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="toc-section-number">13.1.4</span>  Full Join</a></li>
   </ul></li>
-  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="toc-section-number">12.2</span>  Goal</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">12.3</span>  Data</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">12.4</span>  Data preparation</a>
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="toc-section-number">13.2</span>  Goal</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">13.3</span>  Data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">13.4</span>  Data preparation</a>
   <ul class="collapse">
-  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">12.4.1</span>  Countries</a></li>
-  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="toc-section-number">12.4.2</span>  Arctic communities</a></li>
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">13.4.1</span>  Countries</a></li>
+  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="toc-section-number">13.4.2</span>  Arctic communities</a></li>
   </ul></li>
-  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">12.5</span>  Merge datasets</a></li>
-  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">12.6</span>  Choropleth map</a></li>
-  <li><a href="#complete-workflow" id="toc-complete-workflow" class="nav-link" data-scroll-target="#complete-workflow"><span class="toc-section-number">12.7</span>  Complete workflow</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="toc-section-number">12.8</span>  Acknowledgments</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.9</span>  References</a></li>
+  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">13.5</span>  Merge datasets</a></li>
+  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">13.6</span>  Choropleth map</a></li>
+  <li><a href="#complete-workflow" id="toc-complete-workflow" class="nav-link" data-scroll-target="#complete-workflow"><span class="toc-section-number">13.7</span>  Complete workflow</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="toc-section-number">13.8</span>  Acknowledgments</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">13.9</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -305,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
 </div>
 
 
@@ -347,8 +352,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 
 -->
 <p>In this section we will learn how to join dataframes and will apply this to creating a choropleth map with <code>geopandas</code>.</p>
-<section id="types-of-joins" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">12.1</span> Types of Joins</h2>
+<section id="types-of-joins" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">13.1</span> Types of Joins</h2>
 <p>Frequently, analysis of data will require merging separate dataframes. There are multiple ways to merge observations. When conceptualizing merges, we think of two tables, one on the <em>left</em> and one on the <em>right</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -356,8 +361,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
 </figure>
 </div>
-<section id="inner-join" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">12.1.1</span> Inner Join</h3>
+<section id="inner-join" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">13.1.1</span> Inner Join</h3>
 <p>An <em>inner join</em> is when you merge the subset of rows that have matches in both the left table and the right table.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -366,8 +371,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 </figure>
 </div>
 </section>
-<section id="left-join" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">12.1.2</span> Left Join</h3>
+<section id="left-join" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">13.1.2</span> Left Join</h3>
 <p>A <em>left join</em> takes all of the rows from the left table, and merges on the data from matching rows in the right table. Keys that don’t match from the left table are still provided with a missing value (na) from the right table.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -376,8 +381,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 </figure>
 </div>
 </section>
-<section id="right-join" class="level3" data-number="12.1.3">
-<h3 data-number="12.1.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">12.1.3</span> Right Join</h3>
+<section id="right-join" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">13.1.3</span> Right Join</h3>
 <p>A <em>right join</em> is the same as a left join, except that all of the rows from the right table are included with matching data from the left, or a missing value. Notice that left and right joins can ultimately be the same depending on the positions of the tables.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -386,8 +391,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 </figure>
 </div>
 </section>
-<section id="full-join" class="level3" data-number="12.1.4">
-<h3 data-number="12.1.4" class="anchored" data-anchor-id="full-join"><span class="header-section-number">12.1.4</span> Full Join</h3>
+<section id="full-join" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="full-join"><span class="header-section-number">13.1.4</span> Full Join</h3>
 <p>Finally, a <em>full outer join</em> (or just <em>full join</em>) includes all data from all rows in both tables, and includes missing values wherever necessary.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -404,13 +409,13 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 </div>
 </section>
 </section>
-<section id="goal" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="goal"><span class="header-section-number">12.2</span> Goal</h2>
+<section id="goal" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="goal"><span class="header-section-number">13.2</span> Goal</h2>
 <p>Our goal in this lesson will be to join two datasets, one with demographic information and another with country outlines, to create the following choropleth map showing the number of Arctic communities by country and their location in <a href="https://en.wikipedia.org/wiki/Scandinavia">Scandinavia</a>:</p>
 <p><img src="../images/arctic-comms.png" class="img-fluid"></p>
 </section>
-<section id="data" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="data"><span class="header-section-number">12.3</span> Data</h2>
+<section id="data" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="data"><span class="header-section-number">13.3</span> Data</h2>
 <p>We will use two datasets in this lesson. The first dataset is <a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/">Natural Earth’s medium scale cultural boundaries data (1:50m)</a>. We can obtain this dataset by downloading the shapefile. <a href="https://www.naturalearthdata.com">Natural Earth</a> is a public domain dataset with ready-to-use data for creating maps.</p>
 <p>The second dataset we will use is a <a href="https://search.dataone.org/view/doi%3A10.18739%2FA28S4JQ80">list of Arctic communities and their location (Brook, 2023)</a> which can be accessed through the DataONE repository. This is a GeoJSON file with the following attributes:</p>
 <ul>
@@ -420,8 +425,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <li><strong>geoname-id</strong>: numeric codes that uniquely identify all administrative/legal and statistical geographic areas for which the Census Bureau tabulates data</li>
 </ul>
 </section>
-<section id="data-preparation" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">12.4</span> Data preparation</h2>
+<section id="data-preparation" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">13.4</span> Data preparation</h2>
 <p>We start our analysis by importing the necessary libraries:</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -438,8 +443,8 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display all column when looking at dataframes</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max.columns"</span>, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="countries" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="countries"><span class="header-section-number">12.4.1</span> Countries</h3>
+<section id="countries" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="countries"><span class="header-section-number">13.4.1</span> Countries</h3>
 <p>Now we move on to preparing the polygons for the Scandinavian countries. To import the Natural Earth countries polygons we use the <code>geopandas.read_file()</code> function again:</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import countries polygons</span></span>
@@ -1570,8 +1575,8 @@ import contextily as ctx
 </div>
 </div>
 </section>
-<section id="arctic-communities" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="arctic-communities"><span class="header-section-number">12.4.2</span> Arctic communities</h3>
+<section id="arctic-communities" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="arctic-communities"><span class="header-section-number">13.4.2</span> Arctic communities</h3>
 <p>In the same way as we previously used <code>pandas.read_csv()</code>, we can read in the Arctic communities data directly from the data repository using <code>geopandas.read_file()</code>:</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Arctic communities data</span></span>
@@ -1835,8 +1840,8 @@ import contextily as ctx
 </div>
 </section>
 </section>
-<section id="merge-datasets" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="merge-datasets"><span class="header-section-number">12.5</span> Merge datasets</h2>
+<section id="merge-datasets" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="merge-datasets"><span class="header-section-number">13.5</span> Merge datasets</h2>
 <p>To merge two datasets they need to have at least one column in common. Currently our datasets do not have any columns in common:</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countries_sub.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2111,8 +2116,8 @@ import contextily as ctx
 </div>
 </div>
 </section>
-<section id="choropleth-map" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="choropleth-map"><span class="header-section-number">12.6</span> Choropleth map</h2>
+<section id="choropleth-map" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="choropleth-map"><span class="header-section-number">13.6</span> Choropleth map</h2>
 <p>A <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth map</a> is an efficient way to visualize aggregate data per region.</p>
 <p>To make a choropleth map from our polygons <code>GeoDataFrame</code> we need to specify the <code>column</code> parameter in <code>plot()</code> and make it equal to the column with the values we want to plot in each country.</p>
 <div class="cell" data-execution_count="22">
@@ -2151,8 +2156,8 @@ import contextily as ctx
 <p><strong>Check-in</strong></p>
 <p>Add the scandinavian communities as dots on the choropleth map.</p>
 </section>
-<section id="complete-workflow" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="complete-workflow"><span class="header-section-number">12.7</span> Complete workflow</h2>
+<section id="complete-workflow" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="complete-workflow"><span class="header-section-number">13.7</span> Complete workflow</h2>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2231,13 +2236,13 @@ import contextily as ctx
 <span id="cb30-76"><a href="#cb30-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-77"><a href="#cb30-77" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="acknowledgments" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="acknowledgments"><span class="header-section-number">12.8</span> Acknowledgments</h2>
+<section id="acknowledgments" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="acknowledgments"><span class="header-section-number">13.8</span> Acknowledgments</h2>
 <p>The section about merging data is based on the <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html#merging-data">Data Modeling Essentials R lesson</a> from the NCEAS Learning Hub.</p>
 <p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
 </section>
-<section id="references" class="level2" data-number="12.9">
-<h2 data-number="12.9" class="anchored" data-anchor-id="references"><span class="header-section-number">12.9</span> References</h2>
+<section id="references" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="references"><span class="header-section-number">13.9</span> References</h2>
 <p>Mike Brook. (2023). Approximate Arctic Communities and Populations, (latitude &gt;= 55, 2022). Arctic Data Center. doi:10.18739/A28S4JQ80.</p>
 
 
@@ -2380,12 +2385,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/lesson-9-geopandas-intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-11-crs.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-12-csv-to-geo.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
