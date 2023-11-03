@@ -32,6 +32,7 @@
 For this task we are going to use two datasets. 
 
 **First dataset**
+
 Simplified data from the [USGS Earthquakes Database](https://earthquake.usgs.gov/earthquakes/search/). 
 This is the same dataset we used for homework 1, task 4. 
 It is in tabular format and has the following columns.
@@ -48,6 +49,7 @@ type = type of event
 Further information about the dataset can be accessed in the [ANSS Comprehensive Earthquake Catalog (ComCat) Documentation](https://earthquake.usgs.gov/data/comcat/).
 
 **Second dataset**
+
 The first dataset is Natural Earth's low resolution cultural boundaries data. 
 These low-resolution polygons are available directly through `geopandas` and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or finer geospatial analysis.
 :::
