@@ -1,0 +1,175 @@
+
+## Introduction
+
+Efficient and reproducible data analysis begins with choosing a proper format to store our data, particularly when working with large, complex, multi-dimensional datasets. 
+Consider, for example, the following Earth System Data Cube from [Mahecha et al. 2020](https://esd.copernicus.org/articles/11/201/2020/esd-11-201-2020.pdf), which measures nine environmental variables at high resolution across space and time. 
+We can consider this dataset large (high-resolution means we have a big file), complex (multiple variables), and multi-dimensional (each variable is measured along three dimensions: latitude, longitude, and time). 
+Additionally, necessary metadata must accompany the dataset to make it functional, such as units of measurement for variables, information about the authors, and processing software used.
+
+![Mahecha et al. 2020 . *Visualization of the implemented Earth system data cube. The figure shows from the top left to bottom right the variables sensible heat (H), latent heat (LE), gross primary production (GPP), surface moisture (SM), land surface temperature (LST), air temperature (Tair), cloudiness (C), precipitation (P), and water vapour (V). The resolution in space is 0.25° and 8 d in time, and we are inspecting the time from May 2008 to May 2010; the spatial range is from 15° S to 60° N, and 10° E to 65° W.*](../images/mahecha_data_cube.png)
+
+Keeping complex datasets in a format that facilitates access, processing, sharing, and archiving can be at least as important as how we parallelize the code we use to analyze them. In practice, it is common to convert our data from less efficient formats into more efficient ones before we parallelize any processing. 
+In this lesson, we will 
+
+1. familiarize ourselves with the NetCDF data format, which enables us to store large, complex, multi-dimensional data efficiently, and 
+
+2. learn to use the `xarray` Python package to read, process, and create NetCDF files.
+
+## NetCDF Data Format
+
+[NetCDF](https://docs.unidata.ucar.edu/netcdf-c/current/index.html) (network Common Data Form) is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. NetCDF was initially developed at the Unidata Program Center and is supported on almost all platforms, and parsers exist for most scientific programming languages. 
+
+The [NetCDF documentation](https://docs.unidata.ucar.edu/netcdf-c/current/faq.html#ncFAQGeneral) outlines that this data format is desgined to be: 
+
+>1. **Self-describing:**
+Information describing the data contents of the file is embedded within the data file itself. This means that there is a header describing the layout of the rest of the file and arbitrary file metadata.
+>
+>2. **Scalable:**
+Small subsets of large datasets may be accessed efficiently through netCDF interfaces, even from remote servers.
+>
+>3. **Portable:**
+A NetCDF file is machine-independent i.e. it can be accessed by computers with different ways of storing integers, characters, and floating-point numbers.
+>
+>4. **Appendable:**
+Data may be appended to a properly structured NetCDF file without copying the dataset or redefining its structure.
+>
+>5. **Sharable:**
+One writer and multiple readers may simultaneously access the same NetCDF file.
+>
+>6. **Archivable:**
+Access to all earlier forms of NetCDF data will be supported by current and future versions of the software.
+
+### Data Model
+The NetCDF data model is the way that NetCDF organizes data. 
+This lesson will follow the [Classic NetCDF Data Model](https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model), which is at the core of all netCDF files. 
+<!--
+A new Enhanced Data Model exists, but for maximum interoperability with existing code, new data should be created with the Classic Model. 
+-->
+
+
+The model consists of three key components: **variables**, **dimensions**, and **attributes**.
+
++ **Variables**
+are N-dimensional arrays of data. 
+We can think of these as varying/measured/dependent quantities.
+
++ **Dimensions**
+describe the axes of the data arrays. 
+A dimension has a name and a length. 
+We can think of these as the constant/fixed/independent quantities at which we measure the variables.
+
++ **Attributes**
+are small notes or supplementary metadata to annotate a variable or the file as a whole. 
+
+
+![ Classic NetCDF Data Model ([NetCDF documentation](https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model))](../images/netcdf_data_model.png)
+
+### Metadata Standards
+
+The most commonly used metadata standard for geospatial data is the **Climate and Forecast metadata standard**, also called the [**CF conventions**](https://cfconventions.org). 
+
+>The CF conventions are specifically designed to promote the processing and sharing of files created with the NetCDF API.
+>Principles of CF include self-describing data (no external tables needed for understanding), metadata equally readable by humans and software, minimum redundancy, and maximum simplicity. [(CF conventions FAQ)](http://cfconventions.org/faq.html)
+
+The CF conventions provide a unique standardized name and precise description of over 1,000 physical variables. 
+To maximize the reusability of our data, it is best to include a variable's standardized name as an attribute called `standard_name`. 
+Variables should also include a `units` attribute. 
+This attribute should be a string that can be recognized by UNIDATA’s [UDUNITS package](https://www.unidata.ucar.edu/software/udunits/).
+In these links you can find:
+
+* [a table with all of the CF convention's standard names](http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html), and
+
+* [a list of the units found in the UDUNITS database](https://ncics.org/portfolio/other-resources/udunits2/#degree_N) maintained by the North Carolina Institute for Climate Studies. 
+
+### Exercise
+
+Let's do a short practice now that we have reviewed the classic NetCDF model and know a bit about metadata best practices.
+<p align="center">
+**Part 1**
+</p>
+
+Imagine the following scenario: we have a network of 25 weather stations. 
+They are located in a square grid: starting at 30°0′N 60°0′E, there is a station every 10° North and every 10° East. 
+Each station measures the air temperature at a set time for three days, starting on September 1st, 2022. 
+On the first day, all stations record a temperature of 0°C. On the second day, all temperatures are 1°C, and on the third day, all temperatures are 2°C. 
+What are the *variables*, *dimensions* and *attributes* for this data? 
+
+
+:::{.callout-tip collapse="true"}
+### Answer
+**Variables**: There is a single variable being measured: temperature. 
+The variable values can be represented as a 5x5x3 array, with constant values for each day. 
+
+**Dimensions**: 
+This dataset has three dimensions: time, latitude, and longitude. 
+Time indicates when the measurement happened, we can encode it as the dates 2022-09-01, 2022-09-02, and 2022-09-03. 
+The pairs of latitude and longitude values indicate the positions of the weather stations. 
+Latitude has values 30, 40, 50, 60, and 70, measured in degrees North. Longitude has values 60, 70, 80, 90, and 100, measured in degrees East. 
+
+![](../images/netcdf_exercise_1.png)
+
+**Attributes**: Let’s divide these into attributes for the variable, the dimensions, and the whole dataset:
+
+* Variable attributes:
+    * Temperature attributes: 
+        + standard_name: air_temperature
+        + units: degree_C
+
+* Dimension attributes:
+    * Time attributes:
+        + description: date of measurement
+
+    * Latitude attributes:
+        + standard_name: grid_latitude
+        + units: degrees_N
+
+    * Longitude attributes:
+        + satandard_name: grid_longitude
+        + units: degree_E
+
+* Dataset attributes:
+    + title: Temperature Measurements at Weather Stations
+    + summary: an example of NetCDF data format
+
+:::
+
+<p align="center">
+**Part 2**
+</p>
+
+Now imagine we calculate the average temperature over time at each weather station, and we wish to incorporate this data into the same dataset.
+How will adding the average temperature data change the dataset's variables, attributes, and dimensions?
+
+:::{.callout-tip collapse="true"}
+### Answer
+
+**Variables**: Now we are measuring two variables: temperature and average temperature. 
+The temperature data stays the same. 
+We can represent the average temperature as a single 5x5 array with value 1 at each cell.
+
+**Dimensions**: 
+This dataset still has three dimensions: time, latitude, and longitude. 
+The temperature variable uses all three dimensions, and the average temperature variable only uses two (latitude and longitude). 
+This is ok! 
+The dataset’s dimensions are the union of the dimensions of all the variables in the dataset. 
+Variables in the same dataset may have all, some, or no dimensions in common.
+
+![](../images/netcdf_exercise_2.png)
+
+**Attributes**:
+To begin with, we need to keep all the previous attributes.
+Notice that the dataset's title is general enough that we don't need to update it.
+The only update we need to do is add the attributes for our new average temperature variable:
+
+* Average temperature attributes: 
+    + standard_name: average_air_temperature
+    + description: average temperature over three days
+
+:::
+
+
+
+
+## Acknowledgements
+
+S. Jeanette Clark, Matthew B. Jones, Samantha Csik, Carmen Galaz García, Bryce Mecum, Natasha Haycock-Chavez, Daphne Virlar-Knight, Juliet Cohen, Anna Liljedahl. 2023. Scalable and Computationally Reproducible Approaches to Arctic Research. Arctic Data Center. [doi:10.18739/A2QF8JM2V](https://learning.nceas.ucsb.edu/2023-03-arctic/)
