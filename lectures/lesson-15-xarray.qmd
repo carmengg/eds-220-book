@@ -179,7 +179,7 @@ Remember that indexing in 2-dimensional `numpy.array`s starts at the top-left co
 This is why latitude is the second dimension and longitude the third. 
 From the diagram, we can also see that the coordinates (values of each dimension) are as follows:
 
-- date coordinates are 2022-09-01, 2022-09-02, 2022-09-03
+- time coordinates are 2022-09-01, 2022-09-02, 2022-09-03
 - latitude coordinates are 70, 60, 50, 40, 30 (notice decreasing order)
 - longitude coordinates are 60, 70, 80, 90, 100 (notice increasing order)
 
@@ -241,8 +241,7 @@ temp
 At this point, since we have a single variable, the dataset attributes and the variable attributes are the same. 
 
 ### Subsetting
-An `xarray.DataArray` is a multi-dimensional array with laballed dimensions. 
-To select data from it we need to specify which subsets along each dimension we are interested in. 
+To select data from an `xarray.DataArray` we need to specify the subsets we want along each dimension.
 We can specify the data we need from each dimension either by relying on the dimension's positions (**dimension lookup by position**) or by calling each dimension by its name (**dimension lookup by name**). 
 Let's see some examples.
 
@@ -252,7 +251,7 @@ Suppose we want to know what was the temperature recorded by the weather station
 
 **Dimension lookup by position**
 
-When we want to rely on the position of the dimensions in the `xarray.DataArray`, we need to remember that lat is the first dimension, lon is the second, and date the third. 
+When we want to rely on the position of the dimensions in the `xarray.DataArray`, we need to remember that time is the first dimension, latitude is the second, and longitude the third. 
 
 Then, we can then access the values along each dimension in two ways:
 
@@ -263,7 +262,7 @@ Then, we can then access the values along each dimension in two ways:
 temp[0,3,2]
 ```
 
-- by label: same as `pandas`. We use the `.loc[]` locator to look up a specific coordiante at each position (which represents a dimension):
+- by label: same as `pandas`. We use the `.loc[]` locator to lookup a specific coordinate at each position (which represents a dimension):
 
 ```{python}
 # access dimensions by position, then use labels for indexing
