@@ -264,14 +264,14 @@ Then, we can then access the values along each dimension in two ways:
 
 ```{python}
 # access dimensions by position, then use integers for indexing
-temp[0,1,2]
+temp[0,3,2]
 ```
 
 - by label: same as `pandas`. We use the `.loc[]` locator to look up a specific coordiante at each position (which represents a dimension):
 
 ```{python}
 # access dimensions by position, then use labels for indexing
-temp.loc[0, 0, '2022-09-03']
+temp.loc['2022-09-01', 40, 80]
 ```
 
 For datasets with dozens of dimensions, it can be confusing to remember which dimensions go where. 
@@ -282,7 +282,7 @@ In this case, there are still two ways of selecting data along a dimension:
 
 ```{python}
 # acess dimensions by name, then use integers for indexing
-temp.isel(time=2, lon=0, lat=1)
+temp.isel(time=0, lon=2, lat=3)
 ```
 
 - by label: we use the coordinate values we want to get!
@@ -363,7 +363,8 @@ Opening NetCDF is similarly straightforward using `xarray.open_dataset()`.
 temp_dataset.to_netcdf('temp_dataset.nc')
 
 # open to check:
-check = xr.open_dataset(fp)
+check = xr.open_dataset('temp_dataset.nc'
+)
 check
 ```
 
