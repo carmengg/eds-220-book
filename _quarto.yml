@@ -32,7 +32,11 @@ book:
         - lectures/lesson-9-geopandas-intro.qmd
         - lectures/lesson-10-merge-data.qmd
         - lectures/lesson-12-csv-to-geo.qmd
+        #-lectures/lesson-13-reproject-and-clip.qmd
         - discussion-sections/ds3-earthquakes.qmd
+    - part: "Raster data"
+      chapters:
+        - lectures/lesson-14-raster-formats.qmd
   appendices:
     - appendices/set-pat.qmd
 

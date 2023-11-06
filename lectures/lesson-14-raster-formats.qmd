@@ -52,8 +52,7 @@ We can think of these as the constant/fixed/independent quantities at which we m
 + **Attributes**
 are small notes or supplementary metadata to annotate a variable or the file as a whole. 
 
-
-![ Classic NetCDF Data Model ([NetCDF documentation](https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model))](../images/netcdf_data_model.png)
+![ Classic NetCDF Data Model ([NetCDF documentation](https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model))](/images/raster-data/netcdf_data_model.png)
 
 ## Acknowledgements
 

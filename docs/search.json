@@ -665,6 +665,27 @@
     "text": "15.3 Map\nCreate a map of the earthquales of magnitude greater equal to 6.5 across the world in 2014. Color the points by the magnitude. This is an example of how it could look like:"
   },
   {
+    "objectID": "lectures/lesson-14-raster-formats.html#rasters",
+    "href": "lectures/lesson-14-raster-formats.html#rasters",
+    "title": "16  Raster data",
+    "section": "16.1 Rasters",
+    "text": "16.1 Rasters"
+  },
+  {
+    "objectID": "lectures/lesson-14-raster-formats.html#netcdf-data-format",
+    "href": "lectures/lesson-14-raster-formats.html#netcdf-data-format",
+    "title": "16  Raster data",
+    "section": "16.2 NetCDF Data Format",
+    "text": "16.2 NetCDF Data Format\nNetCDF (network Common Data Form) is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. NetCDF was initially developed at the Unidata Program Center and is supported on almost all platforms, and parsers exist for most scientific programming languages.\nThe NetCDF documentation outlines that this data format is desgined to be:\n\n\nSelf-describing: Information describing the data contents of the file is embedded within the data file itself. This means that there is a header describing the layout of the rest of the file and arbitrary file metadata.\nScalable: Small subsets of large datasets may be accessed efficiently through netCDF interfaces, even from remote servers.\nPortable: A NetCDF file is machine-independent i.e. it can be accessed by computers with different ways of storing integers, characters, and floating-point numbers.\nAppendable: Data may be appended to a properly structured NetCDF file without copying the dataset or redefining its structure.\nSharable: One writer and multiple readers may simultaneously access the same NetCDF file.\nArchivable: Access to all earlier forms of NetCDF data will be supported by current and future versions of the software.\n\n\n\n16.2.1 Data Model\nThe NetCDF data model is the way that NetCDF organizes data. This lesson will follow the Classic NetCDF Data Model, which is at the core of all netCDF files. \nThe model consists of three key components: variables, dimensions, and attributes.\n\nVariables are N-dimensional arrays of data. We can think of these as varying/measured/dependent quantities.\nDimensions describe the axes of the data arrays. A dimension has a name and a length. We can think of these as the constant/fixed/independent quantities at which we measure the variables.\nAttributes are small notes or supplementary metadata to annotate a variable or the file as a whole.\n\n\n\n\nClassic NetCDF Data Model (NetCDF documentation)"
+  },
+  {
+    "objectID": "lectures/lesson-14-raster-formats.html#acknowledgements",
+    "href": "lectures/lesson-14-raster-formats.html#acknowledgements",
+    "title": "16  Raster data",
+    "section": "16.3 Acknowledgements",
+    "text": "16.3 Acknowledgements\nThe NetCDF section in this lesson is adapted from the lesson I prepared for the Arctic Data Center’s course on scalable computing:\nS. Jeanette Clark, Matthew B. Jones, Samantha Csik, Carmen Galaz García, Bryce Mecum, Natasha Haycock-Chavez, Daphne Virlar-Knight, Juliet Cohen, Anna Liljedahl. 2023. Scalable and Computationally Reproducible Approaches to Arctic Research. Arctic Data Center. doi:10.18739/A2QF8JM2V"
+  },
+  {
     "objectID": "appendices/set-pat.html",
     "href": "appendices/set-pat.html",
     "title": "Appendix A — Setting a PAT",
