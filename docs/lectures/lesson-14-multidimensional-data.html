@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 16&nbsp; Raster data</title>
+<title>EDS 220 - Working with Environmental Datasets - 16&nbsp; NetCDF</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Raster data</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -195,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Raster data</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Multi-dimensional data</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -203,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-14-raster-formats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Raster data</span></a>
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -237,12 +237,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rasters" id="toc-rasters" class="nav-link active" data-scroll-target="#rasters"><span class="toc-section-number">16.1</span>  Rasters</a></li>
-  <li><a href="#netcdf-data-format" id="toc-netcdf-data-format" class="nav-link" data-scroll-target="#netcdf-data-format"><span class="toc-section-number">16.2</span>  NetCDF Data Format</a>
-  <ul class="collapse">
-  <li><a href="#data-model" id="toc-data-model" class="nav-link" data-scroll-target="#data-model"><span class="toc-section-number">16.2.1</span>  Data Model</a></li>
-  </ul></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">16.3</span>  Acknowledgements</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">16.1</span>  Introduction</a></li>
+  <li><a href="#what-is-netcdf" id="toc-what-is-netcdf" class="nav-link" data-scroll-target="#what-is-netcdf"><span class="toc-section-number">16.2</span>  What is NetCDF</a></li>
+  <li><a href="#data-model" id="toc-data-model" class="nav-link" data-scroll-target="#data-model"><span class="toc-section-number">16.3</span>  Data Model</a></li>
+  <li><a href="#metadata-standards" id="toc-metadata-standards" class="nav-link" data-scroll-target="#metadata-standards"><span class="toc-section-number">16.4</span>  Metadata Standards</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">16.5</span>  Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -251,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Raster data</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></h1>
 </div>
 
 
@@ -266,12 +265,20 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Raster data is one of the two primary types of geospatial data (the other one being vector data). In this section we will review what raster data is and go over some common data formats for it.</p>
-<section id="rasters" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="rasters"><span class="header-section-number">16.1</span> Rasters</h2>
+<p>In this lesson, we will review a popuar format for working with multi-dimensional datasets called NetCDF. More importantly, NetCDF is the basis on which the Python package <code>xarray</code> is built on.</p>
+<section id="introduction" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">16.1</span> Introduction</h2>
+<p>Efficient and reproducible data analysis begins with choosing a proper format to store our data, particularly when working with large, complex, multi-dimensional datasets. Consider, for example, the following Earth System Data Cube from <a href="https://esd.copernicus.org/articles/11/201/2020/esd-11-201-2020.pdf">Mahecha et al.&nbsp;2020</a>, which measures nine environmental variables at high resolution across space and time. We can consider this dataset large (high-resolution means we have a big file), complex (multiple variables), and multi-dimensional (each variable is measured along three dimensions: latitude, longitude, and time). Additionally, necessary metadata must accompany the dataset to make it functional, such as units of measurement for variables, information about the authors, and processing software used.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/netcdf/mahecha_data_cube.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Mahecha et al.&nbsp;2020 . <em>Visualization of the implemented Earth system data cube. The figure shows from the top left to bottom right the variables sensible heat (H), latent heat (LE), gross primary production (GPP), surface moisture (SM), land surface temperature (LST), air temperature (Tair), cloudiness (C), precipitation (P), and water vapour (V). The resolution in space is 0.25° and 8 d in time, and we are inspecting the time from May 2008 to May 2010; the spatial range is from 15° S to 60° N, and 10° E to 65° W.</em></figcaption><p></p>
+</figure>
+</div>
+<p>Keeping complex datasets in a format that facilitates access, processing, sharing, and archiving can be at least as important as which tools we use to analyze them. In this lesson, we will review a popuar format for working with multi-dimensional datasets called NetCDF. `</p>
 </section>
-<section id="netcdf-data-format" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="netcdf-data-format"><span class="header-section-number">16.2</span> NetCDF Data Format</h2>
+<section id="what-is-netcdf" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="what-is-netcdf"><span class="header-section-number">16.2</span> What is NetCDF</h2>
 <p><a href="https://docs.unidata.ucar.edu/netcdf-c/current/index.html">NetCDF</a> (network Common Data Form) is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. NetCDF was initially developed at the Unidata Program Center and is supported on almost all platforms, and parsers exist for most scientific programming languages.</p>
 <p>The <a href="https://docs.unidata.ucar.edu/netcdf-c/current/faq.html#ncFAQGeneral">NetCDF documentation</a> outlines that this data format is desgined to be:</p>
 <blockquote class="blockquote">
@@ -284,8 +291,9 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Archivable:</strong> Access to all earlier forms of NetCDF data will be supported by current and future versions of the software.</p></li>
 </ol>
 </blockquote>
-<section id="data-model" class="level3" data-number="16.2.1">
-<h3 data-number="16.2.1" class="anchored" data-anchor-id="data-model"><span class="header-section-number">16.2.1</span> Data Model</h3>
+</section>
+<section id="data-model" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="data-model"><span class="header-section-number">16.3</span> Data Model</h2>
 <p>The NetCDF data model is the way that NetCDF organizes data. This lesson will follow the <a href="https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model">Classic NetCDF Data Model</a>, which is at the core of all netCDF files. <!--
 A new Enhanced Data Model exists, but for maximum interoperability with existing code, new data should be created with the Classic Model. 
 --></p>
@@ -297,14 +305,25 @@ A new Enhanced Data Model exists, but for maximum interoperability with existing
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/raster-data/netcdf_data_model.png" class="img-fluid figure-img"></p>
+<p><img src="../images/netcdf/netcdf_data_model.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Classic NetCDF Data Model (<a href="https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model">NetCDF documentation</a>)</figcaption><p></p>
 </figure>
 </div>
 </section>
+<section id="metadata-standards" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="metadata-standards"><span class="header-section-number">16.4</span> Metadata Standards</h2>
+<p>The most commonly used metadata standard for geospatial data is the <strong>Climate and Forecast metadata standard</strong>, also called the <a href="https://cfconventions.org"><strong>CF conventions</strong></a>.</p>
+<blockquote class="blockquote">
+<p>The CF conventions are specifically designed to promote the processing and sharing of files created with the NetCDF API. Principles of CF include self-describing data (no external tables needed for understanding), metadata equally readable by humans and software, minimum redundancy, and maximum simplicity. <a href="http://cfconventions.org/faq.html">(CF conventions FAQ)</a></p>
+</blockquote>
+<p>The CF conventions provide a unique standardized name and precise description of over 1,000 physical variables. To maximize the reusability of our data, it is best to include a variable’s standardized name as an attribute called <code>standard_name</code>. Variables should also include a <code>units</code> attribute. This attribute should be a string that can be recognized by UNIDATA’s <a href="https://www.unidata.ucar.edu/software/udunits/">UDUNITS package</a>. In these links you can find:</p>
+<ul>
+<li><p><a href="http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">a table with all of the CF convention’s standard names</a>, and</p></li>
+<li><p><a href="https://ncics.org/portfolio/other-resources/udunits2/#degree_N">a list of the units found in the UDUNITS database</a> maintained by the North Carolina Institute for Climate Studies.</p></li>
+</ul>
 </section>
-<section id="acknowledgements" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">16.3</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">16.5</span> Acknowledgements</h2>
 <p>The NetCDF section in this lesson is adapted from the lesson I prepared for the Arctic Data Center’s course on scalable computing:</p>
 <p>S. Jeanette Clark, Matthew B. Jones, Samantha Csik, Carmen Galaz García, Bryce Mecum, Natasha Haycock-Chavez, Daphne Virlar-Knight, Juliet Cohen, Anna Liljedahl. 2023. Scalable and Computationally Reproducible Approaches to Arctic Research. Arctic Data Center. <a href="https://learning.nceas.ucsb.edu/2023-03-arctic/">doi:10.18739/A2QF8JM2V</a></p>
 

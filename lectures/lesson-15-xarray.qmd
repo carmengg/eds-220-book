@@ -15,20 +15,22 @@ https://github.com/NCEAS/scalable-computing-course/blob/2022-09-arctic/sections/
 # `xarray`
 
 `xarray` is an open source project and Python package that augments NumPy arrays by adding labeled dimensions, coordinates and attributes. 
-`xarray` is based on the netCDF data model, making it the appropriate tool to open, process, and create datasets in netCDF format.
+`xarray` is based on the NetCDF data model, making it the appropriate tool to open, process, and create datasets in NetCDF format.
 
 In this lesson we will learn about the two core objects in `xarray` the `xarray.DataArray` and the `xarray.Dataset`. 
-We will also learn how to subset data from these objects. 
+We will also learn how to subset data from them. 
 
 ![[`xarray`'s development portal](https://xarray.dev)](/images/xarray/xarray_logo.png)
 
 
 ## Variables, dimensions, and attributes
 
-Variables, dimensions, and attributes refer to the same components of [NetCDF files we reviewed in  the previous section](https://carmengg.github.io/eds-220-book/lectures/lesson-14-raster-formats.html#netcdf-data-format).
-The following is a concrete example of variables, dimensions, and attributes that guide the rest of the section. 
+**Variables, dimensions, and attributes** refer to the same components of [NetCDF files we reviewed in  the previous section](https://carmengg.github.io/eds-220-book/lectures/lesson-14-raster-formats.html#netcdf-data-format).
+The following is a concrete example of variables, dimensions, and attributes that will guide the rest of the section. 
 
-Imagine the following scenario: we have a network of 25 weather stations. 
+**Imagine the following scenario:**
+
+We have a network of 25 weather stations. 
 They are located in a square grid: starting at 30°0′N 60°0′E, there is a station every 10° North and every 10° East. 
 Each station measures the air temperature at a set time for three days, starting on September 1st, 2022. 
 On the first day, all stations record a temperature of 0°C. 
@@ -47,7 +49,7 @@ Time indicates when the measurement happened, we can encode it as the dates 2022
 The pairs of latitude and longitude values indicate the positions of the weather stations. 
 Latitude has values 30, 40, 50, 60, and 70, measured in degrees North. Longitude has values 60, 70, 80, 90, and 100, measured in degrees East. 
 
-![](/images/netcdf_exercise_1.png)
+![](/images/xarray/netcdf_exercise_1.png)
 
 **Attributes**: Let’s divide these into attributes for the variable, the dimensions, and the whole dataset:
 
@@ -92,7 +94,7 @@ This is ok!
 The dataset’s dimensions are the union of the dimensions of all the variables in the dataset. 
 Variables in the same dataset may have all, some, or no dimensions in common.
 
-![](/images/netcdf_exercise_2.png)
+![](/images/xarray/netcdf_exercise_2.png)
 
 **Attributes**:
 To begin with, we need to keep all the previous attributes.
@@ -110,7 +112,7 @@ The only update we need to do is add the attributes for our new average temperat
 
 The `xarray.DataArray` is the primary data structure of the `xarray` package. 
 It is an n-dimensional array with **labeled dimensions**. 
-We can think of it as representing a single variable in the NetCDF data format: it holds the variable's **values, dimensions, and attributes**. 
+We can think of it as representing a single variable in the NetCDF data format: it holds the variable's values, dimensions, and attributes. 
 
 Apart from variables, dimensions, and attributes, `xarray` introduces one more piece of information to keep track of a dataset's content: 
 in `xarray` each dimension has at least one set of **coordinates**.
@@ -130,7 +132,6 @@ First, we import all the necessary libraries.
 
 ```{python}
 import os              
-import urllib 
 import pandas as pd
 import numpy as np
 
