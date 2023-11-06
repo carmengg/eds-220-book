@@ -5,6 +5,13 @@
 jupyter: base
 ---
 
+<!--
+Some references:
+https://github.com/carmengg/rasters_intro_SB_NAIP/blob/main/full_raster_notebook.ipynb
+
+https://github.com/NCEAS/scalable-computing-course/blob/2022-09-arctic/sections/08-data-structures-netcdf.qmd
+-->
+
 # `xarray`
 
 `xarray` is an open source project and Python package that augments NumPy arrays by adding labeled dimensions, coordinates and attributes. 
@@ -113,7 +120,7 @@ We can think of the coordinate's values as the tick labels along a dimension.
 For example, in our previous exercise about temperature measured in weather stations, latitude is a dimension, and the latitude's coordinates are 30, 40, 50, 60, and 70 because those are the latitude values at which we are collecting temperature data. 
 In that same exercise, time is a dimension, and its coordinates are 2022-09-1, 2022-09-02, and 2022-09-03.
 
-<!-- TO DO: insert image of variables, dims, coords -->
+![](/images/xarray/coordinates-example.png)
 
 Here you can read more about the [`xarray` terminology](https://docs.xarray.dev/en/stable/user-guide/terminology.html).
 
