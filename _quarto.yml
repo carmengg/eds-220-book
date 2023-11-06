@@ -37,6 +37,7 @@ book:
     - part: "Raster data"
       chapters:
         - lectures/lesson-14-raster-formats.qmd
+        - lectures/lesson-15-xarray.qmd
   appendices:
     - appendices/set-pat.qmd
 

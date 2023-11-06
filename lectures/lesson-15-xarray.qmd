@@ -1,3 +1,10 @@
+---
+# https://quarto.org/docs/computations/python.html#kernel-selection
+# to check all the available jupyter kernels run from the terminal 
+# jupyter kernelspec list
+jupyter: base
+---
+
 ## `xarray`
 
 `xarray` is an open source project and Python package that augments NumPy arrays by adding labeled dimensions, coordinates and attributes. 
@@ -224,3 +231,9 @@ temp_dataset.to_netcdf(fp)
 check = xr.open_dataset(fp)
 check
 ```
+
+## Acknowledgements
+
+This lesson is adapted from the NetCDF and xarray lesson I prepared for the Arctic Data Center's course on scalable computing:
+
+S. Jeanette Clark, Matthew B. Jones, Samantha Csik, Carmen Galaz García, Bryce Mecum, Natasha Haycock-Chavez, Daphne Virlar-Knight, Juliet Cohen, Anna Liljedahl. 2023. Scalable and Computationally Reproducible Approaches to Arctic Research. Arctic Data Center. [doi:10.18739/A2QF8JM2V](https://learning.nceas.ucsb.edu/2023-03-arctic/)
