@@ -12,7 +12,7 @@ The raster's we'll use today are from 2020.
 For this lesson, I did some pre-processing of the data to separate the RGB bands from the NIR band and clipped a scene. 
 The data was accessed and pre-processed at [Microsoft's Planetary Computer NAIP data repository](https://planetarycomputer.microsoft.com/dataset/naip#overview).
 
-## Import data
+## Import .tif
 
 Let's start by loading the libraries we'll use: 
 
@@ -30,12 +30,15 @@ There are [multiple ways of opening a '.tif' file using `xarray` or `rioxarray`]
 Using the `rioxarray.open_rasterio()` function to open the '.tif' file is a simple way to make sure all our geospatial data gets loaded correctly:
 
 ```{python}
-nir_fp = os.path.join(os.getcwd(),'data','downtown-sb-split-naip','nir.tif')
+# load NIR tif file
+nir_fp = os.path.join(os.getcwd(),'data','naip','nir.tif')
 nir = rioxr.open_rasterio(nir_fp)
 nir
 ```
 
-Let's verify this is an `xarray.DataArray`:
+## `xr.DataArray` exploration
+
+First, let's verify the raster we loaded is an `xarray.DataArray`:
 
 ```{python}
 type(nir)
@@ -45,9 +48,28 @@ Notice we see all the components of an `xarray.DataArray`: its dimensions (band,
 We can also directly access some of these attribues:
 
 ```{python}
+# print shape and data type
 print('shape: ', nir.shape)
 print('data type: ', nir.dtype, '\n')
 ```
+
+Using the `.values` attribute we can get a quick view at the values at the corners in our data array. 
+
+```{python}
+print(type(nir.values))
+nir.values
+```
+
+We can also plot our data:
+
+```{python}
+nir.plot()
+```
+
+Notice the coordinates on the x and y axes. 
+This map shows the light captured in the near-infrared spectrum by a sensor on a plane. 
+**Can you guess where this?** 
+If you guessed Santa Barbara downtown, you guessed right! 
 
 ## `rio` accessor
 
@@ -74,3 +96,46 @@ print('CRS: ', nir.rio.crs)
 # Other accessors
 We have used accessors before, for example the `.str` and `.dt` accessors in `pandas`.
 :::
+
+## Multi-band raster
+
+Let's now import the RGB raster:
+```{python}
+# open RGB raster
+rgb_fp = os.path.join(os.getcwd(),'data','naip','rgb.tif')
+rgb = rioxr.open_rasterio(rgb_fp)
+rgb
+```
+
+Notice this raster has three bands, instead of one. 
+This makes sense because we know these bands correspond tothe Red, Green and Blue bands of the image. 
+We can also check this information by looking directly at the attributes:
+
+```{python}
+print('rgb shape: ', rgb.shape)
+print('rgb # bands: ', rgb.rio.count)
+```
+
+Let's check the geospatial data too:
+
+```{python}
+print('shape: ', rgb.shape)
+print('data type: ', rgb.dtype)
+print('# bands: ', rgb.rio.count)
+print('CRS: ', rgb.rio.crs)
+
+# check if the CRSs of the rasters match
+print( rgb.rio.crs == nir.rio.crs)
+```
+
+On the last line we checked the nir and rgb rasters have the same ESPG:26911 CRS. 
+This is a projected CRS:
+
+![Source: [spatialreference.org](https://spatialreference.org/ref/epsg/26911/)]()
+
+Finally, let's plot this raster.
+Since it has three bands, we can plot it as an image using the `.plot.imshow()` method, which will interpret the three bands of the object as RGB.
+
+```{python}
+rgb.plot.imshow(figsize=(8,8))
+```
