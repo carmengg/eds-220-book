@@ -139,3 +139,40 @@ Since it has three bands, we can plot it as an image using the `.plot.imshow()` 
 ```{python}
 rgb.plot.imshow(figsize=(8,8))
 ```
+
+## Box for clipping
+
+Our area of interest (aoi) for this lesso is a smaller region that includes only a few blocks around the NCEAS building. 
+An easy way to obtain coordinates for such a region:
+
+![]()
+
+1. go to  [https://geojson.io/](https://geojson.io/) website,
+2. zoom in until you find the NCEAS building in Santa Barbara, it might help to change to 'Satellite Streets' view on the bottom left corner, 
+3. click on the rectangle icon on the right-side toolbar and draw a small region around the NCEAS buildng,
+4. the geoJSON code representing this area will appear in the code box,
+5. one option is two copy-paste this geoJSON into an empty text file and save such file with the .json extension, we could then read it in using `geopandas`
+6. instead, we will create our region of index by just *copy-pasting the list of points* and storing it as a variable:
+
+```{python}
+points = [[-119.70608227128903, 34.426300194372274],
+          [-119.70608227128903, 34.42041139020533],
+          [-119.6967885126002, 34.42041139020533],
+          [-119.6967885126002, 34.426300194372274],
+          [-119.70608227128903, 34.426300194372274]]
+```
+
+We can then create a new `geopandas.GeoDataFrame`:
+
+```{python}
+aoi = gpd.GeoDataFrame(geometry=[Polygon(points)],
+                           crs='epsg:4326')
+aoi
+```
+
+Let's break this down a bit:
+
+- first, we use the `shapely`'s `Polygon()` function to create a polygon from our `points` list. 
+- in `[Polygon(points)]` we put this polygon inside a list so we can form the geometry column of our new `gpd.GeoDataFrame`
+- we know all the geoJSON files have CRS equal to EPSG:4326/WGS 84, so we set the the CRS of our new `gpd.GeoDataFrame` to this.
+
