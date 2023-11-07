@@ -1,0 +1,35 @@
+# `rioxarray`
+
+In this lesson we will introduce [`rioxarray`](https://corteva.github.io/rioxarray/stable/), a Python extension for `xarray` to manipulate `xarray.DataArray`s as rasters. 
+The name `rioxarray` stands for *raster input/output + xarray*. 
+We will use the `rioxarray`'s `rio` accessor to obtain raster information from an `xarray.DataArray` and do some raster manipulations (calculate NDVI). 
+
+## Data
+The raster files we will use today come from the [US National Agriculture Imagery Program (NAIP)](https://naip-usdaonline.hub.arcgis.com). 
+NAIP images are are high-resolution aerial images with four spectral bands: Red, Green, Blue and Near-infrared (NIR). 
+The raster's we'll use today are from 2020.
+
+For this lesson, I did some pre-processing of the data to separate the RGB bands from the NIR band and clipped a scene. 
+The data was accessed and pre-processed at [Microsoft's Planetary Computer NAIP data repository](https://planetarycomputer.microsoft.com/dataset/naip#overview).
+
+## Import data
+
+Let's start by loading the libraries we'll use: 
+
+```{python}
+import os
+import matplotlib.pyplot as plt
+
+import rioxarray as rioxr
+
+import geopandas as gpd
+from shapely.geometry import Polygon
+```
+
+There are [multiple ways of opening a '.tif' file using `xarray` or `rioxarray`](https://corteva.github.io/rioxarray/html/getting_started/getting_started.html). 
+
+```{python}
+nir_fp = os.path.join(os.getcwd(),'data','downtown-sb-split-naip','nir.tif')
+nir = rioxr.open_rasterio(nir_fp)
+nir
+```
