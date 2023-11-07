@@ -1,35 +1,17 @@
----
-# https://quarto.org/docs/computations/python.html#kernel-selection
-# to check all the available jupyter kernels run from the terminal 
-# jupyter kernelspec list
-jupyter: base
----
+# Reproject and clip
 
-<!-- 
-Fixing the preview working directory
-```{python}
-import os
-home = os.path.expanduser("~")
-os.chdir(os.path.join(home,'eds-220-book'))
-```
-
-Ignore ShapelyDeprecationWarning warning in render
-
-```{python}
-import shapely
-import warnings
-from shapely.errors import ShapelyDeprecationWarning
-
-warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
-```
--->
-
-# Reprojecting & Clipping
+::: {.callout-warning}
+# No outputs
+There's some trouble with Quarto rendering this lesson which I'm working on fixing. 
+All the code chunks are here, but none are executed. 
+To see the output of the cells, check the notebook in our in-lesson repo:
+[https://github.com/carmengg/eds-220-fall-2023-lessons/blob/main/week-5/lesson-13-clip-clean-2.ipynb](https://github.com/carmengg/eds-220-fall-2023-lessons/blob/main/week-5/lesson-13-clip-clean-2.ipynb)
+:::
 
 In this lesson we will learn how to change the CRS of a `geopandas.GeoDataFrame` and how to clip different geometries using a polygon in a `geopandas.GeoDataFrame`. 
 Through doing these operations we will create the following map of roads and populated places in Alaska:
 
-![](/images/alaska_roads_and_places.png)
+![](/images/alaska_roads_and_places.png){}
 
 ## Data
 We will use three datasets in this lesson. 
@@ -62,7 +44,7 @@ We can obtain this dataset by downloading the shapefile
 
 Let's start by loading our libraries and then importing the datasets we'll use.
 
-```{python}
+```python
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -71,7 +53,7 @@ import matplotlib.pyplot as plt
 from shapely.geometry import box
 ```
 
-```{python}
+```python
 # display all columns when looking at dataframes
 pd.set_option("display.max.columns", None)
 
@@ -95,7 +77,7 @@ roads = gpd.read_file('ne_10m_roads/ne_10m_roads.shp')
 Let's start by taking taking a look at our stats geo-dataframe. 
 Since this is a geospatial dataset, exploration should include *at least* checking the head of the dataset, plotting the data, and looking at its CRS.
 
-```{python}
+```python
 # print the CRS
 print(states.crs)
 
@@ -103,7 +85,7 @@ print(states.crs)
 states.head(3)
 ```
 
-```{python}
+```python
 states.plot()
 ```
 
@@ -112,7 +94,7 @@ states.plot()
 For this lesson, we are intersted in plotting data in Alaska. 
 Let's start by selecting this data:
 
-```{python}
+```python
 # select Alaska from states
 alaska = states[states.name =='Alaska']
 alaska.plot()
@@ -141,13 +123,13 @@ where:
 
 In our case:
 
-```{python}
+```python
 # change to projected CRS optimized for Alaska
 alaska = alaska.to_crs('epsg:3338')
 alaska.plot()
 ```
 
-```{python}
+```python
 # check new CRS
 print('is this CRS projected? ', alaska.crs.is_projected)
 alaska.crs
@@ -159,7 +141,7 @@ alaska.crs
 
 Let's now explore the populated places data. 
 
-```{python}
+```python
 # print the CRS
 print(places.crs)
 
@@ -167,7 +149,7 @@ print(places.crs)
 places.head(3)
 ```
 
-```{python}
+```python
 places.plot()
 ```
 
@@ -176,7 +158,7 @@ This is not surprise since this is a global dataset, and EPSG:4326/WGS84 is the 
 
 Let's see what happens when we try to plot this data on top of Alaska:
 
-```{python}
+```python
 # Trouble
 fig, ax = plt.subplots()
 
@@ -192,7 +174,7 @@ This is a classic mistake in  analysis.
 To plot, analyze, or integrate different geospatial datasets they must **have the same CRS**. 
 
 Here, `alaska` and `places` have different CRSs, leading to unexpected results when plotting them together:
-```{python}
+```python
 print(alaska.crs)
 print(places.crs)
 ```
@@ -202,7 +184,7 @@ print(places.crs)
 
 Reprojecting the `places` geo-datafarme into `alaska`'s CRS is simple using `to_crs()`:
 
-```{python}
+```python
 # update crs
 places = places.to_crs(alaska.crs)
 print(alaska.crs == places.crs)
@@ -210,7 +192,7 @@ print(alaska.crs == places.crs)
 
 Let's check that map again:
 
-```{python}
+```python
 fig, ax = plt.subplots()
 
 alaska.plot(ax=ax)
@@ -238,13 +220,13 @@ where:
 
 In our case:
 
-```{python}
+```python
 # clip places to Alaska
 ak_places = gpd.clip(places, alaska)
 print('Number of places in AK:', len(ak_places))
 ```
 
-```{python}
+```python
 # plot populated places in Alaska
 fig, ax = plt.subplots()
 
@@ -259,7 +241,7 @@ plt.show()
 ### Exploration
 Now we move on to our roads dataset. 
 
-```{python}
+```python
 # print the CRS
 print(roads.crs)
 
@@ -267,7 +249,7 @@ print(roads.crs)
 roads.head(3)
 ```
 
-```{python}
+```python
 roads.plot()
 ```
 
@@ -276,7 +258,7 @@ roads.plot()
 You may have already noticed that `roads` is not in the same CRS as `alaska`, so these geo-datasets shound't interact until they're in the same CRS. 
 Before jumping right into reprojecting and clipping, we will subset the data to select only US roads:
 
-```{python}
+```python
 # select US roads only
 usa_roads = roads[roads.sov_a3 == 'USA']
 usa_roads.plot()
@@ -295,7 +277,7 @@ YOU CAN JUMP FROM HERE TO CLIPPING WITH BOUNDING BOX
 
 We will now do a "one-liner" to clip `usa_roads` using the `alaska` polygon. Notice we are using the ouput of `usa_roads.to_crs(alaska.crs)` and thus not changing the `usa_roads` geo-dataframe or creating new variables:
 
-```{python}
+```python
 # clip usa_roads to alaska geometry
 ak_roads = gpd.clip(usa_roads.to_crs(alaska.crs),alaska)
 
@@ -325,7 +307,7 @@ box(*gdf.total_bounds)
 <!-- ADD MORE DETAILS ABOUT THIS -->
 In our case:
 
-```{python}
+```python
 bbox = box(*alaska.total_bounds)
 print(type(bbox))
 bbox
@@ -341,7 +323,7 @@ https://geekflare.com/python-unpacking-operators/
 :::
 
 
-```{python}
+```python
 # create geo-dataframe from bounding box
 ak_bbox = gpd.GeoDataFrame(geometry = [bbox], # assign geometry column
                            crs = alaska.crs) # assign CRS
@@ -350,14 +332,14 @@ ak_bbox
 ```
 
 We can now clip the roads using Alaska's bounding box:
-```{python}
+```python
 ak_complete_roads = gpd.clip(usa_roads.to_crs(ak_bbox.crs), ak_bbox)
 ak_complete_roads.plot()
 ```
 
 Notice the difference between the two clipping methods:
 
-```{python}
+```python
 # two rows, one column
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10,10))
 
@@ -379,7 +361,7 @@ Variable: Symbolic name that stores an object and has a reserved memory location
 
 Finally, we can put all our data together in the same map:
 
-```{python}
+```python
 # https://matplotlib.org/stable/api/markers_api.html
 # Trouble: not in the same CRS
 # this is cool! but now we are seeing all Arctic comms

@@ -188,7 +188,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  <a href="../lectures/lesson-13-standin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
   </div>
 </li>
       </ul>
@@ -203,12 +208,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
   </div>
 </li>
       </ul>
@@ -240,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#what-is-a-crs" id="toc-what-is-a-crs" class="nav-link active" data-scroll-target="#what-is-a-crs"><span class="toc-section-number">11.1</span>  What is a CRS?</a>
   <ul class="collapse">
   <li><a href="#ellipsoid-pick-a-shape-for-the-earth" id="toc-ellipsoid-pick-a-shape-for-the-earth" class="nav-link" data-scroll-target="#ellipsoid-pick-a-shape-for-the-earth"><span class="toc-section-number">11.1.1</span>  1. Ellipsoid: Pick a shape for the Earth</a></li>
-  <li><a href="#datum-allign-the-ellipsoid-with-earths-locations" id="toc-datum-allign-the-ellipsoid-with-earths-locations" class="nav-link" data-scroll-target="#datum-allign-the-ellipsoid-with-earths-locations"><span class="toc-section-number">11.1.2</span>  2. Datum: Allign the ellipsoid with Earth’s locations</a></li>
+  <li><a href="#datum-align-the-ellipsoid-with-earths-locations" id="toc-datum-align-the-ellipsoid-with-earths-locations" class="nav-link" data-scroll-target="#datum-align-the-ellipsoid-with-earths-locations"><span class="toc-section-number">11.1.2</span>  2. Datum: Align the ellipsoid with Earth’s locations</a></li>
   <li><a href="#geographic-crs-latlon-coordinates-for-all-the-world" id="toc-geographic-crs-latlon-coordinates-for-all-the-world" class="nav-link" data-scroll-target="#geographic-crs-latlon-coordinates-for-all-the-world"><span class="toc-section-number">11.1.3</span>  3. Geographic CRS: Lat/lon coordinates for all the world</a></li>
   <li><a href="#projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" id="toc-projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" class="nav-link" data-scroll-target="#projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map"><span class="toc-section-number">11.1.4</span>  4. Projection: Flatten a portion of your ellipsoid to make a planar map</a></li>
   <li><a href="#projected-crs-xy-coordinates-for-a-specific-region" id="toc-projected-crs-xy-coordinates-for-a-specific-region" class="nav-link" data-scroll-target="#projected-crs-xy-coordinates-for-a-specific-region"><span class="toc-section-number">11.1.5</span>  5. Projected CRS: x,y coordinates for a specific region</a></li>
@@ -275,13 +280,13 @@ ul.task-list li input[type="checkbox"] {
 <p>To understand what are the components of a CRS it can be useful to think of the process we would undergo to match places on the Earth to numbers (coordinates) that represent them.</p>
 <section id="ellipsoid-pick-a-shape-for-the-earth" class="level3" data-number="11.1.1">
 <h3 data-number="11.1.1" class="anchored" data-anchor-id="ellipsoid-pick-a-shape-for-the-earth"><span class="header-section-number">11.1.1</span> 1. Ellipsoid: Pick a shape for the Earth</h3>
-<p>Start with the Earth. Our planet is not a perfect spehere. Apart from its rugged surface with high mountains and deep ocean trenches, the shape of the Earth is not round. Due to the Earth’s rotation, the planet is slightly wider at the Equator. Thus, a sphere is not the best way to model the shape of the Earth. Instead, we use an <strong>ellipsoid</strong>. Think of an <a href="https://en.wikipedia.org/wiki/Ellipsoid">ellipsoid</a> as a sphere that has been flattened a bit, thus making it wider across one axis. This is the first step for creating a CRS: picking an ellipsoid, a.k.a picking a shape for the Earth. The ellipsoid used to represent the Earth’s shape has changed across time and it also changes by application.</p>
+<p>Start with the Earth. Our planet is not a perfect sphere. Apart from its rugged surface with high mountains and deep ocean trenches, the shape of the Earth is not round. Due to the Earth’s rotation, the planet is slightly wider at the Equator. Thus, a sphere is not the best way to model the shape of the Earth. Instead, we use an <strong>ellipsoid</strong>. Think of an <a href="https://en.wikipedia.org/wiki/Ellipsoid">ellipsoid</a> as a sphere that has been flattened a bit, thus making it wider across one axis. This is the first step for creating a CRS: picking an ellipsoid, a.k.a picking a shape for the Earth. The ellipsoid used to represent the Earth’s shape has changed across time and it also changes by application.</p>
 <!--
 THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
 -->
 </section>
-<section id="datum-allign-the-ellipsoid-with-earths-locations" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="datum-allign-the-ellipsoid-with-earths-locations"><span class="header-section-number">11.1.2</span> 2. Datum: Allign the ellipsoid with Earth’s locations</h3>
+<section id="datum-align-the-ellipsoid-with-earths-locations" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="datum-align-the-ellipsoid-with-earths-locations"><span class="header-section-number">11.1.2</span> 2. Datum: Align the ellipsoid with Earth’s locations</h3>
 <p>The ellipsoid is an abstract mathematical object on which we can locate points on it by using angles. The coordinate system on the ellipsoid is (angles from x, angles form y).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -289,7 +294,7 @@ THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
 <p></p><figcaption class="figure-caption">Latitude and longtide as angular coordinates on the ellipsoid. <a href="https://ltb.itc.utwente.nl/498/learningoutcome/show/59273">Source: Coordinate systems and map projections - University of Twente</a></figcaption><p></p>
 </figure>
 </div>
-<p>The next step is thus to make a decision on how to allign the ellipsoid so that it’s surface corresponds to actual places on the Earth. We could think, for example of how to place the ellipsoid’s center relative to Earth’s mass center (is it the same or is it off?) or how to allign the ellipsoid’s axes with the Earth (which meridian will be our prime meridian?). Generally speaking, a <strong>geodetic datum</strong>, or just <strong>datum</strong>, is how we are alligning our abstract ellipsoid to match the Earth’s surface.</p>
+<p>The next step is thus to make a decision on how to align the ellipsoid so that it’s surface corresponds to actual places on the Earth. We could think, for example of how to place the ellipsoid’s center relative to Earth’s mass center (is it the same or is it off?) or how to align the ellipsoid’s axes with the Earth (which meridian will be our prime meridian?). Generally speaking, a <strong>geodetic datum</strong>, or just <strong>datum</strong>, is how we are aligning our abstract ellipsoid to match the Earth’s surface.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/crs/European_Datum.png" class="img-fluid figure-img"></p>
@@ -306,13 +311,13 @@ Many datums
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Geographers and cartographers have created and used <em>many</em> datums across time and applications. Sometimes datum refers both to a choice of ellipsoid <em>and</em> how to allign it to the Earth. More importantly, different datums are used to increase the accuracy of representing different regions of Earth. At the <a href="http://wiki.gis.com/wiki/index.php/Datum_(geodesy)">GIS wiki</a> you can see a list of names of different datums optimized for different regions.</p>
+<p>Geographers and cartographers have created and used <em>many</em> datums across time and applications. Sometimes datum refers both to a choice of ellipsoid <em>and</em> how to align it to the Earth. More importantly, different datums are used to increase the accuracy of representing different regions of Earth. At the <a href="http://wiki.gis.com/wiki/index.php/Datum_(geodesy)">GIS wiki</a> you can see a list of names of different datums optimized for different regions.</p>
 </div>
 </div>
 </section>
 <section id="geographic-crs-latlon-coordinates-for-all-the-world" class="level3" data-number="11.1.3">
 <h3 data-number="11.1.3" class="anchored" data-anchor-id="geographic-crs-latlon-coordinates-for-all-the-world"><span class="header-section-number">11.1.3</span> 3. Geographic CRS: Lat/lon coordinates for all the world</h3>
-<p>At this point, we have successfully made a correspondence between the Earth’s surface of and our ellipsoid. This means we can now use the lat,lon coordinates of the ellipsoid to locate <em>any</em> point on the Earth’s sruface. What we have now is a <strong>geographic CRS</strong>. Geographic coordinate reference systems use degrees of latitude and longitude to locate points on the Earth, still thinking of it as a 3D object.</p>
+<p>At this point, we have successfully made a correspondence between the Earth’s surface of and our ellipsoid. This means we can now use the lat,lon coordinates of the ellipsoid to locate <em>any</em> point on the Earth’s surface. What we have now is a <strong>geographic CRS</strong>. Geographic coordinate reference systems use degrees of latitude and longitude to locate points on the Earth, still thinking of it as a 3D object.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/crs/lat_lon_on_earth.png" class="img-fluid figure-img"></p>
@@ -322,7 +327,7 @@ Many datums
 </section>
 <section id="projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" class="level3" data-number="11.1.4">
 <h3 data-number="11.1.4" class="anchored" data-anchor-id="projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map"><span class="header-section-number">11.1.4</span> 4. Projection: Flatten a portion of your ellipsoid to make a planar map</h3>
-<p>A map is a flat (2-dimensional) representation of a region of the Earth. In a geographic CRS we use a 3-dimensional model of the Earth (the ellipsoid) to locate places on it. To transform our 3D ellipsoid to make a 2D representation we need to use a projection. A <strong>projection</strong> is a method to convert between angular coordinates (i.e.&nbsp;lat, long coordiantes in 3D) and planar coordnates (i.e.&nbsp;x, y coordinates in 2D).</p>
+<p>A map is a flat (2-dimensional) representation of a region of the Earth. In a geographic CRS we use a 3-dimensional model of the Earth (the ellipsoid) to locate places on it. To transform our 3D ellipsoid to make a 2D representation we need to use a projection. A <strong>projection</strong> is a method to convert between angular coordinates (i.e.&nbsp;lat, long coordinates in 3D) and planar coordinates (i.e.&nbsp;x, y coordinates in 2D).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/crs/figure2-projections.png" class="img-fluid figure-img"></p>

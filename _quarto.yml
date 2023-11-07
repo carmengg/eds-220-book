@@ -33,6 +33,7 @@ book:
         - lectures/lesson-10-merge-data.qmd
         - lectures/lesson-12-csv-to-geo.qmd
         #-lectures/lesson-13-reproject-and-clip.qmd
+        - lectures/lesson-13-standin.qmd
         - discussion-sections/ds3-earthquakes.qmd
     - part: "Multi-dimensional data"
       chapters:
