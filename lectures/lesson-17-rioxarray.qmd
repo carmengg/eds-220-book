@@ -27,9 +27,50 @@ from shapely.geometry import Polygon
 ```
 
 There are [multiple ways of opening a '.tif' file using `xarray` or `rioxarray`](https://corteva.github.io/rioxarray/html/getting_started/getting_started.html). 
+Using the `rioxarray.open_rasterio()` function to open the '.tif' file is a simple way to make sure all our geospatial data gets loaded correctly:
 
 ```{python}
 nir_fp = os.path.join(os.getcwd(),'data','downtown-sb-split-naip','nir.tif')
 nir = rioxr.open_rasterio(nir_fp)
 nir
 ```
+
+Let's verify this is an `xarray.DataArray`:
+
+```{python}
+type(nir)
+```
+
+Notice we see all the components of an `xarray.DataArray`: its dimensions (band, y, x), the coordiantes for each dimension, and some attributes. 
+We can also directly access some of these attribues:
+
+```{python}
+print('shape: ', nir.shape)
+print('data type: ', nir.dtype, '\n')
+```
+
+## `rio` accessor
+
+An **accessor** in Python let's us access a different set of properties of an object.
+In our case, we use the `.rio` accessor for `xarray.DataArray`s to access its raster properties. 
+For example, its number of bands, height, width, spatial bounding box, CRS, and affine transformation:
+
+```{python}
+print('# bands: ', nir.rio.count)
+print('height: ', nir.rio.height)
+print('width: ', nir.rio.width, '\n')
+
+print('spatial bounding box: ')
+print(nir.rio.bounds(), '\n')
+
+print('affine transformation: ')
+print(nir.rio.transform(), '\n')
+
+print('CRS: ', nir.rio.crs)
+```
+ 
+
+:::{.callout-note}
+# Other accessors
+We have used accessors before, for example the `.str` and `.dt` accessors in `pandas`.
+:::
