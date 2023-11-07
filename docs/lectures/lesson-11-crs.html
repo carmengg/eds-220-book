@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 13&nbsp; Coordinate Reference Systems</title>
+<title>EDS 220 - Working with Environmental Datasets - 11&nbsp; Coordinate Reference Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-12-crs-csv-example.html" rel="next">
-<link href="../lectures/lesson-10-merge-data.html" rel="prev">
+<link href="../lectures/lesson-9-geopandas-intro.html" rel="next">
+<link href="../lectures/lesson-8-vector-data.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tabular data</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">geopandas</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Vector data</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -163,27 +163,67 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-12-crs-csv-example.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Updating CRS</span></a>
+  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Multi-dimensional data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
   </div>
 </li>
       </ul>
@@ -197,18 +237,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-a-crs" id="toc-what-is-a-crs" class="nav-link active" data-scroll-target="#what-is-a-crs"><span class="toc-section-number">13.1</span>  What is a CRS?</a>
+  <li><a href="#what-is-a-crs" id="toc-what-is-a-crs" class="nav-link active" data-scroll-target="#what-is-a-crs"><span class="toc-section-number">11.1</span>  What is a CRS?</a>
   <ul class="collapse">
-  <li><a href="#ellipsoid-pick-a-shape-for-the-earth" id="toc-ellipsoid-pick-a-shape-for-the-earth" class="nav-link" data-scroll-target="#ellipsoid-pick-a-shape-for-the-earth"><span class="toc-section-number">13.1.1</span>  1. Ellipsoid: Pick a shape for the Earth</a></li>
-  <li><a href="#datum-allign-the-ellipsoid-with-earths-locations" id="toc-datum-allign-the-ellipsoid-with-earths-locations" class="nav-link" data-scroll-target="#datum-allign-the-ellipsoid-with-earths-locations"><span class="toc-section-number">13.1.2</span>  2. Datum: Allign the ellipsoid with Earth’s locations</a></li>
-  <li><a href="#geographic-crs-latlon-coordinates-for-all-the-world" id="toc-geographic-crs-latlon-coordinates-for-all-the-world" class="nav-link" data-scroll-target="#geographic-crs-latlon-coordinates-for-all-the-world"><span class="toc-section-number">13.1.3</span>  3. Geographic CRS: Lat/lon coordinates for all the world</a></li>
-  <li><a href="#projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" id="toc-projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" class="nav-link" data-scroll-target="#projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map"><span class="toc-section-number">13.1.4</span>  4. Projection: Flatten a portion of your ellipsoid to make a planar map</a></li>
-  <li><a href="#projected-crs-xy-coordinates-for-a-specific-region" id="toc-projected-crs-xy-coordinates-for-a-specific-region" class="nav-link" data-scroll-target="#projected-crs-xy-coordinates-for-a-specific-region"><span class="toc-section-number">13.1.5</span>  5. Projected CRS: x,y coordinates for a specific region</a></li>
-  </ul></li>
-  <li><a href="#common-crss" id="toc-common-crss" class="nav-link" data-scroll-target="#common-crss"><span class="toc-section-number">13.2</span>  Common CRSs</a>
-  <ul class="collapse">
-  <li><a href="#wgs84" id="toc-wgs84" class="nav-link" data-scroll-target="#wgs84"><span class="toc-section-number">13.2.1</span>  WGS84</a></li>
-  <li><a href="#nad83" id="toc-nad83" class="nav-link" data-scroll-target="#nad83"><span class="toc-section-number">13.2.2</span>  NAD83</a></li>
+  <li><a href="#ellipsoid-pick-a-shape-for-the-earth" id="toc-ellipsoid-pick-a-shape-for-the-earth" class="nav-link" data-scroll-target="#ellipsoid-pick-a-shape-for-the-earth"><span class="toc-section-number">11.1.1</span>  1. Ellipsoid: Pick a shape for the Earth</a></li>
+  <li><a href="#datum-allign-the-ellipsoid-with-earths-locations" id="toc-datum-allign-the-ellipsoid-with-earths-locations" class="nav-link" data-scroll-target="#datum-allign-the-ellipsoid-with-earths-locations"><span class="toc-section-number">11.1.2</span>  2. Datum: Allign the ellipsoid with Earth’s locations</a></li>
+  <li><a href="#geographic-crs-latlon-coordinates-for-all-the-world" id="toc-geographic-crs-latlon-coordinates-for-all-the-world" class="nav-link" data-scroll-target="#geographic-crs-latlon-coordinates-for-all-the-world"><span class="toc-section-number">11.1.3</span>  3. Geographic CRS: Lat/lon coordinates for all the world</a></li>
+  <li><a href="#projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" id="toc-projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" class="nav-link" data-scroll-target="#projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map"><span class="toc-section-number">11.1.4</span>  4. Projection: Flatten a portion of your ellipsoid to make a planar map</a></li>
+  <li><a href="#projected-crs-xy-coordinates-for-a-specific-region" id="toc-projected-crs-xy-coordinates-for-a-specific-region" class="nav-link" data-scroll-target="#projected-crs-xy-coordinates-for-a-specific-region"><span class="toc-section-number">11.1.5</span>  5. Projected CRS: x,y coordinates for a specific region</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></h1>
 </div>
 
 
@@ -234,21 +269,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>In this section we review what is a Coordinate Reference System (CRS).</p>
-<section id="what-is-a-crs" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="what-is-a-crs"><span class="header-section-number">13.1</span> What is a CRS?</h2>
+<section id="what-is-a-crs" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="what-is-a-crs"><span class="header-section-number">11.1</span> What is a CRS?</h2>
 <p>Since the Earth does not comme with lines and numbers etched on it, us humans need to create a system to locate places on it. A way to solve this is to use a coordinate reference system (CRS). A CRS is, at its core, a way to represent places on the Earth as coordinates.</p>
 <p>To understand what are the components of a CRS it can be useful to think of the process we would undergo to match places on the Earth to numbers (coordinates) that represent them.</p>
-<section id="ellipsoid-pick-a-shape-for-the-earth" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="ellipsoid-pick-a-shape-for-the-earth"><span class="header-section-number">13.1.1</span> 1. Ellipsoid: Pick a shape for the Earth</h3>
+<section id="ellipsoid-pick-a-shape-for-the-earth" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="ellipsoid-pick-a-shape-for-the-earth"><span class="header-section-number">11.1.1</span> 1. Ellipsoid: Pick a shape for the Earth</h3>
 <p>Start with the Earth. Our planet is not a perfect spehere. Apart from its rugged surface with high mountains and deep ocean trenches, the shape of the Earth is not round. Due to the Earth’s rotation, the planet is slightly wider at the Equator. Thus, a sphere is not the best way to model the shape of the Earth. Instead, we use an <strong>ellipsoid</strong>. Think of an <a href="https://en.wikipedia.org/wiki/Ellipsoid">ellipsoid</a> as a sphere that has been flattened a bit, thus making it wider across one axis. This is the first step for creating a CRS: picking an ellipsoid, a.k.a picking a shape for the Earth. The ellipsoid used to represent the Earth’s shape has changed across time and it also changes by application.</p>
-<p>THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER</p>
+<!--
+THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
+-->
 </section>
-<section id="datum-allign-the-ellipsoid-with-earths-locations" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="datum-allign-the-ellipsoid-with-earths-locations"><span class="header-section-number">13.1.2</span> 2. Datum: Allign the ellipsoid with Earth’s locations</h3>
+<section id="datum-allign-the-ellipsoid-with-earths-locations" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="datum-allign-the-ellipsoid-with-earths-locations"><span class="header-section-number">11.1.2</span> 2. Datum: Allign the ellipsoid with Earth’s locations</h3>
 <p>The ellipsoid is an abstract mathematical object on which we can locate points on it by using angles. The coordinate system on the ellipsoid is (angles from x, angles form y).</p>
-<p><a href="../images/crs/lat_lon_ellipsoid.jpg">Latitude and longtide as angular coordinates on the ellipsoid. [Source: Coordinate systems and map projections - University of Twente](https://ltb.itc.utwente.nl/498/learningoutcome/show/59273)</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/crs/lat_lon_ellipsoid.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Latitude and longtide as angular coordinates on the ellipsoid. <a href="https://ltb.itc.utwente.nl/498/learningoutcome/show/59273">Source: Coordinate systems and map projections - University of Twente</a></figcaption><p></p>
+</figure>
+</div>
 <p>The next step is thus to make a decision on how to allign the ellipsoid so that it’s surface corresponds to actual places on the Earth. We could think, for example of how to place the ellipsoid’s center relative to Earth’s mass center (is it the same or is it off?) or how to allign the ellipsoid’s axes with the Earth (which meridian will be our prime meridian?). Generally speaking, a <strong>geodetic datum</strong>, or just <strong>datum</strong>, is how we are alligning our abstract ellipsoid to match the Earth’s surface.</p>
-<p><a href="../images/crs/European Datum.png">Regional datums to optimize location accuracy. Source: GPS for Land Surveyors</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/crs/European_Datum.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Regional datums to optimize location accuracy. Source: GPS for Land Surveyors</figcaption><p></p>
+</figure>
+</div>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -263,15 +310,25 @@ Many datums
 </div>
 </div>
 </section>
-<section id="geographic-crs-latlon-coordinates-for-all-the-world" class="level3" data-number="13.1.3">
-<h3 data-number="13.1.3" class="anchored" data-anchor-id="geographic-crs-latlon-coordinates-for-all-the-world"><span class="header-section-number">13.1.3</span> 3. Geographic CRS: Lat/lon coordinates for all the world</h3>
+<section id="geographic-crs-latlon-coordinates-for-all-the-world" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="geographic-crs-latlon-coordinates-for-all-the-world"><span class="header-section-number">11.1.3</span> 3. Geographic CRS: Lat/lon coordinates for all the world</h3>
 <p>At this point, we have successfully made a correspondence between the Earth’s surface of and our ellipsoid. This means we can now use the lat,lon coordinates of the ellipsoid to locate <em>any</em> point on the Earth’s sruface. What we have now is a <strong>geographic CRS</strong>. Geographic coordinate reference systems use degrees of latitude and longitude to locate points on the Earth, still thinking of it as a 3D object.</p>
-<p><a href="../images/crs/lat_lon_on_earth.png">Latitude and longited as angular coordiantes on the Earth - we use a geographic CRS to achieve this.</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/crs/lat_lon_on_earth.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Latitude and longited as angular coordiantes on the Earth - we use a geographic CRS to achieve this.</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" class="level3" data-number="13.1.4">
-<h3 data-number="13.1.4" class="anchored" data-anchor-id="projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map"><span class="header-section-number">13.1.4</span> 4. Projection: Flatten a portion of your ellipsoid to make a planar map</h3>
+<section id="projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="projection-flatten-a-portion-of-your-ellipsoid-to-make-a-planar-map"><span class="header-section-number">11.1.4</span> 4. Projection: Flatten a portion of your ellipsoid to make a planar map</h3>
 <p>A map is a flat (2-dimensional) representation of a region of the Earth. In a geographic CRS we use a 3-dimensional model of the Earth (the ellipsoid) to locate places on it. To transform our 3D ellipsoid to make a 2D representation we need to use a projection. A <strong>projection</strong> is a method to convert between angular coordinates (i.e.&nbsp;lat, long coordiantes in 3D) and planar coordnates (i.e.&nbsp;x, y coordinates in 2D).</p>
-<p><a href="../images/crs/figure2-projections.png">Image Source: Battersby, S. (2017). Map Projections. The Geographic Information Science &amp; Technology Body of Knowledge</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/crs/figure2-projections.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image Source: Battersby, S. (2017). Map Projections. The Geographic Information Science &amp; Technology Body of Knowledge</figcaption><p></p>
+</figure>
+</div>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -289,22 +346,29 @@ Many projections
 <p>🎥 <a href="https://www.youtube.com/watch?v=kIID5FDi2JQ">Vox - Why all world maps are wrong</a></p>
 <p>📖 <a href="https://docs.qgis.org/3.28/en/docs/gentle_gis_introduction/coordinate_reference_systems.html">QGIS - A gentle introduction to GIS - Coordinate Reference Systems</a></p>
 </section>
-<section id="projected-crs-xy-coordinates-for-a-specific-region" class="level3" data-number="13.1.5">
-<h3 data-number="13.1.5" class="anchored" data-anchor-id="projected-crs-xy-coordinates-for-a-specific-region"><span class="header-section-number">13.1.5</span> 5. Projected CRS: x,y coordinates for a specific region</h3>
+<section id="projected-crs-xy-coordinates-for-a-specific-region" class="level3" data-number="11.1.5">
+<h3 data-number="11.1.5" class="anchored" data-anchor-id="projected-crs-xy-coordinates-for-a-specific-region"><span class="header-section-number">11.1.5</span> 5. Projected CRS: x,y coordinates for a specific region</h3>
 <p>When we project a region of the ellipsoid to represent a region of Earth on the plane we obtain a new set of planar coordinates, thus creating a <strong>projected CRS</strong>. A projected CRS must also include a <strong>unit of measure</strong> for its axes. These new coordinates are usually called <strong>eastings</strong>, when referring to the eastward-measured distance (x-coordinate), and <strong>northings</strong>, when referring to the northward-measured distance (y-coordinate).</p>
-<p><a href="../images/crs/projected_crs.png">A projected CRS gives planar coordinates.</a></p>
-</section>
-</section>
-<section id="common-crss" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="common-crss"><span class="header-section-number">13.2</span> Common CRSs</h2>
-<p>These are some commonly encountered geographic coordinate reference systems.</p>
-<section id="wgs84" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="wgs84"><span class="header-section-number">13.2.1</span> WGS84</h3>
-<p>The World Geodetic System 1984 (WGS84) is a geogprahic coordiante system used extensively. This is the coordinate reference system used by global positioning systems (GPS). It’s coordinates longitude and latitude, are angular and measured in degrees, minutes, and seconds.</p>
-</section>
-<section id="nad83" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="nad83"><span class="header-section-number">13.2.2</span> NAD83</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/crs/projected_crs.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A projected CRS gives planar coordinates.</figcaption><p></p>
+</figure>
+</div>
 <!--
+## Common CRSs
+
+These are some commonly encountered geographic coordinate reference systems. 
+
+### WGS84
+The World Geodetic System 1984 (WGS84) is a geogprahic coordiante system used extensively. 
+This is the coordinate reference system used by global positioning systems (GPS). 
+It's coordinates longitude and latitude, are angular and measured in degrees, minutes, and seconds. 
+
+
+### NAD83
+
+
 ### UTM
 -->
 <!--
@@ -460,13 +524,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-10-merge-data.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></span>
+      <a href="../lectures/lesson-8-vector-data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-12-crs-csv-example.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Updating CRS</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-9-geopandas-intro.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

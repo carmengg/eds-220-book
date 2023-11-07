@@ -1,0 +1,278 @@
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+
+Ignore ShapelyDeprecationWarning warning in render
+
+```{python}
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+```
+-->
+
+# csv to `GeoDataFrame`
+
+In this lesson we will learn how to make a csv into a `geopandas.GeoDataFrame`, setting its CRS manually and learn some more customizations for maps and matplotlib figures.
+
+## Data
+We will use two datasets in this lesson. 
+The first one is a reprojection of this dataset from the U.S. Energy Information Administration (EIA) with [information about operable electric generating plants in the United States by energy source, as of May 2023](https://atlas.eia.gov/datasets/eia::power-plants/about). 
+
+Follow these steps to download the *reprojected* datset for this lesson:
+
+1. Go to https://github.com/carmengg/eds-220-book/blob/main/data/power_plants_epsg4269.csv
+2. Download the raw file and move it into your working directory
+
+You can [access the metadata for this dataset here](https://eia.maps.arcgis.com/sharing/rest/content/items/bf5c5110b1b944d299bb683cdbd02d2a/info/metadata/metadata.xml?format=default&output=html). 
+
+The second dataset is a [TIGER shapefile from the United States Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341). 
+TIGER stands for [Topologically Integrated Geographic Encoding and Referencing](https://en.wikipedia.org/wiki/Topologically_Integrated_Geographic_Encoding_and_Referencing). This used to be the data format the US Census distributed geospatial data, but since 2008 TIGER files are converted to shapefiles. 
+We will use the shapefiles for the US states. 
+Follow these steps to download shapefile with the United States' states:
+
+1. At the bottom of the [2022 page](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341), under Download, click on "Web Interface"
+2. For year, select 2022, and for layer type select "States (and equivalent)". Click submit. 
+3. Click on "Download national file".
+
+You can check the [metadata for all the TIGER shapefiles here](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/tiger-geo-line.html). 
+The columns for this shapefile are:
+
+![Source: TIGER/Line Shapefiles Technical Documentation](/images/tiger_shp_columns.png)
+
+**File management: Both datasets must be in a data directory inside your working directory.**
+
+## `DataFrame` to `GeoDataFrame`
+
+Let's start by importing the necessary libraries:
+
+```{python}
+import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+And update pandas display options:
+
+```{python}
+# display all column when looking at dataframes
+pd.set_option("display.max.columns", None)
+```
+
+Our first step is to import the power plants dataset. 
+Notice this is a csv, geopandas doesn't have a way to extract a geometry column from a csv, so we will need to create this geometry manually. 
+We start by reading in the data using `pandas`.
+
+```{python}
+# import power plants data
+power_plants = pd.read_csv('data/power_plants_epsg4269.csv')
+power_plants.head(3)
+```
+
+```{python}
+# update column names to small caps
+power_plants.columns = power_plants.columns.str.lower()
+```
+
+This csv has longitude and latitude columns, which indicate the location of the power plants in the NAD83 CRS (EPSG:4269).
+We use this information to create a new `gpd.GeoDataFrame` from the `pd.DataFrame` using the GeoPandas function `points_from_xy()` like this:
+
+```{python}
+
+power_plants = gpd.GeoDataFrame(power_plants, # data
+                                    # specify geometry column
+                                    geometry=gpd.points_from_xy(power_plants.longitude, 
+                                             power_plants.latitude),
+                                    # specify CRS
+                                    crs='EPSG:4269'
+                    )
+```
+
+Check we now have a geometry column:
+
+```{python}
+power_plants.head(3)
+```
+
+Let's see some information about the CRS of our power plants dataset:
+
+```{python}
+# print information about the 
+print('is geographic?: ', power_plants.crs.is_geographic)
+print('is projected?: ', power_plants.crs.is_projected)
+print('datum: ', power_plants.crs.datum)
+print('ellipsoid: ', power_plants.crs.ellipsoid)
+
+power_plants.crs
+```
+
+Now that we have a geometry column and a CRS, we can plot our dataset:
+
+```{python}
+power_plants.plot()
+```
+
+## TIGER shapefile
+
+Next, we import the TIGER shapefile:
+
+```{python}
+# read-in data
+states = gpd.read_file('data/tl_2022_us_state/tl_2022_us_state.shp')
+# update column names to small caps
+states.columns = states.columns.str.lower()
+
+states.head()
+```
+
+Let's see some information about the CRS of our states geodataframe:
+
+```{python}
+# print information about the CRS
+states.crs
+```
+
+And plot it:
+
+```{python}
+states.plot()
+```
+
+ Notice the map covers a big extension, this is because, according to the TIGER shapefiles metadata:
+ 
+ > In addition to the fifty states, the Census Bureau treats the District of Columbia, Puerto Rico, and the Island areas (American Samoa, the Commonwealth of the Northern Mariana Islands, Guam, and the U.S. Virgin Islands) as statistical equivalents of states for the purpose of data presentation. 
+
+ In [this US Census Bureau file](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf) we can see what each code for the region, division, and state corresponds to. 
+ These should be numeric codes, so we can start by updating the corresponding columns in the states geo-dataframe:
+
+```{python}
+ # notice region, division, and statefp are strings (object) types
+ states.dtypes
+```
+
+```{python}
+ # update dtypes of code columns
+states.region = states.region.astype('int')
+states.division = states.division.astype('int')
+states.statefp = states.statefp.astype('int')
+```
+
+ States corresponds to regions 1 through 4. 
+ However, there's also a region code 9.
+ These rows correspond to non-state regions:
+
+```{python}
+print(states.region.unique())
+states[states.region==9]
+``` 
+
+ We can check that Alaska and the non-state regions are causing the long map:
+
+```{python}
+# plot data in states that is not Alaska (code 2) and doesn't have region code 9
+states[(states.statefp!=2) & (states.region!=9)].plot()
+```
+
+## Data selection
+
+For the pupose of this exercise, we want to keep only data for the contiguous states.
+Let's overwrite the geo-dataframes accordingly:
+
+```{python}
+states = states[(states.region!=9) & (~states.statefp.isin([2,15]))]
+power_plants = power_plants[~power_plants.state.isin(['Puerto Rico','Hawaii','Alaska'])]
+```
+
+::: {.callout-tip}
+## `~` = not
+In the previous code we used the syntax 
+```python
+~df.column.isin([val1, val2, val3])
+```
+The `~` tilde symbol is used in Python to negate a statement. 
+So the previous line could be read as "the values in df's column which are *not* in the list [val1, val2, val3]."
+:::
+## Plotting
+
+Before we plot our data, let's make sure they are in the same CRS:
+
+```{python}
+states.crs == power_plants.crs
+```
+
+We can now try plotting both datasets together. 
+To color the power_plants dots according to color we just need
+
+```{python}
+fig, ax = plt.subplots()
+
+# add states 
+states.plot(ax=ax,
+            color='none',
+            edgecolor = 'slategray')
+
+# add electric power plants colored by energy source
+power_plants.plot(ax=ax, 
+                  column='primsource', # color points according to primsource value
+                  legend=True,    # add legend
+                  markersize = 4, # adjust point size
+                  cmap='tab20', # this color map has 20 different colors
+                  alpha=0.5)
+
+plt.show()
+```
+
+And we can finish by adding more information to contextualize our map:
+
+```{python}
+# figsize updates the figure size
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# --------------------------
+# remove the axis box around the map
+ax.axis('off')
+
+# update title
+ax.set_title('Operable electric generating plants in the contiguous United States',
+fontsize=20)
+
+# annotate the data source
+ax.annotate("Data: U.S. Energy Information Administration (EIA), accessed Oct 30, 2023 \nhttps://atlas.eia.gov/datasets/eia::power-plants/about", 
+            xy=(0.25, .06), # position
+            xycoords='figure fraction', 
+            fontsize=10, 
+            color='#555555')
+
+# --------------------------
+# add states 
+states.plot(ax=ax,
+               color='none',
+               edgecolor = '#362312')
+
+# add electric power plants colored by energy source
+power_plants.plot(ax=ax, 
+                  column='primsource',
+                  legend=True,
+                  markersize = 4,
+                  cmap='tab20',
+                  alpha=0.5,
+                  # adjust legend
+                  legend_kwds={'loc': "lower right", 
+                                'title':'Primary energy source',
+                                'title_fontsize':'small', 
+                                'fontsize':'small'})
+```
+<!--
+
+https://www.flexprojector.com
+
+https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-vector-plots/python-customize-map-legends-geopandas/
+
+https://stackoverflow.com/questions/74143732/customize-legend-labels-in-geopandas
+-->

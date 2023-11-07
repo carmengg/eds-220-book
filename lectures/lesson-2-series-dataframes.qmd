@@ -1,4 +1,4 @@
-# `pd.Series` and `pd.DataFrames`
+# `pandas`
 
 In this lesson we introduce the two core objects in the `pandas` library, the `pandas.Series` and the `pandas.DataFrame`. 
 

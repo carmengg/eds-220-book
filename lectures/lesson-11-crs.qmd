@@ -22,7 +22,9 @@ Think of an [ellipsoid](https://en.wikipedia.org/wiki/Ellipsoid) as a sphere tha
 This is the first step for creating a CRS: picking an ellipsoid, a.k.a picking a shape for the Earth. 
 The ellipsoid used to represent the Earth's shape has changed across time and it also changes by application.
 
+<!--
 THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
+-->
 
 
 ### 2. Datum: Align the ellipsoid with Earth's locations
@@ -30,13 +32,13 @@ THIS IS A DIAGRAM OF BUMPY EARTH AND ELLIPSOID NEXT TO EACH OTHER
 The ellipsoid is an abstract mathematical object on which we can locate points on it by using angles. 
 The coordinate system on the ellipsoid is (angles from x, angles form y). 
 
-[Latitude and longtide as angular coordinates on the ellipsoid. [Source: Coordinate systems and map projections - University of Twente](https://ltb.itc.utwente.nl/498/learningoutcome/show/59273)](/images/crs/lat_lon_ellipsoid.jpg)
+![Latitude and longtide as angular coordinates on the ellipsoid. [Source: Coordinate systems and map projections - University of Twente](https://ltb.itc.utwente.nl/498/learningoutcome/show/59273)](/images/crs/lat_lon_ellipsoid.jpg)
 
 The next step is thus to make a decision on how to align the ellipsoid so that it's surface corresponds to actual places on the Earth. 
 We could think, for example of how to place the ellipsoid's center relative to Earth's mass center (is it the same or is it off?) or how to align the ellipsoid's axes with the Earth (which meridian will be our prime meridian?). 
 Generally speaking, a **geodetic datum**, or just **datum**, is how we are aligning our abstract ellipsoid to match the Earth's surface. 
 
-[Regional datums to optimize location accuracy. Source: GPS for Land Surveyors](/images/crs/European%20Datum.png)
+![Regional datums to optimize location accuracy. Source: GPS for Land Surveyors](/images/crs/European_Datum.png)
 
 ::: {.callout-caution}
 ## Many datums
@@ -53,7 +55,7 @@ This means we can now use the lat,lon coordinates of the ellipsoid to locate *an
 What we have now is a **geographic CRS**. 
 Geographic coordinate reference systems use degrees of latitude and longitude to locate points on the Earth, still thinking of it as a 3D object.
 
-[Latitude and longited as angular coordiantes on the Earth - we use a geographic CRS to achieve this.](/images/crs/lat_lon_on_earth.png)
+![Latitude and longited as angular coordiantes on the Earth - we use a geographic CRS to achieve this.](/images/crs/lat_lon_on_earth.png)
 
 ### 4. Projection: Flatten a portion of your ellipsoid to make a planar map
 
@@ -62,7 +64,7 @@ In a geographic CRS we use a 3-dimensional model of the Earth (the ellipsoid) to
 To transform our 3D ellipsoid to make a 2D representation we need to use a projection. 
 A **projection** is a method to convert between angular coordinates (i.e. lat, long coordinates in 3D) and planar coordinates (i.e. x, y coordinates in 2D).
 
-[Image Source: Battersby, S. (2017). Map Projections. The Geographic Information Science & Technology Body of Knowledge](/images/crs/figure2-projections.png)
+![Image Source: Battersby, S. (2017). Map Projections. The Geographic Information Science & Technology Body of Knowledge](/images/crs/figure2-projections.png)
 
 ::: {.callout-caution}
 ## Many projections
@@ -83,8 +85,9 @@ When we project a region of the ellipsoid to represent a region of Earth on the 
 A projected CRS must also include a **unit of measure** for its axes. 
 These new coordinates are usually called **eastings**, when referring to the eastward-measured distance (x-coordinate), and **northings**, when referring to the northward-measured distance (y-coordinate). 
 
-[A projected CRS gives planar coordinates.](/images/crs/projected_crs.png)
+![A projected CRS gives planar coordinates.](/images/crs/projected_crs.png)
 
+<!--
 ## Common CRSs
 
 These are some commonly encountered geographic coordinate reference systems. 
@@ -97,7 +100,7 @@ It's coordinates longitude and latitude, are angular and measured in degrees, mi
 
 ### NAD83
 
-<!--
+
 ### UTM
 -->
 

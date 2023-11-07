@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 11&nbsp; geopandas</title>
+<title>EDS 220 - Working with Environmental Datasets - 12&nbsp; geopandas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/lesson-10-merge-data.html" rel="next">
-<link href="../lectures/lesson-8-vector-data.html" rel="prev">
+<link href="../lectures/lesson-11-crs.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">pandas</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tabular data</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pd.Series</code> and <code>pd.DataFrames</code></span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">geopandas</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Vector data</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,27 +229,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-12-crs-csv-example.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Updating CRS</span></a>
+  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Multi-dimensional data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
   </div>
 </li>
       </ul>
@@ -263,20 +303,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="toc-section-number">11.1</span>  Data</a></li>
-  <li><a href="#geoseries-and-geodataframe" id="toc-geoseries-and-geodataframe" class="nav-link" data-scroll-target="#geoseries-and-geodataframe"><span class="toc-section-number">11.2</span>  <code>GeoSeries</code> and <code>GeoDataFrame</code></a></li>
-  <li><a href="#geometric-information" id="toc-geometric-information" class="nav-link" data-scroll-target="#geometric-information"><span class="toc-section-number">11.3</span>  Geometric information</a></li>
-  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling"><span class="toc-section-number">11.4</span>  Data wrangling</a></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting"><span class="toc-section-number">11.5</span>  Plotting</a>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="toc-section-number">12.1</span>  Data</a></li>
+  <li><a href="#geoseries-and-geodataframe" id="toc-geoseries-and-geodataframe" class="nav-link" data-scroll-target="#geoseries-and-geodataframe"><span class="toc-section-number">12.2</span>  <code>GeoSeries</code> and <code>GeoDataFrame</code></a></li>
+  <li><a href="#geometric-information" id="toc-geometric-information" class="nav-link" data-scroll-target="#geometric-information"><span class="toc-section-number">12.3</span>  Geometric information</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling"><span class="toc-section-number">12.4</span>  Data wrangling</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting"><span class="toc-section-number">12.5</span>  Plotting</a>
   <ul class="collapse">
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="toc-section-number">11.5.1</span>  <code>plot()</code></a></li>
-  <li><a href="#matplotlibs-fig-and-ax" id="toc-matplotlibs-fig-and-ax" class="nav-link" data-scroll-target="#matplotlibs-fig-and-ax"><span class="toc-section-number">11.5.2</span>  <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="toc-section-number">12.5.1</span>  <code>plot()</code></a></li>
+  <li><a href="#matplotlibs-fig-and-ax" id="toc-matplotlibs-fig-and-ax" class="nav-link" data-scroll-target="#matplotlibs-fig-and-ax"><span class="toc-section-number">12.5.2</span>  <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></a></li>
   </ul></li>
-  <li><a href="#best-practices-for-importing-packages" id="toc-best-practices-for-importing-packages" class="nav-link" data-scroll-target="#best-practices-for-importing-packages"><span class="toc-section-number">11.6</span>  Best practices for importing packages</a></li>
-  <li><a href="#adding-a-layer" id="toc-adding-a-layer" class="nav-link" data-scroll-target="#adding-a-layer"><span class="toc-section-number">11.6.1</span>  Adding a layer</a></li>
-  <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization"><span class="toc-section-number">11.6.2</span>  Customization</a></li>
-  <li><a href="#simple-map" id="toc-simple-map" class="nav-link" data-scroll-target="#simple-map"><span class="toc-section-number">11.7</span>  Simple map</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">11.8</span>  References</a></li>
+  <li><a href="#best-practices-for-importing-packages" id="toc-best-practices-for-importing-packages" class="nav-link" data-scroll-target="#best-practices-for-importing-packages"><span class="toc-section-number">12.6</span>  Best practices for importing packages</a></li>
+  <li><a href="#adding-a-layer" id="toc-adding-a-layer" class="nav-link" data-scroll-target="#adding-a-layer"><span class="toc-section-number">12.6.1</span>  Adding a layer</a></li>
+  <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization"><span class="toc-section-number">12.6.2</span>  Customization</a></li>
+  <li><a href="#simple-map" id="toc-simple-map" class="nav-link" data-scroll-target="#simple-map"><span class="toc-section-number">12.7</span>  Simple map</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">12.8</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -285,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></h1>
 </div>
 
 
@@ -335,8 +375,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we will start using matplotlib for making maps</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="data" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="data"><span class="header-section-number">11.1</span> Data</h2>
+<section id="data" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="data"><span class="header-section-number">12.1</span> Data</h2>
 <p>In this lesson we will use simplified point data about wild pigs (<em>Sus scrofa</em>) sightings in California, USA from the <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>.</p>
 <p>We can read in a shapefile with <code>geopandas</code> by using the <code>gpd.read_file()</code> function.</p>
 <div class="cell" data-execution_count="4">
@@ -459,8 +499,8 @@ One shapefile = multiple files
 </div>
 </div>
 </section>
-<section id="geoseries-and-geodataframe" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="geoseries-and-geodataframe"><span class="header-section-number">11.2</span> <code>GeoSeries</code> and <code>GeoDataFrame</code></h2>
+<section id="geoseries-and-geodataframe" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="geoseries-and-geodataframe"><span class="header-section-number">12.2</span> <code>GeoSeries</code> and <code>GeoDataFrame</code></h2>
 <p>The core data structure in GeoPandas is the <code>geopandas.GeoDataFrame</code>. We can think of it as a <code>pandas.DataFrame</code> with a dedicated geometry column that can perform spatial operations.</p>
 <p>The <strong>geometry column</strong> in a <code>gpd.GeoDataFrame</code> holds the geometry (point, polygon, etc) of each spatial feature. Columns in the <code>gpd.GeoDataFrame</code> with attributes about the features are <code>pandas.Series</code> like in a regular <code>pd.DataFrame</code>.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -604,8 +644,8 @@ Length: 1046, dtype: object</code></pre>
 This is a `shapely` point. `shapely` is another Python library that to construct and modify points, lines, and polygons. We will talk more about it in the next lessons.
 -->
 </section>
-<section id="geometric-information" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="geometric-information"><span class="header-section-number">11.3</span> Geometric information</h2>
+<section id="geometric-information" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="geometric-information"><span class="header-section-number">12.3</span> Geometric information</h2>
 <p>Two other important attributes of a <code>gpd.GeoDataFrame</code> are its coordinate reference system (CRS) and its extent.</p>
 <p>We can think of the <strong>coordinate reference system (CRS)</strong> as the instructions to locate each feature in our dataframe on the surface of the Earth. We access the CRS of a <code>gpd.GeoDataFrame</code> using the <code>crs</code> attribute:</p>
 <div class="cell" data-execution_count="9">
@@ -640,8 +680,8 @@ Datum: World Geodetic System 1984 ensemble
 </div>
 </div>
 </section>
-<section id="data-wrangling" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="data-wrangling"><span class="header-section-number">11.4</span> Data wrangling</h2>
+<section id="data-wrangling" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="data-wrangling"><span class="header-section-number">12.4</span> Data wrangling</h2>
 <p>GeoPandas is conveniently built on top of <code>pandas</code>, so we may use everything we have learned about data selection, wrangling, and modification for a <code>pd.DataFrame</code>.</p>
 <p><strong>Example</strong></p>
 <p>Suppose we only want to use recent data for wild pig observations. A quick check shows that this dataframe has data since 1818:</p>
@@ -681,10 +721,10 @@ Name: year, Length: 61, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="plotting" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="plotting"><span class="header-section-number">11.5</span> Plotting</h2>
-<section id="plot" class="level3" data-number="11.5.1">
-<h3 data-number="11.5.1" class="anchored" data-anchor-id="plot"><span class="header-section-number">11.5.1</span> <code>plot()</code></h3>
+<section id="plotting" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="plotting"><span class="header-section-number">12.5</span> Plotting</h2>
+<section id="plot" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="plot"><span class="header-section-number">12.5.1</span> <code>plot()</code></h3>
 <p>Similarly to a <code>pd.DataFrame</code>, a <code>gpd.GeoDataFrame</code> has a <code>plot()</code> method that we can call directly to create a quick view of our data. The geospatial information of the <code>gpd.GeoDataFrame</code> will be used to create the axes of the plot.</p>
 <p><strong>Example</strong></p>
 <p>This is a quick look at our recent pigs data:</p>
@@ -698,15 +738,15 @@ Name: year, Length: 61, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="matplotlibs-fig-and-ax" class="level3" data-number="11.5.2">
-<h3 data-number="11.5.2" class="anchored" data-anchor-id="matplotlibs-fig-and-ax"><span class="header-section-number">11.5.2</span> <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></h3>
+<section id="matplotlibs-fig-and-ax" class="level3" data-number="12.5.2">
+<h3 data-number="12.5.2" class="anchored" data-anchor-id="matplotlibs-fig-and-ax"><span class="header-section-number">12.5.2</span> <code>matplotlib</code>’s <code>fig</code> and <code>ax</code></h3>
 <p>Going forward, we will often want to make more complex visualizations where we add different layers to a graph and customize it. To do this we will use the <code>matplotlib</code> Python library for creating visualizations. We can interact with <code>matplotlib</code> via its <code>pyplot</code> interface, which we imported at the top of the notebook as</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib with standard abbreviation</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="best-practices-for-importing-packages" class="level2 {.callout-caution" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="best-practices-for-importing-packages"><span class="header-section-number">11.6</span> Best practices for importing packages</h2>
+<section id="best-practices-for-importing-packages" class="level2 {.callout-caution" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="best-practices-for-importing-packages"><span class="header-section-number">12.6</span> Best practices for importing packages</h2>
 <p>We always import libraries at the top of our notebook in a single cell. If halfway through our analysis we realize we need to import a new library, we still need to go back to that first cell and import it there!</p>
 </section>
 <p>Matplotlib graphs the data in a <strong>figure</strong> which can have one or more <strong>axes</strong>. The axis is only the area specified by the x-y axis and what is plotted in it. To create a new blank figure:</p>
@@ -738,8 +778,8 @@ Functions with multiple return values
 <p>Notice that <code>plt.subplots()</code> is a function that returns two objects (has two outputs).</p>
 </div>
 </div>
-<section id="adding-a-layer" class="level3" data-number="11.6.1">
-<h3 data-number="11.6.1" class="anchored" data-anchor-id="adding-a-layer"><span class="header-section-number">11.6.1</span> Adding a layer</h3>
+<section id="adding-a-layer" class="level3" data-number="12.6.1">
+<h3 data-number="12.6.1" class="anchored" data-anchor-id="adding-a-layer"><span class="header-section-number">12.6.1</span> Adding a layer</h3>
 <p>When using <code>matplotlib</code>, it can be useful to think of creating a plot as adding layers to an axis. The general syntax to plot a datafram <code>df</code> onto an axis is:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new figure and axis</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
@@ -769,8 +809,8 @@ Functions with multiple return values
 </div>
 </div>
 </section>
-<section id="customization" class="level3" data-number="11.6.2">
-<h3 data-number="11.6.2" class="anchored" data-anchor-id="customization"><span class="header-section-number">11.6.2</span> Customization</h3>
+<section id="customization" class="level3" data-number="12.6.2">
+<h3 data-number="12.6.2" class="anchored" data-anchor-id="customization"><span class="header-section-number">12.6.2</span> Customization</h3>
 <p>Matplotlib allows for a lot of customization. Some of it can be done directly in the <code>plot()</code> method for the dataframe (like we’ve done when ploting data using <code>pandas</code>), while other is done by updating attributes of the axis <code>ax</code>. The following image shows some examples of elements in the axis that can be updated.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -804,8 +844,8 @@ Functions with multiple return values
 </div>
 </div>
 </section>
-<section id="simple-map" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="simple-map"><span class="header-section-number">11.7</span> Simple map</h2>
+<section id="simple-map" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="simple-map"><span class="header-section-number">12.7</span> Simple map</h2>
 <p>We can add multiple layers of shapefiles to our maps by plotting multiple geo-dataframes on the same axis.</p>
 <p><strong>Example</strong></p>
 <p>We will import a shapefile with the outline of the state of CA. The original shapefile was obtained through the <a href="https://data.ca.gov/dataset/ca-geographic-boundaries">California’s government Open Data Portal</a>, and the one used here was updated to match the CRS of the points (we’ll talk more about matching CRSs later).</p>
@@ -891,8 +931,8 @@ Functions with multiple return values
 </div>
 </div>
 </section>
-<section id="references" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="references"><span class="header-section-number">11.8</span> References</h2>
+<section id="references" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="references"><span class="header-section-number">12.8</span> References</h2>
 <p>GBIG data: GBIF.org (23 October 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.qavhwp</p>
 <p><a href="https://geopandas.org/en/stable/getting_started/introduction.html">Geopandas Documentation - Introduction to GeoPandas</a></p>
 <p><a href="https://matplotlib.org/3.5.3/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py">Matplotlib Documentation - Basic Usage</a></p>
@@ -1037,13 +1077,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-8-vector-data.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vector data</span></span>
+      <a href="../lectures/lesson-11-crs.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-10-merge-data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

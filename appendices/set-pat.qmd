@@ -1,0 +1,31 @@
+# Setting a PAT
+
+This section contains instructions for creatiog a Personal Access Token (PAT):
+
+1. In [GitHub](https://github.com) navigate to:
+
+- settings
+- developer settings (last option on the left)
+- tokens (classic)
+- generate new token button (near right corner)
+- Click on: Generate new token (classic)
+
+
+2. Select the following options:
+
+- ☑️ Repo (clicking this will select all boxes in the section, that’s ok)
+- ☑️ workflow
+- ☑️ gist
+- ☑️ user  (clicking this will select all boxes in the section, that’s ok)
+
+3. Click generate token.
+
+4. Copy and paste the PAT somewhere for now! 
+
+5. Back at the terminal try to push your changes again using `git push`. When prompted, enter your GitHub username and the new PAT as the password.
+
+:::{.callout-note}
+In steps 1-5 we generated a PAT manually. 
+This is the same process as using `usethis::create_github_token` from an R console as explained in the [MEDS installation guide](https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat). 
+The options we selected in step 2 are the same options for the PAT given by  `usethis::create_github_token`.
+:::

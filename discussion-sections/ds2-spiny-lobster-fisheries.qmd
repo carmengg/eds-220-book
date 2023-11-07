@@ -97,7 +97,7 @@ d. In the image description add picture by M. Kjærgaard for appropriate attribu
 **check git status -> stage changes -> check git status -> commit with message -> push  changes**
 </p>
 
-## metadata exploration
+## Metadata exploration
 Click on *View Full Metadata* to access more information. Take a minute to look at the descriptions for the columns.  
 
 <!-- Data loading -->

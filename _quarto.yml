@@ -5,6 +5,9 @@ project:
   # https://quarto.org/docs/projects/code-execution.html
   execute-dir: project
 
+sidebar:
+  style: "floating"
+
 book:
   title: "EDS 220 - Working with Environmental Datasets"
   author: "Carmen Galaz García"
@@ -12,7 +15,7 @@ book:
   chapters:
     - index.qmd
     - lectures/lesson-1-python-review.qmd
-    - part: "pandas"
+    - part: "Tabular data"
       chapters:
         - lectures/lesson-2-series-dataframes.qmd
         - discussion-sections/ds1-anthr-prelim-data-exploration.qmd 
@@ -22,13 +25,25 @@ book:
         - lectures/lesson-6-groupby.qmd
         - discussion-sections/ds2-hares.qmd                
         - lectures/lesson-7-time-series.qmd
-    - part: "geopandas"
+    - part: "Vector data"
       chapters:
         - lectures/lesson-8-vector-data.qmd
+        - lectures/lesson-11-crs.qmd
         - lectures/lesson-9-geopandas-intro.qmd
         - lectures/lesson-10-merge-data.qmd
-        - lectures/lesson-11-crs.qmd
-        - lectures/lesson-12-crs-csv-example.qmd
+        - lectures/lesson-12-csv-to-geo.qmd
+        #-lectures/lesson-13-reproject-and-clip.qmd
+        - discussion-sections/ds3-earthquakes.qmd
+    - part: "Multi-dimensional data"
+      chapters:
+        - lectures/lesson-14-multidimensional-data.qmd
+        - lectures/lesson-15-xarray.qmd
+    #- part: "Raster data"
+    #  chapters:
+    #  - lectures/lesson-14-raster-formats.qmd 
+      
+  appendices:
+    - appendices/set-pat.qmd
 
 execute:
   freeze: auto  # re-render only when source changes

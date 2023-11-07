@@ -1,0 +1,92 @@
+# *Lab: Maps
+
+:::{.callout-tip}
+## Notebook Setup
+1. In the Taylor server, start a new JupyterLab session or access an active one.
+
+2. In the directory navigation bar, open the `eds-220-sections` directory you created in the last lab.
+
+4. In the terminal, navigate into the `eds-220-sections` directory and verify `eds-220-sections` is your current working directory.
+
+5. Create a new Python Notebook in `eds-220-sections`. 
+
+6. Update the notebook's name to something useful like 'map-earthquake-data.ipynb'.
+
+7. Use the terminal to stage, commit, and push this file to the remote repository. 
+
+8. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+
+:::
+
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+- You won't need to upload any data.
+:::
+
+:::{.callout-note}
+## About the data
+
+For this task we are going to use two datasets. 
+
+**First dataset**
+
+Simplified data from the [USGS Earthquakes Database](https://earthquake.usgs.gov/earthquakes/search/). 
+This is the same dataset we used for homework 1, task 4. 
+It is in tabular format and has the following columns:
+
+- time = date and time of event (all events from 2014)
+- latitude = decimal degrees [-90,90]
+- longitude = decimal degrees [-360,360]
+- depth = depth of the event (km)
+- mag = magnitude of event
+- id = event identifier
+- place = where the event took place
+- type = type of event
+
+Further information about the dataset can be accessed in the [ANSS Comprehensive Earthquake Catalog (ComCat) Documentation](https://earthquake.usgs.gov/data/comcat/).
+
+**Second dataset**
+
+The first dataset is Natural Earth's low resolution cultural boundaries data. 
+These low-resolution polygons are available directly through `geopandas` and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or finer geospatial analysis.
+:::
+
+## Earthquake data
+
+### Import data
+
+1. Import the earthquake data directly from the [following URL (it is a csv file)](https://raw.githubusercontent.com/carmengg/eds220-hwk-1/main/data/earthquake_data.csv).
+Store it in a variable `raw_eqk`.
+
+2. Do some simple preliminary exploration of the `raw_eqk` dataframe.
+
+### Data selection
+
+1. Check which are the unique values for the type of earthquakes. 
+2. Select only data with with type equal to 'eartquake' and magnitude greater than or equal to 6.5. 
+3. Store this as a new dataframe called `eqk`.
+
+
+### `pd.DataFrame` to `gpd.GeoDataFrame`
+1. Overwrite `eqk` dataframe as a `geopandas.GeoDataFrame`. HINT: find the CRS of the dataset by [looking at the metadata](https://earthquake.usgs.gov/data/comcat/).
+2. Make a simple plot of the `eqk` data.
+
+## Import low-resolution countries polygons
+
+Run the following line to import Natural Earth's low-resolution countries polygons using `geopandas`:
+
+```python
+worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
+worldmap
+```
+
+## Map
+
+Create a map of the earthquales of magnitude greater equal to 6.5 across the world in 2014. 
+Color the points by the magnitude. 
+This is an example of how it could look like:
+
+![](earthquake_map.png)

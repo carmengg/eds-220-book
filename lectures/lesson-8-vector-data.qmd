@@ -1,4 +1,4 @@
-# Vector data
+# Data formats
 
 Vector data is one of the two primary types of geospatial data (the other one being raster data). In this section we will review what vector data is and go over some common data formats for it.
 

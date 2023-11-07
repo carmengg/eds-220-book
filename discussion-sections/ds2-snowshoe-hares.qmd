@@ -1,0 +1,129 @@
+# Basic Time Series
+
+October X, 2023.
+
+<!-- include description and goals -->
+
+:::{.callout-tip}
+## Notebook Setup
+1. Create a new repository on GitHub. Use the following settings:
+
+    a. Call the repository `eds-220-sections`. We'll try reusing this same repository for all upcoming sections.
+
+    b. Add a brief description for your new repository. For example: EDS 220 sections - practice sessions for environmental data analysis.
+
+    c. Keep the repository public.
+
+    d. Initialize the repository with a `README` file and a Python .gitignore template.
+
+2. Add your repository's URL and your GitHub username to [this spreadsheet](https://docs.google.com/spreadsheets/d/1VPEIU0PSHs90cwD_RiIhY6swEBSMR-6MmTmM_toykvM/edit?usp=sharing). Names or ordered alphabetically by surname. We won't grade these, it's just for keeping track. 
+
+3. In the Taylor server, start a new JupyterLab session or access an active one.
+
+4. Using the terminal, clone the repository to a new directory under your `eds-220` directory.
+
+5. In the terminal, navigate into the `eds-220-sections` directory and verify `eds-220-sections` is your current working directory.
+
+6. Create a new Python Notebook in `eds-220-sections`. 
+
+7. Update the notebook's name to something useful like 'exercise-lobster-data.ipynb'.
+
+8. Use the terminal to stage, commit, and push this file to the remote repository. Remember:
+    - stage: `git add FILE_NAME`
+    - commit with message: `git commit -m "COMMIT_MESSAGE"`
+    - push: `git push`
+
+9. If you are prompted for your credentials and need to set up a new Personal Access Token (PAT) follow [steps 13-18 in this guide](https://docs.google.com/document/d/1Pk6_rUDdFjdGg-YVo9Cl8ET3iDsYahyaP0VMRD4UHUk/edit?usp=sharing/) to set it up.
+
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY SET UP YOUR NOTEBOOKS BEFORE CONTINUING**
+</p>
+
+:::
+
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+- Indications about when to commit and push changes are included, but you are welcome to commit and push more often. 
+- You won't need to upload any data 
+:::
+
+:::{.callout-note}
+## About the data
+
+For this exercise we will use data about [California spiny lobster (*Panuliris interruptus*) in the Santa Barbara Channel (Lenihan, 2021)](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-sbc.148.1). 
+
+This dataset is stored in the [Environmental Data Initiative (EDI)](https://edirepository.org) data repository. This is a huge data repository committed to make data Findable, Accessible, Interoperable, and Reusable (FAIR). 
+It is the main repository for all the data associated to the [Long Term Ecological Research Network (LTER)](https://lternet.edu).
+
+:::
+
+<!-- Data exploration -->
+## Archive exploration
+Take some time to look through the dataset's description in EDI and click around. Discuss the following questions with your team:
+
+a. What is this data about?
+b. During what time frame were the observations in the dataset collected?
+c. Does the dataset contain sensitive data?
+d. Is there a publication associated with this dataset?
+
+In your notebook: use a markdown cell to add a brief description of the dataset, including a citation, date of access, and a link to the archive. 
+
+## Add a lobster picture
+Follow these steps to add a lobster image using a URL:
+
+a. Go to https://en.wikipedia.org/wiki/Spiny_lobster#/media/File:California_spiny_lobster.JPG
+
+b. Get the URL of the lobster image. To do this:
+
+- hover over the Download button –> right click –> “Copy Image Address".
+
+c. At the end of the markdown cell with the dataset description, use markdown sytanx to add the image from its URL:
+`![image description ](URL-goes-here)`
+
+d. In the image description add picture by M. Kjærgaard for appropriate attribution. 
+
+<!-- 
+![spiny lobseter picture by M. Kjærgaard ](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/California_spiny_lobster.JPG/1920px-California_spiny_lobster.JPG)
+-->
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+## metadata exploration
+Click on *View Full Metadata* to access more information. Take a minute to look at the descriptions for the columns.  
+
+<!-- Data loading -->
+## Data loading
+
+Back in your notebook, import the `pandas` package in a code cell and import the `` from its URL using the `pandas.read_csv()` function.
+
+
+```python
+# read in data
+prey = pd.read_csv('the URL goes here')
+```
+
+<p style="text-align: center;">
+**check git status -> stage changes -> check git status -> commit with message -> push  changes**
+</p>
+
+<p style="text-align: center;">
+**CHECK IN WITH YOUR TEAM** 
+</p>
+<p style="text-align: center;">
+**MAKE SURE YOU'VE ALL SUCCESSFULLY ACCESSED THE DATA BEFORE CONTINUING**
+</p>
+
+
+
+# References
+
+<!-- ADD REFERENCES -->
