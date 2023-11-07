@@ -176,3 +176,50 @@ Let's break this down a bit:
 - in `[Polygon(points)]` we put this polygon inside a list so we can form the geometry column of our new `gpd.GeoDataFrame`
 - we know all the geoJSON files have CRS equal to EPSG:4326/WGS 84, so we set the the CRS of our new `gpd.GeoDataFrame` to this.
 
+## Clip raster
+
+Remember: **if two geospatial sets will interact they need to be in the same CRS**.  
+In our case, the aoi `gpd.GeoDataFrame` does not have the same CRS as the rasters:
+
+```{python}
+print('aoi CRS: ', aoi.crs)
+print('nir CRS: ', nir.rio.crs)
+print('rgb CRS: ', rgb.rio.crs)
+```
+
+So let's reproject:
+```{python}
+aoi = aoi.to_crs(rgb.rio.crs)
+print('matched crs?',  aoi.crs == rgb.rio.crs)
+aoi.crs
+```
+
+And plot them together:
+
+```{python}
+fig, ax = plt.subplots()
+fig.set_size_inches((8,8))
+rgb.plot.imshow(ax=ax)
+aoi.plot(ax=ax, alpha=0.6)
+```
+
+
+```{python}
+rgb_small = rgb.rio.clip_box(*aoi.total_bounds)
+nir_small = nir.rio.clip_box(*aoi.total_bounds)
+```
+
+
+```{python}
+print('original shape: ', rgb.shape)
+print('reduced shape: ', rgb_small.shape)
+rgb_small.plot.imshow()
+```
+
+
+```{python}
+
+print('original shape: ', nir.shape)
+print('reduced shape: ', nir_small.shape)
+nir_small.plot()
+```
