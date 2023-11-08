@@ -292,7 +292,7 @@ ndvi.plot()
 Remember that plants will always have positive NDVI values between 0.2 and 1. 
 Can you spot the Courthouse?
 
-:::{.calllout-caution collapse="true"}
+::: {.callout-warning}
 # Why change the data type?
 The `uint8` (8-bit unsigned integer) is a very small data type that only holds integers from 0 up to 255. 
 In particular, calculations don't return what what we are used to when working with intgers ([they're done module 256](https://en.wikipedia.org/wiki/Modular_arithmetic)):
