@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 15&nbsp; *Lab: Maps</title>
+<title>EDS 220 - Working with Environmental Datasets - 16&nbsp; *Lab: Maps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/lesson-14-multidimensional-data.html" rel="next">
-<link href="../lectures/lesson-12-csv-to-geo.html" rel="prev">
+<link href="../lectures/lesson-13-standin.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -251,7 +251,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  <a href="../lectures/lesson-13-standin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
   </div>
 </li>
       </ul>
@@ -266,24 +271,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Raster data</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-17-standin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
@@ -300,14 +320,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#earthquake-data" id="toc-earthquake-data" class="nav-link active" data-scroll-target="#earthquake-data"><span class="toc-section-number">15.1</span>  Earthquake data</a>
+  <li><a href="#earthquake-data" id="toc-earthquake-data" class="nav-link active" data-scroll-target="#earthquake-data"><span class="toc-section-number">16.1</span>  Earthquake data</a>
   <ul class="collapse">
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="toc-section-number">15.1.1</span>  Import data</a></li>
-  <li><a href="#data-selection" id="toc-data-selection" class="nav-link" data-scroll-target="#data-selection"><span class="toc-section-number">15.1.2</span>  Data selection</a></li>
-  <li><a href="#pd.dataframe-to-gpd.geodataframe" id="toc-pd.dataframe-to-gpd.geodataframe" class="nav-link" data-scroll-target="#pd.dataframe-to-gpd.geodataframe"><span class="toc-section-number">15.1.3</span>  <code>pd.DataFrame</code> to <code>gpd.GeoDataFrame</code></a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="toc-section-number">16.1.1</span>  Import data</a></li>
+  <li><a href="#data-selection" id="toc-data-selection" class="nav-link" data-scroll-target="#data-selection"><span class="toc-section-number">16.1.2</span>  Data selection</a></li>
+  <li><a href="#pd.dataframe-to-gpd.geodataframe" id="toc-pd.dataframe-to-gpd.geodataframe" class="nav-link" data-scroll-target="#pd.dataframe-to-gpd.geodataframe"><span class="toc-section-number">16.1.3</span>  <code>pd.DataFrame</code> to <code>gpd.GeoDataFrame</code></a></li>
   </ul></li>
-  <li><a href="#import-low-resolution-countries-polygons" id="toc-import-low-resolution-countries-polygons" class="nav-link" data-scroll-target="#import-low-resolution-countries-polygons"><span class="toc-section-number">15.2</span>  Import low-resolution countries polygons</a></li>
-  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="toc-section-number">15.3</span>  Map</a></li>
+  <li><a href="#import-low-resolution-countries-polygons" id="toc-import-low-resolution-countries-polygons" class="nav-link" data-scroll-target="#import-low-resolution-countries-polygons"><span class="toc-section-number">16.2</span>  Import low-resolution countries polygons</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="toc-section-number">16.3</span>  Map</a></li>
   </ul>
 </nav>
     </div>
@@ -316,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></h1>
 </div>
 
 
@@ -394,42 +414,42 @@ About the data
 </ul>
 <p>Further information about the dataset can be accessed in the <a href="https://earthquake.usgs.gov/data/comcat/">ANSS Comprehensive Earthquake Catalog (ComCat) Documentation</a>.</p>
 <p><strong>Second dataset</strong></p>
-<p>The second dataset is Natural Earth’s low resolution cultural boundaries data. These low-resolution polygons are available directly through <code>geopandas</code> and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or detailed geospatial analysis.</p>
+<p>The first dataset is Natural Earth’s low resolution cultural boundaries data. These low-resolution polygons are available directly through <code>geopandas</code> and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or finer geospatial analysis.</p>
 </div>
 </div>
-<section id="earthquake-data" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="earthquake-data"><span class="header-section-number">15.1</span> Earthquake data</h2>
-<section id="import-data" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="import-data"><span class="header-section-number">15.1.1</span> Import data</h3>
+<section id="earthquake-data" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="earthquake-data"><span class="header-section-number">16.1</span> Earthquake data</h2>
+<section id="import-data" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="import-data"><span class="header-section-number">16.1.1</span> Import data</h3>
 <ol type="1">
 <li><p>Import the earthquake data directly from the <a href="https://raw.githubusercontent.com/carmengg/eds220-hwk-1/main/data/earthquake_data.csv">following URL (it is a csv file)</a>. Store it in a variable <code>raw_eqk</code>.</p></li>
 <li><p>Do some simple preliminary exploration of the <code>raw_eqk</code> dataframe.</p></li>
 </ol>
 </section>
-<section id="data-selection" class="level3" data-number="15.1.2">
-<h3 data-number="15.1.2" class="anchored" data-anchor-id="data-selection"><span class="header-section-number">15.1.2</span> Data selection</h3>
+<section id="data-selection" class="level3" data-number="16.1.2">
+<h3 data-number="16.1.2" class="anchored" data-anchor-id="data-selection"><span class="header-section-number">16.1.2</span> Data selection</h3>
 <ol type="1">
 <li>Check which are the unique values for the type of earthquakes.</li>
 <li>Select only data with with type equal to ‘eartquake’ and magnitude greater than or equal to 6.5.</li>
 <li>Store this as a new dataframe called <code>eqk</code>.</li>
 </ol>
 </section>
-<section id="pd.dataframe-to-gpd.geodataframe" class="level3" data-number="15.1.3">
-<h3 data-number="15.1.3" class="anchored" data-anchor-id="pd.dataframe-to-gpd.geodataframe"><span class="header-section-number">15.1.3</span> <code>pd.DataFrame</code> to <code>gpd.GeoDataFrame</code></h3>
+<section id="pd.dataframe-to-gpd.geodataframe" class="level3" data-number="16.1.3">
+<h3 data-number="16.1.3" class="anchored" data-anchor-id="pd.dataframe-to-gpd.geodataframe"><span class="header-section-number">16.1.3</span> <code>pd.DataFrame</code> to <code>gpd.GeoDataFrame</code></h3>
 <ol type="1">
 <li>Overwrite <code>eqk</code> dataframe as a <code>geopandas.GeoDataFrame</code>. HINT: find the CRS of the dataset by <a href="https://earthquake.usgs.gov/data/comcat/">looking at the metadata</a>.</li>
 <li>Make a simple plot of the <code>eqk</code> data.</li>
 </ol>
 </section>
 </section>
-<section id="import-low-resolution-countries-polygons" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="import-low-resolution-countries-polygons"><span class="header-section-number">15.2</span> Import low-resolution countries polygons</h2>
+<section id="import-low-resolution-countries-polygons" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="import-low-resolution-countries-polygons"><span class="header-section-number">16.2</span> Import low-resolution countries polygons</h2>
 <p>Run the following line to import Natural Earth’s low-resolution countries polygons using <code>geopandas</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>worldmap <span class="op">=</span> gpd.read_file(gpd.datasets.get_path(<span class="st">"naturalearth_lowres"</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>worldmap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="map" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="map"><span class="header-section-number">15.3</span> Map</h2>
+<section id="map" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="map"><span class="header-section-number">16.3</span> Map</h2>
 <p>Create a map of the earthquales of magnitude greater equal to 6.5 across the world in 2014. Color the points by the magnitude. This is an example of how it could look like:</p>
 <p><img src="earthquake_map.png" class="img-fluid"></p>
 
@@ -572,13 +592,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-12-csv-to-geo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span>
+      <a href="../lectures/lesson-13-standin.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-14-multidimensional-data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NetCDF</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
