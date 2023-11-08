@@ -235,7 +235,7 @@ Notice a few things:
 Let's check our clipped data:
 
 ```{python}
-# chceck shape updates
+# check shape updates
 print('original shape: ', rgb.shape)
 print('reduced shape: ', rgb_small.shape)
 
@@ -246,7 +246,7 @@ rgb_small.plot.imshow(size=size, aspect=aspect)
 ```
 
 ```{python}
-# chceck shape updates
+# check shape updates
 print('original shape: ', nir.shape)
 print('reduced shape: ', nir_small.shape)
 
