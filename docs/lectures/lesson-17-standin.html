@@ -124,7 +124,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -328,7 +327,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#multi-band-raster" id="toc-multi-band-raster" class="nav-link" data-scroll-target="#multi-band-raster"><span class="toc-section-number">19.5</span>  Multi-band raster</a></li>
   <li><a href="#box-for-clipping" id="toc-box-for-clipping" class="nav-link" data-scroll-target="#box-for-clipping"><span class="toc-section-number">19.6</span>  Box for clipping</a></li>
   <li><a href="#clip-raster" id="toc-clip-raster" class="nav-link" data-scroll-target="#clip-raster"><span class="toc-section-number">19.7</span>  Clip raster</a></li>
-  <li><a href="#compute-ndvi" id="toc-compute-ndvi" class="nav-link" data-scroll-target="#compute-ndvi"><span class="toc-section-number">19.8</span>  Compute NDVI</a></li>
   </ul>
 </nav>
     </div>
@@ -451,13 +449,7 @@ Other accessors
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the CRSs of the rasters match</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rgb.rio.crs <span class="op">==</span> nir.rio.crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On the last line we checked the nir and rgb rasters have the same ESPG:26911 CRS. This is a projected CRS:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src=".png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Source: <a href="https://spatialreference.org/ref/epsg/26911/">spatialreference.org</a></figcaption><p></p>
-</figure>
-</div>
+<p>On the last line we checked the nir and rgb rasters have the same ESPG:26911 CRS. This is a projected CRS with x and y measured in meters (<a href="https://epsg.io/26911">check epsg:26911 in epsg.io</a>).</p>
 <p>Finally, let’s plot this raster. Since it has three bands, we can plot it as an image using the <code>.plot.imshow()</code> method, which will interpret the three bands of the object as RGB.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters for plotting rasters</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">6</span> <span class="co"># height in in of plot height</span></span>
@@ -469,7 +461,12 @@ Other accessors
 <section id="box-for-clipping" class="level2" data-number="19.6">
 <h2 data-number="19.6" class="anchored" data-anchor-id="box-for-clipping"><span class="header-section-number">19.6</span> Box for clipping</h2>
 <p>Our area of interest (aoi) for this lesson is a smaller region that includes only a few blocks around the NCEAS building. An easy way to obtain coordinates for such a region:</p>
-<p><img src=".png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/geojsonio-sb.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Screenshot of geojson.io</figcaption><p></p>
+</figure>
+</div>
 <ol type="1">
 <li>go to <a href="https://geojson.io/">https://geojson.io/</a> website,</li>
 <li>zoom in until you find the NCEAS building in Santa Barbara, it might help to change to ‘Satellite Streets’ view on the bottom left corner,</li>
@@ -534,45 +531,73 @@ In our case, the aoi <code>gpd.GeoDataFrame</code> does not have the same CRS as
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'reduced shape: '</span>, nir_small.shape)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>nir_small.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="compute-ndvi" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="compute-ndvi"><span class="header-section-number">19.8</span> Compute NDVI</h2>
-<p>We often want to combine values of and perform calculations on rasters to create a new output raster. In our case, we are interested in computing the Normalized Difference Vegetation Index (NDVI) over our area of interest. The NDVI is an index commonly used to check if an area has live green vegetation or not.</p>
-<p>According to the <a href="https://eos.com/blog/ndvi-faq-all-you-need-to-know-about-ndvi/">Earth Observing System</a> &gt; The results of the NDVI calculation range from -1 to 1. Negative values correspond to areas with water surfaces, manmade structures, rocks, clouds, snow; bare soil usually falls within 0.1-0.2 range; and plants will always have positive values between 0.2 and 1. Healthy, dense vegetation canopy should be above 0.5, and sparse vegetation will most likely fall within 0.2 to 0.5.</p>
-<p>The NDVI is calculated using the NIR and red bands. The formula is</p>
-<p><span class="math inline">\(NDVI = \frac{NIR - Red}{NIR + Red}.\)</span></p>
-<p>First, we need to select the red band:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> rgb_small.sel(band<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>red</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To be able to perform the calculation successfully, we will need to udpate the data type of our rasters:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>red16 <span class="op">=</span> red.astype(<span class="st">'int16'</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>nir16 <span class="op">=</span> nir_small.astype(<span class="st">'int16'</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'RED: original dtype:'</span>, rgb_small.dtype, <span class="st">'.... converted dtype:'</span>, red16.dtype)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'NIR: original dtype:'</span>, nir.dtype, <span class="st">'.... converted dtype:'</span>, nir16.dtype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We can perform raster calculations using the same arithmetic we use for <code>np.array</code>s (because, underneath it all, they are). So our NDVI calculation is as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and plot NDVI</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ndvi <span class="op">=</span> (nir16 <span class="op">-</span> red16)<span class="op">/</span>(nir16<span class="op">+</span>red16)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ndvi.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remember that plants will always have positive NDVI values between 0.2 and 1. Can you spot the Courthouse?</p>
-<div class="callout-warning callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Why change the data type?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>uint8</code> (8-bit unsigned integer) is a very small data type that only holds integers from 0 up to 255. In particular, calculations don’t return what what we are used to when working with intgers (<a href="https://en.wikipedia.org/wiki/Modular_arithmetic">they’re done module 256</a>):</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>np.uint8(<span class="dv">150</span>) <span class="op">+</span> np.uint8(<span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the NDVI formula we have to add NIR + Red. If both NIR and Red are very close to 255, when we add them, the calculation overflows the <code>uint8</code> data type and we don’t get the expected results:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (nir <span class="op">-</span> red)<span class="op">/</span>(nir <span class="op">+</span> red)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is why we need to manually convert both rasters into <code>int16</code>, which will be big enough to hold all the numbers that appear in the calculations.</p>
-<p>Notice too, that when we performed the NDVI calculation we did not get any warning, although we were overflowing the computation at every cell of our array. This is can be an example of <em>failing silently</em>, where we don’t get any warnings about the errors in our computation. That’s why it’s so important to double-check our results!</p>
-</div>
-</div>
+<!--
+## Compute NDVI
+
+We often want to combine values of and perform calculations on rasters to create a new output raster. 
+In our case, we are interested in computing the Normalized Difference Vegetation Index (NDVI) over our area of interest. 
+The NDVI is an index commonly used to check if an area has live green vegetation or not.
+
+According to the [Earth Observing System](https://eos.com/blog/ndvi-faq-all-you-need-to-know-about-ndvi/)
+> The results of the NDVI calculation range from -1 to 1. Negative values correspond to areas with water surfaces, manmade structures, rocks, clouds, snow; bare soil usually falls within 0.1-0.2 range; and plants will always have positive values between 0.2 and 1. Healthy, dense vegetation canopy should be above 0.5, and sparse vegetation will most likely fall within 0.2 to 0.5. 
+
+The NDVI is calculated using the NIR and red bands. 
+The formula is
+
+$NDVI = \frac{NIR - Red}{NIR + Red}.$
+
+First, we need to select the red band:
+
+```python
+red = rgb_small.sel(band=1)
+red
+```
+
+To be able to perform the calculation successfully, we will need to udpate the data type of our rasters:
+
+```python
+red16 = red.astype('int16')
+nir16 = nir_small.astype('int16')
+print('RED: original dtype:', rgb_small.dtype, '.... converted dtype:', red16.dtype)
+print('NIR: original dtype:', nir.dtype, '.... converted dtype:', nir16.dtype)
+```
+
+We can perform raster calculations using the same arithmetic we use for `np.array`s (because, underneath it all, they are). 
+So our NDVI calculation is as follows:
+
+```python
+# calculate and plot NDVI
+ndvi = (nir16 - red16)/(nir16+red16)
+ndvi.plot()
+```
+
+Remember that plants will always have positive NDVI values between 0.2 and 1. 
+Can you spot the Courthouse?
+
+::: {.callout-warning}
+# Why change the data type?
+The `uint8` (8-bit unsigned integer) is a very small data type that only holds integers from 0 up to 255. 
+In particular, calculations don't return what what we are used to when working with intgers ([they're done module 256](https://en.wikipedia.org/wiki/Modular_arithmetic)):
+
+```python
+np.uint8(150) + np.uint8(150)
+```
+
+In the NDVI formula we have to add NIR + Red. 
+If both NIR and Red are very close to 255, when we add them, the calculation overflows the `uint8` data type and we don't get the expected results:
+```python
+x = (nir - red)/(nir + red)
+x.plot()
+```
+
+This is why we need to manually convert both rasters into `int16`, which will be big enough to hold all the numbers that appear in the calculations.
+
+Notice too, that when we performed the NDVI calculation we did not get any warning, although we were overflowing the computation at every cell of our array. 
+This is can be an example of *failing silently*, where we don't get any warnings about the errors in our computation. 
+That's why it's so important to double-check our results!
+:::
+
+-->
 
 
 </section>
