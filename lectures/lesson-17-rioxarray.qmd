@@ -144,8 +144,12 @@ Finally, let's plot this raster.
 Since it has three bands, we can plot it as an image using the `.plot.imshow()` method, which will interpret the three bands of the object as RGB.
 
 ```{python}
+# parameters for plotting rasters
+size = 6 # height in in of plot height
+aspect = rgb.rio.width / rgb.rio.height # ratio of widht/height
+
 # plot three bands as RGB image
-rgb.plot.imshow(figsize=(8,8))
+rgb.plot.imshow(size=size, aspect=aspect)
 ```
 
 ## Box for clipping
@@ -211,7 +215,7 @@ And plot them together:
 ```{python}
 # plot aoi outline and RGB raster together
 fig, ax = plt.subplots()
-fig.set_size_inches((8,8))
+fig.set_size_inches((size, size*aspect)) # reuse size and aspect
 rgb.plot.imshow(ax=ax)
 aoi.plot(ax=ax, alpha=0.6)
 ```
@@ -231,15 +235,21 @@ Notice a few things:
 Let's check our clipped data:
 
 ```{python}
+# chceck shape updates
 print('original shape: ', rgb.shape)
 print('reduced shape: ', rgb_small.shape)
-rgb_small.plot.imshow()
+
+# plot with correct sizes
+size = 4
+aspect = rgb_small.rio.width/ rgb_small.rio.height
+rgb_small.plot.imshow(size=size, aspect=aspect)
 ```
 
 ```{python}
-
+# chceck shape updates
 print('original shape: ', nir.shape)
 print('reduced shape: ', nir_small.shape)
+
 nir_small.plot()
 ```
 
