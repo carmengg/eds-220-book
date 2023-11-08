@@ -80,7 +80,7 @@ If you guessed Santa Barbara downtown, you guessed right!
 
 An **accessor** in Python let's us access a different set of properties of an object.
 In our case, we use the `.rio` accessor for `xarray.DataArray`s to access its raster properties. 
-For example, its number of bands, height, width, spatial bounding box, CRS, and affine transformation:
+For example, its number of bands, height, width, spatial bounding box, and CRS:
 
 ```{python}
 # check geospatial attributes
@@ -90,9 +90,6 @@ print('width: ', nir.rio.width, '\n')
 
 print('spatial bounding box: ')
 print(nir.rio.bounds(), '\n')
-
-print('affine transformation: ')
-print(nir.rio.transform(), '\n')
 
 print('CRS: ', nir.rio.crs)
 ```
