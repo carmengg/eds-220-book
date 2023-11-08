@@ -83,6 +83,7 @@ In our case, we use the `.rio` accessor for `xarray.DataArray`s to access its ra
 For example, its number of bands, height, width, spatial bounding box, CRS, and affine transformation:
 
 ```{python}
+# check geospatial attributes
 print('# bands: ', nir.rio.count)
 print('height: ', nir.rio.height)
 print('width: ', nir.rio.width, '\n')
@@ -124,6 +125,7 @@ print('rgb # bands: ', rgb.rio.count)
 Let's check the geospatial data too:
 
 ```{python}
+# check geospatial attributes
 print('shape: ', rgb.shape)
 print('data type: ', rgb.dtype)
 print('# bands: ', rgb.rio.count)
@@ -142,12 +144,13 @@ Finally, let's plot this raster.
 Since it has three bands, we can plot it as an image using the `.plot.imshow()` method, which will interpret the three bands of the object as RGB.
 
 ```{python}
+# plot three bands as RGB image
 rgb.plot.imshow(figsize=(8,8))
 ```
 
 ## Box for clipping
 
-Our area of interest (aoi) for this lesso is a smaller region that includes only a few blocks around the NCEAS building. 
+Our area of interest (aoi) for this lesson is a smaller region that includes only a few blocks around the NCEAS building. 
 An easy way to obtain coordinates for such a region:
 
 ![]()
@@ -160,6 +163,7 @@ An easy way to obtain coordinates for such a region:
 6. instead, we will create our region of index by just *copy-pasting the list of points* and storing it as a variable:
 
 ```{python}
+# vertices of our aoi box
 points = [[-119.70608227128903, 34.426300194372274],
           [-119.70608227128903, 34.42041139020533],
           [-119.6967885126002, 34.42041139020533],
@@ -170,6 +174,7 @@ points = [[-119.70608227128903, 34.426300194372274],
 We can then create a new `geopandas.GeoDataFrame`:
 
 ```{python}
+# create geodataframe with aoi 
 aoi = gpd.GeoDataFrame(geometry=[Polygon(points)],
                            crs='epsg:4326')
 aoi
