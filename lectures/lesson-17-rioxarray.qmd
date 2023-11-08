@@ -1,3 +1,7 @@
+<!--
+https://carpentries-incubator.github.io/geospatial-python/06-raster-intro.html
+-->
+
 # `rioxarray`
 
 In this lesson we will introduce [`rioxarray`](https://corteva.github.io/rioxarray/stable/), a Python extension for `xarray` to manipulate `xarray.DataArray`s as rasters. 
@@ -18,6 +22,7 @@ Let's start by loading the libraries we'll use:
 
 ```{python}
 import os
+import numpy as np
 import matplotlib.pyplot as plt
 
 import rioxarray as rioxr
@@ -203,12 +208,19 @@ rgb.plot.imshow(ax=ax)
 aoi.plot(ax=ax, alpha=0.6)
 ```
 
+To clip the raster using the aoi polygon we use the `.rio.clip_box()` method:
 
 ```{python}
+# clip rasters to aoi
 rgb_small = rgb.rio.clip_box(*aoi.total_bounds)
 nir_small = nir.rio.clip_box(*aoi.total_bounds)
 ```
 
+Notice a few things:
+- we had to use the `.rio` accessor to access the `clip_box()` method 
+- similarly to the `shapely.box()` function [we've used previously](https://carmengg.github.io/eds-220-book/lectures/lesson-13-standin.html#clipping-with-bounding-box), [`.rio.clip_box()` usual parameters](https://corteva.github.io/rioxarray/stable/rioxarray.html#rioxarray.raster_dataset.RasterDataset.clip_box) are minx, miny, maxx, maxy. We are using the `*` asterisk as an unpacking operator to get these from the list `aoi.total_bounds`.
+
+Let's check our clipped data:
 
 ```{python}
 print('original shape: ', rgb.shape)
@@ -216,10 +228,70 @@ print('reduced shape: ', rgb_small.shape)
 rgb_small.plot.imshow()
 ```
 
-
 ```{python}
 
 print('original shape: ', nir.shape)
 print('reduced shape: ', nir_small.shape)
 nir_small.plot()
 ```
+
+## Compute NDVI
+
+We often want to combine values of and perform calculations on rasters to create a new output raster. 
+In our case, we are interested in computing the Normalized Difference Vegetation Index (NDVI) over our area of interest. 
+The NDVI is an index commonly used to check if an area has live green vegetation or not.
+
+According to the [Earth Observing System](https://eos.com/blog/ndvi-faq-all-you-need-to-know-about-ndvi/)
+> The results of the NDVI calculation range from -1 to 1. Negative values correspond to areas with water surfaces, manmade structures, rocks, clouds, snow; bare soil usually falls within 0.1-0.2 range; and plants will always have positive values between 0.2 and 1. Healthy, dense vegetation canopy should be above 0.5, and sparse vegetation will most likely fall within 0.2 to 0.5. 
+
+The NDVI is calculated using the NIR and red bands. 
+The formula is
+
+$NDVI = \frac{NIR - Red}{NIR + Red}.$
+
+First, we need to select the red band:
+
+```{python}
+red = rgb_small.sel(band=1)
+red
+```
+
+To be able to perform the calculation succefully, we will need to udpate the data type of our rasters:
+
+```{python}
+red16 = red.astype('int16')
+nir16 = nir_small.astype('int16')
+print('RED: original dtype:', rgb_small.dtype, '.... converted dtype:', red16.dtype)
+print('NIR: original dtype:', nir.dtype, '.... converted dtype:', nir16.dtype)
+```
+
+We can perform raster calculations using the same arithmetic we use for `np.array`s (because, underneath it all, they are). 
+So our NDVI calculation is as follows:
+
+```{python}
+# calculate and plot NDVI
+ndvi = (nir16 - red16)/(nir16+red16)
+ndvi.plot()
+```
+
+Remember that plants will always have positive NDVI values between 0.2 and 1. 
+Can you spot the Courthouse?
+
+:::{.calllout-caution collapse="true"}
+# Why change the data type?
+The `uint8` (8-bit unsigned integer) is a very small data type that only holds integers from 0 up to 255. 
+In particular, calculations are 
+
+```{python}
+np.uint8(150) + np.uint8(150)
+```
+
+Notice that in the NDVI formula we have to add NIR + Red. 
+If both NIR and Red are very close to 255, when we add them this overflows the `unit8` data type and we get garbage out of the calculation:
+```{python}
+x = (nir - red)/(nir + red)
+x.plot()
+```
+
+This is why we need to manually convert both rasters into `int16`, which will be big enough to hold all the numbers that appear in the calculations.
+:::
