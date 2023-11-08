@@ -280,7 +280,7 @@ Can you spot the Courthouse?
 :::{.calllout-caution collapse="true"}
 # Why change the data type?
 The `uint8` (8-bit unsigned integer) is a very small data type that only holds integers from 0 up to 255. 
-In particular, calculations are 
+In particular, calculations don't  return what we'd expect ([they're done module 256](https://en.wikipedia.org/wiki/Modular_arithmetic)):
 
 ```{python}
 np.uint8(150) + np.uint8(150)
@@ -294,4 +294,8 @@ x.plot()
 ```
 
 This is why we need to manually convert both rasters into `int16`, which will be big enough to hold all the numbers that appear in the calculations.
+
+Notice too, that when we performed the ndvi calculation we did not get any warning although we were overflowing the computation at every cell of our array. 
+This is can be an example of *failing silently*, where we don't get any warnings about the errors in our computation. 
+That's why it's so important to double-check our results!
 :::
