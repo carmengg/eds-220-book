@@ -1,9 +1,16 @@
+---
+# https://quarto.org/docs/computations/python.html#kernel-selection
+# to check all the available jupyter kernels run from the terminal 
+# jupyter kernelspec list
+jupyter: base
+---
+
 <!-- 
 Fixing the preview working directory
 ```{python}
 import os
 home = os.path.expanduser("~")
-os.chdir(os.path.join(home,'eds-220-book'))
+os.chdir(os.path.join(home,'Documents','EDS_220','eds-220-book'))
 ```
 
 Ignore ShapelyDeprecationWarning warning in render
