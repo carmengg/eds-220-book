@@ -1,10 +1,5 @@
 # STAC specification
 
-In the next classes we'll be working on [Microsoft's Planetary Computer (MPC)](https://planetarycomputer.microsoft.com). 
-The MPC is both a geospatial coding environment and a data catalogue. 
-In this lesson we will learn how to search for data using the MPC's STAC API. 
-
-## STAC
 So far in our course we have accessed data in two ways: by downloading it directly from the data provider or by loading a specific dataset via a URL. 
 This can be a convenient way to access targeted datasets, often usign GUIs (graphical user interfaces) for data discovery and filtering.
 However, relying on clicking and copy-pasting addresses and file names can make our workflows more error-prone and less reproducible. 
@@ -12,23 +7,55 @@ In particular, satellites around the world produce terabytes of new data daily a
 Moreover, we wouldn't want to learn a new way to access data from every single big data provider.
 This is where STAC comes in.
 
-The SpatioTemporal Asset Catalog (STAC) is an emerging open standard for geospatial data that aims to increase the interoperability of geospatial data, particularly satellite imagery. 
+The **SpatioTemporal Asset Catalog (STAC)** is an emerging open standard for geospatial data that aims to increase the interoperability of geospatial data, particularly satellite imagery. 
 Major satellite imagery datasets like X, Y, and [many others](https://stacspec.org/en/about/datasets/), now follow the STAC specification.
 
-- What is STAC: 
-    - components:
-        - Item
-            - Asset: include links to the actual files
-        - ItemCollection
-        - ItemCatalog: directory
-        
-STAC Item: represents one or more spatiotemporal assets as GeoJSON. 
+In the next classes we'll be working with the [Microsoft's Planetary Computer (MPC)](https://planetarycomputer.microsoft.com) STAC API. 
+The MPC is both a geospatial coding environment and a STAC data catalogue. 
+In this lesson we will learn about the main components of a STAC catalog and how to search for data using the MPC's STAC API. 
 
-- STAC API
+## Item, Collection, and Catalog
+The **STAC item** (or just item) is the building block of a STAC. 
+An item is a GeoJSON feature with additional fields that make it easier to find the item as we look for data across catalogs. 
+
+An item holds two types of information:
+
+1. **Metadata:** The metadata for a STAC item includes core identifying information (such as id, geometry, bounding box, and date), and additional properties (for example, place of collection). 
+
+2. **Assets:** Assets are the links to the actual data of the item (for example, links to the spectral bands of a satellite image.)
+
+STAC items can be grouped into **STAC collections** (or just collection). 
+For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time from the same satellite can be orgnanized in a collection. 
+
+## STAC API
 In this lesson we will access data using an API (Application Programming Interface) 
 - what is an API
+    - https://towardsdatascience.com/what-is-an-api-and-how-does-it-work-1dccd7a8219e
+    - https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/
+
+
 - signing the item
 
+## Microsoft Planetary Computer
+
+## NAIP data
+
+
+## Catalog exploration
+
+### Access
+
+## Catalog
+## Collection
+
+## Catalog search
+
+## Item exploration
+
+## Exercise
+NAIP example:
+
+https://github.com/NCEAS/msai4earth-esa/blob/main/examples/naip_example/prepare_naip_data.ipynb
 
 ## References
 STAC Documentation 
@@ -38,3 +65,7 @@ STAC Documentation
 [Microsoft Planetary Computer Documentation - Reading Data from the STAC API](https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac/)
 
 <!-- https://planetarycomputer.microsoft.com/docs/tutorials/hurricane-florence-animation/ -->
+
+Idea for homework:
+
+https://planetarycomputer.microsoft.com/dataset/io-biodiversity#Example-Notebook
