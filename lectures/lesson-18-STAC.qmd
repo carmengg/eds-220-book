@@ -9,4 +9,32 @@ So far in our course we have accessed data in two ways: by downloading it direct
 This can be a convenient way to access targeted datasets, often usign GUIs (graphical user interfaces) for data discovery and filtering.
 However, relying on clicking and copy-pasting addresses and file names can make our workflows more error-prone and less reproducible. 
 In particular, satellites around the world produce terabytes of new data daily and manually browsing through data repositories would it make hard to access this data. 
+Moreover, we wouldn't want to learn a new way to access data from every single big data provider.
+This is where STAC comes in.
+
+The SpatioTemporal Asset Catalog (STAC) is an emerging open standard for geospatial data that aims to increase the interoperability of geospatial data, particularly satellite imagery. 
+Major satellite imagery datasets like X, Y, and [many others](https://stacspec.org/en/about/datasets/), now follow the STAC specification.
+
+- What is STAC: 
+    - components:
+        - Item
+            - Asset: include links to the actual files
+        - ItemCollection
+        - ItemCatalog: directory
+        
+STAC Item: represents one or more spatiotemporal assets as GeoJSON. 
+
+- STAC API
 In this lesson we will access data using an API (Application Programming Interface) 
+- what is an API
+- signing the item
+
+
+## References
+STAC Documentation 
+
+- [The STAC Specification](https://stacspec.org/en/tutorials/intro-to-stac/)
+- [Read a STAC Catalog Using PySTAC](https://stacspec.org/en/tutorials/1-read-stac-python/)
+[Microsoft Planetary Computer Documentation - Reading Data from the STAC API](https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac/)
+
+<!-- https://planetarycomputer.microsoft.com/docs/tutorials/hurricane-florence-animation/ -->
