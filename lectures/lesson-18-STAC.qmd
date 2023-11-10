@@ -1,0 +1,12 @@
+# STAC specification
+
+In the next classes we'll be working on [Microsoft's Planetary Computer (MPC)](https://planetarycomputer.microsoft.com). 
+The MPC is both a geospatial coding environment and a data catalogue. 
+In this lesson we will learn how to search for data using the MPC's STAC API. 
+
+## STAC
+So far in our course we have accessed data in two ways: by downloading it directly from the data provider or by loading a specific dataset via a URL. 
+This can be a convenient way to access targeted datasets, often usign GUIs (graphical user interfaces) for data discovery and filtering.
+However, relying on clicking and copy-pasting addresses and file names can make our workflows more error-prone and less reproducible. 
+In particular, satellites around the world produce terabytes of new data daily and manually browsing through data repositories would it make hard to access this data. 
+In this lesson we will access data using an API (Application Programming Interface) 
