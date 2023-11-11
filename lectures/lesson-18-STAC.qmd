@@ -7,6 +7,8 @@ In particular, satellites around the world produce terabytes of new data daily a
 Moreover, we wouldn't want to learn a new way to access data from every single big data provider.
 This is where STAC comes in.
 
+![](/images/STAC-01.png)
+
 The **SpatioTemporal Asset Catalog (STAC)** is an emerging open standard for geospatial data that aims to increase the interoperability of geospatial data, particularly satellite imagery. 
 Major satellite imagery datasets like X, Y, and [many others](https://stacspec.org/en/about/datasets/), now follow the STAC specification.
 
@@ -24,24 +26,22 @@ An item holds two types of information:
 
 2. **Assets:** Assets are the links to the actual data of the item (for example, links to the spectral bands of a satellite image.)
 
-STAC items can be grouped into **STAC collections** (or just collection). 
-For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time from the same satellite can be orgnanized in a collection. 
+STAC items can be grouped into **STAC collections** (or just collections). 
+For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time and location from the same satellite can be orgnanized in a collection. 
+Finally, multiple collections can be organized into a single catalog. 
 
-## STAC API
-In this lesson we will access data using an API (Application Programming Interface) 
-- what is an API
-    - https://towardsdatascience.com/what-is-an-api-and-how-does-it-work-1dccd7a8219e
-    - https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/
+## API
+To request data from a catalog following the STAC standard we use an **Application Programming Interface (API)**. 
+We can think of an API as an intermediary tasked with sending our request for data to the data catalog and getting the response from the catalog back to us. 
+The following is a nice real-life analogy:
 
+![[Geeks for geeks - What is an API?](https://www.geeksforgeeks.org/what-is-an-api/)](/images/what-is-an-api.png)
 
-- signing the item
+The Python package to access APIs for STAC catalogs is [`pystac_client`](https://pystac-client.readthedocs.io/en/stable/). 
+Our goal in this lesson is to retrieve [NAIP data](https://naip-usdaonline.hub.arcgis.com) from the [MPC's data catalog](https://planetarycomputer.microsoft.com/catalog) via its STAC API. 
+We'll be doing this within the MPC's hub. 
 
-## Microsoft Planetary Computer
-
-## NAIP data
-
-
-## Catalog exploration
+## Catalog access and exploration
 
 ### Access
 
@@ -58,10 +58,11 @@ NAIP example:
 https://github.com/NCEAS/msai4earth-esa/blob/main/examples/naip_example/prepare_naip_data.ipynb
 
 ## References
-STAC Documentation 
+STAC Documentation:
 
 - [The STAC Specification](https://stacspec.org/en/tutorials/intro-to-stac/)
 - [Read a STAC Catalog Using PySTAC](https://stacspec.org/en/tutorials/1-read-stac-python/)
+
 [Microsoft Planetary Computer Documentation - Reading Data from the STAC API](https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac/)
 
 <!-- https://planetarycomputer.microsoft.com/docs/tutorials/hurricane-florence-animation/ -->
