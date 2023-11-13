@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 7&nbsp; groupby()</title>
+<title>EDS 220 - Working with Environmental Datasets - Appendix B — Gitignore &amp; Git Untracking</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,8 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../discussion-sections/ds2-hares.html" rel="next">
-<link href="../lectures/lesson-5-updating-dataframes.html" rel="prev">
+<link href="../appendices/undoing-commit.html" rel="next">
+<link href="../appendices/set-pat.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -123,9 +123,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -136,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></h1>
+      <h1 class="quarto-secondary-nav-title">Appendix B — Gitignore &amp; Git Untracking</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -204,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -319,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></a>
+  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,12 +335,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link active" data-scroll-target="#summary-statistics"><span class="toc-section-number">7.1</span>  Summary statistics</a></li>
-  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">7.2</span>  Grouping</a>
+  <li><a href="#gitignore" id="toc-gitignore" class="nav-link active" data-scroll-target="#gitignore"><span class="toc-section-number">B.1</span>  Gitignore</a></li>
+  <li><a href="#creating-a-.gitignore" id="toc-creating-a-.gitignore" class="nav-link" data-scroll-target="#creating-a-.gitignore"><span class="toc-section-number">B.2</span>  Creating a .gitignore</a>
   <ul class="collapse">
-  <li><a href="#check-in" id="toc-check-in" class="nav-link" data-scroll-target="#check-in"><span class="toc-section-number">7.2.1</span>  Check-in</a></li>
+  <li><a href="#when-creating-a-github-repository" id="toc-when-creating-a-github-repository" class="nav-link" data-scroll-target="#when-creating-a-github-repository"><span class="toc-section-number">B.2.1</span>  When creating a GitHub repository</a></li>
+  <li><a href="#from-the-github-.gitignore-templates" id="toc-from-the-github-.gitignore-templates" class="nav-link" data-scroll-target="#from-the-github-.gitignore-templates"><span class="toc-section-number">B.2.2</span>  From the GitHub .gitignore templates</a></li>
+  <li><a href="#from-the-command-line" id="toc-from-the-command-line" class="nav-link" data-scroll-target="#from-the-command-line"><span class="toc-section-number">B.2.3</span>  From the command line</a></li>
   </ul></li>
-  <li><a href="#acknowledgmenets" id="toc-acknowledgmenets" class="nav-link" data-scroll-target="#acknowledgmenets"><span class="toc-section-number">7.3</span>  Acknowledgmenets</a></li>
+  <li><a href="#editing-.gitignore" id="toc-editing-.gitignore" class="nav-link" data-scroll-target="#editing-.gitignore"><span class="toc-section-number">B.3</span>  Editing .gitignore</a>
+  <ul class="collapse">
+  <li><a href="#add-a-file" id="toc-add-a-file" class="nav-link" data-scroll-target="#add-a-file"><span class="toc-section-number">B.3.1</span>  Add a file</a></li>
+  <li><a href="#add-a-directory" id="toc-add-a-directory" class="nav-link" data-scroll-target="#add-a-directory"><span class="toc-section-number">B.3.2</span>  Add a directory</a></li>
+  </ul></li>
+  <li><a href="#untracking" id="toc-untracking" class="nav-link" data-scroll-target="#untracking"><span class="toc-section-number">B.4</span>  Untracking</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">B.5</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -352,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></h1>
+<h1 class="title d-none d-lg-block">Appendix B — Gitignore &amp; Git Untracking</h1>
 </div>
 
 
@@ -367,404 +372,139 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>In this section we will go over the <code>groupby()</code> function and the split-apply-combine strategy. We will use the Palmer penguins data.</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read in Palmer penguins data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>species</th>
-      <th>island</th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-      <th>sex</th>
-      <th>year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.1</td>
-      <td>18.7</td>
-      <td>181.0</td>
-      <td>3750.0</td>
-      <td>male</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.5</td>
-      <td>17.4</td>
-      <td>186.0</td>
-      <td>3800.0</td>
-      <td>female</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>40.3</td>
-      <td>18.0</td>
-      <td>195.0</td>
-      <td>3250.0</td>
-      <td>female</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>36.7</td>
-      <td>19.3</td>
-      <td>193.0</td>
-      <td>3450.0</td>
-      <td>female</td>
-      <td>2007</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<section id="summary-statistics" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">7.1</span> Summary statistics</h2>
-<p>In <code>pandas</code> it is easy to get summary statistics for each column in a dataframe by using methods such as</p>
-<ul>
-<li><code>sum()</code>: sum values in each column,</li>
-<li><code>count()</code>: count non-NA values in each column,</li>
-<li><code>min()</code> and <code>max()</code>: get the minimum and maximum value in each column,<br>
-</li>
-<li><code>mean()</code> and <code>median()</code>: get the mean and median value in each column,</li>
-<li><code>std()</code> and <code>var()</code>: get the standard deviation and variance in each column.</li>
-</ul>
-<p><strong>Example</strong></p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the number of non-NA values in each column </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>penguins.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>species              344
-island               344
-bill_length_mm       342
-bill_depth_mm        342
-flipper_length_mm    342
-body_mass_g          342
-sex                  333
-year                 344
-dtype: int64</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the minimum value in each column</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>penguins.select_dtypes(<span class="st">'number'</span>).<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>bill_length_mm         32.1
-bill_depth_mm          13.1
-flipper_length_mm     172.0
-body_mass_g          2700.0
-year                 2007.0
-dtype: float64</code></pre>
-</div>
-</div>
-<!--
-TO DO:
-Add a note about select_dtypes
--->
+<p>This is a review on how to never track and untrack files in Git using the terminal and the .gitignore file.</p>
+<section id="gitignore" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">B.1</span> Gitignore</h2>
+<p>The easiest way to have Git never track a file or directory within your Git directory is to add it to the .gitignore file <em>before you ever start tracking it</em>.</p>
+<p>From the <a href="https://git-scm.com/docs/gitignore">Git documenatation</a>:</p>
+<blockquote class="blockquote">
+<p>A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected.</p>
+</blockquote>
+<p>This means the files listed in the .gitignore will be ignored when making a commit. Git does not track changes on it and they do not appear in the index when we check the Git status.</p>
 </section>
-<section id="grouping" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="grouping"><span class="header-section-number">7.2</span> Grouping</h2>
-<p>Our penguins data is naturally split into different groups: there are three different species, two sexes and three islands. Often, we want to calculate a certain statistic for each group. For example, suppose we want to calculate the average flipper length per species. How would we do this “by hand”?</p>
-<ol start="0" type="1">
-<li><p>We start with our data and notice there are multiple species in the <code>species</code> column.</p></li>
-<li><p>We split our original table to group all observations from the same species together.</p></li>
-<li><p>We calculate the average flipper length for each of the groups we formed.</p></li>
-<li><p>Then we combine the values for average flipper length per species into a single table.</p></li>
-</ol>
-<p>This is known as the <strong>Split-Apply-Combine strategy</strong>. This strategy follows the three steps we explained above:</p>
+<section id="creating-a-.gitignore" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="creating-a-.gitignore"><span class="header-section-number">B.2</span> Creating a .gitignore</h2>
+<section id="when-creating-a-github-repository" class="level3" data-number="B.2.1">
+<h3 data-number="B.2.1" class="anchored" data-anchor-id="when-creating-a-github-repository"><span class="header-section-number">B.2.1</span> When creating a GitHub repository</h3>
+<p>The easiest way to create a .gitignore is probably when creating a repository through GitHub. To do this:</p>
 <ol type="1">
-<li><p><strong>Split</strong>: Split the data into logical groups (e.g.&nbsp;species, sex, island, etc.)</p></li>
-<li><p><strong>Apply</strong>: Calculate some summary statistic on each group (e.g.&nbsp;average flipper length by species, number of individuals per island, body mass by sex, etc.)</p></li>
-<li><p><strong>Combine</strong>: Combine the statistic calculated on each group back together.</p></li>
+<li>Go to the “Add .gitignore” section and…</li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/lesson-3-plot/split-apply-combine-penguins-diagram.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Split-apply-combine to calculate mean flipper length</figcaption><p></p>
-</figure>
-</div>
-<p>In Python we can use the <code>groupby()</code> method to split (i.e.&nbsp;group) the data into different categories. The general syntax for <code>groupby()</code> is</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.groupby(columns_to_group_by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where most often we will have <code>columns_to_group_by</code> = a single column name (string) or a list of column names, the unique values of the column (or columns) will be used as the groups of the data frame</p>
-<p><strong>Example</strong></p>
-<p>First, if we don’t use the <code>groupby()</code> method, we obtain the average for the whole flipper length column:</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins.flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>200.91520467836258</code></pre>
-</div>
-</div>
-<p>To get the mean flipper length by species we first group our dataset by the species column’s data:</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>species
-Adelie       189.953642
-Chinstrap    195.823529
-Gentoo       217.186992
-Name: flipper_length_mm, dtype: float64</code></pre>
-</div>
-</div>
-<p>There’s a lot going on there, let’s break it down (remember the <code>.</code> can be read as “and then…”)</p>
-<ul>
-<li>start with the <code>penguins</code> data frame, and then…</li>
-<li>use <code>groupby()</code> to group the data frame by <code>species</code> values, and then…</li>
-<li>select the <code>'flipper_length_mm'</code> column, and then…</li>
-<li>calculate the <code>mean()</code></li>
-</ul>
-<p>We can store our new data frame as <code>avg_flipper</code> and then graph it as a bar plot:</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average flipper length per species</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> penguins.groupby(<span class="st">"species"</span>).flipper_length_mm.mean()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sort in descending order</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remember to reassign to actually update data</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>avg_flipper <span class="op">=</span> avg_flipper.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot as a bar plot</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>avg_flipper.plot(kind<span class="op">=</span><span class="st">'bar'</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                 title<span class="op">=</span><span class="st">'Average flipper length by species'</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                 ylabel<span class="op">=</span><span class="st">'Flipper length (mm)'</span>,</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                 rot<span class="op">=</span><span class="dv">360</span>  <span class="co"># rotation for ticks </span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                 ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;AxesSubplot:title={'center':'Average flipper length by species'}, xlabel='species', ylabel='Flipper length (mm)'&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="lesson-6-groupby_files/figure-html/cell-7-output-2.png" width="593" height="449"></p>
-</div>
-</div>
-<p>We can also group by combinations of columns.</p>
-<p><strong>Example</strong></p>
-<p>Suppose we want to know what was the number of penguins in every island on different years. We can use the <code>count()</code> method to count the number of non-NA values in each column like this:</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>species              344
-island               344
-bill_length_mm       342
-bill_depth_mm        342
-flipper_length_mm    342
-body_mass_g          342
-sex                  333
-year                 344
-dtype: int64</code></pre>
-</div>
-</div>
-<p>When we group by island and year we get the count of non-NA values for each column divided for each combination of island and year:</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>penguins.groupby([<span class="st">'island'</span>,<span class="st">'year'</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>species</th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-      <th>sex</th>
-    </tr>
-    <tr>
-      <th>island</th>
-      <th>year</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="3" valign="top">Biscoe</th>
-      <th>2007</th>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <th>2008</th>
-      <td>64</td>
-      <td>64</td>
-      <td>64</td>
-      <td>64</td>
-      <td>64</td>
-      <td>63</td>
-    </tr>
-    <tr>
-      <th>2009</th>
-      <td>60</td>
-      <td>59</td>
-      <td>59</td>
-      <td>59</td>
-      <td>59</td>
-      <td>57</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">Dream</th>
-      <th>2007</th>
-      <td>46</td>
-      <td>46</td>
-      <td>46</td>
-      <td>46</td>
-      <td>46</td>
-      <td>45</td>
-    </tr>
-    <tr>
-      <th>2008</th>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-      <td>34</td>
-    </tr>
-    <tr>
-      <th>2009</th>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">Torgersen</th>
-      <th>2007</th>
-      <td>20</td>
-      <td>19</td>
-      <td>19</td>
-      <td>19</td>
-      <td>19</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>2008</th>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>2009</th>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-      <td>16</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Let’s say we want to plot the surveyed population per year and island. We could then use a “one liner” to do it in this way:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>penguins.groupby([<span class="st">'island'</span>,<span class="st">'year'</span>]).count().species.sort_values().plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>&lt;AxesSubplot:ylabel='island,year'&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="lesson-6-groupby_files/figure-html/cell-10-output-2.png" width="685" height="411"></p>
-</div>
-</div>
-<!--
-TO DO:
-Talk about what is `groupby()` : lazy method
--->
-<section id="check-in" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="check-in"><span class="header-section-number">7.2.1</span> Check-in</h3>
-<ol type="1">
-<li>Use <code>groupby</code> and the <code>max()</code> method for data frames to calculate the maximum value of penguin’s body mass by year and species.</li>
-</ol>
-<!--
-
-::: {.cell execution_count=10}
-``` {.python .cell-code}
-penguins.groupby(['year','species']).body_mass_g.max()
-```
-
-::: {.cell-output .cell-output-display execution_count=10}
-```
-year  species  
-2007  Adelie       4675.0
-      Chinstrap    4400.0
-      Gentoo       6300.0
-2008  Adelie       4700.0
-      Chinstrap    4800.0
-      Gentoo       6000.0
-2009  Adelie       4775.0
-      Chinstrap    4450.0
-      Gentoo       6000.0
-Name: body_mass_g, dtype: float64
-```
-:::
-:::
-
-
--->
+<p><img src="../images/git-ignore/add-gitignore.png" class="img-fluid"></p>
 <ol start="2" type="1">
-<li>Use (1) to display the highest body masses per year and species as a bar plot in descending order.</li>
+<li>…select a template from the list. These templates are provided by GitHub to ignore unuseful files in different programming languages. For this course we select the Python .gitignore template.</li>
 </ol>
-<!--
-penguins.groupby(['year','species']).body_mass_g.max().sort_values(ascending=False).plot(kind='barh')
--->
+<p><img src="../images/git-ignore/select-gitignore-template.png" class="img-fluid"></p>
+<ol start="3" type="1">
+<li>When you finish creating your new repository, the .gitignore file will be in it.</li>
+</ol>
+</section>
+<section id="from-the-github-.gitignore-templates" class="level3" data-number="B.2.2">
+<h3 data-number="B.2.2" class="anchored" data-anchor-id="from-the-github-.gitignore-templates"><span class="header-section-number">B.2.2</span> From the GitHub .gitignore templates</h3>
+<p>If you don’t have a .gitignore yet and want to add the one from the GitHub template you can:</p>
+<ol type="1">
+<li><p>Download the .gitignore GitHub template: <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a>.</p></li>
+<li><p>Move it to your directory.</p></li>
+<li><p>Update the name to <code>.gitignore</code>.</p></li>
+</ol>
+</section>
+<section id="from-the-command-line" class="level3" data-number="B.2.3">
+<h3 data-number="B.2.3" class="anchored" data-anchor-id="from-the-command-line"><span class="header-section-number">B.2.3</span> From the command line</h3>
+<p>What if we we just want to create our own blank .gitignore? No problem, we can create one from our terminal:</p>
+<ol type="1">
+<li><p>Open the terminal.</p></li>
+<li><p>Verify you don’t have a .gitignore by running:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>ls -a</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Adding <code>-a</code> to the <code>ls</code> (list) command will show all the files, including the hidden files that start with a period <code>.</code>, such as the .gitignore.</p>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Create a new .gitignore file for the directory:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> .gitignore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If there is no output, everything worked.</p>
+<ol start="4" type="1">
+<li>Check your .gitgnore is there:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see the .gitignore now listed in the files.</p>
 </section>
 </section>
-<section id="acknowledgmenets" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="acknowledgmenets"><span class="header-section-number">7.3</span> Acknowledgmenets</h2>
-<p>This section is based on this <a href="https://learning.nceas.ucsb.edu/2023-06-delta/session_11.html#summary-statistics-using-group_by-and-summarize">NCEAS Learning Hub R lesson.</a></p>
-<p>Halina Do-Linh, Carmen Galaz García, Matthew B. Jones, Camila Vargas Poulsen. 2023. Open Science Synthesis training Week 1. NCEAS Learning Hub &amp; Delta Stewardship Council.</p>
+<section id="editing-.gitignore" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="editing-.gitignore"><span class="header-section-number">B.3</span> Editing .gitignore</h2>
+<section id="add-a-file" class="level3" data-number="B.3.1">
+<h3 data-number="B.3.1" class="anchored" data-anchor-id="add-a-file"><span class="header-section-number">B.3.1</span> Add a file</h3>
+<p>Suppose you have an <strong>untracked file</strong> called <code>example.txt</code> that you want to add to the .gitignore. Remember, untracked means Git hasn’t began tracking changes on this file and. If you run <code>git status</code>, <code>example.txt</code> would appear in the index under Untracked files.</p>
+<p>If you are using JupyterLab, you can edit the .gitignore from the terminal. Follow these steps to add <code>example.txt</code> to it:</p>
+<ol type="1">
+<li><p>Open the terminal.</p></li>
+<li><p>Open the .gitignore file in the nano command line-based text editor by running:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> .gitignore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li><p>Once in the editor, add a new line with the name of the file: <code>example.txt</code>.</p></li>
+<li><p>To exit nano:</p>
+<ol type="a">
+<li><code>Ctrl+X</code>,</li>
+<li>Press <code>Y</code> to save the changes</li>
+<li>Press <code>Enter</code></li>
+</ol></li>
+<li><p>When you run <code>git status</code> again, <code>example.txt</code> will not be listed under the untracked files.</p></li>
+</ol>
+</section>
+<section id="add-a-directory" class="level3" data-number="B.3.2">
+<h3 data-number="B.3.2" class="anchored" data-anchor-id="add-a-directory"><span class="header-section-number">B.3.2</span> Add a directory</h3>
+<p>Suppose you want to add all the contents of a directory named data to your gitignore. <em>If none of the files in the data directory have been tracked by Git</em>, then:</p>
+<ol type="1">
+<li><p>Open the terminal.</p></li>
+<li><p>Open the .gitignore file in the nano command line-based text editor by running:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> .gitignore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li><p>Once in the editor, add a new line with the name of the directory: <code>data/</code>.</p></li>
+<li><p>To exit nano:</p>
+<ol type="a">
+<li><code>Ctrl+X</code>,</li>
+<li>Press <code>Y</code> to save the changes</li>
+<li>Press <code>Enter</code></li>
+</ol></li>
+<li><p>When you run <code>git status</code> again, <code>data/</code> will not be listed in untracked files.</p></li>
+</ol>
+</section>
+</section>
+<section id="untracking" class="level2" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="untracking"><span class="header-section-number">B.4</span> Untracking</h2>
+<p>Once a file has been added to a commit, Git starts tracking it. <strong>If we add the file’s name to the .gitignore after it has been commited, Git will keep tracking changes in it.</strong> To stop tracking a tracked file <code>example.txt</code>:</p>
+<ol type="1">
+<li><p>Open the terminal.</p></li>
+<li><p>Run <code>git rm --cached example.txt</code>. The <code>git rm --cached</code> command will remove the file from the Git tracking while leaving the file untouched on disk.</p></li>
+<li><p>If it’s not already there, add <code>example.txt</code> to .gitignore so Git ignores it.</p></li>
+</ol>
+</section>
+<section id="references" class="level2" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="references"><span class="header-section-number">B.5</span> References</h2>
+<p><a href="https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/">GitHub Blog - How to undo (almost) anything with Git</a></p>
 
 
 </section>
@@ -905,13 +645,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-5-updating-dataframes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span>
+      <a href="../appendices/set-pat.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../discussion-sections/ds2-hares.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendices/undoing-commit.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

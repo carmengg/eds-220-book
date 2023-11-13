@@ -1,0 +1,47 @@
+---
+engine: knitr
+execute:
+  eval: false
+---
+
+# Undoing commits
+
+This is a beta version. 
+
+## Undoing a local commit
+
+
+1. Check commit history:
+
+```{bash}
+git log
+```
+or
+```{bash}
+git log --pretty=oneline
+```
+
+This shows both the commit history of our current branch, with the latest commit at the top. 
+It also shows the head of our local directory and the head of our remote repository. 
+
+<!-- https://www.atatus.com/blog/tracking-code-changes-with-git-log/-->
+
+2. If this was just the previous commit, we can reset the last commit by doing
+
+```{bash}
+git reset HEAD~1
+```
+
+The files on disk will not be touched and any changes will between the original HEAD and the commit we reset will be kept. 
+The files will be unstaged.
+
+3. If we need to go back to a commit that's buried in the commit history, it's best to use the hash of the commit. 
+
+```{bash}
+git reset <hash>
+```
+
+## References
+[GitHub Blog - How to undo (almost) anything with Git](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
+
+[David Zych - Difference between git reset soft, mixed and hard](https://davidzych.com/difference-between-git-reset-soft-mixed-and-hard/)

@@ -770,53 +770,123 @@
     "text": "18.4 Acknowledgements\nThis lesson is adapted from the NetCDF and xarray lesson I prepared for the Arctic Data Center’s course on scalable computing:\nS. Jeanette Clark, Matthew B. Jones, Samantha Csik, Carmen Galaz García, Bryce Mecum, Natasha Haycock-Chavez, Daphne Virlar-Knight, Juliet Cohen, Anna Liljedahl. 2023. Scalable and Computationally Reproducible Approaches to Arctic Research. Arctic Data Center. doi:10.18739/A2QF8JM2V"
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#data",
-    "href": "lectures/lesson-17-standin.html#data",
+    "objectID": "lectures/lesson-17-rioxarray.html#data",
+    "href": "lectures/lesson-17-rioxarray.html#data",
     "title": "19  rioxarray",
     "section": "19.1 Data",
     "text": "19.1 Data\nThe raster files we will use today come from the US National Agriculture Imagery Program (NAIP). NAIP images are are high-resolution aerial images with four spectral bands: Red, Green, Blue and Near-infrared (NIR). The raster’s we’ll use today are from 2020.\nFor this lesson, I did some pre-processing of the data to separate the RGB bands from the NIR band and clipped a scene. The data was accessed and pre-processed at Microsoft’s Planetary Computer NAIP data repository."
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#import-.tif",
-    "href": "lectures/lesson-17-standin.html#import-.tif",
+    "objectID": "lectures/lesson-17-rioxarray.html#import-.tif",
+    "href": "lectures/lesson-17-rioxarray.html#import-.tif",
     "title": "19  rioxarray",
     "section": "19.2 Import .tif",
-    "text": "19.2 Import .tif\nLet’s start by loading the libraries we’ll use:\nimport os\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nimport rioxarray as rioxr\n\nimport geopandas as gpd\nfrom shapely.geometry import Polygon\nThere are multiple ways of opening a ‘.tif’ file using xarray or rioxarray. Using the rioxarray.open_rasterio() function to open the ‘.tif’ file is a simple way to make sure all our geospatial data gets loaded correctly:\n# load NIR tif file\nnir_fp = os.path.join(os.getcwd(),'data','naip','nir.tif')\nnir = rioxr.open_rasterio(nir_fp)\nnir"
+    "text": "19.2 Import .tif\nLet’s start by loading the libraries we’ll use:\n\nimport os\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nimport rioxarray as rioxr\n\nimport geopandas as gpd\nfrom shapely.geometry import Polygon\n\nThere are multiple ways of opening a ‘.tif’ file using xarray or rioxarray. Using the rioxarray.open_rasterio() function to open the ‘.tif’ file is a simple way to make sure all our geospatial data gets loaded correctly:\n\n# load NIR tif file\nnir_fp = os.path.join(os.getcwd(),'data','naip','nir.tif')\nnir = rioxr.open_rasterio(nir_fp)\nnir"
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#xr.dataarray-exploration",
-    "href": "lectures/lesson-17-standin.html#xr.dataarray-exploration",
+    "objectID": "lectures/lesson-17-rioxarray.html#xr.dataarray-exploration",
+    "href": "lectures/lesson-17-rioxarray.html#xr.dataarray-exploration",
     "title": "19  rioxarray",
     "section": "19.3 xr.DataArray exploration",
-    "text": "19.3 xr.DataArray exploration\nFirst, let’s verify the raster we loaded is an xarray.DataArray:\ntype(nir)\nNotice we see all the components of an xarray.DataArray: its dimensions (band, y, x), the coordiantes for each dimension, and some attributes. We can also directly access some of these attribues:\n# print shape and data type\nprint('shape: ', nir.shape)\nprint('data type: ', nir.dtype, '\\n')\nUsing the .values attribute we can get a quick view at the values at the corners in our data array.\nprint(type(nir.values))\nnir.values\nWe can also plot our data:\nnir.plot()\nNotice the coordinates on the x and y axes. This map shows the light captured in the near-infrared spectrum by a sensor on a plane. Can you guess where this? If you guessed Santa Barbara downtown, you guessed right!"
+    "text": "19.3 xr.DataArray exploration\nFirst, let’s verify the raster we loaded is an xarray.DataArray:\n\ntype(nir)\n\nNotice we see all the components of an xarray.DataArray: its dimensions (band, y, x), the coordiantes for each dimension, and some attributes. We can also directly access some of these attribues:\n\n# print shape and data type\nprint('shape: ', nir.shape)\nprint('data type: ', nir.dtype, '\\n')\n\nUsing the .values attribute we can get a quick view at the values at the corners in our data array.\n\nprint(type(nir.values))\nnir.values\n\nWe can also plot our data:\n\nnir.plot()\n\nNotice the coordinates on the x and y axes. This map shows the light captured in the near-infrared spectrum by a sensor on a plane. Can you guess where this? If you guessed Santa Barbara downtown, you guessed right!"
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#rio-accessor",
-    "href": "lectures/lesson-17-standin.html#rio-accessor",
+    "objectID": "lectures/lesson-17-rioxarray.html#rio-accessor",
+    "href": "lectures/lesson-17-rioxarray.html#rio-accessor",
     "title": "19  rioxarray",
     "section": "19.4 rio accessor",
-    "text": "19.4 rio accessor\nAn accessor in Python let’s us access a different set of properties of an object. In our case, we use the .rio accessor for xarray.DataArrays to access its raster properties. For example, its number of bands, height, width, spatial bounding box, and CRS:\n# check geospatial attributes\nprint('# bands: ', nir.rio.count)\nprint('height: ', nir.rio.height)\nprint('width: ', nir.rio.width, '\\n')\n\nprint('spatial bounding box: ')\nprint(nir.rio.bounds(), '\\n')\n\nprint('CRS: ', nir.rio.crs)\n\n\n\n\n\n\nOther accessors\n\n\n\nWe have used accessors before, for example the .str and .dt accessors in pandas."
+    "text": "19.4 rio accessor\nAn accessor in Python let’s us access a different set of properties of an object. In our case, we use the .rio accessor for xarray.DataArrays to access its raster properties. For example, its number of bands, height, width, spatial bounding box, and CRS:\n\n# check geospatial attributes\nprint('# bands: ', nir.rio.count)\nprint('height: ', nir.rio.height)\nprint('width: ', nir.rio.width, '\\n')\n\nprint('spatial bounding box: ')\nprint(nir.rio.bounds(), '\\n')\n\nprint('CRS: ', nir.rio.crs)\n\n\n\n\n\n\n\nOther accessors\n\n\n\nWe have used accessors before, for example the .str and .dt accessors in pandas."
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#multi-band-raster",
-    "href": "lectures/lesson-17-standin.html#multi-band-raster",
+    "objectID": "lectures/lesson-17-rioxarray.html#multi-band-raster",
+    "href": "lectures/lesson-17-rioxarray.html#multi-band-raster",
     "title": "19  rioxarray",
     "section": "19.5 Multi-band raster",
-    "text": "19.5 Multi-band raster\nLet’s now import the RGB raster:\n# open RGB raster\nrgb_fp = os.path.join(os.getcwd(),'data','naip','rgb.tif')\nrgb = rioxr.open_rasterio(rgb_fp)\nrgb\nNotice this raster has three bands, instead of one. This makes sense because we know these bands correspond tothe Red, Green and Blue bands of the image. We can also check this information by looking directly at the attributes:\nprint('rgb shape: ', rgb.shape)\nprint('rgb # bands: ', rgb.rio.count)\nLet’s check the geospatial data too:\n# check geospatial attributes\nprint('shape: ', rgb.shape)\nprint('data type: ', rgb.dtype)\nprint('# bands: ', rgb.rio.count)\nprint('CRS: ', rgb.rio.crs)\n\n# check if the CRSs of the rasters match\nprint( rgb.rio.crs == nir.rio.crs)\nOn the last line we checked the nir and rgb rasters have the same ESPG:26911 CRS. This is a projected CRS with x and y measured in meters (check epsg:26911 in epsg.io).\nFinally, let’s plot this raster. Since it has three bands, we can plot it as an image using the .plot.imshow() method, which will interpret the three bands of the object as RGB.\n# parameters for plotting rasters\nsize = 6 # height in in of plot height\naspect = rgb.rio.width / rgb.rio.height # ratio of widht/height\n\n# plot three bands as RGB image\nrgb.plot.imshow(size=size, aspect=aspect)"
+    "text": "19.5 Multi-band raster\nLet’s now import the RGB raster:\n\n# open RGB raster\nrgb_fp = os.path.join(os.getcwd(),'data','naip','rgb.tif')\nrgb = rioxr.open_rasterio(rgb_fp)\nrgb\n\nNotice this raster has three bands, instead of one. This makes sense because we know these bands correspond tothe Red, Green and Blue bands of the image. We can also check this information by looking directly at the attributes:\n\nprint('rgb shape: ', rgb.shape)\nprint('rgb # bands: ', rgb.rio.count)\n\nLet’s check the geospatial data too:\n\n# check geospatial attributes\nprint('shape: ', rgb.shape)\nprint('data type: ', rgb.dtype)\nprint('# bands: ', rgb.rio.count)\nprint('CRS: ', rgb.rio.crs)\n\n# check if the CRSs of the rasters match\nprint( rgb.rio.crs == nir.rio.crs)\n\nOn the last line we checked the nir and rgb rasters have the same ESPG:26911 CRS. This is a projected CRS.\n\nFinally, let’s plot this raster. Since it has three bands, we can plot it as an image using the .plot.imshow() method, which will interpret the three bands of the object as RGB.\n\n# parameters for plotting rasters\nsize = 6 # height in in of plot height\naspect = rgb.rio.width / rgb.rio.height # ratio of widht/height\n\n# plot three bands as RGB image\nrgb.plot.imshow(size=size, aspect=aspect)"
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#box-for-clipping",
-    "href": "lectures/lesson-17-standin.html#box-for-clipping",
+    "objectID": "lectures/lesson-17-rioxarray.html#box-for-clipping",
+    "href": "lectures/lesson-17-rioxarray.html#box-for-clipping",
     "title": "19  rioxarray",
     "section": "19.6 Box for clipping",
-    "text": "19.6 Box for clipping\nOur area of interest (aoi) for this lesson is a smaller region that includes only a few blocks around the NCEAS building. An easy way to obtain coordinates for such a region:\n\n\n\nScreenshot of geojson.io\n\n\n\ngo to https://geojson.io/ website,\nzoom in until you find the NCEAS building in Santa Barbara, it might help to change to ‘Satellite Streets’ view on the bottom left corner,\nclick on the rectangle icon on the right-side toolbar and draw a small region around the NCEAS buildng,\nthe geoJSON code representing this area will appear in the code box,\none option is two copy-paste this geoJSON into an empty text file and save such file with the .json extension, we could then read it in using geopandas\ninstead, we will create our region of index by just copy-pasting the list of points and storing it as a variable:\n\n# vertices of our aoi box\npoints = [[-119.70608227128903, 34.426300194372274],\n          [-119.70608227128903, 34.42041139020533],\n          [-119.6967885126002, 34.42041139020533],\n          [-119.6967885126002, 34.426300194372274],\n          [-119.70608227128903, 34.426300194372274]]\nWe can then create a new geopandas.GeoDataFrame:\n# create geodataframe with aoi \naoi = gpd.GeoDataFrame(geometry=[Polygon(points)],\n                           crs='epsg:4326')\naoi\nLet’s break this down a bit:\n\nfirst, we use the shapely’s Polygon() function to create a polygon from our points list.\nin [Polygon(points)] we put this polygon inside a list so we can form the geometry column of our new gpd.GeoDataFrame\nwe know all the geoJSON files have CRS equal to EPSG:4326/WGS 84, so we set the the CRS of our new gpd.GeoDataFrame to this."
+    "text": "19.6 Box for clipping\nOur area of interest (aoi) for this lesson is a smaller region that includes only a few blocks around the NCEAS building. An easy way to obtain coordinates for such a region:\n\n\n\nScreenshot from geojson.io\n\n\n\ngo to https://geojson.io/ website,\nzoom in until you find the NCEAS building in Santa Barbara, it might help to change to ‘Satellite Streets’ view on the bottom left corner,\nclick on the rectangle icon on the right-side toolbar and draw a small region around the NCEAS buildng,\nthe geoJSON code representing this area will appear in the code box,\none option is two copy-paste this geoJSON into an empty text file and save such file with the .json extension, we could then read it in using geopandas\ninstead, we will create our region of index by just copy-pasting the list of points and storing it as a variable:\n\n\n# vertices of our aoi box\npoints = [[-119.70608227128903, 34.426300194372274],\n          [-119.70608227128903, 34.42041139020533],\n          [-119.6967885126002, 34.42041139020533],\n          [-119.6967885126002, 34.426300194372274],\n          [-119.70608227128903, 34.426300194372274]]\n\nWe can then create a new geopandas.GeoDataFrame:\n\n# create geodataframe with aoi \naoi = gpd.GeoDataFrame(geometry=[Polygon(points)],\n                           crs='epsg:4326')\naoi\n\nLet’s break this down a bit:\n\nfirst, we use the shapely’s Polygon() function to create a polygon from our points list.\nin [Polygon(points)] we put this polygon inside a list so we can form the geometry column of our new gpd.GeoDataFrame\nwe know all the geoJSON files have CRS equal to EPSG:4326/WGS 84, so we set the the CRS of our new gpd.GeoDataFrame to this."
   },
   {
-    "objectID": "lectures/lesson-17-standin.html#clip-raster",
-    "href": "lectures/lesson-17-standin.html#clip-raster",
+    "objectID": "lectures/lesson-17-rioxarray.html#clip-raster",
+    "href": "lectures/lesson-17-rioxarray.html#clip-raster",
     "title": "19  rioxarray",
     "section": "19.7 Clip raster",
-    "text": "19.7 Clip raster\nRemember: if two geospatial sets will interact they need to be in the same CRS.\nIn our case, the aoi gpd.GeoDataFrame does not have the same CRS as the rasters:\n# check CRss\nprint('aoi CRS: ', aoi.crs)\nprint('nir CRS: ', nir.rio.crs)\nprint('rgb CRS: ', rgb.rio.crs)\nSo let’s reproject:\n# reproject aoi to rgb crs\naoi = aoi.to_crs(rgb.rio.crs)\nprint('matched crs?',  aoi.crs == rgb.rio.crs)\naoi.crs\nAnd plot them together:\n# plot aoi outline and RGB raster together\nfig, ax = plt.subplots()\nfig.set_size_inches((size, size*aspect)) # reuse size and aspect\nrgb.plot.imshow(ax=ax)\naoi.plot(ax=ax, alpha=0.6)\nTo clip the raster using the aoi polygon we use the .rio.clip_box() method:\n# clip rasters to aoi\nrgb_small = rgb.rio.clip_box(*aoi.total_bounds)\nnir_small = nir.rio.clip_box(*aoi.total_bounds)\nNotice a few things: - we had to use the .rio accessor to access the clip_box() method - similarly to the shapely.box() function we’ve used previously, .rio.clip_box() usual parameters are minx, miny, maxx, maxy. We are using the * asterisk as an unpacking operator to get these from the list aoi.total_bounds.\nLet’s check our clipped data:\n# check shape updates\nprint('original shape: ', rgb.shape)\nprint('reduced shape: ', rgb_small.shape)\n\n# plot with correct sizes\nsize = 4\naspect = rgb_small.rio.width/ rgb_small.rio.height\nrgb_small.plot.imshow(size=size, aspect=aspect)\n# check shape updates\nprint('original shape: ', nir.shape)\nprint('reduced shape: ', nir_small.shape)\n\nnir_small.plot()"
+    "text": "19.7 Clip raster\nRemember: if two geospatial sets will interact they need to be in the same CRS.\nIn our case, the aoi gpd.GeoDataFrame does not have the same CRS as the rasters:\n\n# check CRss\nprint('aoi CRS: ', aoi.crs)\nprint('nir CRS: ', nir.rio.crs)\nprint('rgb CRS: ', rgb.rio.crs)\n\nSo let’s reproject:\n\n# reproject aoi to rgb crs\naoi = aoi.to_crs(rgb.rio.crs)\nprint('matched crs?',  aoi.crs == rgb.rio.crs)\naoi.crs\n\nAnd plot them together:\n\n# plot aoi outline and RGB raster together\nfig, ax = plt.subplots()\nfig.set_size_inches((size, size*aspect)) # reuse size and aspect\nrgb.plot.imshow(ax=ax)\naoi.plot(ax=ax, alpha=0.6)\n\nTo clip the raster using the aoi polygon we use the .rio.clip_box() method:\n\n# clip rasters to aoi\nrgb_small = rgb.rio.clip_box(*aoi.total_bounds)\nnir_small = nir.rio.clip_box(*aoi.total_bounds)\n\nNotice a few things: - we had to use the .rio accessor to access the clip_box() method - similarly to the shapely.box() function we’ve used previously, .rio.clip_box() usual parameters are minx, miny, maxx, maxy. We are using the * asterisk as an unpacking operator to get these from the list aoi.total_bounds.\nLet’s check our clipped data:\n\n# check shape updates\nprint('original shape: ', rgb.shape)\nprint('reduced shape: ', rgb_small.shape)\n\n# plot with correct sizes\nsize = 4\naspect = rgb_small.rio.width/ rgb_small.rio.height\nrgb_small.plot.imshow(size=size, aspect=aspect)\n\n\n# check shape updates\nprint('original shape: ', nir.shape)\nprint('reduced shape: ', nir_small.shape)\n\nnir_small.plot()"
+  },
+  {
+    "objectID": "lectures/lesson-17-rioxarray.html#compute-ndvi",
+    "href": "lectures/lesson-17-rioxarray.html#compute-ndvi",
+    "title": "19  rioxarray",
+    "section": "19.8 Compute NDVI",
+    "text": "19.8 Compute NDVI\nWe often want to combine values of and perform calculations on rasters to create a new output raster. In our case, we are interested in computing the Normalized Difference Vegetation Index (NDVI) over our area of interest. The NDVI is an index commonly used to check if an area has live green vegetation or not.\nAccording to the Earth Observing System > The results of the NDVI calculation range from -1 to 1. Negative values correspond to areas with water surfaces, manmade structures, rocks, clouds, snow; bare soil usually falls within 0.1-0.2 range; and plants will always have positive values between 0.2 and 1. Healthy, dense vegetation canopy should be above 0.5, and sparse vegetation will most likely fall within 0.2 to 0.5.\nThe NDVI is calculated using the NIR and red bands. The formula is\n\\(NDVI = \\frac{NIR - Red}{NIR + Red}.\\)\nFirst, we need to select the red band:\n\nred = rgb_small.sel(band=1)\nred\n\nTo be able to perform the calculation successfully, we will need to udpate the data type of our rasters:\n\nred16 = red.astype('int16')\nnir16 = nir_small.astype('int16')\nprint('RED: original dtype:', rgb_small.dtype, '.... converted dtype:', red16.dtype)\nprint('NIR: original dtype:', nir.dtype, '.... converted dtype:', nir16.dtype)\n\nWe can perform raster calculations using the same arithmetic we use for np.arrays (because, underneath it all, they are). So our NDVI calculation is as follows:\n\n# calculate and plot NDVI\nndvi = (nir16 - red16)/(nir16+red16)\nndvi.plot()\n\nRemember that plants will always have positive NDVI values between 0.2 and 1. Can you spot the Courthouse?\n\n\n\n\n\n\nWhy change the data type?\n\n\n\nThe uint8 (8-bit unsigned integer) is a very small data type that only holds integers from 0 up to 255. In particular, calculations don’t return what what we are used to when working with intgers (they’re done module 256):\n\nnp.uint8(150) + np.uint8(150)\n\nIn the NDVI formula we have to add NIR + Red. If both NIR and Red are very close to 255, when we add them, the calculation overflows the uint8 data type and we don’t get the expected results:\n\nx = (nir - red)/(nir + red)\nx.plot()\n\nThis is why we need to manually convert both rasters into int16, which will be big enough to hold all the numbers that appear in the calculations.\nNotice too, that when we performed the NDVI calculation we did not get any warning, although we were overflowing the computation at every cell of our array. This is can be an example of failing silently, where we don’t get any warnings about the errors in our computation. That’s why it’s so important to double-check our results!"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#item-collection-and-catalog",
+    "href": "lectures/lesson-18-STAC.html#item-collection-and-catalog",
+    "title": "20  STAC specification",
+    "section": "20.1 Item, Collection, and Catalog",
+    "text": "20.1 Item, Collection, and Catalog\nThe STAC item (or just item) is the building block of a STAC. An item is a GeoJSON feature with additional fields that make it easier to find the item as we look for data across catalogs.\nAn item holds two types of information:\n\nMetadata: The metadata for a STAC item includes core identifying information (such as id, geometry, bounding box, and date), and additional properties (for example, place of collection).\nAssets: Assets are the links to the actual data of the item (for example, links to the spectral bands of a satellite image.)\n\nSTAC items can be grouped into STAC collections (or just collections). For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time and location from the same satellite can be orgnanized in a collection. Finally, multiple collections can be organized into a single STAC catalog."
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#api",
+    "href": "lectures/lesson-18-STAC.html#api",
+    "title": "20  STAC specification",
+    "section": "20.2 API",
+    "text": "20.2 API\nTo request data from a catalog following the STAC standard we use an Application Programming Interface (API). We can think of an API as an intermediary tasked with sending our request for data to the data catalog and getting the response from the catalog back to us. The following is a nice real-life analogy:\n\n\n\nGeeks for geeks - What is an API?\n\n\nThe Python package to access APIs for STAC catalogs is pystac_client. Our goal in this lesson is to retrieve NAIP data from the MPC’s data catalog via its STAC API. We’ll be doing this within the MPC’s hub."
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#catalog",
+    "href": "lectures/lesson-18-STAC.html#catalog",
+    "title": "20  STAC specification",
+    "section": "20.3 Catalog",
+    "text": "20.3 Catalog\n\nFirst, load the necessary packages:\n\nimport numpy as np\nimport geopandas as gpd\nimport rioxarray as rioxr\nimport matplotlib.pyplot as plt\n\nfrom shapely.geometry import Polygon\n\n# used to access STAC catalogs\nfrom pystac_client import Client\n# used to sign items from the MPC STAC catalog\nimport planetary_computer\n\n# ----- other libraries for nice ouputs\nfrom IPython.display import Image\n\n\n20.3.1 Access\nWe use the Client function from the pystac_client package to access the catalog:\n\n# access catalog\ncatalog = Client.open(\n    \"https://planetarycomputer.microsoft.com/api/stac/v1\",\n    modifier=planetary_computer.sign_inplace,\n)\n\nThe modifier parameter is needed to access the data in the MPC catalog.\n\n\n20.3.2 Exploration\nLet’s check out some of the catalog’s metadata:\n\n# metadata from the catalog\n#print('ID:', catalog.id)\nprint('Title:', catalog.title)\nprint('Description:', catalog.description)\n\nWe can access its collections by using the get_collections() method:\n\ncatalog.get_collections()\n\nNotice the output of get_collections() is a generator. This is a special kind of lazy object in Python over which you can loop over like a list. Unlike a list, the items in a generator do not exist in memory until you explicitely iterate over them or convert them to a list. Let’s try getting the collections from the catalog again:\n\n# get collections and print their names\ncollections = list(catalog.get_collections())\n\nprint('Number of collections:', len(collections))\nprint(\"Collections IDs:\")\nfor collection in collections:\n    print('-', collection.id)"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#collection",
+    "href": "lectures/lesson-18-STAC.html#collection",
+    "title": "20  STAC specification",
+    "section": "20.4 Collection",
+    "text": "20.4 Collection\nWe can select a single collection for exploration using the get_child() method for the catalog and the collection id as the parameter:\n\nnaip_collection = catalog.get_child('naip')\nnaip_collection"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#catalog-search",
+    "href": "lectures/lesson-18-STAC.html#catalog-search",
+    "title": "20  STAC specification",
+    "section": "20.5 Catalog search",
+    "text": "20.5 Catalog search\nWe can narrow the search withing the catalog by specifying a time range, an area of interest, and the collection name. The simplest ways to define the area of interest to look for data in the catalog are:\n\na GeoJSON-type dictionary with the coordinates of the bounding box,\nas a list [xmin, ymin, xmax, ymax] with the coordinate values defining the four corners of the bounding box.\n\nIn this lesson we will look for the NAIP scenes over Santa Barbara from 2018 to 2023. We’ll use the GeoJSON method to define the area of interest:\n\n# Temporal range of interest\ntime_range = \"2018-01-01/2023-01-01\"\n\n# NCEAS bounding box (as a GeoJSON)\nbbox = {\n    \"type\": \"Polygon\",\n    \"coordinates\":[\n        [\n            [-119.70608227128903, 34.426300194372274],\n            [-119.70608227128903, 34.42041139020533],\n            [-119.6967885126002, 34.42041139020533],\n            [-119.6967885126002, 34.426300194372274],\n            [-119.70608227128903, 34.426300194372274]\n        ]\n    ],\n}\n\n# catalog search\nsearch = catalog.search(\n    collections=['naip'],\n    intersects=bbox,\n    datetime=time_range)\nsearch\n\nTo get the items found in the search (or check if there were any matches in the search) we use the item_collection() method:\n\nitems = search.item_collection()\nlen(items)\n\nThis output tells us there were two items in the catalog that matched our search!\n\nitems"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#item",
+    "href": "lectures/lesson-18-STAC.html#item",
+    "title": "20  STAC specification",
+    "section": "20.6 Item",
+    "text": "20.6 Item\n\n\nLet’s get the first item in the search:\n\n# get first item in the catalog search\nitem = items[0]\ntype(item)\n\nRemember the STAC item is the core object in the catalog and. The item does not contain the data itself, but rather metadata about and links to access the actual data (assets). Some of the metadata:\n\n# print item id and properties\nprint('id:' , item.id)\nitem.properties\n\nJust as the item properties, the item assets are given in a dictionary, with each value being an pystac.asset Let’s check the assets in the item:\n\nitem.assets\n\n\nfor key in item.assets.keys():\n    print(key, '--', item.assets[key].title)\n\nNotice each asset has an href, which is a link to the asset object (i.e. the data). For example, we can use the URL for the rendered preview asset to plot it:\n\n# plot rendered preview\nImage(url=item.assets['rendered_preview'].href, width=500)"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#load-data",
+    "href": "lectures/lesson-18-STAC.html#load-data",
+    "title": "20  STAC specification",
+    "section": "20.7 Load data",
+    "text": "20.7 Load data\nThe raster data in our current item is in the image asset. Again, we access this data via its URL. This time, we open it using rioxr.open_rasterio() directly:\n\nsb = rioxr.open_rasterio(item.assets['image'].href)\nsb\n\nNotice this raster has four bands. So we cannot use the .plot.imshow() method directly (as this function only works when we have three bands). Thus we need select the bands we want to plot (RGB) before plotting:\n\n# plot raster with correct ration\nsize = 6 # height in in of plot height\naspect = sb.rio.width / sb.rio.height \n# select R,G,B bands and plot\nsb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#exercise",
+    "href": "lectures/lesson-18-STAC.html#exercise",
+    "title": "20  STAC specification",
+    "section": "20.8 Exercise",
+    "text": "20.8 Exercise\nRecreate the following image, where the red rectangle shows the bounding box used to do the catalog search. HINT: bbox as it is now is a dictionary. How can you get the vertices list out of it to first create a shapely Polygon?"
+  },
+  {
+    "objectID": "lectures/lesson-18-STAC.html#references",
+    "href": "lectures/lesson-18-STAC.html#references",
+    "title": "20  STAC specification",
+    "section": "20.9 References",
+    "text": "20.9 References\nSTAC Documentation:\n\nThe STAC Specification\nRead a STAC Catalog Using PySTAC\n\nMicrosoft Planetary Computer Documentation - Reading Data from the STAC API"
   },
   {
     "objectID": "appendices/set-pat.html",
@@ -824,5 +894,54 @@
     "title": "Appendix A — Setting a PAT",
     "section": "",
     "text": "This section contains instructions for creatiog a Personal Access Token (PAT):\n\nIn GitHub navigate to:\n\n\nsettings\ndeveloper settings (last option on the left)\ntokens (classic)\ngenerate new token button (near right corner)\nClick on: Generate new token (classic)\n\n\nSelect the following options:\n\n\n☑️ Repo (clicking this will select all boxes in the section, that’s ok)\n☑️ workflow\n☑️ gist\n☑️ user (clicking this will select all boxes in the section, that’s ok)\n\n\nClick generate token.\nCopy and paste the PAT somewhere for now!\nBack at the terminal try to push your changes again using git push. When prompted, enter your GitHub username and the new PAT as the password.\n\n\n\n\n\n\n\nNote\n\n\n\nIn steps 1-5 we generated a PAT manually. This is the same process as using usethis::create_github_token from an R console as explained in the MEDS installation guide. The options we selected in step 2 are the same options for the PAT given by usethis::create_github_token."
+  },
+  {
+    "objectID": "appendices/gitignore_untrack.html#gitignore",
+    "href": "appendices/gitignore_untrack.html#gitignore",
+    "title": "Appendix B — Gitignore & Git Untracking",
+    "section": "B.1 Gitignore",
+    "text": "B.1 Gitignore\nThe easiest way to have Git never track a file or directory within your Git directory is to add it to the .gitignore file before you ever start tracking it.\nFrom the Git documenatation:\n\nA gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected.\n\nThis means the files listed in the .gitignore will be ignored when making a commit. Git does not track changes on it and they do not appear in the index when we check the Git status."
+  },
+  {
+    "objectID": "appendices/gitignore_untrack.html#creating-a-.gitignore",
+    "href": "appendices/gitignore_untrack.html#creating-a-.gitignore",
+    "title": "Appendix B — Gitignore & Git Untracking",
+    "section": "B.2 Creating a .gitignore",
+    "text": "B.2 Creating a .gitignore\n\nB.2.1 When creating a GitHub repository\nThe easiest way to create a .gitignore is probably when creating a repository through GitHub. To do this:\n\nGo to the “Add .gitignore” section and…\n\n\n\n…select a template from the list. These templates are provided by GitHub to ignore unuseful files in different programming languages. For this course we select the Python .gitignore template.\n\n\n\nWhen you finish creating your new repository, the .gitignore file will be in it.\n\n\n\nB.2.2 From the GitHub .gitignore templates\nIf you don’t have a .gitignore yet and want to add the one from the GitHub template you can:\n\nDownload the .gitignore GitHub template: https://github.com/github/gitignore.\nMove it to your directory.\nUpdate the name to .gitignore.\n\n\n\nB.2.3 From the command line\nWhat if we we just want to create our own blank .gitignore? No problem, we can create one from our terminal:\n\nOpen the terminal.\nVerify you don’t have a .gitignore by running:\n\n\nls -a\n\n\n\n\n\n\n\nls -a\n\n\n\nAdding -a to the ls (list) command will show all the files, including the hidden files that start with a period ., such as the .gitignore.\n\n\n\nCreate a new .gitignore file for the directory:\n\n\ntouch .gitignore\n\nIf there is no output, everything worked.\n\nCheck your .gitgnore is there:\n\n\nls -a\n\nYou should see the .gitignore now listed in the files."
+  },
+  {
+    "objectID": "appendices/gitignore_untrack.html#editing-.gitignore",
+    "href": "appendices/gitignore_untrack.html#editing-.gitignore",
+    "title": "Appendix B — Gitignore & Git Untracking",
+    "section": "B.3 Editing .gitignore",
+    "text": "B.3 Editing .gitignore\n\nB.3.1 Add a file\nSuppose you have an untracked file called example.txt that you want to add to the .gitignore. Remember, untracked means Git hasn’t began tracking changes on this file and. If you run git status, example.txt would appear in the index under Untracked files.\nIf you are using JupyterLab, you can edit the .gitignore from the terminal. Follow these steps to add example.txt to it:\n\nOpen the terminal.\nOpen the .gitignore file in the nano command line-based text editor by running:\n\n\nnano .gitignore\n\n\nOnce in the editor, add a new line with the name of the file: example.txt.\nTo exit nano:\n\nCtrl+X,\nPress Y to save the changes\nPress Enter\n\nWhen you run git status again, example.txt will not be listed under the untracked files.\n\n\n\nB.3.2 Add a directory\nSuppose you want to add all the contents of a directory named data to your gitignore. If none of the files in the data directory have been tracked by Git, then:\n\nOpen the terminal.\nOpen the .gitignore file in the nano command line-based text editor by running:\n\n\nnano .gitignore\n\n\nOnce in the editor, add a new line with the name of the directory: data/.\nTo exit nano:\n\nCtrl+X,\nPress Y to save the changes\nPress Enter\n\nWhen you run git status again, data/ will not be listed in untracked files."
+  },
+  {
+    "objectID": "appendices/gitignore_untrack.html#untracking",
+    "href": "appendices/gitignore_untrack.html#untracking",
+    "title": "Appendix B — Gitignore & Git Untracking",
+    "section": "B.4 Untracking",
+    "text": "B.4 Untracking\nOnce a file has been added to a commit, Git starts tracking it. If we add the file’s name to the .gitignore after it has been commited, Git will keep tracking changes in it. To stop tracking a tracked file example.txt:\n\nOpen the terminal.\nRun git rm --cached example.txt. The git rm --cached command will remove the file from the Git tracking while leaving the file untouched on disk.\nIf it’s not already there, add example.txt to .gitignore so Git ignores it."
+  },
+  {
+    "objectID": "appendices/gitignore_untrack.html#references",
+    "href": "appendices/gitignore_untrack.html#references",
+    "title": "Appendix B — Gitignore & Git Untracking",
+    "section": "B.5 References",
+    "text": "B.5 References\nGitHub Blog - How to undo (almost) anything with Git"
+  },
+  {
+    "objectID": "appendices/undoing-commit.html#undoing-a-local-commit",
+    "href": "appendices/undoing-commit.html#undoing-a-local-commit",
+    "title": "Appendix C — Undoing commits",
+    "section": "C.1 Undoing a local commit",
+    "text": "C.1 Undoing a local commit\n\nCheck commit history:\n\n\ngit log\n\nor\n\ngit log --pretty=oneline\n\nThis shows both the commit history of our current branch, with the latest commit at the top. It also shows the head of our local directory and the head of our remote repository.\n\n\nIf this was just the previous commit, we can reset the last commit by doing\n\n\ngit reset HEAD~1\n\nThe files on disk will not be touched and any changes will between the original HEAD and the commit we reset will be kept. The files will be unstaged.\n\nIf we need to go back to a commit that’s buried in the commit history, it’s best to use the hash of the commit.\n\n\ngit reset <hash>"
+  },
+  {
+    "objectID": "appendices/undoing-commit.html#references",
+    "href": "appendices/undoing-commit.html#references",
+    "title": "Appendix C — Undoing commits",
+    "section": "C.2 References",
+    "text": "C.2 References\nGitHub Blog - How to undo (almost) anything with Git\nDavid Zych - Difference between git reset soft, mixed and hard"
   }
 ]

@@ -1,3 +1,9 @@
+---
+# do not execute cells
+execute:
+  eval: false
+---
+
 <!--
 https://carpentries-incubator.github.io/geospatial-python/06-raster-intro.html
 -->
@@ -133,9 +139,11 @@ print( rgb.rio.crs == nir.rio.crs)
 ```
 
 On the last line we checked the nir and rgb rasters have the same ESPG:26911 CRS. 
-This is a projected CRS:
+This is a projected CRS.
 
+<!--
 ![Source: [spatialreference.org](https://spatialreference.org/ref/epsg/26911/)]()
+-->
 
 Finally, let's plot this raster.
 Since it has three bands, we can plot it as an image using the `.plot.imshow()` method, which will interpret the three bands of the object as RGB.
@@ -154,7 +162,7 @@ rgb.plot.imshow(size=size, aspect=aspect)
 Our area of interest (aoi) for this lesson is a smaller region that includes only a few blocks around the NCEAS building. 
 An easy way to obtain coordinates for such a region:
 
-![]()
+![Screenshot from geojson.io](/images/geojsonio-sb.png)
 
 1. go to  [https://geojson.io/](https://geojson.io/) website,
 2. zoom in until you find the NCEAS building in Santa Barbara, it might help to change to 'Satellite Streets' view on the bottom left corner, 

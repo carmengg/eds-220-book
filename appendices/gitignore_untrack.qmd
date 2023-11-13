@@ -6,31 +6,31 @@ execute:
 
 # Gitignore & Git Untracking
 
-This is a review on how to never track and untrack files in Git.
+This is a review on how to never track and untrack files in Git using the terminal and the .gitignore file.
 
 ## Gitignore
-The easiest way to have Git never track a file or directory within your Git directory is to add it to the gitignore file *before you ever start tracking it*. 
+The easiest way to have Git never track a file or directory within your Git directory is to add it to the .gitignore file *before you ever start tracking it*. 
 
 From the [Git documenatation](https://git-scm.com/docs/gitignore):
 
 >A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected.
 
-This means the files listed in the gitignore will be ignored when making a commit. They are ignored by Git and will not appear when we check the Git status. 
+This means the files listed in the .gitignore will be ignored when making a commit. Git does not track changes on it and they do not appear in the index when we check the Git status. 
 
 
 ## Creating a .gitignore
 
 ### When creating a GitHub repository
-The easiest way to create a gitignore is probably when creating a repository through GitHub. 
+The easiest way to create a .gitignore is probably when creating a repository through GitHub. 
 To do this:
 
 1. Go to the "Add .gitignore" section and...
 
-![](/images/git/add-gitignore.png)
+![](/images/git-ignore/add-gitignore.png)
 
 2. ...select a template from the list. These templates are provided by GitHub to ignore unuseful files in different programming languages. For this course we select the Python .gitignore template. 
 
-![](/images/git/select-gitignore-template.png)
+![](/images/git-ignore/select-gitignore-template.png)
 
 3. When you finish creating your new repository, the .gitignore file will be in it. 
 
@@ -38,7 +38,7 @@ To do this:
 
 If you don't have a .gitignore yet and want to add the one from the GitHub template you can:
 
-1. Download the .gitignore GitHub template from their website: [https://github.com/github/gitignore](https://github.com/github/gitignore).
+1. Download the .gitignore GitHub template: [https://github.com/github/gitignore](https://github.com/github/gitignore).
 
 2. Move it to your directory.
 
@@ -50,12 +50,15 @@ No problem, we can create one from our terminal:
 
 1. Open the terminal.
 
-2. Verify you don't have a .gitignore:
+2. Verify you don't have a .gitignore by running:
 ```{bash}
 ls -a
 ```
 
+::: {.callout-tip}
+# `ls -a`
 Adding `-a` to the `ls` (list) command will show all the files, including the hidden files that start with a period `.`, such as the .gitignore. 
+:::
 
 3. Create a new .gitignore file for the directory:
 
@@ -76,15 +79,16 @@ You should see the .gitignore now listed in the files.
 ## Editing .gitignore
 
 ### Add a file
-Suppose you have an **untracked file** called `example.txt` that we want to add to our .gitignore. 
-Untracked means Git hasn't began tracking changes on this file and, if you rung `git status` this file should appear under Untracked files. 
+Suppose you have an **untracked file** called `example.txt` that you want to add to the .gitignore. 
+Remember, untracked means Git hasn't began tracking changes on this file and. 
+If you run `git status`, `example.txt` would appear in the index under Untracked files. 
 
-If you are using JupyterLab, you'll need to edit the .gitignore from the terminal to add `example.txt` to it:
-Follow these steps:
+If you are using JupyterLab, you can edit the .gitignore from the terminal. 
+Follow these steps to add `example.txt` to it:
 
 1. Open the terminal.
 
-2. Open the .gitignore file in the nano command line-based text editor:
+2. Open the .gitignore file in the nano command line-based text editor by running:
 
 ```{bash}
 nano .gitignore
@@ -93,11 +97,11 @@ nano .gitignore
 3. Once in the editor, add a new line with the name of the file: `example.txt`. 
 
 4. To exit nano: 
-    - `Ctrl+X`, 
-    - Press `Y` to save the changes
-    - Press `Enter` 
+    a. `Ctrl+X`, 
+    b. Press `Y` to save the changes
+    c. Press `Enter` 
 
-5. When you run `git status` again, `example.txt` is not listed in untracked files. 
+5. When you run `git status` again, `example.txt` will not be listed under the untracked files. 
 
 ### Add a directory
 Suppose you want to add all the contents of a directory named data to your gitignore. 
@@ -105,7 +109,7 @@ Suppose you want to add all the contents of a directory named data to your gitig
 
 1. Open the terminal. 
 
-2. Open the .gitignore file in the nano command line-based text editor:
+2. Open the .gitignore file in the nano command line-based text editor by running:
 
 ```{bash}
 nano .gitignore
@@ -114,15 +118,15 @@ nano .gitignore
 3. Once in the editor, add a new line with the name of the directory: `data/`. 
 
 4. To exit nano: 
-    - `Ctrl+X`, 
-    - Press `Y` to save the changes
-    - Press `Enter` 
+    a. `Ctrl+X`, 
+    b. Press `Y` to save the changes
+    c. Press `Enter` 
 
-5. When you run `git status` again, `data/` is not listed in untracked files. 
+5. When you run `git status` again, `data/` will not be listed in untracked files. 
 
 ## Untracking
 Once a file has been added to a commit, Git starts tracking it. 
-If we add the file's name to the .gitignore after it has been commited, Git will keep tracking changes in it. 
+**If we add the file's name to the .gitignore after it has been commited, Git will keep tracking changes in it.** 
 To stop tracking a tracked file `example.txt`:
 
 1. Open the terminal.
@@ -132,30 +136,7 @@ The `git rm --cached` command will remove the file from the Git tracking while l
 
 3. If it's not already there, add `example.txt` to .gitignore so Git ignores it. 
 
-## Undoing local commit
-
-Oh, no! 
-
-1. Check commit history:
-
-```{bash}
-git log
-git log --pretty=oneline
-```
-
-This shows both the head of our local directory and the head of our remote repository. 
-
-2. If this was just the previous commit, we can reset the last commit by doing
-
-```{bash}
-git reset HEAD~1
-```
-
-The files on disk will not be touched and any changes will between the original HEAD and the commit we reset will be kept. 
-The files will be unstaged.
 
 
 ## References
 [GitHub Blog - How to undo (almost) anything with Git](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
-
-[David Zych - Difference between git reset soft, mixed and hard](https://davidzych.com/difference-between-git-reset-soft-mixed-and-hard/)
