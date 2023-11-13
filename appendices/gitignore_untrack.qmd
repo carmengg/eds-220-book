@@ -76,27 +76,42 @@ You should see the .gitignore now listed in the files.
 ## Editing .gitignore
 
 ### Add a file
-Suppose you have an **untracked file** called `ex.txt` that we want to add to our .gitignore. 
+Suppose you have an **untracked file** called `example.txt` that we want to add to our .gitignore. 
 Untracked means Git hasn't began tracking changes on this file and, if you rung `git status` this file should appear under Untracked files. 
 
-If you are using JupyterLab, you'll need to edit the .gitignore from the terminal to add `ex.txt` to it:
+If you are using JupyterLab, you'll need to edit the .gitignore from the terminal to add `example.txt` to it:
 Follow these steps:
 
-1. Open the .gitignore file in the nano command line-based text editor:
+1. Open the terminal.
+
+2. Open the .gitignore file in the nano command line-based text editor:
 
 ```{bash}
 nano .gitignore
 ```
 
-2. Once in the editor, add a new line with the name of the file: `ex.txt`. 
+3. Once in the editor, add a new line with the name of the file: `example.txt`. 
 
-3. To exit nano: 
+4. To exit nano: 
     - `Ctrl+X`, 
     - Press `Y` to save the changes
     - Press `Enter` 
 
-4. When you run `git status` again, `ex.txt` is not listed in untracked files. 
+5. When you run `git status` again, `example.txt` is not listed in untracked files. 
 
 ### Add a directory
 
 ## Untracking
+Once a file has been added to a commit, Git starts tracking it. 
+If we add the file's name to the .gitignore after it has been commited, Git will keep tracking changes in it. 
+To stop tracking a tracked file `example.txt`:
+
+1. Open the terminal.
+
+2. Run `git rm --cached example.txt`. 
+The `git rm --cached` command will remove the file from the Git tracking while leaving the file untouched on disk. 
+
+3. If it's not already there, add `example.txt` to .gitignore so Git ignores it. 
+
+## References
+[GitHub Blog - How to undo (almost) anything with Git](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
