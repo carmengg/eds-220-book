@@ -78,6 +78,8 @@ catalog = Client.open(
 )
 ```
 
+The `modifier` parameter is needed to access the data in the MPC catalog.
+
 ### Exploration
 Let's check out some of the catalog's metadata:
 ```{python}
@@ -170,14 +172,70 @@ This output tells us there were two items in the catalog that matched our search
 items
 ```
 
-## Item exploration
-https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item
+## Item
+<!--https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item-->
+Let's get the first item in the search:
+
+```{python}
+# get first item in the catalog search
+item = items[0]
+type(item)
+```
+
+Remember the [STAC item](https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item) is the core object in the catalog and. 
+The item does not contain the data itself, but rather metadata about and links to access the actual data (assets).
+Some of the metadata:
+
+```{python}
+# print item id and properties
+print('id:' , item.id)
+item.properties
+```
+
+Just as the item properties, the item assets are given in a dictionary, with each value being an [`pystac.asset`](https://pystac.readthedocs.io/en/stable/api/asset.html)
+Let's check the assets in the `item`:
+
+```{python}
+item.assets
+```
+```{python}
+for key in item.assets.keys():
+    print(key, '--', item.assets[key].title)
+```
+
+Notice each asset has an `href`, which is a link to the asset object (i.e. the data). 
+For example, we can use the URL for the rendered preview asset to plot it:
+
+```{python}
+# plot rendered preview
+Image(url=item.assets['rendered_preview'].href, width=500)
+```
+
+## Load data
+The raster data in our current `item` is in the `image` asset. 
+Again, we access this data via its URL. 
+This time, we open it using `rioxr.open_rasterio()` directly:
+
+```{python}
+sb = rioxr.open_rasterio(item.assets['image'].href)
+sb
+```
+
+Notice this raster has four bands. 
+So we cannot use the `.plot.imshow()` method directly (as this function only works when we have three bands). 
+Thus we need select the bands we want to plot (RGB) before plotting:
+
+```{python}
+# plot raster with correct ration
+size = 6 # height in in of plot height
+aspect = sb.rio.width / sb.rio.height 
+# select R,G,B bands and plot
+sb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)
+```
 
 
 ## Exercise
-NAIP example:
 
-https://github.com/NCEAS/msai4earth-esa/blob/main/examples/naip_example/prepare_naip_data.ipynb
 
 ## References
 STAC Documentation:
@@ -187,8 +245,10 @@ STAC Documentation:
 
 [Microsoft Planetary Computer Documentation - Reading Data from the STAC API](https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac/)
 
-<!-- https://planetarycomputer.microsoft.com/docs/tutorials/hurricane-florence-animation/ -->
+<!-- https://planetarycomputer.microsoft.com/docs/tutorials/hurricane-florence-animation/
 
 Idea for homework:
 
 https://planetarycomputer.microsoft.com/dataset/io-biodiversity#Example-Notebook
+
+-->
