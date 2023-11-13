@@ -1,3 +1,9 @@
+---
+# do not execute cells
+execute:
+  eval: false
+---
+
 # STAC specification
 
 So far in our course we have accessed data in two ways: by downloading it directly from the data provider or by loading a specific dataset via a URL. 
@@ -41,16 +47,132 @@ The Python package to access APIs for STAC catalogs is [`pystac_client`](https:/
 Our goal in this lesson is to retrieve [NAIP data](https://naip-usdaonline.hub.arcgis.com) from the [MPC's data catalog](https://planetarycomputer.microsoft.com/catalog) via its STAC API. 
 We'll be doing this within the MPC's hub. 
 
-## Catalog access and exploration
+## Catalog 
+<!--https://github.com/NCEAS/msai4earth-esa/blob/main/examples/naip_example/access_naip.ipynb-->
+First, load the necessary packages:
+
+```{python}
+import numpy as np
+import geopandas as gpd
+import rioxarray as rioxr
+import matplotlib.pyplot as plt
+
+from shapely.geometry import Polygon
+
+# used to access STAC catalogs
+from pystac_client import Client
+# used to sign items from the MPC STAC catalog
+import planetary_computer
+
+# ----- other libraries for nice ouputs
+from IPython.display import Image
+```
 
 ### Access
+We use the `Client` function from the `pystac_client` package to access the catalog:
+```{python}
+# access catalog
+catalog = Client.open(
+    "https://planetarycomputer.microsoft.com/api/stac/v1",
+    modifier=planetary_computer.sign_inplace,
+)
+```
 
-## Catalog
+### Exploration
+Let's check out some of the catalog's metadata:
+```{python}
+# metadata from the catalog
+#print('ID:', catalog.id)
+print('Title:', catalog.title)
+print('Description:', catalog.description)
+```
+
+We can access its collections by using the `get_collections()` method:
+
+```{python}
+catalog.get_collections()
+```
+
+Notice the output of `get_collections()` is a **generator**. 
+This is a special kind of *lazy* object in Python over which you can loop over like a list. 
+Unlike a list, the items in a generator do not exist in memory until you explicitely iterate over them or convert them to a list. 
+Let's try getting the collections from the catalog again:
+
+```{python}
+# get collections and print their names
+collections = list(catalog.get_collections())
+
+print('Number of collections:', len(collections))
+print("Collections IDs:")
+for collection in collections:
+    print('-', collection.id)
+```
+
 ## Collection
 
+We can select a single collection for exploration using the `get_child()` method for the catalog and the collection id as the parameter:
+```{python}
+naip_collection = catalog.get_child('naip')
+naip_collection
+```
+
+<!--
+https://pystac.readthedocs.io/en/latest/api/pystac.html#pystac.Collection
+
+https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-collection
+-->
+
 ## Catalog search
+We can narrow the search withing the `catalog` by specifying a time range, an area of interest, and the collection name. 
+The simplest ways to define the area of interest to look for data in the catalog are:
+
+- a GeoJSON-type dictionary with the coordinates of the bounding box,
+- as a list `[xmin, ymin, xmax, ymax]` with the coordinate values defining the four corners of the bounding box.
+
+In this lesson we will look for the NAIP scenes over Santa Barbara from 2018 to 2023. We'll use the GeoJSON method to define the area of interest:
+
+```{python}
+# Temporal range of interest
+time_range = "2018-01-01/2023-01-01"
+
+# NCEAS bounding box (as a GeoJSON)
+bbox = {
+    "type": "Polygon",
+    "coordinates":[
+        [
+            [-119.70608227128903, 34.426300194372274],
+            [-119.70608227128903, 34.42041139020533],
+            [-119.6967885126002, 34.42041139020533],
+            [-119.6967885126002, 34.426300194372274],
+            [-119.70608227128903, 34.426300194372274]
+        ]
+    ],
+}
+
+# catalog search
+search = catalog.search(
+    collections=['naip'],
+    intersects=bbox,
+    datetime=time_range)
+search
+```
+
+To get the items found in the search (or check if there were any matches in the search) we use the `item_collection()` method:
+
+```{python}
+items = search.item_collection()
+len(items)
+```
+
+This output tells us there were two items in the catalog that matched our search!
+
+```{python}
+items
+```
 
 ## Item exploration
+https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item
+
 
 ## Exercise
 NAIP example:
