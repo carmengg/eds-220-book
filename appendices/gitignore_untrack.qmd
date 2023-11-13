@@ -100,6 +100,25 @@ nano .gitignore
 5. When you run `git status` again, `example.txt` is not listed in untracked files. 
 
 ### Add a directory
+Suppose you want to add all the contents of a directory named data to your gitignore. 
+*If none of the files in the data directory have been tracked by Git*, then:
+
+1. Open the terminal. 
+
+2. Open the .gitignore file in the nano command line-based text editor:
+
+```{bash}
+nano .gitignore
+```
+
+3. Once in the editor, add a new line with the name of the directory: `data/`. 
+
+4. To exit nano: 
+    - `Ctrl+X`, 
+    - Press `Y` to save the changes
+    - Press `Enter` 
+
+5. When you run `git status` again, `data/` is not listed in untracked files. 
 
 ## Untracking
 Once a file has been added to a commit, Git starts tracking it. 
