@@ -132,5 +132,30 @@ The `git rm --cached` command will remove the file from the Git tracking while l
 
 3. If it's not already there, add `example.txt` to .gitignore so Git ignores it. 
 
+## Undoing local commit
+
+Oh, no! 
+
+1. Check commit history:
+
+```{bash}
+git log
+git log --pretty=oneline
+```
+
+This shows both the head of our local directory and the head of our remote repository. 
+
+2. If this was just the previous commit, we can reset the last commit by doing
+
+```{bash}
+git reset HEAD~1
+```
+
+The files on disk will not be touched and any changes will between the original HEAD and the commit we reset will be kept. 
+The files will be unstaged.
+
+
 ## References
 [GitHub Blog - How to undo (almost) anything with Git](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
+
+[David Zych - Difference between git reset soft, mixed and hard](https://davidzych.com/difference-between-git-reset-soft-mixed-and-hard/)
