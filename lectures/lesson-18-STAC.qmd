@@ -233,8 +233,37 @@ aspect = sb.rio.width / sb.rio.height
 sb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)
 ```
 
-
 ## Exercise
+Recreate the following image, where the red rectangle shows the bounding box used to do the catalog search. 
+HINT: `bbox` as it is now is a dictionary. How can you get the vertices list out of it to first create a `shapely` `Polygon`?
+
+![](/images/sb-and-aoi-mpc.png)
+
+<!--
+```{python}
+aoi = gpd.GeoDataFrame(geometry=[Polygon(bbox['coordinates'][0])],
+                crs='epsg:4326')
+aoi.plot()
+```
+
+```{python}
+# reproject aoi to rgb crs
+aoi = aoi.to_crs(sb.rio.crs)
+print('matched crs?',  aoi.crs == sb.rio.crs)
+aoi.crs
+```
+
+```{python}
+fig, ax = plt.subplots()
+
+size = 6 # height in in of plot height
+aspect = sb.rio.width / sb.rio.height # ratio of widht/height
+fig.set_size_inches((size, size*aspect)) # reuse size and aspect
+
+sb.sel(band=[1,2,3]).plot.imshow(ax=ax)
+aoi.plot(ax=ax, color='red', alpha=0.6)
+```
+-->
 
 
 ## References
