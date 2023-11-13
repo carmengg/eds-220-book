@@ -1,0 +1,102 @@
+---
+engine: knitr
+execute:
+  eval: false
+---
+
+# Gitignore & Git Untracking
+
+This is a review on how to never track and untrack files in Git.
+
+## Gitignore
+The easiest way to have Git never track a file or directory within your Git directory is to add it to the gitignore file *before you ever start tracking it*. 
+
+From the [Git documenatation](https://git-scm.com/docs/gitignore):
+
+>A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected.
+
+This means the files listed in the gitignore will be ignored when making a commit. They are ignored by Git and will not appear when we check the Git status. 
+
+
+## Creating a .gitignore
+
+### When creating a GitHub repository
+The easiest way to create a gitignore is probably when creating a repository through GitHub. 
+To do this:
+
+1. Go to the "Add .gitignore" section and...
+
+![](/images/git/add-gitignore.png)
+
+2. ...select a template from the list. These templates are provided by GitHub to ignore unuseful files in different programming languages. For this course we select the Python .gitignore template. 
+
+![](/images/git/select-gitignore-template.png)
+
+3. When you finish creating your new repository, the .gitignore file will be in it. 
+
+### From the GitHub .gitignore templates
+
+If you don't have a .gitignore yet and want to add the one from the GitHub template you can:
+
+1. Download the .gitignore GitHub template from their website: [https://github.com/github/gitignore](https://github.com/github/gitignore).
+
+2. Move it to your directory.
+
+3. Update the name to `.gitignore`. 
+
+### From the command line 
+What if we we just want to create our own blank .gitignore? 
+No problem, we can create one from our terminal:
+
+1. Open the terminal.
+
+2. Verify you don't have a .gitignore:
+```{bash}
+ls -a
+```
+
+Adding `-a` to the `ls` (list) command will show all the files, including the hidden files that start with a period `.`, such as the .gitignore. 
+
+3. Create a new .gitignore file for the directory:
+
+```{bash}
+touch .gitignore
+```
+
+If there is no output, everything worked. 
+
+4. Check your .gitgnore is there:
+```{bash}
+ls -a
+```
+
+You should see the .gitignore now listed in the files. 
+
+
+## Editing .gitignore
+
+### Add a file
+Suppose you have an **untracked file** called `ex.txt` that we want to add to our .gitignore. 
+Untracked means Git hasn't began tracking changes on this file and, if you rung `git status` this file should appear under Untracked files. 
+
+If you are using JupyterLab, you'll need to edit the .gitignore from the terminal to add `ex.txt` to it:
+Follow these steps:
+
+1. Open the .gitignore file in the nano command line-based text editor:
+
+```{bash}
+nano .gitignore
+```
+
+2. Once in the editor, add a new line with the name of the file: `ex.txt`. 
+
+3. To exit nano: 
+    - `Ctrl+X`, 
+    - Press `Y` to save the changes
+    - Press `Enter` 
+
+4. When you run `git status` again, `ex.txt` is not listed in untracked files. 
+
+### Add a directory
+
+## Untracking
