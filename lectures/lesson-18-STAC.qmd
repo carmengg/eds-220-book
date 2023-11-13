@@ -34,7 +34,7 @@ An item holds two types of information:
 
 STAC items can be grouped into **STAC collections** (or just collections). 
 For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time and location from the same satellite can be orgnanized in a collection. 
-Finally, multiple collections can be organized into a single catalog. 
+Finally, multiple collections can be organized into a single **STAC catalog**. 
 
 ## API
 To request data from a catalog following the STAC standard we use an **Application Programming Interface (API)**. 
