@@ -451,7 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="B.3" class="anchored" data-anchor-id="editing-.gitignore"><span class="header-section-number">B.3</span> Editing .gitignore</h2>
 <section id="add-a-file" class="level3" data-number="B.3.1">
 <h3 data-number="B.3.1" class="anchored" data-anchor-id="add-a-file"><span class="header-section-number">B.3.1</span> Add a file</h3>
-<p>Suppose you have an <strong>untracked file</strong> called <code>example.txt</code> that you want to add to the .gitignore. Remember, untracked means Git hasn’t began tracking changes on this file and. If you run <code>git status</code>, <code>example.txt</code> would appear in the index under Untracked files.</p>
+<p>Suppose you have an <strong>untracked file</strong> called <code>example.txt</code> that you want to add to the .gitignore. Remember, untracked means Git hasn’t began tracking changes on this file. If you run <code>git status</code>, <code>example.txt</code> would appear in the index under Untracked files.</p>
 <p>If you are using JupyterLab, you can edit the .gitignore from the terminal. Follow these steps to add <code>example.txt</code> to it:</p>
 <ol type="1">
 <li><p>Open the terminal.</p></li>
@@ -489,7 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Press <code>Y</code> to save the changes</li>
 <li>Press <code>Enter</code></li>
 </ol></li>
-<li><p>When you run <code>git status</code> again, <code>data/</code> will not be listed in untracked files.</p></li>
+<li><p>When you run <code>git status</code> again, <code>data/</code> will not be listed in the untracked files.</p></li>
 </ol>
 </section>
 </section>
@@ -498,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Once a file has been added to a commit, Git starts tracking it. <strong>If we add the file’s name to the .gitignore after it has been commited, Git will keep tracking changes in it.</strong> To stop tracking a tracked file <code>example.txt</code>:</p>
 <ol type="1">
 <li><p>Open the terminal.</p></li>
-<li><p>Run <code>git rm --cached example.txt</code>. The <code>git rm --cached</code> command will remove the file from the Git tracking while leaving the file untouched on disk.</p></li>
+<li><p>Run <code>git rm --cached example.txt</code>. The <code>git rm --cached</code> command will remove the file from the Git tracking while leaving the file untouched on disk. If you run <code>git status</code>, it will now appear in the index as deleted. That’s ok! Your file is still there, it’s just “deleted” from Git.</p></li>
 <li><p>If it’s not already there, add <code>example.txt</code> to .gitignore so Git ignores it.</p></li>
 </ol>
 </section>

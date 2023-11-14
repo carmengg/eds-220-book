@@ -268,7 +268,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context"><span class="toc-section-number">A.1</span>  Context</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions"><span class="toc-section-number">A.2</span>  Instructions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -290,8 +297,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This section contains instructions for creatiog a Personal Access Token (PAT):</p>
+<p>This section contains instructions for creating a Personal Access Token (PAT) directly on GitHub and the terminal. If you prefer setting the PAT through RStudio (which is fine!), please refer to the <a href="https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat">MEDS Installation guide</a>.</p>
+<section id="context" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="context"><span class="header-section-number">A.1</span> Context</h2>
+<p>The context for these instructions is the following: in the terminal, you try to push new changes to your upstream repository and it asks for your Git credentials. Cancel that command by pressing <code>Ctrl + C</code> and start in a new line of the terminal.</p>
+</section>
+<section id="instructions" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="instructions"><span class="header-section-number">A.2</span> Instructions</h2>
 <ol type="1">
+<li>To store the PAT once it’s created, first run this command on the terminal:</li>
+</ol>
+<pre class="{bash}"><code>#| eval: false
+git config --global credential.helper 'cache --timeout=10000000'</code></pre>
+<ol start="2" type="1">
 <li>In <a href="https://github.com">GitHub</a> navigate to:</li>
 </ol>
 <ul>
@@ -301,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 <li>generate new token button (near right corner)</li>
 <li>Click on: Generate new token (classic)</li>
 </ul>
-<ol start="2" type="1">
+<ol start="3" type="1">
 <li>Select the following options:</li>
 </ol>
 <ul>
@@ -310,7 +328,7 @@ ul.task-list li input[type="checkbox"] {
 <li>☑️ gist</li>
 <li>☑️ user (clicking this will select all boxes in the section, that’s ok)</li>
 </ul>
-<ol start="3" type="1">
+<ol start="4" type="1">
 <li><p>Click generate token.</p></li>
 <li><p>Copy and paste the PAT somewhere for now!</p></li>
 <li><p>Back at the terminal try to push your changes again using <code>git push</code>. When prompted, enter your GitHub username and the new PAT as the password.</p></li>
@@ -330,6 +348,7 @@ Note
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

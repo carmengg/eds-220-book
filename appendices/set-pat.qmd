@@ -1,8 +1,23 @@
 # Setting a PAT
 
-This section contains instructions for creatiog a Personal Access Token (PAT):
+This section contains instructions for creating a Personal Access Token (PAT) directly on GitHub and the terminal. 
+If you prefer setting the PAT through RStudio (which is fine!), please refer to the [MEDS Installation guide](https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat). 
 
-1. In [GitHub](https://github.com) navigate to:
+## Context
+
+The context for these instructions is the following: in the terminal, you try to push new changes to your upstream repository and it asks for your Git credentials. 
+Cancel that command by pressing `Ctrl + C` and start in a new line of the terminal.
+
+## Instructions
+
+1. To store the PAT once it's created, first run this command on the terminal:
+
+```{bash}
+#| eval: false
+git config --global credential.helper 'cache --timeout=10000000'
+```
+
+2. In [GitHub](https://github.com) navigate to:
 
 - settings
 - developer settings (last option on the left)
@@ -11,18 +26,18 @@ This section contains instructions for creatiog a Personal Access Token (PAT):
 - Click on: Generate new token (classic)
 
 
-2. Select the following options:
+3. Select the following options:
 
 - ☑️ Repo (clicking this will select all boxes in the section, that’s ok)
 - ☑️ workflow
 - ☑️ gist
 - ☑️ user  (clicking this will select all boxes in the section, that’s ok)
 
-3. Click generate token.
+4. Click generate token.
 
-4. Copy and paste the PAT somewhere for now! 
+5. Copy and paste the PAT somewhere for now! 
 
-5. Back at the terminal try to push your changes again using `git push`. When prompted, enter your GitHub username and the new PAT as the password.
+6. Back at the terminal try to push your changes again using `git push`. When prompted, enter your GitHub username and the new PAT as the password.
 
 :::{.callout-note}
 In steps 1-5 we generated a PAT manually. 

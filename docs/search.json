@@ -889,11 +889,18 @@
     "text": "20.9 References\nSTAC Documentation:\n\nThe STAC Specification\nRead a STAC Catalog Using PySTAC\n\nMicrosoft Planetary Computer Documentation - Reading Data from the STAC API"
   },
   {
-    "objectID": "appendices/set-pat.html",
-    "href": "appendices/set-pat.html",
+    "objectID": "appendices/set-pat.html#context",
+    "href": "appendices/set-pat.html#context",
     "title": "Appendix A — Setting a PAT",
-    "section": "",
-    "text": "This section contains instructions for creatiog a Personal Access Token (PAT):\n\nIn GitHub navigate to:\n\n\nsettings\ndeveloper settings (last option on the left)\ntokens (classic)\ngenerate new token button (near right corner)\nClick on: Generate new token (classic)\n\n\nSelect the following options:\n\n\n☑️ Repo (clicking this will select all boxes in the section, that’s ok)\n☑️ workflow\n☑️ gist\n☑️ user (clicking this will select all boxes in the section, that’s ok)\n\n\nClick generate token.\nCopy and paste the PAT somewhere for now!\nBack at the terminal try to push your changes again using git push. When prompted, enter your GitHub username and the new PAT as the password.\n\n\n\n\n\n\n\nNote\n\n\n\nIn steps 1-5 we generated a PAT manually. This is the same process as using usethis::create_github_token from an R console as explained in the MEDS installation guide. The options we selected in step 2 are the same options for the PAT given by usethis::create_github_token."
+    "section": "A.1 Context",
+    "text": "A.1 Context\nThe context for these instructions is the following: in the terminal, you try to push new changes to your upstream repository and it asks for your Git credentials. Cancel that command by pressing Ctrl + C and start in a new line of the terminal."
+  },
+  {
+    "objectID": "appendices/set-pat.html#instructions",
+    "href": "appendices/set-pat.html#instructions",
+    "title": "Appendix A — Setting a PAT",
+    "section": "A.2 Instructions",
+    "text": "A.2 Instructions\n\nTo store the PAT once it’s created, first run this command on the terminal:\n\n#| eval: false\ngit config --global credential.helper 'cache --timeout=10000000'\n\nIn GitHub navigate to:\n\n\nsettings\ndeveloper settings (last option on the left)\ntokens (classic)\ngenerate new token button (near right corner)\nClick on: Generate new token (classic)\n\n\nSelect the following options:\n\n\n☑️ Repo (clicking this will select all boxes in the section, that’s ok)\n☑️ workflow\n☑️ gist\n☑️ user (clicking this will select all boxes in the section, that’s ok)\n\n\nClick generate token.\nCopy and paste the PAT somewhere for now!\nBack at the terminal try to push your changes again using git push. When prompted, enter your GitHub username and the new PAT as the password.\n\n\n\n\n\n\n\nNote\n\n\n\nIn steps 1-5 we generated a PAT manually. This is the same process as using usethis::create_github_token from an R console as explained in the MEDS installation guide. The options we selected in step 2 are the same options for the PAT given by usethis::create_github_token."
   },
   {
     "objectID": "appendices/gitignore_untrack.html#gitignore",
@@ -914,14 +921,14 @@
     "href": "appendices/gitignore_untrack.html#editing-.gitignore",
     "title": "Appendix B — Gitignore & Git Untracking",
     "section": "B.3 Editing .gitignore",
-    "text": "B.3 Editing .gitignore\n\nB.3.1 Add a file\nSuppose you have an untracked file called example.txt that you want to add to the .gitignore. Remember, untracked means Git hasn’t began tracking changes on this file and. If you run git status, example.txt would appear in the index under Untracked files.\nIf you are using JupyterLab, you can edit the .gitignore from the terminal. Follow these steps to add example.txt to it:\n\nOpen the terminal.\nOpen the .gitignore file in the nano command line-based text editor by running:\n\n\nnano .gitignore\n\n\nOnce in the editor, add a new line with the name of the file: example.txt.\nTo exit nano:\n\nCtrl+X,\nPress Y to save the changes\nPress Enter\n\nWhen you run git status again, example.txt will not be listed under the untracked files.\n\n\n\nB.3.2 Add a directory\nSuppose you want to add all the contents of a directory named data to your gitignore. If none of the files in the data directory have been tracked by Git, then:\n\nOpen the terminal.\nOpen the .gitignore file in the nano command line-based text editor by running:\n\n\nnano .gitignore\n\n\nOnce in the editor, add a new line with the name of the directory: data/.\nTo exit nano:\n\nCtrl+X,\nPress Y to save the changes\nPress Enter\n\nWhen you run git status again, data/ will not be listed in untracked files."
+    "text": "B.3 Editing .gitignore\n\nB.3.1 Add a file\nSuppose you have an untracked file called example.txt that you want to add to the .gitignore. Remember, untracked means Git hasn’t began tracking changes on this file. If you run git status, example.txt would appear in the index under Untracked files.\nIf you are using JupyterLab, you can edit the .gitignore from the terminal. Follow these steps to add example.txt to it:\n\nOpen the terminal.\nOpen the .gitignore file in the nano command line-based text editor by running:\n\n\nnano .gitignore\n\n\nOnce in the editor, add a new line with the name of the file: example.txt.\nTo exit nano:\n\nCtrl+X,\nPress Y to save the changes\nPress Enter\n\nWhen you run git status again, example.txt will not be listed under the untracked files.\n\n\n\nB.3.2 Add a directory\nSuppose you want to add all the contents of a directory named data to your gitignore. If none of the files in the data directory have been tracked by Git, then:\n\nOpen the terminal.\nOpen the .gitignore file in the nano command line-based text editor by running:\n\n\nnano .gitignore\n\n\nOnce in the editor, add a new line with the name of the directory: data/.\nTo exit nano:\n\nCtrl+X,\nPress Y to save the changes\nPress Enter\n\nWhen you run git status again, data/ will not be listed in the untracked files."
   },
   {
     "objectID": "appendices/gitignore_untrack.html#untracking",
     "href": "appendices/gitignore_untrack.html#untracking",
     "title": "Appendix B — Gitignore & Git Untracking",
     "section": "B.4 Untracking",
-    "text": "B.4 Untracking\nOnce a file has been added to a commit, Git starts tracking it. If we add the file’s name to the .gitignore after it has been commited, Git will keep tracking changes in it. To stop tracking a tracked file example.txt:\n\nOpen the terminal.\nRun git rm --cached example.txt. The git rm --cached command will remove the file from the Git tracking while leaving the file untouched on disk.\nIf it’s not already there, add example.txt to .gitignore so Git ignores it."
+    "text": "B.4 Untracking\nOnce a file has been added to a commit, Git starts tracking it. If we add the file’s name to the .gitignore after it has been commited, Git will keep tracking changes in it. To stop tracking a tracked file example.txt:\n\nOpen the terminal.\nRun git rm --cached example.txt. The git rm --cached command will remove the file from the Git tracking while leaving the file untouched on disk. If you run git status, it will now appear in the index as deleted. That’s ok! Your file is still there, it’s just “deleted” from Git.\nIf it’s not already there, add example.txt to .gitignore so Git ignores it."
   },
   {
     "objectID": "appendices/gitignore_untrack.html#references",
