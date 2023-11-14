@@ -1,7 +1,13 @@
+---
+engine: knitr
+execute:
+  eval: false
+---
+
 # Setting a PAT
 
 This section contains instructions for creating a Personal Access Token (PAT) directly on GitHub and the terminal. 
-If you prefer setting the PAT through RStudio (which is fine!), please refer to the [MEDS Installation guide](https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat). 
+If you prefer setting the PAT through RStudio, please refer to the [MEDS Installation guide](https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat). 
 
 ## Context
 
@@ -13,7 +19,6 @@ Cancel that command by pressing `Ctrl + C` and start in a new line of the termin
 1. To store the PAT once it's created, first run this command on the terminal:
 
 ```{bash}
-#| eval: false
 git config --global credential.helper 'cache --timeout=10000000'
 ```
 
