@@ -248,27 +248,36 @@ for i in range(len((percentiles))):
 ```
 
 ```{python}
-#| tags: []
 # https://matplotlib.org/stable/gallery/color/colormap_reference.html
 # https://matplotlib.org/stable/gallery/color/custom_cmap.html
 # https://stackoverflow.com/questions/37727380/plotting-discrete-colorbar-in-legend-style-using-matplotlib
 
 fig, ax = plt.subplots()
 
+# --- create colormap
 n_classes = len(np.unique(gc_classes))
 cmap = plt.cm.get_cmap('Oranges', n_classes)
-percentiles = np.round(np.percentile(gc,[0,25,50,75,100])).astype('int')
 
+# -- create list of color patches for legend
+patches = [mpatches.Patch(color=cmap(i)) for i in range(n_classes)]
+
+# --- create text for each legend
+percentiles = np.round(np.percentile(gc,[0,25,50,75,100])).astype('int')
+legends = ['{} - {}'.format(percentiles[i], percentiles[i+1] - 1) for i in range(len(percentiles)-1)]
+
+# --- map elevation raster
 gc_classes.plot.imshow(ax=ax, 
-                       add_colorbar=False, 
+                       add_colorbar=False, # will add custom legend
                        cmap=cmap)
 
-plt.legend([mpatches.Patch(color=cmap(i)) for i in range(n_classes)], # artists
-           ['{} - {}'.format(percentiles[i], percentiles[i+1] - 1) for i in range(len(percentiles)-1)], # legends
+# --- update legend
+plt.legend(patches,
+           legends, # legends
            loc='center left',  
-           bbox_to_anchor=(1, 0.5, 
-           title = 'Elevation (m)'))
+           bbox_to_anchor=(1, 0.5), 
+           title = 'Elevation (m)')
 
+# update title
 ax.set_title('Elevation at the Grand Canyon')
 plt.show()
 ```
