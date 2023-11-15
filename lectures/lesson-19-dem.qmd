@@ -165,7 +165,7 @@ This means that we write commas between every string and variable we want to pri
 print("Minimum elevation: ", gc.min().item())
 ```
 
-Another popular way of mixing strings and variables in print statements is using an **f-string** which stands for "formatted string". 
+Another popular way of mixing strings and variables in print statements is by creating an **f-string** which stands for "formatted string". 
 The simplest syntax for an f-string is:
 ```python
 f" some text {replace}"
@@ -198,32 +198,48 @@ Some extra resources about using f-string formatting:
 ## Aggregation
 
 Let's go back to our raster. 
-Rasters with high spatial resolution can 
+Rasters with high spatial resolution can offer great insight into fine-scale patterns, but can also be challenging to process due to their size. 
+In these cases, it can be useful to use an **aggregation method** to **spatially downsample** and obtain a raster with a coarser resolution. 
+
+To spatially downsample an `xarray.DataArray` we use the [`coarsen()` method](https://xarray.pydata.org/en/v2023.10.1/generated/xarray.DataArray.coarsen.html) followed by an aggreagator function. 
+The general syntax to coarsen a 2-dimensional :
+```python
+xdataarray.coarsen(x=x_winside, y=y_winside).aggr()
+```
+where:
+
+- `xdataarray` is a 2-dimensional `xarray.DataArray` with dimensions `x` and `y`. 
+- `x` and `y` are the names dimensions of the `xarray.DataArray` (these could have other names like `lon`/`lat`)
+- `x_winside` and `y_winside` are the dimensions of the window used to make the aggregation. 
+- `aggr()` is an aggregator function, this is the function which will be applied to each window. Examples are `min()`, `max()`, `sum()` and `mean()`.
+
+**Example**
+
+Suppose we want to coarsen our Grand Canyon elevation raster from 1200x1200 pixels to a raster of 60x60 pixels where by calculating the maximun at each window. 
+Remember the windows are non-overlapping, so we will obtain one pixel per window. 
+A quick division tells us that to got from 1200x1200 to 60x60 we will need to use a 20x20 window. 
+The aggregator function on each of this window will be `max()`.
+Our call looks like this:
+
 
 ```{python}
-#| tags: []
-# https://xarray.pydata.org/en/v2023.10.1/generated/xarray.DataArray.coarsen.html
-# spatially downsampling
-# will perform an operation (mean, max, min, etc) 
-#over non-overlapping windows and depending on the window size you
-# set you will get your desired final resolution.
-gc.coarsen(x=20,y=20).max().plot()
+# coarsen to a 60x60 raster calculating the max in each window
+print(f"old resolution {gc.rio.width}x{gc.rio.height}")
+
+# downsample into pixels using average on each window
+gc_coarse = gc.coarsen(x=20,y=20).mean()
+
+print(f"coarse resolution {gc_coarse.rio.width}x{gc.coarse.height}")
+gc_coarse.plot()
 ```
 
 ```{python}
-#| tags: []
-gc_mean_coarse = gc.coarsen(x=20,y=20).mean()
-gc_mean_coarse.plot()
-```
-
-```{python}
-#| tags: []
-gc_mean_coarse
+gc_coarse
 ```
 
 ## Local operations
 ```{python}
-below_average = gc < gc.median().item()
+below_average = gc < gc.mean().item()
 below_average.plot()
 ```
 
@@ -232,7 +248,6 @@ below_average.dtype
 ```
 
 ```{python}
-#| tags: []
 percentiles = np.percentile(gc,[25,50,75])
 percentiles
 ```
