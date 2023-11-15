@@ -1,3 +1,19 @@
+---
+# https://quarto.org/docs/computations/python.html#kernel-selection
+# to check all the available jupyter kernels run from the terminal 
+# jupyter kernelspec list
+jupyter: base
+---
+
+<!-- 
+Fixing the preview working directory
+```{python}
+import os
+home = os.path.expanduser("~")
+os.chdir(os.path.join(home,'eds-220-book'))
+```
+-->
+
 # Raster manipulation
 
 In this lesson we will learn how to perform some global and local operations on our raster. 
@@ -28,14 +44,25 @@ import numpy as np
 
 import xarray as xr
 import rioxarray as rioxr
-import geopandas as gpd
+```
 
+<!--
+```{python}
+import geopandas as gpd
 from shapely import Point
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 ```
+-->
 
+::: {.callout-tip}
+# Exercise
+1. Use `os` to createa file path to the 'grand_canyon_DEM.tif' file and import the raster into a variable called `gc`.
+2. Plot the raster, check the CRS, and create a histogram with updated bin numbers.
+:::
+
+<!--
 And then loading our dataset:
 ```{python}
 # load Grand Canyon DEM data
@@ -61,11 +88,12 @@ gc.rio.crs
 _ = gc.plot.hist(bins=50)
 ```
 
-::: {.callout-tip}
+::: {.callout-note}
 # `_`
 Notice in the previous line of code we used the underscore `_` to capture the output of the histogram. 
 The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future.
 ::: 
+-->
 
 <!--
 ## Geographic context
@@ -252,7 +280,7 @@ Another popular local operation is to reclassify each cell in the raster as part
 Let's say we want to divide our assign each pixel to which percentile it is in.
 
 ```{python}
-np.perc(gc, [25,50,75])
+np.percentile(gc, [25,50,75])
 ```
 
 ```{python}
@@ -286,13 +314,13 @@ for i in range(n):
 
 ```{python}
 # create an f-string and print it for each index
-for i in range(n):
+for i in range(n-1):
   print(f"{perc[i]:0f} - {perc[i+1] - 1:0f}")
 ```
 
 ```{python}
 # list comprehension
-[f'{perc[i]:0f} - {perc[i+1] - 1:0f}' for i in range(len((perc)))]
+[f'{perc[i]:0f} - {perc[i+1] - 1:0f}' for i in range(len(perc)-1)]
 ```
 
 ## Graph customization
@@ -338,3 +366,10 @@ ax.set_ylabel('Latitude')
 plt.show()
 ```
 -->
+
+::: {.callout-tip}
+# Exercise
+Downsample the elevation raster into a 240x240 raster by taking the average over windows of the appropriate size. 
+
+Use an f-string to check whether the bounds of the rasters have changed.
+:::

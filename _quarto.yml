@@ -43,7 +43,9 @@ book:
       chapters:
         #- lectures/lesson-16-raster-formats.qmd
         - lectures/lesson-17-rioxarray.qmd
+        - lectures/lesson-19-dem.qmd
         - lectures/lesson-18-STAC.qmd
+        
       
   appendices:
     - appendices/set-pat.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 20&nbsp; STAC specification</title>
+<title>EDS 220 - Working with Environmental Datasets - 21&nbsp; STAC specification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../appendices/set-pat.html" rel="next">
-<link href="../lectures/lesson-17-rioxarray.html" rel="prev">
+<link href="../lectures/lesson-19-dem.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">STAC specification</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">STAC specification</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -296,7 +296,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">STAC specification</span></a>
+  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">STAC specification</span></a>
   </div>
 </li>
       </ul>
@@ -335,19 +340,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#item-collection-and-catalog" id="toc-item-collection-and-catalog" class="nav-link active" data-scroll-target="#item-collection-and-catalog"><span class="toc-section-number">20.1</span>  Item, Collection, and Catalog</a></li>
-  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api"><span class="toc-section-number">20.2</span>  API</a></li>
-  <li><a href="#catalog" id="toc-catalog" class="nav-link" data-scroll-target="#catalog"><span class="toc-section-number">20.3</span>  Catalog</a>
+  <li><a href="#item-collection-and-catalog" id="toc-item-collection-and-catalog" class="nav-link active" data-scroll-target="#item-collection-and-catalog"><span class="toc-section-number">21.1</span>  Item, Collection, and Catalog</a></li>
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api"><span class="toc-section-number">21.2</span>  API</a></li>
+  <li><a href="#catalog" id="toc-catalog" class="nav-link" data-scroll-target="#catalog"><span class="toc-section-number">21.3</span>  Catalog</a>
   <ul class="collapse">
-  <li><a href="#access" id="toc-access" class="nav-link" data-scroll-target="#access"><span class="toc-section-number">20.3.1</span>  Access</a></li>
-  <li><a href="#exploration" id="toc-exploration" class="nav-link" data-scroll-target="#exploration"><span class="toc-section-number">20.3.2</span>  Exploration</a></li>
+  <li><a href="#access" id="toc-access" class="nav-link" data-scroll-target="#access"><span class="toc-section-number">21.3.1</span>  Access</a></li>
+  <li><a href="#exploration" id="toc-exploration" class="nav-link" data-scroll-target="#exploration"><span class="toc-section-number">21.3.2</span>  Exploration</a></li>
   </ul></li>
-  <li><a href="#collection" id="toc-collection" class="nav-link" data-scroll-target="#collection"><span class="toc-section-number">20.4</span>  Collection</a></li>
-  <li><a href="#catalog-search" id="toc-catalog-search" class="nav-link" data-scroll-target="#catalog-search"><span class="toc-section-number">20.5</span>  Catalog search</a></li>
-  <li><a href="#item" id="toc-item" class="nav-link" data-scroll-target="#item"><span class="toc-section-number">20.6</span>  Item</a></li>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="toc-section-number">20.7</span>  Load data</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">20.8</span>  Exercise</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">20.9</span>  References</a></li>
+  <li><a href="#collection" id="toc-collection" class="nav-link" data-scroll-target="#collection"><span class="toc-section-number">21.4</span>  Collection</a></li>
+  <li><a href="#catalog-search" id="toc-catalog-search" class="nav-link" data-scroll-target="#catalog-search"><span class="toc-section-number">21.5</span>  Catalog search</a></li>
+  <li><a href="#item" id="toc-item" class="nav-link" data-scroll-target="#item"><span class="toc-section-number">21.6</span>  Item</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="toc-section-number">21.7</span>  Load data</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">21.8</span>  Exercise</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">21.9</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -356,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">STAC specification</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">STAC specification</span></h1>
 </div>
 
 
@@ -375,8 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="../images/STAC-01.png" class="img-fluid"></p>
 <p>The <strong>SpatioTemporal Asset Catalog (STAC)</strong> is an emerging open standard for geospatial data that aims to increase the interoperability of geospatial data, particularly satellite imagery. Major satellite imagery datasets like X, Y, and <a href="https://stacspec.org/en/about/datasets/">many others</a>, now follow the STAC specification.</p>
 <p>In the next classes we’ll be working with the <a href="https://planetarycomputer.microsoft.com">Microsoft’s Planetary Computer (MPC)</a> STAC API. The MPC is both a geospatial coding environment and a STAC data catalogue. In this lesson we will learn about the main components of a STAC catalog and how to search for data using the MPC’s STAC API.</p>
-<section id="item-collection-and-catalog" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="item-collection-and-catalog"><span class="header-section-number">20.1</span> Item, Collection, and Catalog</h2>
+<section id="item-collection-and-catalog" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="item-collection-and-catalog"><span class="header-section-number">21.1</span> Item, Collection, and Catalog</h2>
 <p>The <strong>STAC item</strong> (or just item) is the building block of a STAC. An item is a GeoJSON feature with additional fields that make it easier to find the item as we look for data across catalogs.</p>
 <p>An item holds two types of information:</p>
 <ol type="1">
@@ -385,8 +390,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>STAC items can be grouped into <strong>STAC collections</strong> (or just collections). For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time and location from the same satellite can be orgnanized in a collection. Finally, multiple collections can be organized into a single <strong>STAC catalog</strong>.</p>
 </section>
-<section id="api" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="api"><span class="header-section-number">20.2</span> API</h2>
+<section id="api" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="api"><span class="header-section-number">21.2</span> API</h2>
 <p>To request data from a catalog following the STAC standard we use an <strong>Application Programming Interface (API)</strong>. We can think of an API as an intermediary tasked with sending our request for data to the data catalog and getting the response from the catalog back to us. The following is a nice real-life analogy:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -396,8 +401,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The Python package to access APIs for STAC catalogs is <a href="https://pystac-client.readthedocs.io/en/stable/"><code>pystac_client</code></a>. Our goal in this lesson is to retrieve <a href="https://naip-usdaonline.hub.arcgis.com">NAIP data</a> from the <a href="https://planetarycomputer.microsoft.com/catalog">MPC’s data catalog</a> via its STAC API. We’ll be doing this within the MPC’s hub.</p>
 </section>
-<section id="catalog" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="catalog"><span class="header-section-number">20.3</span> Catalog</h2>
+<section id="catalog" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="catalog"><span class="header-section-number">21.3</span> Catalog</h2>
 <!--https://github.com/NCEAS/msai4earth-esa/blob/main/examples/naip_example/access_naip.ipynb-->
 <p>First, load the necessary packages:</p>
 <div class="cell" data-execution_count="1">
@@ -416,8 +421,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ----- other libraries for nice ouputs</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="access" class="level3" data-number="20.3.1">
-<h3 data-number="20.3.1" class="anchored" data-anchor-id="access"><span class="header-section-number">20.3.1</span> Access</h3>
+<section id="access" class="level3" data-number="21.3.1">
+<h3 data-number="21.3.1" class="anchored" data-anchor-id="access"><span class="header-section-number">21.3.1</span> Access</h3>
 <p>We use the <code>Client</code> function from the <code>pystac_client</code> package to access the catalog:</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access catalog</span></span>
@@ -428,8 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The <code>modifier</code> parameter is needed to access the data in the MPC catalog.</p>
 </section>
-<section id="exploration" class="level3" data-number="20.3.2">
-<h3 data-number="20.3.2" class="anchored" data-anchor-id="exploration"><span class="header-section-number">20.3.2</span> Exploration</h3>
+<section id="exploration" class="level3" data-number="21.3.2">
+<h3 data-number="21.3.2" class="anchored" data-anchor-id="exploration"><span class="header-section-number">21.3.2</span> Exploration</h3>
 <p>Let’s check out some of the catalog’s metadata:</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata from the catalog</span></span>
@@ -453,8 +458,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="collection" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="collection"><span class="header-section-number">20.4</span> Collection</h2>
+<section id="collection" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="collection"><span class="header-section-number">21.4</span> Collection</h2>
 <p>We can select a single collection for exploration using the <code>get_child()</code> method for the catalog and the collection id as the parameter:</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>naip_collection <span class="op">=</span> catalog.get_child(<span class="st">'naip'</span>)</span>
@@ -467,8 +472,8 @@ https://pystac.readthedocs.io/en/latest/api/pystac.html#pystac.Collection
 https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-collection
 -->
 </section>
-<section id="catalog-search" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="catalog-search"><span class="header-section-number">20.5</span> Catalog search</h2>
+<section id="catalog-search" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="catalog-search"><span class="header-section-number">21.5</span> Catalog search</h2>
 <p>We can narrow the search withing the <code>catalog</code> by specifying a time range, an area of interest, and the collection name. The simplest ways to define the area of interest to look for data in the catalog are:</p>
 <ul>
 <li>a GeoJSON-type dictionary with the coordinates of the bounding box,</li>
@@ -510,8 +515,8 @@ https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-col
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="item" class="level2" data-number="20.6">
-<h2 data-number="20.6" class="anchored" data-anchor-id="item"><span class="header-section-number">20.6</span> Item</h2>
+<section id="item" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="item"><span class="header-section-number">21.6</span> Item</h2>
 
 <!--https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item-->
 <p>Let’s get the first item in the search:</p>
@@ -540,8 +545,8 @@ https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-col
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Image(url<span class="op">=</span>item.assets[<span class="st">'rendered_preview'</span>].href, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="load-data" class="level2" data-number="20.7">
-<h2 data-number="20.7" class="anchored" data-anchor-id="load-data"><span class="header-section-number">20.7</span> Load data</h2>
+<section id="load-data" class="level2" data-number="21.7">
+<h2 data-number="21.7" class="anchored" data-anchor-id="load-data"><span class="header-section-number">21.7</span> Load data</h2>
 <p>The raster data in our current <code>item</code> is in the <code>image</code> asset. Again, we access this data via its URL. This time, we open it using <code>rioxr.open_rasterio()</code> directly:</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sb <span class="op">=</span> rioxr.open_rasterio(item.assets[<span class="st">'image'</span>].href)</span>
@@ -556,8 +561,8 @@ https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-col
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>sb.sel(band<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]).plot.imshow(size<span class="op">=</span>size, aspect<span class="op">=</span>aspect)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise" class="level2" data-number="20.8">
-<h2 data-number="20.8" class="anchored" data-anchor-id="exercise"><span class="header-section-number">20.8</span> Exercise</h2>
+<section id="exercise" class="level2" data-number="21.8">
+<h2 data-number="21.8" class="anchored" data-anchor-id="exercise"><span class="header-section-number">21.8</span> Exercise</h2>
 <p>Recreate the following image, where the red rectangle shows the bounding box used to do the catalog search. HINT: <code>bbox</code> as it is now is a dictionary. How can you get the vertices list out of it to first create a <code>shapely</code> <code>Polygon</code>?</p>
 <p><img src="../images/sb-and-aoi-mpc.png" class="img-fluid"></p>
 <!--
@@ -597,8 +602,8 @@ aoi.plot(ax=ax, color='red', alpha=0.6)
 
 -->
 </section>
-<section id="references" class="level2" data-number="20.9">
-<h2 data-number="20.9" class="anchored" data-anchor-id="references"><span class="header-section-number">20.9</span> References</h2>
+<section id="references" class="level2" data-number="21.9">
+<h2 data-number="21.9" class="anchored" data-anchor-id="references"><span class="header-section-number">21.9</span> References</h2>
 <p>STAC Documentation:</p>
 <ul>
 <li><a href="https://stacspec.org/en/tutorials/intro-to-stac/">The STAC Specification</a></li>
@@ -752,8 +757,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-17-rioxarray.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span>
+      <a href="../lectures/lesson-19-dem.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
