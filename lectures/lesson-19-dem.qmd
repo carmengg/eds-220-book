@@ -88,7 +88,7 @@ To show the location of our area of interest (aoi) in the world we will:
 # load Natural Earth worldmap
 worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
 
-grand_canyon = gpd.GeoDataFrame(geometry = [Point([bounds[0],bounds[1]])], crs=gc.crs)
+grand_canyon = gpd.GeoDataFrame(geometry = [Point([bounds[0],bounds[1]])], crs=gc.rio.crs)
 
 fig, ax = plt.subplots()
 ax.axis('off')
@@ -122,9 +122,14 @@ We can do this using the `xarray.DataArray` `drop()` method and specifying the n
 
 Let's do this:
 ```{python}
-print(gc.dims, gc.coords)
+# original dimensions and coordinates
+print(gc.dims, gc.coords,'\n')
+
+# remove length 1 dimension (band)
 gc = gc.squeeze()
-print(gc.dims, gc.coords)
+print(gc.dims, gc.coords,'\n')
+
+# remove coordinates associated to band
 gc = gc.drop('band')
 print(gc.dims, gc.coords)
 ```
@@ -135,7 +140,7 @@ To get a better sense of our raster data we can apply common `numpy` functions t
 
 For example, we can get the maximum across all the `xarray.DataArray`'s values by using the `max()` method:
 ```{python}
-# get the maximum value elevation value
+# get the maximum elevation value (get an xarray.DataArray)
 gc.max()
 ```
 
@@ -144,7 +149,7 @@ In general, methods that reduce or subset an `xarray.DataArray` will always retu
 To extract the value from a 1x1 `xarray.DataArray` as a number we use the [`.item()` method](#https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html):
 
 ```{python}
-# get the maximum elevation value
+# get the maximum elevation value as a number
 gc.max().item()
 ```
 
@@ -221,35 +226,33 @@ A quick division tells us that to got from 1200x1200 to 60x60 we will need to us
 The aggregator function on each of this window will be `max()`.
 Our call looks like this:
 
-
 ```{python}
-# coarsen to a 60x60 raster calculating the max in each window
-print(f"old resolution {gc.rio.width}x{gc.rio.height}")
-
-# downsample into pixels using average on each window
+# coarsen to a 60x60 raster calculating the mean in each window
 gc_coarse = gc.coarsen(x=20,y=20).mean()
-
-print(f"coarse resolution {gc_coarse.rio.width}x{gc.coarse.height}")
-gc_coarse.plot()
-```
-
-```{python}
 gc_coarse
 ```
 
-## Local operations
 ```{python}
-below_average = gc < gc.mean().item()
-below_average.plot()
+# inspect old and coarsened resolution
+print(f"old resolution: {gc.rio.width}x{gc.rio.height}")
+print(f"coarse resolution: {gc_coarse.rio.width}x{gc_coarse.rio.height}")
+gc_coarse.plot()
 ```
 
-```{python}
-below_average.dtype
-```
+<!--
+## Categorization
+
+Let's go back to our original raster. 
+Local operations on rasters refer to operations that are performed cell-by-cell. 
+Our NDVI calculation in the previous lesson is such an example. 
+Another popular local operation is to reclassify each cell in the raster as part of group or category. 
+
+**Example**
+
+Let's say we want to divide our assign each pixel to which percentile it is in.
 
 ```{python}
-percentiles = np.percentile(gc,[25,50,75])
-percentiles
+np.perc(gc, [25,50,75])
 ```
 
 ```{python}
@@ -262,38 +265,37 @@ gc_classes.plot()
 ```
 
 
-## For loops
+## For loops and list comprehension
 
 ```{python}
-for p in percentiles:
+perc = np.percentile(gc,[0,25,50,75,100])
+perc
+```
+
+```{python}
+for p in perc:
   print(p)
 ```
 
 ```{python}
-n = len(percentiles)
+n = len(perc)
+print(f'number of elements in perc: {n} \n')
 for i in range(n):
-  print(i)
+  print(f"index {i}, value: {perc[i]}")
 ```
 
 ```{python}
+# create an f-string and print it for each index
 for i in range(n):
-  print(f"index:{i}, value:{percentiles[i]}")
+  print(f"{perc[i]:0f} - {perc[i+1] - 1:0f}")
 ```
 
 ```{python}
-for i in range(len(percentiles)):
-  print(percentiles[i],' - ', percentiles[i+1] - 1)
+# list comprehension
+[f'{perc[i]:0f} - {perc[i+1] - 1:0f}' for i in range(len((perc)))]
 ```
 
-```{python}
-# print it using f-string
-for i in range(len((percentiles))):
-  print(f'{percentiles[i]} - {percentiles[i+1] - 1}')
-```
-
-```{python}
-[f'{percentiles[i]} - {percentiles[i+1] - 1}' for i in range(len((percentiles)))]
-```
+## Graph customization
 
 ```{python}
 # https://matplotlib.org/stable/gallery/color/colormap_reference.html
@@ -302,30 +304,37 @@ for i in range(len((percentiles))):
 
 fig, ax = plt.subplots()
 
-# --- create colormap
+# ============= CUSTOMIZE COLORS ===============
 n_classes = len(np.unique(gc_classes))
 cmap = plt.cm.get_cmap('Oranges', n_classes)
+# ==============================================
 
-# -- create list of color patches for legend
-patches = [mpatches.Patch(color=cmap(i)) for i in range(n_classes)]
-
-# --- create text for each legend
-percentiles = np.round(np.percentile(gc,[0,25,50,75,100])).astype('int')
-legends = ['{} - {}'.format(percentiles[i], percentiles[i+1] - 1) for i in range(len(percentiles)-1)]
-
-# --- map elevation raster
+#  map elevation raster
 gc_classes.plot.imshow(ax=ax, 
                        add_colorbar=False, # will add custom legend
                        cmap=cmap)
 
+# ============= CUSTOMIZE LEGEND ===============
+# -- create list of color patches for legend
+patches = [mpatches.Patch(color=cmap(i)) for i in range(n_classes)]
+
+# --- create text for each legend
+percentiles = np.percentile(gc,[0,25,50,75,100])
+legends = [f'{perc[i]:.0f} - {perc[i+1] - 1:.0f}' for i in range(len((perc))-1)]
+
 # --- update legend
-plt.legend(patches,
+plt.legend(patches, # color patches
            legends, # legends
            loc='center left',  
            bbox_to_anchor=(1, 0.5), 
            title = 'Elevation (m)')
+# ===============================================
 
-# update title
+# update title and axis labels
 ax.set_title('Elevation at the Grand Canyon')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
 plt.show()
 ```
+-->
