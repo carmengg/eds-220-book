@@ -62,6 +62,27 @@ _ = gc.plot.hist(bins=50)
 Notice in the previous line of code we used the underscore `_` to capture the output of the histogram. 
 The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future. 
 
+## Dropping a dimension
+
+Notice that our raster has an unnecessary extra dimension: band. 
+This is in fact making this datsets three-dimensional when it is not needed. 
+We can clean this `xarray.DataArray` a bit by:
+
+1. using the [`squeeze()` method](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.squeeze.html).
+If we don't pass any parameters, then `squeeze()` gets rid of all dimensions with length one.
+
+2. Getting rid of the associated coordinates for this dimension. 
+We can do this using the `xarray.DataArray` `drop()` method and specifying the name of the coordinates we want to remove, in this case 'band'.
+
+Let's do this:
+```{python}
+print(gc.dims, gc.coords)
+gc = gc.squeeze()
+print(gc.dims, gc.coords)
+gc = gc.drop('band')
+print(gc.dims, gc.coords)
+```
+
 ## Geographic context
 
 To have a better sense of where our raster data is, let's plot one map showing the (general) location of the tile in the world and another one showing the bounding box over the Grand Canyon National Park boundary.
@@ -91,57 +112,72 @@ grand_canyon.plot(ax=ax, marker='*', color='red')
 plt.show()
 ```
 
-## Dropping a dimension
+You can check the different types of markers available for points in the [`matplolib` documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html).
 
+TO DO: map of tile relative to Grand Canyon
+
+## Global information
+
+To get a better sense of our raster data we can apply common `numpy` functions to extract information from the `xarray.DataArray` underlying `np.array`.
+
+For example, we can get the maximum across all the `xarray.DataArray`'s values by using the `max()` method:
 ```{python}
-#| tags: []
-print(gc.dims, gc.coords)
-gc = gc.squeeze()
-print(gc.dims, gc.coords)
-gc = gc.drop('band')
-print(gc.dims, gc.coords)
-```
-
-## Global
-
-```{python}
-#| tags: []
-#https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html
+# get the maximum value elevation value
 gc.max()
 ```
 
+Notice that the output for this method 
+
 ```{python}
-#| tags: []
 gc.max().item()
 ```
 
 ```{python}
-#| tags: []
 gc.min().item()
 ```
 
 ```{python}
-#| tags: []
 gc.mean().item()
 ```
 
 ```{python}
-#| tags: []
 gc.median().item()
 ```
 
-## Local 
+## Aggregation
 
 ```{python}
 #| tags: []
+# https://xarray.pydata.org/en/v2023.10.1/generated/xarray.DataArray.coarsen.html
+# spatially downsampling
+# will perform an operation (mean, max, min, etc) 
+#over non-overlapping windows and depending on the window size you
+# set you will get your desired final resolution.
+gc.coarsen(x=20,y=20).max().plot()
+```
+
+```{python}
+#| tags: []
+gc_mean_coarse = gc.coarsen(x=20,y=20).mean()
+gc_mean_coarse.plot()
+```
+
+```{python}
+#| tags: []
+gc_mean_coarse
+```
+
+
+## Local operations
+```{python}
 below_average = gc< gc.mean().item()
 below_average.plot()
 ```
 
 ```{python}
-#| tags: []
 below_average.dtype
 ```
+
 
 ```{python}
 #| tags: []
@@ -166,7 +202,6 @@ percentiles
 ```
 
 ```{python}
-#| tags: []
 gc_classes = xr.apply_ufunc(
     np.digitize,
     gc,
@@ -197,66 +232,4 @@ plt.legend([mpatches.Patch(color=cmap(i)) for i in range(n_classes)],
 
 ax.set_title('Elevation at the Grand Canyon')
 plt.show()
-```
-
-```{python}
-#| tags: []
-# plt.legend([mpatches.Patch(color=cmap(b)) for b in bound[:-1]],
-#            ['{} - {}'.format(per[i], bound_prep[i+1] - 0.01) for i in range(8)])
-```
-
-## Aggregation
-
-```{python}
-#| tags: []
-# https://xarray.pydata.org/en/v2023.10.1/generated/xarray.DataArray.coarsen.html
-# spatially downsampling
-# will perform an operation (mean, max, min, etc) 
-#over non-overlapping windows and depending on the window size you
-# set you will get your desired final resolution.
-gc.coarsen(x=20,y=20).max().plot()
-```
-
-```{python}
-#| tags: []
-gc_mean_coarse = gc.coarsen(x=20,y=20).mean()
-gc_mean_coarse.plot()
-```
-
-```{python}
-#| tags: []
-gc_mean_coarse
-```
-
-```{python}
-#| tags: []
-# max_min = gc.coarsen(x=6,y=6).max() - gc.coarsen(x=6,y=6).min()
-# max_min.plot()
-```
-
-# ===== DRAFTS =======
-
-```{python}
-#| tags: []
-xmin, ymin, xmax, ymax = gc_mean_coarse.rio.bounds()
-n = 1000
-```
-
-```{python}
-#| tags: []
-dx = (xmax-xmin)/n
-new_x = np.arange(xmin,xmax + dx, dx )
-```
-
-```{python}
-#| tags: []
-dy = (ymax-ymin)/n
-new_y = np.arange(ymin,ymax + dy, dy )
-```
-
-```{python}
-#| tags: []
-
-resampled = gc_mean_coarse.interp(x=new_x, y=new_y, method='nearest')
-resampled
 ```
