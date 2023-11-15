@@ -15,7 +15,9 @@ The data was accessed via the [Microsoft’s Planetary Computer Copernicus DEM G
 
 Click here to access the [Copernicus DEM complete product Handbook](https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf).
 
+<!--
 To create a simple map for context we will also use a file with the boundaries of the US National Parks boundaries, provided by the US National Park Service [](https://public-nps.opendata.arcgis.com/datasets/nps::nps-boundary-4/about).
+-->
 
 ## Import data
 Let’s start by loading the libraries we’ll use:
@@ -62,27 +64,7 @@ _ = gc.plot.hist(bins=50)
 Notice in the previous line of code we used the underscore `_` to capture the output of the histogram. 
 The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future. 
 
-## Dropping a dimension
-
-Notice that our raster has an unnecessary extra dimension: band. 
-This is in fact making this datsets three-dimensional when it is not needed. 
-We can clean this `xarray.DataArray` a bit by:
-
-1. using the [`squeeze()` method](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.squeeze.html).
-If we don't pass any parameters, then `squeeze()` gets rid of all dimensions with length one.
-
-2. Getting rid of the associated coordinates for this dimension. 
-We can do this using the `xarray.DataArray` `drop()` method and specifying the name of the coordinates we want to remove, in this case 'band'.
-
-Let's do this:
-```{python}
-print(gc.dims, gc.coords)
-gc = gc.squeeze()
-print(gc.dims, gc.coords)
-gc = gc.drop('band')
-print(gc.dims, gc.coords)
-```
-
+<!--
 ## Geographic context
 
 To have a better sense of where our raster data is, let's plot one map showing the (general) location of the tile in the world and another one showing the bounding box over the Grand Canyon National Park boundary.
@@ -116,6 +98,34 @@ You can check the different types of markers available for points in the [`matpl
 
 TO DO: map of tile relative to Grand Canyon
 
+-->
+
+## Dropping a dimension
+
+Notice that our raster has an unnecessary extra dimension: band.
+
+```{python}
+gc
+```
+
+This is in fact making this datsets three-dimensional when it is not needed. 
+We can clean this `xarray.DataArray` a bit by:
+
+1. using the [`squeeze()` method](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.squeeze.html).
+If we don't pass any parameters, then `squeeze()` gets rid of all dimensions with length one.
+
+2. Getting rid of the associated coordinates for this dimension. 
+We can do this using the `xarray.DataArray` `drop()` method and specifying the name of the coordinates we want to remove, in this case 'band'.
+
+Let's do this:
+```{python}
+print(gc.dims, gc.coords)
+gc = gc.squeeze()
+print(gc.dims, gc.coords)
+gc = gc.drop('band')
+print(gc.dims, gc.coords)
+```
+
 ## Global information
 
 To get a better sense of our raster data we can apply common `numpy` functions to extract information from the `xarray.DataArray` underlying `np.array`.
@@ -141,17 +151,18 @@ https://discuss.codecademy.com/t/what-are-good-reasons-to-use-string-formatting/
 https://stackoverflow.com/questions/57150426/what-is-printf
 -->
 
+## Printing formats
 TO DO: explain more about how these work.
 
 ```{python}
-# print via cncatenation
+# print via concatenation
 print("Minimum elevation ", gc.min().item())
-
-# printing via str.format()
-print("Mean elevation: {}".format(gc.mean().item()))
 
 # pringitnv via f-string formatting
 print(f"Median elevation: {gc.median().item()}")
+
+# printing via str.format()
+print("Mean elevation: {}".format(gc.mean().item()))
 ```
 
 ## Aggregation
@@ -193,13 +204,6 @@ percentiles = np.percentile(gc,[25,50,75])
 percentiles
 ```
 
-For reminder:
-
-```{python}
-for p in percentiles:
-  print(p)
-```
-
 ```{python}
 gc_classes = xr.apply_ufunc(
     np.digitize,
@@ -207,6 +211,40 @@ gc_classes = xr.apply_ufunc(
     np.percentile(gc,[25,50,75])
 )
 gc_classes.plot()
+```
+
+
+## For loops
+
+```{python}
+for p in percentiles:
+  print(p)
+```
+
+```{python}
+for i in range(len(percentiles)):
+  print(i)
+```
+
+```{python}
+n = len(percentiles)
+for i in range(n):
+  print(percentiles[i])
+```
+
+```{python}
+for i in range(len(percentiles)):
+  print(percentiles[i],' - ', percentiles[i+1] - 1)
+```
+
+```{python}
+# print it using f-string
+for i in range(len((percentiles))):
+  print(f'{percentiles[i]} - {percentiles[i+1] - 1}')
+```
+
+```{python}
+[f'{percentiles[i]} - {percentiles[i+1] - 1}' for i in range(len((percentiles)))]
 ```
 
 ```{python}
@@ -225,10 +263,11 @@ gc_classes.plot.imshow(ax=ax,
                        add_colorbar=False, 
                        cmap=cmap)
 
-plt.legend([mpatches.Patch(color=cmap(i)) for i in range(n_classes)],
-           ['{} - {}'.format(percentiles[i], percentiles[i+1] - 1) for i in range(len(percentiles)-1)],
+plt.legend([mpatches.Patch(color=cmap(i)) for i in range(n_classes)], # artists
+           ['{} - {}'.format(percentiles[i], percentiles[i+1] - 1) for i in range(len(percentiles)-1)], # legends
            loc='center left',  
-           bbox_to_anchor=(1, 0.5))
+           bbox_to_anchor=(1, 0.5, 
+           title = 'Elevation (m)'))
 
 ax.set_title('Elevation at the Grand Canyon')
 plt.show()
