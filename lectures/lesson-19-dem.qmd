@@ -126,22 +126,32 @@ For example, we can get the maximum across all the `xarray.DataArray`'s values b
 gc.max()
 ```
 
-Notice that the output for this method 
+Notice that the output for this method is another `xarray.DataArray`. 
+In general, methods that reduce or subset an `xarray.DataArray` will always return another `xarray.DataArray`. 
+To extract the value from 1x2 `xarray.DataArray` as a number we use the [`.item()` method](#https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html):
 
 ```{python}
+# get the maximum elevation value
 gc.max().item()
 ```
 
-```{python}
-gc.min().item()
-```
+<!--
+https://discuss.codecademy.com/t/what-are-good-reasons-to-use-string-formatting/446707
+
+https://stackoverflow.com/questions/57150426/what-is-printf
+-->
+
+TO DO: explain more about how these work.
 
 ```{python}
-gc.mean().item()
-```
+# print via cncatenation
+print("Minimum elevation ", gc.min().item())
 
-```{python}
-gc.median().item()
+# printing via str.format()
+print("Mean elevation: {}".format(gc.mean().item()))
+
+# pringitnv via f-string formatting
+print(f"Median elevation: {gc.median().item()}")
 ```
 
 ## Aggregation
@@ -167,32 +177,14 @@ gc_mean_coarse.plot()
 gc_mean_coarse
 ```
 
-
 ## Local operations
 ```{python}
-below_average = gc< gc.mean().item()
+below_average = gc < gc.median().item()
 below_average.plot()
 ```
 
 ```{python}
 below_average.dtype
-```
-
-
-```{python}
-#| tags: []
-# https://numpy.org/doc/stable/reference/generated/numpy.percentile.html
-# percentiles = np.percentile(gc,[0,25,50,75,100])
-```
-
-```{python}
-#| tags: []
-# gc_classes = xr.apply_ufunc(
-#     np.digitize,
-#     gc,
-#     percentiles
-# )
-# gc_classes.plot()
 ```
 
 ```{python}
@@ -201,12 +193,20 @@ percentiles = np.percentile(gc,[25,50,75])
 percentiles
 ```
 
+For reminder:
+
+```{python}
+for p in percentiles:
+  print(p)
+```
+
 ```{python}
 gc_classes = xr.apply_ufunc(
     np.digitize,
     gc,
     np.percentile(gc,[25,50,75])
 )
+gc_classes.plot()
 ```
 
 ```{python}
