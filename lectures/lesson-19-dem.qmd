@@ -1,0 +1,262 @@
+# Raster manipulation
+
+In this lesson we will learn how to perform some global and local operations on our raster. 
+We will also go over customizations for plotting raster data and review the Python for loop.
+
+## Data
+<!-- https://upload.wikimedia.org/wikipedia/commons/b/bb/Grand_Canyon_National_Park_06.jpg-->
+
+We will use data from the Copernicus Digital Elevation Model (DEM).
+This dataset ris based on radar satellite data measuring the relative height of Earth's surface. 
+The Copernicus DEM is available at 30-meter and 90-meter resolution.
+The data prepared for this class is a tile of 1°x1° latitude/longitude form the Copernicus DEM at 90-meter resolution over the Grand Canyon in the US. 
+Each pixel represents vertical units measured in meters. 
+The data was accessed via the [Microsoft’s Planetary Computer Copernicus DEM GLO-30 data repository](https://planetarycomputer.microsoft.com/dataset/cop-dem-glo-30#overview)
+
+Click here to access the [Copernicus DEM complete product Handbook](https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf).
+
+To create a simple map for context we will also use a file with the boundaries of the US National Parks boundaries, provided by the US National Park Service [](https://public-nps.opendata.arcgis.com/datasets/nps::nps-boundary-4/about).
+
+## Import data
+Let’s start by loading the libraries we’ll use:
+
+```{python}
+import os
+import numpy as np
+
+import xarray as xr
+import rioxarray as rioxr
+import geopandas as gpd
+
+from shapely import Point
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+```
+
+And then loading our dataset:
+```{python}
+# load Grand Canyon DEM data
+data_path = os.path.join(os.getcwd(),'data','grand_canyon_DEM.tif')
+gc = rioxr.open_rasterio(data_path)
+gc
+```
+
+A brief exploration of our dataset:
+```{python}
+# exploratory plot
+gc.plot()
+```
+
+```{python}
+# check the raster's CRS
+gc.rio.crs
+```
+
+```{python}
+# plot histogram of elevation values
+# get bin values output on "disposable" variable _ 
+_ = gc.plot.hist(bins=50)
+```
+
+Notice in the previous line of code we used the underscore `_` to capture the output of the histogram. 
+The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future. 
+
+## Geographic context
+
+To have a better sense of where our raster data is, let's plot one map showing the (general) location of the tile in the world and another one showing the bounding box over the Grand Canyon National Park boundary.
+
+```{python}
+# get the bounds for our raster
+bounds = gc.rio.bounds()
+bounds
+```
+
+### World map + aoi
+To show the location of our area of interest (aoi) in the world we will:
+1. load the Natural Earth low-resolution world dataset available through `geopandas`
+2. construct a `gpd.GeoDataFrame` with a single point in it using the `xmin` and `ymin` form the raster's bounds and the raster's crs.
+3. plot the point on top of the worldmap. 
+
+```{python}
+# load Natural Earth worldmap
+worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
+
+grand_canyon = gpd.GeoDataFrame(geometry = [Point([bounds[0],bounds[1]])], crs=gc.crs)
+
+fig, ax = plt.subplots()
+ax.axis('off')
+worldmap.plot(ax=ax, color = 'lightgray')
+grand_canyon.plot(ax=ax, marker='*', color='red')
+plt.show()
+```
+
+## Dropping a dimension
+
+```{python}
+#| tags: []
+print(gc.dims, gc.coords)
+gc = gc.squeeze()
+print(gc.dims, gc.coords)
+gc = gc.drop('band')
+print(gc.dims, gc.coords)
+```
+
+## Global
+
+```{python}
+#| tags: []
+#https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html
+gc.max()
+```
+
+```{python}
+#| tags: []
+gc.max().item()
+```
+
+```{python}
+#| tags: []
+gc.min().item()
+```
+
+```{python}
+#| tags: []
+gc.mean().item()
+```
+
+```{python}
+#| tags: []
+gc.median().item()
+```
+
+## Local 
+
+```{python}
+#| tags: []
+below_average = gc< gc.mean().item()
+below_average.plot()
+```
+
+```{python}
+#| tags: []
+below_average.dtype
+```
+
+```{python}
+#| tags: []
+# https://numpy.org/doc/stable/reference/generated/numpy.percentile.html
+# percentiles = np.percentile(gc,[0,25,50,75,100])
+```
+
+```{python}
+#| tags: []
+# gc_classes = xr.apply_ufunc(
+#     np.digitize,
+#     gc,
+#     percentiles
+# )
+# gc_classes.plot()
+```
+
+```{python}
+#| tags: []
+percentiles = np.percentile(gc,[25,50,75])
+percentiles
+```
+
+```{python}
+#| tags: []
+gc_classes = xr.apply_ufunc(
+    np.digitize,
+    gc,
+    np.percentile(gc,[25,50,75])
+)
+```
+
+```{python}
+#| tags: []
+# https://matplotlib.org/stable/gallery/color/colormap_reference.html
+# https://matplotlib.org/stable/gallery/color/custom_cmap.html
+# https://stackoverflow.com/questions/37727380/plotting-discrete-colorbar-in-legend-style-using-matplotlib
+
+fig, ax = plt.subplots()
+
+n_classes = len(np.unique(gc_classes))
+cmap = plt.cm.get_cmap('Oranges', n_classes)
+percentiles = np.round(np.percentile(gc,[0,25,50,75,100])).astype('int')
+
+gc_classes.plot.imshow(ax=ax, 
+                       add_colorbar=False, 
+                       cmap=cmap)
+
+plt.legend([mpatches.Patch(color=cmap(i)) for i in range(n_classes)],
+           ['{} - {}'.format(percentiles[i], percentiles[i+1] - 1) for i in range(len(percentiles)-1)],
+           loc='center left',  
+           bbox_to_anchor=(1, 0.5))
+
+ax.set_title('Elevation at the Grand Canyon')
+plt.show()
+```
+
+```{python}
+#| tags: []
+# plt.legend([mpatches.Patch(color=cmap(b)) for b in bound[:-1]],
+#            ['{} - {}'.format(per[i], bound_prep[i+1] - 0.01) for i in range(8)])
+```
+
+## Aggregation
+
+```{python}
+#| tags: []
+# https://xarray.pydata.org/en/v2023.10.1/generated/xarray.DataArray.coarsen.html
+# spatially downsampling
+# will perform an operation (mean, max, min, etc) 
+#over non-overlapping windows and depending on the window size you
+# set you will get your desired final resolution.
+gc.coarsen(x=20,y=20).max().plot()
+```
+
+```{python}
+#| tags: []
+gc_mean_coarse = gc.coarsen(x=20,y=20).mean()
+gc_mean_coarse.plot()
+```
+
+```{python}
+#| tags: []
+gc_mean_coarse
+```
+
+```{python}
+#| tags: []
+# max_min = gc.coarsen(x=6,y=6).max() - gc.coarsen(x=6,y=6).min()
+# max_min.plot()
+```
+
+# ===== DRAFTS =======
+
+```{python}
+#| tags: []
+xmin, ymin, xmax, ymax = gc_mean_coarse.rio.bounds()
+n = 1000
+```
+
+```{python}
+#| tags: []
+dx = (xmax-xmin)/n
+new_x = np.arange(xmin,xmax + dx, dx )
+```
+
+```{python}
+#| tags: []
+dy = (ymax-ymin)/n
+new_y = np.arange(ymin,ymax + dy, dy )
+```
+
+```{python}
+#| tags: []
+
+resampled = gc_mean_coarse.interp(x=new_x, y=new_y, method='nearest')
+resampled
+```
