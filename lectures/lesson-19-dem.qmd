@@ -61,8 +61,11 @@ gc.rio.crs
 _ = gc.plot.hist(bins=50)
 ```
 
+::: {.callout-tip}
+# `_`
 Notice in the previous line of code we used the underscore `_` to capture the output of the histogram. 
-The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future. 
+The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future.
+::: 
 
 <!--
 ## Geographic context
@@ -108,13 +111,13 @@ Notice that our raster has an unnecessary extra dimension: band.
 gc
 ```
 
-This is in fact making this datsets three-dimensional when it is not needed. 
+This is making this datsets three-dimensional when it is not needed. 
 We can clean this `xarray.DataArray` a bit by:
 
 1. using the [`squeeze()` method](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.squeeze.html).
-If we don't pass any parameters, then `squeeze()` gets rid of all dimensions with length one.
+If we don't pass any parameters, then `squeeze()` gets rid of all dimensions with length one, and then
 
-2. Getting rid of the associated coordinates for this dimension. 
+2. getting rid of the associated coordinates for this dimension. 
 We can do this using the `xarray.DataArray` `drop()` method and specifying the name of the coordinates we want to remove, in this case 'band'.
 
 Let's do this:
@@ -138,7 +141,7 @@ gc.max()
 
 Notice that the output for this method is another `xarray.DataArray`. 
 In general, methods that reduce or subset an `xarray.DataArray` will always return another `xarray.DataArray`. 
-To extract the value from 1x2 `xarray.DataArray` as a number we use the [`.item()` method](#https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html):
+To extract the value from a 1x1 `xarray.DataArray` as a number we use the [`.item()` method](#https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html):
 
 ```{python}
 # get the maximum elevation value
@@ -151,21 +154,51 @@ https://discuss.codecademy.com/t/what-are-good-reasons-to-use-string-formatting/
 https://stackoverflow.com/questions/57150426/what-is-printf
 -->
 
-## Printing formats
-TO DO: explain more about how these work.
+## f-strings
+
+So far we have printed variables using string concatenation inside the `print()` function. 
+This means that we write commas between every string and variable we want to print, and then the print function concatenates these into a single string. For example:
 
 ```{python}
+# minimum elevation
 # print via concatenation
-print("Minimum elevation ", gc.min().item())
-
-# pringitnv via f-string formatting
-print(f"Median elevation: {gc.median().item()}")
-
-# printing via str.format()
-print("Mean elevation: {}".format(gc.mean().item()))
+print("Minimum elevation: ", gc.min().item())
 ```
 
+Another popular way of mixing strings and variables in print statements is using an **f-string** which stands for "formatted string". 
+The simplest syntax for an f-string is:
+```python
+f" some text {replace}"
+```
+where `replace` can be a variable, an expression, or a function or method call. 
+For example:
+
+```{python}
+# f-string with mean elevation
+f"Mean elevation: {gc.mean().item()}"
+```
+
+We just created a string replacing the value inside the curly brackets `{}`. 
+Notice the computation is occurring in real time as the string gets made and there's no need to define any extra variables.
+
+One of the advantages of using f-strings is that they offer customization for formatting the output, without the need to use extra functions. 
+For example, if we want to print the median value of our raster rounded to two decimals we can do:
+
+```{python}
+# median elevation, rounded to two decimals
+# print via f-string formatting
+print(f"Median elevation: {gc.median().item():.2f}")
+```
+
+Some extra resources about using f-string formatting:
+- [Real Python - Python's F-String for String Interpolation and Formatting](https://realpython.com/python-f-strings/)
+- [Python documentation- Format Specification Mini-Language](https://docs.python.org/3/library/string.html#formatspec)
+
+
 ## Aggregation
+
+Let's go back to our raster. 
+Rasters with high spatial resolution can 
 
 ```{python}
 #| tags: []
