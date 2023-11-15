@@ -222,14 +222,14 @@ for p in percentiles:
 ```
 
 ```{python}
-for i in range(len(percentiles)):
+n = len(percentiles)
+for i in range(n):
   print(i)
 ```
 
 ```{python}
-n = len(percentiles)
 for i in range(n):
-  print(percentiles[i])
+  print(f"index:{i}, value:{percentiles[i]}")
 ```
 
 ```{python}
