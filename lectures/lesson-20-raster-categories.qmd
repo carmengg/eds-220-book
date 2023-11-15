@@ -46,6 +46,7 @@ import geopandas as gpd
 import xarray as xr
 import rioxarray as rioxr
 
+
 from shapely import Point
 import matplotlib.pyplot as plt
 ```
@@ -56,9 +57,8 @@ import matplotlib.pyplot as plt
 2. Plot the raster, check the CRS, and create a histogram with updated bin numbers.
 :::
 
-::: {.callout-tip collapse="true"}
-# Solution
-Loading our dataset:
+<!--
+And then loading our dataset:
 ```{python}
 # load Grand Canyon DEM data
 data_path = os.path.join(os.getcwd(),'data','grand_canyon_DEM.tif')
@@ -72,13 +72,11 @@ A brief exploration of our dataset:
 gc.plot()
 ```
 
-Getting the coordinate reference system (CRS):
 ```{python}
 # check the raster's CRS
 gc.rio.crs
 ```
 
-Check distribution of elevation values:
 ```{python}
 # plot histogram of elevation values
 # get bin values output on "disposable" variable _ 
@@ -90,9 +88,7 @@ _ = gc.plot.hist(bins=50)
 Notice in the previous line of code we used the underscore `_` to capture the output of the histogram. 
 The underscore `_` is often used in Python to name a "disposable" variable we will not use in the future.
 ::: 
-:::
-
-
+-->
 
 <!--
 ## Geographic context
@@ -254,8 +250,8 @@ The aggregator function on each of this window will be `max()`.
 Our call looks like this:
 
 ```{python}
-# coarsen to a 60x60 raster calculating the maximum value in each window
-gc_coarse = gc.coarsen(x=20,y=20).max()
+# coarsen to a 60x60 raster calculating the mean in each window
+gc_coarse = gc.coarsen(x=20,y=20).mean()
 gc_coarse
 ```
 
@@ -266,32 +262,109 @@ print(f"coarse resolution: {gc_coarse.rio.width}x{gc_coarse.rio.height}")
 gc_coarse.plot()
 ```
 
+<!--
+## Categorization
+
+Let's go back to our original raster. 
+Local operations on rasters refer to operations that are performed cell-by-cell. 
+Our NDVI calculation in the previous lesson is such an example. 
+Another popular local operation is to reclassify each cell in the raster as part of group or category. 
+
+**Example**
+
+Let's say we want to divide our assign each pixel to which percentile it is in.
+
+```{python}
+np.percentile(gc, [25,50,75])
+```
+
+```{python}
+gc_classes = xr.apply_ufunc(
+    np.digitize,
+    gc,
+    np.percentile(gc,[25,50,75])
+)
+gc_classes.plot()
+```
+
+
+## For loops and list comprehension
+
+```{python}
+perc = np.percentile(gc,[0,25,50,75,100])
+perc
+```
+
+```{python}
+for p in perc:
+  print(p)
+```
+
+```{python}
+n = len(perc)
+print(f'number of elements in perc: {n} \n')
+for i in range(n):
+  print(f"index {i}, value: {perc[i]}")
+```
+
+```{python}
+# create an f-string and print it for each index
+for i in range(n-1):
+  print(f"{perc[i]:0f} - {perc[i+1] - 1:0f}")
+```
+
+```{python}
+# list comprehension
+[f'{perc[i]:0f} - {perc[i+1] - 1:0f}' for i in range(len(perc)-1)]
+```
+
+## Graph customization
+
+```{python}
+# https://matplotlib.org/stable/gallery/color/colormap_reference.html
+# https://matplotlib.org/stable/gallery/color/custom_cmap.html
+# https://stackoverflow.com/questions/37727380/plotting-discrete-colorbar-in-legend-style-using-matplotlib
+
+fig, ax = plt.subplots()
+
+# ============= CUSTOMIZE COLORS ===============
+n_classes = len(np.unique(gc_classes))
+cmap = plt.cm.get_cmap('Oranges', n_classes)
+# ==============================================
+
+#  map elevation raster
+gc_classes.plot.imshow(ax=ax, 
+                       add_colorbar=False, # will add custom legend
+                       cmap=cmap)
+
+# ============= CUSTOMIZE LEGEND ===============
+# -- create list of color patches for legend
+patches = [mpatches.Patch(color=cmap(i)) for i in range(n_classes)]
+
+# --- create text for each legend
+percentiles = np.percentile(gc,[0,25,50,75,100])
+legends = [f'{perc[i]:.0f} - {perc[i+1] - 1:.0f}' for i in range(len((perc))-1)]
+
+# --- update legend
+plt.legend(patches, # color patches
+           legends, # legends
+           loc='center left',  
+           bbox_to_anchor=(1, 0.5), 
+           title = 'Elevation (m)')
+# ===============================================
+
+# update title and axis labels
+ax.set_title('Elevation at the Grand Canyon')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+plt.show()
+```
+-->
+
 ::: {.callout-tip}
 # Exercise
 Downsample the elevation raster into a 240x240 raster by taking the average over windows of the appropriate size. 
 
-Use an f-string to check whether the spatial bounds of the rasters have changed.
-:::
-
-::: {.callout-tip collapse="true"}
-# Solution
-
-Decrese resolution:
-```{python}
-# coarsen to a 240x240 raster calculating the mean in each window
-gc_coarse_mean = gc.coarsen(x=5,y=5).mean()
-gc_coarse_mean
-```
-
-```{python}
-gc_coarse_mean.plot()
-```
-
-Check spatial bounds:
-
-```{python}
-print(f"old spatial bounds: {gc.rio.bounds()}")
-print(f"coarse resolution: {gc_coarse_mean.rio.bounds}")
-gc_coarse_mean.plot()
-```
+Use an f-string to check whether the bounds of the rasters have changed.
 :::
