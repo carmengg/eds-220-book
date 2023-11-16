@@ -25,9 +25,10 @@ For this task we are going to use two datasets.
 **First dataset**
 
 A small section of the GAP/LANDFIRE National Terrestrial Ecosystems data for 2011, from the [US Geological Survey (USGS)](https://earthquake.usgs.gov/earthquakes/search/). 
-This is a raster file with a 30 m x 30 m cell resolution. Each cell in the raster has a number representing the type of land cover at the place.
+This is a raster file with a 30 m x 30 m pixel resolution. 
+Each cell in the raster has a number representing the type of land cover.
 
-The data was pre-processed in the Microsof Planetary Computer to show a small region around Mount Whitney in California.
+The data was pre-processed in the Microsoft Planetary Computer to show a small region around Mount Whitney in California.
 
 Further information about the dataset can be accessed via the the dataset's Digital Object Identifier (DOI) link:
 
@@ -38,6 +39,7 @@ Further information about the dataset can be accessed via the the dataset's Digi
 The second dataset is a csv file with the name of the land cover associated with each code.  
 
 **Data access**
+
 Download the data from Canvas - week 7. 
 The zip file you download includes a .tif file and a .csv file. 
 :::
@@ -55,21 +57,21 @@ Discuss with your team (at least) three methods to explore your raster and imple
 
 ## Raster reduction
 
-How many dimensions does `lulc` cover have? If needed, write a one-liner to get rid of unnecessary dimensions. 
+How many dimensions does `lulc` cover have? If needed, get rid of unnecessary dimensions and verify your result.  
 
 ## Percentage of area covered per class
 
 ### Pixels per class
-Use the `numpy` function `np.uique()` to get the number of pixels per class in `lulc`. 
+Use the `numpy` function `np.unique()` to get the number of pixels per class in `lulc`. 
 HINT: check [the `np.unique()` documentation](https://numpy.org/doc/stable/reference/generated/numpy.unique.html) to see what the `return_counts` parameter does and read the last example. 
 
 ### Organize data
 Create a data frame `pix_counts` with two columns: column one must be the code numbers for the pixels in `lulc` and column two must be the number of pixels corresponding to each code. 
-HINT: [check our class notes](https://carmengg.github.io/eds-220-book/lectures/lesson-2-series-dataframes.html#data-frames)
+HINT: [check our class notes.](https://carmengg.github.io/eds-220-book/lectures/lesson-2-series-dataframes.html#data-frames)
 
 ### Add class names
 
-Use the `class_names` data frame to add the class name to the codes in the `pix_counts` data frame. 
+Use the `class_names` data frame to add the class names to the codes in the `pix_counts` data frame. 
 Store the resulting data frame as `classes`. 
 
 ### Percentage covered
@@ -77,9 +79,10 @@ Store the resulting data frame as `classes`.
 
 2. Add the percentage of area covered by each class as a new column `percentage` to the `classes` data frame. 
 Round the percentage to 8 decimal points. 
-HINT: [check our class notes](https://carmengg.github.io/eds-220-book/lectures/lesson-5-updating-dataframes.html)
+HINT: [check our class notes.](https://carmengg.github.io/eds-220-book/lectures/lesson-5-updating-dataframes.html)
 
-3. Discuss with your team how would you check that the dataframe you 
+3. Discuss with your team how would you check that the total number of pixels in the `lulc` raster is actually distributed across the `classes` dataframe. i.e. How would you check that you did not lose any pixel when counting the unique pixels per class or adding the class names?
+Make one such check. 
 
 ## Plot 
 

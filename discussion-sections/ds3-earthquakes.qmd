@@ -50,7 +50,7 @@ Further information about the dataset can be accessed in the [ANSS Comprehensive
 
 **Second dataset**
 
-The first dataset is Natural Earth's low resolution cultural boundaries data. 
+Natural Earth's low resolution cultural boundaries data. 
 These low-resolution polygons are available directly through `geopandas` and are useful to make maps of the whole world, although might not be suitable for mapping individual nations or finer geospatial analysis.
 :::
 

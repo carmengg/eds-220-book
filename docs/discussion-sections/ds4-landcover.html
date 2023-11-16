@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - Appendix A — Setting a PAT</title>
+<title>EDS 220 - Working with Environmental Datasets - 21&nbsp; *Lab: land cover statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -93,8 +30,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendices/gitignore_untrack.html" rel="next">
-<link href="../lectures/lesson-18-STAC.html" rel="prev">
+<link href="../lectures/lesson-18-STAC.html" rel="next">
+<link href="../lectures/lesson-19-dem.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -133,7 +70,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Appendix A — Setting a PAT</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -301,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></a>
+  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -345,8 +282,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context"><span class="toc-section-number">A.1</span>  Context</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions"><span class="toc-section-number">A.2</span>  Instructions</a></li>
+  <li><a href="#land-cover-statistics" id="toc-land-cover-statistics" class="nav-link active" data-scroll-target="#land-cover-statistics"><span class="toc-section-number">21.1</span>  Land cover statistics</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="toc-section-number">21.2</span>  Import data</a></li>
+  <li><a href="#raster-exploration" id="toc-raster-exploration" class="nav-link" data-scroll-target="#raster-exploration"><span class="toc-section-number">21.3</span>  Raster exploration</a></li>
+  <li><a href="#raster-reduction" id="toc-raster-reduction" class="nav-link" data-scroll-target="#raster-reduction"><span class="toc-section-number">21.4</span>  Raster reduction</a></li>
+  <li><a href="#percentage-of-area-covered-per-class" id="toc-percentage-of-area-covered-per-class" class="nav-link" data-scroll-target="#percentage-of-area-covered-per-class"><span class="toc-section-number">21.5</span>  Percentage of area covered per class</a>
+  <ul class="collapse">
+  <li><a href="#pixels-per-class" id="toc-pixels-per-class" class="nav-link" data-scroll-target="#pixels-per-class"><span class="toc-section-number">21.5.1</span>  Pixels per class</a></li>
+  <li><a href="#organize-data" id="toc-organize-data" class="nav-link" data-scroll-target="#organize-data"><span class="toc-section-number">21.5.2</span>  Organize data</a></li>
+  <li><a href="#add-class-names" id="toc-add-class-names" class="nav-link" data-scroll-target="#add-class-names"><span class="toc-section-number">21.5.3</span>  Add class names</a></li>
+  <li><a href="#percentage-covered" id="toc-percentage-covered" class="nav-link" data-scroll-target="#percentage-covered"><span class="toc-section-number">21.5.4</span>  Percentage covered</a></li>
+  </ul></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="toc-section-number">21.6</span>  Plot</a></li>
   </ul>
 </nav>
     </div>
@@ -355,7 +302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Appendix A — Setting a PAT</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></h1>
 </div>
 
 
@@ -370,56 +317,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>This section contains instructions for creating a Personal Access Token (PAT) directly on GitHub and the terminal. If you prefer setting the PAT through RStudio, please refer to the <a href="https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat">MEDS Installation guide</a>.</p>
-<section id="context" class="level2" data-number="A.1">
-<h2 data-number="A.1" class="anchored" data-anchor-id="context"><span class="header-section-number">A.1</span> Context</h2>
-<p>The context for these instructions is the following: in the terminal, you try to push new changes to your upstream repository and it asks for your Git credentials. Cancel that command by pressing <code>Ctrl + C</code> and start in a new line of the terminal.</p>
-</section>
-<section id="instructions" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="instructions"><span class="header-section-number">A.2</span> Instructions</h2>
-<ol type="1">
-<li>To store the PAT once it’s created, first run this command on the terminal:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper <span class="st">'cache --timeout=10000000'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The goal of this lab is to extract statistics about land cover from a raster.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<ol start="2" type="1">
-<li>In <a href="https://github.com">GitHub</a> navigate to:</li>
+<div class="callout-caption-container flex-fill">
+Notebook Setup
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>In the Tsosie server, start a new JupyterLab session or access an active one.</p></li>
+<li><p>Create a new notebook in your <code>eds-220-sections</code> directory. Update the name to ‘landcover-stats.ipynb’.</p></li>
+<li><p>Use the terminal to stage, commit, and push this file to the remote repository.</p></li>
 </ol>
-<ul>
-<li>settings</li>
-<li>developer settings (last option on the left)</li>
-<li>tokens (classic)</li>
-<li>generate new token button (near right corner)</li>
-<li>Click on: Generate new token (classic)</li>
-</ul>
-<ol start="3" type="1">
-<li>Select the following options:</li>
-</ol>
-<ul>
-<li>☑️ Repo (clicking this will select all boxes in the section, that’s ok)</li>
-<li>☑️ workflow</li>
-<li>☑️ gist</li>
-<li>☑️ user (clicking this will select all boxes in the section, that’s ok)</li>
-</ul>
-<ol start="4" type="1">
-<li><p>Click generate token.</p></li>
-<li><p>Copy and paste the PAT somewhere for now!</p></li>
-<li><p>Back at the terminal try to push your changes again using <code>git push</code>. When prompted, enter your GitHub username and the new PAT as the password.</p></li>
-</ol>
+</div>
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Note
+General directions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In steps 1-5 we generated a PAT manually. This is the same process as using <code>usethis::create_github_token</code> from an R console as explained in the <a href="https://ucsb-meds.github.io/meds-install-mac.html#store-your-github-personal-access-token-pat">MEDS installation guide</a>. The options we selected in step 2 are the same options for the PAT given by <code>usethis::create_github_token</code>.</p>
+<ul>
+<li>Add comments in each one of your code cells</li>
+<li>Include markdown cells in between your code cells to add titles/information to each exercise</li>
+</ul>
 </div>
 </div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+About the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this task we are going to use two datasets.</p>
+<p><strong>First dataset</strong></p>
+<p>A small section of the GAP/LANDFIRE National Terrestrial Ecosystems data for 2011, from the <a href="https://earthquake.usgs.gov/earthquakes/search/">US Geological Survey (USGS)</a>. This is a raster file with a 30 m x 30 m pixel resolution. Each cell in the raster has a number representing the type of land cover.</p>
+<p>The data was pre-processed in the Microsoft Planetary Computer to show a small region around Mount Whitney in California.</p>
+<p>Further information about the dataset can be accessed via the the dataset’s Digital Object Identifier (DOI) link:</p>
+<blockquote class="blockquote">
+<p>U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2016, GAP/LANDFIRE National Terrestrial Ecosystems 2011: U.S. Geological Survey data release, <a href="https://doi.org/10.5066/F7ZS2TM0">https://doi.org/10.5066/F7ZS2TM0</a>.</p>
+</blockquote>
+<p><strong>Second dataset</strong></p>
+<p>The second dataset is a csv file with the name of the land cover associated with each code.</p>
+<p><strong>Data access</strong></p>
+<p>Download the data from Canvas - week 7. The zip file you download includes a .tif file and a .csv file.</p>
+</div>
+</div>
+<section id="land-cover-statistics" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="land-cover-statistics"><span class="header-section-number">21.1</span> Land cover statistics</h2>
+</section>
+<section id="import-data" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">21.2</span> Import data</h2>
+<ol type="1">
+<li><p>Import the raster file and store it in a variable <code>lulc</code>. LULC stands for land use/land cover.</p></li>
+<li><p>Import the tabular data and store it in a variable <code>class_names</code>.</p></li>
+</ol>
+</section>
+<section id="raster-exploration" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="raster-exploration"><span class="header-section-number">21.3</span> Raster exploration</h2>
+<p>Discuss with your team (at least) three methods to explore your raster and implement them.</p>
+</section>
+<section id="raster-reduction" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="raster-reduction"><span class="header-section-number">21.4</span> Raster reduction</h2>
+<p>How many dimensions does <code>lulc</code> cover have? If needed, get rid of unnecessary dimensions and verify your result.</p>
+</section>
+<section id="percentage-of-area-covered-per-class" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="percentage-of-area-covered-per-class"><span class="header-section-number">21.5</span> Percentage of area covered per class</h2>
+<section id="pixels-per-class" class="level3" data-number="21.5.1">
+<h3 data-number="21.5.1" class="anchored" data-anchor-id="pixels-per-class"><span class="header-section-number">21.5.1</span> Pixels per class</h3>
+<p>Use the <code>numpy</code> function <code>np.unique()</code> to get the number of pixels per class in <code>lulc</code>. HINT: check <a href="https://numpy.org/doc/stable/reference/generated/numpy.unique.html">the <code>np.unique()</code> documentation</a> to see what the <code>return_counts</code> parameter does and read the last example.</p>
+</section>
+<section id="organize-data" class="level3" data-number="21.5.2">
+<h3 data-number="21.5.2" class="anchored" data-anchor-id="organize-data"><span class="header-section-number">21.5.2</span> Organize data</h3>
+<p>Create a data frame <code>pix_counts</code> with two columns: column one must be the code numbers for the pixels in <code>lulc</code> and column two must be the number of pixels corresponding to each code. HINT: <a href="https://carmengg.github.io/eds-220-book/lectures/lesson-2-series-dataframes.html#data-frames">check our class notes.</a></p>
+</section>
+<section id="add-class-names" class="level3" data-number="21.5.3">
+<h3 data-number="21.5.3" class="anchored" data-anchor-id="add-class-names"><span class="header-section-number">21.5.3</span> Add class names</h3>
+<p>Use the <code>class_names</code> data frame to add the class names to the codes in the <code>pix_counts</code> data frame. Store the resulting data frame as <code>classes</code>.</p>
+</section>
+<section id="percentage-covered" class="level3" data-number="21.5.4">
+<h3 data-number="21.5.4" class="anchored" data-anchor-id="percentage-covered"><span class="header-section-number">21.5.4</span> Percentage covered</h3>
+<ol type="1">
+<li><p>Store the total number of pixels in <code>lulc</code> as a variable <code>total_pixels</code> <em>without hard-coding any numbers</em>. This means, calculate <code>total_pixels</code> from attributes of <code>lulc</code>.</p></li>
+<li><p>Add the percentage of area covered by each class as a new column <code>percentage</code> to the <code>classes</code> data frame. Round the percentage to 8 decimal points. HINT: <a href="https://carmengg.github.io/eds-220-book/lectures/lesson-5-updating-dataframes.html">check our class notes.</a></p></li>
+<li><p>Discuss with your team how would you check that the total number of pixels in the <code>lulc</code> raster is actually distributed across the <code>classes</code> dataframe. i.e.&nbsp;How would you check that you did not lose any pixel when counting the unique pixels per class or adding the class names? Make one such check.</p></li>
+</ol>
+</section>
+</section>
+<section id="plot" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="plot"><span class="header-section-number">21.6</span> Plot</h2>
+<ol type="1">
+<li><p>Create a horizontal bar plot showing the classes with more than 1% land cover in decreasing order (longest bar should be at the top). The names of the classes should be the tick labels of the vertical axis.</p></li>
+<li><p>✨🐍✨ Try redoing your plot as a one-liner, without creating any intermediate variables.</p></li>
+</ol>
 
 
 </section>
@@ -560,13 +562,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-18-STAC.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span>
+      <a href="../lectures/lesson-19-dem.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendices/gitignore_untrack.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-18-STAC.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

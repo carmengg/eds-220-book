@@ -130,7 +130,7 @@ TO DO: map of tile relative to Grand Canyon
 
 -->
 
-## Dropping a dimension
+## Dropping a dimension: `squeeze()` and `drop()`
 
 Notice that our raster has an unnecessary extra dimension: band.
 
@@ -227,7 +227,7 @@ Some extra resources about using f-string formatting:
 - [Python documentation- Format Specification Mini-Language](https://docs.python.org/3/library/string.html#formatspec)
 
 
-## Aggregation
+## Aggregation: `coarsen()`
 
 Let's go back to our raster. 
 Rasters with high spatial resolution can offer great insight into fine-scale patterns, but can also be challenging to process due to their size. 
