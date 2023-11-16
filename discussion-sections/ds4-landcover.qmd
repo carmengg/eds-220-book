@@ -44,4 +44,21 @@ The zip file you download includes a .tif file and a .csv file.
 
 ## Land cover statistics
 
+## Import data
+1. Import the raster file and store it in a variable `lulc`. LULC stands for land use/land cover.  
+
+2. Import the tabular data and store it in a variable `class_names`.
+
+## Raster exploration 
+
+Discuss with your team (at least) three methods to explore your raster and implement them. 
+
+## Raster reduction
+
+How many dimensions does `lulc` cover have? If needed, write a one-liner to get rid of unnecessary dimensions. 
+
+## Number of pixels per class
+
+
+
 
