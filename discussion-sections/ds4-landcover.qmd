@@ -57,17 +57,33 @@ Discuss with your team (at least) three methods to explore your raster and imple
 
 How many dimensions does `lulc` cover have? If needed, write a one-liner to get rid of unnecessary dimensions. 
 
-## Number of pixels per class
+## Percentage of area covered per class
 
-### `np.unique()`
+### Pixels per class
 Use the `numpy` function `np.uique()` to get the number of pixels per class in `lulc`. 
 HINT: check [the `np.unique()` documentation](https://numpy.org/doc/stable/reference/generated/numpy.unique.html) to see what the `return_counts` parameter does and read the last example. 
 
 ### Organize data
-Create a data frame with two columns: column one must be the code numbers for the pixels in `lulc` and column two must be the number of pixels corresponding to each code. 
+Create a data frame `pix_counts` with two columns: column one must be the code numbers for the pixels in `lulc` and column two must be the number of pixels corresponding to each code. 
 HINT: [check our class notes](https://carmengg.github.io/eds-220-book/lectures/lesson-2-series-dataframes.html#data-frames)
 
-## Add the 
+### Add class names
 
+Use the `class_names` data frame to add the class name to the codes in the `pix_counts` data frame. 
+Store the resulting data frame as `classes`. 
 
+### Percentage covered
+1. Store the total number of pixels in `lulc` as a variable `total_pixels` *without hard-coding any numbers*. This means, calculate `total_pixels` from attributes of `lulc`.
 
+2. Add the percentage of area covered by each class as a new column `percentage` to the `classes` data frame. 
+Round the percentage to 8 decimal points. 
+HINT: [check our class notes](https://carmengg.github.io/eds-220-book/lectures/lesson-5-updating-dataframes.html)
+
+3. Discuss with your team how would you check that the dataframe you 
+
+## Plot 
+
+1. Create a horizontal bar plot showing the classes with more than 1% land cover in decreasing order (longest bar should be at the top). 
+The names of the classes should be the tick labels of the vertical axis. 
+
+2. ✨🐍✨ Try redoing your plot as a one-liner, without creating any intermediate variables. 
