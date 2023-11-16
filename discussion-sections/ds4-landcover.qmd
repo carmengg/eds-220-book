@@ -59,6 +59,15 @@ How many dimensions does `lulc` cover have? If needed, write a one-liner to get 
 
 ## Number of pixels per class
 
+### `np.unique()`
+Use the `numpy` function `np.uique()` to get the number of pixels per class in `lulc`. 
+HINT: check [the `np.unique()` documentation](https://numpy.org/doc/stable/reference/generated/numpy.unique.html) to see what the `return_counts` parameter does and read the last example. 
+
+### Organize data
+Create a data frame with two columns: column one must be the code numbers for the pixels in `lulc` and column two must be the number of pixels corresponding to each code. 
+HINT: [check our class notes](https://carmengg.github.io/eds-220-book/lectures/lesson-2-series-dataframes.html#data-frames)
+
+## Add the 
 
 
 
