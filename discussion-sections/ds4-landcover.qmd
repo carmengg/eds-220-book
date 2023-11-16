@@ -1,0 +1,47 @@
+# *Lab: land cover statistics
+
+The goal of this lab is to extract statistics about land cover from a raster.
+
+:::{.callout-tip}
+## Notebook Setup
+1. In the Tsosie server, start a new JupyterLab session or access an active one.
+
+2. Create a new notebook in your `eds-220-sections` directory. Update the name to 'landcover-stats.ipynb'.
+
+3. Use the terminal to stage, commit, and push this file to the remote repository. 
+:::
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+:::
+
+:::{.callout-note}
+## About the data
+
+For this task we are going to use two datasets. 
+
+**First dataset**
+
+A small section of the GAP/LANDFIRE National Terrestrial Ecosystems data for 2011, from the [US Geological Survey (USGS)](https://earthquake.usgs.gov/earthquakes/search/). 
+This is a raster file with a 30 m x 30 m cell resolution. Each cell in the raster has a number representing the type of land cover at the place.
+
+The data was pre-processed in the Microsof Planetary Computer to show a small region around Mount Whitney in California.
+
+Further information about the dataset can be accessed via the the dataset's Digital Object Identifier (DOI) link:
+
+> U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2016, GAP/LANDFIRE National Terrestrial Ecosystems 2011: U.S. Geological Survey data release, [https://doi.org/10.5066/F7ZS2TM0](https://doi.org/10.5066/F7ZS2TM0).
+
+**Second dataset**
+
+The second dataset is a csv file with the name of the land cover associated with each code.  
+
+**Data access**
+Download the data from Canvas - week 7. 
+The zip file you download includes a .tif file and a .csv file. 
+:::
+
+## Land cover statistics
+
+
