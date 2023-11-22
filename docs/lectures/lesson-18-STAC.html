@@ -559,7 +559,7 @@ https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-col
 </div>
 <p>Notice this raster has four bands. So we cannot use the <code>.plot.imshow()</code> method directly (as this function only works when we have three bands). Thus we need select the bands we want to plot (RGB) before plotting:</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot raster with correct ration</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot raster with correct ratio</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">6</span> <span class="co"># height in in of plot height</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>aspect <span class="op">=</span> sb.rio.width <span class="op">/</span> sb.rio.height </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select R,G,B bands and plot</span></span>
@@ -568,9 +568,19 @@ https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-col
 </section>
 <section id="exercise" class="level2" data-number="22.8">
 <h2 data-number="22.8" class="anchored" data-anchor-id="exercise"><span class="header-section-number">22.8</span> Exercise</h2>
-<p>Recreate the following image, where the red rectangle shows the bounding box used to do the catalog search. HINT: <code>bbox</code> as it is now is a dictionary. How can you get the vertices list out of it to first create a <code>shapely</code> <code>Polygon</code>?</p>
-<p><img src="../images/sb-and-aoi-mpc.png" class="img-fluid"></p>
+<p>The ‘cop-dem-glo-90’ collection contains the Copernicus DEM at 90m resolution (the data we previously used for the Grand Canyon).</p>
+<ol type="1">
+<li>Reuse the <code>bbox</code> for Santa Barbara to look for items in this collection.</li>
+<li>Get the first item in the search and check its assets.</li>
+<li>Check the item’s rendered preview asset by clicking on it’s URL.</li>
+<li>Open the item’s data using rioxarray.</li>
+</ol>
 <!--
+## Exercise
+Recreate the following image, where the red rectangle shows the bounding box used to do the catalog search. 
+HINT: `bbox` as it is now is a dictionary. How can you get the vertices list out of it to first create a `shapely` `Polygon`?
+
+![](/images/sb-and-aoi-mpc.png)
 
 ::: {.cell execution_count=17}
 ``` {.python .cell-code}

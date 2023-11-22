@@ -956,14 +956,14 @@
     "href": "lectures/lesson-18-STAC.html#load-data",
     "title": "22  STAC specification",
     "section": "22.7 Load data",
-    "text": "22.7 Load data\nThe raster data in our current item is in the image asset. Again, we access this data via its URL. This time, we open it using rioxr.open_rasterio() directly:\n\nsb = rioxr.open_rasterio(item.assets['image'].href)\nsb\n\nNotice this raster has four bands. So we cannot use the .plot.imshow() method directly (as this function only works when we have three bands). Thus we need select the bands we want to plot (RGB) before plotting:\n\n# plot raster with correct ration\nsize = 6 # height in in of plot height\naspect = sb.rio.width / sb.rio.height \n# select R,G,B bands and plot\nsb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)"
+    "text": "22.7 Load data\nThe raster data in our current item is in the image asset. Again, we access this data via its URL. This time, we open it using rioxr.open_rasterio() directly:\n\nsb = rioxr.open_rasterio(item.assets['image'].href)\nsb\n\nNotice this raster has four bands. So we cannot use the .plot.imshow() method directly (as this function only works when we have three bands). Thus we need select the bands we want to plot (RGB) before plotting:\n\n# plot raster with correct ratio\nsize = 6 # height in in of plot height\naspect = sb.rio.width / sb.rio.height \n# select R,G,B bands and plot\nsb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)"
   },
   {
     "objectID": "lectures/lesson-18-STAC.html#exercise",
     "href": "lectures/lesson-18-STAC.html#exercise",
     "title": "22  STAC specification",
     "section": "22.8 Exercise",
-    "text": "22.8 Exercise\nRecreate the following image, where the red rectangle shows the bounding box used to do the catalog search. HINT: bbox as it is now is a dictionary. How can you get the vertices list out of it to first create a shapely Polygon?"
+    "text": "22.8 Exercise\nThe ‘cop-dem-glo-90’ collection contains the Copernicus DEM at 90m resolution (the data we previously used for the Grand Canyon).\n\nReuse the bbox for Santa Barbara to look for items in this collection.\nGet the first item in the search and check its assets.\nCheck the item’s rendered preview asset by clicking on it’s URL.\nOpen the item’s data using rioxarray."
   },
   {
     "objectID": "lectures/lesson-18-STAC.html#references",
