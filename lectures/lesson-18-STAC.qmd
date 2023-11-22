@@ -226,7 +226,7 @@ So we cannot use the `.plot.imshow()` method directly (as this function only wor
 Thus we need select the bands we want to plot (RGB) before plotting:
 
 ```{python}
-# plot raster with correct ration
+# plot raster with correct ratio
 size = 6 # height in in of plot height
 aspect = sb.rio.width / sb.rio.height 
 # select R,G,B bands and plot
@@ -234,12 +234,22 @@ sb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)
 ```
 
 ## Exercise
+
+The 'cop-dem-glo-90' collection contains the Copernicus DEM at 90m resolution (the data we previously used for the Grand Canyon). 
+
+1) Reuse the `bbox` for Santa Barbara to look for items in this collection. 
+2) Get the first item in the search and check its assets.
+3) Check the item's rendered preview asset by clicking on it's URL.
+4) Open the item's data using rioxarray.
+
+<!--
+## Exercise
 Recreate the following image, where the red rectangle shows the bounding box used to do the catalog search. 
 HINT: `bbox` as it is now is a dictionary. How can you get the vertices list out of it to first create a `shapely` `Polygon`?
 
 ![](/images/sb-and-aoi-mpc.png)
 
-<!--
+
 ```{python}
 aoi = gpd.GeoDataFrame(geometry=[Polygon(bbox['coordinates'][0])],
                 crs='epsg:4326')
