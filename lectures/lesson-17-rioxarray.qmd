@@ -1,7 +1,8 @@
 ---
 # do not execute cells
-execute:
-  eval: false
+# execute:
+#   eval: false
+jupyter: trial-env
 ---
 
 <!--

@@ -2,15 +2,16 @@
 # https://quarto.org/docs/computations/python.html#kernel-selection
 # to check all the available jupyter kernels run from the terminal 
 # jupyter kernelspec list
-jupyter: base
+#jupyter: base
+jupyter: trial-env
 ---
 
 <!-- 
 Fixing the preview working directory
 ```{python}
 import os
-home = os.path.expanduser("~")
-os.chdir(os.path.join(home,'eds-220-book'))
+#home = os.path.expanduser("~")
+#os.chdir(os.path.join(home,'eds-220-book'))
 ```
 -->
 

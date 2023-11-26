@@ -1,0 +1,13 @@
+Vector data:
+    Data Formats:
+        - Add csv and geopkg as data Formats
+    csv to GeoDataFrame:
+        - Update legend position in plot 
+    Reprojectinh and clipping:
+        - Add city names to points
+
+Raster data:
+    Raster manipulatio I:
+        - Add categories for each elevation
+All lessons:
+    - Add slides if there are any

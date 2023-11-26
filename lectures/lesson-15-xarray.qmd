@@ -2,7 +2,8 @@
 # https://quarto.org/docs/computations/python.html#kernel-selection
 # to check all the available jupyter kernels run from the terminal 
 # jupyter kernelspec list
-jupyter: base
+#jupyter: base
+jupyter: trial-env
 ---
 
 <!--
