@@ -2,15 +2,15 @@
 # https://quarto.org/docs/computations/python.html#kernel-selection
 # to check all the available jupyter kernels run from the terminal 
 # jupyter kernelspec list
-jupyter: base
+jupyter: trial-env
 ---
 
 <!-- 
 Fixing the preview working directory
 ```{python}
-import os
-home = os.path.expanduser("~")
-os.chdir(os.path.join(home,'Documents','EDS_220','eds-220-book'))
+#import os
+#home = os.path.expanduser("~")
+#os.chdir(os.path.join(home,'Documents','EDS_220','eds-220-book'))
 ```
 
 Ignore ShapelyDeprecationWarning warning in render
@@ -63,6 +63,7 @@ We can obtain this dataset by downloading the shapefile
 Let's start by loading our libraries and then importing the datasets we'll use.
 
 ```{python}
+import os
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -77,15 +78,15 @@ pd.set_option("display.max.columns", None)
 
 # ----- IMPORT DATA -----
 # states from US Census TIGER files
-states = gpd.read_file('tl_2022_us_state/tl_2022_us_state.shp')
+states = gpd.read_file(os.path.join('data','tl_2022_us_state','tl_2022_us_state.shp'))
 # make column names small caps
 states.columns = states.columns.str.lower()
 
 # populated places from Natural Earth
-places = gpd.read_file('ne_50m_populated_places_simple/ne_50m_populated_places_simple.shp')
+places = gpd.read_file(os.path.join('data','ne_50m_populated_places_simple','ne_50m_populated_places_simple.shp'))
 
 # roads from Natural Earth
-roads = gpd.read_file('ne_10m_roads/ne_10m_roads.shp')
+roads = gpd.read_file(os.path.join('data','ne_10m_roads','ne_10m_roads.shp'))
 ```
 
 ## Prepare Alaska polygon

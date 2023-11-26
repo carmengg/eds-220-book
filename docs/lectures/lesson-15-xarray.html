@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,7 +91,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -134,11 +106,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-14-multidimensional-data.html">Multi-dimensional data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-15-xarray.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">`xarray`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -146,195 +123,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">EDS 220 - Working with Environmental Datasets</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tabular data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Tabular data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Vector data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Vector data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-13-standin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></a>
+  <a href="../lectures/lesson-13-reproject-and-clip.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Multi-dimensional data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Multi-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Raster data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Raster data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></a>
+  <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></a>
+  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></a>
+  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></a>
+  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></a>
+  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/undoing-commit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></a>
+  <a href="../appendices/undoing-commit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,25 +350,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#variables-dimensions-and-attributes" id="toc-variables-dimensions-and-attributes" class="nav-link active" data-scroll-target="#variables-dimensions-and-attributes"><span class="toc-section-number">18.1</span>  Variables, dimensions, and attributes</a></li>
-  <li><a href="#xarray.dataarray" id="toc-xarray.dataarray" class="nav-link" data-scroll-target="#xarray.dataarray"><span class="toc-section-number">18.2</span>  <code>xarray.DataArray</code></a>
+  <li><a href="#variables-dimensions-and-attributes" id="toc-variables-dimensions-and-attributes" class="nav-link active" data-scroll-target="#variables-dimensions-and-attributes"><span class="header-section-number">18.1</span> Variables, dimensions, and attributes</a></li>
+  <li><a href="#xarray.dataarray" id="toc-xarray.dataarray" class="nav-link" data-scroll-target="#xarray.dataarray"><span class="header-section-number">18.2</span> <code>xarray.DataArray</code></a>
   <ul class="collapse">
-  <li><a href="#create-an-xarray.dataarray" id="toc-create-an-xarray.dataarray" class="nav-link" data-scroll-target="#create-an-xarray.dataarray"><span class="toc-section-number">18.2.1</span>  Create an <code>xarray.DataArray</code></a></li>
-  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting"><span class="toc-section-number">18.2.2</span>  Subsetting</a></li>
-  <li><a href="#reduction" id="toc-reduction" class="nav-link" data-scroll-target="#reduction"><span class="toc-section-number">18.2.3</span>  Reduction</a></li>
+  <li><a href="#create-an-xarray.dataarray" id="toc-create-an-xarray.dataarray" class="nav-link" data-scroll-target="#create-an-xarray.dataarray"><span class="header-section-number">18.2.1</span> Create an <code>xarray.DataArray</code></a></li>
+  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting"><span class="header-section-number">18.2.2</span> Subsetting</a></li>
+  <li><a href="#reduction" id="toc-reduction" class="nav-link" data-scroll-target="#reduction"><span class="header-section-number">18.2.3</span> Reduction</a></li>
   </ul></li>
-  <li><a href="#xarray.dataset" id="toc-xarray.dataset" class="nav-link" data-scroll-target="#xarray.dataset"><span class="toc-section-number">18.3</span>  <code>xarray.DataSet</code></a>
+  <li><a href="#xarray.dataset" id="toc-xarray.dataset" class="nav-link" data-scroll-target="#xarray.dataset"><span class="header-section-number">18.3</span> <code>xarray.DataSet</code></a>
   <ul class="collapse">
-  <li><a href="#create-an-xarray.dataset" id="toc-create-an-xarray.dataset" class="nav-link" data-scroll-target="#create-an-xarray.dataset"><span class="toc-section-number">18.3.1</span>  Create an <code>xarray.DataSet</code></a></li>
-  <li><a href="#save-and-reopen" id="toc-save-and-reopen" class="nav-link" data-scroll-target="#save-and-reopen"><span class="toc-section-number">18.3.2</span>  Save and Reopen</a></li>
+  <li><a href="#create-an-xarray.dataset" id="toc-create-an-xarray.dataset" class="nav-link" data-scroll-target="#create-an-xarray.dataset"><span class="header-section-number">18.3.1</span> Create an <code>xarray.DataSet</code></a></li>
+  <li><a href="#save-and-reopen" id="toc-save-and-reopen" class="nav-link" data-scroll-target="#save-and-reopen"><span class="header-section-number">18.3.2</span> Save and Reopen</a></li>
   </ul></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="toc-section-number">18.4</span>  Acknowledgements</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">18.4</span> Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -369,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></h1>
 </div>
 
 
@@ -399,7 +408,7 @@ https://earth-env-data-science.github.io/lectures/xarray/xarray.html#loading-dat
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/xarray/xarray_logo.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption"><a href="https://xarray.dev"><code>xarray</code>’s development portal</a></figcaption><p></p>
+<figcaption class="figure-caption"><a href="https://xarray.dev"><code>xarray</code>’s development portal</a></figcaption>
 </figure>
 </div>
 <section id="variables-dimensions-and-attributes" class="level2" data-number="18.1">
@@ -407,12 +416,12 @@ https://earth-env-data-science.github.io/lectures/xarray/xarray.html#loading-dat
 <p><strong>Variables, dimensions, and attributes</strong> refer to the same components of <a href="https://carmengg.github.io/eds-220-book/lectures/lesson-14-raster-formats.html#netcdf-data-format">NetCDF files we reviewed in the previous section</a>. The following is a concrete example of variables, dimensions, and attributes that will guide the rest of the section.</p>
 <p><strong>Imagine the following scenario:</strong></p>
 <p>We have a network of 25 weather stations. They are located in a square grid: starting at 30°0′N 60°0′E, there is a station every 10° North and every 10° East. Each station measures the air temperature at a set time for three days, starting on September 1st, 2022. On the first day, all stations record a temperature of 0°C. On the second day, all temperatures are 1°C, and on the third day, all temperatures are 2°C. What are the <em>variables</em>, <em>dimensions</em> and <em>attributes</em> for this data?</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -459,12 +468,12 @@ Answer
 </div>
 </div>
 <p>Now imagine we calculate the average temperature over time at each weather station, and we wish to incorporate this data into the same dataset. How will adding the average temperature data change the dataset’s variables, attributes, and dimensions?</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -607,6 +616,7 @@ Answer
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -619,7 +629,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -836,6 +846,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -857,14 +872,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -874,13 +891,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -918,7 +938,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -952,7 +973,7 @@ Coordinates:
 Attributes:
     title:          temperature across weather stations
     standard_name:  air_temperature
-    units:          degree_c</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 3</li><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-b279e217-ec29-4d74-bcfa-6736ac415aaa" class="xr-array-in" type="checkbox" checked=""><label for="section-b279e217-ec29-4d74-bcfa-6736ac415aaa" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></div><div class="xr-array-data"><pre>array([[[0, 0, 0, 0, 0],
+    units:          degree_c</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 3</li><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-7cb7860d-2ed9-4d77-8927-f4bd9754f316" class="xr-array-in" type="checkbox" checked=""><label for="section-7cb7860d-2ed9-4d77-8927-f4bd9754f316" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></div><div class="xr-array-data"><pre>array([[[0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
@@ -968,8 +989,8 @@ Attributes:
         [2, 2, 2, 2, 2],
         [2, 2, 2, 2, 2],
         [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2]]])</pre></div></div></li><li class="xr-section-item"><input id="section-bfd05afb-b483-463c-86b6-c7e206143818" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-bfd05afb-b483-463c-86b6-c7e206143818" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-561692bc-d3af-4512-8d8d-d1c916a9c436" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-561692bc-d3af-4512-8d8d-d1c916a9c436" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d7851c6d-1b50-4d52-ac66-64167a821d6a" class="xr-var-data-in" type="checkbox"><label for="data-d7851c6d-1b50-4d52-ac66-64167a821d6a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
-       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-0413f045-68a0-40b8-9224-4ab10c0691bd" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0413f045-68a0-40b8-9224-4ab10c0691bd" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9fcbe493-a0f0-4f7f-88e9-b175c4e7349b" class="xr-var-data-in" type="checkbox"><label for="data-9fcbe493-a0f0-4f7f-88e9-b175c4e7349b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-9213b439-1f12-45c4-b2e2-13f463d5f763" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-9213b439-1f12-45c4-b2e2-13f463d5f763" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-fe1e60b5-7fa8-45d3-9c2a-168961fc79a3" class="xr-var-data-in" type="checkbox"><label for="data-fe1e60b5-7fa8-45d3-9c2a-168961fc79a3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-adc74f1d-f554-4eda-bfa1-a209921e1887" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-adc74f1d-f554-4eda-bfa1-a209921e1887" class="xr-section-summary">Attributes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd></dl></div></li></ul></div></div>
+        [2, 2, 2, 2, 2]]])</pre></div></div></li><li class="xr-section-item"><input id="section-c265b89e-d70d-4f76-8ecd-93718bd33201" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c265b89e-d70d-4f76-8ecd-93718bd33201" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-5b8c3e69-ab97-4a9d-b4e3-fc718dce86c9" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-5b8c3e69-ab97-4a9d-b4e3-fc718dce86c9" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-17ea6aee-b975-4d0c-9306-243a064e8afc" class="xr-var-data-in" type="checkbox"><label for="data-17ea6aee-b975-4d0c-9306-243a064e8afc" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
+       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-b26288e0-2c67-4f0b-8cd2-0d653e9983df" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-b26288e0-2c67-4f0b-8cd2-0d653e9983df" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-03df2432-0cc2-4a52-8b28-07c154c09498" class="xr-var-data-in" type="checkbox"><label for="data-03df2432-0cc2-4a52-8b28-07c154c09498" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-dfc9afee-f39a-468f-bb0e-537a1b7b5e75" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-dfc9afee-f39a-468f-bb0e-537a1b7b5e75" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0fbb0df6-24e2-4289-af0f-da54a4ce2778" class="xr-var-data-in" type="checkbox"><label for="data-0fbb0df6-24e2-4289-af0f-da54a4ce2778" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-ad4e05c9-42e8-4eaa-a8e0-593d92b7a9a9" class="xr-section-summary-in" type="checkbox"><label for="section-ad4e05c9-42e8-4eaa-a8e0-593d92b7a9a9" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-8753f755-54af-4d4c-b882-f1a52504aaa5" class="xr-index-data-in" type="checkbox"><label for="index-8753f755-54af-4d4c-b882-f1a52504aaa5" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2022-09-01', '2022-09-02', '2022-09-03'], dtype='datetime64[ns]', name='time', freq='D'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-46e73e6c-2e41-4152-b917-b6e34a7fd43b" class="xr-index-data-in" type="checkbox"><label for="index-46e73e6c-2e41-4152-b917-b6e34a7fd43b" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([70, 60, 50, 40, 30], dtype='int64', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-542a8ee2-71cf-433e-b4aa-69fe32c2a785" class="xr-index-data-in" type="checkbox"><label for="index-542a8ee2-71cf-433e-b4aa-69fe32c2a785" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([60, 70, 80, 90, 100], dtype='int64', name='lon'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c650f070-f5c9-4155-9a27-3058a39f431d" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c650f070-f5c9-4155-9a27-3058a39f431d" class="xr-section-summary">Attributes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <p>We can also update the variable’s attributes after creating the object. Notice that each of the coordinates is also an <code>xarray.DataArray</code>, so we can add attributes to them.</p>
@@ -1019,6 +1040,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -1031,7 +1053,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -1248,6 +1270,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -1269,14 +1296,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -1286,13 +1315,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -1330,7 +1362,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -1365,7 +1398,7 @@ Attributes:
     title:          temperature across weather stations
     standard_name:  air_temperature
     units:          degree_c
-    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 3</li><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-a8b48d68-cbd1-42a6-abe5-2d022fd80eea" class="xr-array-in" type="checkbox" checked=""><label for="section-a8b48d68-cbd1-42a6-abe5-2d022fd80eea" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></div><div class="xr-array-data"><pre>array([[[0, 0, 0, 0, 0],
+    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 3</li><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-79b60ee8-b97e-41f2-aa00-ce20bc41ad93" class="xr-array-in" type="checkbox" checked=""><label for="section-79b60ee8-b97e-41f2-aa00-ce20bc41ad93" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></div><div class="xr-array-data"><pre>array([[[0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
@@ -1381,8 +1414,8 @@ Attributes:
         [2, 2, 2, 2, 2],
         [2, 2, 2, 2, 2],
         [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2]]])</pre></div></div></li><li class="xr-section-item"><input id="section-97b2fb98-6902-48a2-aaff-aa99db85ad40" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-97b2fb98-6902-48a2-aaff-aa99db85ad40" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-0c14205f-07fa-439a-a113-8932ba5c3504" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0c14205f-07fa-439a-a113-8932ba5c3504" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3d324877-6088-4ec3-afe7-61abd8bea3e8" class="xr-var-data-in" type="checkbox"><label for="data-3d324877-6088-4ec3-afe7-61abd8bea3e8" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
-       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-b4da0478-655b-4a3c-934f-3fcb04ba062a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b4da0478-655b-4a3c-934f-3fcb04ba062a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e523511e-09a1-4c78-b45b-5ac9ae31c767" class="xr-var-data-in" type="checkbox"><label for="data-e523511e-09a1-4c78-b45b-5ac9ae31c767" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-e5dc3975-5533-49c5-8420-af04734b9124" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e5dc3975-5533-49c5-8420-af04734b9124" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c338a671-5c80-4c08-be61-b36da952e435" class="xr-var-data-in" type="checkbox"><label for="data-c338a671-5c80-4c08-be61-b36da952e435" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-55771b7a-3af0-457d-bc36-582263f948e9" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-55771b7a-3af0-457d-bc36-582263f948e9" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
+        [2, 2, 2, 2, 2]]])</pre></div></div></li><li class="xr-section-item"><input id="section-92585a55-ba54-4511-b3cc-19e61110e67a" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-92585a55-ba54-4511-b3cc-19e61110e67a" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-eb174d44-1cc6-43eb-b060-1499ced2d082" class="xr-var-attrs-in" type="checkbox"><label for="attrs-eb174d44-1cc6-43eb-b060-1499ced2d082" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bd015fa6-19e7-4d2d-84fc-388d61327ddd" class="xr-var-data-in" type="checkbox"><label for="data-bd015fa6-19e7-4d2d-84fc-388d61327ddd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
+       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-bcd4d002-53f7-4cd9-bf34-1fa7ec39cd51" class="xr-var-attrs-in" type="checkbox"><label for="attrs-bcd4d002-53f7-4cd9-bf34-1fa7ec39cd51" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0d9b7e4c-788e-4648-95a3-0ee264ed7c59" class="xr-var-data-in" type="checkbox"><label for="data-0d9b7e4c-788e-4648-95a3-0ee264ed7c59" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-85612762-6317-4cdc-bddb-abb8146e4d95" class="xr-var-attrs-in" type="checkbox"><label for="attrs-85612762-6317-4cdc-bddb-abb8146e4d95" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5b4f8ba7-965f-486d-b7b2-5d6858a3450a" class="xr-var-data-in" type="checkbox"><label for="data-5b4f8ba7-965f-486d-b7b2-5d6858a3450a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-dc357eea-c0f7-4294-9bf2-bdb942c2ea15" class="xr-section-summary-in" type="checkbox"><label for="section-dc357eea-c0f7-4294-9bf2-bdb942c2ea15" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-297f88c0-e365-431e-9526-41e952b33751" class="xr-index-data-in" type="checkbox"><label for="index-297f88c0-e365-431e-9526-41e952b33751" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2022-09-01', '2022-09-02', '2022-09-03'], dtype='datetime64[ns]', name='time', freq='D'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-eb449213-04f6-48da-ac4d-9ffeef1249be" class="xr-index-data-in" type="checkbox"><label for="index-eb449213-04f6-48da-ac4d-9ffeef1249be" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([70, 60, 50, 40, 30], dtype='int64', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-11f386d9-4b6d-485d-be49-2eb7d7e87c80" class="xr-index-data-in" type="checkbox"><label for="index-11f386d9-4b6d-485d-be49-2eb7d7e87c80" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([60, 70, 80, 90, 100], dtype='int64', name='lon'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-609c5d64-1465-4734-843a-c1bfa1ee8601" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-609c5d64-1465-4734-843a-c1bfa1ee8601" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <p>At this point, since we have a single variable, the dataset attributes and the variable attributes are the same.</p>
@@ -1434,6 +1467,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -1446,7 +1480,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -1663,6 +1697,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -1684,14 +1723,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -1701,13 +1742,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -1745,7 +1789,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -1764,7 +1809,7 @@ Attributes:
     title:          temperature across weather stations
     standard_name:  air_temperature
     units:          degree_c
-    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-da2d040f-c064-4c71-bd2c-52b18758dee0" class="xr-array-in" type="checkbox" checked=""><label for="section-da2d040f-c064-4c71-bd2c-52b18758dee0" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-be7b75e5-3f56-4c3c-8d84-11f84c34e184" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-be7b75e5-3f56-4c3c-8d84-11f84c34e184" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-0e8d550b-6505-4cd8-936c-fc440bc9fb89" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0e8d550b-6505-4cd8-936c-fc440bc9fb89" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-08256c2b-0b59-4df8-93f0-261f261228f2" class="xr-var-data-in" type="checkbox"><label for="data-08256c2b-0b59-4df8-93f0-261f261228f2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-7bd7ada6-e26d-4743-ae0c-df8e6b0cdaa6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7bd7ada6-e26d-4743-ae0c-df8e6b0cdaa6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-eacddb8d-0c82-424c-bdab-3d3883908f2f" class="xr-var-data-in" type="checkbox"><label for="data-eacddb8d-0c82-424c-bdab-3d3883908f2f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-00c8ac3e-1625-4468-9173-be9ca0aaedc5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-00c8ac3e-1625-4468-9173-be9ca0aaedc5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9c4c1447-c448-4bbf-a02a-c67fed55f04e" class="xr-var-data-in" type="checkbox"><label for="data-9c4c1447-c448-4bbf-a02a-c67fed55f04e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-e8068ecc-1201-41ab-a1d5-64cb0000a774" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-e8068ecc-1201-41ab-a1d5-64cb0000a774" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
+    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-7ad6d65d-9ab2-41fd-9cfe-af03a23e54d8" class="xr-array-in" type="checkbox" checked=""><label for="section-7ad6d65d-9ab2-41fd-9cfe-af03a23e54d8" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-7878c459-9a26-4d05-b0a8-370840f34b6e" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-7878c459-9a26-4d05-b0a8-370840f34b6e" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-cce3d9da-6b6c-4cc8-be30-dc37b695a5aa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-cce3d9da-6b6c-4cc8-be30-dc37b695a5aa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-fb3e096b-9b17-4544-8b6f-df79be7640ea" class="xr-var-data-in" type="checkbox"><label for="data-fb3e096b-9b17-4544-8b6f-df79be7640ea" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-267cce97-c683-48ac-8fc6-cd2fc3b3b2f8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-267cce97-c683-48ac-8fc6-cd2fc3b3b2f8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b493cc7a-994e-44b0-93ad-04689d3db800" class="xr-var-data-in" type="checkbox"><label for="data-b493cc7a-994e-44b0-93ad-04689d3db800" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-e0f351bb-4620-4ec5-8864-7627a6b1893a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e0f351bb-4620-4ec5-8864-7627a6b1893a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cdfcf1ae-1162-499d-9b12-a8900080f94e" class="xr-var-data-in" type="checkbox"><label for="data-cdfcf1ae-1162-499d-9b12-a8900080f94e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-d26fd2ba-3f0f-43ab-989e-17c2d3838f57" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-d26fd2ba-3f0f-43ab-989e-17c2d3838f57" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-7f4a05bb-431f-4876-822b-e31c67a1e94e" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-7f4a05bb-431f-4876-822b-e31c67a1e94e" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <ul>
@@ -1806,6 +1851,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -1818,7 +1864,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -2035,6 +2081,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -2056,14 +2107,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -2073,13 +2126,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -2117,7 +2173,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -2136,7 +2193,7 @@ Attributes:
     title:          temperature across weather stations
     standard_name:  air_temperature
     units:          degree_c
-    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-7a178272-2af7-462b-97c8-541724b63fd3" class="xr-array-in" type="checkbox" checked=""><label for="section-7a178272-2af7-462b-97c8-541724b63fd3" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-ee61526e-8ffe-4d8d-803d-ae0177243cee" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-ee61526e-8ffe-4d8d-803d-ae0177243cee" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-4b45cafd-d38d-4930-8ab1-810aa8900453" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4b45cafd-d38d-4930-8ab1-810aa8900453" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9b64bb42-772b-492e-b665-96dda1fbfa0b" class="xr-var-data-in" type="checkbox"><label for="data-9b64bb42-772b-492e-b665-96dda1fbfa0b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-0fb5aca8-5162-46ae-9d1e-b8fcb3d56d11" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0fb5aca8-5162-46ae-9d1e-b8fcb3d56d11" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a0ffe84e-38d2-47ed-9cf4-51c2043c8657" class="xr-var-data-in" type="checkbox"><label for="data-a0ffe84e-38d2-47ed-9cf4-51c2043c8657" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-a161dcc9-2923-45ac-8751-5cab4dd1c831" class="xr-var-attrs-in" type="checkbox"><label for="attrs-a161dcc9-2923-45ac-8751-5cab4dd1c831" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c0fe8e3e-43a3-467f-ac79-f8584f7bf524" class="xr-var-data-in" type="checkbox"><label for="data-c0fe8e3e-43a3-467f-ac79-f8584f7bf524" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-2b8e6e1d-d04f-4190-97b1-61e135872dd3" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-2b8e6e1d-d04f-4190-97b1-61e135872dd3" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
+    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-3a094d49-3327-4683-ba9d-60c189d20d0d" class="xr-array-in" type="checkbox" checked=""><label for="section-3a094d49-3327-4683-ba9d-60c189d20d0d" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-3ac560bb-5c54-4987-ab16-8abb7414e1f5" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-3ac560bb-5c54-4987-ab16-8abb7414e1f5" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-5ad21f7a-94aa-49ea-933a-c5c336729a4d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5ad21f7a-94aa-49ea-933a-c5c336729a4d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-23cb0ec7-1778-4a64-94ff-c76a48ad6844" class="xr-var-data-in" type="checkbox"><label for="data-23cb0ec7-1778-4a64-94ff-c76a48ad6844" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-c5a0fa19-9db2-48e6-8657-0da3bcc74892" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c5a0fa19-9db2-48e6-8657-0da3bcc74892" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-06b35e32-5a6f-4a82-b0af-4bc50446558c" class="xr-var-data-in" type="checkbox"><label for="data-06b35e32-5a6f-4a82-b0af-4bc50446558c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-c137a62a-4bfe-4141-9a4a-34bac1f1b675" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c137a62a-4bfe-4141-9a4a-34bac1f1b675" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-18fc3c62-9512-47bc-a157-5a852a498dff" class="xr-var-data-in" type="checkbox"><label for="data-18fc3c62-9512-47bc-a157-5a852a498dff" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-6e978ad4-d3e5-4e3d-8e0e-10e572c52564" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-6e978ad4-d3e5-4e3d-8e0e-10e572c52564" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-2db0781a-a2fb-4df8-891d-a725fa85ce0a" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-2db0781a-a2fb-4df8-891d-a725fa85ce0a" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <p>For datasets with dozens of dimensions, it can be confusing to remember which dimensions go where.</p>
@@ -2181,6 +2238,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -2193,7 +2251,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -2410,6 +2468,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -2431,14 +2494,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -2448,13 +2513,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -2492,7 +2560,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -2511,7 +2580,7 @@ Attributes:
     title:          temperature across weather stations
     standard_name:  air_temperature
     units:          degree_c
-    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-3355c284-69ff-4847-8d5c-d1599e6e96f4" class="xr-array-in" type="checkbox" checked=""><label for="section-3355c284-69ff-4847-8d5c-d1599e6e96f4" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-036940dc-35f2-4f9d-8b1f-28e578f6013f" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-036940dc-35f2-4f9d-8b1f-28e578f6013f" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-ef031dd4-57e2-4213-81bd-9f881edbc3a4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ef031dd4-57e2-4213-81bd-9f881edbc3a4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4e1e973a-26cb-4dec-a7c7-2511c82ec730" class="xr-var-data-in" type="checkbox"><label for="data-4e1e973a-26cb-4dec-a7c7-2511c82ec730" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-adab2d12-90d4-4dc8-8a21-cb47acc43724" class="xr-var-attrs-in" type="checkbox"><label for="attrs-adab2d12-90d4-4dc8-8a21-cb47acc43724" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f8c87411-696b-46a5-9d79-a17cc4b0d5e6" class="xr-var-data-in" type="checkbox"><label for="data-f8c87411-696b-46a5-9d79-a17cc4b0d5e6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-c9edd438-1880-4bba-a3a6-be381f9a7543" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c9edd438-1880-4bba-a3a6-be381f9a7543" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bbb07b4a-d9e9-49f2-ab15-516af29570a2" class="xr-var-data-in" type="checkbox"><label for="data-bbb07b4a-d9e9-49f2-ab15-516af29570a2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-8178eb54-77ae-4e9d-9b3e-ee5e736fd2d8" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-8178eb54-77ae-4e9d-9b3e-ee5e736fd2d8" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
+    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-13d46c4e-220b-4b3f-b463-73052c31672c" class="xr-array-in" type="checkbox" checked=""><label for="section-13d46c4e-220b-4b3f-b463-73052c31672c" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-1d3f5ee0-8320-43a0-9706-a91e086bb4c1" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-1d3f5ee0-8320-43a0-9706-a91e086bb4c1" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-bf8abd8b-7378-4fd0-9980-b9be3841f093" class="xr-var-attrs-in" type="checkbox"><label for="attrs-bf8abd8b-7378-4fd0-9980-b9be3841f093" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b23347e3-8797-4bed-a8ce-d6b726ccbbad" class="xr-var-data-in" type="checkbox"><label for="data-b23347e3-8797-4bed-a8ce-d6b726ccbbad" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-46cf74b7-2274-4cef-b53c-116a62fc2dff" class="xr-var-attrs-in" type="checkbox"><label for="attrs-46cf74b7-2274-4cef-b53c-116a62fc2dff" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0a3af182-5136-44e5-b94a-3cd6eb40c765" class="xr-var-data-in" type="checkbox"><label for="data-0a3af182-5136-44e5-b94a-3cd6eb40c765" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-fd0bd826-8326-419f-8455-72ca0afed702" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fd0bd826-8326-419f-8455-72ca0afed702" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ec650891-281b-4c30-8342-b3143bed7c64" class="xr-var-data-in" type="checkbox"><label for="data-ec650891-281b-4c30-8342-b3143bed7c64" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-d1573c31-2983-4490-b6f5-46814843b6ec" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-d1573c31-2983-4490-b6f5-46814843b6ec" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-469a1bf6-deaf-4f77-aabf-adc345718c26" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-469a1bf6-deaf-4f77-aabf-adc345718c26" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <ul>
@@ -2553,6 +2622,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -2565,7 +2635,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -2782,6 +2852,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -2803,14 +2878,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -2820,13 +2897,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -2864,7 +2944,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -2883,7 +2964,7 @@ Attributes:
     title:          temperature across weather stations
     standard_name:  air_temperature
     units:          degree_c
-    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-d53aa251-7900-48ec-b6bc-fb1148a5e9b7" class="xr-array-in" type="checkbox" checked=""><label for="section-d53aa251-7900-48ec-b6bc-fb1148a5e9b7" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-68d0455f-d30d-4f81-a030-0d33517181a4" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-68d0455f-d30d-4f81-a030-0d33517181a4" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-f4deabf2-b3cc-4900-89dd-1afd2b6b9f41" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f4deabf2-b3cc-4900-89dd-1afd2b6b9f41" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7b2d9025-1e14-4ee0-b7c6-d6faecf8b471" class="xr-var-data-in" type="checkbox"><label for="data-7b2d9025-1e14-4ee0-b7c6-d6faecf8b471" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-d69d0a24-ca66-432f-be40-abb28441f687" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d69d0a24-ca66-432f-be40-abb28441f687" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d4cf5a1f-597d-436a-b42c-81b08340591b" class="xr-var-data-in" type="checkbox"><label for="data-d4cf5a1f-597d-436a-b42c-81b08340591b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-c082788e-5881-41af-a9d8-832bd42afddb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c082788e-5881-41af-a9d8-832bd42afddb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-320f3111-d33d-4d21-b82c-0b65eeec3fd0" class="xr-var-data-in" type="checkbox"><label for="data-320f3111-d33d-4d21-b82c-0b65eeec3fd0" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-d8da0d9f-c0f1-4c26-87d5-a63569ed2087" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-d8da0d9f-c0f1-4c26-87d5-a63569ed2087" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
+    description:    simple example of an xarray.DataArray</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-551b34c6-ce45-4b4d-a0cb-828e4ded15e1" class="xr-array-in" type="checkbox" checked=""><label for="section-551b34c6-ce45-4b4d-a0cb-828e4ded15e1" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0</span></div><div class="xr-array-data"><pre>array(0)</pre></div></div></li><li class="xr-section-item"><input id="section-d9639169-8aca-4a16-93e4-a50fb2f2ab8c" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-d9639169-8aca-4a16-93e4-a50fb2f2ab8c" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01</div><input id="attrs-791fac93-335d-43c5-a81a-fec957b57237" class="xr-var-attrs-in" type="checkbox"><label for="attrs-791fac93-335d-43c5-a81a-fec957b57237" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4fae167f-d828-42ef-b533-68f7049057de" class="xr-var-data-in" type="checkbox"><label for="data-4fae167f-d828-42ef-b533-68f7049057de" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array('2022-09-01T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">40</div><input id="attrs-61e31177-a0e9-4422-884a-cb8f3053fb18" class="xr-var-attrs-in" type="checkbox"><label for="attrs-61e31177-a0e9-4422-884a-cb8f3053fb18" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9669e199-1203-410c-ab47-06d28712379b" class="xr-var-data-in" type="checkbox"><label for="data-9669e199-1203-410c-ab47-06d28712379b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array(40)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">80</div><input id="attrs-8f1247cd-eaaa-42cf-a7c7-7412ded81652" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8f1247cd-eaaa-42cf-a7c7-7412ded81652" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e48dbc0c-33f9-4031-9613-aa06dc2fbec4" class="xr-var-data-in" type="checkbox"><label for="data-e48dbc0c-33f9-4031-9613-aa06dc2fbec4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array(80)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b69715f8-7b91-4878-b5a1-4e395d3c09ca" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-b69715f8-7b91-4878-b5a1-4e395d3c09ca" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-9e5fa02b-54e3-41e2-a70a-5359624d1ff4" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-9e5fa02b-54e3-41e2-a70a-5359624d1ff4" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <p>Notice that the result of this indexing is a 1x1 <code>xarray.DataArray</code>. This is because operations on an <code>xarray.DataArray</code> always return another <code>xarray.DataArray</code>. In particular, operations returning scalar values will also produce <code>xarray</code> objects, so we need to cast them as numbers manually. See <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.item.html">xarray.DataArray.item</a>.</p>
@@ -2974,6 +3055,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -2986,7 +3068,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -3203,6 +3285,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -3224,14 +3311,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -3241,13 +3330,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -3285,7 +3377,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -3304,11 +3397,11 @@ Coordinates:
   * lat      (lat) int64 70 60 50 40 30
   * lon      (lon) int64 60 70 80 90 100
 Attributes:
-    title:    average temperature over three days</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-ba209d33-eafc-4ff3-8724-8b4353a97634" class="xr-array-in" type="checkbox" checked=""><label for="section-ba209d33-eafc-4ff3-8724-8b4353a97634" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0</span></div><div class="xr-array-data"><pre>array([[1., 1., 1., 1., 1.],
+    title:    average temperature over three days</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-dead26c9-b322-4c65-8ca2-f1ad4d1cf667" class="xr-array-in" type="checkbox" checked=""><label for="section-dead26c9-b322-4c65-8ca2-f1ad4d1cf667" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0</span></div><div class="xr-array-data"><pre>array([[1., 1., 1., 1., 1.],
        [1., 1., 1., 1., 1.],
        [1., 1., 1., 1., 1.],
        [1., 1., 1., 1., 1.],
-       [1., 1., 1., 1., 1.]])</pre></div></div></li><li class="xr-section-item"><input id="section-8cdd4f38-354c-400e-810e-23efdb37a4e5" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-8cdd4f38-354c-400e-810e-23efdb37a4e5" class="xr-section-summary">Coordinates: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-f6919f00-fa68-4de5-9150-a333921ce3cb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f6919f00-fa68-4de5-9150-a333921ce3cb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-14034fcd-d6da-42b3-8e10-245dcfd7c1eb" class="xr-var-data-in" type="checkbox"><label for="data-14034fcd-d6da-42b3-8e10-245dcfd7c1eb" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-71b458a6-512c-49d3-b35c-c20605b0eec8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-71b458a6-512c-49d3-b35c-c20605b0eec8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-652645eb-b33d-4c12-80d8-41dc0e714053" class="xr-var-data-in" type="checkbox"><label for="data-652645eb-b33d-4c12-80d8-41dc0e714053" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-8bb73bf9-2240-4c6d-bce4-e89dd8d12d97" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-8bb73bf9-2240-4c6d-bce4-e89dd8d12d97" class="xr-section-summary">Attributes: <span>(1)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>average temperature over three days</dd></dl></div></li></ul></div></div>
+       [1., 1., 1., 1., 1.]])</pre></div></div></li><li class="xr-section-item"><input id="section-ea619f19-3c35-471f-baf0-d79894fe60dd" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-ea619f19-3c35-471f-baf0-d79894fe60dd" class="xr-section-summary">Coordinates: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-7fc14772-52cc-4836-bdd9-3a5fbe1b15f2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7fc14772-52cc-4836-bdd9-3a5fbe1b15f2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a8901dc1-a3e0-4f14-8cdc-f1310888cc78" class="xr-var-data-in" type="checkbox"><label for="data-a8901dc1-a3e0-4f14-8cdc-f1310888cc78" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-27163fc1-852b-4c87-ae6f-1912c3561172" class="xr-var-attrs-in" type="checkbox"><label for="attrs-27163fc1-852b-4c87-ae6f-1912c3561172" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-59b45e47-5607-4980-8062-613b5750937d" class="xr-var-data-in" type="checkbox"><label for="data-59b45e47-5607-4980-8062-613b5750937d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-88cc7f2a-1fce-43d4-8f0e-829fb42547ff" class="xr-section-summary-in" type="checkbox"><label for="section-88cc7f2a-1fce-43d4-8f0e-829fb42547ff" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-d9edbfb6-7d2e-4330-aed0-b44c2c3f9c82" class="xr-index-data-in" type="checkbox"><label for="index-d9edbfb6-7d2e-4330-aed0-b44c2c3f9c82" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([70, 60, 50, 40, 30], dtype='int64', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-ccfbc075-a0c0-4579-bbaf-6f3cc9c79979" class="xr-index-data-in" type="checkbox"><label for="index-ccfbc075-a0c0-4579-bbaf-6f3cc9c79979" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([60, 70, 80, 90, 100], dtype='int64', name='lon'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-0086a716-0158-4bb9-b18b-4687ff7678a5" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-0086a716-0158-4bb9-b18b-4687ff7678a5" class="xr-section-summary">Attributes: <span>(1)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>average temperature over three days</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 <p>More about <a href="https://docs.xarray.dev/en/stable/user-guide/computation.html"><code>xarray</code> computations</a>.</p>
@@ -3373,6 +3466,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -3385,7 +3479,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -3602,6 +3696,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -3623,14 +3722,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -3640,13 +3741,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -3684,7 +3788,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -3704,12 +3809,12 @@ Data variables:
     temp      (time, lat, lon) int64 0 0 0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2 2 2
 Attributes:
     title:        temperature data at weather stations: daily and and average
-    description:  simple example of an xarray.Dataset</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-33226aa1-f3c2-42b0-8414-cbc0666d9dd3" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-33226aa1-f3c2-42b0-8414-cbc0666d9dd3" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li><li><span class="xr-has-index">time</span>: 3</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-9fcc2623-8a18-4547-b802-22a8cb1aac63" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-9fcc2623-8a18-4547-b802-22a8cb1aac63" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-52552807-307e-40ea-b568-44ff8eea4b33" class="xr-var-attrs-in" type="checkbox"><label for="attrs-52552807-307e-40ea-b568-44ff8eea4b33" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-567bd5e0-4465-4438-a67c-61051c021b21" class="xr-var-data-in" type="checkbox"><label for="data-567bd5e0-4465-4438-a67c-61051c021b21" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-d03655ca-82b6-4837-a833-516766af6ab5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d03655ca-82b6-4837-a833-516766af6ab5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6faf84e5-7bed-4c69-8fc7-c91b0f70bcef" class="xr-var-data-in" type="checkbox"><label for="data-6faf84e5-7bed-4c69-8fc7-c91b0f70bcef" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-c2806b47-4a66-4a99-b0ce-15950b13e4cd" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c2806b47-4a66-4a99-b0ce-15950b13e4cd" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-79f4c3ba-4192-49f6-85b8-b8f2485815a5" class="xr-var-data-in" type="checkbox"><label for="data-79f4c3ba-4192-49f6-85b8-b8f2485815a5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
-       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-1be3de0d-eead-48a5-8171-16693dd4c241" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-1be3de0d-eead-48a5-8171-16693dd4c241" class="xr-section-summary">Data variables: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>avg_temp</span></div><div class="xr-var-dims">(lat, lon)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0</div><input id="attrs-2f32302f-85f3-4dac-ae05-8765cb97f5c6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2f32302f-85f3-4dac-ae05-8765cb97f5c6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-fac15694-4c09-4a79-946c-a13d05eda1b2" class="xr-var-data-in" type="checkbox"><label for="data-fac15694-4c09-4a79-946c-a13d05eda1b2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>average temperature over three days</dd></dl></div><div class="xr-var-data"><pre>array([[1., 1., 1., 1., 1.],
+    description:  simple example of an xarray.Dataset</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-924417d4-3a88-47f4-9f27-89d87eef095d" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-924417d4-3a88-47f4-9f27-89d87eef095d" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li><li><span class="xr-has-index">time</span>: 3</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-a5f23f80-5cfe-47b2-882c-707559dcccfd" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-a5f23f80-5cfe-47b2-882c-707559dcccfd" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-bfbcc18d-cbf8-4c99-8340-f645ae2efc5e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-bfbcc18d-cbf8-4c99-8340-f645ae2efc5e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-34057656-0c5e-4217-a2d0-3a493a410ffd" class="xr-var-data-in" type="checkbox"><label for="data-34057656-0c5e-4217-a2d0-3a493a410ffd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-501c5ca7-3e89-4dfe-80f7-04c91c8706ba" class="xr-var-attrs-in" type="checkbox"><label for="attrs-501c5ca7-3e89-4dfe-80f7-04c91c8706ba" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f39b3ff4-edc7-48a4-bb5c-59d0c706da8d" class="xr-var-data-in" type="checkbox"><label for="data-f39b3ff4-edc7-48a4-bb5c-59d0c706da8d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-76ed04f0-18dd-492c-aef0-ff2e125be3c6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-76ed04f0-18dd-492c-aef0-ff2e125be3c6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8e6c88cf-cc9e-428a-a842-f26d0d1031e5" class="xr-var-data-in" type="checkbox"><label for="data-8e6c88cf-cc9e-428a-a842-f26d0d1031e5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
+       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-a9e27fbd-97aa-463a-bb54-b6044e7a15eb" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-a9e27fbd-97aa-463a-bb54-b6044e7a15eb" class="xr-section-summary">Data variables: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>avg_temp</span></div><div class="xr-var-dims">(lat, lon)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0</div><input id="attrs-4a8bd658-35ac-4e90-83c0-51179dad6cfd" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4a8bd658-35ac-4e90-83c0-51179dad6cfd" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-298bb2e0-40eb-4ba1-a899-1db4a18d4f5b" class="xr-var-data-in" type="checkbox"><label for="data-298bb2e0-40eb-4ba1-a899-1db4a18d4f5b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>average temperature over three days</dd></dl></div><div class="xr-var-data"><pre>array([[1., 1., 1., 1., 1.],
        [1., 1., 1., 1., 1.],
        [1., 1., 1., 1., 1.],
        [1., 1., 1., 1., 1.],
-       [1., 1., 1., 1., 1.]])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>temp</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2</div><input id="attrs-2c256423-016a-42c8-9666-10711d938efe" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2c256423-016a-42c8-9666-10711d938efe" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f1e9124f-a80e-4f51-9f82-9a2203e7ad31" class="xr-var-data-in" type="checkbox"><label for="data-f1e9124f-a80e-4f51-9f82-9a2203e7ad31" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div><div class="xr-var-data"><pre>array([[[0, 0, 0, 0, 0],
+       [1., 1., 1., 1., 1.]])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>temp</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2</div><input id="attrs-722ec8a3-5570-484c-b7ec-c7c54a632e62" class="xr-var-attrs-in" type="checkbox"><label for="attrs-722ec8a3-5570-484c-b7ec-c7c54a632e62" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-308b7320-54c7-43c6-9583-1b2c3e958b5e" class="xr-var-data-in" type="checkbox"><label for="data-308b7320-54c7-43c6-9583-1b2c3e958b5e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div><div class="xr-var-data"><pre>array([[[0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
@@ -3725,7 +3830,7 @@ Attributes:
         [2, 2, 2, 2, 2],
         [2, 2, 2, 2, 2],
         [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2]]])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-ea1245a0-4960-489d-a7e9-47ce7c7ecbb4" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-ea1245a0-4960-489d-a7e9-47ce7c7ecbb4" class="xr-section-summary">Attributes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature data at weather stations: daily and and average</dd><dt><span>description :</span></dt><dd>simple example of an xarray.Dataset</dd></dl></div></li></ul></div></div>
+        [2, 2, 2, 2, 2]]])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-96af7f33-7a13-403b-adfb-686f1d358d72" class="xr-section-summary-in" type="checkbox"><label for="section-96af7f33-7a13-403b-adfb-686f1d358d72" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-dd4f9b38-185c-4613-b2cc-a2f8ec2e1279" class="xr-index-data-in" type="checkbox"><label for="index-dd4f9b38-185c-4613-b2cc-a2f8ec2e1279" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([70, 60, 50, 40, 30], dtype='int64', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-a7aed9ff-c095-481c-98f3-5531ff71fce7" class="xr-index-data-in" type="checkbox"><label for="index-a7aed9ff-c095-481c-98f3-5531ff71fce7" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([60, 70, 80, 90, 100], dtype='int64', name='lon'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-93a9d4bf-00c0-4465-89e5-be4413dbcba0" class="xr-index-data-in" type="checkbox"><label for="index-93a9d4bf-00c0-4465-89e5-be4413dbcba0" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2022-09-01', '2022-09-02', '2022-09-03'], dtype='datetime64[ns]', name='time', freq='D'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-7d7380a5-130a-4ae1-a433-2dd35f57b5d3" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-7d7380a5-130a-4ae1-a433-2dd35f57b5d3" class="xr-section-summary">Attributes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature data at weather stations: daily and and average</dd><dt><span>description :</span></dt><dd>simple example of an xarray.Dataset</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 </section>
@@ -3773,6 +3878,7 @@ Attributes:
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -3785,7 +3891,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -4002,6 +4108,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -4023,14 +4134,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -4040,13 +4153,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -4084,7 +4200,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -4100,32 +4217,12 @@ Coordinates:
   * lon       (lon) int32 60 70 80 90 100
   * time      (time) datetime64[ns] 2022-09-01 2022-09-02 2022-09-03
 Data variables:
-    avg_temp  (lat, lon) float64 1.0 1.0 1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0 1.0
-    temp      (time, lat, lon) int32 0 0 0 0 0 0 0 0 0 0 ... 2 2 2 2 2 2 2 2 2 2
+    avg_temp  (lat, lon) float64 ...
+    temp      (time, lat, lon) int32 ...
 Attributes:
     title:        temperature data at weather stations: daily and and average
-    description:  simple example of an xarray.Dataset</pre><div class="xr-wrap" hidden=""><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-4129e002-68c6-42f8-83ec-842901514d80" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-4129e002-68c6-42f8-83ec-842901514d80" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li><li><span class="xr-has-index">time</span>: 3</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-03c630cd-d482-42e5-9dfb-1721455cb9ff" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-03c630cd-d482-42e5-9dfb-1721455cb9ff" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int32</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-91434b22-b219-4301-aa52-850376dfd922" class="xr-var-attrs-in" type="checkbox"><label for="attrs-91434b22-b219-4301-aa52-850376dfd922" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f534a9a1-134e-40ad-9ab5-fc945e930629" class="xr-var-data-in" type="checkbox"><label for="data-f534a9a1-134e-40ad-9ab5-fc945e930629" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30], dtype=int32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int32</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-ecccc093-cee2-48fd-8d1d-28e5b8dc3056" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ecccc093-cee2-48fd-8d1d-28e5b8dc3056" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a60c1f4e-14a8-4976-8625-3bc566bc8948" class="xr-var-data-in" type="checkbox"><label for="data-a60c1f4e-14a8-4976-8625-3bc566bc8948" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100], dtype=int32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-4ccd2f5f-8903-402f-b113-25f2e5f1c6d0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4ccd2f5f-8903-402f-b113-25f2e5f1c6d0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-efc0b617-4208-40e8-b2ba-2ede5ee22694" class="xr-var-data-in" type="checkbox"><label for="data-efc0b617-4208-40e8-b2ba-2ede5ee22694" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
-       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-ea767f1e-28ce-4e22-9e97-5376d45f6da5" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-ea767f1e-28ce-4e22-9e97-5376d45f6da5" class="xr-section-summary">Data variables: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>avg_temp</span></div><div class="xr-var-dims">(lat, lon)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-031f1610-03d8-4277-bd43-1e7327f51c95" class="xr-var-attrs-in" type="checkbox"><label for="attrs-031f1610-03d8-4277-bd43-1e7327f51c95" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-67d3c2d8-d494-4771-8d5e-d26e99619943" class="xr-var-data-in" type="checkbox"><label for="data-67d3c2d8-d494-4771-8d5e-d26e99619943" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>average temperature over three days</dd></dl></div><div class="xr-var-data"><pre>array([[1., 1., 1., 1., 1.],
-       [1., 1., 1., 1., 1.],
-       [1., 1., 1., 1., 1.],
-       [1., 1., 1., 1., 1.],
-       [1., 1., 1., 1., 1.]])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>temp</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">int32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ebf59ea1-cb94-4089-8bf5-94dff4d4ed76" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ebf59ea1-cb94-4089-8bf5-94dff4d4ed76" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-75554e9a-7f63-4257-b096-0683dde3bcfe" class="xr-var-data-in" type="checkbox"><label for="data-75554e9a-7f63-4257-b096-0683dde3bcfe" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div><div class="xr-var-data"><pre>array([[[0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0]],
-
-       [[1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1]],
-
-       [[2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2]]], dtype=int32)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b030756a-1a23-43b9-ad50-b72b6fe83cc8" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-b030756a-1a23-43b9-ad50-b72b6fe83cc8" class="xr-section-summary">Attributes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature data at weather stations: daily and and average</dd><dt><span>description :</span></dt><dd>simple example of an xarray.Dataset</dd></dl></div></li></ul></div></div>
+    description:  simple example of an xarray.Dataset</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-3bf9fe62-5d5c-41ba-ae33-bbb0161a9363" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-3bf9fe62-5d5c-41ba-ae33-bbb0161a9363" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">lat</span>: 5</li><li><span class="xr-has-index">lon</span>: 5</li><li><span class="xr-has-index">time</span>: 3</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-da6f0779-41c5-4624-9016-3293cddf0ffa" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-da6f0779-41c5-4624-9016-3293cddf0ffa" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">int32</div><div class="xr-var-preview xr-preview">70 60 50 40 30</div><input id="attrs-be3e396a-c45d-481d-843a-71f53dd83ceb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-be3e396a-c45d-481d-843a-71f53dd83ceb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-19e5c35e-9352-4976-b7ae-cacca2ee90bf" class="xr-var-data-in" type="checkbox"><label for="data-19e5c35e-9352-4976-b7ae-cacca2ee90bf" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_latitude</dd><dt><span>units :</span></dt><dd>degree_N</dd></dl></div><div class="xr-var-data"><pre>array([70, 60, 50, 40, 30], dtype=int32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">int32</div><div class="xr-var-preview xr-preview">60 70 80 90 100</div><input id="attrs-893fe30b-7c31-4be4-80ee-4196150106c4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-893fe30b-7c31-4be4-80ee-4196150106c4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ba8d6f8b-dbe5-4f26-b92a-9b9fdbc1a1b3" class="xr-var-data-in" type="checkbox"><label for="data-ba8d6f8b-dbe5-4f26-b92a-9b9fdbc1a1b3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>grid_longitude</dd><dt><span>units :</span></dt><dd>degree_E</dd></dl></div><div class="xr-var-data"><pre>array([ 60,  70,  80,  90, 100], dtype=int32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2022-09-01 2022-09-02 2022-09-03</div><input id="attrs-3b49b8f8-833e-43e5-ac28-ae172206f9d1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3b49b8f8-833e-43e5-ac28-ae172206f9d1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2d6e3275-7cf7-46f3-8c22-8a85d695160e" class="xr-var-data-in" type="checkbox"><label for="data-2d6e3275-7cf7-46f3-8c22-8a85d695160e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>description :</span></dt><dd>date of measurement</dd></dl></div><div class="xr-var-data"><pre>array(['2022-09-01T00:00:00.000000000', '2022-09-02T00:00:00.000000000',
+       '2022-09-03T00:00:00.000000000'], dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-e7ddded2-7d53-49ac-8a71-51e32d1571e2" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-e7ddded2-7d53-49ac-8a71-51e32d1571e2" class="xr-section-summary">Data variables: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>avg_temp</span></div><div class="xr-var-dims">(lat, lon)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-e5193dce-c2a9-4ea0-8adc-5339768f32b1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e5193dce-c2a9-4ea0-8adc-5339768f32b1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c2710fc2-d552-457a-ac1c-d602cd5277fa" class="xr-var-data-in" type="checkbox"><label for="data-c2710fc2-d552-457a-ac1c-d602cd5277fa" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>average temperature over three days</dd></dl></div><div class="xr-var-data"><pre>[25 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>temp</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">int32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-acfb368d-bbaa-4703-aa1d-da04537a108c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-acfb368d-bbaa-4703-aa1d-da04537a108c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6c99bc53-14ac-41ac-a83d-cf84076d63bd" class="xr-var-data-in" type="checkbox"><label for="data-6c99bc53-14ac-41ac-a83d-cf84076d63bd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature across weather stations</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degree_c</dd><dt><span>description :</span></dt><dd>simple example of an xarray.DataArray</dd></dl></div><div class="xr-var-data"><pre>[75 values with dtype=int32]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-41e7c688-556e-4852-b93b-b93058659342" class="xr-section-summary-in" type="checkbox"><label for="section-41e7c688-556e-4852-b93b-b93058659342" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-5b55521a-3fbf-4edd-beb5-46ebaa995ee4" class="xr-index-data-in" type="checkbox"><label for="index-5b55521a-3fbf-4edd-beb5-46ebaa995ee4" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([70, 60, 50, 40, 30], dtype='int32', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-b405952b-d031-4d1e-b62b-aeef969a1326" class="xr-index-data-in" type="checkbox"><label for="index-b405952b-d031-4d1e-b62b-aeef969a1326" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([60, 70, 80, 90, 100], dtype='int32', name='lon'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-bfdbe4d0-88ee-4480-b6b6-978e3cb9afb9" class="xr-index-data-in" type="checkbox"><label for="index-bfdbe4d0-88ee-4480-b6b6-978e3cb9afb9" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2022-09-01', '2022-09-02', '2022-09-03'], dtype='datetime64[ns]', name='time', freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-bf2b597d-03a9-44c3-a951-09f08bb635b1" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-bf2b597d-03a9-44c3-a951-09f08bb635b1" class="xr-section-summary">Attributes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>temperature data at weather stations: daily and and average</dd><dt><span>description :</span></dt><dd>simple example of an xarray.Dataset</dd></dl></div></li></ul></div></div>
 </div>
 </div>
 </section>
@@ -4166,9 +4263,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -4233,6 +4344,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

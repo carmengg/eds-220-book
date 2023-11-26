@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -93,7 +64,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-13-standin.html" rel="next">
+<link href="../lectures/lesson-13-reproject-and-clip.html" rel="next">
 <link href="../lectures/lesson-10-merge-data.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +91,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -134,11 +106,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-12-csv-to-geo.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to `GeoDataFrame`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -146,195 +123,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">EDS 220 - Working with Environmental Datasets</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tabular data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Tabular data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Vector data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Vector data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-13-standin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></a>
+  <a href="../lectures/lesson-13-reproject-and-clip.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Multi-dimensional data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Multi-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Raster data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Raster data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></a>
+  <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></a>
+  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></a>
+  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></a>
+  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></a>
+  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/undoing-commit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></a>
+  <a href="../appendices/undoing-commit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,17 +350,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="toc-section-number">14.1</span>  Data</a></li>
-  <li><a href="#dataframe-to-geodataframe" id="toc-dataframe-to-geodataframe" class="nav-link" data-scroll-target="#dataframe-to-geodataframe"><span class="toc-section-number">14.2</span>  <code>DataFrame</code> to <code>GeoDataFrame</code></a></li>
-  <li><a href="#tiger-shapefile" id="toc-tiger-shapefile" class="nav-link" data-scroll-target="#tiger-shapefile"><span class="toc-section-number">14.3</span>  TIGER shapefile</a></li>
-  <li><a href="#data-selection" id="toc-data-selection" class="nav-link" data-scroll-target="#data-selection"><span class="toc-section-number">14.4</span>  Data selection</a></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting"><span class="toc-section-number">14.5</span>  Plotting</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">14.1</span> Data</a></li>
+  <li><a href="#dataframe-to-geodataframe" id="toc-dataframe-to-geodataframe" class="nav-link" data-scroll-target="#dataframe-to-geodataframe"><span class="header-section-number">14.2</span> <code>DataFrame</code> to <code>GeoDataFrame</code></a></li>
+  <li><a href="#tiger-shapefile" id="toc-tiger-shapefile" class="nav-link" data-scroll-target="#tiger-shapefile"><span class="header-section-number">14.3</span> TIGER shapefile</a></li>
+  <li><a href="#data-selection" id="toc-data-selection" class="nav-link" data-scroll-target="#data-selection"><span class="header-section-number">14.4</span> Data selection</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting"><span class="header-section-number">14.5</span> Plotting</a></li>
   </ul>
 </nav>
     </div>
@@ -361,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></h1>
 </div>
 
 
@@ -422,7 +431,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/tiger_shp_columns.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Source: TIGER/Line Shapefiles Technical Documentation</figcaption><p></p>
+<figcaption class="figure-caption">Source: TIGER/Line Shapefiles Technical Documentation</figcaption>
 </figure>
 </div>
 <p><strong>File management: Both datasets must be in a data directory inside your working directory.</strong></p>
@@ -446,159 +455,160 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>power_plants <span class="op">=</span> pd.read_csv(<span class="st">'data/power_plants_epsg4269.csv'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>power_plants.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>objectid</th>
-      <th>plant_code</th>
-      <th>plant_name</th>
-      <th>utility_id</th>
-      <th>utility_name</th>
-      <th>sector_name</th>
-      <th>street_address</th>
-      <th>city</th>
-      <th>county</th>
-      <th>state</th>
-      <th>zip</th>
-      <th>primsource</th>
-      <th>source_desc</th>
-      <th>tech_desc</th>
-      <th>install_mw</th>
-      <th>total_mw</th>
-      <th>bat_mw</th>
-      <th>bio_mw</th>
-      <th>coal_mw</th>
-      <th>geo_mw</th>
-      <th>hydro_mw</th>
-      <th>hydrops_mw</th>
-      <th>ng_mw</th>
-      <th>nuclear_mw</th>
-      <th>crude_mw</th>
-      <th>solar_mw</th>
-      <th>wind_mw</th>
-      <th>other_mw</th>
-      <th>source</th>
-      <th>period</th>
-      <th>longitude</th>
-      <th>latitude</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>11570</td>
-      <td>1</td>
-      <td>Sand Point</td>
-      <td>63560</td>
-      <td>TDX Sand Point Generating, LLC</td>
-      <td>Electric Utility</td>
-      <td>100 Power Plant Way</td>
-      <td>Sand Point</td>
-      <td>Aleutians East</td>
-      <td>Alaska</td>
-      <td>99661.0</td>
-      <td>petroleum</td>
-      <td>Petroleum = 1.3 MW, Wind = 0.4 MW</td>
-      <td>Petroleum Liquids; Onshore Wind Turbine;</td>
-      <td>3.7</td>
-      <td>1.7</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.3</td>
-      <td>NaN</td>
-      <td>0.4</td>
-      <td>NaN</td>
-      <td>EIA-860, EIA-860M and EIA-923</td>
-      <td>202305.0</td>
-      <td>-160.497222</td>
-      <td>55.339722</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>11571</td>
-      <td>2</td>
-      <td>Bankhead Dam</td>
-      <td>195</td>
-      <td>Alabama Power Co</td>
-      <td>Electric Utility</td>
-      <td>19001 Lock 17 Road</td>
-      <td>Northport</td>
-      <td>Tuscaloosa</td>
-      <td>Alabama</td>
-      <td>35476.0</td>
-      <td>hydroelectric</td>
-      <td>Hydroelectric = 53 MW</td>
-      <td>Conventional Hydroelectric</td>
-      <td>53.9</td>
-      <td>53.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>53.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>EIA-860, EIA-860M and EIA-923</td>
-      <td>202305.0</td>
-      <td>-87.356823</td>
-      <td>33.458665</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2.0</td>
-      <td>11572</td>
-      <td>3</td>
-      <td>Barry</td>
-      <td>195</td>
-      <td>Alabama Power Co</td>
-      <td>Electric Utility</td>
-      <td>North Highway 43</td>
-      <td>Bucks</td>
-      <td>Mobile</td>
-      <td>Alabama</td>
-      <td>36512.0</td>
-      <td>natural gas</td>
-      <td>Coal = 1118.5 MW, Natural Gas = 1296.2 MW</td>
-      <td>Conventional Steam Coal; Natural Gas Fired Com...</td>
-      <td>2569.5</td>
-      <td>2414.7</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1118.5</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1296.2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>EIA-860, EIA-860M and EIA-923</td>
-      <td>202305.0</td>
-      <td>-88.010300</td>
-      <td>31.006900</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">objectid</th>
+<th data-quarto-table-cell-role="th">plant_code</th>
+<th data-quarto-table-cell-role="th">plant_name</th>
+<th data-quarto-table-cell-role="th">utility_id</th>
+<th data-quarto-table-cell-role="th">utility_name</th>
+<th data-quarto-table-cell-role="th">sector_name</th>
+<th data-quarto-table-cell-role="th">street_address</th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">county</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">zip</th>
+<th data-quarto-table-cell-role="th">primsource</th>
+<th data-quarto-table-cell-role="th">source_desc</th>
+<th data-quarto-table-cell-role="th">tech_desc</th>
+<th data-quarto-table-cell-role="th">install_mw</th>
+<th data-quarto-table-cell-role="th">total_mw</th>
+<th data-quarto-table-cell-role="th">bat_mw</th>
+<th data-quarto-table-cell-role="th">bio_mw</th>
+<th data-quarto-table-cell-role="th">coal_mw</th>
+<th data-quarto-table-cell-role="th">geo_mw</th>
+<th data-quarto-table-cell-role="th">hydro_mw</th>
+<th data-quarto-table-cell-role="th">hydrops_mw</th>
+<th data-quarto-table-cell-role="th">ng_mw</th>
+<th data-quarto-table-cell-role="th">nuclear_mw</th>
+<th data-quarto-table-cell-role="th">crude_mw</th>
+<th data-quarto-table-cell-role="th">solar_mw</th>
+<th data-quarto-table-cell-role="th">wind_mw</th>
+<th data-quarto-table-cell-role="th">other_mw</th>
+<th data-quarto-table-cell-role="th">source</th>
+<th data-quarto-table-cell-role="th">period</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.0</td>
+<td>11570</td>
+<td>1</td>
+<td>Sand Point</td>
+<td>63560</td>
+<td>TDX Sand Point Generating, LLC</td>
+<td>Electric Utility</td>
+<td>100 Power Plant Way</td>
+<td>Sand Point</td>
+<td>Aleutians East</td>
+<td>Alaska</td>
+<td>99661.0</td>
+<td>petroleum</td>
+<td>Petroleum = 1.3 MW, Wind = 0.4 MW</td>
+<td>Petroleum Liquids; Onshore Wind Turbine;</td>
+<td>3.7</td>
+<td>1.7</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.3</td>
+<td>NaN</td>
+<td>0.4</td>
+<td>NaN</td>
+<td>EIA-860, EIA-860M and EIA-923</td>
+<td>202305.0</td>
+<td>-160.497222</td>
+<td>55.339722</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.0</td>
+<td>11571</td>
+<td>2</td>
+<td>Bankhead Dam</td>
+<td>195</td>
+<td>Alabama Power Co</td>
+<td>Electric Utility</td>
+<td>19001 Lock 17 Road</td>
+<td>Northport</td>
+<td>Tuscaloosa</td>
+<td>Alabama</td>
+<td>35476.0</td>
+<td>hydroelectric</td>
+<td>Hydroelectric = 53 MW</td>
+<td>Conventional Hydroelectric</td>
+<td>53.9</td>
+<td>53.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>53.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>EIA-860, EIA-860M and EIA-923</td>
+<td>202305.0</td>
+<td>-87.356823</td>
+<td>33.458665</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2.0</td>
+<td>11572</td>
+<td>3</td>
+<td>Barry</td>
+<td>195</td>
+<td>Alabama Power Co</td>
+<td>Electric Utility</td>
+<td>North Highway 43</td>
+<td>Bucks</td>
+<td>Mobile</td>
+<td>Alabama</td>
+<td>36512.0</td>
+<td>natural gas</td>
+<td>Coal = 1118.5 MW, Natural Gas = 1296.2 MW</td>
+<td>Conventional Steam Coal; Natural Gas Fired Com...</td>
+<td>2569.5</td>
+<td>2414.7</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1118.5</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1296.2</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>EIA-860, EIA-860M and EIA-923</td>
+<td>202305.0</td>
+<td>-88.010300</td>
+<td>31.006900</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -620,163 +630,164 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>power_plants.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>unnamed: 0</th>
-      <th>objectid</th>
-      <th>plant_code</th>
-      <th>plant_name</th>
-      <th>utility_id</th>
-      <th>utility_name</th>
-      <th>sector_name</th>
-      <th>street_address</th>
-      <th>city</th>
-      <th>county</th>
-      <th>state</th>
-      <th>zip</th>
-      <th>primsource</th>
-      <th>source_desc</th>
-      <th>tech_desc</th>
-      <th>install_mw</th>
-      <th>total_mw</th>
-      <th>bat_mw</th>
-      <th>bio_mw</th>
-      <th>coal_mw</th>
-      <th>geo_mw</th>
-      <th>hydro_mw</th>
-      <th>hydrops_mw</th>
-      <th>ng_mw</th>
-      <th>nuclear_mw</th>
-      <th>crude_mw</th>
-      <th>solar_mw</th>
-      <th>wind_mw</th>
-      <th>other_mw</th>
-      <th>source</th>
-      <th>period</th>
-      <th>longitude</th>
-      <th>latitude</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>11570</td>
-      <td>1</td>
-      <td>Sand Point</td>
-      <td>63560</td>
-      <td>TDX Sand Point Generating, LLC</td>
-      <td>Electric Utility</td>
-      <td>100 Power Plant Way</td>
-      <td>Sand Point</td>
-      <td>Aleutians East</td>
-      <td>Alaska</td>
-      <td>99661.0</td>
-      <td>petroleum</td>
-      <td>Petroleum = 1.3 MW, Wind = 0.4 MW</td>
-      <td>Petroleum Liquids; Onshore Wind Turbine;</td>
-      <td>3.7</td>
-      <td>1.7</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.3</td>
-      <td>NaN</td>
-      <td>0.4</td>
-      <td>NaN</td>
-      <td>EIA-860, EIA-860M and EIA-923</td>
-      <td>202305.0</td>
-      <td>-160.497222</td>
-      <td>55.339722</td>
-      <td>POINT (-160.49722 55.33972)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>11571</td>
-      <td>2</td>
-      <td>Bankhead Dam</td>
-      <td>195</td>
-      <td>Alabama Power Co</td>
-      <td>Electric Utility</td>
-      <td>19001 Lock 17 Road</td>
-      <td>Northport</td>
-      <td>Tuscaloosa</td>
-      <td>Alabama</td>
-      <td>35476.0</td>
-      <td>hydroelectric</td>
-      <td>Hydroelectric = 53 MW</td>
-      <td>Conventional Hydroelectric</td>
-      <td>53.9</td>
-      <td>53.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>53.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>EIA-860, EIA-860M and EIA-923</td>
-      <td>202305.0</td>
-      <td>-87.356823</td>
-      <td>33.458665</td>
-      <td>POINT (-87.35682 33.45867)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2.0</td>
-      <td>11572</td>
-      <td>3</td>
-      <td>Barry</td>
-      <td>195</td>
-      <td>Alabama Power Co</td>
-      <td>Electric Utility</td>
-      <td>North Highway 43</td>
-      <td>Bucks</td>
-      <td>Mobile</td>
-      <td>Alabama</td>
-      <td>36512.0</td>
-      <td>natural gas</td>
-      <td>Coal = 1118.5 MW, Natural Gas = 1296.2 MW</td>
-      <td>Conventional Steam Coal; Natural Gas Fired Com...</td>
-      <td>2569.5</td>
-      <td>2414.7</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1118.5</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1296.2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>EIA-860, EIA-860M and EIA-923</td>
-      <td>202305.0</td>
-      <td>-88.010300</td>
-      <td>31.006900</td>
-      <td>POINT (-88.01030 31.00690)</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">unnamed: 0</th>
+<th data-quarto-table-cell-role="th">objectid</th>
+<th data-quarto-table-cell-role="th">plant_code</th>
+<th data-quarto-table-cell-role="th">plant_name</th>
+<th data-quarto-table-cell-role="th">utility_id</th>
+<th data-quarto-table-cell-role="th">utility_name</th>
+<th data-quarto-table-cell-role="th">sector_name</th>
+<th data-quarto-table-cell-role="th">street_address</th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">county</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">zip</th>
+<th data-quarto-table-cell-role="th">primsource</th>
+<th data-quarto-table-cell-role="th">source_desc</th>
+<th data-quarto-table-cell-role="th">tech_desc</th>
+<th data-quarto-table-cell-role="th">install_mw</th>
+<th data-quarto-table-cell-role="th">total_mw</th>
+<th data-quarto-table-cell-role="th">bat_mw</th>
+<th data-quarto-table-cell-role="th">bio_mw</th>
+<th data-quarto-table-cell-role="th">coal_mw</th>
+<th data-quarto-table-cell-role="th">geo_mw</th>
+<th data-quarto-table-cell-role="th">hydro_mw</th>
+<th data-quarto-table-cell-role="th">hydrops_mw</th>
+<th data-quarto-table-cell-role="th">ng_mw</th>
+<th data-quarto-table-cell-role="th">nuclear_mw</th>
+<th data-quarto-table-cell-role="th">crude_mw</th>
+<th data-quarto-table-cell-role="th">solar_mw</th>
+<th data-quarto-table-cell-role="th">wind_mw</th>
+<th data-quarto-table-cell-role="th">other_mw</th>
+<th data-quarto-table-cell-role="th">source</th>
+<th data-quarto-table-cell-role="th">period</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.0</td>
+<td>11570</td>
+<td>1</td>
+<td>Sand Point</td>
+<td>63560</td>
+<td>TDX Sand Point Generating, LLC</td>
+<td>Electric Utility</td>
+<td>100 Power Plant Way</td>
+<td>Sand Point</td>
+<td>Aleutians East</td>
+<td>Alaska</td>
+<td>99661.0</td>
+<td>petroleum</td>
+<td>Petroleum = 1.3 MW, Wind = 0.4 MW</td>
+<td>Petroleum Liquids; Onshore Wind Turbine;</td>
+<td>3.7</td>
+<td>1.7</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.3</td>
+<td>NaN</td>
+<td>0.4</td>
+<td>NaN</td>
+<td>EIA-860, EIA-860M and EIA-923</td>
+<td>202305.0</td>
+<td>-160.497222</td>
+<td>55.339722</td>
+<td>POINT (-160.49722 55.33972)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.0</td>
+<td>11571</td>
+<td>2</td>
+<td>Bankhead Dam</td>
+<td>195</td>
+<td>Alabama Power Co</td>
+<td>Electric Utility</td>
+<td>19001 Lock 17 Road</td>
+<td>Northport</td>
+<td>Tuscaloosa</td>
+<td>Alabama</td>
+<td>35476.0</td>
+<td>hydroelectric</td>
+<td>Hydroelectric = 53 MW</td>
+<td>Conventional Hydroelectric</td>
+<td>53.9</td>
+<td>53.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>53.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>EIA-860, EIA-860M and EIA-923</td>
+<td>202305.0</td>
+<td>-87.356823</td>
+<td>33.458665</td>
+<td>POINT (-87.35682 33.45867)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2.0</td>
+<td>11572</td>
+<td>3</td>
+<td>Barry</td>
+<td>195</td>
+<td>Alabama Power Co</td>
+<td>Electric Utility</td>
+<td>North Highway 43</td>
+<td>Bucks</td>
+<td>Mobile</td>
+<td>Alabama</td>
+<td>36512.0</td>
+<td>natural gas</td>
+<td>Coal = 1118.5 MW, Natural Gas = 1296.2 MW</td>
+<td>Conventional Steam Coal; Natural Gas Fired Com...</td>
+<td>2569.5</td>
+<td>2414.7</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1118.5</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1296.2</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>EIA-860, EIA-860M and EIA-923</td>
+<td>202305.0</td>
+<td>-88.010300</td>
+<td>31.006900</td>
+<td>POINT (-88.01030 31.00690)</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -831,123 +842,124 @@ Datum: North American Datum 1983
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>states.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>region</th>
-      <th>division</th>
-      <th>statefp</th>
-      <th>statens</th>
-      <th>geoid</th>
-      <th>stusps</th>
-      <th>name</th>
-      <th>lsad</th>
-      <th>mtfcc</th>
-      <th>funcstat</th>
-      <th>aland</th>
-      <th>awater</th>
-      <th>intptlat</th>
-      <th>intptlon</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3</td>
-      <td>5</td>
-      <td>54</td>
-      <td>01779805</td>
-      <td>54</td>
-      <td>WV</td>
-      <td>West Virginia</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>62266456923</td>
-      <td>489045863</td>
-      <td>+38.6472854</td>
-      <td>-080.6183274</td>
-      <td>POLYGON ((-77.75438 39.33346, -77.75422 39.333...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3</td>
-      <td>5</td>
-      <td>12</td>
-      <td>00294478</td>
-      <td>12</td>
-      <td>FL</td>
-      <td>Florida</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>138962819934</td>
-      <td>45971472526</td>
-      <td>+28.3989775</td>
-      <td>-082.5143005</td>
-      <td>MULTIPOLYGON (((-83.10874 24.62949, -83.10711 ...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>3</td>
-      <td>17</td>
-      <td>01779784</td>
-      <td>17</td>
-      <td>IL</td>
-      <td>Illinois</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>143778515726</td>
-      <td>6216539665</td>
-      <td>+40.1028754</td>
-      <td>-089.1526108</td>
-      <td>POLYGON ((-87.89243 38.28285, -87.89334 38.282...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2</td>
-      <td>4</td>
-      <td>27</td>
-      <td>00662849</td>
-      <td>27</td>
-      <td>MN</td>
-      <td>Minnesota</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>206244837557</td>
-      <td>18937184315</td>
-      <td>+46.3159573</td>
-      <td>-094.1996043</td>
-      <td>POLYGON ((-95.31989 48.99892, -95.31747 48.998...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3</td>
-      <td>5</td>
-      <td>24</td>
-      <td>01714934</td>
-      <td>24</td>
-      <td>MD</td>
-      <td>Maryland</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>25151771744</td>
-      <td>6979295311</td>
-      <td>+38.9466584</td>
-      <td>-076.6744939</td>
-      <td>POLYGON ((-75.75600 39.24607, -75.75579 39.243...</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">statefp</th>
+<th data-quarto-table-cell-role="th">statens</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">stusps</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">lsad</th>
+<th data-quarto-table-cell-role="th">mtfcc</th>
+<th data-quarto-table-cell-role="th">funcstat</th>
+<th data-quarto-table-cell-role="th">aland</th>
+<th data-quarto-table-cell-role="th">awater</th>
+<th data-quarto-table-cell-role="th">intptlat</th>
+<th data-quarto-table-cell-role="th">intptlon</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3</td>
+<td>5</td>
+<td>54</td>
+<td>01779805</td>
+<td>54</td>
+<td>WV</td>
+<td>West Virginia</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>62266456923</td>
+<td>489045863</td>
+<td>+38.6472854</td>
+<td>-080.6183274</td>
+<td>POLYGON ((-77.75438 39.33346, -77.75422 39.333...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>3</td>
+<td>5</td>
+<td>12</td>
+<td>00294478</td>
+<td>12</td>
+<td>FL</td>
+<td>Florida</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>138962819934</td>
+<td>45971472526</td>
+<td>+28.3989775</td>
+<td>-082.5143005</td>
+<td>MULTIPOLYGON (((-83.10874 24.62949, -83.10711 ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>3</td>
+<td>17</td>
+<td>01779784</td>
+<td>17</td>
+<td>IL</td>
+<td>Illinois</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>143778515726</td>
+<td>6216539665</td>
+<td>+40.1028754</td>
+<td>-089.1526108</td>
+<td>POLYGON ((-87.89243 38.28285, -87.89334 38.282...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2</td>
+<td>4</td>
+<td>27</td>
+<td>00662849</td>
+<td>27</td>
+<td>MN</td>
+<td>Minnesota</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>206244837557</td>
+<td>18937184315</td>
+<td>+46.3159573</td>
+<td>-094.1996043</td>
+<td>POLYGON ((-95.31989 48.99892, -95.31747 48.998...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>3</td>
+<td>5</td>
+<td>24</td>
+<td>01714934</td>
+<td>24</td>
+<td>MD</td>
+<td>Maryland</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>25151771744</td>
+<td>6979295311</td>
+<td>+38.9466584</td>
+<td>-076.6744939</td>
+<td>POLYGON ((-75.75600 39.24607, -75.75579 39.243...</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1020,123 +1032,124 @@ dtype: object</code></pre>
 <pre><code>[3 2 1 4 9]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="16">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>region</th>
-      <th>division</th>
-      <th>statefp</th>
-      <th>statens</th>
-      <th>geoid</th>
-      <th>stusps</th>
-      <th>name</th>
-      <th>lsad</th>
-      <th>mtfcc</th>
-      <th>funcstat</th>
-      <th>aland</th>
-      <th>awater</th>
-      <th>intptlat</th>
-      <th>intptlon</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>34</th>
-      <td>9</td>
-      <td>0</td>
-      <td>78</td>
-      <td>01802710</td>
-      <td>78</td>
-      <td>VI</td>
-      <td>United States Virgin Islands</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>348021909</td>
-      <td>1550236187</td>
-      <td>+18.3392359</td>
-      <td>-064.9500433</td>
-      <td>MULTIPOLYGON (((-64.76834 18.26033, -64.77074 ...</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>9</td>
-      <td>0</td>
-      <td>69</td>
-      <td>01779809</td>
-      <td>69</td>
-      <td>MP</td>
-      <td>Commonwealth of the Northern Mariana Islands</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>472292521</td>
-      <td>4644252458</td>
-      <td>+15.0010865</td>
-      <td>+145.6181702</td>
-      <td>MULTIPOLYGON (((145.05897 14.12500, 145.06302 ...</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>9</td>
-      <td>0</td>
-      <td>66</td>
-      <td>01802705</td>
-      <td>66</td>
-      <td>GU</td>
-      <td>Guam</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>543555849</td>
-      <td>934337453</td>
-      <td>+13.4417451</td>
-      <td>+144.7719021</td>
-      <td>POLYGON ((144.56343 13.44806, 144.56357 13.450...</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>9</td>
-      <td>0</td>
-      <td>60</td>
-      <td>01802701</td>
-      <td>60</td>
-      <td>AS</td>
-      <td>American Samoa</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>197759069</td>
-      <td>1307243751</td>
-      <td>-14.2671590</td>
-      <td>-170.6682674</td>
-      <td>MULTIPOLYGON (((-170.53809 -14.33613, -170.548...</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>9</td>
-      <td>0</td>
-      <td>72</td>
-      <td>01779808</td>
-      <td>72</td>
-      <td>PR</td>
-      <td>Puerto Rico</td>
-      <td>00</td>
-      <td>G4000</td>
-      <td>A</td>
-      <td>8869029522</td>
-      <td>4922249087</td>
-      <td>+18.2176480</td>
-      <td>-066.4107992</td>
-      <td>MULTIPOLYGON (((-66.32322 17.87767, -66.33170 ...</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">statefp</th>
+<th data-quarto-table-cell-role="th">statens</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">stusps</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">lsad</th>
+<th data-quarto-table-cell-role="th">mtfcc</th>
+<th data-quarto-table-cell-role="th">funcstat</th>
+<th data-quarto-table-cell-role="th">aland</th>
+<th data-quarto-table-cell-role="th">awater</th>
+<th data-quarto-table-cell-role="th">intptlat</th>
+<th data-quarto-table-cell-role="th">intptlon</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>9</td>
+<td>0</td>
+<td>78</td>
+<td>01802710</td>
+<td>78</td>
+<td>VI</td>
+<td>United States Virgin Islands</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>348021909</td>
+<td>1550236187</td>
+<td>+18.3392359</td>
+<td>-064.9500433</td>
+<td>MULTIPOLYGON (((-64.76834 18.26033, -64.77074 ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>9</td>
+<td>0</td>
+<td>69</td>
+<td>01779809</td>
+<td>69</td>
+<td>MP</td>
+<td>Commonwealth of the Northern Mariana Islands</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>472292521</td>
+<td>4644252458</td>
+<td>+15.0010865</td>
+<td>+145.6181702</td>
+<td>MULTIPOLYGON (((145.05897 14.12500, 145.06302 ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>9</td>
+<td>0</td>
+<td>66</td>
+<td>01802705</td>
+<td>66</td>
+<td>GU</td>
+<td>Guam</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>543555849</td>
+<td>934337453</td>
+<td>+13.4417451</td>
+<td>+144.7719021</td>
+<td>POLYGON ((144.56343 13.44806, 144.56357 13.450...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>9</td>
+<td>0</td>
+<td>60</td>
+<td>01802701</td>
+<td>60</td>
+<td>AS</td>
+<td>American Samoa</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>197759069</td>
+<td>1307243751</td>
+<td>-14.2671590</td>
+<td>-170.6682674</td>
+<td>MULTIPOLYGON (((-170.53809 -14.33613, -170.548...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">49</td>
+<td>9</td>
+<td>0</td>
+<td>72</td>
+<td>01779808</td>
+<td>72</td>
+<td>PR</td>
+<td>Puerto Rico</td>
+<td>00</td>
+<td>G4000</td>
+<td>A</td>
+<td>8869029522</td>
+<td>4922249087</td>
+<td>+18.2176480</td>
+<td>-066.4107992</td>
+<td>MULTIPOLYGON (((-66.32322 17.87767, -66.33170 ...</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1159,12 +1172,12 @@ dtype: object</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> states[(states.region<span class="op">!=</span><span class="dv">9</span>) <span class="op">&amp;</span> (<span class="op">~</span>states.statefp.isin([<span class="dv">2</span>,<span class="dv">15</span>]))]</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>power_plants <span class="op">=</span> power_plants[<span class="op">~</span>power_plants.state.isin([<span class="st">'Puerto Rico'</span>,<span class="st">'Hawaii'</span>,<span class="st">'Alaska'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 <code>~</code> = not
 </div>
 </div>
@@ -1291,9 +1304,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1358,6 +1385,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1404,8 +1517,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-13-standin.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-13-reproject-and-clip.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

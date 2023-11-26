@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,7 +91,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -134,11 +106,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-10-merge-data.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -146,195 +123,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">EDS 220 - Working with Environmental Datasets</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome!</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></a>
+  <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tabular data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Tabular data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></a>
+  <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></a>
+  <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></a>
+  <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></a>
+  <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></a>
+  <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></a>
+  <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></a>
+  <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></a>
+  <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Vector data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Vector data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></a>
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></a>
+  <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></a>
+  <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></a>
+  <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></a>
+  <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-13-standin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reproject and clip</span></a>
+  <a href="../lectures/lesson-13-reproject-and-clip.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></a>
+  <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Multi-dimensional data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Multi-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></a>
+  <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></a>
+  <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Raster data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Raster data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></a>
+  <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></a>
+  <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></a>
+  <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></a>
+  <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></a>
+  <a href="../appendices/set-pat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></a>
+  <a href="../appendices/gitignore_untrack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Gitignore &amp; Git Untracking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/undoing-commit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></a>
+  <a href="../appendices/undoing-commit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Undoing commits</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,31 +350,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins"><span class="toc-section-number">13.1</span>  Types of Joins</a>
+  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins"><span class="header-section-number">13.1</span> Types of Joins</a>
   <ul class="collapse">
-  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="toc-section-number">13.1.1</span>  Inner Join</a></li>
-  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">13.1.2</span>  Left Join</a></li>
-  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">13.1.3</span>  Right Join</a></li>
-  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="toc-section-number">13.1.4</span>  Full Join</a></li>
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="header-section-number">13.1.1</span> Inner Join</a></li>
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="header-section-number">13.1.2</span> Left Join</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="header-section-number">13.1.3</span> Right Join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">13.1.4</span> Full Join</a></li>
   </ul></li>
-  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="toc-section-number">13.2</span>  Goal</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">13.3</span>  Data</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">13.4</span>  Data preparation</a>
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="header-section-number">13.2</span> Goal</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">13.3</span> Data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">13.4</span> Data preparation</a>
   <ul class="collapse">
-  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">13.4.1</span>  Countries</a></li>
-  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="toc-section-number">13.4.2</span>  Arctic communities</a></li>
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="header-section-number">13.4.1</span> Countries</a></li>
+  <li><a href="#arctic-communities" id="toc-arctic-communities" class="nav-link" data-scroll-target="#arctic-communities"><span class="header-section-number">13.4.2</span> Arctic communities</a></li>
   </ul></li>
-  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="toc-section-number">13.5</span>  Merge datasets</a></li>
-  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="toc-section-number">13.6</span>  Choropleth map</a></li>
-  <li><a href="#complete-workflow" id="toc-complete-workflow" class="nav-link" data-scroll-target="#complete-workflow"><span class="toc-section-number">13.7</span>  Complete workflow</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="toc-section-number">13.8</span>  Acknowledgments</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">13.9</span>  References</a></li>
+  <li><a href="#merge-datasets" id="toc-merge-datasets" class="nav-link" data-scroll-target="#merge-datasets"><span class="header-section-number">13.5</span> Merge datasets</a></li>
+  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map"><span class="header-section-number">13.6</span> Choropleth map</a></li>
+  <li><a href="#complete-workflow" id="toc-complete-workflow" class="nav-link" data-scroll-target="#complete-workflow"><span class="header-section-number">13.7</span> Complete workflow</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="header-section-number">13.8</span> Acknowledgments</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">13.9</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -375,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></h1>
 </div>
 
 
@@ -423,7 +432,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-separate.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+<figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption>
 </figure>
 </div>
 <section id="inner-join" class="level3" data-number="13.1.1">
@@ -432,7 +441,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+<figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption>
 </figure>
 </div>
 </section>
@@ -442,7 +451,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-left.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+<figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption>
 </figure>
 </div>
 </section>
@@ -452,7 +461,7 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-right.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+<figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption>
 </figure>
 </div>
 </section>
@@ -462,14 +471,14 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-full.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+<figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption>
 </figure>
 </div>
 <p>Sometimes people represent joins as Venn diagrams, showing which parts of the left and right tables are included in the results for each join. This representation is useful, however, they miss part of the story related to where the missing value comes from in each result.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-venn.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund.</figcaption><p></p>
+<figcaption class="figure-caption">Image source: R for Data Science, Wickham &amp; Grolemund.</figcaption>
 </figure>
 </div>
 </section>
@@ -516,1047 +525,1048 @@ import contextily as ctx
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> gpd.read_file(<span class="st">'data/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>countries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>featurecla</th>
-      <th>scalerank</th>
-      <th>LABELRANK</th>
-      <th>SOVEREIGNT</th>
-      <th>SOV_A3</th>
-      <th>ADM0_DIF</th>
-      <th>LEVEL</th>
-      <th>TYPE</th>
-      <th>TLC</th>
-      <th>ADMIN</th>
-      <th>ADM0_A3</th>
-      <th>GEOU_DIF</th>
-      <th>GEOUNIT</th>
-      <th>GU_A3</th>
-      <th>SU_DIF</th>
-      <th>SUBUNIT</th>
-      <th>SU_A3</th>
-      <th>BRK_DIFF</th>
-      <th>NAME</th>
-      <th>NAME_LONG</th>
-      <th>BRK_A3</th>
-      <th>BRK_NAME</th>
-      <th>BRK_GROUP</th>
-      <th>ABBREV</th>
-      <th>POSTAL</th>
-      <th>FORMAL_EN</th>
-      <th>FORMAL_FR</th>
-      <th>NAME_CIAWF</th>
-      <th>NOTE_ADM0</th>
-      <th>NOTE_BRK</th>
-      <th>NAME_SORT</th>
-      <th>NAME_ALT</th>
-      <th>MAPCOLOR7</th>
-      <th>MAPCOLOR8</th>
-      <th>MAPCOLOR9</th>
-      <th>MAPCOLOR13</th>
-      <th>POP_EST</th>
-      <th>POP_RANK</th>
-      <th>POP_YEAR</th>
-      <th>GDP_MD</th>
-      <th>GDP_YEAR</th>
-      <th>ECONOMY</th>
-      <th>INCOME_GRP</th>
-      <th>FIPS_10</th>
-      <th>ISO_A2</th>
-      <th>ISO_A2_EH</th>
-      <th>ISO_A3</th>
-      <th>ISO_A3_EH</th>
-      <th>ISO_N3</th>
-      <th>ISO_N3_EH</th>
-      <th>UN_A3</th>
-      <th>WB_A2</th>
-      <th>WB_A3</th>
-      <th>WOE_ID</th>
-      <th>WOE_ID_EH</th>
-      <th>WOE_NOTE</th>
-      <th>ADM0_ISO</th>
-      <th>ADM0_DIFF</th>
-      <th>ADM0_TLC</th>
-      <th>ADM0_A3_US</th>
-      <th>ADM0_A3_FR</th>
-      <th>ADM0_A3_RU</th>
-      <th>ADM0_A3_ES</th>
-      <th>ADM0_A3_CN</th>
-      <th>ADM0_A3_TW</th>
-      <th>ADM0_A3_IN</th>
-      <th>ADM0_A3_NP</th>
-      <th>ADM0_A3_PK</th>
-      <th>ADM0_A3_DE</th>
-      <th>ADM0_A3_GB</th>
-      <th>ADM0_A3_BR</th>
-      <th>ADM0_A3_IL</th>
-      <th>ADM0_A3_PS</th>
-      <th>ADM0_A3_SA</th>
-      <th>ADM0_A3_EG</th>
-      <th>ADM0_A3_MA</th>
-      <th>ADM0_A3_PT</th>
-      <th>ADM0_A3_AR</th>
-      <th>ADM0_A3_JP</th>
-      <th>ADM0_A3_KO</th>
-      <th>ADM0_A3_VN</th>
-      <th>ADM0_A3_TR</th>
-      <th>ADM0_A3_ID</th>
-      <th>ADM0_A3_PL</th>
-      <th>ADM0_A3_GR</th>
-      <th>ADM0_A3_IT</th>
-      <th>ADM0_A3_NL</th>
-      <th>ADM0_A3_SE</th>
-      <th>ADM0_A3_BD</th>
-      <th>ADM0_A3_UA</th>
-      <th>ADM0_A3_UN</th>
-      <th>ADM0_A3_WB</th>
-      <th>CONTINENT</th>
-      <th>REGION_UN</th>
-      <th>SUBREGION</th>
-      <th>REGION_WB</th>
-      <th>NAME_LEN</th>
-      <th>LONG_LEN</th>
-      <th>ABBREV_LEN</th>
-      <th>TINY</th>
-      <th>HOMEPART</th>
-      <th>MIN_ZOOM</th>
-      <th>MIN_LABEL</th>
-      <th>MAX_LABEL</th>
-      <th>LABEL_X</th>
-      <th>LABEL_Y</th>
-      <th>NE_ID</th>
-      <th>WIKIDATAID</th>
-      <th>NAME_AR</th>
-      <th>NAME_BN</th>
-      <th>NAME_DE</th>
-      <th>NAME_EN</th>
-      <th>NAME_ES</th>
-      <th>NAME_FA</th>
-      <th>NAME_FR</th>
-      <th>NAME_EL</th>
-      <th>NAME_HE</th>
-      <th>NAME_HI</th>
-      <th>NAME_HU</th>
-      <th>NAME_ID</th>
-      <th>NAME_IT</th>
-      <th>NAME_JA</th>
-      <th>NAME_KO</th>
-      <th>NAME_NL</th>
-      <th>NAME_PL</th>
-      <th>NAME_PT</th>
-      <th>NAME_RU</th>
-      <th>NAME_SV</th>
-      <th>NAME_TR</th>
-      <th>NAME_UK</th>
-      <th>NAME_UR</th>
-      <th>NAME_VI</th>
-      <th>NAME_ZH</th>
-      <th>NAME_ZHT</th>
-      <th>FCLASS_ISO</th>
-      <th>TLC_DIFF</th>
-      <th>FCLASS_TLC</th>
-      <th>FCLASS_US</th>
-      <th>FCLASS_FR</th>
-      <th>FCLASS_RU</th>
-      <th>FCLASS_ES</th>
-      <th>FCLASS_CN</th>
-      <th>FCLASS_TW</th>
-      <th>FCLASS_IN</th>
-      <th>FCLASS_NP</th>
-      <th>FCLASS_PK</th>
-      <th>FCLASS_DE</th>
-      <th>FCLASS_GB</th>
-      <th>FCLASS_BR</th>
-      <th>FCLASS_IL</th>
-      <th>FCLASS_PS</th>
-      <th>FCLASS_SA</th>
-      <th>FCLASS_EG</th>
-      <th>FCLASS_MA</th>
-      <th>FCLASS_PT</th>
-      <th>FCLASS_AR</th>
-      <th>FCLASS_JP</th>
-      <th>FCLASS_KO</th>
-      <th>FCLASS_VN</th>
-      <th>FCLASS_TR</th>
-      <th>FCLASS_ID</th>
-      <th>FCLASS_PL</th>
-      <th>FCLASS_GR</th>
-      <th>FCLASS_IT</th>
-      <th>FCLASS_NL</th>
-      <th>FCLASS_SE</th>
-      <th>FCLASS_BD</th>
-      <th>FCLASS_UA</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Admin-0 country</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Sovereign country</td>
-      <td>1</td>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>0</td>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>0</td>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>0</td>
-      <td>Zimbabwe</td>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>Zimbabwe</td>
-      <td>NaN</td>
-      <td>Zimb.</td>
-      <td>ZW</td>
-      <td>Republic of Zimbabwe</td>
-      <td>NaN</td>
-      <td>Zimbabwe</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Zimbabwe</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>5</td>
-      <td>3</td>
-      <td>9</td>
-      <td>14645468.0</td>
-      <td>14</td>
-      <td>2019</td>
-      <td>21440</td>
-      <td>2019</td>
-      <td>5. Emerging region: G20</td>
-      <td>5. Low income</td>
-      <td>ZI</td>
-      <td>ZW</td>
-      <td>ZW</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>716</td>
-      <td>716</td>
-      <td>716</td>
-      <td>ZW</td>
-      <td>ZWE</td>
-      <td>23425004</td>
-      <td>23425004</td>
-      <td>Exact WOE match as country</td>
-      <td>ZWE</td>
-      <td>NaN</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>ZWE</td>
-      <td>-99</td>
-      <td>-99</td>
-      <td>Africa</td>
-      <td>Africa</td>
-      <td>Eastern Africa</td>
-      <td>Sub-Saharan Africa</td>
-      <td>8</td>
-      <td>8</td>
-      <td>5</td>
-      <td>-99</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>2.5</td>
-      <td>8.0</td>
-      <td>29.925444</td>
-      <td>-18.911640</td>
-      <td>1159321441</td>
-      <td>Q954</td>
-      <td>زيمبابوي</td>
-      <td>জিম্বাবুয়ে</td>
-      <td>Simbabwe</td>
-      <td>Zimbabwe</td>
-      <td>Zimbabue</td>
-      <td>زیمبابوه</td>
-      <td>Zimbabwe</td>
-      <td>Ζιμπάμπουε</td>
-      <td>זימבבואה</td>
-      <td>ज़िम्बाब्वे</td>
-      <td>Zimbabwe</td>
-      <td>Zimbabwe</td>
-      <td>Zimbabwe</td>
-      <td>ジンバブエ</td>
-      <td>짐바브웨</td>
-      <td>Zimbabwe</td>
-      <td>Zimbabwe</td>
-      <td>Zimbábue</td>
-      <td>Зимбабве</td>
-      <td>Zimbabwe</td>
-      <td>Zimbabve</td>
-      <td>Зімбабве</td>
-      <td>زمبابوے</td>
-      <td>Zimbabwe</td>
-      <td>津巴布韦</td>
-      <td>辛巴威</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Admin-0 country</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Zambia</td>
-      <td>ZMB</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Sovereign country</td>
-      <td>1</td>
-      <td>Zambia</td>
-      <td>ZMB</td>
-      <td>0</td>
-      <td>Zambia</td>
-      <td>ZMB</td>
-      <td>0</td>
-      <td>Zambia</td>
-      <td>ZMB</td>
-      <td>0</td>
-      <td>Zambia</td>
-      <td>Zambia</td>
-      <td>ZMB</td>
-      <td>Zambia</td>
-      <td>NaN</td>
-      <td>Zambia</td>
-      <td>ZM</td>
-      <td>Republic of Zambia</td>
-      <td>NaN</td>
-      <td>Zambia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Zambia</td>
-      <td>NaN</td>
-      <td>5</td>
-      <td>8</td>
-      <td>5</td>
-      <td>13</td>
-      <td>17861030.0</td>
-      <td>14</td>
-      <td>2019</td>
-      <td>23309</td>
-      <td>2019</td>
-      <td>7. Least developed region</td>
-      <td>4. Lower middle income</td>
-      <td>ZA</td>
-      <td>ZM</td>
-      <td>ZM</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>894</td>
-      <td>894</td>
-      <td>894</td>
-      <td>ZM</td>
-      <td>ZMB</td>
-      <td>23425003</td>
-      <td>23425003</td>
-      <td>Exact WOE match as country</td>
-      <td>ZMB</td>
-      <td>NaN</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>ZMB</td>
-      <td>-99</td>
-      <td>-99</td>
-      <td>Africa</td>
-      <td>Africa</td>
-      <td>Eastern Africa</td>
-      <td>Sub-Saharan Africa</td>
-      <td>6</td>
-      <td>6</td>
-      <td>6</td>
-      <td>-99</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>8.0</td>
-      <td>26.395298</td>
-      <td>-14.660804</td>
-      <td>1159321439</td>
-      <td>Q953</td>
-      <td>زامبيا</td>
-      <td>জাম্বিয়া</td>
-      <td>Sambia</td>
-      <td>Zambia</td>
-      <td>Zambia</td>
-      <td>زامبیا</td>
-      <td>Zambie</td>
-      <td>Ζάμπια</td>
-      <td>זמביה</td>
-      <td>ज़ाम्बिया</td>
-      <td>Zambia</td>
-      <td>Zambia</td>
-      <td>Zambia</td>
-      <td>ザンビア</td>
-      <td>잠비아</td>
-      <td>Zambia</td>
-      <td>Zambia</td>
-      <td>Zâmbia</td>
-      <td>Замбия</td>
-      <td>Zambia</td>
-      <td>Zambiya</td>
-      <td>Замбія</td>
-      <td>زیمبیا</td>
-      <td>Zambia</td>
-      <td>赞比亚</td>
-      <td>尚比亞</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Admin-0 country</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Yemen</td>
-      <td>YEM</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Sovereign country</td>
-      <td>1</td>
-      <td>Yemen</td>
-      <td>YEM</td>
-      <td>0</td>
-      <td>Yemen</td>
-      <td>YEM</td>
-      <td>0</td>
-      <td>Yemen</td>
-      <td>YEM</td>
-      <td>0</td>
-      <td>Yemen</td>
-      <td>Yemen</td>
-      <td>YEM</td>
-      <td>Yemen</td>
-      <td>NaN</td>
-      <td>Yem.</td>
-      <td>YE</td>
-      <td>Republic of Yemen</td>
-      <td>NaN</td>
-      <td>Yemen</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yemen, Rep.</td>
-      <td>NaN</td>
-      <td>5</td>
-      <td>3</td>
-      <td>3</td>
-      <td>11</td>
-      <td>29161922.0</td>
-      <td>15</td>
-      <td>2019</td>
-      <td>22581</td>
-      <td>2019</td>
-      <td>7. Least developed region</td>
-      <td>4. Lower middle income</td>
-      <td>YM</td>
-      <td>YE</td>
-      <td>YE</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>887</td>
-      <td>887</td>
-      <td>887</td>
-      <td>RY</td>
-      <td>YEM</td>
-      <td>23425002</td>
-      <td>23425002</td>
-      <td>Exact WOE match as country</td>
-      <td>YEM</td>
-      <td>NaN</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>YEM</td>
-      <td>-99</td>
-      <td>-99</td>
-      <td>Asia</td>
-      <td>Asia</td>
-      <td>Western Asia</td>
-      <td>Middle East &amp; North Africa</td>
-      <td>5</td>
-      <td>5</td>
-      <td>4</td>
-      <td>-99</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>8.0</td>
-      <td>45.874383</td>
-      <td>15.328226</td>
-      <td>1159321425</td>
-      <td>Q805</td>
-      <td>اليمن</td>
-      <td>ইয়েমেন</td>
-      <td>Jemen</td>
-      <td>Yemen</td>
-      <td>Yemen</td>
-      <td>یمن</td>
-      <td>Yémen</td>
-      <td>Υεμένη</td>
-      <td>תימן</td>
-      <td>यमन</td>
-      <td>Jemen</td>
-      <td>Yaman</td>
-      <td>Yemen</td>
-      <td>イエメン</td>
-      <td>예멘</td>
-      <td>Jemen</td>
-      <td>Jemen</td>
-      <td>Iémen</td>
-      <td>Йемен</td>
-      <td>Jemen</td>
-      <td>Yemen</td>
-      <td>Ємен</td>
-      <td>یمن</td>
-      <td>Yemen</td>
-      <td>也门</td>
-      <td>葉門</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MULTIPOLYGON (((53.08564 16.64839, 52.58145 16...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Admin-0 country</td>
-      <td>3</td>
-      <td>2</td>
-      <td>Vietnam</td>
-      <td>VNM</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Sovereign country</td>
-      <td>1</td>
-      <td>Vietnam</td>
-      <td>VNM</td>
-      <td>0</td>
-      <td>Vietnam</td>
-      <td>VNM</td>
-      <td>0</td>
-      <td>Vietnam</td>
-      <td>VNM</td>
-      <td>0</td>
-      <td>Vietnam</td>
-      <td>Vietnam</td>
-      <td>VNM</td>
-      <td>Vietnam</td>
-      <td>NaN</td>
-      <td>Viet.</td>
-      <td>VN</td>
-      <td>Socialist Republic of Vietnam</td>
-      <td>NaN</td>
-      <td>Vietnam</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Vietnam</td>
-      <td>NaN</td>
-      <td>5</td>
-      <td>6</td>
-      <td>5</td>
-      <td>4</td>
-      <td>96462106.0</td>
-      <td>16</td>
-      <td>2019</td>
-      <td>261921</td>
-      <td>2019</td>
-      <td>5. Emerging region: G20</td>
-      <td>4. Lower middle income</td>
-      <td>VM</td>
-      <td>VN</td>
-      <td>VN</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>704</td>
-      <td>704</td>
-      <td>704</td>
-      <td>VN</td>
-      <td>VNM</td>
-      <td>23424984</td>
-      <td>23424984</td>
-      <td>Exact WOE match as country</td>
-      <td>VNM</td>
-      <td>NaN</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>VNM</td>
-      <td>-99</td>
-      <td>-99</td>
-      <td>Asia</td>
-      <td>Asia</td>
-      <td>South-Eastern Asia</td>
-      <td>East Asia &amp; Pacific</td>
-      <td>7</td>
-      <td>7</td>
-      <td>5</td>
-      <td>2</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>2.0</td>
-      <td>7.0</td>
-      <td>105.387292</td>
-      <td>21.715416</td>
-      <td>1159321417</td>
-      <td>Q881</td>
-      <td>فيتنام</td>
-      <td>ভিয়েতনাম</td>
-      <td>Vietnam</td>
-      <td>Vietnam</td>
-      <td>Vietnam</td>
-      <td>ویتنام</td>
-      <td>Viêt Nam</td>
-      <td>Βιετνάμ</td>
-      <td>וייטנאם</td>
-      <td>वियतनाम</td>
-      <td>Vietnám</td>
-      <td>Vietnam</td>
-      <td>Vietnam</td>
-      <td>ベトナム</td>
-      <td>베트남</td>
-      <td>Vietnam</td>
-      <td>Wietnam</td>
-      <td>Vietname</td>
-      <td>Вьетнам</td>
-      <td>Vietnam</td>
-      <td>Vietnam</td>
-      <td>В'єтнам</td>
-      <td>ویتنام</td>
-      <td>Việt Nam</td>
-      <td>越南</td>
-      <td>越南</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MULTIPOLYGON (((104.06396 10.39082, 104.08301 ...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Admin-0 country</td>
-      <td>5</td>
-      <td>3</td>
-      <td>Venezuela</td>
-      <td>VEN</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Sovereign country</td>
-      <td>1</td>
-      <td>Venezuela</td>
-      <td>VEN</td>
-      <td>0</td>
-      <td>Venezuela</td>
-      <td>VEN</td>
-      <td>0</td>
-      <td>Venezuela</td>
-      <td>VEN</td>
-      <td>0</td>
-      <td>Venezuela</td>
-      <td>Venezuela</td>
-      <td>VEN</td>
-      <td>Venezuela</td>
-      <td>NaN</td>
-      <td>Ven.</td>
-      <td>VE</td>
-      <td>Bolivarian Republic of Venezuela</td>
-      <td>República Bolivariana de Venezuela</td>
-      <td>Venezuela</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Venezuela, RB</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>28515829.0</td>
-      <td>15</td>
-      <td>2019</td>
-      <td>482359</td>
-      <td>2014</td>
-      <td>5. Emerging region: G20</td>
-      <td>3. Upper middle income</td>
-      <td>VE</td>
-      <td>VE</td>
-      <td>VE</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>862</td>
-      <td>862</td>
-      <td>862</td>
-      <td>VE</td>
-      <td>VEN</td>
-      <td>23424982</td>
-      <td>23424982</td>
-      <td>Exact WOE match as country</td>
-      <td>VEN</td>
-      <td>NaN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>VEN</td>
-      <td>-99</td>
-      <td>-99</td>
-      <td>South America</td>
-      <td>Americas</td>
-      <td>South America</td>
-      <td>Latin America &amp; Caribbean</td>
-      <td>9</td>
-      <td>9</td>
-      <td>4</td>
-      <td>-99</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>2.5</td>
-      <td>7.5</td>
-      <td>-64.599381</td>
-      <td>7.182476</td>
-      <td>1159321411</td>
-      <td>Q717</td>
-      <td>فنزويلا</td>
-      <td>ভেনেজুয়েলা</td>
-      <td>Venezuela</td>
-      <td>Venezuela</td>
-      <td>Venezuela</td>
-      <td>ونزوئلا</td>
-      <td>Venezuela</td>
-      <td>Βενεζουέλα</td>
-      <td>ונצואלה</td>
-      <td>वेनेज़ुएला</td>
-      <td>Venezuela</td>
-      <td>Venezuela</td>
-      <td>Venezuela</td>
-      <td>ベネズエラ</td>
-      <td>베네수엘라</td>
-      <td>Venezuela</td>
-      <td>Wenezuela</td>
-      <td>Venezuela</td>
-      <td>Венесуэла</td>
-      <td>Venezuela</td>
-      <td>Venezuela</td>
-      <td>Венесуела</td>
-      <td>وینیزویلا</td>
-      <td>Venezuela</td>
-      <td>委内瑞拉</td>
-      <td>委內瑞拉</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>Admin-0 country</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MULTIPOLYGON (((-60.82119 9.13838, -60.94141 9...</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">featurecla</th>
+<th data-quarto-table-cell-role="th">scalerank</th>
+<th data-quarto-table-cell-role="th">LABELRANK</th>
+<th data-quarto-table-cell-role="th">SOVEREIGNT</th>
+<th data-quarto-table-cell-role="th">SOV_A3</th>
+<th data-quarto-table-cell-role="th">ADM0_DIF</th>
+<th data-quarto-table-cell-role="th">LEVEL</th>
+<th data-quarto-table-cell-role="th">TYPE</th>
+<th data-quarto-table-cell-role="th">TLC</th>
+<th data-quarto-table-cell-role="th">ADMIN</th>
+<th data-quarto-table-cell-role="th">ADM0_A3</th>
+<th data-quarto-table-cell-role="th">GEOU_DIF</th>
+<th data-quarto-table-cell-role="th">GEOUNIT</th>
+<th data-quarto-table-cell-role="th">GU_A3</th>
+<th data-quarto-table-cell-role="th">SU_DIF</th>
+<th data-quarto-table-cell-role="th">SUBUNIT</th>
+<th data-quarto-table-cell-role="th">SU_A3</th>
+<th data-quarto-table-cell-role="th">BRK_DIFF</th>
+<th data-quarto-table-cell-role="th">NAME</th>
+<th data-quarto-table-cell-role="th">NAME_LONG</th>
+<th data-quarto-table-cell-role="th">BRK_A3</th>
+<th data-quarto-table-cell-role="th">BRK_NAME</th>
+<th data-quarto-table-cell-role="th">BRK_GROUP</th>
+<th data-quarto-table-cell-role="th">ABBREV</th>
+<th data-quarto-table-cell-role="th">POSTAL</th>
+<th data-quarto-table-cell-role="th">FORMAL_EN</th>
+<th data-quarto-table-cell-role="th">FORMAL_FR</th>
+<th data-quarto-table-cell-role="th">NAME_CIAWF</th>
+<th data-quarto-table-cell-role="th">NOTE_ADM0</th>
+<th data-quarto-table-cell-role="th">NOTE_BRK</th>
+<th data-quarto-table-cell-role="th">NAME_SORT</th>
+<th data-quarto-table-cell-role="th">NAME_ALT</th>
+<th data-quarto-table-cell-role="th">MAPCOLOR7</th>
+<th data-quarto-table-cell-role="th">MAPCOLOR8</th>
+<th data-quarto-table-cell-role="th">MAPCOLOR9</th>
+<th data-quarto-table-cell-role="th">MAPCOLOR13</th>
+<th data-quarto-table-cell-role="th">POP_EST</th>
+<th data-quarto-table-cell-role="th">POP_RANK</th>
+<th data-quarto-table-cell-role="th">POP_YEAR</th>
+<th data-quarto-table-cell-role="th">GDP_MD</th>
+<th data-quarto-table-cell-role="th">GDP_YEAR</th>
+<th data-quarto-table-cell-role="th">ECONOMY</th>
+<th data-quarto-table-cell-role="th">INCOME_GRP</th>
+<th data-quarto-table-cell-role="th">FIPS_10</th>
+<th data-quarto-table-cell-role="th">ISO_A2</th>
+<th data-quarto-table-cell-role="th">ISO_A2_EH</th>
+<th data-quarto-table-cell-role="th">ISO_A3</th>
+<th data-quarto-table-cell-role="th">ISO_A3_EH</th>
+<th data-quarto-table-cell-role="th">ISO_N3</th>
+<th data-quarto-table-cell-role="th">ISO_N3_EH</th>
+<th data-quarto-table-cell-role="th">UN_A3</th>
+<th data-quarto-table-cell-role="th">WB_A2</th>
+<th data-quarto-table-cell-role="th">WB_A3</th>
+<th data-quarto-table-cell-role="th">WOE_ID</th>
+<th data-quarto-table-cell-role="th">WOE_ID_EH</th>
+<th data-quarto-table-cell-role="th">WOE_NOTE</th>
+<th data-quarto-table-cell-role="th">ADM0_ISO</th>
+<th data-quarto-table-cell-role="th">ADM0_DIFF</th>
+<th data-quarto-table-cell-role="th">ADM0_TLC</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_US</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_FR</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_RU</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_ES</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_CN</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_TW</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_IN</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_NP</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_PK</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_DE</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_GB</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_BR</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_IL</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_PS</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_SA</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_EG</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_MA</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_PT</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_AR</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_JP</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_KO</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_VN</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_TR</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_ID</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_PL</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_GR</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_IT</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_NL</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_SE</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_BD</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_UA</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_UN</th>
+<th data-quarto-table-cell-role="th">ADM0_A3_WB</th>
+<th data-quarto-table-cell-role="th">CONTINENT</th>
+<th data-quarto-table-cell-role="th">REGION_UN</th>
+<th data-quarto-table-cell-role="th">SUBREGION</th>
+<th data-quarto-table-cell-role="th">REGION_WB</th>
+<th data-quarto-table-cell-role="th">NAME_LEN</th>
+<th data-quarto-table-cell-role="th">LONG_LEN</th>
+<th data-quarto-table-cell-role="th">ABBREV_LEN</th>
+<th data-quarto-table-cell-role="th">TINY</th>
+<th data-quarto-table-cell-role="th">HOMEPART</th>
+<th data-quarto-table-cell-role="th">MIN_ZOOM</th>
+<th data-quarto-table-cell-role="th">MIN_LABEL</th>
+<th data-quarto-table-cell-role="th">MAX_LABEL</th>
+<th data-quarto-table-cell-role="th">LABEL_X</th>
+<th data-quarto-table-cell-role="th">LABEL_Y</th>
+<th data-quarto-table-cell-role="th">NE_ID</th>
+<th data-quarto-table-cell-role="th">WIKIDATAID</th>
+<th data-quarto-table-cell-role="th">NAME_AR</th>
+<th data-quarto-table-cell-role="th">NAME_BN</th>
+<th data-quarto-table-cell-role="th">NAME_DE</th>
+<th data-quarto-table-cell-role="th">NAME_EN</th>
+<th data-quarto-table-cell-role="th">NAME_ES</th>
+<th data-quarto-table-cell-role="th">NAME_FA</th>
+<th data-quarto-table-cell-role="th">NAME_FR</th>
+<th data-quarto-table-cell-role="th">NAME_EL</th>
+<th data-quarto-table-cell-role="th">NAME_HE</th>
+<th data-quarto-table-cell-role="th">NAME_HI</th>
+<th data-quarto-table-cell-role="th">NAME_HU</th>
+<th data-quarto-table-cell-role="th">NAME_ID</th>
+<th data-quarto-table-cell-role="th">NAME_IT</th>
+<th data-quarto-table-cell-role="th">NAME_JA</th>
+<th data-quarto-table-cell-role="th">NAME_KO</th>
+<th data-quarto-table-cell-role="th">NAME_NL</th>
+<th data-quarto-table-cell-role="th">NAME_PL</th>
+<th data-quarto-table-cell-role="th">NAME_PT</th>
+<th data-quarto-table-cell-role="th">NAME_RU</th>
+<th data-quarto-table-cell-role="th">NAME_SV</th>
+<th data-quarto-table-cell-role="th">NAME_TR</th>
+<th data-quarto-table-cell-role="th">NAME_UK</th>
+<th data-quarto-table-cell-role="th">NAME_UR</th>
+<th data-quarto-table-cell-role="th">NAME_VI</th>
+<th data-quarto-table-cell-role="th">NAME_ZH</th>
+<th data-quarto-table-cell-role="th">NAME_ZHT</th>
+<th data-quarto-table-cell-role="th">FCLASS_ISO</th>
+<th data-quarto-table-cell-role="th">TLC_DIFF</th>
+<th data-quarto-table-cell-role="th">FCLASS_TLC</th>
+<th data-quarto-table-cell-role="th">FCLASS_US</th>
+<th data-quarto-table-cell-role="th">FCLASS_FR</th>
+<th data-quarto-table-cell-role="th">FCLASS_RU</th>
+<th data-quarto-table-cell-role="th">FCLASS_ES</th>
+<th data-quarto-table-cell-role="th">FCLASS_CN</th>
+<th data-quarto-table-cell-role="th">FCLASS_TW</th>
+<th data-quarto-table-cell-role="th">FCLASS_IN</th>
+<th data-quarto-table-cell-role="th">FCLASS_NP</th>
+<th data-quarto-table-cell-role="th">FCLASS_PK</th>
+<th data-quarto-table-cell-role="th">FCLASS_DE</th>
+<th data-quarto-table-cell-role="th">FCLASS_GB</th>
+<th data-quarto-table-cell-role="th">FCLASS_BR</th>
+<th data-quarto-table-cell-role="th">FCLASS_IL</th>
+<th data-quarto-table-cell-role="th">FCLASS_PS</th>
+<th data-quarto-table-cell-role="th">FCLASS_SA</th>
+<th data-quarto-table-cell-role="th">FCLASS_EG</th>
+<th data-quarto-table-cell-role="th">FCLASS_MA</th>
+<th data-quarto-table-cell-role="th">FCLASS_PT</th>
+<th data-quarto-table-cell-role="th">FCLASS_AR</th>
+<th data-quarto-table-cell-role="th">FCLASS_JP</th>
+<th data-quarto-table-cell-role="th">FCLASS_KO</th>
+<th data-quarto-table-cell-role="th">FCLASS_VN</th>
+<th data-quarto-table-cell-role="th">FCLASS_TR</th>
+<th data-quarto-table-cell-role="th">FCLASS_ID</th>
+<th data-quarto-table-cell-role="th">FCLASS_PL</th>
+<th data-quarto-table-cell-role="th">FCLASS_GR</th>
+<th data-quarto-table-cell-role="th">FCLASS_IT</th>
+<th data-quarto-table-cell-role="th">FCLASS_NL</th>
+<th data-quarto-table-cell-role="th">FCLASS_SE</th>
+<th data-quarto-table-cell-role="th">FCLASS_BD</th>
+<th data-quarto-table-cell-role="th">FCLASS_UA</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Admin-0 country</td>
+<td>1</td>
+<td>3</td>
+<td>Zimbabwe</td>
+<td>ZWE</td>
+<td>0</td>
+<td>2</td>
+<td>Sovereign country</td>
+<td>1</td>
+<td>Zimbabwe</td>
+<td>ZWE</td>
+<td>0</td>
+<td>Zimbabwe</td>
+<td>ZWE</td>
+<td>0</td>
+<td>Zimbabwe</td>
+<td>ZWE</td>
+<td>0</td>
+<td>Zimbabwe</td>
+<td>Zimbabwe</td>
+<td>ZWE</td>
+<td>Zimbabwe</td>
+<td>NaN</td>
+<td>Zimb.</td>
+<td>ZW</td>
+<td>Republic of Zimbabwe</td>
+<td>NaN</td>
+<td>Zimbabwe</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Zimbabwe</td>
+<td>NaN</td>
+<td>1</td>
+<td>5</td>
+<td>3</td>
+<td>9</td>
+<td>14645468.0</td>
+<td>14</td>
+<td>2019</td>
+<td>21440</td>
+<td>2019</td>
+<td>5. Emerging region: G20</td>
+<td>5. Low income</td>
+<td>ZI</td>
+<td>ZW</td>
+<td>ZW</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>716</td>
+<td>716</td>
+<td>716</td>
+<td>ZW</td>
+<td>ZWE</td>
+<td>23425004</td>
+<td>23425004</td>
+<td>Exact WOE match as country</td>
+<td>ZWE</td>
+<td>NaN</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>ZWE</td>
+<td>-99</td>
+<td>-99</td>
+<td>Africa</td>
+<td>Africa</td>
+<td>Eastern Africa</td>
+<td>Sub-Saharan Africa</td>
+<td>8</td>
+<td>8</td>
+<td>5</td>
+<td>-99</td>
+<td>1</td>
+<td>0.0</td>
+<td>2.5</td>
+<td>8.0</td>
+<td>29.925444</td>
+<td>-18.911640</td>
+<td>1159321441</td>
+<td>Q954</td>
+<td>زيمبابوي</td>
+<td>জিম্বাবুয়ে</td>
+<td>Simbabwe</td>
+<td>Zimbabwe</td>
+<td>Zimbabue</td>
+<td>زیمبابوه</td>
+<td>Zimbabwe</td>
+<td>Ζιμπάμπουε</td>
+<td>זימבבואה</td>
+<td>ज़िम्बाब्वे</td>
+<td>Zimbabwe</td>
+<td>Zimbabwe</td>
+<td>Zimbabwe</td>
+<td>ジンバブエ</td>
+<td>짐바브웨</td>
+<td>Zimbabwe</td>
+<td>Zimbabwe</td>
+<td>Zimbábue</td>
+<td>Зимбабве</td>
+<td>Zimbabwe</td>
+<td>Zimbabve</td>
+<td>Зімбабве</td>
+<td>زمبابوے</td>
+<td>Zimbabwe</td>
+<td>津巴布韦</td>
+<td>辛巴威</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Admin-0 country</td>
+<td>1</td>
+<td>3</td>
+<td>Zambia</td>
+<td>ZMB</td>
+<td>0</td>
+<td>2</td>
+<td>Sovereign country</td>
+<td>1</td>
+<td>Zambia</td>
+<td>ZMB</td>
+<td>0</td>
+<td>Zambia</td>
+<td>ZMB</td>
+<td>0</td>
+<td>Zambia</td>
+<td>ZMB</td>
+<td>0</td>
+<td>Zambia</td>
+<td>Zambia</td>
+<td>ZMB</td>
+<td>Zambia</td>
+<td>NaN</td>
+<td>Zambia</td>
+<td>ZM</td>
+<td>Republic of Zambia</td>
+<td>NaN</td>
+<td>Zambia</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Zambia</td>
+<td>NaN</td>
+<td>5</td>
+<td>8</td>
+<td>5</td>
+<td>13</td>
+<td>17861030.0</td>
+<td>14</td>
+<td>2019</td>
+<td>23309</td>
+<td>2019</td>
+<td>7. Least developed region</td>
+<td>4. Lower middle income</td>
+<td>ZA</td>
+<td>ZM</td>
+<td>ZM</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>894</td>
+<td>894</td>
+<td>894</td>
+<td>ZM</td>
+<td>ZMB</td>
+<td>23425003</td>
+<td>23425003</td>
+<td>Exact WOE match as country</td>
+<td>ZMB</td>
+<td>NaN</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>ZMB</td>
+<td>-99</td>
+<td>-99</td>
+<td>Africa</td>
+<td>Africa</td>
+<td>Eastern Africa</td>
+<td>Sub-Saharan Africa</td>
+<td>6</td>
+<td>6</td>
+<td>6</td>
+<td>-99</td>
+<td>1</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>8.0</td>
+<td>26.395298</td>
+<td>-14.660804</td>
+<td>1159321439</td>
+<td>Q953</td>
+<td>زامبيا</td>
+<td>জাম্বিয়া</td>
+<td>Sambia</td>
+<td>Zambia</td>
+<td>Zambia</td>
+<td>زامبیا</td>
+<td>Zambie</td>
+<td>Ζάμπια</td>
+<td>זמביה</td>
+<td>ज़ाम्बिया</td>
+<td>Zambia</td>
+<td>Zambia</td>
+<td>Zambia</td>
+<td>ザンビア</td>
+<td>잠비아</td>
+<td>Zambia</td>
+<td>Zambia</td>
+<td>Zâmbia</td>
+<td>Замбия</td>
+<td>Zambia</td>
+<td>Zambiya</td>
+<td>Замбія</td>
+<td>زیمبیا</td>
+<td>Zambia</td>
+<td>赞比亚</td>
+<td>尚比亞</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Admin-0 country</td>
+<td>1</td>
+<td>3</td>
+<td>Yemen</td>
+<td>YEM</td>
+<td>0</td>
+<td>2</td>
+<td>Sovereign country</td>
+<td>1</td>
+<td>Yemen</td>
+<td>YEM</td>
+<td>0</td>
+<td>Yemen</td>
+<td>YEM</td>
+<td>0</td>
+<td>Yemen</td>
+<td>YEM</td>
+<td>0</td>
+<td>Yemen</td>
+<td>Yemen</td>
+<td>YEM</td>
+<td>Yemen</td>
+<td>NaN</td>
+<td>Yem.</td>
+<td>YE</td>
+<td>Republic of Yemen</td>
+<td>NaN</td>
+<td>Yemen</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Yemen, Rep.</td>
+<td>NaN</td>
+<td>5</td>
+<td>3</td>
+<td>3</td>
+<td>11</td>
+<td>29161922.0</td>
+<td>15</td>
+<td>2019</td>
+<td>22581</td>
+<td>2019</td>
+<td>7. Least developed region</td>
+<td>4. Lower middle income</td>
+<td>YM</td>
+<td>YE</td>
+<td>YE</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>887</td>
+<td>887</td>
+<td>887</td>
+<td>RY</td>
+<td>YEM</td>
+<td>23425002</td>
+<td>23425002</td>
+<td>Exact WOE match as country</td>
+<td>YEM</td>
+<td>NaN</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>YEM</td>
+<td>-99</td>
+<td>-99</td>
+<td>Asia</td>
+<td>Asia</td>
+<td>Western Asia</td>
+<td>Middle East &amp; North Africa</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>-99</td>
+<td>1</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>8.0</td>
+<td>45.874383</td>
+<td>15.328226</td>
+<td>1159321425</td>
+<td>Q805</td>
+<td>اليمن</td>
+<td>ইয়েমেন</td>
+<td>Jemen</td>
+<td>Yemen</td>
+<td>Yemen</td>
+<td>یمن</td>
+<td>Yémen</td>
+<td>Υεμένη</td>
+<td>תימן</td>
+<td>यमन</td>
+<td>Jemen</td>
+<td>Yaman</td>
+<td>Yemen</td>
+<td>イエメン</td>
+<td>예멘</td>
+<td>Jemen</td>
+<td>Jemen</td>
+<td>Iémen</td>
+<td>Йемен</td>
+<td>Jemen</td>
+<td>Yemen</td>
+<td>Ємен</td>
+<td>یمن</td>
+<td>Yemen</td>
+<td>也门</td>
+<td>葉門</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>MULTIPOLYGON (((53.08564 16.64839, 52.58145 16...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Admin-0 country</td>
+<td>3</td>
+<td>2</td>
+<td>Vietnam</td>
+<td>VNM</td>
+<td>0</td>
+<td>2</td>
+<td>Sovereign country</td>
+<td>1</td>
+<td>Vietnam</td>
+<td>VNM</td>
+<td>0</td>
+<td>Vietnam</td>
+<td>VNM</td>
+<td>0</td>
+<td>Vietnam</td>
+<td>VNM</td>
+<td>0</td>
+<td>Vietnam</td>
+<td>Vietnam</td>
+<td>VNM</td>
+<td>Vietnam</td>
+<td>NaN</td>
+<td>Viet.</td>
+<td>VN</td>
+<td>Socialist Republic of Vietnam</td>
+<td>NaN</td>
+<td>Vietnam</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Vietnam</td>
+<td>NaN</td>
+<td>5</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>96462106.0</td>
+<td>16</td>
+<td>2019</td>
+<td>261921</td>
+<td>2019</td>
+<td>5. Emerging region: G20</td>
+<td>4. Lower middle income</td>
+<td>VM</td>
+<td>VN</td>
+<td>VN</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>704</td>
+<td>704</td>
+<td>704</td>
+<td>VN</td>
+<td>VNM</td>
+<td>23424984</td>
+<td>23424984</td>
+<td>Exact WOE match as country</td>
+<td>VNM</td>
+<td>NaN</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>VNM</td>
+<td>-99</td>
+<td>-99</td>
+<td>Asia</td>
+<td>Asia</td>
+<td>South-Eastern Asia</td>
+<td>East Asia &amp; Pacific</td>
+<td>7</td>
+<td>7</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>7.0</td>
+<td>105.387292</td>
+<td>21.715416</td>
+<td>1159321417</td>
+<td>Q881</td>
+<td>فيتنام</td>
+<td>ভিয়েতনাম</td>
+<td>Vietnam</td>
+<td>Vietnam</td>
+<td>Vietnam</td>
+<td>ویتنام</td>
+<td>Viêt Nam</td>
+<td>Βιετνάμ</td>
+<td>וייטנאם</td>
+<td>वियतनाम</td>
+<td>Vietnám</td>
+<td>Vietnam</td>
+<td>Vietnam</td>
+<td>ベトナム</td>
+<td>베트남</td>
+<td>Vietnam</td>
+<td>Wietnam</td>
+<td>Vietname</td>
+<td>Вьетнам</td>
+<td>Vietnam</td>
+<td>Vietnam</td>
+<td>В'єтнам</td>
+<td>ویتنام</td>
+<td>Việt Nam</td>
+<td>越南</td>
+<td>越南</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>MULTIPOLYGON (((104.06396 10.39082, 104.08301 ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Admin-0 country</td>
+<td>5</td>
+<td>3</td>
+<td>Venezuela</td>
+<td>VEN</td>
+<td>0</td>
+<td>2</td>
+<td>Sovereign country</td>
+<td>1</td>
+<td>Venezuela</td>
+<td>VEN</td>
+<td>0</td>
+<td>Venezuela</td>
+<td>VEN</td>
+<td>0</td>
+<td>Venezuela</td>
+<td>VEN</td>
+<td>0</td>
+<td>Venezuela</td>
+<td>Venezuela</td>
+<td>VEN</td>
+<td>Venezuela</td>
+<td>NaN</td>
+<td>Ven.</td>
+<td>VE</td>
+<td>Bolivarian Republic of Venezuela</td>
+<td>República Bolivariana de Venezuela</td>
+<td>Venezuela</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Venezuela, RB</td>
+<td>NaN</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>28515829.0</td>
+<td>15</td>
+<td>2019</td>
+<td>482359</td>
+<td>2014</td>
+<td>5. Emerging region: G20</td>
+<td>3. Upper middle income</td>
+<td>VE</td>
+<td>VE</td>
+<td>VE</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>862</td>
+<td>862</td>
+<td>862</td>
+<td>VE</td>
+<td>VEN</td>
+<td>23424982</td>
+<td>23424982</td>
+<td>Exact WOE match as country</td>
+<td>VEN</td>
+<td>NaN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>VEN</td>
+<td>-99</td>
+<td>-99</td>
+<td>South America</td>
+<td>Americas</td>
+<td>South America</td>
+<td>Latin America &amp; Caribbean</td>
+<td>9</td>
+<td>9</td>
+<td>4</td>
+<td>-99</td>
+<td>1</td>
+<td>0.0</td>
+<td>2.5</td>
+<td>7.5</td>
+<td>-64.599381</td>
+<td>7.182476</td>
+<td>1159321411</td>
+<td>Q717</td>
+<td>فنزويلا</td>
+<td>ভেনেজুয়েলা</td>
+<td>Venezuela</td>
+<td>Venezuela</td>
+<td>Venezuela</td>
+<td>ونزوئلا</td>
+<td>Venezuela</td>
+<td>Βενεζουέλα</td>
+<td>ונצואלה</td>
+<td>वेनेज़ुएला</td>
+<td>Venezuela</td>
+<td>Venezuela</td>
+<td>Venezuela</td>
+<td>ベネズエラ</td>
+<td>베네수엘라</td>
+<td>Venezuela</td>
+<td>Wenezuela</td>
+<td>Venezuela</td>
+<td>Венесуэла</td>
+<td>Venezuela</td>
+<td>Venezuela</td>
+<td>Венесуела</td>
+<td>وینیزویلا</td>
+<td>Venezuela</td>
+<td>委内瑞拉</td>
+<td>委內瑞拉</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>Admin-0 country</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>MULTIPOLYGON (((-60.82119 9.13838, -60.94141 9...</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1591,51 +1601,52 @@ import contextily as ctx
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>countries_sub <span class="op">=</span> countries[[<span class="st">'admin'</span>,<span class="st">'type'</span>,<span class="st">'geometry'</span>]]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>countries_sub.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>admin</th>
-      <th>type</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Zimbabwe</td>
-      <td>Sovereign country</td>
-      <td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Zambia</td>
-      <td>Sovereign country</td>
-      <td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Yemen</td>
-      <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((53.08564 16.64839, 52.58145 16...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Vietnam</td>
-      <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((104.06396 10.39082, 104.08301 ...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Venezuela</td>
-      <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((-60.82119 9.13838, -60.94141 9...</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">admin</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Zimbabwe</td>
+<td>Sovereign country</td>
+<td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Zambia</td>
+<td>Sovereign country</td>
+<td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Yemen</td>
+<td>Sovereign country</td>
+<td>MULTIPOLYGON (((53.08564 16.64839, 52.58145 16...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Vietnam</td>
+<td>Sovereign country</td>
+<td>MULTIPOLYGON (((104.06396 10.39082, 104.08301 ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Venezuela</td>
+<td>Sovereign country</td>
+<td>MULTIPOLYGON (((-60.82119 9.13838, -60.94141 9...</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1648,63 +1659,64 @@ import contextily as ctx
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> gpd.read_file(<span class="st">'https://cn.dataone.org/cn/v2/resolve/urn%3Auuid%3Aed7718ae-fb0d-43dd-9270-fbfe80bfc7a4'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>communities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>name</th>
-      <th>population</th>
-      <th>country</th>
-      <th>geoname-id</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Udomlya</td>
-      <td>32373</td>
-      <td>RU</td>
-      <td>452949</td>
-      <td>POINT (34.99250 57.87944)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Valmiera</td>
-      <td>26963</td>
-      <td>LV</td>
-      <td>453754</td>
-      <td>POINT (25.42751 57.54108)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Ventspils</td>
-      <td>42644</td>
-      <td>LV</td>
-      <td>454310</td>
-      <td>POINT (21.57288 57.38988)</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Vec-Liepāja</td>
-      <td>85260</td>
-      <td>LV</td>
-      <td>454432</td>
-      <td>POINT (21.01667 56.53333)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Tukums</td>
-      <td>18348</td>
-      <td>LV</td>
-      <td>454768</td>
-      <td>POINT (23.15528 56.96694)</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">geoname-id</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Udomlya</td>
+<td>32373</td>
+<td>RU</td>
+<td>452949</td>
+<td>POINT (34.99250 57.87944)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Valmiera</td>
+<td>26963</td>
+<td>LV</td>
+<td>453754</td>
+<td>POINT (25.42751 57.54108)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Ventspils</td>
+<td>42644</td>
+<td>LV</td>
+<td>454310</td>
+<td>POINT (21.57288 57.38988)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Vec-Liepāja</td>
+<td>85260</td>
+<td>LV</td>
+<td>454432</td>
+<td>POINT (21.01667 56.53333)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Tukums</td>
+<td>18348</td>
+<td>LV</td>
+<td>454768</td>
+<td>POINT (23.15528 56.96694)</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1747,100 +1759,101 @@ import contextily as ctx
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of communities per country</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>country</th>
-      <th>n_communities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AX</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>BY</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CA</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DK</td>
-      <td>72</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>EE</td>
-      <td>14</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>FI</td>
-      <td>98</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>FO</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>GB</td>
-      <td>96</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>GL</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>IS</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>LT</td>
-      <td>26</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>LV</td>
-      <td>25</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>NO</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>RU</td>
-      <td>774</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>SE</td>
-      <td>133</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>US</td>
-      <td>115</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">n_communities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>AX</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>BY</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>CA</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DK</td>
+<td>72</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>EE</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>FI</td>
+<td>98</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>FO</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>GB</td>
+<td>96</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>GL</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>IS</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>LT</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>LV</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>NO</td>
+<td>48</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>RU</td>
+<td>774</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>SE</td>
+<td>133</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>US</td>
+<td>115</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1851,55 +1864,56 @@ import contextily as ctx
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>scandi_n_comms <span class="op">=</span> n_comms[n_comms.country.isin(scandi_codes)].copy()</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>country</th>
-      <th>n_communities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AX</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DK</td>
-      <td>72</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>FI</td>
-      <td>98</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>FO</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>IS</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>NO</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>SE</td>
-      <td>133</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">n_communities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>AX</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DK</td>
+<td>72</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>FI</td>
+<td>98</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>FO</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>IS</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12</td>
+<td>NO</td>
+<td>48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>SE</td>
+<td>133</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1911,63 +1925,65 @@ import contextily as ctx
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>countries_sub.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>admin</th>
-      <th>type</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Zimbabwe</td>
-      <td>Sovereign country</td>
-      <td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Zambia</td>
-      <td>Sovereign country</td>
-      <td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">admin</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Zimbabwe</td>
+<td>Sovereign country</td>
+<td>POLYGON ((31.28789 -22.40205, 31.19727 -22.344...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Zambia</td>
+<td>Sovereign country</td>
+<td>POLYGON ((30.39609 -15.64307, 30.25068 -15.643...</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scandi_n_comms.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>country</th>
-      <th>n_communities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AX</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DK</td>
-      <td>72</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">n_communities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>AX</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DK</td>
+<td>72</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1984,63 +2000,64 @@ import contextily as ctx
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>scandi_n_comms[<span class="st">'admin'</span>] <span class="op">=</span> scandi_names</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>scandi_n_comms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>country</th>
-      <th>n_communities</th>
-      <th>admin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AX</td>
-      <td>1</td>
-      <td>Aland Islands</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DK</td>
-      <td>72</td>
-      <td>Denmark</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>FI</td>
-      <td>98</td>
-      <td>Finland</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>FO</td>
-      <td>1</td>
-      <td>Faroe Islands</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>IS</td>
-      <td>5</td>
-      <td>Iceland</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>NO</td>
-      <td>48</td>
-      <td>Norway</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>SE</td>
-      <td>133</td>
-      <td>Sweden</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">n_communities</th>
+<th data-quarto-table-cell-role="th">admin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>AX</td>
+<td>1</td>
+<td>Aland Islands</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DK</td>
+<td>72</td>
+<td>Denmark</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>FI</td>
+<td>98</td>
+<td>Finland</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>FO</td>
+<td>1</td>
+<td>Faroe Islands</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>IS</td>
+<td>5</td>
+<td>Iceland</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12</td>
+<td>NO</td>
+<td>48</td>
+<td>Norway</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>SE</td>
+<td>133</td>
+<td>Sweden</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2061,7 +2078,7 @@ import contextily as ctx
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/merging_data/join-diagrams-inner.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption><p></p>
+<figcaption class="figure-caption">Image source: Data Modeling Essentials, NCEAS Learning Hub</figcaption>
 </figure>
 </div>
 <div class="cell" data-execution_count="18">
@@ -2074,71 +2091,72 @@ import contextily as ctx
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>scandi_countries <span class="op">=</span> scandi_countries.set_index(<span class="st">'admin'</span>)</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>scandi_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>type</th>
-      <th>geometry</th>
-      <th>country</th>
-      <th>n_communities</th>
-    </tr>
-    <tr>
-      <th>admin</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Sweden</th>
-      <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
-      <td>SE</td>
-      <td>133</td>
-    </tr>
-    <tr>
-      <th>Norway</th>
-      <td>Sovereign country</td>
-      <td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
-      <td>NO</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>Iceland</th>
-      <td>Sovereign country</td>
-      <td>POLYGON ((-15.54312 66.22852, -15.42847 66.224...</td>
-      <td>IS</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>Finland</th>
-      <td>Country</td>
-      <td>MULTIPOLYGON (((24.15547 65.80527, 24.04902 65...</td>
-      <td>FI</td>
-      <td>98</td>
-    </tr>
-    <tr>
-      <th>Faroe Islands</th>
-      <td>Dependency</td>
-      <td>MULTIPOLYGON (((-6.62319 61.80596, -6.64277 61...</td>
-      <td>FO</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Denmark</th>
-      <td>Country</td>
-      <td>MULTIPOLYGON (((12.56875 55.78506, 12.57119 55...</td>
-      <td>DK</td>
-      <td>72</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">n_communities</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">admin</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sweden</td>
+<td>Sovereign country</td>
+<td>MULTIPOLYGON (((19.07646 57.83594, 18.99375 57...</td>
+<td>SE</td>
+<td>133</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Norway</td>
+<td>Sovereign country</td>
+<td>MULTIPOLYGON (((20.62217 69.03687, 20.49199 69...</td>
+<td>NO</td>
+<td>48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Iceland</td>
+<td>Sovereign country</td>
+<td>POLYGON ((-15.54312 66.22852, -15.42847 66.224...</td>
+<td>IS</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Finland</td>
+<td>Country</td>
+<td>MULTIPOLYGON (((24.15547 65.80527, 24.04902 65...</td>
+<td>FI</td>
+<td>98</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Faroe Islands</td>
+<td>Dependency</td>
+<td>MULTIPOLYGON (((-6.62319 61.80596, -6.64277 61...</td>
+<td>FO</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Denmark</td>
+<td>Country</td>
+<td>MULTIPOLYGON (((12.56875 55.78506, 12.57119 55...</td>
+<td>DK</td>
+<td>72</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2341,9 +2359,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -2408,6 +2440,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
