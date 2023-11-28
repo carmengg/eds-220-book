@@ -1,12 +1,11 @@
 ---
 # do not execute cells
-execute:
-  eval: false
+jupyter: trial-env
 ---
 
 # STAC specification
 
-So far in our course we have accessed data in two ways: by downloading it directly from the data provider or by loading a specific dataset via a URL. 
+So far in our course we have accessed data in two ways: by downloading it directly from the data provider or by obtaining a URL from a data repository. 
 This can be a convenient way to access targeted datasets, often usign GUIs (graphical user interfaces) for data discovery and filtering.
 However, relying on clicking and copy-pasting addresses and file names can make our workflows more error-prone and less reproducible. 
 In particular, satellites around the world produce terabytes of new data daily and manually browsing through data repositories would it make hard to access this data. 
@@ -16,10 +15,10 @@ This is where STAC comes in.
 ![](/images/STAC-01.png)
 
 The **SpatioTemporal Asset Catalog (STAC)** is an emerging open standard for geospatial data that aims to increase the interoperability of geospatial data, particularly satellite imagery. 
-Major satellite imagery datasets like X, Y, and [many others](https://stacspec.org/en/about/datasets/), now follow the STAC specification.
+[Many major data archives](https://stacspec.org/en/about/datasets/) now follow the STAC specification.
 
 In the next classes we'll be working with the [Microsoft's Planetary Computer (MPC)](https://planetarycomputer.microsoft.com) STAC API. 
-The MPC is both a geospatial coding environment and a STAC data catalogue. 
+The MPC is both a geospatial coding environment and a STAC data catalog. 
 In this lesson we will learn about the main components of a STAC catalog and how to search for data using the MPC's STAC API. 
 
 ## Item, Collection, and Catalog
@@ -30,9 +29,9 @@ An item holds two types of information:
 
 1. **Metadata:** The metadata for a STAC item includes core identifying information (such as id, geometry, bounding box, and date), and additional properties (for example, place of collection). 
 
-2. **Assets:** Assets are the links to the actual data of the item (for example, links to the spectral bands of a satellite image.)
+2. **Assets:** Assets are links to the actual data of the item (for example, links to the spectral bands of a satellite image.)
 
-STAC items can be grouped into **STAC collections** (or just collections). 
+STAC items can be grouped into **STAC collections**. 
 For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time and location from the same satellite can be orgnanized in a collection. 
 Finally, multiple collections can be organized into a single **STAC catalog**. 
 
@@ -45,7 +44,6 @@ The following is a nice real-life analogy:
 
 The Python package to access APIs for STAC catalogs is [`pystac_client`](https://pystac-client.readthedocs.io/en/stable/). 
 Our goal in this lesson is to retrieve [NAIP data](https://naip-usdaonline.hub.arcgis.com) from the [MPC's data catalog](https://planetarycomputer.microsoft.com/catalog) via its STAC API. 
-We'll be doing this within the MPC's hub. 
 
 ## Catalog 
 <!--https://github.com/NCEAS/msai4earth-esa/blob/main/examples/naip_example/access_naip.ipynb-->
@@ -84,7 +82,6 @@ The `modifier` parameter is needed to access the data in the MPC catalog.
 Let's check out some of the catalog's metadata:
 ```{python}
 # metadata from the catalog
-#print('ID:', catalog.id)
 print('Title:', catalog.title)
 print('Description:', catalog.description)
 ```
@@ -105,13 +102,14 @@ Let's try getting the collections from the catalog again:
 collections = list(catalog.get_collections())
 
 print('Number of collections:', len(collections))
-print("Collections IDs:")
-for collection in collections:
-    print('-', collection.id)
+
+print("Collections IDs (first 10):")
+for i in range(10):
+    print('-', collections[i].id)
 ```
 
 ## Collection
-
+The NAIP catalog's id is `'naip'`. 
 We can select a single collection for exploration using the `get_child()` method for the catalog and the collection id as the parameter:
 ```{python}
 naip_collection = catalog.get_child('naip')
@@ -125,13 +123,14 @@ https://pystac.readthedocs.io/en/stable/api/item_collection.html#pystac-item-col
 -->
 
 ## Catalog search
-We can narrow the search withing the `catalog` by specifying a time range, an area of interest, and the collection name. 
+We can narrow down the search within the `catalog` by specifying a time range, an area of interest, and the collection name. 
 The simplest ways to define the area of interest to look for data in the catalog are:
 
 - a GeoJSON-type dictionary with the coordinates of the bounding box,
 - as a list `[xmin, ymin, xmax, ymax]` with the coordinate values defining the four corners of the bounding box.
 
-In this lesson we will look for the NAIP scenes over Santa Barbara from 2018 to 2023. We'll use the GeoJSON method to define the area of interest:
+In this lesson we will look for the NAIP scenes over Santa Barbara from 2018 to 2023. 
+We'll use the GeoJSON method to define the area of interest:
 
 ```{python}
 # Temporal range of interest
@@ -153,9 +152,9 @@ bbox = {
 
 # catalog search
 search = catalog.search(
-    collections=['naip'],
-    intersects=bbox,
-    datetime=time_range)
+    collections = ['naip'],
+    intersects = bbox,
+    datetime = time_range)
 search
 ```
 
@@ -182,8 +181,8 @@ item = items[0]
 type(item)
 ```
 
-Remember the [STAC item](https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item) is the core object in the catalog and. 
-The item does not contain the data itself, but rather metadata about and links to access the actual data (assets).
+Remember the [STAC item](https://pystac.readthedocs.io/en/stable/api/pystac.html#pystac.Item) is the core object in a STAC catalog. 
+The item does not contain the data itself, but rather metadata and assets that contain links to access the actual data.
 Some of the metadata:
 
 ```{python}
@@ -192,7 +191,7 @@ print('id:' , item.id)
 item.properties
 ```
 
-Just as the item properties, the item assets are given in a dictionary, with each value being an [`pystac.asset`](https://pystac.readthedocs.io/en/stable/api/asset.html)
+Just as the item properties, the item assets are given in a dictionary, with each value being a [`pystac.asset`](https://pystac.readthedocs.io/en/stable/api/asset.html)
 Let's check the assets in the `item`:
 
 ```{python}
@@ -203,8 +202,8 @@ for key in item.assets.keys():
     print(key, '--', item.assets[key].title)
 ```
 
-Notice each asset has an `href`, which is a link to the asset object (i.e. the data). 
-For example, we can use the URL for the rendered preview asset to plot it:
+Notice each asset has an `href`, which is a link to the data. 
+For example, we can use the URL for the `'rendered_preview'` asset to plot it:
 
 ```{python}
 # plot rendered preview
@@ -221,11 +220,11 @@ sb = rioxr.open_rasterio(item.assets['image'].href)
 sb
 ```
 
-Notice this raster has four bands. 
-So we cannot use the `.plot.imshow()` method directly (as this function only works when we have three bands). 
+Notice this raster has four bands (red, green, blue, nir), so we cannot use the `.plot.imshow()` method directly (as this function only works when we have three bands). 
 Thus we need select the bands we want to plot (RGB) before plotting:
 
 ```{python}
+#| eval: false
 # plot raster with correct ratio
 size = 6 # height in in of plot height
 aspect = sb.rio.width / sb.rio.height 
@@ -233,9 +232,11 @@ aspect = sb.rio.width / sb.rio.height
 sb.sel(band=[1,2,3]).plot.imshow(size=size, aspect=aspect)
 ```
 
+![](/images/sb-from-stac-item.png)
+
 ## Exercise
 
-The 'cop-dem-glo-90' collection contains the Copernicus DEM at 90m resolution (the data we previously used for the Grand Canyon). 
+The `'cop-dem-glo-90'` collection contains the Copernicus DEM at 90m resolution data (the data we previously used for the Grand Canyon). 
 
 1) Reuse the `bbox` for Santa Barbara to look for items in this collection. 
 2) Get the first item in the search and check its assets.
@@ -251,12 +252,16 @@ HINT: `bbox` as it is now is a dictionary. How can you get the vertices list out
 
 
 ```{python}
+#| eval: false
+#| 
 aoi = gpd.GeoDataFrame(geometry=[Polygon(bbox['coordinates'][0])],
                 crs='epsg:4326')
 aoi.plot()
 ```
 
 ```{python}
+#| eval: false
+#| 
 # reproject aoi to rgb crs
 aoi = aoi.to_crs(sb.rio.crs)
 print('matched crs?',  aoi.crs == sb.rio.crs)
@@ -264,6 +269,8 @@ aoi.crs
 ```
 
 ```{python}
+#| eval: false
+#| 
 fig, ax = plt.subplots()
 
 size = 6 # height in in of plot height
@@ -280,6 +287,7 @@ aoi.plot(ax=ax, color='red', alpha=0.6)
 STAC Documentation:
 
 - [The STAC Specification](https://stacspec.org/en/tutorials/intro-to-stac/)
+
 - [Read a STAC Catalog Using PySTAC](https://stacspec.org/en/tutorials/1-read-stac-python/)
 
 [Microsoft Planetary Computer Documentation - Reading Data from the STAC API](https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac/)
