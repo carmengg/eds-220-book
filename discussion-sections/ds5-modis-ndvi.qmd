@@ -1,10 +1,10 @@
 # *Lab: STAC access
 
-The goal of this lab is to practice retrieving data from a STAC catalog and extracting information from STAC item's assets.
+The goal of this lab is to practice retrieving data from a STAC catalog and extracting information from STAC item's assets. 
 
 :::{.callout-tip}
 ## Notebook Setup
-1. You will be working either in the Microsoft Planetary Computer or locally in VSCode with the environment we created yesterday.
+1. You will be working either in the Microsoft Planetary Computer (MPC) or locally in VSCode with the environment we created yesterday.
 
 2. Clone your `eds-220-sections` directory to your chose platform.
 
@@ -18,3 +18,40 @@ The goal of this lab is to practice retrieving data from a STAC catalog and extr
 - Add comments in each one of your code cells 
 - Include markdown cells in between your code cells to add titles/information to each exercise
 :::
+
+:::{.callout-note}
+## About the data
+
+I this task we will use data from the Moderate Resolution Imaging Spectroradiometer (MODIS) Vegetation Indices 16-Day Version. 
+This dataset has NDVI calculations at 500m spatial resolution globally and is part of the MPC STAC catalog. 
+
+Read the [catalog's overview](https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview) before starting the exercise.
+
+:::
+
+## Data access
+
+1. Open the MPC STAC catalog.
+2. Create a search for data in the MODIS Vegetation Indices dataset (id = `'modis-13A1-061'`) from 2023 that intersects the box bounds: 
+
+[-119.28376473993174, 35.561681976121605, -117.15965333370627, 36.65291223580975]
+
+This list of coordinates is in the form `[minx, miny, maxx, maxy]` with epsg:4326 and describes a square around Sequoia National Park. 
+ 
+HINT: You can use the list directly in the catalog search without converting it to a JSon format. 
+
+3. How many items are in the search?
+
+## Examine Dates
+
+ 1. Select the first item in the search as a variable `item`.
+
+ 2. Run `item.properties`. What kind of Python data structure is this? You can also check it using `type`. 
+
+ 3. Use the `'datetime'`, `'start_datetime'`, and `'end_datetime'` [keys](https://www.geeksforgeeks.org/python-dictionary/) to print the datetime information of the item. 
+
+ 4. The `'datetime'` value usually refers to the date of collection. Discuss with your team: why does this item does not have a datetime, but instead has start and end times? HINT: [read the datset's overview](https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview).
+
+ ## 
+
+
