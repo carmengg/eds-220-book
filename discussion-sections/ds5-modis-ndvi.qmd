@@ -36,22 +36,52 @@ Read the [catalog's overview](https://planetarycomputer.microsoft.com/dataset/mo
 
 [-119.28376473993174, 35.561681976121605, -117.15965333370627, 36.65291223580975]
 
-This list of coordinates is in the form `[minx, miny, maxx, maxy]` with epsg:4326 and describes a square around Sequoia National Park. 
+This list of coordinates is in the form `[minx, miny, maxx, maxy]` with epsg:4326 and describes a rectangular region around Sequoia National Park. 
  
-HINT: You can use the list directly in the catalog search without converting it to a JSon format. 
+HINT: You can use the list of coordinates directly in the catalog search without converting it to a JSON format. 
 
 3. How many items are in the search?
 
 ## Examine Dates
 
- 1. Select the first item in the search as a variable `item`.
+1. Select the first item in the search as a variable `item`.
 
- 2. Run `item.properties`. What kind of Python data structure is this? You can also check it using `type`. 
+2. Run `item.properties`. What kind of Python data structure is this? You can also check it using `type`. 
 
- 3. Use the `'datetime'`, `'start_datetime'`, and `'end_datetime'` [keys](https://www.geeksforgeeks.org/python-dictionary/) to print the datetime information of the item. 
+3. Use the `'datetime'`, `'start_datetime'`, and `'end_datetime'` [keys](https://www.geeksforgeeks.org/python-dictionary/) to print the datetime information of the item. 
 
- 4. The `'datetime'` value usually refers to the date of collection. Discuss with your team: why does this item does not have a datetime, but instead has start and end times? HINT: [read the datset's overview](https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview).
+4. The `'datetime'` value usually refers to the date of collection. Discuss with your team: why does this item does not have a datetime, but instead has start and end times? HINT: [read the datset's overview](https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview).
 
- ## 
+## Assets
 
+1. Check the item's assets. What kind of Python structure is this?
 
+2. Run the following code in a cell
+```python
+for key, asset in item.assets.items():
+    print(key, '-', asset.title)
+```
+
+Here, `item.assets.items()` returns the key-value pairs of the `item.assets` dictionary as tuples we can iterate over simultaneously. 
+
+4. Identify which key in `item.assets` has the 500m NDVI asset.
+
+3. Open the 500m 16 days NDVI data using the href from the corresponding asset and `rioxr.open_rasterio()`. Store it as a variable named `data`.   
+
+## Rescaling
+
+1. Plot the `data` raster. Discuss with your team the range of values in the raster and how these relate to the NDVI range.
+
+2. Run the following code:
+
+```python
+item.assets["500m_16_days_NDVI"].extra_fields["raster:bands"]
+```
+What kind of structure is this? 
+
+3. Extract the scale value (0.0001) from the `item` using the previous code and store it in a variable named `scale`. 
+
+4. Multiply the `data` raster by `scale` to get the actual NDVI values. 
+Store the new raster as a variable `ndvi`. 
+
+5. Plot `ndvi` using the colormap PiYG. HINT: `cmap="PiYG"`. This is a nice area to look at NDVI since we can see the transition in NDVI between the Sierra Nevada and Death Valley.
