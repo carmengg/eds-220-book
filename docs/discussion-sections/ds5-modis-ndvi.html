@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 10&nbsp; Data formats</title>
+<title>EDS 220 - Working with Environmental Datasets - 23&nbsp; *Lab: STAC access</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-11-crs.html" rel="next">
-<link href="../lectures/lesson-7-time-series.html" rel="prev">
+<link href="../appendices/set-pat.html" rel="next">
+<link href="../lectures/lesson-18-STAC.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-17-rioxarray.html">Raster data</a></li><li class="breadcrumb-item"><a href="../discussion-sections/ds5-modis-ndvi.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link">
+  <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
@@ -360,10 +360,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#points-lines-and-polygons" id="toc-points-lines-and-polygons" class="nav-link active" data-scroll-target="#points-lines-and-polygons"><span class="header-section-number">10.1</span> Points, lines, and polygons</a></li>
-  <li><a href="#shapefiles" id="toc-shapefiles" class="nav-link" data-scroll-target="#shapefiles"><span class="header-section-number">10.2</span> Shapefiles</a></li>
-  <li><a href="#geojson" id="toc-geojson" class="nav-link" data-scroll-target="#geojson"><span class="header-section-number">10.3</span> GeoJSON</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10.4</span> References</a></li>
+  <li><a href="#data-access" id="toc-data-access" class="nav-link active" data-scroll-target="#data-access"><span class="header-section-number">23.1</span> Data access</a></li>
+  <li><a href="#examine-dates" id="toc-examine-dates" class="nav-link" data-scroll-target="#examine-dates"><span class="header-section-number">23.2</span> Examine Dates</a></li>
+  <li><a href="#assets" id="toc-assets" class="nav-link" data-scroll-target="#assets"><span class="header-section-number">23.3</span> Assets</a></li>
+  <li><a href="#rescaling" id="toc-rescaling" class="nav-link" data-scroll-target="#rescaling"><span class="header-section-number">23.4</span> Rescaling</a></li>
   </ul>
 </nav>
     </div>
@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></h1>
+<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></h1>
 </div>
 
 
@@ -387,144 +387,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Vector data is one of the two primary types of geospatial data (the other one being raster data). In this section we will review what vector data is and go over some common data formats for it.</p>
-<section id="points-lines-and-polygons" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="points-lines-and-polygons"><span class="header-section-number">10.1</span> Points, lines, and polygons</h2>
-<p><strong>Vector data</strong> represents specific features on the Earth’s surface. There are three types of vector data:</p>
-<ul>
-<li><p><strong>Points:</strong> each point has a single x,y location. Examples of data that can be represented as point vector data are sampling locations or animal sightings.</p></li>
-<li><p><strong>Lines:</strong> a line is composed of at least two points that are connected. Roads and streams are commonly depicted as line vector data.</p></li>
-<li><p><strong>Polygons:</strong> polygons are sets of three or more vertices that are connected and form a closed region. Political boundaries (outlines of countries, states, cities, etc) are examples of polygon vector data.</p></li>
-</ul>
-<p>Each item in the vector data is usually referred to as a <strong>feature</strong>. So each point would be a feature, each polygon is a feature, etc.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/lesson-7-vector-data/point_line_poly.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Image Source: National Ecological Observatory Network (NEON)</figcaption>
-</figure>
-</div>
-<p>In addition to the geospatial information stored, vector data can include <strong>attributes</strong> that describe each feature. For example, a vector dataset where each feature is a polygon representing the boundary of a state could have as attributes the population and are of the state.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/lesson-7-vector-data/spatial-attribute-tables.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Image Source: National Ecological Observatory Network (NEON)</figcaption>
-</figure>
-</div>
-</section>
-<section id="shapefiles" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="shapefiles"><span class="header-section-number">10.2</span> Shapefiles</h2>
-<p>One of the most popular formats to store vector data is the <strong>shapefile</strong> data format. The <code>shapefile</code> format is developed and maintained by the Environmental Systems Research Institute (Esri).</p>
-<p>So far we’ve been working with data that comes stored in a single file, like a <code>csv</code> or <code>txt</code> file for tabular data. A shapefile is actually a collection of files that interact together to create a single data file. All the files that make up a shapefile need to have the same name (different extensions) and be in the same directory. For our shapefiles to work we need <em>at least</em> these three files:</p>
-<ul>
-<li><code>.shp</code>: shape format, this file has the geometries for all features.</li>
-<li><code>.shx</code>: shape index format, this file indexes the features</li>
-<li><code>.dbf</code>: attribute format, this file stores the attributes for features as a table</li>
-</ul>
-<p>Sometimes shapefiles will have additional files, including:</p>
-<ul>
-<li><code>.prj</code>: a file containing information about the projection and coordinate reference system</li>
-<li><code>.sbn</code> and <code>.sbx</code>: files that contain a spatial index of the features</li>
-<li><code>.shp.xml</code>: geospatial metadata in XML format.</li>
-</ul>
-<p>Check the <a href="https://en.wikipedia.org/wiki/Shapefile">Wikipedia page about shapefiles</a> to see a more extensive list of files associated to shapefiles.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
+<p>The goal of this lab is to practice retrieving data from a STAC catalog and extracting information from STAC item’s assets.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-File management
+Notebook Setup
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Remember: when working with a shapefile all the associated files must have the same name (different extensions) and be located in the same directory.</p>
+<ol type="1">
+<li><p>You will be working either in the Microsoft Planetary Computer (MPC) or locally in VSCode with the environment we created yesterday.</p></li>
+<li><p>Clone your <code>eds-220-sections</code> directory to your chose platform.</p></li>
+<li><p>Create a new notebook in your <code>eds-220-sections</code> directory. Update the name to ‘modis-ndvi.ipynb’.</p></li>
+<li><p>Use the terminal to stage, commit, and push this file to the remote repository.</p></li>
+</ol>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Different vector types = separate shapefiles
+General directions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Each shapefile can only hold one type of vector data. So only points, only lines, or only polygons can be inside a single shapefile.</p>
+<ul>
+<li>Add comments in each one of your code cells</li>
+<li>Include markdown cells in between your code cells to add titles/information to each exercise</li>
+</ul>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+About the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I this task we will use data from the Moderate Resolution Imaging Spectroradiometer (MODIS) Vegetation Indices 16-Day Version. This dataset has NDVI calculations at 500m spatial resolution globally and is part of the MPC STAC catalog.</p>
+<p>Read the <a href="https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview">catalog’s overview</a> before starting the exercise.</p>
+</div>
+</div>
+<section id="data-access" class="level2" data-number="23.1">
+<h2 data-number="23.1" class="anchored" data-anchor-id="data-access"><span class="header-section-number">23.1</span> Data access</h2>
+<ol type="1">
+<li>Open the MPC STAC catalog.</li>
+<li>Create a search for data in the MODIS Vegetation Indices dataset (id = <code>'modis-13A1-061'</code>) from 2023 that intersects the box bounds:</li>
+</ol>
+<p>[-119.28376473993174, 35.561681976121605, -117.15965333370627, 36.65291223580975]</p>
+<p>This list of coordinates is in the form <code>[minx, miny, maxx, maxy]</code> with epsg:4326 and describes a rectangular region around Sequoia National Park.</p>
+<p>HINT: You can use the list of coordinates directly in the catalog search without converting it to a JSON format.</p>
+<ol start="3" type="1">
+<li>How many items are in the search?</li>
+</ol>
 </section>
-<section id="geojson" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="geojson"><span class="header-section-number">10.3</span> GeoJSON</h2>
-<p><a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a>, which stands for Geographic JavaScript Object Notation, is an open format for encoding vector data (points, lines, polygons, and multipolygons) and their attributes. It is a popular format for web mapping applications. The GeoJSON format uses a single file, with extension <code>.json</code> or <code>.geojson</code>.</p>
-<p>While shapefiles can be in any coordinate reference system, the <a href="https://datatracker.ietf.org/doc/html/rfc7946">GeoJSON specification</a> requires GeoJSON files to use the World Geodetic System 1984 (WGS84) and all points being expressed as longitude and latitude units of decimal degrees.</p>
-<p>Data in a GeoJSON is stored as attribute-value pairs (think dictionaries!) and lists. The following are examples of how points, lines, and polygons are represented as GeoJSON features:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/lesson-7-vector-data/geojson-vector-types.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Source: Wikipedia</figcaption>
-</figure>
-</div>
-<p>The followng is an example of a full GeoJSON file. Notice multiple types of geometries can be mixed within the same file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: Wikipedia</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"type"</span>: <span class="st">"FeatureCollection"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"features"</span>: [</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"geometry"</span>: {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"Point"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coordinates"</span>: [<span class="fl">102.0</span>, <span class="fl">0.5</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"properties"</span>: {</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prop0"</span>: <span class="st">"value0"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"geometry"</span>: {</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"LineString"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coordinates"</span>: [</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>          [<span class="fl">102.0</span>, <span class="fl">0.0</span>],</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>          [<span class="fl">103.0</span>, <span class="fl">1.0</span>],</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          [<span class="fl">104.0</span>, <span class="fl">0.0</span>],</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>          [<span class="fl">105.0</span>, <span class="fl">1.0</span>]</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"properties"</span>: {</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prop0"</span>: <span class="st">"value0"</span>,</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prop1"</span>: <span class="fl">0.0</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"geometry"</span>: {</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"Polygon"</span>,</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coordinates"</span>: [</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>          [</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">100.0</span>, <span class="fl">0.0</span>],</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">101.0</span>, <span class="fl">0.0</span>],</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">101.0</span>, <span class="fl">1.0</span>],</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">100.0</span>, <span class="fl">1.0</span>],</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">100.0</span>, <span class="fl">0.0</span>]</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>          ]</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>      <span class="st">"properties"</span>: {</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prop0"</span>: <span class="st">"value0"</span>,</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prop1"</span>: { <span class="st">"this"</span>: <span class="st">"that"</span> }</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The website <a href="https://geojson.io/">https://geojson.io/</a> is a nice tool to easily create GeoJSON files.</p>
-<!--
-## Acknowledgements
--->
+<section id="examine-dates" class="level2" data-number="23.2">
+<h2 data-number="23.2" class="anchored" data-anchor-id="examine-dates"><span class="header-section-number">23.2</span> Examine Dates</h2>
+<ol type="1">
+<li><p>Select the first item in the search as a variable <code>item</code>.</p></li>
+<li><p>Run <code>item.properties</code>. What kind of Python data structure is this? You can also check it using <code>type</code>.</p></li>
+<li><p>Use the <code>'datetime'</code>, <code>'start_datetime'</code>, and <code>'end_datetime'</code> <a href="https://www.geeksforgeeks.org/python-dictionary/">keys</a> to print the datetime information of the item.</p></li>
+<li><p>The <code>'datetime'</code> value usually refers to the date of collection. Discuss with your team: why does this item does not have a datetime, but instead has start and end times? HINT: <a href="https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview">read the datset’s overview</a>.</p></li>
+</ol>
 </section>
-<section id="references" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="references"><span class="header-section-number">10.4</span> References</h2>
-<p>Data Carpentires - <a href="https://datacarpentry.org/organization-geospatial/aio.html">Introduction to Geospatial Concepts</a></p>
+<section id="assets" class="level2" data-number="23.3">
+<h2 data-number="23.3" class="anchored" data-anchor-id="assets"><span class="header-section-number">23.3</span> Assets</h2>
+<ol type="1">
+<li><p>Check the item’s assets. What kind of Python structure is this?</p></li>
+<li><p>Run the following code in a cell</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key, <span class="st">'-'</span>, asset.title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, <code>item.assets.items()</code> returns the key-value pairs of the <code>item.assets</code> dictionary as tuples we can iterate over simultaneously.</p>
+<ol start="4" type="1">
+<li><p>Identify which key in <code>item.assets</code> has the 500m NDVI asset.</p></li>
+<li><p>Open the 500m 16 days NDVI data using the href from the corresponding asset and <code>rioxr.open_rasterio()</code>. Store it as a variable named <code>data</code>.</p></li>
+</ol>
+</section>
+<section id="rescaling" class="level2" data-number="23.4">
+<h2 data-number="23.4" class="anchored" data-anchor-id="rescaling"><span class="header-section-number">23.4</span> Rescaling</h2>
+<ol type="1">
+<li><p>Plot the <code>data</code> raster. Discuss with your team the range of values in the raster and how these relate to the NDVI range.</p></li>
+<li><p>Run the following code:</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>item.assets[<span class="st">"500m_16_days_NDVI"</span>].extra_fields[<span class="st">"raster:bands"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What kind of structure is this?</p>
+<ol start="3" type="1">
+<li><p>Extract the scale value (0.0001) from the <code>item</code> using the previous code and store it in a variable named <code>scale</code>.</p></li>
+<li><p>Multiply the <code>data</code> raster by <code>scale</code> to get the actual NDVI values. Store the new raster as a variable <code>ndvi</code>.</p></li>
+<li><p>Plot <code>ndvi</code> using the colormap PiYG. HINT: <code>cmap="PiYG"</code>. This is a nice area to look at NDVI since we can see the transition in NDVI between the Sierra Nevada and Death Valley.</p></li>
+</ol>
 
 
 </section>
@@ -765,13 +725,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/lesson-7-time-series.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span>
+      <a href="../lectures/lesson-18-STAC.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-11-crs.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendices/set-pat.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Setting a PAT</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

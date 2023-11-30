@@ -973,6 +973,34 @@
     "text": "22.9 References\nSTAC Documentation:\n\nThe STAC Specification\nRead a STAC Catalog Using PySTAC\n\nMicrosoft Planetary Computer Documentation - Reading Data from the STAC API"
   },
   {
+    "objectID": "discussion-sections/ds5-modis-ndvi.html#data-access",
+    "href": "discussion-sections/ds5-modis-ndvi.html#data-access",
+    "title": "23  *Lab: STAC access",
+    "section": "23.1 Data access",
+    "text": "23.1 Data access\n\nOpen the MPC STAC catalog.\nCreate a search for data in the MODIS Vegetation Indices dataset (id = 'modis-13A1-061') from 2023 that intersects the box bounds:\n\n[-119.28376473993174, 35.561681976121605, -117.15965333370627, 36.65291223580975]\nThis list of coordinates is in the form [minx, miny, maxx, maxy] with epsg:4326 and describes a rectangular region around Sequoia National Park.\nHINT: You can use the list of coordinates directly in the catalog search without converting it to a JSON format.\n\nHow many items are in the search?"
+  },
+  {
+    "objectID": "discussion-sections/ds5-modis-ndvi.html#examine-dates",
+    "href": "discussion-sections/ds5-modis-ndvi.html#examine-dates",
+    "title": "23  *Lab: STAC access",
+    "section": "23.2 Examine Dates",
+    "text": "23.2 Examine Dates\n\nSelect the first item in the search as a variable item.\nRun item.properties. What kind of Python data structure is this? You can also check it using type.\nUse the 'datetime', 'start_datetime', and 'end_datetime' keys to print the datetime information of the item.\nThe 'datetime' value usually refers to the date of collection. Discuss with your team: why does this item does not have a datetime, but instead has start and end times? HINT: read the datset’s overview."
+  },
+  {
+    "objectID": "discussion-sections/ds5-modis-ndvi.html#assets",
+    "href": "discussion-sections/ds5-modis-ndvi.html#assets",
+    "title": "23  *Lab: STAC access",
+    "section": "23.3 Assets",
+    "text": "23.3 Assets\n\nCheck the item’s assets. What kind of Python structure is this?\nRun the following code in a cell\n\nfor key, asset in item.assets.items():\n    print(key, '-', asset.title)\nHere, item.assets.items() returns the key-value pairs of the item.assets dictionary as tuples we can iterate over simultaneously.\n\nIdentify which key in item.assets has the 500m NDVI asset.\nOpen the 500m 16 days NDVI data using the href from the corresponding asset and rioxr.open_rasterio(). Store it as a variable named data."
+  },
+  {
+    "objectID": "discussion-sections/ds5-modis-ndvi.html#rescaling",
+    "href": "discussion-sections/ds5-modis-ndvi.html#rescaling",
+    "title": "23  *Lab: STAC access",
+    "section": "23.4 Rescaling",
+    "text": "23.4 Rescaling\n\nPlot the data raster. Discuss with your team the range of values in the raster and how these relate to the NDVI range.\nRun the following code:\n\nitem.assets[\"500m_16_days_NDVI\"].extra_fields[\"raster:bands\"]\nWhat kind of structure is this?\n\nExtract the scale value (0.0001) from the item using the previous code and store it in a variable named scale.\nMultiply the data raster by scale to get the actual NDVI values. Store the new raster as a variable ndvi.\nPlot ndvi using the colormap PiYG. HINT: cmap=\"PiYG\". This is a nice area to look at NDVI since we can see the transition in NDVI between the Sierra Nevada and Death Valley."
+  },
+  {
     "objectID": "appendices/set-pat.html#context",
     "href": "appendices/set-pat.html#context",
     "title": "Appendix A — Setting a PAT",

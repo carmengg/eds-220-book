@@ -46,6 +46,7 @@ book:
         - lectures/lesson-19-dem.qmd
         - discussion-sections/ds4-landcover.qmd
         - lectures/lesson-18-STAC.qmd
+        - discussion-sections/ds5-modis-ndvi.qmd
         
       
   appendices:
