@@ -1,0 +1,20 @@
+# *Lab: STAC access
+
+The goal of this lab is to practice retrieving data from a STAC catalog and extracting information from STAC item's assets.
+
+:::{.callout-tip}
+## Notebook Setup
+1. You will be working either in the Microsoft Planetary Computer or locally in VSCode with the environment we created yesterday.
+
+2. Clone your `eds-220-sections` directory to your chose platform.
+
+2. Create a new notebook in your `eds-220-sections` directory. Update the name to 'modis-ndvi.ipynb'.
+
+3. Use the terminal to stage, commit, and push this file to the remote repository. 
+:::
+
+:::{.callout-note}
+## General directions
+- Add comments in each one of your code cells 
+- Include markdown cells in between your code cells to add titles/information to each exercise
+:::
