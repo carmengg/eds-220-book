@@ -1,0 +1,139 @@
+---
+jupyter: mpc-env-kernel
+---
+# Misc
+
+In this lesson we will retrieve data from the [2020 Census from the Microsoft Planetary Computer's STAC catalog](https://planetarycomputer.microsoft.com/dataset/us-census) using **GeoParquet**. 
+We will also introduce the **contextily** library for adding basemaps. 
+
+
+## Parquet and GeoParquet
+
+[**Apache Parquet**](https://parquet.apache.org) (or just parquet) is an open-source, column-oriented file format that makes it faster to retrieve data and uses less memory space to store tabular data. It is very popular for storing large amounts of data, instead of using, for example, CSV files. 
+
+
+<!-- https://towardsdatascience.com/demystifying-the-parquet-file-format-13adb0206705
+
+https://www.upsolver.com/blog/apache-parquet-why-use
+-->
+
+The geospatial version of parquet for storing vector data is the [**GeoParquet**](https://geoparquet.org) data format. 
+This format comes from the necessity to have an efficient, standardized data format to store and query big geospatial data efficiently. 
+GeoParquet was first introduced in December 2022. 
+Similarly to STAC, this is a new and ongoing effort to create standards in the geospatial analysis community given the rapid increase in geospatial data available. 
+
+<!-- https://getindata.com/blog/introducing-geoparquet-data-format/ 
+
+https://cholmes.medium.com/geoparquet-1-0-0-beta-1-released-6390ecb4c6d0
+
+https://geoparquet.org
+-->
+
+For this lesson, the 
+
+## Accessing GeoParquet file
+
+```{python}
+import geopandas
+import planetary_computer
+import pystac_client
+
+import matplotlib.pyplot as plt
+
+import contextily as ctx
+```
+
+References:
+
+Tile gallery:
+https://xyzservices.readthedocs.io/en/stable/gallery.html
+
+Intro to contextily
+https://contextily.readthedocs.io/en/latest/intro_guide.html#
+
+Geopandas:
+https://geopandas.org/en/stable/gallery/plotting_basemap_background.html#add-background-tiles-to-plot
+
+Troubleshooting:
+https://github.com/geopandas/contextily/issues/118
+https://github.com/geopandas/contextily/issues/78
+
+```{python}
+catalog = pystac_client.Client.open(
+    "https://planetarycomputer.microsoft.com/api/stac/v1",
+    modifier=planetary_computer.sign_inplace,
+)
+
+search = catalog.search(collections=["us-census"])
+items = {item.id: item for item in search.items()}
+list(items)
+```
+
+```{python}
+item = items['2020-cb_2020_us_county_500k']
+item
+```
+
+```{python}
+asset = item.assets["data"]
+asset
+```
+
+```{python}
+df = geopandas.read_parquet(
+    asset.href,
+    storage_options=asset.extra_fields["table:storage_options"],
+)
+df.head()
+```
+
+```{python}
+# Default: OpenStreetMap HOT style
+ax = (
+    df[df.NAME == "Santa Barbara"]
+    .to_crs(epsg=3857)
+    .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
+)
+ax.set_title(
+    "Santa Barbara County",
+    fontdict={"fontsize": "20"}
+)
+ctx.add_basemap(ax)
+ax.set_axis_off()
+```
+
+```{python}
+#| tags: []
+ax = (
+    df[df.NAME == "Santa Barbara"]
+    .to_crs(epsg=3857)
+    .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
+)
+ax.set_title(
+    "Santa Barbara County",
+    fontdict={"fontsize": "20"}
+)
+ctx.add_basemap(ax, source=ctx.providers.Esri.NatGeoWorldMap)
+ax.set_axis_off()
+```
+
+```{python}
+# changing basemaps
+# https://contextily.readthedocs.io/en/latest/providers_deepdive.html
+```
+
+```{python}
+ctx.providers
+```
+
+```{python}
+# # there's no phoenix subdivision in 2020 census data
+# cousub = items['2020-cb_2020_us_cousub_500k']
+# cousub_df = geopandas.read_parquet(
+#     asset.href,
+#     storage_options=asset.extra_fields["table:storage_options"],
+# )
+# cousub_df[cousub_df['NAME']=='Phoenix']
+```
+
+
