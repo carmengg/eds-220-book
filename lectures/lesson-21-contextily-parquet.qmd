@@ -29,20 +29,23 @@ https://cholmes.medium.com/geoparquet-1-0-0-beta-1-released-6390ecb4c6d0
 https://geoparquet.org
 -->
 
-For this lesson, the 
 
-## Accessing GeoParquet file
+## Catalog search
+
+We start by importing all the necessary libraries:
 
 ```{python}
-import geopandas
-import planetary_computer
-import pystac_client
-
+import geopandas as gpd
 import matplotlib.pyplot as plt
 
-import contextily as ctx
+# for MPC's STAC catalog search
+import pystac_client
+import planetary_computer
+
+import contextily as ctx #for adding basemaps
 ```
 
+<!--
 References:
 
 Tile gallery:
@@ -57,40 +60,62 @@ https://geopandas.org/en/stable/gallery/plotting_basemap_background.html#add-bac
 Troubleshooting:
 https://github.com/geopandas/contextily/issues/118
 https://github.com/geopandas/contextily/issues/78
+-->
+
+Then we use the 2020 US Census Collection id, `'us-census'`, to look for the data in the MPC catalog. 
+This collection has each tabular file as an item:
 
 ```{python}
+# open MPC catalog
 catalog = pystac_client.Client.open(
     "https://planetarycomputer.microsoft.com/api/stac/v1",
     modifier=planetary_computer.sign_inplace,
 )
 
+# search whole collection
 search = catalog.search(collections=["us-census"])
+
+# retrieve items
 items = {item.id: item for item in search.items()}
 list(items)
 ```
+
+This time we will access the item with the counties data:
 
 ```{python}
 item = items['2020-cb_2020_us_county_500k']
 item
 ```
 
+Notice each item has a single asset, `'data'`, that contains an URL to the GeoParquet file holding the information. 
+Let's access the item's asset:
+
 ```{python}
 asset = item.assets["data"]
 asset
 ```
 
+## Opening (Geo)Parquet
+
+To open the parquet file we use the `gpd.read_parquet()` function using the asset's URL pointing to the data. 
+
 ```{python}
-df = geopandas.read_parquet(
+counties = gpd.read_parquet(
     asset.href,
+    # 
     storage_options=asset.extra_fields["table:storage_options"],
 )
-df.head()
+```
+
+```{python}
+print(type(counties))
+counties.head()
 ```
 
 ```{python}
 # Default: OpenStreetMap HOT style
 ax = (
-    df[df.NAME == "Santa Barbara"]
+    counties[df.NAME == "Santa Barbara"]
     .to_crs(epsg=3857)
     .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
 )
@@ -105,7 +130,7 @@ ax.set_axis_off()
 ```{python}
 #| tags: []
 ax = (
-    df[df.NAME == "Santa Barbara"]
+    counties[df.NAME == "Santa Barbara"]
     .to_crs(epsg=3857)
     .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
 )
@@ -137,3 +162,6 @@ ctx.providers
 ```
 
 
+## Acknowledgements
+
+This lesson was adapted from teh MPC's notebook [Accessing US Census data with the Planetary Compyter STAC API](https://planetarycomputer.microsoft.com/dataset/us-census#Example-Notebook).
