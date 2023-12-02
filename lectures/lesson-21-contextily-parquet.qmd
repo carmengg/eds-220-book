@@ -1,7 +1,7 @@
 ---
 jupyter: mpc-env-kernel
 ---
-# Misc
+# Parquet and contextily
 
 In this lesson we will retrieve data from the [2020 Census from the Microsoft Planetary Computer's STAC catalog](https://planetarycomputer.microsoft.com/dataset/us-census) using **GeoParquet**. 
 We will also introduce the **contextily** library for adding basemaps. 
@@ -125,7 +125,7 @@ Contextily retrieves tile maps from the internet and makes it possible to plot t
 We want to plot the Santa Barbara county polygon together with a basemap. 
 
 ```{python}
-sb = counties[df.NAME == "Santa Barbara"]
+sb = counties[counties.NAME == "Santa Barbara"]
 ```
 
 Although contextily's tiles can be reprojected to match the CRS of the vector data, it can be easier to reproject your data to EPSG 3857 instead. 

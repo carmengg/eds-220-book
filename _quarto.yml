@@ -47,6 +47,7 @@ book:
         - discussion-sections/ds4-landcover.qmd
         - lectures/lesson-18-STAC.qmd
         - discussion-sections/ds5-modis-ndvi.qmd
+        - lectures/lesson-21-contextily-parquet.qmd
         
       
   appendices:
