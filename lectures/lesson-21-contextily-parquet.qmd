@@ -107,49 +107,70 @@ counties = gpd.read_parquet(
 )
 ```
 
+Now we have a regular `geopandas.GeoDataFrame`:
+
 ```{python}
 print(type(counties))
 counties.head()
 ```
 
+## Contextily
+
+In this section we will introduce the Python library [**contextily**](https://contextily.readthedocs.io/en/latest/index.html) to add base maps. 
+
+Contextily retrieves tile maps from the internet and makes it possible to plot them alongside our vector data. 
+
+**Example**
+
+We want to plot the Santa Barbara county polygon together with a basemap. 
+
 ```{python}
-# Default: OpenStreetMap HOT style
-ax = (
-    counties[df.NAME == "Santa Barbara"]
-    .to_crs(epsg=3857)
-    .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
-)
-ax.set_title(
-    "Santa Barbara County",
-    fontdict={"fontsize": "20"}
-)
+sb = counties[df.NAME == "Santa Barbara"]
+```
+
+Although contextily's tiles can be reprojected to match the CRS of the vector data, it can be easier to reproject your data to EPSG 3857 instead. 
+The [CRS EPSG 3857](https://epsg.io/3857) (Spherical Mercator / Web Mercator) is a projected coordinate system used for rendering maps online, including Google Maps and OpenStreetMap among others. 
+
+```{python}
+# create axis with plot
+ax = (sb.to_crs(epsg=3857)
+      .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
+      )
+
+# add basemap from contextily
 ctx.add_basemap(ax)
+
+# update axes
+ax.set_title("Santa Barbara County", fontdict={"fontsize": "20"})
 ax.set_axis_off()
 ```
 
+By default, `contextily` uses the [OpenStreetMap HOT style](http://map.hotosm.org/). 
+We can change basemaps by updating the `source` parameter in the `add_basemap()` function. For example:
+
 ```{python}
-#| tags: []
-ax = (
-    counties[df.NAME == "Santa Barbara"]
-    .to_crs(epsg=3857)
-    .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
-)
-ax.set_title(
-    "Santa Barbara County",
-    fontdict={"fontsize": "20"}
-)
+# create axis with plot
+ax = (sb.to_crs(epsg=3857)
+      .plot(figsize=(7, 7), alpha=0.5, edgecolor="k")
+      )
+
+# add NatGeo basemap from contextily
 ctx.add_basemap(ax, source=ctx.providers.Esri.NatGeoWorldMap)
+
+# update axes
+ax.set_title("Santa Barbara County", fontdict={"fontsize": "20"})
 ax.set_axis_off()
 ```
 
-```{python}
-# changing basemaps
-# https://contextily.readthedocs.io/en/latest/providers_deepdive.html
-```
+Checking `ctx.providers` we can see the basemaps available:
 
 ```{python}
 ctx.providers
 ```
+
+
+<!--
+https://contextily.readthedocs.io/en/latest/providers_deepdive.html
 
 ```{python}
 # # there's no phoenix subdivision in 2020 census data
@@ -160,7 +181,7 @@ ctx.providers
 # )
 # cousub_df[cousub_df['NAME']=='Phoenix']
 ```
-
+-->
 
 ## Acknowledgements
 
