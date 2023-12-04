@@ -1,0 +1,372 @@
+---
+jupyter: mpc-env-kernel
+---
+
+# Raster manipulation II
+
+**Dataset 1**
+
+Shipping intensity in the Pacific Arctic region during August 2017. 
+The value at each raster cell represents the total length, in meters, of all vessel tracks within each cell.
+Resolution: 1km per pixel. 
+https://arcticdata.io/catalog/view/doi:10.18739/A2SQ8QJ9S
+
+
+**Dataset 2**
+
+Vector data showing statistical areas dividing waters of the State of Alaska and the adjacent Exclusive Economic Zone (EEZ) into small units for the purpose of reporting and analyzing fishery harvest. 
+https://knb.ecoinformatics.org/view/doi:10.5063/F1QR4VJK
+
+**Dataset 3**
+
+A polygon showing Alaska's boundary extracted from the 2022 US Census TIGER shapefiles and with updated CRS. 
+
+
+```{python}
+#| tags: []
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches # for creating legends
+
+import xarray as xr
+import rioxarray as rioxr
+import geopandas as gpd
+
+from rasterio.features import rasterize # for rasterizing polygons
+```
+
+```{python}
+#| tags: []
+pd.set_option('display.max_columns', None)
+```
+
+## Import data
+
+```{python}
+#| tags: []
+# open raster
+#raw_dist = rioxr.open_rasterio('https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A6b847ab0-9a3d-4534-bf28-3a96c5fa8d72')
+raw_dist = rioxr.open_rasterio('https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A0d223f34-77fc-4ebe-8a58-459b7e575668')
+raw_dist
+```
+
+```{python}
+#| tags: []
+# open fishing areas polygons
+fishing_areas = gpd.read_file(os.path.join(os.getcwd(), 'data', 'Alaska_Commercial_Salmon_Boundaries.gpkg'))
+fishing_areas.head()
+```
+
+```{python}
+#| tags: []
+# open Alaska boundary
+ak = gpd.read_file(os.path.join(os.getcwd(), 'data', 'alaska_perimeter','alaska_perimeter.shp'))
+ak
+```
+
+
+## Fishing areas preparation 
+### Update column names and CRS
+
+```{python}
+#| tags: []
+# make column names small caps
+fishing_areas.columns = fishing_areas.columns.str.lower()
+print(fishing_areas.columns, "\n")
+
+# -----------------------
+# check CRS
+print(f"raw_dist: {raw_dist.rio.crs} \nak: {ak.crs} \nfishing_areas: {fishing_areas.crs}\n")
+#print(raw_dist.rio.crs == ak.crs)
+
+# transform fishing_areas CRS to epsg:3338
+fishing_areas = fishing_areas.to_crs(ak.crs)
+print('CRS match:', raw_dist.rio.crs == fishing_areas.crs)
+```
+
+### Data selection
+
+This data includes fine scale subdivisions of the fishing areas. 
+We'll be working with data from the Kodiak registration area.
+
+```{python}
+#| tags: []
+# Registration areas:
+print(fishing_areas.registration_area_name.unique())
+```
+
+```{python}
+#| tags: []
+# select Kodiak area
+kodiak = fishing_areas[fishing_areas.registration_area_name == 'Kodiak Area' ]
+print('# geometries in Kodiak area:', len(kodiak) )
+```
+
+### Plot of Kodiak fisihing area
+
+One way to add a custom legend is to create an `Patch` object for each geometry in our plot. 
+
+We can create a `Patch` with a custom color and legend via `mpatches.Patch()`:
+```python
+great_patch =  mpatches.Patch( color = 'great_color',
+                               label = 'great_label')
+```
+To add this patch to the legend we should have created an axis, for example by calling `fig, ax = plt.subplots()` at the beginning of our plot. 
+Then we add great patch to the legend:
+```python
+ax.legend(handles = [great_patch])
+```
+
+**Example:**
+
+```{python}
+#| tags: []
+fig, ax = plt.subplots()
+# --------------------------------------------
+ak.plot(ax=ax, color = 'pink')
+ak_patch = mpatches.Patch(color='pink',
+                          label='Alaska, US')
+
+# --------------------------------------------
+#kodiak.dissolve().plot(ax=ax, color = 'blue')
+kodiak.plot(ax=ax, color = 'blue')
+kodiak_patch = mpatches.Patch(color='blue',
+                              label='Kodiak fishing area')
+
+# ------------------------------------------
+# create elegend
+ax.legend(handles = [ak_patch, kodiak_patch], frameon=False, loc='upper left')
+#ax.legend(handles = [ak_patch, kodiak_patch], frameon=False, loc='upper left', bbox_to_anchor= (1, 1))
+
+# ------------------------------------------
+# save figure (optional)
+#plt.savefig('kodiad_area_map.png', bbox_inches='tight',  dpi=100)
+plt.show()
+```
+
+### Dissolve & explode polygons
+
+The kodiak data is too granular for our purposes: we want to get statistics on distance travelled on each fishing district.
+
+```{python}
+#| tags: []
+# check number of districts and rows
+print(f"number of geometries: {len(kodiak)}")
+print(f"number of districts: {len(kodiak.district_name.unique())}")
+```
+
+We can aggregate the geometries based on the values of a column using the `dissolve()` method. 
+In our case we will dissolve by district name:
+
+```{python}
+#| tags: []
+# dissolve by district
+# as_index=False indicates we want to keep the "groupby" column as a column (not index)
+districts = kodiak[['geometry','district_name']].dissolve(by='district_name', as_index=False)
+districts 
+```
+
+Let's take a look at the districts:
+
+Legend location:
+
+We can control the legend location adding `loc` and `bbox_to_anchor` to the `legend_kwds`. 
+
+It can be useful/clear to combine both of these to place the legend outside the graph:
+`loc` indicates the corner of the legend box we want to locate
+`bbox_to_anchor` is a tuple with coordiantes of where to place the corner specified in `loc`. Values between 0 and 1 are within the axes (the plot). 
+
+See: https://matplotlib.org/stable/api/legend_api.html
+
+```{python}
+#| tags: []
+# https://matplotlib.org/stable/api/legend_api.html
+# https://stackoverflow.com/questions/25068384/bbox-to-anchor-and-loc-in-matplotlib
+districts.plot(column='district_name', 
+               legend=True, 
+               legend_kwds={'loc': "upper left", 'bbox_to_anchor': (1, 1)})
+```
+
+Notice the geometries of some our districts are multipolygons. 
+To simplify our analysis and for the purpose of this lesson we will separate each multipolygon into individual polygons. 
+We can do this using the `explode()` method for `gpd.GeoDataFrames`:
+
+```{python}
+#| tags: []
+# explode polygons
+# ignore_index=True resests the index 
+districts = districts.explode(ignore_index=True)
+districts
+```
+
+## Distance raster preparation
+
+Now let's move on to our raster. 
+
+### Squeeze
+First, we have an extra unnecessary dimension. Let's get rid of it:
+
+```{python}
+#| tags: []
+# get rid of band
+print(f"Before squeeze:\ndimensions {raw_dist.dims} \ncoords: {raw_dist.coords} \n")
+
+raw_dist = raw_dist.squeeze().drop('band')
+print(f"After squeeze:\ndimensions {raw_dist.dims}\ncoords: {raw_dist.coords}")
+```
+
+### Updating no-data value
+Take a look at the data:
+
+```{python}
+#| tags: []
+# this plot should make us think there are outliners/no-data values
+# that are affecting the range of values
+raw_dist.plot()
+```
+
+```{python}
+#| tags: []
+# check min and max
+print(f"min: {raw_dist.min().item():,}, max: {raw_dist.max().item():,}")
+
+# get no-data value
+nodata = raw_dist.rio.nodata
+print('no-data value', nodata)
+```
+
+https://docs.xarray.dev/en/stable/generated/xarray.DataArray.where.html
+We can select all pixels where there is raster data using the `where()` method.
+By default, `where()` will place `np.nan` (NAs) at every cell that does not satisty the condition. 
+
+```{python}
+#| tags: []
+# select pixels with data using `where()`
+raw_dist.where(raw_dist != nodata)
+```
+
+```{python}
+#| tags: []
+# check graph with nodata as nans
+raw_dist.where(raw_dist != nodata).plot()
+```
+
+```{python}
+#| tags: []
+# transform no data values into nan (float)
+dist = raw_dist.where(raw_dist != nodata)
+print(f" min: {dist.min().item()}, max: {dist.max().item():,}")
+```
+
+### Clipping
+
+```{python}
+#| tags: []
+kodiak_dist = dist.rio.clip_box(*districts.total_bounds)
+kodiak_dist
+```
+
+```{python}
+#| tags: []
+# do with and without robust = True
+kodiak_dist.plot(robust=True)
+```
+
+```{python}
+#| tags: []
+fig, ax = plt.subplots()
+kodiak_dist.plot(ax=ax, robust=True)
+districts.plot(ax=ax, edgecolor='red', color='none')
+plt.show()
+```
+
+## Distance in a single district
+
+To transform a geometry into a mask we can use the 
+`rasterize()` function from `rasterio.features`:
+
+https://rasterio.readthedocs.io/en/stable/api/rasterio.features.html
+
+`rasterio` is another popular Python library to work with rasters. 
+Although many of its functions have been streamlined in `rioxarray`, there are still some that have not been replaced.
+
+
+```{python}
+#| tags: []
+# create raster mask based on alitak polygon
+alitak_mask = rasterize(shapes = [districts.loc[1,'geometry']],  # a list of geometries
+                        out_shape = kodiak_dist.shape,           # shape of outout np array (shape of raster)
+                        transform = kodiak_dist.rio.transform(), # transformation of raster
+                        all_touched = True)  # all pixels touched by geometries will be burned in 
+print(type(alitak_mask))
+alitak_mask
+```
+
+```{python}
+#| tags: []
+print(alitak_mask.shape)
+print(alitak_mask.shape == kodiak_dist.shape)
+print(np.unique(alitak_mask))
+plt.imshow(alitak_mask)
+```
+
+```{python}
+#| tags: []
+# apply mask to kodiak distances raster
+dist_alitak = kodiak_dist * alitak_mask
+dist_alitak.plot(robust=True)
+```
+
+```{python}
+#| tags: []
+print(f"total distance in Alitak: {dist_alitak.sum().item():,}")
+```
+
+```{python}
+#| tags: []
+# in a single cell this would be:
+alitak_mask = rasterize([districts.loc[1,'geometry']],
+                                    out_shape = kodiak_dist.shape,
+                                    transform = kodiak_dist.rio.transform(),
+                                    all_touched = True)
+dist_in_alitak = (kodiak_dist * alitak_mask).sum().item()
+dist_in_alitak
+```
+
+## Distance in all districts
+
+```{python}
+#| tags: []
+for i in districts.index:
+    print(i)
+```
+
+```{python}
+#| tags: []
+# calculate distance per district polygon
+distances = []
+for i in districts.index:
+    mask = rasterize([districts.loc[i,'geometry']],
+                              out_shape=kodiak_dist.shape,
+                              transform=kodiak_dist.rio.transform(),
+                              all_touched=True)
+    dist_in_district = (kodiak_dist * mask).sum().item()
+    distances.append(dist_in_district)
+distances
+```
+
+```{python}
+#| tags: []
+# add column with distance per district polygon
+districts['total_distance'] = distances
+districts
+```
+
+```{python}
+#| tags: []
+districts.plot(column = 'total_distance', legend=True)
+```
+
+

@@ -3,7 +3,7 @@
 # to check all the available jupyter kernels run from the terminal 
 # jupyter kernelspec list
 #jupyter: base
-jupyter: trial-env
+jupyter: mpc-env-kernel
 ---
 
 <!-- 

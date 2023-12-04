@@ -1,6 +1,6 @@
 ---
 # do not execute cells
-jupyter: trial-env
+jupyter: mpc-env-kernel
 ---
 
 # STAC specification
