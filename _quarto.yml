@@ -33,8 +33,8 @@ book:
         - lectures/lesson-10-merge-data.qmd
         - lectures/lesson-12-csv-to-geo.qmd
         - lectures/lesson-13-reproject-and-clip.qmd
-        #- lectures/lesson-13-standin.qmd
         - discussion-sections/ds3-earthquakes.qmd
+        - lectures/lesson-21-contextily-parquet.qmd
     - part: "Multi-dimensional data"
       chapters:
         - lectures/lesson-14-multidimensional-data.qmd
@@ -47,7 +47,7 @@ book:
         - discussion-sections/ds4-landcover.qmd
         - lectures/lesson-18-STAC.qmd
         - discussion-sections/ds5-modis-ndvi.qmd
-        - lectures/lesson-21-contextily-parquet.qmd                
+        - lectures/lesson-22-make_a_gif.qmd
         
       
   appendices:

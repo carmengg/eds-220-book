@@ -1,0 +1,182 @@
+---
+jupyter: mpc-env-kernel
+---
+
+# Make a GIF 
+
+In this lesson we will use NAIP data to create a GIF showing vegetation change over Campus Point at UCSB. 
+
+
+UCSB's [Cheadle Center for Biodiveristy and Ecologicla Restoration (CCBER)](https://www.ccber.ucsb.edu) manages multiple ecological restoration sites around the UCSB campus to protect and enhance native biodiveristy and preserve ecological function within urbanized areas. 
+Campus Point is one of the areas managed by CCBER and has undergone multiple active restoration projects since 2005. 
+In particular, Campus Point is greatly covered by iceplant (*Carpobrotus edulis*), an inviasive succulent that competes with native plants by forming thick mats that cover large areas. 
+In the last few years CCBER has removed iceplant in Campus Point to replace it with native vegetation. 
+
+
+
+We will create a gif using NAIP imagery from 2016, 2018, and 2020 showing the vegetation change in this area. 
+
+First, let's import the necessary libraries and functions. 
+To create the GIF we'll be using the [`geogif` library](https://geogif.readthedocs.io/en/latest/), which makes it simple to create gifs from `xarray.DataArrays`.
+
+
+```{python}
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+import xarray as xr
+import rioxarray as rioxr
+from shapely.geometry import box
+
+import pystac_client
+import planetary_computer
+
+from geogif import gif  # to create gif
+```
+
+## Data search
+
+To search for the NAIP data in the Microsoft Planetary Computer Catalog we will use a list of coordinates defining a bounding box around campus point. 
+We will also limit our search for items since 2016, when NAIP data resolution increased from 1m to 0.6m per pixel.
+
+```{python}
+# open catalog
+catalog = pystac_client.Client.open(
+    "https://planetarycomputer.microsoft.com/api/stac/v1",
+    modifier=planetary_computer.sign_inplace,
+)
+
+# coords defining bbox around campus point
+bbox = [-119.84682486219316, 34.404860394049024, -119.84370917948988, 34.40632764289684]
+
+# search 
+search = catalog.search(
+    collections=["naip"], 
+    bbox=bbox, 
+    datetime='2016/2023'
+)
+
+# get items from search
+items = search.item_collection()
+print(f'There are {len(items)} items in the search.')
+```
+
+## Prepare single raster
+
+The NAIP data is available at the item's `'image'` asset:
+
+```{python}
+item = items[0]
+sb = rioxr.open_rasterio(item.assets['image'].href)
+sb
+```
+
+This rater is way bigger than our area of interest. 
+To verify this and then clip the raster, let's make a `gpd.GeoDataFrame` from the `bbox` coordinates:
+
+```{python}
+# bounding box as geodataframe
+box_df = gpd.GeoDataFrame(geometry=[box(*bbox)],
+                 crs='epsg:4326') 
+```
+
+```{python}
+# plot bounding box and raster extents
+fig, ax = plt.subplots()
+gpd.GeoDataFrame(geometry=[box(*sb.rio.bounds())],
+                 crs=sb.rio.crs).plot(ax=ax)
+box_df.to_crs(sb.rio.crs).plot(ax=ax, color='red')
+```
+
+```{python}
+# clip raster to bounding box
+sb = sb.rio.clip_box(*box_df.to_crs(sb.rio.crs).total_bounds)
+```
+
+NAIP data has four bands, Red, Green, Blue, and Near-Infrared. 
+To make it easier to plot RGB images, let's select only the first three bands.
+
+```{python}
+# select red, green, blue bands and plot true color image.
+sb = sb.sel(band=[1,2,3])
+sb.plot.imshow()
+```
+
+## Stack rasters
+
+Our goal is to use the `gif` function to create a gif with the three NAIP images over campus point. 
+
+The [`gif` documentation](https://geogif.readthedocs.io/en/latest/api.html) indicates that to do so we will need to put our images/rasters in a single `xarray.DataArray` with dimensions `(time, band, y, x)`. 
+A single raster has the following dimensions:
+
+```{python}
+print('dimensions: ', sb.dims)
+print('shape: ', sb.shape)
+```
+
+To create a single `xarray.DataArray` with a time dimensions we will stack the three rasters we obtained in our search. 
+We use a `for` loop to repeat the previous steps for each item in the search (access the item's `image` asset, clip, and select bands) and store each processed raster in a list `rasters`:
+
+```{python}
+# create a list with rasters
+rasters = []
+for item in items:
+    sb = rioxr.open_rasterio(item.assets['image'].href)
+    sb = sb.rio.clip_box(*box_df.to_crs(sb.rio.crs).total_bounds)
+    sb = sb.sel(band=[1,2,3])
+    rasters.append(sb)
+```
+
+Next we use the `xarray.concat()` function to concatenate these rasters along a new dimensions we will call `time`:
+
+```{python}
+# concatenate rasters into single xarray.DataArray
+stack = xr.concat(rasters, dim='time')
+stack
+```
+
+Notice our new dimension `time` does not have any coordinates associated to it. 
+To add coordinates to this dimensions we use the [`assign_coords()`](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html)  method for `xarray.DataArray`. 
+
+It would be reasonable to use the year of collection of each raster (as a `timestamp`) as its coordinate on the `time` dimension. 
+We can see this year in the item's properties:
+
+```{python}
+# year of collection of an item 
+item = items[0]
+item.properties['naip:year']
+```
+
+```{python}
+# convert strings to datetime
+pd.to_datetime(item.properties['naip:year'])
+```
+
+To get this timestamps for each year we can create a list using *list comprehension*:
+
+```{python}
+times = [pd.to_datetime(item.properties['naip:year']) for item in items]
+times
+```
+
+And finally we assign these times as the coordinates and sort by the vlaues of time dimension:
+
+```{python}
+stack = stack.assign_coords(time=times).sortby("time")
+stack
+```
+
+## GIF
+
+Getting the rasters in the right format is the trickiest part of creating the GIF! Can you see the resotration areas?
+
+```{python}
+#| eval: false
+# create gif
+# fps = frames per second
+# adding to="campus_point.gif" will save GIF
+gif(stack, fps = 0.5)
+```
+
+![](/images/campus_point.gif)
