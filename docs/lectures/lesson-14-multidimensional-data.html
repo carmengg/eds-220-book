@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 17&nbsp; NetCDF</title>
+<title>EDS 220 - Working with Environmental Datasets - 18&nbsp; NetCDF</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/lesson-15-xarray.html" rel="next">
-<link href="../discussion-sections/ds3-earthquakes.html" rel="prev">
+<link href="../lectures/lesson-21-contextily-parquet.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-14-multidimensional-data.html">Multi-dimensional data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-14-multidimensional-data.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-14-multidimensional-data.html">Multi-dimensional data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-14-multidimensional-data.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -221,6 +221,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -235,13 +241,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -258,37 +264,37 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+  <a href="../lectures/lesson-22-make_a_gif.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
   </div>
 </li>
       </ul>
@@ -332,11 +338,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">17.1</span> Introduction</a></li>
-  <li><a href="#what-is-netcdf" id="toc-what-is-netcdf" class="nav-link" data-scroll-target="#what-is-netcdf"><span class="header-section-number">17.2</span> What is NetCDF</a></li>
-  <li><a href="#data-model" id="toc-data-model" class="nav-link" data-scroll-target="#data-model"><span class="header-section-number">17.3</span> Data Model</a></li>
-  <li><a href="#metadata-standards" id="toc-metadata-standards" class="nav-link" data-scroll-target="#metadata-standards"><span class="header-section-number">17.4</span> Metadata Standards</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">17.5</span> Acknowledgements</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">18.1</span> Introduction</a></li>
+  <li><a href="#what-is-netcdf" id="toc-what-is-netcdf" class="nav-link" data-scroll-target="#what-is-netcdf"><span class="header-section-number">18.2</span> What is NetCDF</a></li>
+  <li><a href="#data-model" id="toc-data-model" class="nav-link" data-scroll-target="#data-model"><span class="header-section-number">18.3</span> Data Model</a></li>
+  <li><a href="#metadata-standards" id="toc-metadata-standards" class="nav-link" data-scroll-target="#metadata-standards"><span class="header-section-number">18.4</span> Metadata Standards</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">18.5</span> Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -345,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></h1>
 </div>
 
 
@@ -361,8 +367,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>In this lesson, we will review a popuar format for working with multi-dimensional datasets called NetCDF. More importantly, NetCDF is the basis on which the Python package <code>xarray</code> is built on.</p>
-<section id="introduction" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">17.1</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">18.1</span> Introduction</h2>
 <p>Efficient and reproducible data analysis begins with choosing a proper format to store our data, particularly when working with large, complex, multi-dimensional datasets. Consider, for example, the following Earth System Data Cube from <a href="https://esd.copernicus.org/articles/11/201/2020/esd-11-201-2020.pdf">Mahecha et al.&nbsp;2020</a>, which measures nine environmental variables at high resolution across space and time. We can consider this dataset large (high-resolution means we have a big file), complex (multiple variables), and multi-dimensional (each variable is measured along three dimensions: latitude, longitude, and time). Additionally, necessary metadata must accompany the dataset to make it functional, such as units of measurement for variables, information about the authors, and processing software used.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -372,8 +378,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Keeping complex datasets in a format that facilitates access, processing, sharing, and archiving can be at least as important as which tools we use to analyze them. In this lesson, we will review a popuar format for working with multi-dimensional datasets called NetCDF. `</p>
 </section>
-<section id="what-is-netcdf" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="what-is-netcdf"><span class="header-section-number">17.2</span> What is NetCDF</h2>
+<section id="what-is-netcdf" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="what-is-netcdf"><span class="header-section-number">18.2</span> What is NetCDF</h2>
 <p><a href="https://docs.unidata.ucar.edu/netcdf-c/current/index.html">NetCDF</a> (network Common Data Form) is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. NetCDF was initially developed at the Unidata Program Center and is supported on almost all platforms, and parsers exist for most scientific programming languages.</p>
 <p>The <a href="https://docs.unidata.ucar.edu/netcdf-c/current/faq.html#ncFAQGeneral">NetCDF documentation</a> outlines that this data format is desgined to be:</p>
 <blockquote class="blockquote">
@@ -387,8 +393,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </blockquote>
 </section>
-<section id="data-model" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="data-model"><span class="header-section-number">17.3</span> Data Model</h2>
+<section id="data-model" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="data-model"><span class="header-section-number">18.3</span> Data Model</h2>
 <p>The NetCDF data model is the way that NetCDF organizes data. This lesson will follow the <a href="https://docs.unidata.ucar.edu/netcdf-c/current/netcdf_data_model.html#classic_model">Classic NetCDF Data Model</a>, which is at the core of all netCDF files. <!--
 A new Enhanced Data Model exists, but for maximum interoperability with existing code, new data should be created with the Classic Model. 
 --></p>
@@ -405,8 +411,8 @@ A new Enhanced Data Model exists, but for maximum interoperability with existing
 </figure>
 </div>
 </section>
-<section id="metadata-standards" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="metadata-standards"><span class="header-section-number">17.4</span> Metadata Standards</h2>
+<section id="metadata-standards" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="metadata-standards"><span class="header-section-number">18.4</span> Metadata Standards</h2>
 <p>The most commonly used metadata standard for geospatial data is the <strong>Climate and Forecast metadata standard</strong>, also called the <a href="https://cfconventions.org"><strong>CF conventions</strong></a>.</p>
 <blockquote class="blockquote">
 <p>The CF conventions are specifically designed to promote the processing and sharing of files created with the NetCDF API. Principles of CF include self-describing data (no external tables needed for understanding), metadata equally readable by humans and software, minimum redundancy, and maximum simplicity. <a href="http://cfconventions.org/faq.html">(CF conventions FAQ)</a></p>
@@ -417,8 +423,8 @@ A new Enhanced Data Model exists, but for maximum interoperability with existing
 <li><p><a href="https://ncics.org/portfolio/other-resources/udunits2/#degree_N">a list of the units found in the UDUNITS database</a> maintained by the North Carolina Institute for Climate Studies.</p></li>
 </ul>
 </section>
-<section id="acknowledgements" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">17.5</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">18.5</span> Acknowledgements</h2>
 <p>The NetCDF section in this lesson is adapted from the lesson I prepared for the Arctic Data Center’s course on scalable computing:</p>
 <p>S. Jeanette Clark, Matthew B. Jones, Samantha Csik, Carmen Galaz García, Bryce Mecum, Natasha Haycock-Chavez, Daphne Virlar-Knight, Juliet Cohen, Anna Liljedahl. 2023. Scalable and Computationally Reproducible Approaches to Arctic Research. Arctic Data Center. <a href="https://learning.nceas.ucsb.edu/2023-03-arctic/">doi:10.18739/A2QF8JM2V</a></p>
 
@@ -661,13 +667,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../discussion-sections/ds3-earthquakes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span>
+      <a href="../lectures/lesson-21-contextily-parquet.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-15-xarray.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

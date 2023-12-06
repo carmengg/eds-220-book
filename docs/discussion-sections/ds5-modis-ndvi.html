@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 23&nbsp; *Lab: STAC access</title>
+<title>EDS 220 - Working with Environmental Datasets - 24&nbsp; *Lab: STAC access</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/lesson-21-contextily-parquet.html" rel="next">
+<link href="../lectures/lesson-22-make_a_gif.html" rel="next">
 <link href="../lectures/lesson-18-STAC.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-17-rioxarray.html">Raster data</a></li><li class="breadcrumb-item"><a href="../discussion-sections/ds5-modis-ndvi.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-17-rioxarray.html">Raster data</a></li><li class="breadcrumb-item"><a href="../discussion-sections/ds5-modis-ndvi.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -255,6 +255,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -269,13 +275,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -292,37 +298,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+  <a href="../lectures/lesson-22-make_a_gif.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,10 +372,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-access" id="toc-data-access" class="nav-link active" data-scroll-target="#data-access"><span class="header-section-number">23.1</span> Data access</a></li>
-  <li><a href="#examine-dates" id="toc-examine-dates" class="nav-link" data-scroll-target="#examine-dates"><span class="header-section-number">23.2</span> Examine Dates</a></li>
-  <li><a href="#assets" id="toc-assets" class="nav-link" data-scroll-target="#assets"><span class="header-section-number">23.3</span> Assets</a></li>
-  <li><a href="#rescaling" id="toc-rescaling" class="nav-link" data-scroll-target="#rescaling"><span class="header-section-number">23.4</span> Rescaling</a></li>
+  <li><a href="#data-access" id="toc-data-access" class="nav-link active" data-scroll-target="#data-access"><span class="header-section-number">24.1</span> Data access</a></li>
+  <li><a href="#examine-dates" id="toc-examine-dates" class="nav-link" data-scroll-target="#examine-dates"><span class="header-section-number">24.2</span> Examine Dates</a></li>
+  <li><a href="#assets" id="toc-assets" class="nav-link" data-scroll-target="#assets"><span class="header-section-number">24.3</span> Assets</a></li>
+  <li><a href="#rescaling" id="toc-rescaling" class="nav-link" data-scroll-target="#rescaling"><span class="header-section-number">24.4</span> Rescaling</a></li>
   </ul>
 </nav>
     </div>
@@ -378,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></h1>
 </div>
 
 
@@ -442,8 +448,8 @@ About the data
 <p>Read the <a href="https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview">catalog’s overview</a> before starting the exercise.</p>
 </div>
 </div>
-<section id="data-access" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="data-access"><span class="header-section-number">23.1</span> Data access</h2>
+<section id="data-access" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="data-access"><span class="header-section-number">24.1</span> Data access</h2>
 <ol type="1">
 <li>Open the MPC STAC catalog.</li>
 <li>Create a search for data in the MODIS Vegetation Indices dataset (id = <code>'modis-13A1-061'</code>) from 2023 that intersects the box bounds:</li>
@@ -455,8 +461,8 @@ About the data
 <li>How many items are in the search?</li>
 </ol>
 </section>
-<section id="examine-dates" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="examine-dates"><span class="header-section-number">23.2</span> Examine Dates</h2>
+<section id="examine-dates" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="examine-dates"><span class="header-section-number">24.2</span> Examine Dates</h2>
 <ol type="1">
 <li><p>Select the first item in the search as a variable <code>item</code>.</p></li>
 <li><p>Run <code>item.properties</code>. What kind of Python data structure is this? You can also check it using <code>type</code>.</p></li>
@@ -464,8 +470,8 @@ About the data
 <li><p>The <code>'datetime'</code> value usually refers to the date of collection. Discuss with your team: why does this item does not have a datetime, but instead has start and end times? HINT: <a href="https://planetarycomputer.microsoft.com/dataset/modis-13A1-061#overview">read the datset’s overview</a>.</p></li>
 </ol>
 </section>
-<section id="assets" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="assets"><span class="header-section-number">23.3</span> Assets</h2>
+<section id="assets" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="assets"><span class="header-section-number">24.3</span> Assets</h2>
 <ol type="1">
 <li><p>Check the item’s assets. What kind of Python structure is this?</p></li>
 <li><p>Run the following code in a cell</p></li>
@@ -478,8 +484,8 @@ About the data
 <li><p>Open the 500m 16 days NDVI data using the href from the corresponding asset and <code>rioxr.open_rasterio()</code>. Store it as a variable named <code>data</code>.</p></li>
 </ol>
 </section>
-<section id="rescaling" class="level2" data-number="23.4">
-<h2 data-number="23.4" class="anchored" data-anchor-id="rescaling"><span class="header-section-number">23.4</span> Rescaling</h2>
+<section id="rescaling" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="rescaling"><span class="header-section-number">24.4</span> Rescaling</h2>
 <ol type="1">
 <li><p>Plot the <code>data</code> raster. Discuss with your team the range of values in the raster and how these relate to the NDVI range.</p></li>
 <li><p>Run the following code:</p></li>
@@ -732,12 +738,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/lesson-18-STAC.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/lesson-21-contextily-parquet.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/lesson-22-make_a_gif.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

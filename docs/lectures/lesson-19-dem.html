@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 20&nbsp; Raster manipulation I</title>
+<title>EDS 220 - Working with Environmental Datasets - 21&nbsp; Raster manipulation I</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-17-rioxarray.html">Raster data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-19-dem.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-17-rioxarray.html">Raster data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-19-dem.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -258,6 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -272,13 +278,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -295,37 +301,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+  <a href="../lectures/lesson-22-make_a_gif.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,12 +375,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">20.1</span> Data</a></li>
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">20.2</span> Import data</a></li>
-  <li><a href="#dropping-a-dimension-squeeze-and-drop" id="toc-dropping-a-dimension-squeeze-and-drop" class="nav-link" data-scroll-target="#dropping-a-dimension-squeeze-and-drop"><span class="header-section-number">20.3</span> Dropping a dimension: <code>squeeze()</code> and <code>drop()</code></a></li>
-  <li><a href="#global-information" id="toc-global-information" class="nav-link" data-scroll-target="#global-information"><span class="header-section-number">20.4</span> Global information</a></li>
-  <li><a href="#f-strings" id="toc-f-strings" class="nav-link" data-scroll-target="#f-strings"><span class="header-section-number">20.5</span> f-strings</a></li>
-  <li><a href="#aggregation-coarsen" id="toc-aggregation-coarsen" class="nav-link" data-scroll-target="#aggregation-coarsen"><span class="header-section-number">20.6</span> Aggregation: <code>coarsen()</code></a></li>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">21.1</span> Data</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">21.2</span> Import data</a></li>
+  <li><a href="#dropping-a-dimension-squeeze-and-drop" id="toc-dropping-a-dimension-squeeze-and-drop" class="nav-link" data-scroll-target="#dropping-a-dimension-squeeze-and-drop"><span class="header-section-number">21.3</span> Dropping a dimension: <code>squeeze()</code> and <code>drop()</code></a></li>
+  <li><a href="#global-information" id="toc-global-information" class="nav-link" data-scroll-target="#global-information"><span class="header-section-number">21.4</span> Global information</a></li>
+  <li><a href="#f-strings" id="toc-f-strings" class="nav-link" data-scroll-target="#f-strings"><span class="header-section-number">21.5</span> f-strings</a></li>
+  <li><a href="#aggregation-coarsen" id="toc-aggregation-coarsen" class="nav-link" data-scroll-target="#aggregation-coarsen"><span class="header-section-number">21.6</span> Aggregation: <code>coarsen()</code></a></li>
   </ul>
 </nav>
     </div>
@@ -383,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></h1>
 </div>
 
 
@@ -412,8 +418,8 @@ import os
 
 -->
 <p>In this lesson we will learn how to perform some global and local operations on our raster. We will also go over customizations for plotting raster data and review the Python for loop.</p>
-<section id="data" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="data"><span class="header-section-number">20.1</span> Data</h2>
+<section id="data" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="data"><span class="header-section-number">21.1</span> Data</h2>
 <!-- https://upload.wikimedia.org/wikipedia/commons/b/bb/Grand_Canyon_National_Park_06.jpg-->
 <p>We will use data from the Copernicus Digital Elevation Model (DEM). This dataset ris based on radar satellite data measuring the relative height of Earth’s surface. The Copernicus DEM is available at 30-meter and 90-meter resolution. The data prepared for this class is a tile of 1°x1° latitude/longitude form the Copernicus DEM at 90-meter resolution over the Grand Canyon in the US. Each pixel represents vertical units measured in meters. The data was accessed via the <a href="https://planetarycomputer.microsoft.com/dataset/cop-dem-glo-30#overview">Microsoft’s Planetary Computer Copernicus DEM GLO-30 data repository</a></p>
 <p>Click here to access the <a href="https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf">Copernicus DEM complete product Handbook</a>.</p>
@@ -421,8 +427,8 @@ import os
 To create a simple map for context we will also use a file with the boundaries of the US National Parks boundaries, provided by the US National Park Service [](https://public-nps.opendata.arcgis.com/datasets/nps::nps-boundary-4/about).
 -->
 </section>
-<section id="import-data" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">20.2</span> Import data</h2>
+<section id="import-data" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">21.2</span> Import data</h2>
 <p>Let’s start by loading the libraries we’ll use:</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -973,8 +979,8 @@ TO DO: map of tile relative to Grand Canyon
 
 -->
 </section>
-<section id="dropping-a-dimension-squeeze-and-drop" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="dropping-a-dimension-squeeze-and-drop"><span class="header-section-number">20.3</span> Dropping a dimension: <code>squeeze()</code> and <code>drop()</code></h2>
+<section id="dropping-a-dimension-squeeze-and-drop" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="dropping-a-dimension-squeeze-and-drop"><span class="header-section-number">21.3</span> Dropping a dimension: <code>squeeze()</code> and <code>drop()</code></h2>
 <p>Notice that our raster has an unnecessary extra dimension: band.</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1420,8 +1426,8 @@ Attributes:
 </div>
 </div>
 </section>
-<section id="global-information" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="global-information"><span class="header-section-number">20.4</span> Global information</h2>
+<section id="global-information" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="global-information"><span class="header-section-number">21.4</span> Global information</h2>
 <p>To get a better sense of our raster data we can apply common <code>numpy</code> functions to extract information from the <code>xarray.DataArray</code> underlying <code>np.array</code>.</p>
 <p>For example, we can get the maximum across all the <code>xarray.DataArray</code>’s values by using the <code>max()</code> method:</p>
 <div class="cell" data-execution_count="11">
@@ -1812,8 +1818,8 @@ https://discuss.codecademy.com/t/what-are-good-reasons-to-use-string-formatting/
 https://stackoverflow.com/questions/57150426/what-is-printf
 -->
 </section>
-<section id="f-strings" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="f-strings"><span class="header-section-number">20.5</span> f-strings</h2>
+<section id="f-strings" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="f-strings"><span class="header-section-number">21.5</span> f-strings</h2>
 <p>So far we have printed variables using string concatenation inside the <code>print()</code> function. This means that we write commas between every string and variable we want to print, and then the print function concatenates these into a single string. For example:</p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># minimum elevation</span></span>
@@ -1845,8 +1851,8 @@ https://stackoverflow.com/questions/57150426/what-is-printf
 </div>
 <p>Some extra resources about using f-string formatting: - <a href="https://realpython.com/python-f-strings/">Real Python - Python’s F-String for String Interpolation and Formatting</a> - <a href="https://docs.python.org/3/library/string.html#formatspec">Python documentation- Format Specification Mini-Language</a></p>
 </section>
-<section id="aggregation-coarsen" class="level2" data-number="20.6">
-<h2 data-number="20.6" class="anchored" data-anchor-id="aggregation-coarsen"><span class="header-section-number">20.6</span> Aggregation: <code>coarsen()</code></h2>
+<section id="aggregation-coarsen" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="aggregation-coarsen"><span class="header-section-number">21.6</span> Aggregation: <code>coarsen()</code></h2>
 <p>Let’s go back to our raster. Rasters with high spatial resolution can offer great insight into fine-scale patterns, but can also be challenging to process due to their size. In these cases, it can be useful to use an <strong>aggregation method</strong> to <strong>spatially downsample</strong> and obtain a raster with a coarser resolution.</p>
 <p>To spatially downsample an <code>xarray.DataArray</code> we use the <a href="https://xarray.pydata.org/en/v2023.10.1/generated/xarray.DataArray.coarsen.html"><code>coarsen()</code> method</a> followed by an aggreagator function. The general syntax to coarsen a 2-dimensional :</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>xdataarray.coarsen(x<span class="op">=</span>x_winside, y<span class="op">=</span>y_winside).aggr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3060,12 +3066,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/lesson-17-rioxarray.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../discussion-sections/ds4-landcover.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
