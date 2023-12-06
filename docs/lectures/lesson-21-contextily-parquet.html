@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 17&nbsp; Parquet and contextily</title>
+<title>EDS 220 - Working with Environmental Datasets - 18&nbsp; Parquet and contextily</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-21-contextily-parquet.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-21-contextily-parquet.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -144,8 +144,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-0-create-conda-env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environment setup</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -160,49 +166,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
   </div>
 </li>
       </ul>
@@ -219,49 +225,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-13-reproject-and-clip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,13 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -301,37 +307,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-22-make_a_gif.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
   </div>
 </li>
       </ul>
@@ -375,11 +381,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#parquet-and-geoparquet" id="toc-parquet-and-geoparquet" class="nav-link active" data-scroll-target="#parquet-and-geoparquet"><span class="header-section-number">17.1</span> Parquet and GeoParquet</a></li>
-  <li><a href="#catalog-search" id="toc-catalog-search" class="nav-link" data-scroll-target="#catalog-search"><span class="header-section-number">17.2</span> Catalog search</a></li>
-  <li><a href="#opening-geoparquet" id="toc-opening-geoparquet" class="nav-link" data-scroll-target="#opening-geoparquet"><span class="header-section-number">17.3</span> Opening (Geo)Parquet</a></li>
-  <li><a href="#contextily" id="toc-contextily" class="nav-link" data-scroll-target="#contextily"><span class="header-section-number">17.4</span> Contextily</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">17.5</span> Acknowledgements</a></li>
+  <li><a href="#parquet-and-geoparquet" id="toc-parquet-and-geoparquet" class="nav-link active" data-scroll-target="#parquet-and-geoparquet"><span class="header-section-number">18.1</span> Parquet and GeoParquet</a></li>
+  <li><a href="#catalog-search" id="toc-catalog-search" class="nav-link" data-scroll-target="#catalog-search"><span class="header-section-number">18.2</span> Catalog search</a></li>
+  <li><a href="#opening-geoparquet" id="toc-opening-geoparquet" class="nav-link" data-scroll-target="#opening-geoparquet"><span class="header-section-number">18.3</span> Opening (Geo)Parquet</a></li>
+  <li><a href="#contextily" id="toc-contextily" class="nav-link" data-scroll-target="#contextily"><span class="header-section-number">18.4</span> Contextily</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">18.5</span> Acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -388,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></h1>
 </div>
 
 
@@ -404,8 +410,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>In this lesson we will retrieve data from the <a href="https://planetarycomputer.microsoft.com/dataset/us-census">2020 Census from the Microsoft Planetary Computer’s STAC catalog</a> using <strong>GeoParquet</strong>. We will also introduce the <strong>contextily</strong> library for adding basemaps.</p>
-<section id="parquet-and-geoparquet" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="parquet-and-geoparquet"><span class="header-section-number">17.1</span> Parquet and GeoParquet</h2>
+<section id="parquet-and-geoparquet" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="parquet-and-geoparquet"><span class="header-section-number">18.1</span> Parquet and GeoParquet</h2>
 <p><a href="https://parquet.apache.org"><strong>Apache Parquet</strong></a> (or just parquet) is an open-source, column-oriented file format that makes it faster to retrieve data and uses less memory space to store tabular data. It is very popular for storing large amounts of data, instead of using, for example, CSV files.</p>
 <!-- https://towardsdatascience.com/demystifying-the-parquet-file-format-13adb0206705
 
@@ -419,8 +425,8 @@ https://cholmes.medium.com/geoparquet-1-0-0-beta-1-released-6390ecb4c6d0
 https://geoparquet.org
 -->
 </section>
-<section id="catalog-search" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="catalog-search"><span class="header-section-number">17.2</span> Catalog search</h2>
+<section id="catalog-search" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="catalog-search"><span class="header-section-number">18.2</span> Catalog search</h2>
 <p>We start by importing all the necessary libraries:</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -1882,8 +1888,8 @@ https://github.com/geopandas/contextily/issues/78
 </div>
 </div>
 </section>
-<section id="opening-geoparquet" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="opening-geoparquet"><span class="header-section-number">17.3</span> Opening (Geo)Parquet</h2>
+<section id="opening-geoparquet" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="opening-geoparquet"><span class="header-section-number">18.3</span> Opening (Geo)Parquet</h2>
 <p>To open the parquet file we use the <code>gpd.read_parquet()</code> function using the asset’s URL pointing to the data.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>counties <span class="op">=</span> gpd.read_parquet(</span>
@@ -2010,8 +2016,8 @@ https://github.com/geopandas/contextily/issues/78
 </div>
 </div>
 </section>
-<section id="contextily" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="contextily"><span class="header-section-number">17.4</span> Contextily</h2>
+<section id="contextily" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="contextily"><span class="header-section-number">18.4</span> Contextily</h2>
 <p>In this section we will introduce the Python library <a href="https://contextily.readthedocs.io/en/latest/index.html"><strong>contextily</strong></a> to add base maps.</p>
 <p>Contextily retrieves tile maps from the internet and makes it possible to plot them alongside our vector data.</p>
 <p><strong>Example</strong></p>
@@ -14607,8 +14613,8 @@ https://contextily.readthedocs.io/en/latest/providers_deepdive.html
 
 -->
 </section>
-<section id="acknowledgements" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">17.5</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">18.5</span> Acknowledgements</h2>
 <p>This lesson was adapted from teh MPC’s notebook <a href="https://planetarycomputer.microsoft.com/dataset/us-census#Example-Notebook">Accessing US Census data with the Planetary Compyter STAC API</a>.</p>
 
 
@@ -14851,12 +14857,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../discussion-sections/ds3-earthquakes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/lesson-14-multidimensional-data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NetCDF</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

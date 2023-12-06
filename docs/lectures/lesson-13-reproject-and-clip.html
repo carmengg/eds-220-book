@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 15&nbsp; Reprojecting &amp; Clipping</title>
+<title>EDS 220 - Working with Environmental Datasets - 16&nbsp; Reprojecting &amp; Clipping</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-13-reproject-and-clip.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-8-vector-data.html">Vector data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-13-reproject-and-clip.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -144,8 +144,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-0-create-conda-env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environment setup</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -160,49 +166,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
   </div>
 </li>
       </ul>
@@ -219,49 +225,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-13-reproject-and-clip.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,13 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -301,37 +307,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-22-make_a_gif.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
   </div>
 </li>
       </ul>
@@ -375,27 +381,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">15.1</span> Data</a></li>
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">15.2</span> Import data</a></li>
-  <li><a href="#prepare-alaska-polygon" id="toc-prepare-alaska-polygon" class="nav-link" data-scroll-target="#prepare-alaska-polygon"><span class="header-section-number">15.3</span> Prepare Alaska polygon</a>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">16.1</span> Data</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">16.2</span> Import data</a></li>
+  <li><a href="#prepare-alaska-polygon" id="toc-prepare-alaska-polygon" class="nav-link" data-scroll-target="#prepare-alaska-polygon"><span class="header-section-number">16.3</span> Prepare Alaska polygon</a>
   <ul class="collapse">
-  <li><a href="#exploration" id="toc-exploration" class="nav-link" data-scroll-target="#exploration"><span class="header-section-number">15.3.1</span> Exploration</a></li>
-  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection"><span class="header-section-number">15.3.2</span> Selection</a></li>
-  <li><a href="#reprojecting" id="toc-reprojecting" class="nav-link" data-scroll-target="#reprojecting"><span class="header-section-number">15.3.3</span> Reprojecting</a></li>
+  <li><a href="#exploration" id="toc-exploration" class="nav-link" data-scroll-target="#exploration"><span class="header-section-number">16.3.1</span> Exploration</a></li>
+  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection"><span class="header-section-number">16.3.2</span> Selection</a></li>
+  <li><a href="#reprojecting" id="toc-reprojecting" class="nav-link" data-scroll-target="#reprojecting"><span class="header-section-number">16.3.3</span> Reprojecting</a></li>
   </ul></li>
-  <li><a href="#prepare-populated-places" id="toc-prepare-populated-places" class="nav-link" data-scroll-target="#prepare-populated-places"><span class="header-section-number">15.4</span> Prepare populated places</a>
+  <li><a href="#prepare-populated-places" id="toc-prepare-populated-places" class="nav-link" data-scroll-target="#prepare-populated-places"><span class="header-section-number">16.4</span> Prepare populated places</a>
   <ul class="collapse">
-  <li><a href="#exploration-1" id="toc-exploration-1" class="nav-link" data-scroll-target="#exploration-1"><span class="header-section-number">15.4.1</span> Exploration</a></li>
-  <li><a href="#reprojecting-1" id="toc-reprojecting-1" class="nav-link" data-scroll-target="#reprojecting-1"><span class="header-section-number">15.4.2</span> Reprojecting</a></li>
-  <li><a href="#clipping" id="toc-clipping" class="nav-link" data-scroll-target="#clipping"><span class="header-section-number">15.4.3</span> Clipping</a></li>
+  <li><a href="#exploration-1" id="toc-exploration-1" class="nav-link" data-scroll-target="#exploration-1"><span class="header-section-number">16.4.1</span> Exploration</a></li>
+  <li><a href="#reprojecting-1" id="toc-reprojecting-1" class="nav-link" data-scroll-target="#reprojecting-1"><span class="header-section-number">16.4.2</span> Reprojecting</a></li>
+  <li><a href="#clipping" id="toc-clipping" class="nav-link" data-scroll-target="#clipping"><span class="header-section-number">16.4.3</span> Clipping</a></li>
   </ul></li>
-  <li><a href="#prepare-roads" id="toc-prepare-roads" class="nav-link" data-scroll-target="#prepare-roads"><span class="header-section-number">15.5</span> Prepare roads</a>
+  <li><a href="#prepare-roads" id="toc-prepare-roads" class="nav-link" data-scroll-target="#prepare-roads"><span class="header-section-number">16.5</span> Prepare roads</a>
   <ul class="collapse">
-  <li><a href="#exploration-2" id="toc-exploration-2" class="nav-link" data-scroll-target="#exploration-2"><span class="header-section-number">15.5.1</span> Exploration</a></li>
-  <li><a href="#one-liner-clipping" id="toc-one-liner-clipping" class="nav-link" data-scroll-target="#one-liner-clipping"><span class="header-section-number">15.5.2</span> One-liner clipping</a></li>
-  <li><a href="#clipping-with-bounding-box" id="toc-clipping-with-bounding-box" class="nav-link" data-scroll-target="#clipping-with-bounding-box"><span class="header-section-number">15.5.3</span> Clipping with bounding box</a></li>
+  <li><a href="#exploration-2" id="toc-exploration-2" class="nav-link" data-scroll-target="#exploration-2"><span class="header-section-number">16.5.1</span> Exploration</a></li>
+  <li><a href="#one-liner-clipping" id="toc-one-liner-clipping" class="nav-link" data-scroll-target="#one-liner-clipping"><span class="header-section-number">16.5.2</span> One-liner clipping</a></li>
+  <li><a href="#clipping-with-bounding-box" id="toc-clipping-with-bounding-box" class="nav-link" data-scroll-target="#clipping-with-bounding-box"><span class="header-section-number">16.5.3</span> Clipping with bounding box</a></li>
   </ul></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">15.6</span> Plot</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">16.6</span> Plot</a></li>
   </ul>
 </nav>
     </div>
@@ -404,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></h1>
 </div>
 
 
@@ -447,8 +453,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 -->
 <p>In this lesson we will learn how to change the CRS of a <code>geopandas.GeoDataFrame</code> and how to clip different geometries using a polygon in a <code>geopandas.GeoDataFrame</code>. Through doing these operations we will create the following map of roads and populated places in Alaska:</p>
 <p><img src="../images/alaska_roads_and_places.png" class="img-fluid"></p>
-<section id="data" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="data"><span class="header-section-number">15.1</span> Data</h2>
+<section id="data" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="data"><span class="header-section-number">16.1</span> Data</h2>
 <p>We will use three datasets in this lesson.</p>
 <p><strong>First dataset</strong> The first dataset is a <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2022.html#list-tab-790442341">TIGER shapefile from the United States Census Bureau</a>.</p>
 <p>We will use the shapefiles for the US states. Follow these steps to download shapefile with the United States’ states:</p>
@@ -468,8 +474,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <p><strong>Third dataset</strong> The third dataset we’ll use is <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/roads/">Natural Earth’s road dataset</a>. We can obtain this dataset by downloading the shapefile</p>
 <p><strong>Move all datasets to a directory named “data” inside your working directory.</strong></p>
 </section>
-<section id="import-data" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">15.2</span> Import data</h2>
+<section id="import-data" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">16.2</span> Import data</h2>
 <p>Let’s start by loading our libraries and then importing the datasets we’ll use.</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -497,10 +503,10 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>roads <span class="op">=</span> gpd.read_file(os.path.join(<span class="st">'data'</span>,<span class="st">'ne_10m_roads'</span>,<span class="st">'ne_10m_roads.shp'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="prepare-alaska-polygon" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="prepare-alaska-polygon"><span class="header-section-number">15.3</span> Prepare Alaska polygon</h2>
-<section id="exploration" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="exploration"><span class="header-section-number">15.3.1</span> Exploration</h3>
+<section id="prepare-alaska-polygon" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="prepare-alaska-polygon"><span class="header-section-number">16.3</span> Prepare Alaska polygon</h2>
+<section id="exploration" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="exploration"><span class="header-section-number">16.3.1</span> Exploration</h3>
 <p>Let’s start by taking taking a look at our stats geo-dataframe. Since this is a geospatial dataset, exploration should include <em>at least</em> checking the head of the dataset, plotting the data, and looking at its CRS.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the CRS</span></span>
@@ -607,8 +613,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 </div>
 </div>
 </section>
-<section id="selection" class="level3" data-number="15.3.2">
-<h3 data-number="15.3.2" class="anchored" data-anchor-id="selection"><span class="header-section-number">15.3.2</span> Selection</h3>
+<section id="selection" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="selection"><span class="header-section-number">16.3.2</span> Selection</h3>
 <p>For this lesson, we are intersted in plotting data in Alaska. Let’s start by selecting this data:</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select Alaska from states</span></span>
@@ -622,8 +628,8 @@ warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning)
 </div>
 </div>
 </section>
-<section id="reprojecting" class="level3" data-number="15.3.3">
-<h3 data-number="15.3.3" class="anchored" data-anchor-id="reprojecting"><span class="header-section-number">15.3.3</span> Reprojecting</h3>
+<section id="reprojecting" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="reprojecting"><span class="header-section-number">16.3.3</span> Reprojecting</h3>
 <p>As in our previous lesson, we bump into the issue of Alaska’s islands elongating the map. To fix this, we will reproject the Alaska geo-dataframe. <strong>Reprojecting</strong> means precisely this, changing the coordinate reference system of your geospatial data. In our case we will reproject the Alaska geo-dataframe to the CRS EPSG:3338. This CRS is a <em>projected</em> CRS, better suited for working with data from Alaska:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -677,10 +683,10 @@ Datum: North American Datum 1983
 </div>
 </section>
 </section>
-<section id="prepare-populated-places" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="prepare-populated-places"><span class="header-section-number">15.4</span> Prepare populated places</h2>
-<section id="exploration-1" class="level3" data-number="15.4.1">
-<h3 data-number="15.4.1" class="anchored" data-anchor-id="exploration-1"><span class="header-section-number">15.4.1</span> Exploration</h3>
+<section id="prepare-populated-places" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="prepare-populated-places"><span class="header-section-number">16.4</span> Prepare populated places</h2>
+<section id="exploration-1" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="exploration-1"><span class="header-section-number">16.4.1</span> Exploration</h3>
 <p>Let’s now explore the populated places data.</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the CRS</span></span>
@@ -891,8 +897,8 @@ EPSG:4326</code></pre>
 </div>
 </div>
 </section>
-<section id="reprojecting-1" class="level3" data-number="15.4.2">
-<h3 data-number="15.4.2" class="anchored" data-anchor-id="reprojecting-1"><span class="header-section-number">15.4.2</span> Reprojecting</h3>
+<section id="reprojecting-1" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="reprojecting-1"><span class="header-section-number">16.4.2</span> Reprojecting</h3>
 <p>Reprojecting the <code>places</code> geo-datafarme into <code>alaska</code>’s CRS is simple using <code>to_crs()</code>:</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update crs</span></span>
@@ -916,8 +922,8 @@ EPSG:4326</code></pre>
 </div>
 <p>This is better: we can see there is the Alaska poygons and some points on top of it. Our next step is to select these points.</p>
 </section>
-<section id="clipping" class="level3" data-number="15.4.3">
-<h3 data-number="15.4.3" class="anchored" data-anchor-id="clipping"><span class="header-section-number">15.4.3</span> Clipping</h3>
+<section id="clipping" class="level3" data-number="16.4.3">
+<h3 data-number="16.4.3" class="anchored" data-anchor-id="clipping"><span class="header-section-number">16.4.3</span> Clipping</h3>
 <p><strong>Clipping</strong> means using a polygon (or polygons) to only select geospatial data within them. Clipping a <code>gpd.GeoDataFrame</code> is easy using the geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.clip.html"><code>clip()</code> function</a>. The general syntax is:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>updated_geodf <span class="op">=</span> gpd.clip(geodf, mask)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where:</p>
@@ -949,10 +955,10 @@ EPSG:4326</code></pre>
 </div>
 </section>
 </section>
-<section id="prepare-roads" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="prepare-roads"><span class="header-section-number">15.5</span> Prepare roads</h2>
-<section id="exploration-2" class="level3" data-number="15.5.1">
-<h3 data-number="15.5.1" class="anchored" data-anchor-id="exploration-2"><span class="header-section-number">15.5.1</span> Exploration</h3>
+<section id="prepare-roads" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="prepare-roads"><span class="header-section-number">16.5</span> Prepare roads</h2>
+<section id="exploration-2" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="exploration-2"><span class="header-section-number">16.5.1</span> Exploration</h3>
 <p>Now we move on to our roads dataset.</p>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the CRS</span></span>
@@ -1127,8 +1133,8 @@ EPSG:4326</code></pre>
 </div>
 </div>
 </section>
-<section id="one-liner-clipping" class="level3" data-number="15.5.2">
-<h3 data-number="15.5.2" class="anchored" data-anchor-id="one-liner-clipping"><span class="header-section-number">15.5.2</span> One-liner clipping</h3>
+<section id="one-liner-clipping" class="level3" data-number="16.5.2">
+<h3 data-number="16.5.2" class="anchored" data-anchor-id="one-liner-clipping"><span class="header-section-number">16.5.2</span> One-liner clipping</h3>
 <p>You may have already noticed that <code>roads</code> is not in the same CRS as <code>alaska</code>, so these geo-datasets shound’t interact until they’re in the same CRS. Before jumping right into reprojecting and clipping, we will subset the data to select only US roads:</p>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select US roads only</span></span>
@@ -1172,8 +1178,8 @@ YOU CAN JUMP FROM HERE TO CLIPPING WITH BOUNDING BOX
 </div>
 <p>Notice how the lines break on the small islands? However in the <code>usa_roads</code> there are no broken lines. This should make us suspect we are leaving data out and clipping <em>exactly</em> to the polygons in <code>alaska</code> is not quite what we want.</p>
 </section>
-<section id="clipping-with-bounding-box" class="level3" data-number="15.5.3">
-<h3 data-number="15.5.3" class="anchored" data-anchor-id="clipping-with-bounding-box"><span class="header-section-number">15.5.3</span> Clipping with bounding box</h3>
+<section id="clipping-with-bounding-box" class="level3" data-number="16.5.3">
+<h3 data-number="16.5.3" class="anchored" data-anchor-id="clipping-with-bounding-box"><span class="header-section-number">16.5.3</span> Clipping with bounding box</h3>
 <p>We will clip the <code>usa_roads</code> geo-dataframe with the bounding box of <code>alaska</code> instead of its polygons. To create a bounding box, we first use the <a href="https://shapely.readthedocs.io/en/stable/manual.html#shapely.geometry.box"><code>box()</code> function we imported from <code>shapely.geometry</code></a>. The syntax for <code>box()</code> is:</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>box(minx, miny, maxx, maxy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>the output is a X representing a box constructed like this:</p>
@@ -1271,8 +1277,8 @@ Variable: Symbolic name that stores an object and has a reserved memory location
 -->
 </section>
 </section>
-<section id="plot" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="plot"><span class="header-section-number">15.6</span> Plot</h2>
+<section id="plot" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="plot"><span class="header-section-number">16.6</span> Plot</h2>
 <p>Finally, we can put all our data together in the same map:</p>
 <div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://matplotlib.org/stable/api/markers_api.html</span></span>
@@ -1539,12 +1545,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/lesson-12-csv-to-geo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../discussion-sections/ds3-earthquakes.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

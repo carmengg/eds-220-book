@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EDS 220 - Working with Environmental Datasets - 2&nbsp; pandas</title>
+<title>EDS 220 - Working with Environmental Datasets - 3&nbsp; pandas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-2-series-dataframes.html">Tabular data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-2-series-dataframes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">`pandas`</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lesson-2-series-dataframes.html">Tabular data</a></li><li class="breadcrumb-item"><a href="../lectures/lesson-2-series-dataframes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">`pandas`</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -144,8 +144,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lectures/lesson-0-create-conda-env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environment setup</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-1-python-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Review</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -160,49 +166,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-2-series-dataframes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-3-pandas-subsetting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Subsetting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-4-basic-plotting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-5-updating-dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Updating data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-6-groupby.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>groupby()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds2-hares.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">* Lab: Data cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-7-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Basic time series</span></span></a>
   </div>
 </li>
       </ul>
@@ -219,49 +225,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-8-vector-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-11-crs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Coordinate Reference Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-9-geopandas-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>geopandas</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-10-merge-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Merging data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-12-csv-to-geo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">csv to <code>GeoDataFrame</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-13-reproject-and-clip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reprojecting &amp; Clipping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds3-earthquakes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">*Lab: Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-21-contextily-parquet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Parquet and contextily</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,13 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-14-multidimensional-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NetCDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-15-xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>xarray</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -301,37 +307,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-17-rioxarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>rioxarray</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-19-dem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Raster manipulation I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds4-landcover.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">*Lab: land cover statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-18-STAC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">STAC specification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../discussion-sections/ds5-modis-ndvi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">*Lab: STAC access</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/lesson-22-make_a_gif.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Make a GIF</span></span></a>
   </div>
 </li>
       </ul>
@@ -375,16 +381,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pandas" id="toc-pandas" class="nav-link active" data-scroll-target="#pandas"><span class="header-section-number">2.1</span> <code>pandas</code></a></li>
-  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series"><span class="header-section-number">2.2</span> Series</a>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link active" data-scroll-target="#pandas"><span class="header-section-number">3.1</span> <code>pandas</code></a></li>
+  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series"><span class="header-section-number">3.2</span> Series</a>
   <ul class="collapse">
-  <li><a href="#creating-a-pandas.series" id="toc-creating-a-pandas.series" class="nav-link" data-scroll-target="#creating-a-pandas.series"><span class="header-section-number">2.2.1</span> Creating a <code>pandas.Series</code></a></li>
-  <li><a href="#simple-operations" id="toc-simple-operations" class="nav-link" data-scroll-target="#simple-operations"><span class="header-section-number">2.2.2</span> Simple operations</a></li>
-  <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="header-section-number">2.2.3</span> Attributes &amp; Methods</a></li>
+  <li><a href="#creating-a-pandas.series" id="toc-creating-a-pandas.series" class="nav-link" data-scroll-target="#creating-a-pandas.series"><span class="header-section-number">3.2.1</span> Creating a <code>pandas.Series</code></a></li>
+  <li><a href="#simple-operations" id="toc-simple-operations" class="nav-link" data-scroll-target="#simple-operations"><span class="header-section-number">3.2.2</span> Simple operations</a></li>
+  <li><a href="#attributes-methods" id="toc-attributes-methods" class="nav-link" data-scroll-target="#attributes-methods"><span class="header-section-number">3.2.3</span> Attributes &amp; Methods</a></li>
   </ul></li>
-  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">2.3</span> Data Frames</a>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">3.3</span> Data Frames</a>
   <ul class="collapse">
-  <li><a href="#creating-a-pandas.dataframe" id="toc-creating-a-pandas.dataframe" class="nav-link" data-scroll-target="#creating-a-pandas.dataframe"><span class="header-section-number">2.3.1</span> Creating a <code>pandas.DataFrame</code></a></li>
+  <li><a href="#creating-a-pandas.dataframe" id="toc-creating-a-pandas.dataframe" class="nav-link" data-scroll-target="#creating-a-pandas.dataframe"><span class="header-section-number">3.3.1</span> Creating a <code>pandas.DataFrame</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -394,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>pandas</code></span></h1>
 </div>
 
 
@@ -410,8 +416,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>In this lesson we introduce the two core objects in the <code>pandas</code> library, the <code>pandas.Series</code> and the <code>pandas.DataFrame</code>.</p>
-<section id="pandas" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="pandas"><span class="header-section-number">2.1</span> <code>pandas</code></h2>
+<section id="pandas" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="pandas"><span class="header-section-number">3.1</span> <code>pandas</code></h2>
 <p><code>pandas</code> is a Python package to wrangle and analyze tabular data. It is built on top of NumPy and has become the core tool for doing data analysis in Python.</p>
 <p>The convention to import it is:</p>
 <div class="cell" data-execution_count="1">
@@ -422,8 +428,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>There is so much to learn about <code>pandas</code>. While we won’t be able to cover every single functionality of this package in the next three lecutres, the goal is to get you started with the basic tools for data wrangling and give you a solid basis on which you can explore further.</p>
 </section>
-<section id="series" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="series"><span class="header-section-number">2.2</span> Series</h2>
+<section id="series" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="series"><span class="header-section-number">3.2</span> Series</h2>
 <p>The first core data structure of pandas is the <strong>series</strong>. A series is a <em>one-dimensional</em> array of <em>indexed</em> data. A <code>pandas.Series</code> having an <strong>index</strong> is the main difference between a <code>pandas.Series</code> and a numpy array. See the difference:</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a numpy array</span></span>
@@ -448,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 dtype: float64</code></pre>
 </div>
 </div>
-<section id="creating-a-pandas.series" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="creating-a-pandas.series"><span class="header-section-number">2.2.1</span> Creating a <code>pandas.Series</code></h3>
+<section id="creating-a-pandas.series" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="creating-a-pandas.series"><span class="header-section-number">3.2.1</span> Creating a <code>pandas.Series</code></h3>
 <p>The basic method to create a <code>pandas.Series</code> is to call</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(data, index<span class="op">=</span>index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>data</code> parameter can be:</p>
@@ -482,8 +488,8 @@ dtype: int64</code></pre>
 dtype: object</code></pre>
 </div>
 </div>
-<section id="from-a-dictionary" class="level4" data-number="2.2.1.1">
-<h4 data-number="2.2.1.1" class="anchored" data-anchor-id="from-a-dictionary"><span class="header-section-number">2.2.1.1</span> From a dictionary</h4>
+<section id="from-a-dictionary" class="level4" data-number="3.2.1.1">
+<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="from-a-dictionary"><span class="header-section-number">3.2.1.1</span> From a dictionary</h4>
 <p>Remember a dictionary is a set of key-value pairs. If we create a <code>pandas.Series</code> via a dictionary the keys will become the index and the values the corresponding data.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct dictionary</span></span>
@@ -499,8 +505,8 @@ dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="from-a-number" class="level4" data-number="2.2.1.2">
-<h4 data-number="2.2.1.2" class="anchored" data-anchor-id="from-a-number"><span class="header-section-number">2.2.1.2</span> From a number</h4>
+<section id="from-a-number" class="level4" data-number="3.2.1.2">
+<h4 data-number="3.2.1.2" class="anchored" data-anchor-id="from-a-number"><span class="header-section-number">3.2.1.2</span> From a number</h4>
 <p>If we only provide a number as the data for the series, we need to provide an index. The number will be repeated to match the length of the index.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.Series(<span class="fl">3.0</span>, index <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,8 +519,8 @@ dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="simple-operations" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="simple-operations"><span class="header-section-number">2.2.2</span> Simple operations</h3>
+<section id="simple-operations" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="simple-operations"><span class="header-section-number">3.2.2</span> Simple operations</h3>
 <p>Arithmetic operations work on series and also most NumPy functions. For example:</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a series</span></span>
@@ -558,8 +564,8 @@ dtype: bool</code></pre>
 <p>This kind of simple conditions on <code>pandas.Series</code> will be key when we are selecting data from data frames.</p>
 <!-- TO DO: ADD COMPARING VALUES OF A SERIES -->
 </section>
-<section id="attributes-methods" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="attributes-methods"><span class="header-section-number">2.2.3</span> Attributes &amp; Methods</h3>
+<section id="attributes-methods" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="attributes-methods"><span class="header-section-number">3.2.3</span> Attributes &amp; Methods</h3>
 <p><code>pandas.Series</code> have <em>many</em> attributes and methods, you can see a <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">full list in the <code>pandas</code> documentation</a>. For now we will cover two examples that have to do with identifying missing values.</p>
 <p><code>pandas</code> represents a missing or NA value with <code>NaN</code>, which stands for not a number. Let’s construct a small series with some NA values:</p>
 <div class="cell" data-execution_count="9">
@@ -669,11 +675,11 @@ dtype: int64</code></pre>
 </div>
 </section>
 </section>
-<section id="data-frames" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">2.3</span> Data Frames</h2>
+<section id="data-frames" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">3.3</span> Data Frames</h2>
 <p>The Data Frame is the most used <code>pandas</code> object. It represents tabular data and we can think of it as a spreadhseet. Each column of a <code>pandas.DataFrame</code> is a <code>pandas.Series</code>.</p>
-<section id="creating-a-pandas.dataframe" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="creating-a-pandas.dataframe"><span class="header-section-number">2.3.1</span> Creating a <code>pandas.DataFrame</code></h3>
+<section id="creating-a-pandas.dataframe" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="creating-a-pandas.dataframe"><span class="header-section-number">3.3.1</span> Creating a <code>pandas.DataFrame</code></h3>
 <p>There are <a href="https://pandas.pydata.org/docs/user_guide/dsintro.html#dataframe">many ways of creating a <code>pandas.DataFrame</code></a>.</p>
 <p>We already mentioned each column of a <code>pandas.DataFrame</code> is a <code>pandas.Series</code>. In fact, the <code>pandas.DataFrame</code> is a dictionary of <code>pandas.Series</code>, with each column name being the key and the column values being the key’s value. Thus, we can create a <code>pandas.DataFrame</code> in this way:</p>
 <div class="cell" data-execution_count="15">
@@ -1050,12 +1056,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/lesson-1-python-review.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Review</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Review</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../discussion-sections/ds1-anthr-prelim-data-exploration.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">* Lab: Preliminary data exploration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

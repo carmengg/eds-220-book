@@ -1,0 +1,27 @@
+# Environment setup
+
+To install the libraries needed to execute the code in these notes you can create a conda environment using the `environment.yml` file in the notes repository. 
+
+If you do not have Anaconda installed yet (which includes  `conda`), you can download it here: [https://www.anaconda.com/download](https://www.anaconda.com/download).
+
+To build the environment:
+
+1. Download the `environment.yml` [file in the notes repository](https://github.com/carmengg/eds-220-book/blob/main/environment.yml). Place it in the directory where you will store the notebooks associated with these notes.
+
+2. Using the terminal, navigate to the directory where the `environment.yml` file is.
+
+3. Run the following command to build the environment:
+
+```bash
+conda env create -f environment.yml
+```
+
+4. Once the building finishes, run the following command to check the new environment was created:
+
+```bash
+conda env list
+```
+
+5. If you are using VSCode (recommended), you should be able open a Python notebok and select the new environment by accessing a drop-down list by clicking on the top right corner. 
+
+
