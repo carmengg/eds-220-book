@@ -45,6 +45,7 @@ book:
         #- lectures/lesson-16-raster-formats.qmd
         - lectures/lesson-17-rioxarray.qmd
         - lectures/lesson-19-dem.qmd
+        - lectures/lesson-20-zonal-stats.qmd
         - discussion-sections/ds4-landcover.qmd
         - lectures/lesson-18-STAC.qmd
         - discussion-sections/ds5-modis-ndvi.qmd
