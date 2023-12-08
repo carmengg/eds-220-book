@@ -35,6 +35,10 @@ STAC items can be grouped into **STAC collections**.
 For example, while a single satellite scene (at a single time and location) would constitue an item, scenes across time and location from the same satellite can be orgnanized in a collection. 
 Finally, multiple collections can be organized into a single **STAC catalog**. 
 
+For example, we'll be accessing the Microsoft Planetary STAC catalog. Two of its collections are the National Agriculture Imagery Program (NAIP) colelction and the Copernicus Digital Elevation Model (DEM) colleciton. Each of these collections has multiple items, with item cotaining properties (metadata) and assets (links to the data). 
+
+![](/images/mpc-stac-catalog.png)
+
 ## API
 To request data from a catalog following the STAC standard we use an **Application Programming Interface (API)**. 
 We can think of an API as an intermediary tasked with sending our request for data to the data catalog and getting the response from the catalog back to us. 

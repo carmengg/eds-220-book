@@ -138,7 +138,7 @@ kodiak_patch = mpatches.Patch(color='blue',
 
 # ------------------------------------------
 # create elegend
-ax.legend(handles = [ak_patch, kodiak_patch], frameon=False, loc='upper left', bbox_to_anchor= (1, 1))
+ax.legend(handles = [ak_patch, kodiak_patch], frameon=False, loc='upper right')
 
 plt.show()
 ```
